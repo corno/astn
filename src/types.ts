@@ -6,8 +6,8 @@ export type Location = {
 }
 
 export type Relative_Location = {
-    readonly 'column': number
     readonly 'line': number
+    readonly 'column': number
 }
 
 export type Document = {

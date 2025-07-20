@@ -228,7 +228,14 @@ export const Document = (
         'current indentation': string
     }
 ): Text_Edits => {
-    return op.flatten(_ea.array_literal([
+    return op.flatten(_ea.array_literal<Text_Edits>([
+        _ea.array_literal<Text_Edit>([['replace', {
+        'range': {
+            'start': { 'column': 0, 'line': 0 },
+            'end': { 'column': 10, 'line': 0 },
+        },
+        'text': "SDFSFD",
+    }]]),
         $.header.transform(
             ($) => op.flatten(_ea.array_literal([
                 Structural_Token($['!'], $p),
