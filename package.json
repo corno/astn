@@ -1,6 +1,6 @@
 {
   "name": "astn",
-  "version": "0.110.3",
+  "version": "0.110.4",
   "description": "A library for parsing and formatting ASTN (Abstract Syntax Tree Notation)",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
