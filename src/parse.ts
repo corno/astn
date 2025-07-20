@@ -56,12 +56,6 @@ const throw_unexpected_token = (
 
 export namespace Lexer {
 
-    type Location_Info = {
-        'position': number
-        'line': number
-        'column': number
-    }
-
     export type Annotated_Token = {
         readonly 'annotation': types.Structural_Token
         readonly 'trailing trivia': types.Trivia
@@ -103,8 +97,8 @@ export namespace Lexer {
          */
         'get current character': () => number | null
         'look ahead': ($: number) => number | null
-        'create offset location info': (subtract: number) => Location_Info
-        'create location info': () => Location_Info
+        'create offset location info': (subtract: number) => types.Location
+        'create location info': () => types.Location
         'create location info string': () => string
         /**
          * if no non-whitespace character has been found yet on the current line,
@@ -462,9 +456,11 @@ export namespace Lexer {
                         throw_parse_error(
                             ['lexer', ['unexpected control character', $]],
                             _ea.set({
-                                'position': position,
-                                'line': relative_position.line,
-                                'column': relative_position['character offset'],
+                                'absolute': position,
+                                'relative': {
+                                    'line': relative_position.line,
+                                    'column': relative_position['character offset'],
+                                }
                             })
                         )
                     }
@@ -533,16 +529,20 @@ export namespace Lexer {
             },
             'create location info': () => {
                 return {
-                    'position': position,
-                    'line': relative_position.line,
-                    'column': relative_position['character offset'],
+                    'absolute': position,
+                    'relative': {
+                        'line': relative_position.line,
+                        'column': relative_position['character offset'],
+                    }
                 }
             },
             'create offset location info': (subtract) => {
                 return {
-                    'position': position - subtract,
-                    'line': relative_position.line,
-                    'column': relative_position['character offset'] - subtract,
+                    'absolute': position - subtract,
+                    'relative': {
+                        'line': relative_position.line,
+                        'column': relative_position['character offset'] - subtract,
+                    }
                 }
             },
             'create location info string': () => `${relative_position.line}:${relative_position['character offset']}`,

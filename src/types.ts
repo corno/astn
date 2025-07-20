@@ -1,5 +1,15 @@
 import * as _et from 'exupery-core-types'
 
+export type Location = {
+    readonly 'relative': Relative_Location
+    readonly 'absolute': number
+}
+
+export type Relative_Location = {
+    readonly 'column': number
+    readonly 'line': number
+}
+
 export type Document = {
     'header': _et.Optional_Value<{
         '!': Structural_Token
@@ -90,12 +100,6 @@ export type Key_Value_Pair = {
         'value': Value
     }>
     ',': _et.Optional_Value<Structural_Token>
-}
-
-export type Location = {
-    readonly 'column': number
-    readonly 'line': number
-    readonly 'position': number
 }
 
 export type Structural_Token = {

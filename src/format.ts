@@ -5,24 +5,21 @@ import * as pso from "pareto-standard-operations"
 
 import * as types from "./types"
 
-export type Location = types.Location
-
 export type Range = {
-    'start': Location
-    'end': Location
+    'start': types.Relative_Location
+    'end': types.Relative_Location
 }
 
-const increment_location = (location: Location, increment: number): Location => {
+const increment_location = (location: types.Relative_Location, increment: number): types.Relative_Location => {
     return {
         'column': location.column + increment,
         'line': location.line,
-        'position': location.position + increment,
     }
 }
 
 export type Text_Edit =
     | ['insert', {
-        'location': Location
+        'location': types.Relative_Location
         'text': string
     }]
     | ['replace', {
@@ -127,9 +124,9 @@ export const Key_Value_Pairs = (
             ),
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
-                   $p['remove commas']
-                    ? _ea.array_literal([['replace', {'range': {'start': $.location, 'end': $.location}, 'text': ''}]])
-                    : _ea.array_literal([]),
+                    $p['remove commas']
+                        ? _ea.array_literal([['replace', { 'range': { 'start': $.location.relative, 'end': $.location.relative }, 'text': '' }]])
+                        : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
                 () => _ea.array_literal([])
@@ -152,9 +149,9 @@ export const Elements = (
             Value($.value, $p),
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
-                   $p['remove commas']
-                    ? _ea.array_literal([['replace', {'range': {'start': $.location, 'end': increment_location($.location, 1)}, 'text': ''}]])
-                    : _ea.array_literal([]),
+                    $p['remove commas']
+                        ? _ea.array_literal([['replace', { 'range': { 'start': $.location.relative, 'end': increment_location($.location.relative, 1) }, 'text': '' }]])
+                        : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
                 () => _ea.array_literal([])
