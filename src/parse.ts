@@ -4,7 +4,7 @@ import * as _et from 'exupery-core-types'
 import * as types from "./types"
 
 
-type Parse_Error_Type =
+export type Parse_Error_Type =
     | ['lexer',
         | ['unexpected control character', number]
         | ['missing character after escape', null]
@@ -26,7 +26,7 @@ type Parse_Error_Type =
         }]
     ]
 
-type Parse_Error = {
+export type Parse_Error = {
     'type': Parse_Error_Type
     'location': _et.Optional_Value<types.Location>
 }
