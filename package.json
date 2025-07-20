@@ -1,0 +1,14 @@
+{
+  "name": "astn",
+  "version": "0.110.0",
+  "description": "A library for parsing and formatting ASTN (Abstract Syntax Tree Notation)",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "exupery-core-alg": "^0.1.4",
+    "pareto-standard-operations": "^0.1.0"
+  }
+}

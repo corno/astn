@@ -1,0 +1,124 @@
+import * as _et from 'exupery-core-types'
+
+export type Document = {
+    'header': _et.Optional_Value<{
+        '!': Structural_Token
+        'value': Value
+    }>
+    'content': Value
+}
+
+export type Value = {
+    'location': Location //can be derived
+    'type': Value_Type
+}
+
+export type Value_Type =
+    | ['string', StringX]
+    | ['indexed collection',
+        | ['dictionary', {
+            '{': Structural_Token
+            'entries': Key_Value_Pairs
+            '}': Structural_Token
+        }]
+        | ['verbose group', {
+            '(': Structural_Token
+            'entries': Key_Value_Pairs
+            ')': Structural_Token
+        }]
+    ]
+    | ['ordered collection',
+        | ['list', {
+            '[': Structural_Token
+            'elements': Elements
+            ']': Structural_Token
+        }]
+        | ['concise group', {
+            '<': Structural_Token
+            'elements': Elements
+            '>': Structural_Token
+        }]
+    ]
+    | ['include', {
+        '@': Structural_Token
+        'path': StringX
+    }]
+    | ['tagged value', {
+        '|': Structural_Token
+        'state': StringX
+        'value': Value
+    }]
+    | ['not set', {
+        '~': Structural_Token
+    }]
+    | ['set optional value', {
+        '*': Structural_Token
+        'value': Value
+    }]
+
+export type StringX = {
+    readonly 'trivia': Trivia
+    readonly 'start': Location
+    readonly 'core': String_Core
+}
+
+export type String_Type =
+    | ['quoted', null]
+    | ['apostrophed', null]
+    | ['undelimited', null]
+    | ['backticked', null]
+
+export type String_Core = {
+    'value': string
+    'type': String_Type
+    'end': Location
+}
+
+export type Key_Value_Pairs = _et.Array<Key_Value_Pair>
+
+export type Element = {
+    'value': Value
+    ',': _et.Optional_Value<Structural_Token>
+}
+
+export type Elements = _et.Array<Element>
+
+export type Key_Value_Pair = {
+    'key': StringX
+    'value': _et.Optional_Value<{
+        ':': Structural_Token
+        'value': Value
+    }>
+    ',': _et.Optional_Value<Structural_Token>
+}
+
+export type Location = {
+    readonly 'column': number
+    readonly 'line': number
+    readonly 'position': number
+}
+
+export type Structural_Token = {
+    readonly 'trivia': Trivia
+    readonly 'location': Location
+}
+
+export type Whitespace = {
+    'start': Location
+    'end': Location
+    'value': string
+}
+
+export type Trivia = {
+    'start': Location
+    'leading whitespace': Whitespace
+    'comments': _et.Array<{
+        'type':
+        | ['line', null]
+        | ['block', null]
+        'content': string
+        'begin': Location
+        'end': Location
+        'trailing whitespace': Whitespace
+    }>
+}
