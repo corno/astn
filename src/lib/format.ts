@@ -87,7 +87,7 @@ export const Structural_Token = (
         'current indentation': string
     }
 ): Text_Edits => {
-    return Trivia($.trivia, $p)
+    return Trivia($['trailing trivia'], $p)
 }
 
 export const String = (
@@ -99,7 +99,7 @@ export const String = (
     }
 ): Text_Edits => {
     return op.flatten(_ea.array_literal([
-        Trivia($.trivia, $p),
+        Trivia($['trailing trivia'], $p),
         //FIX right type
     ]))
 }
@@ -125,7 +125,7 @@ export const Key_Value_Pairs = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': { 'start': $.location.relative, 'end': $.location.relative }, 'text': '' }]])
+                        ? _ea.array_literal([['replace', { 'range': { 'start': $.start.relative, 'end': $.end.relative }, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
@@ -150,7 +150,7 @@ export const Elements = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': { 'start': $.location.relative, 'end': increment_location($.location.relative, 1) }, 'text': '' }]])
+                        ? _ea.array_literal([['replace', { 'range': { 'start': $.start.relative, 'end': $.end.relative }, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),

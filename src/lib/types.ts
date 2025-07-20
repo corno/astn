@@ -5,9 +5,14 @@ export type Location = {
     readonly 'absolute': number
 }
 
+export type Range = {
+    readonly 'start': Location
+    readonly 'end': Location
+}
+
 export type Relative_Location = {
     readonly 'line': number
-    readonly 'column': number
+    readonly 'column': number //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
 }
 
 export type Document = {
@@ -19,7 +24,8 @@ export type Document = {
 }
 
 export type Value = {
-    'location': Location //can be derived
+    'start': Location //can be derived
+    'end': Location //can be derived
     'type': Value_Type
 }
 
@@ -67,9 +73,12 @@ export type Value_Type =
     }]
 
 export type StringX = {
-    readonly 'trivia': Trivia
+    readonly 'trailing trivia': Trivia
     readonly 'start': Location
-    readonly 'core': String_Core
+    readonly 'value': string
+    readonly 'type': String_Type
+    readonly 'end': Location
+
 }
 
 export type String_Type =
@@ -78,11 +87,6 @@ export type String_Type =
     | ['undelimited', null]
     | ['backticked', null]
 
-export type String_Core = {
-    'value': string
-    'type': String_Type
-    'end': Location
-}
 
 export type Key_Value_Pairs = _et.Array<Key_Value_Pair>
 
@@ -103,8 +107,9 @@ export type Key_Value_Pair = {
 }
 
 export type Structural_Token = {
-    readonly 'trivia': Trivia
-    readonly 'location': Location
+    readonly 'trailing trivia': Trivia
+    readonly 'start': Location
+    readonly 'end': Location
 }
 
 export type Whitespace = {

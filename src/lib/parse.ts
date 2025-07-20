@@ -18,26 +18,28 @@ export type Parse_Error_Type =
         | ['unexpected end of input', null]
         | ['dangling slash', null]
     ]
-    | ['parser',
-        | ['unexpected end of input', null]
+    | ['parser', {
+        'expected': _et.Array<string>
+        'cause':
+        | ['missing token', null]
         | ['unexpected token', {
             'found': Lexer.Token_Type
-            'expected': _et.Array<string>
         }]
+    }
     ]
 
 export type Parse_Error = {
     'type': Parse_Error_Type
-    'location': _et.Optional_Value<types.Location>
+    'range': types.Range
 }
 
 const throw_parse_error = (
     type: Parse_Error_Type,
-    location: _et.Optional_Value<types.Location>
+    range: types.Range
 ): never => {
     throw new _ea.Error<Parse_Error>({
         'type': type,
-        'location': location
+        'range': range
     })
 }
 
@@ -46,20 +48,26 @@ const throw_unexpected_token = (
     expected: _et.Array<string>,
 ): never => {
     return throw_parse_error(
-        ['parser', ['unexpected token', {
-            'found': found.type,
-            'expected': expected
-        }]],
-        _ea.set(found.annotation.location)
+        ['parser', {
+            'expected': expected,
+            'cause': ['unexpected token', {
+                'found': found.type,
+            }]
+        }],
+        {
+            'start': found.start,
+            'end': found.end
+        }
     )
 }
 
 export namespace Lexer {
 
     export type Annotated_Token = {
-        readonly 'annotation': types.Structural_Token
-        readonly 'trailing trivia': types.Trivia
+        readonly 'start': types.Location
         readonly 'type': Token_Type
+        readonly 'end': types.Location
+        readonly 'trailing trivia': types.Trivia
     }
 
     export type Token_Type =
@@ -80,11 +88,15 @@ export namespace Lexer {
         | readonly [':', null]
         | readonly ['|', null]
 
-        | readonly ['string', types.String_Core]
+        | readonly ['string', {
+            'value': string
+            'type': types.String_Type
+        }]
 
     export type Tokenizer_Result = {
         readonly 'leading trivia': types.Trivia
         readonly 'tokens': _et.Array<Annotated_Token>
+        readonly 'end': types.Location
     }
 
     export type String_Iterator = {
@@ -102,7 +114,7 @@ export namespace Lexer {
         'create location info string': () => string
         /**
          * if no non-whitespace character has been found yet on the current line,
-         * this will return the current character offset,
+         * this will return the current column,
          * otherwise it will return the offset of that first non-whitespace character
          * (which is the indentation of the line)
          */
@@ -175,11 +187,18 @@ export namespace Lexer {
                     }
                     switch ($) {
                         case 0x2F: // /
+                            const start = string_iterator['create location info']()
                             const next_char = string_iterator['look ahead'](1)
                             if (next_char === null) {
+                                const start = string_iterator['create location info']()
+                                string_iterator['consume character']()
+                                const end = string_iterator['create location info']()
                                 return throw_parse_error(
                                     ['lexer', ['dangling slash', null]],
-                                    _ea.set(string_iterator['create location info']())
+                                    {
+                                        'start': start,
+                                        'end': end
+                                    }
                                 )
                             }
                             switch (next_char) {
@@ -232,7 +251,10 @@ export namespace Lexer {
                                                 if ($ === null) {
                                                     return throw_parse_error(
                                                         ['lexer', ['unterminated block comment', null]],
-                                                        _ea.set(string_iterator['create location info']())
+                                                        {
+                                                            'start': start,
+                                                            'end': string_iterator['create location info']()
+                                                        }
                                                     )
                                                 }
                                                 if ($ === Character.solidus && found_asterisk) {
@@ -259,7 +281,10 @@ export namespace Lexer {
                                 default:
                                     return throw_parse_error(
                                         ['lexer', ['dangling slash', null]],
-                                        _ea.set(string_iterator['create location info']())
+                                        {
+                                            'start': start,
+                                            'end': string_iterator['create location info']()
+                                        }
                                     )
                             }
                             break
@@ -272,7 +297,7 @@ export namespace Lexer {
     }
 
 
-    const parse_delimited_string = (string_iterator: String_Iterator, end_reached: (character: number) => boolean, allow_newlines: boolean): string => {
+    const parse_delimited_string = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): string => {
 
         const Character = {
             backspace: 0x08,            // \b
@@ -296,7 +321,7 @@ export namespace Lexer {
             F: 0x46,                    // F
 
         }
-
+        const start = string_iterator['create location info']()
         const txt = _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
             while (true) {
                 const $ = string_iterator['get current character']()
@@ -304,10 +329,14 @@ export namespace Lexer {
 
                     return throw_parse_error(
                         ['lexer', ['unterminated string', null]],
-                        _ea.set(string_iterator['create location info']())
+                        {
+                            'start': start,
+                            'end': string_iterator['create location info']()
+                        }
                     )
                 }
-                if (end_reached($)) {
+                if (is_end_character($)) {
+                    string_iterator['consume character']() // consume the end character
                     return
                 }
                 switch ($) {
@@ -318,7 +347,10 @@ export namespace Lexer {
                             if ($ === null) {
                                 return throw_parse_error(
                                     ['lexer', ['missing character after escape', null]],
-                                    _ea.set(string_iterator['create location info']())
+                                    {
+                                        'start': start,
+                                        'end': string_iterator['create location info']()
+                                    }
                                 )
                             }
                             switch ($) {
@@ -346,7 +378,10 @@ export namespace Lexer {
                                     if (allow_newlines) {
                                         return throw_parse_error(
                                             ['lexer', ['unexpected end of line in delimited string', null]],
-                                            _ea.set(string_iterator['create location info']())
+                                            {
+                                                'start': start,
+                                                'end': string_iterator['create location info']()
+                                            }
                                         )
                                     }
                                     string_iterator['consume character']()
@@ -356,7 +391,10 @@ export namespace Lexer {
                                     if (allow_newlines) {
                                         return throw_parse_error(
                                             ['lexer', ['unexpected end of line in delimited string', null]],
-                                            _ea.set(string_iterator['create location info']())
+                                            {
+                                                'start': start,
+                                                'end': string_iterator['create location info']()
+                                            }
                                         )
                                     }
                                     string_iterator['consume character']()
@@ -374,13 +412,19 @@ export namespace Lexer {
                                             if (char === null) {
                                                 return throw_parse_error(
                                                     ['lexer', ['unterminated unicode escape sequence', null]],
-                                                    _ea.not_set()
+                                                    {
+                                                        'start': start,
+                                                        'end': string_iterator['create location info']()
+                                                    }
                                                 )
                                             }
                                             if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
                                                 return throw_parse_error(
                                                     ['lexer', ['invalid unicode escape sequence', null]],
-                                                    _ea.set(string_iterator['create location info']())
+                                                    {
+                                                        'start': start,
+                                                        'end': string_iterator['create location info']()
+                                                    }
                                                 )
                                             }
                                             string_iterator['consume character']()
@@ -395,7 +439,10 @@ export namespace Lexer {
                                 default:
                                     return throw_parse_error(
                                         ['lexer', ['unknown escape character', null]],
-                                        _ea.set(string_iterator['create location info']())
+                                        {
+                                            'start': start,
+                                            'end': string_iterator['create location info']()
+                                        }
                                     )
                             }
                         }
@@ -420,7 +467,7 @@ export namespace Lexer {
 
     /**
      * Creates a string iterator that allows iterating over characters in a string,
-     * while keeping track of line numbers, character offsets, and line indentation.
+     * while keeping track of line numbers, columns, and line indentation.
      */
 
     export const create_string_iterator = (
@@ -435,7 +482,7 @@ export namespace Lexer {
 
         type Relative_Position_Information = {
             'line': number
-            'character offset': number
+            'column': number
             'line indentation': number | null
         }
 
@@ -443,56 +490,66 @@ export namespace Lexer {
         let position = 0
         let relative_position: Relative_Position_Information = {
             'line': 0,
-            'character offset': 0,
+            'column': 0,
             'line indentation': null
         }
 
         const consume_character = () => {
             const c = characters.__get_element_at(position)
-            // check for control characters
-            c.map(
-                ($) => {
-                    if ($ < 0x20 && $ !== Whitespace.tab && $ !== Whitespace.line_feed && $ !== Whitespace.carriage_return) {
-                        throw_parse_error(
-                            ['lexer', ['unexpected control character', $]],
-                            _ea.set({
-                                'absolute': position,
-                                'relative': {
-                                    'line': relative_position.line,
-                                    'column': relative_position['character offset'],
-                                }
-                            })
-                        )
-                    }
-                },
-            )
+            const start = relative_position
             relative_position = c.transform(
                 ($) => {
                     return $ === Whitespace.line_feed
                         ? {
                             'line': relative_position.line + 1,
-                            'character offset': 0,
+                            'column': 0,
                             'line indentation': null,
                         }
                         : found_carriage_return_before
                             ? {
                                 'line': relative_position.line + 1,
-                                'character offset': 0,
+                                'column': 0,
                                 'line indentation': null,
                             }
                             : {
                                 'line': relative_position.line,
-                                'character offset': relative_position['character offset'] + ($ === Whitespace.tab
+                                'column': relative_position['column'] + ($ === Whitespace.tab
                                     ? $p['tab size']
                                     : 1),
                                 'line indentation': relative_position['line indentation'] !== null
                                     ? relative_position['line indentation']
                                     : $ === Whitespace.space || $ === Whitespace.tab
                                         ? null
-                                        : relative_position['character offset'],
+                                        : relative_position['column'],
                             }
                 },
                 () => relative_position //this is weird, we were already at the end of the list
+            )
+            // check for control characters
+            c.map(
+                ($) => {
+                    if ($ < 0x20 && $ !== Whitespace.tab && $ !== Whitespace.line_feed && $ !== Whitespace.carriage_return) {
+                        throw_parse_error(
+                            ['lexer', ['unexpected control character', $]],
+                            {
+                                'start': {
+                                    'absolute': position - 1,
+                                    'relative': {
+                                        'line': relative_position.line,
+                                        'column': relative_position['column'] - 1,
+                                    }
+                                },
+                                'end': {
+                                    'absolute': position,
+                                    'relative': {
+                                        'line': relative_position.line,
+                                        'column': relative_position['column'],
+                                    }
+                                }
+                            }
+                        )
+                    }
+                },
             )
             found_carriage_return_before = c.transform(
                 ($) => $ === Whitespace.carriage_return,
@@ -532,7 +589,7 @@ export namespace Lexer {
                     'absolute': position,
                     'relative': {
                         'line': relative_position.line,
-                        'column': relative_position['character offset'],
+                        'column': relative_position['column'],
                     }
                 }
             },
@@ -541,15 +598,15 @@ export namespace Lexer {
                     'absolute': position - subtract,
                     'relative': {
                         'line': relative_position.line,
-                        'column': relative_position['character offset'] - subtract,
+                        'column': relative_position['column'] - subtract,
                     }
                 }
             },
-            'create location info string': () => `${relative_position.line}:${relative_position['character offset']}`,
+            'create location info string': () => `${relative_position.line}:${relative_position['column']}`,
             'get line indentation': () => {
                 return relative_position['line indentation'] !== null
                     ? relative_position['line indentation']
-                    : relative_position['character offset']
+                    : relative_position['column']
             },
             'starts with': ($: string) => {
                 return op['starts with'](
@@ -566,14 +623,14 @@ export namespace Lexer {
         if ($ === null) {
             return throw_parse_error(
                 ['lexer', ['unexpected end of input', null]],
-                _ea.not_set()
+                {
+                    'start': st['create location info'](),
+                    'end': st['create location info'](),
+                }
             )
         }
         return {
-            'annotation': {
-                'trivia': parse_trivia(st),
-                'location': st['create location info']()
-            },
+            'start': st['create location info'](),
             'type': _ea.block((): Token_Type => {
 
                 const Character = {
@@ -659,30 +716,18 @@ export namespace Lexer {
                         return ['string', {
                             'value': parse_delimited_string(st, ($) => $ === Character.quotation_mark, true),
                             'type': ['quoted', null],
-                            'end': _ea.block(() => {
-                                st['consume character']()
-                                return st['create location info']()
-                            })
                         }]
                     case Character.backtick:
                         st['consume character']()
                         return ['string', {
                             'value': parse_delimited_string(st, ($) => $ === Character.backtick, false),
                             'type': ['backticked', null],
-                            'end': _ea.block(() => {
-                                st['consume character']()
-                                return st['create location info']()
-                            })
                         }]
                     case Character.apostrophe:
                         st['consume character']()
                         return ['string', {
                             'value': parse_delimited_string(st, ($) => $ === Character.apostrophe, false),
                             'type': ['apostrophed', null],
-                            'end': _ea.block(() => {
-                                st['consume character']()
-                                return st['create location info']()
-                            })
                         }]
 
                     default:
@@ -723,10 +768,10 @@ export namespace Lexer {
                                 }
                             })),
                             'type': ['undelimited', null],
-                            'end': st['create location info']()
                         }]
                 }
             }),
+            'end': st['create location info'](),
             'trailing trivia': parse_trivia(st)
         }
     }
@@ -746,26 +791,34 @@ export namespace Lexer {
                     const token = Annotated_Token($p['string iterator'])
                     $i['add element'](token)
                 }
-            })
+            }),
+            'end': $p['string iterator']['create location info']()
         }
     }
 }
 
 export namespace Parser {
     export type Token_Iterator = {
-        'get required token': () => Lexer.Annotated_Token,
+        'get required token': (expected: _et.Array<string>) => Lexer.Annotated_Token,
         'consume token': () => void,
     }
 
-    export const create_token_iterator = ($: _et.Array<Lexer.Annotated_Token>): Token_Iterator => {
+    export const create_token_iterator = ($: Lexer.Tokenizer_Result): Token_Iterator => {
         let position = 0
         return {
-            'get required token': (): Lexer.Annotated_Token => {
-                return $.__get_element_at(position).transform(
+            'get required token': (pet) => {
+                return $.tokens.__get_element_at(position).transform(
                     ($) => $,
                     () => throw_parse_error(
-                        ['parser', ['unexpected end of input', null]],
-                        _ea.not_set())
+                        ['parser', {
+                            'expected': pet,
+                            'cause': ['missing token', null]
+                        }],
+                        {
+                            'start': $.end,
+                            'end': $.end,
+                        }
+                    )
                 )
             },
             'consume token': () => {
@@ -774,18 +827,45 @@ export namespace Parser {
         }
     }
 
+    /**
+     * to get from a Annotated_Token to a Structural_Token, the type should be omitted.
+     * but it is parsd in between the 'start' and 'end' properties, so a little post-processing is needed.
+     */
+    const make_structural_token = (token: Lexer.Annotated_Token): types.Structural_Token => {
+        return {
+            'trailing trivia': token['trailing trivia'],
+            'start': token['start'],
+            'end': token['end']
+        }
+    }
+
+    const String = (token_iterator: Token_Iterator): types.StringX => {
+        const token = token_iterator['get required token'](_ea.array_literal(["string"]))
+        if (token.type[0] !== 'string') {
+            return throw_unexpected_token(token, _ea.array_literal(["string"]))
+        }
+        token_iterator['consume token']()
+        return {
+            'start': token['start'],
+            'value': token.type[1].value,
+            'type': token.type[1].type,
+            'end': token['end'],
+            'trailing trivia': token['trailing trivia'],
+        }
+    }
+
     export namespace type_parsers {
 
         export const Document = (token_iterator: Token_Iterator): types.Document => {
             return {
                 'header': _ea.block(() => {
-                    const token = token_iterator['get required token']()
+                    const token = token_iterator['get required token'](_ea.array_literal(["!", "value"]))
                     if (token.type[0] !== '!') {
                         return _ea.not_set()
                     }
                     token_iterator['consume token']()
                     return _ea.set({
-                        '!': token.annotation,
+                        '!': make_structural_token(token),
                         'value': Value(token_iterator)
                     })
                 }),
@@ -793,69 +873,57 @@ export namespace Parser {
             }
         }
 
-        export const Elements = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean): types.Elements => {
+        export const Elements = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean, end_token: string): types.Elements => {
             return _ea.pure.list.build<types.Element>(($i): void => {
                 while (true) {
-                    const current_token = token_iterator['get required token']()
+                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, "value"]))
                     if (end_reached(current_token.type)) {
                         return
                     }
                     $i['add element']({
                         'value': Value(token_iterator),
                         ',': _ea.block(() => {
-                            const current_token = token_iterator['get required token']()
+                            const current_token = token_iterator['get required token'](_ea.array_literal([",", end_token, "value"]))
                             if (current_token.type[0] !== ',') {
                                 return _ea.not_set()
                             }
                             token_iterator['consume token']()
-                            return _ea.set(current_token.annotation)
+                            return _ea.set(make_structural_token(current_token))
                         })
                     })
                 }
             })
         }
 
-        export const Key_Value_Pairs = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean): types.Key_Value_Pairs => {
+        export const Key_Value_Pairs = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean, end_token: string): types.Key_Value_Pairs => {
             return _ea.pure.list.build<types.Key_Value_Pair>(($i): void => {
                 while (true) {
-                    const current_token = token_iterator['get required token']()
+                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, "string"]))
                     if (end_reached(current_token.type)) {
                         return
                     }
 
                     $i['add element']({
-                        'key': _ea.block(() => {
-
-                            const candidate_key = token_iterator['get required token']()
-                            if (candidate_key.type[0] !== 'string') {
-                                return throw_unexpected_token(candidate_key, _ea.array_literal(["string"]))
-                            }
-                            token_iterator['consume token']()
-                            return {
-                                'trivia': candidate_key.annotation.trivia,
-                                'start': candidate_key.annotation.location,
-                                'core': candidate_key.type[1]
-                            }
-                        }),
+                        'key': String(token_iterator),
                         'value': _ea.block(() => {
-                            const candidate_colon = token_iterator['get required token']()
+                            const candidate_colon = token_iterator['get required token'](_ea.array_literal([":", "string", end_token]))
                             if (candidate_colon.type[0] !== ':') {
                                 return _ea.not_set()
                             }
                             token_iterator['consume token']()
 
                             return _ea.set({
-                                ':': candidate_colon.annotation,
+                                ':': make_structural_token(candidate_colon),
                                 'value': Value(token_iterator)
                             })
                         }),
                         ',': _ea.block(() => {
-                            const current_token = token_iterator['get required token']()
+                            const current_token = token_iterator['get required token'](_ea.array_literal([",", "string", end_token]))
                             if (current_token.type[0] !== ',') {
                                 return _ea.not_set()
                             }
                             token_iterator['consume token']()
-                            return _ea.set(current_token.annotation)
+                            return _ea.set(make_structural_token(current_token))
                         })
                     })
                 }
@@ -863,116 +931,90 @@ export namespace Parser {
         }
 
         export const Value = (token_iterator: Token_Iterator): types.Value => {
-            const token = token_iterator['get required token']()
+            const token = token_iterator['get required token'](_ea.array_literal(["value"]))
             return {
-                'location': token.annotation.location,
+                'start': token.start,
+                'end': token.end,
                 'type': _ea.cc(token.type, ($): types.Value_Type => {
 
                     switch ($[0]) {
                         case 'string': return _ea.ss($, ($): types.Value_Type => {
-                            token_iterator['consume token']()
 
-                            return ['string', {
-                                'trivia': token.annotation.trivia,
-                                'start': token.annotation.location,
-                                'core': $,
-                            }]
+                            return ['string', String(token_iterator)]
                         })
                         case '{': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['indexed collection', ['dictionary', {
-                                '{': token.annotation,
-                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}'),
+                                '{': make_structural_token(token),
+                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', "}"),
                                 '}': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
+                                    const current_token = token_iterator['get required token'](_ea.array_literal(["}"]))
                                     token_iterator['consume token']()
-                                    return current_token.annotation
+                                    return make_structural_token(current_token)
                                 })
                             }]]
                         })
                         case '(': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['indexed collection', ['verbose group', {
-                                '(': token.annotation,
-                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')'),
+                                '(': make_structural_token(token),
+                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', ")"),
                                 ')': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
+                                    const current_token = token_iterator['get required token'](_ea.array_literal([")"]))
                                     token_iterator['consume token']()
-                                    return current_token.annotation
+                                    return make_structural_token(current_token)
                                 })
                             }]]
                         })
                         case '[': return _ea.ss($, ($): types.Value_Type => {
                             token_iterator['consume token']()
                             return ['ordered collection', ['list', {
-                                '[': token.annotation,
-                                'elements': Elements(token_iterator, ($) => $[0] === ']'),
+                                '[': make_structural_token(token),
+                                'elements': Elements(token_iterator, ($) => $[0] === ']', "]"),
                                 ']': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
+                                    const current_token = token_iterator['get required token'](_ea.array_literal(["]"]))
                                     token_iterator['consume token']()
-                                    return current_token.annotation
+                                    return make_structural_token(current_token)
                                 }),
                             }]]
                         })
                         case '<': return _ea.ss($, ($): types.Value_Type => {
                             token_iterator['consume token']()
                             return ['ordered collection', ['concise group', {
-                                '<': token.annotation,
-                                'elements': Elements(token_iterator, ($) => $[0] === '>'),
+                                '<': make_structural_token(token),
+                                'elements': Elements(token_iterator, ($) => $[0] === '>', ">"),
                                 '>': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
+                                    const current_token = token_iterator['get required token'](_ea.array_literal([">"]))
                                     token_iterator['consume token']()
-                                    return current_token.annotation
+                                    return make_structural_token(current_token)
                                 }),
                             }]]
                         })
                         case '@': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['include', {
-                                '@': token.annotation,
-                                'path': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
-                                    if (current_token.type[0] !== 'string') {
-                                        return throw_unexpected_token(current_token, _ea.array_literal(["string"]))
-                                    }
-                                    token_iterator['consume token']()
-                                    return {
-                                        'trivia': current_token.annotation.trivia,
-                                        'start': current_token.annotation.location,
-                                        'core': current_token.type[1]
-                                    }
-                                })
+                                '@': make_structural_token(token),
+                                'path': String(token_iterator)
                             }]
                         })
                         case '~': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['not set', {
-                                '~': token.annotation,
+                                '~': make_structural_token(token),
                             }]
                         })
                         case '|': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['tagged value', {
-                                '|': token.annotation,
-                                'state': _ea.block(() => {
-                                    const current_token = token_iterator['get required token']()
-                                    if (current_token.type[0] !== 'string') {
-                                        return throw_unexpected_token(current_token, _ea.array_literal(["string"]))
-                                    }
-                                    token_iterator['consume token']()
-                                    return {
-                                        'trivia': current_token.annotation.trivia,
-                                        'start': current_token.annotation.location,
-                                        'core': current_token.type[1],
-                                    }
-                                }),
+                                '|': make_structural_token(token),
+                                'state': String(token_iterator),
                                 'value': Value(token_iterator)
                             }]
                         })
                         case '*': return _ea.ss($, ($) => {
                             token_iterator['consume token']()
                             return ['set optional value', {
-                                '*': token.annotation,
+                                '*': make_structural_token(token),
                                 'value': Value(token_iterator)
                             }]
                         })
@@ -1014,7 +1056,7 @@ export namespace Parser {
             //         }
             //     })}`)
             // })
-            const token_iterator = create_token_iterator(tokenizer_result.tokens)
+            const token_iterator = create_token_iterator(tokenizer_result)
             return ['success', Parser.type_parsers.Document(token_iterator)]
 
         } catch (error) {

@@ -23,23 +23,36 @@ export const Parse_Error_Type = ($: parse.Parse_Error_Type): string => {
                     default: return _ea.au($[0])
                 }
             }))
-            case 'parser': return _ea.ss($, ($) => _ea.cc($, ($) => {
+            case 'parser': return _ea.ss($, ($) => `expected ${pso.impure.text['join list of texts with separator']($.expected, { 'separator': " or " })}, found ${_ea.cc($.cause, ($) => {
                 switch ($[0]) {
-                    case 'unexpected end of input': return `found unexpected end of input`
                     case 'unexpected token': return _ea.ss($, ($) => {
-                        return `found unexpected token, expected ${pso.impure.text['join list of texts with separator']($.expected, { 'separator': "," })} found ${$.found[0]}`
+                        return $.found[0]
+                    })
+                    case 'missing token': return _ea.ss($, ($) => {
+                        return `nothing`
                     })
                     default: return _ea.au($[0])
                 }
-            }))
+            })}`)
             default: return _ea.au($[0])
         }
     })
 }
 
-export const Parse_Error = ($: parse.Parse_Error): string => {
-    return `failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.location.transform(
-        ($) => `${$.relative.line}:${$.relative.column}`,
-        () => "end of input"
-    )}`
+export const Parse_Error = (
+    $: parse.Parse_Error,
+    $p: {
+        'position info':
+        |[ 'zero based', null]
+        |[ 'one based', null]
+    }
+): string => {
+    const extra: number = _ea.cc($p['position info'], ($) => {
+        switch ($[0]) {
+            case 'zero based': return 0
+            case 'one based': return 1
+            default: return _ea.au($[0])
+        }
+    })
+    return `failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.range.start.relative.line + extra}:${$.range.start.relative.column + extra}`
 };
