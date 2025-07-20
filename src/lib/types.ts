@@ -108,26 +108,22 @@ export type Key_Value_Pair = {
 
 export type Structural_Token = {
     readonly 'trailing trivia': Trivia
-    readonly 'start': Location
-    readonly 'end': Location
+    readonly 'range': Range
 }
 
 export type Whitespace = {
-    'start': Location
-    'end': Location
+    'range': Range
     'value': string
 }
 
 export type Trivia = {
-    'start': Location
     'leading whitespace': Whitespace
     'comments': _et.Array<{
         'type':
         | ['line', null]
         | ['block', null]
         'content': string
-        'begin': Location
-        'end': Location
+        'range': Range
         'trailing whitespace': Whitespace
     }>
 }

@@ -5,10 +5,7 @@ import * as pso from "pareto-standard-operations"
 
 import * as types from "./types"
 
-export type Range = {
-    'start': types.Relative_Location
-    'end': types.Relative_Location
-}
+export type Range = types.Range
 
 const increment_location = (location: types.Relative_Location, increment: number): types.Relative_Location => {
     return {
@@ -125,7 +122,7 @@ export const Key_Value_Pairs = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': { 'start': $.start.relative, 'end': $.end.relative }, 'text': '' }]])
+                        ? _ea.array_literal<Text_Edit>([['replace', { 'range': $.range, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
@@ -150,7 +147,7 @@ export const Elements = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': { 'start': $.start.relative, 'end': $.end.relative }, 'text': '' }]])
+                        ? _ea.array_literal([['replace', { 'range': $.range, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
@@ -229,13 +226,7 @@ export const Document = (
     }
 ): Text_Edits => {
     return op.flatten(_ea.array_literal<Text_Edits>([
-        _ea.array_literal<Text_Edit>([['replace', {
-        'range': {
-            'start': { 'column': 0, 'line': 0 },
-            'end': { 'column': 10, 'line': 0 },
-        },
-        'text': "SDFSFD",
-    }]]),
+
         $.header.transform(
             ($) => op.flatten(_ea.array_literal([
                 Structural_Token($['!'], $p),

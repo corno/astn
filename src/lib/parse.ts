@@ -63,6 +63,7 @@ const throw_unexpected_token = (
 
 export namespace Lexer {
 
+
     export type Annotated_Token = {
         readonly 'start': types.Location
         readonly 'type': Token_Type
@@ -129,8 +130,8 @@ export namespace Lexer {
     }
 
     const parse_whitespace = (string_iterator: String_Iterator): types.Whitespace => {
+        const start = string_iterator['create location info']()
         return {
-            'start': string_iterator['create location info'](),
             'value': _ea.impure.text['from character list'](_ea.pure.list.build<number>(($i) => {
                 while (true) {
 
@@ -170,14 +171,16 @@ export namespace Lexer {
                     }
                 }
             })),
-            'end': string_iterator['create location info'](),
+            'range': {
+                'start': start,
+                'end': string_iterator['create location info'](),
+            }
         }
     }
 
     const parse_trivia = (string_iterator: String_Iterator): types.Trivia => {
 
         return {
-            'start': string_iterator['create location info'](),
             'leading whitespace': parse_whitespace(string_iterator),
             'comments': _ea.pure.list.build(($i) => {
                 while (true) {
@@ -211,7 +214,6 @@ export namespace Lexer {
                                         solidus: 0x2F,              // /
                                     }
                                     $i['add element']({
-                                        'begin': string_iterator['create location info'](),
                                         'type': ['line', null],
                                         'content': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
                                             while (true) {
@@ -230,16 +232,18 @@ export namespace Lexer {
                                                 }
                                             }
                                         })),
-                                        'end': string_iterator['create location info'](),
+                                        'range': {
+                                            'start': start,
+                                            'end': string_iterator['create location info'](),
+                                        },
                                         'trailing whitespace': parse_whitespace(string_iterator)
                                     })
                                     break
-                                case 0x2A: // *
+                                case 0x2A: {// *
                                     string_iterator['consume character']() // consume the first /
                                     string_iterator['consume character']() // consume the asterisk
                                     $i['add element']({
                                         'type': ['block', null],
-                                        'begin': string_iterator['create location info'](),
                                         'content': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
                                             let found_asterisk = false
                                             const Character = {
@@ -274,10 +278,14 @@ export namespace Lexer {
                                                 string_iterator['consume character']()
                                             }
                                         })),
-                                        'end': string_iterator['create location info'](),
+                                        'range': {
+                                            'start': start,
+                                            'end': string_iterator['create location info'](),
+                                        },
                                         'trailing whitespace': parse_whitespace(string_iterator)
                                     })
                                     break
+                                }
                                 default:
                                     return throw_parse_error(
                                         ['lexer', ['dangling slash', null]],
@@ -834,8 +842,10 @@ export namespace Parser {
     const make_structural_token = (token: Lexer.Annotated_Token): types.Structural_Token => {
         return {
             'trailing trivia': token['trailing trivia'],
-            'start': token['start'],
-            'end': token['end']
+            'range': {
+                'start': token['start'],
+                'end': token['end']
+            }
         }
     }
 
