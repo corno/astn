@@ -1,0 +1,115 @@
+astn_document
+        ::=
+           ('!' header ) ?
+           content
+
+header  ::= value
+
+content ::= value
+
+value   ::= concise_group
+        | dictionary
+        | include
+        | list
+        | no_value
+        | set_optional_value
+        | string
+        | tagged_value
+        | verbose_group
+
+concise_group
+        ::= '<' elements '>'
+
+dictionary
+        ::= '{' key_value_pairs '}'
+
+include ::= '@' value
+
+list    ::= '[' elements ']'
+
+no_value
+        ::= '~'
+
+set_optional_value
+        ::= '*' value
+
+string  ::= quoted_string
+        | apostrophed_string
+        | backticked_string
+        | undelimited_string
+
+tagged_value
+        ::= '|' string value
+
+verbose_group
+        ::= '(' key_value_pairs ')'
+
+elements     
+        ::= ( value ','? )*
+
+key_value_pairs
+        ::= ( string (':' value)? ','? )*
+
+
+ignorable
+        ::= whitespace
+        | comment
+        /* ws: definition */
+
+<?TOKENS?>
+
+quoted_string
+        ::= '"' ( string_content_character - '"' | newline_character ) * '"'
+
+apostrophed_string
+        ::= "'" ( string_content_character - "'" ) * "'"
+
+backticked_string
+        ::= '`' ( string_content_character - '`' ) * '`'
+
+undelimited_string // can contain unicode character except the special characters used in ASTN syntax and the whitespace characters
+        ::= ( normal_character - 
+                ( '{' | '}' | "<" | ">" "(" | ")" "[" | "]" //groupings
+                | "!" | | "*" | "," | "~" | ":" | "@" | | "|" //individuals
+                | "'" | '"' | "`" //string delimiters
+                | "/" //comment starter
+                | " " | "\t" //whitespace
+                )
+        )*
+
+string_content_character
+        ::= normal_character | escaped_character
+
+normal_character 
+        ::=
+        | [#x20-#xD7FF] //the 'normal' ASCII characters
+        | [#xE000-#xFFFD]
+        | [#x10000-#x10FFFF]
+
+escaped_character
+        ::= '\"' | '\`' | "\'" | '\\' | '\/' | '\b' | '\f' | '\n' | '\r' | '\t' | '\u' four_hexadecimal_digits
+
+newline_character
+        ::= #xA //line feed
+        | #xD //carriage return
+
+normal_or_newline_character
+        ::= normal_character | newline_character
+
+comment  ::= traditional_comment
+          | line_comment
+
+traditional_comment
+         ::= '/*' ( normal_or_newline_character* - ( normal_or_newline_character* '*/' normal_or_newline_character* ) ) '*/'
+ 
+line_comment
+         ::= '//' normal_character* // exclude line feed and carriage return        
+
+four_hexadecimal_digits
+        ::= hexadecimal_digit hexadecimal_digit hexadecimal_digit hexadecimal_digit
+
+hexadecimal_digit
+        ::= [0-9A-Fa-f]
+
+whitespace
+        ::= [#x9#xA#xD#x20]+ //horizontal tab, line feed, carriage return, space

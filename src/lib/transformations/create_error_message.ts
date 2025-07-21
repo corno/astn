@@ -1,10 +1,10 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as parse from "./parse"
+import * as parse_result from "../types/parse_result"
 
 import * as pso from "pareto-standard-operations"
 
-export const Parse_Error_Type = ($: parse.Parse_Error_Type): string => {
+export const Parse_Error_Type = ($: parse_result.Parse_Error_Type): string => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'lexer': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -40,7 +40,7 @@ export const Parse_Error_Type = ($: parse.Parse_Error_Type): string => {
 }
 
 export const Parse_Error = (
-    $: parse.Parse_Error,
+    $: parse_result.Parse_Error,
     $p: {
         'position info':
         |[ 'zero based', null]

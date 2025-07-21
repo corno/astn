@@ -1,15 +1,71 @@
 {
   "name": "astn",
   "version": "0.110.5",
-  "description": "A library for parsing and formatting ASTN (Abstract Syntax Tree Notation)",
+  "description": "A TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./format": {
+      "types": "./dist/lib/transformations/format.d.ts",
+      "default": "./dist/lib/transformations/format.js"
+    },
+    "./create_error_message": {
+      "types": "./dist/lib/transformations/create_error_message.d.ts",
+      "default": "./dist/lib/transformations/create_error_message.js"
+    }
+  },
+  "bin": {
+    "astn-validate": "./dist/bin/validate_astn.js"
+  },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE",
+    "documentation"
   ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate": "node dist/bin/validate_astn.js"
+  },
+  "keywords": [
+    "astn",
+    "parser",
+    "formatter",
+    "abstract-syntax-tree",
+    "data-format",
+    "typescript",
+    "lexer",
+    "structured-data",
+    "configuration",
+    "serialization"
+  ],
+  "author": "Corno",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corno/astn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/corno/astn/issues"
+  },
+  "homepage": "https://github.com/corno/astn#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "exupery-core-alg": "^0.1.4",
     "exupery-core-resources": "^0.2.1",
     "pareto-standard-operations": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
   }
 }

@@ -1,51 +1,24 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as types from "./types"
+import * as ast from "../types/ast"
+import * as parse_result from "../types/parse_result"
+import * as tokenize_result from "../types/tokenize_result"
 
-
-export type Parse_Error_Type =
-    | ['lexer',
-        | ['unexpected control character', number]
-        | ['missing character after escape', null]
-        | ['unexpected end of line in delimited string', null]
-        | ['unexpected character', number]
-        | ['unterminated string', null]
-        | ['unterminated block comment', null]
-        | ['unterminated unicode escape sequence', null]
-        | ['invalid unicode escape sequence', null]
-        | ['unknown escape character', null]
-        | ['unexpected end of input', null]
-        | ['dangling slash', null]
-    ]
-    | ['parser', {
-        'expected': _et.Array<string>
-        'cause':
-        | ['missing token', null]
-        | ['unexpected token', {
-            'found': Lexer.Token_Type
-        }]
-    }
-    ]
-
-export type Parse_Error = {
-    'type': Parse_Error_Type
-    'range': types.Range
-}
 
 const throw_parse_error = (
-    type: Parse_Error_Type,
-    range: types.Range
+    type: parse_result.Parse_Error_Type,
+    range: ast.Range
 ): never => {
-    throw new _ea.Error<Parse_Error>({
+    throw new _ea.Error<parse_result.Parse_Error>({
         'type': type,
         'range': range
     })
 }
 
 const throw_unexpected_token = (
-    found: Lexer.Annotated_Token,
-    expected: _et.Array<string>,
+    found: tokenize_result.Annotated_Token,
+    expected: _et.Array<parse_result.Expected>,
 ): never => {
     return throw_parse_error(
         ['parser', {
@@ -64,43 +37,8 @@ const throw_unexpected_token = (
 export namespace Lexer {
 
 
-    export type Annotated_Token = {
-        readonly 'start': types.Location
-        readonly 'type': Token_Type
-        readonly 'end': types.Location
-        readonly 'trailing trivia': types.Trivia
-    }
 
-    export type Token_Type =
-        | readonly ['{', null]
-        | readonly ['}', null]
-        | readonly ['[', null]
-        | readonly [']', null]
-        | readonly ['(', null]
-        | readonly [')', null]
-        | readonly ['<', null]
-        | readonly ['>', null]
-
-        | readonly ['!', null]
-        | readonly ['@', null]
-        | readonly ['~', null]
-        | readonly ['*', null]
-        | readonly [',', null]
-        | readonly [':', null]
-        | readonly ['|', null]
-
-        | readonly ['string', {
-            'value': string
-            'type': types.String_Type
-        }]
-
-    export type Tokenizer_Result = {
-        readonly 'leading trivia': types.Trivia
-        readonly 'tokens': _et.Array<Annotated_Token>
-        readonly 'end': types.Location
-    }
-
-    export type String_Iterator = {
+    type String_Iterator = {
 
         'consume character': () => void
         'consume string': ($: string) => void
@@ -110,8 +48,8 @@ export namespace Lexer {
          */
         'get current character': () => number | null
         'look ahead': ($: number) => number | null
-        'create offset location info': (subtract: number) => types.Location
-        'create location info': () => types.Location
+        'create offset location info': (subtract: number) => ast.Location
+        'create location info': () => ast.Location
         'create location info string': () => string
         /**
          * if no non-whitespace character has been found yet on the current line,
@@ -129,7 +67,7 @@ export namespace Lexer {
         'starts with': _ea.impure.text['starts with'],
     }
 
-    const parse_whitespace = (string_iterator: String_Iterator): types.Whitespace => {
+    const parse_whitespace = (string_iterator: String_Iterator): ast.Whitespace => {
         const start = string_iterator['create location info']()
         return {
             'value': _ea.impure.text['from character list'](_ea.pure.list.build<number>(($i) => {
@@ -178,7 +116,7 @@ export namespace Lexer {
         }
     }
 
-    const parse_trivia = (string_iterator: String_Iterator): types.Trivia => {
+    const parse_trivia = (string_iterator: String_Iterator): ast.Trivia => {
 
         return {
             'leading whitespace': parse_whitespace(string_iterator),
@@ -626,7 +564,7 @@ export namespace Lexer {
         }
     }
 
-    export const Annotated_Token = (st: String_Iterator): Annotated_Token => {
+    export const Annotated_Token = (st: String_Iterator): tokenize_result.Annotated_Token => {
         const $ = st['get current character']()
         if ($ === null) {
             return throw_parse_error(
@@ -639,7 +577,7 @@ export namespace Lexer {
         }
         return {
             'start': st['create location info'](),
-            'type': _ea.block((): Token_Type => {
+            'type': _ea.block((): parse_result.Token_Type => {
 
                 const Character = {
 
@@ -790,10 +728,10 @@ export namespace Lexer {
         $p: {
             'string iterator': String_Iterator
         }
-    ): Tokenizer_Result => {
+    ): tokenize_result.Tokenizer_Result => {
         return {
             'leading trivia': parse_trivia($p['string iterator']),
-            'tokens': _ea.pure.list.build<Annotated_Token>($i => {
+            'tokens': _ea.pure.list.build<tokenize_result.Annotated_Token>($i => {
                 while ($p['string iterator']['get current character']() !== null) {
 
                     const token = Annotated_Token($p['string iterator'])
@@ -807,11 +745,11 @@ export namespace Lexer {
 
 export namespace Parser {
     export type Token_Iterator = {
-        'get required token': (expected: _et.Array<string>) => Lexer.Annotated_Token,
+        'get required token': (expected: _et.Array<parse_result.Expected>) => tokenize_result.Annotated_Token,
         'consume token': () => void,
     }
 
-    export const create_token_iterator = ($: Lexer.Tokenizer_Result): Token_Iterator => {
+    export const create_token_iterator = ($: tokenize_result.Tokenizer_Result): Token_Iterator => {
         let position = 0
         return {
             'get required token': (pet) => {
@@ -839,7 +777,7 @@ export namespace Parser {
      * to get from a Annotated_Token to a Structural_Token, the type should be omitted.
      * but it is parsd in between the 'start' and 'end' properties, so a little post-processing is needed.
      */
-    const make_structural_token = (token: Lexer.Annotated_Token): types.Structural_Token => {
+    const make_structural_token = (token: tokenize_result.Annotated_Token): ast.Structural_Token => {
         return {
             'trailing trivia': token['trailing trivia'],
             'range': {
@@ -849,10 +787,10 @@ export namespace Parser {
         }
     }
 
-    const String = (token_iterator: Token_Iterator): types.StringX => {
-        const token = token_iterator['get required token'](_ea.array_literal(["string"]))
+    const String = (token_iterator: Token_Iterator): ast.StringX => {
+        const token = token_iterator['get required token'](_ea.array_literal(["a string"]))
         if (token.type[0] !== 'string') {
-            return throw_unexpected_token(token, _ea.array_literal(["string"]))
+            return throw_unexpected_token(token, _ea.array_literal(['a string']))
         }
         token_iterator['consume token']()
         return {
@@ -866,10 +804,10 @@ export namespace Parser {
 
     export namespace type_parsers {
 
-        export const Document = (token_iterator: Token_Iterator): types.Document => {
+        export const Document = (token_iterator: Token_Iterator): ast.Document => {
             return {
                 'header': _ea.block(() => {
-                    const token = token_iterator['get required token'](_ea.array_literal(["!", "value"]))
+                    const token = token_iterator['get required token'](_ea.array_literal(['!', 'a value']))
                     if (token.type[0] !== '!') {
                         return _ea.not_set()
                     }
@@ -883,17 +821,17 @@ export namespace Parser {
             }
         }
 
-        export const Elements = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean, end_token: string): types.Elements => {
-            return _ea.pure.list.build<types.Element>(($i): void => {
+        export const Elements = (token_iterator: Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Expected): ast.Elements => {
+            return _ea.pure.list.build<ast.Element>(($i): void => {
                 while (true) {
-                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, "value"]))
+                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, 'a value']))
                     if (end_reached(current_token.type)) {
                         return
                     }
                     $i['add element']({
                         'value': Value(token_iterator),
                         ',': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal([",", end_token, "value"]))
+                            const current_token = token_iterator['get required token'](_ea.array_literal([',', end_token, 'a value']))
                             if (current_token.type[0] !== ',') {
                                 return _ea.not_set()
                             }
@@ -905,10 +843,10 @@ export namespace Parser {
             })
         }
 
-        export const Key_Value_Pairs = (token_iterator: Token_Iterator, end_reached: ($: Lexer.Token_Type) => boolean, end_token: string): types.Key_Value_Pairs => {
-            return _ea.pure.list.build<types.Key_Value_Pair>(($i): void => {
+        export const Key_Value_Pairs = (token_iterator: Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Expected): ast.Key_Value_Pairs => {
+            return _ea.pure.list.build<ast.Key_Value_Pair>(($i): void => {
                 while (true) {
-                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, "string"]))
+                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, 'a string']))
                     if (end_reached(current_token.type)) {
                         return
                     }
@@ -916,7 +854,7 @@ export namespace Parser {
                     $i['add element']({
                         'key': String(token_iterator),
                         'value': _ea.block(() => {
-                            const candidate_colon = token_iterator['get required token'](_ea.array_literal([":", "string", end_token]))
+                            const candidate_colon = token_iterator['get required token'](_ea.array_literal(['a string', ':', end_token]))
                             if (candidate_colon.type[0] !== ':') {
                                 return _ea.not_set()
                             }
@@ -928,7 +866,7 @@ export namespace Parser {
                             })
                         }),
                         ',': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal([",", "string", end_token]))
+                            const current_token = token_iterator['get required token'](_ea.array_literal(['a string', ',', end_token]))
                             if (current_token.type[0] !== ',') {
                                 return _ea.not_set()
                             }
@@ -940,15 +878,15 @@ export namespace Parser {
             })
         }
 
-        export const Value = (token_iterator: Token_Iterator): types.Value => {
-            const token = token_iterator['get required token'](_ea.array_literal(["value"]))
+        export const Value = (token_iterator: Token_Iterator): ast.Value => {
+            const token = token_iterator['get required token'](_ea.array_literal(['a value']))
             return {
                 'start': token.start,
                 'end': token.end,
-                'type': _ea.cc(token.type, ($): types.Value_Type => {
+                'type': _ea.cc(token.type, ($): ast.Value_Type => {
 
                     switch ($[0]) {
-                        case 'string': return _ea.ss($, ($): types.Value_Type => {
+                        case 'string': return _ea.ss($, ($): ast.Value_Type => {
 
                             return ['string', String(token_iterator)]
                         })
@@ -956,9 +894,9 @@ export namespace Parser {
                             token_iterator['consume token']()
                             return ['indexed collection', ['dictionary', {
                                 '{': make_structural_token(token),
-                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', "}"),
+                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', '}'),
                                 '}': _ea.block(() => {
-                                    const current_token = token_iterator['get required token'](_ea.array_literal(["}"]))
+                                    const current_token = token_iterator['get required token'](_ea.array_literal(['}']))
                                     token_iterator['consume token']()
                                     return make_structural_token(current_token)
                                 })
@@ -968,33 +906,33 @@ export namespace Parser {
                             token_iterator['consume token']()
                             return ['indexed collection', ['verbose group', {
                                 '(': make_structural_token(token),
-                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', ")"),
+                                'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', ')'),
                                 ')': _ea.block(() => {
-                                    const current_token = token_iterator['get required token'](_ea.array_literal([")"]))
+                                    const current_token = token_iterator['get required token'](_ea.array_literal([')']))
                                     token_iterator['consume token']()
                                     return make_structural_token(current_token)
                                 })
                             }]]
                         })
-                        case '[': return _ea.ss($, ($): types.Value_Type => {
+                        case '[': return _ea.ss($, ($): ast.Value_Type => {
                             token_iterator['consume token']()
                             return ['ordered collection', ['list', {
                                 '[': make_structural_token(token),
-                                'elements': Elements(token_iterator, ($) => $[0] === ']', "]"),
+                                'elements': Elements(token_iterator, ($) => $[0] === ']', ']'),
                                 ']': _ea.block(() => {
-                                    const current_token = token_iterator['get required token'](_ea.array_literal(["]"]))
+                                    const current_token = token_iterator['get required token'](_ea.array_literal([']']))
                                     token_iterator['consume token']()
                                     return make_structural_token(current_token)
                                 }),
                             }]]
                         })
-                        case '<': return _ea.ss($, ($): types.Value_Type => {
+                        case '<': return _ea.ss($, ($): ast.Value_Type => {
                             token_iterator['consume token']()
                             return ['ordered collection', ['concise group', {
                                 '<': make_structural_token(token),
-                                'elements': Elements(token_iterator, ($) => $[0] === '>', ">"),
+                                'elements': Elements(token_iterator, ($) => $[0] === '>', '>'),
                                 '>': _ea.block(() => {
-                                    const current_token = token_iterator['get required token'](_ea.array_literal([">"]))
+                                    const current_token = token_iterator['get required token'](_ea.array_literal(['>']))
                                     token_iterator['consume token']()
                                     return make_structural_token(current_token)
                                 }),
@@ -1032,7 +970,7 @@ export namespace Parser {
                         default:
                             //unexpected token
                             return throw_unexpected_token(token, _ea.array_literal([
-                                'string', 'number', '{', '[', 'true', 'false', 'null', '}', ']'
+                                'a value'
                             ]))
                     }
                 })
@@ -1041,16 +979,13 @@ export namespace Parser {
 
     }
 
-    export type Parse_Result =
-        | ['failure', Parse_Error]
-        | ['success', types.Document]
 
     export const parse = (
         $: string,
         $p: {
             'tab size': number
         }
-    ): Parse_Result => {
+    ): parse_result.Parse_Result => {
         try {
             const string_iterator = Lexer.create_string_iterator($, {
                 'tab size': $p['tab size']
@@ -1071,7 +1006,7 @@ export namespace Parser {
 
         } catch (error) {
             if (error instanceof _ea.Error) {
-                const parse_error: Parse_Error = error.type //this has to be the case
+                const parse_error: parse_result.Parse_Error = error.type //this has to be the case
                 return ['failure', parse_error]
             }
             return _ea.panic("unknown error thrown")
