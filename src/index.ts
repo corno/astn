@@ -1,7 +1,6 @@
-export * as d_ast from "./lib/types/ast"
-export * as d_ide from "./lib/types/ide"
-export * as d_parse_result from "./lib/types/parse_result"
-export * as d_tokenize_result from "./lib/types/tokenize_result"
+export * as d_ast from "./generated/interface/schemas/ast/resolved"
+export * as d_ide from "./generated/interface/schemas/ide/resolved"
+export * as d_parse_result from "./generated/interface/schemas/parse_result/resolved"
 
 export * as t_parse from "./lib/transformations/parse"
 export * as t_format from "./lib/transformations/format"

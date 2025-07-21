@@ -3,16 +3,8 @@ import * as _ea from 'exupery-core-alg'
 
 import * as pso from "pareto-standard-operations"
 
-import * as ast from "../types/ast"
-import * as ide from "../types/ide"
-
-const increment_location = (location: ast.Relative_Location, increment: number): ast.Relative_Location => {
-    return {
-        'column': location.column + increment,
-        'line': location.line,
-    }
-}
-
+import * as ast from "../../generated/interface/schemas/ast/resolved"
+import * as ide from "../../generated/interface/schemas/ide/resolved"
 
 const op = {
     'flatten': pso.pure.list.flatten,
@@ -107,7 +99,7 @@ export const Key_Value_Pairs = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<ide.Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal<ide.Text_Edit>([['replace', { 'range': $.range, 'text': '' }]])
+                        ? _ea.array_literal<ide.Text_Edits.L>([['replace', { 'range': $.range, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),

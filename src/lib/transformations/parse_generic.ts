@@ -1,13 +1,12 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as ast from "../types/ast"
-import * as parse_result from "../types/parse_result"
-import * as tokenize_result from "../types/tokenize_result"
+import * as ast from "../../generated/interface/schemas/ast/resolved"
+import * as parse_result from "../../generated/interface/schemas/parse_result/resolved"
 
 
 export const throw_parse_error = (
-    type: parse_result.Parse_Error_Type,
+    type: parse_result.Parse_Error._type,
     range: ast.Range
 ): never => {
     throw new _ea.Error<parse_result.Parse_Error>({
@@ -17,8 +16,8 @@ export const throw_parse_error = (
 }
 
 export const throw_unexpected_token = (
-    found: tokenize_result.Annotated_Token,
-    expected: _et.Array<parse_result.Expected>,
+    found: parse_result.Annotated_Token,
+    expected: _et.Array<parse_result.Parse_Error._type.SG.parser.expected.L>,
 ): never => {
     return throw_parse_error(
         ['parser', {
@@ -562,7 +561,7 @@ export const create_string_iterator = (
     }
 }
 
-export const Annotated_Token = (st: String_Iterator): tokenize_result.Annotated_Token => {
+export const Annotated_Token = (st: String_Iterator): parse_result.Annotated_Token => {
     const $ = st['get current character']()
     if ($ === null) {
         return throw_parse_error(
@@ -726,10 +725,10 @@ export const Tokenizer_Result = (
     $p: {
         'string iterator': String_Iterator
     }
-): tokenize_result.Tokenizer_Result => {
+): parse_result.Tokenizer_Result => {
     return {
         'leading trivia': parse_trivia($p['string iterator']),
-        'tokens': _ea.pure.list.build<tokenize_result.Annotated_Token>($i => {
+        'tokens': _ea.pure.list.build<parse_result.Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
                 const token = Annotated_Token($p['string iterator'])
@@ -741,12 +740,12 @@ export const Tokenizer_Result = (
 }
 
 export type Token_Iterator = {
-    'get required token': (expected: _et.Array<parse_result.Expected>) => tokenize_result.Annotated_Token,
+    'get required token': (expected: _et.Array<parse_result.Parse_Error._type.SG.parser.expected.L>) => parse_result.Annotated_Token,
     'consume token': () => void,
 }
 
 
-export const create_token_iterator = ($: tokenize_result.Tokenizer_Result): Token_Iterator => {
+export const create_token_iterator = ($: parse_result.Tokenizer_Result): Token_Iterator => {
     let position = 0
     return {
         'get required token': (pet) => {

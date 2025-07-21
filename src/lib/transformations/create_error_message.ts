@@ -1,10 +1,10 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as parse_result from "../types/parse_result"
+import * as parse_result from "../../generated/interface/schemas/parse_result/resolved"
 
 import * as pso from "pareto-standard-operations"
 
-export const Parse_Error_Type = ($: parse_result.Parse_Error_Type): string => {
+export const Parse_Error_Type = ($: parse_result.Parse_Error._type): string => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'lexer': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -23,7 +23,24 @@ export const Parse_Error_Type = ($: parse_result.Parse_Error_Type): string => {
                     default: return _ea.au($[0])
                 }
             }))
-            case 'parser': return _ea.ss($, ($) => `expected ${pso.impure.text['join list of texts with separator']($.expected, { 'separator': " or " })}, found ${_ea.cc($.cause, ($) => {
+            case 'parser': return _ea.ss($, ($) => `expected ${pso.impure.text['join list of texts with separator'](
+                $.expected.map(($) => _ea.cc($, ($) => {
+                    switch ($[0]) {
+                        case '!': return "'!'"
+                        case ')': return "')'"
+                        case ',': return "','"
+                        case ':': return "':'"
+                        case '>': return "'>'"
+                        case '@': return "'@'"
+                        case ']': return "']'"
+                        case 'a string': return "a string"
+                        case 'a value': return "a value"
+                        case '}': return "'}'"
+                        default: return _ea.au($[0])
+                    }
+                })), 
+                { 'separator': " or " }
+            )}, found ${_ea.cc($.cause, ($) => {
                 switch ($[0]) {
                     case 'unexpected token': return _ea.ss($, ($) => {
                         return $.found[0]

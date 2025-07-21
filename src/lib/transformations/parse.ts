@@ -1,11 +1,10 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as ast from "../types/ast"
-import * as parse_result from "../types/parse_result"
+import * as ast from "../../generated/interface/schemas/ast/resolved"
+import * as parse_result from "../../generated/interface/schemas/parse_result/resolved"
 
 import * as pg from "./parse_generic"
-import * as tokenize_result from "../types/tokenize_result"
 
 
 
@@ -13,7 +12,7 @@ import * as tokenize_result from "../types/tokenize_result"
  * to get from a Annotated_Token to a Structural_Token, the type should be omitted.
  * but it is parsd in between the 'start' and 'end' properties, so a little post-processing is needed.
  */
-const make_structural_token = (token: tokenize_result.Annotated_Token): ast.Structural_Token => {
+const make_structural_token = (token: parse_result.Annotated_Token): ast.Structural_Token => {
     return {
         'trailing trivia': token['trailing trivia'],
         'range': {
@@ -24,9 +23,9 @@ const make_structural_token = (token: tokenize_result.Annotated_Token): ast.Stru
 }
 
 export const String = (token_iterator: pg.Token_Iterator): ast.String => {
-    const token = token_iterator['get required token'](_ea.array_literal(["a string"]))
+    const token = token_iterator['get required token'](_ea.array_literal([['a string', null]]))
     if (token.type[0] !== 'string') {
-        return pg.throw_unexpected_token(token, _ea.array_literal(['a string']))
+        return pg.throw_unexpected_token(token, _ea.array_literal([['a string', null]]))
     }
     token_iterator['consume token']()
     return {
@@ -43,7 +42,7 @@ export const String = (token_iterator: pg.Token_Iterator): ast.String => {
 export const Document = (token_iterator: pg.Token_Iterator): ast.Document => {
     return {
         'header': _ea.block(() => {
-            const token = token_iterator['get required token'](_ea.array_literal(['!', 'a value']))
+            const token = token_iterator['get required token'](_ea.array_literal([['!', null], ['a value', null]]))
             if (token.type[0] !== '!') {
                 return _ea.not_set()
             }
@@ -57,17 +56,17 @@ export const Document = (token_iterator: pg.Token_Iterator): ast.Document => {
     }
 }
 
-export const Elements = (token_iterator: pg.Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Expected): ast.Elements => {
-    return _ea.pure.list.build<ast.Element>(($i): void => {
+export const Elements = (token_iterator: pg.Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Parse_Error._type.SG.parser.expected.L): ast.Elements => {
+    return _ea.pure.list.build<ast.Elements.L>(($i): void => {
         while (true) {
-            const current_token = token_iterator['get required token'](_ea.array_literal([end_token, 'a value']))
+            const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
             $i['add element']({
                 'value': Value(token_iterator),
                 ',': _ea.block(() => {
-                    const current_token = token_iterator['get required token'](_ea.array_literal([',', end_token, 'a value']))
+                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, [',', null], ['a value', null]]))
                     if (current_token.type[0] !== ',') {
                         return _ea.not_set()
                     }
@@ -79,10 +78,10 @@ export const Elements = (token_iterator: pg.Token_Iterator, end_reached: ($: par
     })
 }
 
-export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Expected): ast.Key_Value_Pairs => {
-    return _ea.pure.list.build<ast.Key_Value_Pair>(($i): void => {
+export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: ($: parse_result.Token_Type) => boolean, end_token: parse_result.Parse_Error._type.SG.parser.expected.L): ast.Key_Value_Pairs => {
+    return _ea.pure.list.build<ast.Key_Value_Pairs.L>(($i): void => {
         while (true) {
-            const current_token = token_iterator['get required token'](_ea.array_literal([end_token, 'a string']))
+            const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
@@ -90,7 +89,7 @@ export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: 
             $i['add element']({
                 'key': String(token_iterator),
                 'value': _ea.block(() => {
-                    const candidate_colon = token_iterator['get required token'](_ea.array_literal(['a string', ':', end_token]))
+                    const candidate_colon = token_iterator['get required token'](_ea.array_literal([['a string', null], [':', null], end_token]))
                     if (candidate_colon.type[0] !== ':') {
                         return _ea.not_set()
                     }
@@ -102,7 +101,7 @@ export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: 
                     })
                 }),
                 ',': _ea.block(() => {
-                    const current_token = token_iterator['get required token'](_ea.array_literal(['a string', ',', end_token]))
+                    const current_token = token_iterator['get required token'](_ea.array_literal([['a string', null], [',', null], end_token]))
                     if (current_token.type[0] !== ',') {
                         return _ea.not_set()
                     }
@@ -115,16 +114,16 @@ export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: 
 }
 
 export const Value = (token_iterator: pg.Token_Iterator): ast.Value => {
-    const token = token_iterator['get required token'](_ea.array_literal(['a value']))
+    const token = token_iterator['get required token'](_ea.array_literal([['a value', null]]))
     return {
         'range': {
             'start': token.start,
             'end': token.end
         },
-        'type': _ea.cc(token.type, ($): ast.Value_Type => {
+        'type': _ea.cc(token.type, ($): ast.Value._type => {
 
             switch ($[0]) {
-                case 'string': return _ea.ss($, ($): ast.Value_Type => {
+                case 'string': return _ea.ss($, ($): ast.Value._type => {
 
                     return ['string', String(token_iterator)]
                 })
@@ -132,9 +131,9 @@ export const Value = (token_iterator: pg.Token_Iterator): ast.Value => {
                     token_iterator['consume token']()
                     return ['indexed collection', ['dictionary', {
                         '{': make_structural_token(token),
-                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', '}'),
+                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}',['}', null]),
                         '}': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal(['}']))
+                            const current_token = token_iterator['get required token'](_ea.array_literal([['}', null]]))
                             token_iterator['consume token']()
                             return make_structural_token(current_token)
                         })
@@ -144,33 +143,33 @@ export const Value = (token_iterator: pg.Token_Iterator): ast.Value => {
                     token_iterator['consume token']()
                     return ['indexed collection', ['verbose group', {
                         '(': make_structural_token(token),
-                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', ')'),
+                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', [')', null]),
                         ')': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal([')']))
+                            const current_token = token_iterator['get required token'](_ea.array_literal([[')', null]]))
                             token_iterator['consume token']()
                             return make_structural_token(current_token)
                         })
                     }]]
                 })
-                case '[': return _ea.ss($, ($): ast.Value_Type => {
+                case '[': return _ea.ss($, ($): ast.Value._type => {
                     token_iterator['consume token']()
                     return ['ordered collection', ['list', {
                         '[': make_structural_token(token),
-                        'elements': Elements(token_iterator, ($) => $[0] === ']', ']'),
+                        'elements': Elements(token_iterator, ($) => $[0] === ']', [']', null]),
                         ']': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal([']']))
+                            const current_token = token_iterator['get required token'](_ea.array_literal([[']', null]]))
                             token_iterator['consume token']()
                             return make_structural_token(current_token)
                         }),
                     }]]
                 })
-                case '<': return _ea.ss($, ($): ast.Value_Type => {
+                case '<': return _ea.ss($, ($): ast.Value._type => {
                     token_iterator['consume token']()
                     return ['ordered collection', ['concise group', {
                         '<': make_structural_token(token),
-                        'elements': Elements(token_iterator, ($) => $[0] === '>', '>'),
+                        'elements': Elements(token_iterator, ($) => $[0] === '>', ['>', null]),
                         '>': _ea.block(() => {
-                            const current_token = token_iterator['get required token'](_ea.array_literal(['>']))
+                            const current_token = token_iterator['get required token'](_ea.array_literal([['>', null]]))
                             token_iterator['consume token']()
                             return make_structural_token(current_token)
                         }),
@@ -208,7 +207,7 @@ export const Value = (token_iterator: pg.Token_Iterator): ast.Value => {
                 default:
                     //unexpected token
                     return pg.throw_unexpected_token(token, _ea.array_literal([
-                        'a value'
+                        ['a value', null]
                     ]))
             }
         })
