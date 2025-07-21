@@ -8,7 +8,7 @@ import * as create_error_message from "../lib/transformations/create_error_messa
 
 
 _er.temp_resources.process["get instream data"](($) => {
-    _ea.cc(parse.Parser.parse(
+    _ea.cc(parse.Parse_Result(
         $,
         {
             'tab size': 4,
