@@ -386,7 +386,7 @@ npx astn-validate < input.astn
 
 - `Document` - Root document structure
 - `Value` - Any ASTN value
-- `StringX` - String with type information
+- `String` - String with type information
 - `Parse_Error` - Detailed error information
 - `Location` - Position information in source
 

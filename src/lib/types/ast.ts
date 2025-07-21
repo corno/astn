@@ -30,7 +30,7 @@ export type Value = {
 }
 
 export type Value_Type =
-    | ['string', StringX]
+    | ['string', String]
     | ['indexed collection',
         | ['dictionary', {
             '{': Structural_Token
@@ -57,11 +57,11 @@ export type Value_Type =
     ]
     | ['include', {
         '@': Structural_Token
-        'path': StringX
+        'path': String
     }]
     | ['tagged value', {
         '|': Structural_Token
-        'state': StringX
+        'state': String
         'value': Value
     }]
     | ['not set', {
@@ -72,12 +72,11 @@ export type Value_Type =
         'value': Value
     }]
 
-export type StringX = {
+export type String = {
     readonly 'trailing trivia': Trivia
-    readonly 'start': Location
+    readonly 'range': Range
     readonly 'value': string
     readonly 'type': String_Type
-    readonly 'end': Location
 
 }
 
@@ -98,7 +97,7 @@ export type Element = {
 export type Elements = _et.Array<Element>
 
 export type Key_Value_Pair = {
-    'key': StringX
+    'key': String
     'value': _et.Optional_Value<{
         ':': Structural_Token
         'value': Value

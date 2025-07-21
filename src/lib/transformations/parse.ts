@@ -23,17 +23,19 @@ const make_structural_token = (token: tokenize_result.Annotated_Token): ast.Stru
     }
 }
 
-export const String = (token_iterator: pg.Token_Iterator): ast.StringX => {
+export const String = (token_iterator: pg.Token_Iterator): ast.String => {
     const token = token_iterator['get required token'](_ea.array_literal(["a string"]))
     if (token.type[0] !== 'string') {
         return pg.throw_unexpected_token(token, _ea.array_literal(['a string']))
     }
     token_iterator['consume token']()
     return {
-        'start': token['start'],
+        'range': {
+            'start': token['start'],
+            'end': token['end']
+        },
         'value': token.type[1].value,
         'type': token.type[1].type,
-        'end': token['end'],
         'trailing trivia': token['trailing trivia'],
     }
 }

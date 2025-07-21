@@ -73,7 +73,7 @@ export const Structural_Token = (
 }
 
 export const String = (
-    $: ast.StringX,
+    $: ast.String,
     $p: {
         'remove commas': boolean
         'indentation string': string
