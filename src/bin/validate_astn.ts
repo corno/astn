@@ -17,11 +17,11 @@ _er.temp_resources.process["get instream data"](($) => {
         switch ($[0]) {
             case 'failure': return _ea.ss($, ($) => {
                 _er.temp_resources.console.error(`Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`)
-                process.exit(1)
+                // process.exit(1)
             })
             case 'success': return _ea.ss($, ($) => {
                 _er.temp_resources.console.log(`document is valid ASTN`)
-                process.exit(0)
+                // process.exit(0)
             })
             default: return _ea.au($[0])
         }
