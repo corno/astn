@@ -24,8 +24,7 @@ export type Document = {
 }
 
 export type Value = {
-    'start': Location //can be derived
-    'end': Location //can be derived
+    'range': Range //can be derived
     'type': Value_Type
 }
 

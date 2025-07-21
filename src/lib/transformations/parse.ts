@@ -117,8 +117,10 @@ export const Key_Value_Pairs = (token_iterator: pg.Token_Iterator, end_reached: 
 export const Value = (token_iterator: pg.Token_Iterator): ast.Value => {
     const token = token_iterator['get required token'](_ea.array_literal(['a value']))
     return {
-        'start': token.start,
-        'end': token.end,
+        'range': {
+            'start': token.start,
+            'end': token.end
+        },
         'type': _ea.cc(token.type, ($): ast.Value_Type => {
 
             switch ($[0]) {
