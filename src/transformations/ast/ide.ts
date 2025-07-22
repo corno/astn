@@ -3,34 +3,34 @@ import * as _ea from 'exupery-core-alg'
 
 import * as pso from "pareto-standard-operations"
 
-import * as ast from "../generated/interface/schemas/ast/resolved"
-import * as ide from "../generated/interface/schemas/ide/resolved"
+import * as _in from "../../generated/interface/schemas/ast/resolved"
+import * as _out from "../../generated/interface/schemas/ide/resolved"
 
 const op = {
     'flatten': pso.pure.list.flatten,
 }
 
 export const Whitespace = (
-    $: ast.Whitespace,
+    $: _in.Whitespace,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return _ea.array_literal([
         //FIXME
     ])
 }
 
 export const Trivia = (
-    $: ast.Trivia,
+    $: _in.Trivia,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return op.flatten(_ea.array_literal([
         Whitespace($['leading whitespace'], $p),
         op.flatten($['comments'].map(($) => {
@@ -54,24 +54,24 @@ export const Trivia = (
 }
 
 export const Structural_Token = (
-    $: ast.Structural_Token,
+    $: _in.Structural_Token,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return Trivia($['trailing trivia'], $p)
 }
 
 export const String = (
-    $: ast.String,
+    $: _in.String,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return op.flatten(_ea.array_literal([
         Trivia($['trailing trivia'], $p),
         //FIX right type
@@ -79,13 +79,13 @@ export const String = (
 }
 
 export const Key_Value_Pairs = (
-    $: ast.Key_Value_Pairs,
+    $: _in.Key_Value_Pairs,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return op.flatten($.map(($) => {
         return op.flatten(_ea.array_literal([
             String($.key, $p),
@@ -97,9 +97,9 @@ export const Key_Value_Pairs = (
                 () => _ea.array_literal([])
             ),
             $[','].transform(
-                ($) => op.flatten(_ea.array_literal<ide.Text_Edits>([
+                ($) => op.flatten(_ea.array_literal<_out.Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal<ide.Text_Edits.L>([['replace', { 'range': $.range, 'text': '' }]])
+                        ? _ea.array_literal<_out.Text_Edits.L>([['replace', { 'range': $.range, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
@@ -111,18 +111,18 @@ export const Key_Value_Pairs = (
 
 
 export const Elements = (
-    $: ast.Elements,
+    $: _in.Elements,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return op.flatten($.map(($) => {
         return op.flatten(_ea.array_literal([
             Value($.value, $p),
             $[','].transform(
-                ($) => op.flatten(_ea.array_literal<ide.Text_Edits>([
+                ($) => op.flatten(_ea.array_literal<_out.Text_Edits>([
                     $p['remove commas']
                         ? _ea.array_literal([['replace', { 'range': $.range, 'text': '' }]])
                         : _ea.array_literal([]),
@@ -135,13 +135,13 @@ export const Elements = (
 }
 
 export const Value = (
-    $: ast.Value,
+    $: _in.Value,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
+): _out.Text_Edits => {
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => _ea.array_literal([]))
@@ -195,14 +195,14 @@ export const Value = (
 }
 
 export const Document = (
-    $: ast.Document,
+    $: _in.Document,
     $p: {
         'remove commas': boolean
         'indentation string': string
         'current indentation': string
     }
-): ide.Text_Edits => {
-    return op.flatten(_ea.array_literal<ide.Text_Edits>([
+): _out.Text_Edits => {
+    return op.flatten(_ea.array_literal<_out.Text_Edits>([
 
         $.header.transform(
             ($) => op.flatten(_ea.array_literal([

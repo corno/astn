@@ -1,27 +1,27 @@
-// import * as pa from 'exupery-core-alg'
+import * as pa from 'exupery-core-alg'
 
 
-// import * as s_in from "../generated/interface/schemas/target/resolved"
+import * as s_in from "../generated/interface/schemas/target_json/resolved"
 
-// import * as _fountain_pen from "../transformations/fountain_pen/astn"
-// import { Block } from '../fountain_pen/block'
+import * as t_fountain_pen from "../transformations/target_json/fountain_pen_block"
 
-// export const Document = (
-//     $: s_in.Document,
-//     $p: {
-//         'indentation': string
-//         'newline': string
-//     }
-// ): string => {
-//     return Block(
-//         _fountain_pen.Document(
-//             $,
-           
-//         ),
-//         {
-//             'indentation': $p.indentation,
-//             'newline': $p['newline'],
-//         }
-//     )
+import * as s_fp from "pareto-fountain-pen/dist/serialize/block"
 
-// }
+export const Document = (
+    $: s_in.Document,
+    $p: {
+        'indentation': string
+        'newline': string
+    }
+): string => {
+    return s_fp.Block(
+        t_fountain_pen.Document(
+            $,
+        ),
+        {
+            'indentation': $p.indentation,
+            'newline': $p['newline'],
+        }
+    )
+
+}

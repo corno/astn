@@ -6,6 +6,9 @@ import * as _ea from 'exupery-core-alg'
 import * as parse from "../parse/parse"
 import * as create_error_message from "../serializers/parse_result"
 
+import * as t_ast_2_json from "../transformations/ast/json_target"
+import * as s_json from "../serializers/json"
+
 
 _er.temp_resources.process["get instream data"](($) => {
     _ea.cc(parse.Parse_Result(
@@ -20,7 +23,13 @@ _er.temp_resources.process["get instream data"](($) => {
                 // process.exit(1)
             })
             case 'success': return _ea.ss($, ($) => {
-                _er.temp_resources.console.log(`document is valid ASTN`)
+                _er.temp_resources.console.log(s_json.Document(
+                    t_ast_2_json.Document($),
+                    {
+                        'indentation': "    ",
+                        'newline': '\n'
+                    }
+                ))
                 // process.exit(0)
             })
             default: return _ea.au($[0])

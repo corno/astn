@@ -702,7 +702,9 @@ export const Annotated_Token = (st: String_Iterator): parse_result.Annotated_Tok
                                     $ === Character.slash ||
                                     $ === Character.tilde ||
                                     $ === Whitespace.space ||
-                                    $ === Whitespace.tab
+                                    $ === Whitespace.tab ||
+                                    $ === Whitespace.line_feed ||
+                                    $ === Whitespace.carriage_return
                                 ) {
                                     return
                                 }
