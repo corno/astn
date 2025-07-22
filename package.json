@@ -5,20 +5,6 @@
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./format": {
-      "types": "./dist/transformations/format.d.ts",
-      "default": "./dist/transformations/format.js"
-    },
-    "./create_error_message": {
-      "types": "./dist/transformations/create_error_message.d.ts",
-      "default": "./dist/transformations/create_error_message.js"
-    }
-  },
   "bin": {
     "astn-validate": "./dist/bin/validate_astn.js"
   },
