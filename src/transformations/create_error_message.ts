@@ -1,6 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as parse_result from "../../generated/interface/schemas/parse_result/resolved"
+import * as parse_result from "../generated/interface/schemas/parse_result/resolved"
 
 import * as pso from "pareto-standard-operations"
 

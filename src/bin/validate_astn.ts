@@ -3,8 +3,8 @@
 import * as _er from 'exupery-core-resources'
 import * as _ea from 'exupery-core-alg'
 
-import * as parse from "../lib/transformations/parse"
-import * as create_error_message from "../lib/transformations/create_error_message"
+import * as parse from "../transformations/parse"
+import * as create_error_message from "../transformations/create_error_message"
 
 
 _er.temp_resources.process["get instream data"](($) => {
