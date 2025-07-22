@@ -7,14 +7,14 @@ import * as _i_imports_ast from "../ast/poormans_parser"
 
 export type _T_Text_Edits<G_Source> = _i_core._T_List<G_Source, _i_core._T_State_Group<G_Source, 
     | readonly ['delete', {
-        readonly 'range': _i_imports_ast._T_Range<G_Source>
+        readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
     }]
     | readonly ['insert', {
-        readonly 'location': _i_imports_ast._T_Location<G_Source>
+        readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
         readonly 'text': string
     }]
     | readonly ['replace', {
-        readonly 'range': _i_imports_ast._T_Range<G_Source>
+        readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
         readonly 'text': string
     }]
 >>
@@ -35,21 +35,21 @@ export namespace _T_Text_Edits {
                 
                 export namespace range {
                 }
-                export type range<G_Source> = _i_imports_ast._T_Range<G_Source>
+                export type range<G_Source> = _i_imports_ast._T_Relative_Range<G_Source>
             }
             export type _delete<G_Source> = {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             }
             
             export namespace insert {
                 
                 export namespace location {
                 }
-                export type location<G_Source> = _i_imports_ast._T_Location<G_Source>
+                export type location<G_Source> = _i_imports_ast._T_Relative_Location<G_Source>
                 export type text<G_Source> = string
             }
             export type insert<G_Source> = {
-                readonly 'location': _i_imports_ast._T_Location<G_Source>
+                readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
                 readonly 'text': string
             }
             
@@ -57,37 +57,37 @@ export namespace _T_Text_Edits {
                 
                 export namespace range {
                 }
-                export type range<G_Source> = _i_imports_ast._T_Range<G_Source>
+                export type range<G_Source> = _i_imports_ast._T_Relative_Range<G_Source>
                 export type text<G_Source> = string
             }
             export type replace<G_Source> = {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
                 readonly 'text': string
             }
         }
         export type SG<G_Source> = 
             | readonly ['delete', {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             }]
             | readonly ['insert', {
-                readonly 'location': _i_imports_ast._T_Location<G_Source>
+                readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
                 readonly 'text': string
             }]
             | readonly ['replace', {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
                 readonly 'text': string
             }]
     }
     export type L<G_Source> = _i_core._T_State_Group<G_Source, 
         | readonly ['delete', {
-            readonly 'range': _i_imports_ast._T_Range<G_Source>
+            readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
         }]
         | readonly ['insert', {
-            readonly 'location': _i_imports_ast._T_Location<G_Source>
+            readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
             readonly 'text': string
         }]
         | readonly ['replace', {
-            readonly 'range': _i_imports_ast._T_Range<G_Source>
+            readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             readonly 'text': string
         }]
     >
@@ -105,21 +105,21 @@ export namespace Text_Edits {
                 
                 export namespace range {
                 }
-                export type range<G_Source> = _i_imports_ast._T_Range<G_Source>
+                export type range<G_Source> = _i_imports_ast._T_Relative_Range<G_Source>
             }
             export type _delete<G_Source> = {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             }
             
             export namespace insert {
                 
                 export namespace location {
                 }
-                export type location<G_Source> = _i_imports_ast._T_Location<G_Source>
+                export type location<G_Source> = _i_imports_ast._T_Relative_Location<G_Source>
                 export type text<G_Source> = string
             }
             export type insert<G_Source> = {
-                readonly 'location': _i_imports_ast._T_Location<G_Source>
+                readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
                 readonly 'text': string
             }
             
@@ -127,37 +127,37 @@ export namespace Text_Edits {
                 
                 export namespace range {
                 }
-                export type range<G_Source> = _i_imports_ast._T_Range<G_Source>
+                export type range<G_Source> = _i_imports_ast._T_Relative_Range<G_Source>
                 export type text<G_Source> = string
             }
             export type replace<G_Source> = {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
                 readonly 'text': string
             }
         }
         export type SG<G_Source> = 
             | readonly ['delete', {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             }]
             | readonly ['insert', {
-                readonly 'location': _i_imports_ast._T_Location<G_Source>
+                readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
                 readonly 'text': string
             }]
             | readonly ['replace', {
-                readonly 'range': _i_imports_ast._T_Range<G_Source>
+                readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
                 readonly 'text': string
             }]
     }
     export type L<G_Source> = _i_core._T_State_Group<G_Source, 
         | readonly ['delete', {
-            readonly 'range': _i_imports_ast._T_Range<G_Source>
+            readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
         }]
         | readonly ['insert', {
-            readonly 'location': _i_imports_ast._T_Location<G_Source>
+            readonly 'location': _i_imports_ast._T_Relative_Location<G_Source>
             readonly 'text': string
         }]
         | readonly ['replace', {
-            readonly 'range': _i_imports_ast._T_Range<G_Source>
+            readonly 'range': _i_imports_ast._T_Relative_Range<G_Source>
             readonly 'text': string
         }]
     >

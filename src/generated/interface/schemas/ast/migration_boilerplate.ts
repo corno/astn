@@ -35,6 +35,11 @@ export type _T_Relative_Location = (
     $$_p: null,
 ) => _i_out._T_Relative_Location
 
+export type _T_Relative_Range = (
+    $$_: _i_in._T_Relative_Range,
+    $$_p: null,
+) => _i_out._T_Relative_Range
+
 export type _T_String = (
     $$_: _i_in._T_String,
     $$_p: null,
@@ -78,6 +83,8 @@ export type Location = _T_Location
 export type Range = _T_Range
 
 export type Relative_Location = _T_Relative_Location
+
+export type Relative_Range = _T_Relative_Range
 
 export type String = _T_String
 
@@ -175,6 +182,20 @@ export namespace _T_Relative_Location {
     export namespace RESULT {
     }
     export type RESULT = _i_out._T_Relative_Location
+}
+
+export namespace _T_Relative_Range {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Relative_Range
+    
+    export namespace PARAMS {
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Relative_Range
 }
 
 export namespace _T_String {
@@ -345,6 +366,20 @@ export namespace Relative_Location {
     export namespace RESULT {
     }
     export type RESULT = _i_out._T_Relative_Location
+}
+
+export namespace Relative_Range {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Relative_Range
+    
+    export namespace PARAMS {
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Relative_Range
 }
 
 export namespace String {

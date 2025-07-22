@@ -7,14 +7,14 @@ import * as _i_imports_ast from "../ast/unresolved"
 
 export type _T_Text_Edits = _i_core._T_List<null, _i_core._T_State_Group<null, 
     | readonly ['delete', {
-        readonly 'range': _i_imports_ast._T_Range
+        readonly 'range': _i_imports_ast._T_Relative_Range
     }]
     | readonly ['insert', {
-        readonly 'location': _i_imports_ast._T_Location
+        readonly 'location': _i_imports_ast._T_Relative_Location
         readonly 'text': string
     }]
     | readonly ['replace', {
-        readonly 'range': _i_imports_ast._T_Range
+        readonly 'range': _i_imports_ast._T_Relative_Range
         readonly 'text': string
     }]
 >>
@@ -35,21 +35,21 @@ export namespace _T_Text_Edits {
                 
                 export namespace range {
                 }
-                export type range = _i_imports_ast._T_Range
+                export type range = _i_imports_ast._T_Relative_Range
             }
             export type _delete = {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
             }
             
             export namespace insert {
                 
                 export namespace location {
                 }
-                export type location = _i_imports_ast._T_Location
+                export type location = _i_imports_ast._T_Relative_Location
                 export type text = string
             }
             export type insert = {
-                readonly 'location': _i_imports_ast._T_Location
+                readonly 'location': _i_imports_ast._T_Relative_Location
                 readonly 'text': string
             }
             
@@ -57,37 +57,37 @@ export namespace _T_Text_Edits {
                 
                 export namespace range {
                 }
-                export type range = _i_imports_ast._T_Range
+                export type range = _i_imports_ast._T_Relative_Range
                 export type text = string
             }
             export type replace = {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
                 readonly 'text': string
             }
         }
         export type SG = 
             | readonly ['delete', {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
             }]
             | readonly ['insert', {
-                readonly 'location': _i_imports_ast._T_Location
+                readonly 'location': _i_imports_ast._T_Relative_Location
                 readonly 'text': string
             }]
             | readonly ['replace', {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
                 readonly 'text': string
             }]
     }
     export type L = _i_core._T_State_Group<null, 
         | readonly ['delete', {
-            readonly 'range': _i_imports_ast._T_Range
+            readonly 'range': _i_imports_ast._T_Relative_Range
         }]
         | readonly ['insert', {
-            readonly 'location': _i_imports_ast._T_Location
+            readonly 'location': _i_imports_ast._T_Relative_Location
             readonly 'text': string
         }]
         | readonly ['replace', {
-            readonly 'range': _i_imports_ast._T_Range
+            readonly 'range': _i_imports_ast._T_Relative_Range
             readonly 'text': string
         }]
     >
@@ -105,21 +105,21 @@ export namespace Text_Edits {
                 
                 export namespace range {
                 }
-                export type range = _i_imports_ast._T_Range
+                export type range = _i_imports_ast._T_Relative_Range
             }
             export type _delete = {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
             }
             
             export namespace insert {
                 
                 export namespace location {
                 }
-                export type location = _i_imports_ast._T_Location
+                export type location = _i_imports_ast._T_Relative_Location
                 export type text = string
             }
             export type insert = {
-                readonly 'location': _i_imports_ast._T_Location
+                readonly 'location': _i_imports_ast._T_Relative_Location
                 readonly 'text': string
             }
             
@@ -127,37 +127,37 @@ export namespace Text_Edits {
                 
                 export namespace range {
                 }
-                export type range = _i_imports_ast._T_Range
+                export type range = _i_imports_ast._T_Relative_Range
                 export type text = string
             }
             export type replace = {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
                 readonly 'text': string
             }
         }
         export type SG = 
             | readonly ['delete', {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
             }]
             | readonly ['insert', {
-                readonly 'location': _i_imports_ast._T_Location
+                readonly 'location': _i_imports_ast._T_Relative_Location
                 readonly 'text': string
             }]
             | readonly ['replace', {
-                readonly 'range': _i_imports_ast._T_Range
+                readonly 'range': _i_imports_ast._T_Relative_Range
                 readonly 'text': string
             }]
     }
     export type L = _i_core._T_State_Group<null, 
         | readonly ['delete', {
-            readonly 'range': _i_imports_ast._T_Range
+            readonly 'range': _i_imports_ast._T_Relative_Range
         }]
         | readonly ['insert', {
-            readonly 'location': _i_imports_ast._T_Location
+            readonly 'location': _i_imports_ast._T_Relative_Location
             readonly 'text': string
         }]
         | readonly ['replace', {
-            readonly 'range': _i_imports_ast._T_Range
+            readonly 'range': _i_imports_ast._T_Relative_Range
             readonly 'text': string
         }]
     >

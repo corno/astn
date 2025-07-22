@@ -41,6 +41,11 @@ export type _T_Relative_Location = {
     readonly 'line': number
 }
 
+export type _T_Relative_Range = {
+    readonly 'end': _T_Relative_Location
+    readonly 'start': _T_Relative_Location
+}
+
 export type _T_String = {
     readonly 'range': _T_Range
     readonly 'trailing trivia': _T_Trivia
@@ -138,6 +143,8 @@ export type Location = _T_Location
 export type Range = _T_Range
 
 export type Relative_Location = _T_Relative_Location
+
+export type Relative_Range = _T_Relative_Range
 
 export type String = _T_String
 
@@ -274,6 +281,17 @@ export namespace _T_Range {
 export namespace _T_Relative_Location {
     export type column = number
     export type line = number
+}
+
+export namespace _T_Relative_Range {
+    
+    export namespace end {
+    }
+    export type end = _T_Relative_Location
+    
+    export namespace start {
+    }
+    export type start = _T_Relative_Location
 }
 
 export namespace _T_String {
@@ -804,6 +822,17 @@ export namespace Range {
 export namespace Relative_Location {
     export type column = number
     export type line = number
+}
+
+export namespace Relative_Range {
+    
+    export namespace end {
+    }
+    export type end = _T_Relative_Location
+    
+    export namespace start {
+    }
+    export type start = _T_Relative_Location
 }
 
 export namespace String {

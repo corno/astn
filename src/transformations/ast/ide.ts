@@ -99,7 +99,7 @@ export const Key_Value_Pairs = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<_out.Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal<_out.Text_Edits.L>([['replace', { 'range': $.range, 'text': '' }]])
+                        ? _ea.array_literal<_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),
@@ -124,7 +124,7 @@ export const Elements = (
             $[','].transform(
                 ($) => op.flatten(_ea.array_literal<_out.Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': $.range, 'text': '' }]])
+                        ? _ea.array_literal([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
                         : _ea.array_literal([]),
                     Structural_Token($, $p)
                 ])),

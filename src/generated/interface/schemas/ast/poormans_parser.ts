@@ -41,6 +41,11 @@ export type _T_Relative_Location<G_Source> = {
     readonly 'line': number
 }
 
+export type _T_Relative_Range<G_Source> = {
+    readonly 'end': _T_Relative_Location<G_Source>
+    readonly 'start': _T_Relative_Location<G_Source>
+}
+
 export type _T_String<G_Source> = {
     readonly 'range': _T_Range<G_Source>
     readonly 'trailing trivia': _T_Trivia<G_Source>
@@ -138,6 +143,8 @@ export type Location<G_Source> = _T_Location<G_Source>
 export type Range<G_Source> = _T_Range<G_Source>
 
 export type Relative_Location<G_Source> = _T_Relative_Location<G_Source>
+
+export type Relative_Range<G_Source> = _T_Relative_Range<G_Source>
 
 export type String<G_Source> = _T_String<G_Source>
 
@@ -274,6 +281,17 @@ export namespace _T_Range {
 export namespace _T_Relative_Location {
     export type column<G_Source> = number
     export type line<G_Source> = number
+}
+
+export namespace _T_Relative_Range {
+    
+    export namespace end {
+    }
+    export type end<G_Source> = _T_Relative_Location<G_Source>
+    
+    export namespace start {
+    }
+    export type start<G_Source> = _T_Relative_Location<G_Source>
 }
 
 export namespace _T_String {
@@ -804,6 +822,17 @@ export namespace Range {
 export namespace Relative_Location {
     export type column<G_Source> = number
     export type line<G_Source> = number
+}
+
+export namespace Relative_Range {
+    
+    export namespace end {
+    }
+    export type end<G_Source> = _T_Relative_Location<G_Source>
+    
+    export namespace start {
+    }
+    export type start<G_Source> = _T_Relative_Location<G_Source>
 }
 
 export namespace String {

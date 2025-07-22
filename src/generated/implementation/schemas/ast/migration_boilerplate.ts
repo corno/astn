@@ -72,6 +72,16 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($) => ({
     'column': _pa.cc($['column'], ($) => $),
     'line': _pa.cc($['line'], ($) => $),
 })
+export const Relative_Range: _i_signatures._T_Relative_Range = ($) => ({
+    'end': _pa.cc($['end'], ($) => Relative_Location(
+        $,
+        null
+    )),
+    'start': _pa.cc($['start'], ($) => Relative_Location(
+        $,
+        null
+    )),
+})
 export const String: _i_signatures._T_String = ($) => ({
     'range': _pa.cc($['range'], ($) => Range(
         $,
