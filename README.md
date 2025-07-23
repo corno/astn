@@ -13,6 +13,10 @@ A TypeScript library for parsing and formatting ASTN documents (Abstract Syntax 
 - 🔗 **File inclusion** - Import other ASTN files with `@` syntax
 - ✨ **Flexible punctuation** - Commas are optional, trailing commas are allowed
 
+## Sample file
+
+[sample AST File](./sample_astn_file.astn)
+
 ## Features of this tool
 
 - 🚀 **Fast parsing** - Efficient lexer and parser implementation
