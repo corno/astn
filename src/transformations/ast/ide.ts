@@ -3,8 +3,8 @@ import * as _ea from 'exupery-core-alg'
 
 import * as pso from "pareto-standard-operations"
 
-import * as _in from "../../generated/interface/schemas/ast/resolved"
-import * as _out from "../../generated/interface/schemas/ide/resolved"
+import * as _in from "../../generated/interface/schemas/ast/unconstrained"
+import * as _out from "../../generated/interface/schemas/ide/unconstrained"
 
 const op = {
     'flatten': pso.pure.list.flatten,

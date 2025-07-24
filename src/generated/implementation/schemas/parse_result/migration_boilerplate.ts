@@ -1,7 +1,7 @@
 import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
-import * as _i_out from "../../../interface/schemas/parse_result/unresolved"
+import * as _i_out from "../../../interface/schemas/parse_result/unconstrained"
 import * as _i_r_ast from "../ast/migration_boilerplate"
 import * as _i_signatures from "../../../interface/schemas/parse_result/migration_boilerplate"
 

@@ -1,7 +1,7 @@
 import * as _pt from 'exupery-core-types'
 
-import * as _i_core from "../../core/unresolved"
-import * as _i_imports_ast from "../ast/unresolved"
+import * as _i_core from "../../core/resolved"
+import * as _i_imports_ast from "../ast/unconstrained"
 
 // **** TYPES
 

@@ -1,8 +1,8 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as ast from "../generated/interface/schemas/ast/resolved"
-import * as parse_result from "../generated/interface/schemas/parse_result/resolved"
+import * as ast from "../generated/interface/schemas/ast/unconstrained"
+import * as parse_result from "../generated/interface/schemas/parse_result/unconstrained"
 
 
 export const throw_parse_error = (

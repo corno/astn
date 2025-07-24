@@ -1,8 +1,8 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../generated/interface/schemas/ast/resolved"
-import * as _out from "../../generated/interface/schemas/target_json/resolved"
+import * as _in from "../../generated/interface/schemas/ast/unconstrained"
+import * as _out from "../../generated/interface/schemas/target_json/unconstrained"
 
 const op = {
     // 'flatten': pso.pure.list.flatten,

@@ -1,9 +1,11 @@
 import * as _pt from 'exupery-core-types'
 
-import * as _i_core from "../../core/unresolved"
-import * as _i_imports_ast from "../ast/unresolved"
+import * as _i_core from "../../core/resolved"
+import * as _i_imports_ast from "../ast/unconstrained"
 
 // **** TYPES
+
+export type _T_Key_Value_Pairs_To_Be_Sorted = _i_core._T_Dictionary<null, string>
 
 export type _T_Text_Edits = _i_core._T_List<null, _i_core._T_State_Group<null, 
     | readonly ['delete', {
@@ -21,9 +23,15 @@ export type _T_Text_Edits = _i_core._T_List<null, _i_core._T_State_Group<null,
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
+export type Key_Value_Pairs_To_Be_Sorted = _T_Key_Value_Pairs_To_Be_Sorted
+
 export type Text_Edits = _T_Text_Edits
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
+
+export namespace _T_Key_Value_Pairs_To_Be_Sorted {
+    export type D = string
+}
 
 export namespace _T_Text_Edits {
     
@@ -94,6 +102,10 @@ export namespace _T_Text_Edits {
 }
 
 // *** ALIASES FOR NESTED TYPES
+
+export namespace Key_Value_Pairs_To_Be_Sorted {
+    export type D = string
+}
 
 export namespace Text_Edits {
     

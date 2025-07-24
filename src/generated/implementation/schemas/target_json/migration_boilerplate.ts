@@ -1,7 +1,7 @@
 import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
-import * as _i_out from "../../../interface/schemas/target_json/unresolved"
+import * as _i_out from "../../../interface/schemas/target_json/unconstrained"
 import * as _i_signatures from "../../../interface/schemas/target_json/migration_boilerplate"
 
 
