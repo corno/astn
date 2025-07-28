@@ -7,7 +7,7 @@ import * as parse from "../parse/parse"
 import * as create_error_message from "../serializers/parse_result"
 
 import * as t_ast_2_json from "../transformations/ast/json_target"
-import * as s_json from "../serializers/json"
+import * as s_json from "pareto-json/dist/serializers/json"
 
 
 _er.temp_resources.process["get instream data"](($) => {

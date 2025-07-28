@@ -2,7 +2,7 @@ import * as pa from 'exupery-core-alg'
 import * as pt from 'exupery-core-types'
 import * as pd from 'exupery-core-data'
 
-import * as unresolved$ from "../interface/core/poormans_parser"
+import * as unresolved$ from "../interface/core/unresolved"
 import * as resolved$ from "../interface/core/resolved"
 
 export type Location_to_String<Source> = ($: Source) => string
@@ -22,7 +22,7 @@ export type Key_Value_Location_Triplet<Source, T> = {
     'value': T,
     'location': Source
 }
-export type Possibly_Circular_Result<T> = () => T
+export type Possibly_Circular_Result<T> = pt.Computed_Value<T>
 export type Non_Circular_Result<T> =
     | ['error', ['circular', pt.Array<string>]]
     | ['resolved', T]
@@ -300,11 +300,13 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                                 all_siblings_subscribed_entries[key] = { 'entry': null }
                             }
                             const subscr = all_siblings_subscribed_entries[key]
-                            return () => {
-                                if (subscr.entry === null) {
-                                    pa.panic(`entry not set: ${key}`)
+                            return {
+                                'compute': () => {
+                                    if (subscr.entry === null) {
+                                        pa.panic(`entry not set: ${key}`)
+                                    }
+                                    return subscr.entry
                                 }
-                                return subscr.entry
                             }
 
                         })
