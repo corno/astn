@@ -5,7 +5,7 @@ import * as pd from 'exupery-core-data'
 import * as unresolved$ from "../../interface/core/unresolved"
 import * as resolved$ from "../../interface/core/resolved"
 
-import * as i from "../../interface/generic/resolve"
+import * as i from "../../interface/core/resolve"
 
 export type Acyclic_Entry_Reference<T_Dictionary_Entry> = {
     readonly 'entry': T_Dictionary_Entry
