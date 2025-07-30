@@ -2,16 +2,17 @@ import * as pa from 'exupery-core-alg'
 import * as pt from 'exupery-core-types'
 import * as pd from 'exupery-core-data'
 
-import * as unresolved$ from "../interface/core/unresolved"
-import * as resolved$ from "../interface/core/resolved"
+import * as unresolved$ from "../../interface/core/unresolved"
+import * as resolved$ from "../../interface/core/resolved"
 
-export type Location_to_String<Source> = ($: Source) => string
+import * as i from "../../interface/generic/resolve"
+
 export type Acyclic_Entry_Reference<T_Dictionary_Entry> = {
     readonly 'entry': T_Dictionary_Entry
     readonly 'key': string
 }
 export type Parameters<Source, V, L> = {
-    'location 2 string': Location_to_String<Source>
+    'location 2 string': i.Location_to_String<Source>
     'parameters': {
         'lookups': L,
         'values': V
@@ -22,10 +23,6 @@ export type Key_Value_Location_Triplet<Source, T> = {
     'value': T,
     'location': Source
 }
-export type Possibly_Circular_Result<T> = pt.Computed_Value<T>
-export type Non_Circular_Result<T> =
-    | ['error', ['circular', pt.Array<string>]]
-    | ['resolved', T]
 export type Path<Source, Resolved_Element, Seed> = {
     'list': pt.Array<Resolved_Element>
     'result': {
@@ -37,30 +34,21 @@ export type Resolved_Step<Resolved_Element, Seed> = {
     'result': Seed
 }
 
-export type _T_Location_2_String<Source> = Location_to_String<Source>
 export type _T_Location_Info = pd.Source_Location
 export type Location_Info = pd.Source_Location
-
-export type Acyclic_Lookup<T> = pt.Optional_Value<pt.Lookup<Non_Circular_Result<T>>> //FIXME this should not be optional
-export type Cyclic_Lookup<T> = pt.Optional_Value<pt.Lookup<Possibly_Circular_Result<T>>> //FIXME this should not be optional
-export type Lookup_Stack<T> = pt.Array<Acyclic_Lookup<T>>
-
-export type _T_Cyclic_Lookup<T> = Cyclic_Lookup<T>
-export type _T_Acyclic_Lookup<T> = Acyclic_Lookup<T>
-export type _T_Lookup_Stack<T> = Lookup_Stack<T>
 
 export const dictionary_to_lookup = <T>(
     $: pt.Dictionary<T>,
     $p: null,
-): Acyclic_Lookup<T> => {
+): i.Acyclic_Lookup<T> => {
     return pa.set($.map(($) => (['resolved', $])))
 }
 
 export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
-    $: Cyclic_Lookup<T>,
+    $: i.Cyclic_Lookup<T>,
     $p: {
         'reference': unresolved$.Reference_To_Circular_Dependent_Sibling<Source, T>,
-        'location 2 string': Location_to_String<Source>
+        'location 2 string': i.Location_to_String<Source>
     },
 ): resolved$.Reference_To_Circular_Dependent_Sibling<Source, T> => {
     return $.transform(
@@ -84,17 +72,17 @@ export const push_stack = <T>($: pt.Array<T>, $p: { 'element': T }): pt.Array<T>
 
 
 export const get_entry_from_stack = <Source, T>(
-    $: Lookup_Stack<T>,
+    $: i.Lookup_Stack<T>,
     $p: {
         'reference': unresolved$.Reference_To_Stacked_Dictionary_Entry<Source, T>,
-        'location 2 string': Location_to_String<Source>
+        'location 2 string': i.Location_to_String<Source>
     },
 ): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
 
     const get_lookup_from_stack = <T>(
-        $: Lookup_Stack<T>,
+        $: i.Lookup_Stack<T>,
         $p: { 'up steps': number }
-    ): Acyclic_Lookup<T> => $.__get_element_at($.__get_length() - 1 - $p['up steps']).transform(
+    ): i.Acyclic_Lookup<T> => $.__get_element_at($.__get_length() - 1 - $p['up steps']).transform(
         ($) => $,
         () => pa.panic(`index out of bounds, ${$.__get_length()} ${$p['up steps']}`),
     )
@@ -113,10 +101,10 @@ export const get_entry_from_stack = <Source, T>(
 }
 
 export const get_entry = <Source, T>(
-    $: Acyclic_Lookup<T>,
+    $: i.Acyclic_Lookup<T>,
     $p: {
         'reference': unresolved$.Reference_To_Normal_Dictionary_Entry<Source, T>,
-        'location 2 string': Location_to_String<Source>
+        'location 2 string': i.Location_to_String<Source>
     },
 ): resolved$.Reference_To_Normal_Dictionary_Entry<Source, T> => {
     return $.transform(
@@ -186,7 +174,7 @@ export const resolve_dictionary = <Source, TUnresolved, TResolved>(
     $: unresolved$.Dictionary<Source, TUnresolved>,
     $p: {
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
-            'possibly circular dependent siblings': Cyclic_Lookup<TResolved>
+            'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
         }) => TResolved,
         'location 2 string': ($: Source) => string
     }
@@ -200,7 +188,7 @@ export const resolve_dense_dictionary = <Source, TUnresolved, TResolved, TBenchm
     $p: {
         'denseness benchmark': pt.Dictionary<TBenchmark>
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
-            'possibly circular dependent siblings': Cyclic_Lookup<TResolved>
+            'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
         }) => TResolved,
         'location 2 string': ($: Source) => string
     }
@@ -213,8 +201,8 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
     $p: {
         'denseness benchmark': pt.Dictionary<TBenchmark>
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
-            'possibly circular dependent siblings': Cyclic_Lookup<TResolved>
-            'not circular dependent siblings': Acyclic_Lookup<TResolved>
+            'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
+            'not circular dependent siblings': i.Acyclic_Lookup<TResolved>
         }) => TResolved,
         'location 2 string': ($: Source) => string
     }
@@ -226,7 +214,7 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
             benchmark: pt.Dictionary<TBenchmark>,
             focus: pt.Dictionary<TResolved>,
             location: Source,
-            location_to_string: Location_to_String<Source>,
+            location_to_string: i.Location_to_String<Source>,
         ) => {
             benchmark.map(($, key) => {
                 const benchmark = $
@@ -255,8 +243,8 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
     $: unresolved$.Dictionary<Source, TUnresolved>,
     $p: {
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
-            'possibly circular dependent siblings': Cyclic_Lookup<TResolved>
-            'not circular dependent siblings': Acyclic_Lookup<TResolved>
+            'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
+            'not circular dependent siblings': i.Acyclic_Lookup<TResolved>
         }) => TResolved,
         'location 2 string': ($: Source) => string
     }
@@ -314,7 +302,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
                 }),
                 'not circular dependent siblings': pa.set({
-                    __get_entry(key): pt.Optional_Value<Non_Circular_Result<TResolved>> {
+                    __get_entry(key): pt.Optional_Value<i.Non_Circular_Result<TResolved>> {
                         const status = status_dictionary[key]
                         if (status === undefined) {
                             return source_dictionary.dictionary.__get_entry(key).transform(
