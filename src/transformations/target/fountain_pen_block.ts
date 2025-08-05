@@ -112,9 +112,9 @@ export const Value = (
                 ]))
                 case 'optional': return pa.ss($, ($) => pa.cc($, ($) => {
                     switch ($[0]) {
-                        case 'not set': return pa.ss($, ($) => l.snippet("-"))
+                        case 'not set': return pa.ss($, ($) => l.snippet("~"))
                         case 'set': return pa.ss($, ($) => l.sub([
-                            l.snippet("+ "),
+                            l.snippet("* "),
                             Value($, { 'style': $p.style, 'in concise group': $p['in concise group'] }),
                         ]))
 
