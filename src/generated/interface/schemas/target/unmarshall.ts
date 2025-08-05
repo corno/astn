@@ -1,12 +1,12 @@
 import * as _pt from 'exupery-core-types'
 
-import * as _i_in from "./unconstrained"
+import * as _i_in from "../../core/astn_source"
 import * as _i_out from "./unconstrained"
 
 // **** TYPES
 
 export type _T_Document = (
-    $$_: _i_in._T_Document,
+    $$_: _i_in._T_Value,
     $$_p: null,
 ) => _i_out._T_Document
 
@@ -27,7 +27,7 @@ export namespace _T_Document {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Document
+    export type CONTEXT = _i_in._T_Value
     
     export namespace PARAMS {
     }
@@ -57,7 +57,7 @@ export namespace Document {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Document
+    export type CONTEXT = _i_in._T_Value
     
     export namespace PARAMS {
     }

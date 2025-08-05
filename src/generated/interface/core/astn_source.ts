@@ -15,7 +15,7 @@ export type _T_Value = {
         readonly '@': _T_Structural_Token
         readonly 'path': _T_String
     }]
-    | readonly ['indexed collection', 
+    | readonly ['indexed collection',
         | readonly ['dictionary', {
             readonly 'entries': _T_Key_Value_Pairs
             readonly '{': _T_Structural_Token
@@ -30,7 +30,7 @@ export type _T_Value = {
     | readonly ['not set', {
         readonly '~': _T_Structural_Token
     }]
-    | readonly ['ordered collection', 
+    | readonly ['ordered collection',
         | readonly ['concise group', {
             readonly '<': _T_Structural_Token
             readonly '>': _T_Structural_Token
@@ -47,11 +47,13 @@ export type _T_Value = {
         readonly 'value': _T_Value
     }]
     | readonly ['string', _T_String]
-    | readonly ['tagged value', {
-        readonly 'state': _T_String
-        readonly 'value': _T_Value
-        readonly '|': _T_Structural_Token
-    }]
+    | readonly ['tagged value', _T_Tagged_Value]
+}
+
+export type _T_Tagged_Value = {
+    readonly 'state': _T_String
+    readonly 'value': _T_Value
+    readonly '|': _T_Structural_Token
 }
 
 export type _T_Elements = _pt.Array<{
@@ -75,7 +77,7 @@ export type _T_String = {
     readonly 'value': string
 }
 
-export type _T_String_Type = 
+export type _T_String_Type =
     | readonly ['apostrophed', null]
     | readonly ['backticked', null]
     | readonly ['quoted', null]

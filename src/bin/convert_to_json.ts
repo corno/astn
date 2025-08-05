@@ -11,7 +11,7 @@ import * as s_json from "pareto-json/dist/serializers/json"
 
 
 _er.temp_resources.process["get instream data"](($) => {
-    _ea.cc(parse.Parse_Result(
+    _ea.cc(parse.parse(
         $,
         {
             'tab size': 4,

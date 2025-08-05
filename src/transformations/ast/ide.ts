@@ -4,6 +4,7 @@ import * as _ea from 'exupery-core-alg'
 import * as pso from "pareto-standard-operations"
 
 import * as _in from "../../generated/interface/schemas/ast/unconstrained"
+import * as _in_token from "../../generated/interface/schemas/token/unconstrained"
 import * as _out from "../../generated/interface/schemas/ide/unconstrained"
 
 const op = {
@@ -11,7 +12,7 @@ const op = {
 }
 
 export const Whitespace = (
-    $: _in.Whitespace,
+    $: _in_token.Whitespace,
     $p: {
         'remove commas': boolean
         'indentation string': string
@@ -24,7 +25,7 @@ export const Whitespace = (
 }
 
 export const Trivia = (
-    $: _in.Trivia,
+    $: _in_token.Trivia,
     $p: {
         'remove commas': boolean
         'indentation string': string

@@ -17,43 +17,71 @@ export type _T_Value_Serializers = {
     ) => string
 }
 
-export type _T_s_Document = (
-    $$_: _i_in._T_Document,
+export type _T_s_Annotated_Token = (
+    $$_: _i_in._T_Annotated_Token,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Elements = (
-    $$_: _i_in._T_Elements,
+export type _T_s_Delimited_String = (
+    $$_: _i_in._T_Delimited_String,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Key_Value_Pairs = (
-    $$_: _i_in._T_Key_Value_Pairs,
+export type _T_s_Location = (
+    $$_: _i_in._T_Location,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_String = (
-    $$_: _i_in._T_String,
+export type _T_s_Range = (
+    $$_: _i_in._T_Range,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Structural_Token = (
-    $$_: _i_in._T_Structural_Token,
+export type _T_s_Relative_Location = (
+    $$_: _i_in._T_Relative_Location,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Value = (
-    $$_: _i_in._T_Value,
+export type _T_s_String_Type = (
+    $$_: _i_in._T_String_Type,
+    $$_p: {
+        readonly 'value serializers': _T_Value_Serializers
+    },
+) => _i_out._T_Value
+
+export type _T_s_Token_Type = (
+    $$_: _i_in._T_Token_Type,
+    $$_p: {
+        readonly 'value serializers': _T_Value_Serializers
+    },
+) => _i_out._T_Value
+
+export type _T_s_Tokenizer_Result = (
+    $$_: _i_in._T_Tokenizer_Result,
+    $$_p: {
+        readonly 'value serializers': _T_Value_Serializers
+    },
+) => _i_out._T_Value
+
+export type _T_s_Trivia = (
+    $$_: _i_in._T_Trivia,
+    $$_p: {
+        readonly 'value serializers': _T_Value_Serializers
+    },
+) => _i_out._T_Value
+
+export type _T_s_Whitespace = (
+    $$_: _i_in._T_Whitespace,
     $$_p: {
         readonly 'value serializers': _T_Value_Serializers
     },
@@ -63,17 +91,25 @@ export type _T_s_Value = (
 
 export type Value_Serializers = _T_Value_Serializers
 
-export type s_Document = _T_s_Document
+export type s_Annotated_Token = _T_s_Annotated_Token
 
-export type s_Elements = _T_s_Elements
+export type s_Delimited_String = _T_s_Delimited_String
 
-export type s_Key_Value_Pairs = _T_s_Key_Value_Pairs
+export type s_Location = _T_s_Location
 
-export type s_String = _T_s_String
+export type s_Range = _T_s_Range
 
-export type s_Structural_Token = _T_s_Structural_Token
+export type s_Relative_Location = _T_s_Relative_Location
 
-export type s_Value = _T_s_Value
+export type s_String_Type = _T_s_String_Type
+
+export type s_Token_Type = _T_s_Token_Type
+
+export type s_Tokenizer_Result = _T_s_Tokenizer_Result
+
+export type s_Trivia = _T_s_Trivia
+
+export type s_Whitespace = _T_s_Whitespace
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
@@ -108,11 +144,11 @@ export namespace _T_Value_Serializers {
     ) => string
 }
 
-export namespace _T_s_Document {
+export namespace _T_s_Annotated_Token {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Document
+    export type CONTEXT = _i_in._T_Annotated_Token
     
     export namespace PARAMS {
         
@@ -126,11 +162,11 @@ export namespace _T_s_Document {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Elements {
+export namespace _T_s_Delimited_String {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Elements
+    export type CONTEXT = _i_in._T_Delimited_String
     
     export namespace PARAMS {
         
@@ -144,11 +180,11 @@ export namespace _T_s_Elements {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Key_Value_Pairs {
+export namespace _T_s_Location {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Key_Value_Pairs
+    export type CONTEXT = _i_in._T_Location
     
     export namespace PARAMS {
         
@@ -162,11 +198,11 @@ export namespace _T_s_Key_Value_Pairs {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_String {
+export namespace _T_s_Range {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_String
+    export type CONTEXT = _i_in._T_Range
     
     export namespace PARAMS {
         
@@ -180,11 +216,11 @@ export namespace _T_s_String {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Structural_Token {
+export namespace _T_s_Relative_Location {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Structural_Token
+    export type CONTEXT = _i_in._T_Relative_Location
     
     export namespace PARAMS {
         
@@ -198,11 +234,83 @@ export namespace _T_s_Structural_Token {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Value {
+export namespace _T_s_String_Type {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Value
+    export type CONTEXT = _i_in._T_String_Type
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace _T_s_Token_Type {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Token_Type
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace _T_s_Tokenizer_Result {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Tokenizer_Result
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace _T_s_Trivia {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Trivia
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace _T_s_Whitespace {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Whitespace
     
     export namespace PARAMS {
         
@@ -249,11 +357,11 @@ export namespace Value_Serializers {
     ) => string
 }
 
-export namespace s_Document {
+export namespace s_Annotated_Token {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Document
+    export type CONTEXT = _i_in._T_Annotated_Token
     
     export namespace PARAMS {
         
@@ -267,11 +375,11 @@ export namespace s_Document {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Elements {
+export namespace s_Delimited_String {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Elements
+    export type CONTEXT = _i_in._T_Delimited_String
     
     export namespace PARAMS {
         
@@ -285,11 +393,11 @@ export namespace s_Elements {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Key_Value_Pairs {
+export namespace s_Location {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Key_Value_Pairs
+    export type CONTEXT = _i_in._T_Location
     
     export namespace PARAMS {
         
@@ -303,11 +411,11 @@ export namespace s_Key_Value_Pairs {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_String {
+export namespace s_Range {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_String
+    export type CONTEXT = _i_in._T_Range
     
     export namespace PARAMS {
         
@@ -321,11 +429,11 @@ export namespace s_String {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Structural_Token {
+export namespace s_Relative_Location {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Structural_Token
+    export type CONTEXT = _i_in._T_Relative_Location
     
     export namespace PARAMS {
         
@@ -339,11 +447,83 @@ export namespace s_Structural_Token {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Value {
+export namespace s_String_Type {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Value
+    export type CONTEXT = _i_in._T_String_Type
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace s_Token_Type {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Token_Type
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace s_Tokenizer_Result {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Tokenizer_Result
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace s_Trivia {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Trivia
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace s_Whitespace {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Whitespace
     
     export namespace PARAMS {
         

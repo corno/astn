@@ -1,70 +1,15 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as ast from "../generated/interface/schemas/ast/unconstrained"
-import * as parse_result from "../generated/interface/schemas/parse_result/unconstrained"
+import * as _out from "../generated/interface/schemas/token/unconstrained"
 
+import { String_Iterator, WhitespaceChars } from "./string_iterator"
+import { throw_parse_error } from "./astn_parse_generic"
+import { is_control_character } from './string_iterator'
 
-export const throw_parse_error = (
-    type: parse_result.Parse_Error._type,
-    range: ast.Range
-): never => {
-    throw new _ea.Error<parse_result.Parse_Error>({
-        'type': type,
-        'range': range
-    })
-}
+//this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
 
-export const throw_unexpected_token = (
-    found: parse_result.Annotated_Token,
-    expected: _et.Array<parse_result.Parse_Error._type.SG.parser.expected.L>,
-): never => {
-    return throw_parse_error(
-        ['parser', {
-            'expected': expected,
-            'cause': ['unexpected token', {
-                'found': found.type,
-            }]
-        }],
-        {
-            'start': found.start,
-            'end': found.end
-        }
-    )
-}
-
-
-
-type String_Iterator = {
-
-    'consume character': () => void
-    'consume string': ($: string) => void
-    /**
-     * returns the current character, or null if the end of the string has been reached.
-     * equivalent to `look ahead(0)`
-     */
-    'get current character': () => number | null
-    'look ahead': ($: number) => number | null
-    'create offset location info': (subtract: number) => ast.Location
-    'create location info': () => ast.Location
-    'create location info string': () => string
-    /**
-     * if no non-whitespace character has been found yet on the current line,
-     * this will return the current column,
-     * otherwise it will return the offset of that first non-whitespace character
-     * (which is the indentation of the line)
-     */
-    'get line indentation': () => number
-    'starts with': ($: string) => boolean
-}
-
-
-const op = {
-    'to character list': _ea.impure.text['to character list'],
-    'starts with': _ea.impure.text['starts with'],
-}
-
-const parse_whitespace = (string_iterator: String_Iterator): ast.Whitespace => {
+export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace => {
     const start = string_iterator['create location info']()
     return {
         'value': _ea.impure.text['from character list'](_ea.pure.list.build<number>(($i) => {
@@ -81,6 +26,16 @@ const parse_whitespace = (string_iterator: String_Iterator): ast.Whitespace => {
                     const $ = string_iterator['get current character']()
                     if ($ === null) {
                         return
+                    }
+                    if (is_control_character($)) {
+                        throw_parse_error(
+                            ['lexer', ['unexpected control character', $]],
+                            {
+                                'start': string_iterator['create location info'](),
+                                'end': string_iterator['create location info'](),
+                            }
+                        )
+
                     }
                     switch ($) {
                         case Character.tab:
@@ -113,10 +68,10 @@ const parse_whitespace = (string_iterator: String_Iterator): ast.Whitespace => {
     }
 }
 
-const parse_trivia = (string_iterator: String_Iterator): ast.Trivia => {
+export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
 
     return {
-        'leading whitespace': parse_whitespace(string_iterator),
+        'leading whitespace': Whitespace(string_iterator),
         'comments': _ea.pure.list.build(($i) => {
             while (true) {
                 const $ = string_iterator['get current character']()
@@ -171,7 +126,7 @@ const parse_trivia = (string_iterator: String_Iterator): ast.Trivia => {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
                                     },
-                                    'trailing whitespace': parse_whitespace(string_iterator)
+                                    'trailing whitespace': Whitespace(string_iterator)
                                 })
                                 break
                             case 0x2A: {// *
@@ -217,7 +172,7 @@ const parse_trivia = (string_iterator: String_Iterator): ast.Trivia => {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
                                     },
-                                    'trailing whitespace': parse_whitespace(string_iterator)
+                                    'trailing whitespace': Whitespace(string_iterator)
                                 })
                                 break
                             }
@@ -239,8 +194,178 @@ const parse_trivia = (string_iterator: String_Iterator): ast.Trivia => {
     }
 }
 
+export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
+    const $ = st['get current character']()
+    if ($ === null) {
+        return throw_parse_error(
+            ['lexer', ['unexpected end of input', null]],
+            {
+                'start': st['create location info'](),
+                'end': st['create location info'](),
+            }
+        )
+    }
+    return {
+        'start': st['create location info'](),
+        'type': _ea.block((): _out.Token_Type => {
 
-const parse_delimited_string = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): string => {
+            const Character = {
+
+                open_angle_bracket: 0x3C, // <
+                open_brace: 0x7B,           // {
+                open_bracket: 0x5B,         // [
+                open_paren: 0x28,          // (
+
+                close_angle_bracket: 0x3E, // >
+                close_brace: 0x7D,          // }
+                close_bracket: 0x5D,        // ]
+                close_paren: 0x29,         // )
+
+                apostrophe: 0x27,          // '
+                asterisk: 0x2A,            // *
+                at: 0x40,                  // @
+                backtick: 0x60,            // `
+                bang: 0x21,
+                colon: 0x3A,                // :
+                comma: 0x2C,                // ,
+                pipe: 0x7C,                // |
+                quotation_mark: 0x22,       // "
+                slash: 0x2F,               // /
+                tilde: 0x7E,               // ~
+
+                space: 0x20,               // space
+                tab: 0x09,                 // \t
+
+            }
+            switch ($) {
+                case Character.open_brace:
+                    st['consume character']()
+                    return ['{', null]
+                case Character.open_bracket:
+                    st['consume character']()
+                    return ['[', null]
+                case Character.open_angle_bracket:
+                    st['consume character']()
+                    return ['<', null]
+                case Character.open_paren:
+                    st['consume character']()
+                    return ['(', null]
+
+
+                case Character.close_brace:
+                    st['consume character']()
+                    return ['}', null]
+                case Character.close_bracket:
+                    st['consume character']()
+                    return [']', null]
+                case Character.close_angle_bracket:
+                    st['consume character']()
+                    return ['>', null]
+                case Character.close_paren:
+                    st['consume character']()
+                    return [')', null]
+
+                //individuals
+                case Character.pipe:
+                    st['consume character']()
+                    return ['|', null]
+                case Character.tilde:
+                    st['consume character']()
+                    return ['~', null]
+                case Character.asterisk:
+                    st['consume character']()
+                    return ['*', null]
+                case Character.at:
+                    st['consume character']()
+                    return ['@', null]
+                case Character.bang:
+                    st['consume character']()
+                    return ['!', null]
+                case Character.colon:
+                    st['consume character']()
+                    return [':', null]
+                case Character.comma:
+                    st['consume character']()
+                    return [',', null]
+                case Character.quotation_mark:
+                    st['consume character']()
+                    return ['string', {
+                        'value': Delimited_String(st, ($) => $ === Character.quotation_mark, true),
+                        'type': ['quoted', null],
+                    }]
+                case Character.backtick:
+                    st['consume character']()
+                    return ['string', {
+                        'value': Delimited_String(st, ($) => $ === Character.backtick, false),
+                        'type': ['backticked', null],
+                    }]
+                case Character.apostrophe:
+                    st['consume character']()
+                    return ['string', {
+                        'value': Delimited_String(st, ($) => $ === Character.apostrophe, false),
+                        'type': ['apostrophed', null],
+                    }]
+
+                default:
+                    return ['string', {
+                        'type': ['undelimited', null],
+                        'value': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
+                            while (true) {
+                                const $ = st['get current character']()
+                                if ($ === null) {
+                                    return
+                                }
+
+                                if (is_control_character($)) {
+                                    throw_parse_error(
+                                        ['lexer', ['unexpected control character', $]],
+                                        {
+                                            'start': st['create location info'](),
+                                            'end': st['create location info'](),
+                                        }
+                                    )
+
+                                }
+                                if (
+                                    $ === Character.open_brace ||
+                                    $ === Character.close_brace ||
+                                    $ === Character.open_bracket ||
+                                    $ === Character.close_bracket ||
+                                    $ === Character.open_angle_bracket ||
+                                    $ === Character.close_angle_bracket ||
+                                    $ === Character.open_paren ||
+                                    $ === Character.close_paren ||
+                                    $ === Character.apostrophe ||
+                                    $ === Character.asterisk ||
+                                    $ === Character.at ||
+                                    $ === Character.backtick ||
+                                    $ === Character.bang ||
+                                    $ === Character.colon ||
+                                    $ === Character.comma ||
+                                    $ === Character.pipe ||
+                                    $ === Character.quotation_mark ||
+                                    $ === Character.slash ||
+                                    $ === Character.tilde ||
+                                    $ === WhitespaceChars.space ||
+                                    $ === WhitespaceChars.tab ||
+                                    $ === WhitespaceChars.line_feed ||
+                                    $ === WhitespaceChars.carriage_return
+                                ) {
+                                    return
+                                }
+                                st['consume character']()
+                                $i['add element']($)
+                            }
+                        })),
+                    }]
+            }
+        }),
+        'end': st['create location info'](),
+        'trailing trivia': Trivia(st)
+    }
+}
+
+export const Delimited_String = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): _out.Delimited_String => {
 
     const Character = {
         backspace: 0x08,            // \b
@@ -277,6 +402,16 @@ const parse_delimited_string = (string_iterator: String_Iterator, is_end_charact
                         'end': string_iterator['create location info']()
                     }
                 )
+            }
+            if (is_control_character($)) {
+                throw_parse_error(
+                    ['lexer', ['unexpected control character', $]],
+                    {
+                        'start': string_iterator['create location info'](),
+                        'end': string_iterator['create location info'](),
+                    }
+                )
+
             }
             if (is_end_character($)) {
                 string_iterator['consume character']() // consume the end character
@@ -399,338 +534,15 @@ const parse_delimited_string = (string_iterator: String_Iterator, is_end_charact
     return txt
 }
 
-
-
-const Whitespace = {
-    tab: 0x09,                  // \t
-    line_feed: 0x0A,            // \n
-    carriage_return: 0x0D,      // \r
-    space: 0x20,                //
-}
-
-/**
- * Creates a string iterator that allows iterating over characters in a string,
- * while keeping track of line numbers, columns, and line indentation.
- */
-
-export const create_string_iterator = (
-    $: string,
-    $p: {
-        'tab size': number
-    }
-): String_Iterator => {
-    const source = $
-    const characters = op['to character list']($)
-    const length = characters.__get_length()
-
-    type Relative_Position_Information = {
-        'line': number
-        'column': number
-        'line indentation': number | null
-    }
-
-    let found_carriage_return_before = false
-    let position = 0
-    let relative_position: Relative_Position_Information = {
-        'line': 0,
-        'column': 0,
-        'line indentation': null
-    }
-
-    const consume_character = () => {
-        const c = characters.__get_element_at(position)
-        const start = relative_position
-        relative_position = c.transform(
-            ($) => {
-                return $ === Whitespace.line_feed
-                    ? {
-                        'line': relative_position.line + 1,
-                        'column': 0,
-                        'line indentation': null,
-                    }
-                    : found_carriage_return_before
-                        ? {
-                            'line': relative_position.line + 1,
-                            'column': 0,
-                            'line indentation': null,
-                        }
-                        : {
-                            'line': relative_position.line,
-                            'column': relative_position['column'] + ($ === Whitespace.tab
-                                ? $p['tab size']
-                                : 1),
-                            'line indentation': relative_position['line indentation'] !== null
-                                ? relative_position['line indentation']
-                                : $ === Whitespace.space || $ === Whitespace.tab
-                                    ? null
-                                    : relative_position['column'],
-                        }
-            },
-            () => relative_position //this is weird, we were already at the end of the list
-        )
-        // check for control characters
-        c.map(
-            ($) => {
-                if ($ < 0x20 && $ !== Whitespace.tab && $ !== Whitespace.line_feed && $ !== Whitespace.carriage_return) {
-                    throw_parse_error(
-                        ['lexer', ['unexpected control character', $]],
-                        {
-                            'start': {
-                                'absolute': position - 1,
-                                'relative': {
-                                    'line': relative_position.line,
-                                    'column': relative_position['column'] - 1,
-                                }
-                            },
-                            'end': {
-                                'absolute': position,
-                                'relative': {
-                                    'line': relative_position.line,
-                                    'column': relative_position['column'],
-                                }
-                            }
-                        }
-                    )
-                }
-            },
-        )
-        found_carriage_return_before = c.transform(
-            ($) => $ === Whitespace.carriage_return,
-            () => false
-        )
-        position += 1
-    }
-
-    return {
-        'consume string': ($: string) => {
-            op['to character list']($).__for_each(() => {
-                consume_character()
-            })
-        },
-        'consume character': consume_character,
-        'get current character': () => {
-            if (position === length) {
-                return null
-            }
-            return characters.__get_element_at(position).transform(
-                ($) => $,
-                () => null
-            )
-        },
-        'look ahead': ($: number) => {
-            const next_position = position + $;
-            if (next_position >= length) {
-                return null
-            }
-            return characters.__get_element_at(next_position).transform(
-                ($) => $,
-                () => null
-            )
-        },
-        'create location info': () => {
-            return {
-                'absolute': position,
-                'relative': {
-                    'line': relative_position.line,
-                    'column': relative_position['column'],
-                }
-            }
-        },
-        'create offset location info': (subtract) => {
-            return {
-                'absolute': position - subtract,
-                'relative': {
-                    'line': relative_position.line,
-                    'column': relative_position['column'] - subtract,
-                }
-            }
-        },
-        'create location info string': () => `${relative_position.line}:${relative_position['column']}`,
-        'get line indentation': () => {
-            return relative_position['line indentation'] !== null
-                ? relative_position['line indentation']
-                : relative_position['column']
-        },
-        'starts with': ($: string) => {
-            return op['starts with'](
-                source,
-                $,
-                position,
-            )
-        }
-    }
-}
-
-export const Annotated_Token = (st: String_Iterator): parse_result.Annotated_Token => {
-    const $ = st['get current character']()
-    if ($ === null) {
-        return throw_parse_error(
-            ['lexer', ['unexpected end of input', null]],
-            {
-                'start': st['create location info'](),
-                'end': st['create location info'](),
-            }
-        )
-    }
-    return {
-        'start': st['create location info'](),
-        'type': _ea.block((): parse_result.Token_Type => {
-
-            const Character = {
-
-                open_angle_bracket: 0x3C, // <
-                open_brace: 0x7B,           // {
-                open_bracket: 0x5B,         // [
-                open_paren: 0x28,          // (
-
-                close_angle_bracket: 0x3E, // >
-                close_brace: 0x7D,          // }
-                close_bracket: 0x5D,        // ]
-                close_paren: 0x29,         // )
-
-                apostrophe: 0x27,          // '
-                asterisk: 0x2A,            // *
-                at: 0x40,                  // @
-                backtick: 0x60,            // `
-                bang: 0x21,
-                colon: 0x3A,                // :
-                comma: 0x2C,                // ,
-                pipe: 0x7C,                // |
-                quotation_mark: 0x22,       // "
-                slash: 0x2F,               // /
-                tilde: 0x7E,               // ~
-
-                space: 0x20,               // space
-                tab: 0x09,                 // \t
-
-            }
-            switch ($) {
-                case Character.open_brace:
-                    st['consume character']()
-                    return ['{', null]
-                case Character.open_bracket:
-                    st['consume character']()
-                    return ['[', null]
-                case Character.open_angle_bracket:
-                    st['consume character']()
-                    return ['<', null]
-                case Character.open_paren:
-                    st['consume character']()
-                    return ['(', null]
-
-
-                case Character.close_brace:
-                    st['consume character']()
-                    return ['}', null]
-                case Character.close_bracket:
-                    st['consume character']()
-                    return [']', null]
-                case Character.close_angle_bracket:
-                    st['consume character']()
-                    return ['>', null]
-                case Character.close_paren:
-                    st['consume character']()
-                    return [')', null]
-
-                //individuals
-                case Character.pipe:
-                    st['consume character']()
-                    return ['|', null]
-                case Character.tilde:
-                    st['consume character']()
-                    return ['~', null]
-                case Character.asterisk:
-                    st['consume character']()
-                    return ['*', null]
-                case Character.at:
-                    st['consume character']()
-                    return ['@', null]
-                case Character.bang:
-                    st['consume character']()
-                    return ['!', null]
-                case Character.colon:
-                    st['consume character']()
-                    return [':', null]
-                case Character.comma:
-                    st['consume character']()
-                    return [',', null]
-                case Character.quotation_mark:
-                    st['consume character']()
-                    return ['string', {
-                        'value': parse_delimited_string(st, ($) => $ === Character.quotation_mark, true),
-                        'type': ['quoted', null],
-                    }]
-                case Character.backtick:
-                    st['consume character']()
-                    return ['string', {
-                        'value': parse_delimited_string(st, ($) => $ === Character.backtick, false),
-                        'type': ['backticked', null],
-                    }]
-                case Character.apostrophe:
-                    st['consume character']()
-                    return ['string', {
-                        'value': parse_delimited_string(st, ($) => $ === Character.apostrophe, false),
-                        'type': ['apostrophed', null],
-                    }]
-
-                default:
-                    return ['string', {
-                        'value': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
-                            while (true) {
-                                const $ = st['get current character']()
-                                if ($ === null) {
-                                    return
-                                }
-                                if (
-                                    $ === Character.open_brace ||
-                                    $ === Character.close_brace ||
-                                    $ === Character.open_bracket ||
-                                    $ === Character.close_bracket ||
-                                    $ === Character.open_angle_bracket ||
-                                    $ === Character.close_angle_bracket ||
-                                    $ === Character.open_paren ||
-                                    $ === Character.close_paren ||
-                                    $ === Character.apostrophe ||
-                                    $ === Character.asterisk ||
-                                    $ === Character.at ||
-                                    $ === Character.backtick ||
-                                    $ === Character.bang ||
-                                    $ === Character.colon ||
-                                    $ === Character.comma ||
-                                    $ === Character.pipe ||
-                                    $ === Character.quotation_mark ||
-                                    $ === Character.slash ||
-                                    $ === Character.tilde ||
-                                    $ === Whitespace.space ||
-                                    $ === Whitespace.tab ||
-                                    $ === Whitespace.line_feed ||
-                                    $ === Whitespace.carriage_return
-                                ) {
-                                    return
-                                }
-                                st['consume character']()
-                                $i['add element']($)
-                            }
-                        })),
-                        'type': ['undelimited', null],
-                    }]
-            }
-        }),
-        'end': st['create location info'](),
-        'trailing trivia': parse_trivia(st)
-    }
-}
-
-
 export const Tokenizer_Result = (
     $: null,
     $p: {
         'string iterator': String_Iterator
     }
-): parse_result.Tokenizer_Result => {
+): _out.Tokenizer_Result => {
     return {
-        'leading trivia': parse_trivia($p['string iterator']),
-        'tokens': _ea.pure.list.build<parse_result.Annotated_Token>($i => {
+        'leading trivia': Trivia($p['string iterator']),
+        'tokens': _ea.pure.list.build<_out.Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
                 const token = Annotated_Token($p['string iterator'])
@@ -738,35 +550,5 @@ export const Tokenizer_Result = (
             }
         }),
         'end': $p['string iterator']['create location info']()
-    }
-}
-
-export type Token_Iterator = {
-    'get required token': (expected: _et.Array<parse_result.Parse_Error._type.SG.parser.expected.L>) => parse_result.Annotated_Token,
-    'consume token': () => void,
-}
-
-
-export const create_token_iterator = ($: parse_result.Tokenizer_Result): Token_Iterator => {
-    let position = 0
-    return {
-        'get required token': (pet) => {
-            return $.tokens.__get_element_at(position).transform(
-                ($) => $,
-                () => throw_parse_error(
-                    ['parser', {
-                        'expected': pet,
-                        'cause': ['missing token', null]
-                    }],
-                    {
-                        'start': $.end,
-                        'end': $.end,
-                    }
-                )
-            )
-        },
-        'consume token': () => {
-            position += 1
-        },
     }
 }
