@@ -3,8 +3,8 @@ import * as _et from 'exupery-core-types'
 
 import * as si from "./string_iterator"
 
-import * as d_token from "../generated/interface/schemas/token/unconstrained"
-import * as d_parse_result from "../generated/interface/schemas/parse_result/unconstrained"
+import * as d_token from "../generated/interface/schemas/token/data_types/unconstrained"
+import * as d_parse_result from "../generated/interface/schemas/parse_result/data_types/unconstrained"
 
 export const throw_parse_error = (
     type: d_parse_result.Parse_Error._type,

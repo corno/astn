@@ -2,7 +2,7 @@ import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
-import * as _i_out from "../../../interface/schemas/ast/unconstrained"
+import * as _i_out from "../../../interface/schemas/ast/data_types/unconstrained"
 import * as _i_r_token from "../token/unmarshall"
 import * as _i_signatures from "../../../interface/schemas/ast/unmarshall"
 

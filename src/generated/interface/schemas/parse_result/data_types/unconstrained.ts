@@ -1,8 +1,8 @@
 import * as _pt from 'exupery-core-types'
 
-import * as _i_core from "../../core/unconstrained"
-import * as _i_imports_ast from "../ast/unconstrained"
-import * as _i_imports_token from "../token/unconstrained"
+import * as _i_core from "../../../core/unconstrained"
+import * as _i_imports_ast from "../../ast/data_types/unconstrained"
+import * as _i_imports_token from "../../token/data_types/unconstrained"
 
 // **** TYPES
 

@@ -3,9 +3,9 @@ import * as _ea from 'exupery-core-alg'
 
 import * as pso from "pareto-standard-operations"
 
-import * as _in from "../../generated/interface/schemas/ast/unconstrained"
-import * as _in_token from "../../generated/interface/schemas/token/unconstrained"
-import * as _out from "../../generated/interface/schemas/ide/unconstrained"
+import * as _in from "../../generated/interface/schemas/ast/data_types/unconstrained"
+import * as _in_token from "../../generated/interface/schemas/token/data_types/unconstrained"
+import * as _out from "../../generated/interface/schemas/ide/data_types/unconstrained"
 
 const op = {
     'flatten': pso.pure.list.flatten,
