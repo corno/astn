@@ -7,7 +7,7 @@ import * as _i_r_token from "../token/unmarshall"
 import * as _i_signatures from "../../../interface/schemas/ast/unmarshall"
 
 
-export const Document: _i_signatures._T_Document = ($) => _i_generic.process_group(
+export const Document: _i_signatures._T_Document = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -18,7 +18,9 @@ export const Document: _i_signatures._T_Document = ($) => _i_generic.process_gro
                 }
             ), ($) => Value(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'header': _pa.cc(_i_generic.get_entry(
                 $,
@@ -39,7 +41,9 @@ export const Document: _i_signatures._T_Document = ($) => _i_generic.process_gro
                                     }
                                 ), ($) => Structural_Token(
                                     $,
-                                    null
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
                                 )),
                                 'value': _pa.cc(_i_generic.get_entry(
                                     $,
@@ -48,7 +52,9 @@ export const Document: _i_signatures._T_Document = ($) => _i_generic.process_gro
                                     }
                                 ), ($) => Value(
                                     $,
-                                    null
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
                                 )),
                             }),
                         }
@@ -58,7 +64,7 @@ export const Document: _i_signatures._T_Document = ($) => _i_generic.process_gro
         }),
     }
 )
-export const Elements: _i_signatures._T_Elements = ($) => _i_generic.process_unconstrained_list(
+export const Elements: _i_signatures._T_Elements = ($, $p) => _i_generic.process_unconstrained_list(
     $,
     {
         'value': ($) => _i_generic.process_group(
@@ -75,7 +81,9 @@ export const Elements: _i_signatures._T_Elements = ($) => _i_generic.process_unc
                         {
                             'value': ($) => Structural_Token(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             ),
                         }
                     )),
@@ -86,14 +94,16 @@ export const Elements: _i_signatures._T_Elements = ($) => _i_generic.process_unc
                         }
                     ), ($) => Value(
                         $,
-                        null
+                        {
+                            'value deserializers': $p['value deserializers'],
+                        }
                     )),
                 }),
             }
         ),
     }
 )
-export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_generic.process_unconstrained_list(
+export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => _i_generic.process_unconstrained_list(
     $,
     {
         'value': ($) => _i_generic.process_group(
@@ -110,7 +120,9 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_gener
                         {
                             'value': ($) => Structural_Token(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             ),
                         }
                     )),
@@ -121,7 +133,9 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_gener
                         }
                     ), ($) => String(
                         $,
-                        null
+                        {
+                            'value deserializers': $p['value deserializers'],
+                        }
                     )),
                     'value': _pa.cc(_i_generic.get_entry(
                         $,
@@ -142,7 +156,9 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_gener
                                             }
                                         ), ($) => Structural_Token(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                         'value': _pa.cc(_i_generic.get_entry(
                                             $,
@@ -151,7 +167,9 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_gener
                                             }
                                         ), ($) => Value(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                     }),
                                 }
@@ -163,7 +181,7 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($) => _i_gener
         ),
     }
 )
-export const String: _i_signatures._T_String = ($) => _i_generic.process_group(
+export const String: _i_signatures._T_String = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -174,7 +192,9 @@ export const String: _i_signatures._T_String = ($) => _i_generic.process_group(
                 }
             ), ($) => _i_r_token.Range(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'trailing trivia': _pa.cc(_i_generic.get_entry(
                 $,
@@ -183,7 +203,9 @@ export const String: _i_signatures._T_String = ($) => _i_generic.process_group(
                 }
             ), ($) => _i_r_token.Trivia(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'type': _pa.cc(_i_generic.get_entry(
                 $,
@@ -192,7 +214,9 @@ export const String: _i_signatures._T_String = ($) => _i_generic.process_group(
                 }
             ), ($) => _i_r_token.String_Type(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'value': _pa.cc(_i_generic.get_entry(
                 $,
@@ -206,7 +230,7 @@ export const String: _i_signatures._T_String = ($) => _i_generic.process_group(
         }),
     }
 )
-export const Structural_Token: _i_signatures._T_Structural_Token = ($) => _i_generic.process_group(
+export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -217,7 +241,9 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($) => _i_gen
                 }
             ), ($) => _i_r_token.Range(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'trailing trivia': _pa.cc(_i_generic.get_entry(
                 $,
@@ -226,12 +252,14 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($) => _i_gen
                 }
             ), ($) => _i_r_token.Trivia(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
+export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -242,7 +270,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                 }
             ), ($) => _i_r_token.Range(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'type': _pa.cc(_i_generic.get_entry(
                 $,
@@ -265,7 +295,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Structural_Token(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                         'path': _pa.cc(_i_generic.get_entry(
                                             $,
@@ -274,7 +306,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => String(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                     }),
                                 }
@@ -298,7 +332,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Key_Value_Pairs(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         '{': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -307,7 +343,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         '}': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -316,7 +354,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                     }),
                                                 }
@@ -335,7 +375,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         ')': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -344,7 +386,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         'entries': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -353,7 +397,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Key_Value_Pairs(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                     }),
                                                 }
@@ -377,7 +423,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Structural_Token(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                     }),
                                 }
@@ -401,7 +449,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         '>': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -410,7 +460,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         'elements': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -419,7 +471,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Elements(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                     }),
                                                 }
@@ -438,7 +492,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         ']': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -447,7 +503,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Structural_Token(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                         'elements': _pa.cc(_i_generic.get_entry(
                                                             $,
@@ -456,7 +514,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                                             }
                                                         ), ($) => Elements(
                                                             $,
-                                                            null
+                                                            {
+                                                                'value deserializers': $p['value deserializers'],
+                                                            }
                                                         )),
                                                     }),
                                                 }
@@ -480,7 +540,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Structural_Token(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                         'value': _pa.cc(_i_generic.get_entry(
                                             $,
@@ -489,7 +551,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Value(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                     }),
                                 }
@@ -499,7 +563,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                         'string': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
                             ['string', String(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             )],
                             null
                         ),
@@ -515,7 +581,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => String(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                         'value': _pa.cc(_i_generic.get_entry(
                                             $,
@@ -524,7 +592,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Value(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                         '|': _pa.cc(_i_generic.get_entry(
                                             $,
@@ -533,7 +603,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_group(
                                             }
                                         ), ($) => Structural_Token(
                                             $,
-                                            null
+                                            {
+                                                'value deserializers': $p['value deserializers'],
+                                            }
                                         )),
                                     }),
                                 }

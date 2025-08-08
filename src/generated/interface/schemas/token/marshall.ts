@@ -2,149 +2,105 @@ import * as _pt from 'exupery-core-types'
 
 import * as _i_in from "./data_types/unconstrained"
 import * as _i_out from "../../core/astn_target"
+import * as _i_vs from "./value_serializers"
 
 // **** TYPES
 
-export type _T_Value_Serializers = {
-    readonly 'boolean': (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    readonly 'custom numbers': null
-    readonly 'default number': (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export type _T_s_Annotated_Token = (
+export type _T_Annotated_Token = (
     $$_: _i_in._T_Annotated_Token,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Delimited_String = (
+export type _T_Delimited_String = (
     $$_: _i_in._T_Delimited_String,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Location = (
+export type _T_Location = (
     $$_: _i_in._T_Location,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Range = (
+export type _T_Range = (
     $$_: _i_in._T_Range,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Relative_Location = (
+export type _T_Relative_Location = (
     $$_: _i_in._T_Relative_Location,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_String_Type = (
+export type _T_String_Type = (
     $$_: _i_in._T_String_Type,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Token_Type = (
+export type _T_Token_Type = (
     $$_: _i_in._T_Token_Type,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Tokenizer_Result = (
+export type _T_Tokenizer_Result = (
     $$_: _i_in._T_Tokenizer_Result,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Trivia = (
+export type _T_Trivia = (
     $$_: _i_in._T_Trivia,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Whitespace = (
+export type _T_Whitespace = (
     $$_: _i_in._T_Whitespace,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
-export type Value_Serializers = _T_Value_Serializers
+export type Annotated_Token = _T_Annotated_Token
 
-export type s_Annotated_Token = _T_s_Annotated_Token
+export type Delimited_String = _T_Delimited_String
 
-export type s_Delimited_String = _T_s_Delimited_String
+export type Location = _T_Location
 
-export type s_Location = _T_s_Location
+export type Range = _T_Range
 
-export type s_Range = _T_s_Range
+export type Relative_Location = _T_Relative_Location
 
-export type s_Relative_Location = _T_s_Relative_Location
+export type String_Type = _T_String_Type
 
-export type s_String_Type = _T_s_String_Type
+export type Token_Type = _T_Token_Type
 
-export type s_Token_Type = _T_s_Token_Type
+export type Tokenizer_Result = _T_Tokenizer_Result
 
-export type s_Tokenizer_Result = _T_s_Tokenizer_Result
+export type Trivia = _T_Trivia
 
-export type s_Trivia = _T_s_Trivia
-
-export type s_Whitespace = _T_s_Whitespace
+export type Whitespace = _T_Whitespace
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
-export namespace _T_Value_Serializers {
-    
-    export namespace _boolean {
-        export type CONTEXT = boolean
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type _boolean = (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    
-    export namespace custom_numbers {
-    }
-    export type custom_numbers = null
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export namespace _T_s_Annotated_Token {
+export namespace _T_Annotated_Token {
     
     export namespace CONTEXT {
     }
@@ -154,7 +110,7 @@ export namespace _T_s_Annotated_Token {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -162,7 +118,7 @@ export namespace _T_s_Annotated_Token {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Delimited_String {
+export namespace _T_Delimited_String {
     
     export namespace CONTEXT {
     }
@@ -172,7 +128,7 @@ export namespace _T_s_Delimited_String {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -180,7 +136,7 @@ export namespace _T_s_Delimited_String {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Location {
+export namespace _T_Location {
     
     export namespace CONTEXT {
     }
@@ -190,7 +146,7 @@ export namespace _T_s_Location {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -198,7 +154,7 @@ export namespace _T_s_Location {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Range {
+export namespace _T_Range {
     
     export namespace CONTEXT {
     }
@@ -208,7 +164,7 @@ export namespace _T_s_Range {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -216,7 +172,7 @@ export namespace _T_s_Range {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Relative_Location {
+export namespace _T_Relative_Location {
     
     export namespace CONTEXT {
     }
@@ -226,7 +182,7 @@ export namespace _T_s_Relative_Location {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -234,7 +190,7 @@ export namespace _T_s_Relative_Location {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_String_Type {
+export namespace _T_String_Type {
     
     export namespace CONTEXT {
     }
@@ -244,7 +200,7 @@ export namespace _T_s_String_Type {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -252,7 +208,7 @@ export namespace _T_s_String_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Token_Type {
+export namespace _T_Token_Type {
     
     export namespace CONTEXT {
     }
@@ -262,7 +218,7 @@ export namespace _T_s_Token_Type {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -270,7 +226,7 @@ export namespace _T_s_Token_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Tokenizer_Result {
+export namespace _T_Tokenizer_Result {
     
     export namespace CONTEXT {
     }
@@ -280,7 +236,7 @@ export namespace _T_s_Tokenizer_Result {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -288,7 +244,7 @@ export namespace _T_s_Tokenizer_Result {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Trivia {
+export namespace _T_Trivia {
     
     export namespace CONTEXT {
     }
@@ -298,7 +254,7 @@ export namespace _T_s_Trivia {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -306,7 +262,7 @@ export namespace _T_s_Trivia {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Whitespace {
+export namespace _T_Whitespace {
     
     export namespace CONTEXT {
     }
@@ -316,7 +272,7 @@ export namespace _T_s_Whitespace {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -326,38 +282,7 @@ export namespace _T_s_Whitespace {
 
 // *** ALIASES FOR NESTED TYPES
 
-export namespace Value_Serializers {
-    
-    export namespace _boolean {
-        export type CONTEXT = boolean
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type _boolean = (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    
-    export namespace custom_numbers {
-    }
-    export type custom_numbers = null
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export namespace s_Annotated_Token {
+export namespace Annotated_Token {
     
     export namespace CONTEXT {
     }
@@ -367,7 +292,7 @@ export namespace s_Annotated_Token {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -375,7 +300,7 @@ export namespace s_Annotated_Token {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Delimited_String {
+export namespace Delimited_String {
     
     export namespace CONTEXT {
     }
@@ -385,7 +310,7 @@ export namespace s_Delimited_String {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -393,7 +318,7 @@ export namespace s_Delimited_String {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Location {
+export namespace Location {
     
     export namespace CONTEXT {
     }
@@ -403,7 +328,7 @@ export namespace s_Location {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -411,7 +336,7 @@ export namespace s_Location {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Range {
+export namespace Range {
     
     export namespace CONTEXT {
     }
@@ -421,7 +346,7 @@ export namespace s_Range {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -429,7 +354,7 @@ export namespace s_Range {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Relative_Location {
+export namespace Relative_Location {
     
     export namespace CONTEXT {
     }
@@ -439,7 +364,7 @@ export namespace s_Relative_Location {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -447,7 +372,7 @@ export namespace s_Relative_Location {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_String_Type {
+export namespace String_Type {
     
     export namespace CONTEXT {
     }
@@ -457,7 +382,7 @@ export namespace s_String_Type {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -465,7 +390,7 @@ export namespace s_String_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Token_Type {
+export namespace Token_Type {
     
     export namespace CONTEXT {
     }
@@ -475,7 +400,7 @@ export namespace s_Token_Type {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -483,7 +408,7 @@ export namespace s_Token_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Tokenizer_Result {
+export namespace Tokenizer_Result {
     
     export namespace CONTEXT {
     }
@@ -493,7 +418,7 @@ export namespace s_Tokenizer_Result {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -501,7 +426,7 @@ export namespace s_Tokenizer_Result {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Trivia {
+export namespace Trivia {
     
     export namespace CONTEXT {
     }
@@ -511,7 +436,7 @@ export namespace s_Trivia {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -519,7 +444,7 @@ export namespace s_Trivia {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Whitespace {
+export namespace Whitespace {
     
     export namespace CONTEXT {
     }
@@ -529,7 +454,7 @@ export namespace s_Whitespace {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {

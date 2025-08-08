@@ -6,7 +6,7 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../interface/schemas/ast/marshall"
 
 
-export const Document: _i_signatures._T_s_Document = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'content': _pa.cc($['content'], ($) => Value(
         $,
         {
@@ -31,7 +31,7 @@ export const Document: _i_signatures._T_s_Document = ($, $p) => ['verbose group'
         () => ['not set', null]
     )]),
 })]
-export const Elements: _i_signatures._T_s_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
     ',': _pa.cc($[','], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', Structural_Token(
             $,
@@ -48,7 +48,7 @@ export const Elements: _i_signatures._T_s_Elements = ($, $p) => ['list', $.map((
         }
     )),
 })])]
-export const Key_Value_Pairs: _i_signatures._T_s_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
     ',': _pa.cc($[','], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', Structural_Token(
             $,
@@ -82,7 +82,7 @@ export const Key_Value_Pairs: _i_signatures._T_s_Key_Value_Pairs = ($, $p) => ['
         () => ['not set', null]
     )]),
 })])]
-export const String: _i_signatures._T_s_String = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -106,7 +106,7 @@ export const String: _i_signatures._T_s_String = ($, $p) => ['verbose group', _p
         'value': $,
     })]),
 })]
-export const Structural_Token: _i_signatures._T_s_Structural_Token = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -120,7 +120,7 @@ export const Structural_Token: _i_signatures._T_s_Structural_Token = ($, $p) => 
         }
     )),
 })]
-export const Value: _i_signatures._T_s_Value = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {

@@ -5,13 +5,13 @@ import * as _i_out from "../../../interface/core/astn_target"
 import * as _i_signatures from "../../../interface/schemas/target/marshall"
 
 
-export const Document: _i_signatures._T_s_Document = ($, $p) => Value(
+export const Document: _i_signatures._T_Document = ($, $p) => Value(
     $,
     {
         'value serializers': $p['value serializers'],
     }
 )
-export const Value: _i_signatures._T_s_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'concise group': return _pa.ss($, ($) => ({
             'state': "concise group",

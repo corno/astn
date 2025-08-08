@@ -7,7 +7,7 @@ import * as _i_r_token from "../token/unmarshall"
 import * as _i_signatures from "../../../interface/schemas/ide/unmarshall"
 
 
-export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_Be_Sorted = ($) => _i_generic.process_unconstrained_dictionary(
+export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_Be_Sorted = ($, $p) => _i_generic.process_unconstrained_dictionary(
     $,
     {
         'value': ($) => _i_generic.process_text(
@@ -16,7 +16,7 @@ export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_B
         ),
     }
 )
-export const Relative_Range: _i_signatures._T_Relative_Range = ($) => _i_generic.process_group(
+export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -27,7 +27,9 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($) => _i_generic
                 }
             ), ($) => _i_r_token.Relative_Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'start': _pa.cc(_i_generic.get_entry(
                 $,
@@ -36,12 +38,14 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($) => _i_generic
                 }
             ), ($) => _i_r_token.Relative_Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Text_Edits: _i_signatures._T_Text_Edits = ($) => _i_generic.process_unconstrained_list(
+export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.process_unconstrained_list(
     $,
     {
         'value': ($) => _i_generic.process_state_group(
@@ -60,7 +64,9 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($) => _i_generic.process
                                         }
                                     ), ($) => Relative_Range(
                                         $,
-                                        null
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
                                     )),
                                 }),
                             }
@@ -79,7 +85,9 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($) => _i_generic.process
                                         }
                                     ), ($) => _i_r_token.Relative_Location(
                                         $,
-                                        null
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
                                     )),
                                     'text': _pa.cc(_i_generic.get_entry(
                                         $,
@@ -107,7 +115,9 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($) => _i_generic.process
                                         }
                                     ), ($) => Relative_Range(
                                         $,
-                                        null
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
                                     )),
                                     'text': _pa.cc(_i_generic.get_entry(
                                         $,

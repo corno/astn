@@ -6,11 +6,11 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../interface/schemas/ide/marshall"
 
 
-export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_s_Key_Value_Pairs_To_Be_Sorted = ($, $p) => ['dictionary', $.map(($) => ['text', ({
+export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_Be_Sorted = ($, $p) => ['dictionary', $.map(($) => ['text', ({
     'delimiter': ['quote', null],
     'value': $,
 })])]
-export const Relative_Range: _i_signatures._T_s_Relative_Range = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'end': _pa.cc($['end'], ($) => _i_r_token.Relative_Location(
         $,
         {
@@ -24,7 +24,7 @@ export const Relative_Range: _i_signatures._T_s_Relative_Range = ($, $p) => ['ve
         }
     )),
 })]
-export const Text_Edits: _i_signatures._T_s_Text_Edits = ($, $p) => ['list', $.map(($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map(($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'delete': return _pa.ss($, ($) => ({
             'state': "delete",

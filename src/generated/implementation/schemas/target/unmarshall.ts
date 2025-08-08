@@ -6,11 +6,13 @@ import * as _i_out from "../../../interface/schemas/target/data_types/unconstrai
 import * as _i_signatures from "../../../interface/schemas/target/unmarshall"
 
 
-export const Document: _i_signatures._T_Document = ($) => Value(
+export const Document: _i_signatures._T_Document = ($, $p) => Value(
     $,
-    null
+    {
+        'value deserializers': $p['value deserializers'],
+    }
 )
-export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_group(
+export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_state_group(
     $,
     {
         'states': _pa.dictionary_literal({
@@ -20,7 +22,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                     {
                         'value': ($) => Value(
                             $,
-                            null
+                            {
+                                'value deserializers': $p['value deserializers'],
+                            }
                         ),
                     }
                 )],
@@ -32,7 +36,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                     {
                         'value': ($) => Value(
                             $,
-                            null
+                            {
+                                'value deserializers': $p['value deserializers'],
+                            }
                         ),
                     }
                 )],
@@ -44,7 +50,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                     {
                         'value': ($) => Value(
                             $,
-                            null
+                            {
+                                'value deserializers': $p['value deserializers'],
+                            }
                         ),
                     }
                 )],
@@ -72,7 +80,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                             'set': ($): _i_out._T_Value.SG.optional => _i_generic.wrap_unconstrained_state_group(
                                 ['set', Value(
                                     $,
-                                    null
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
                                 )],
                                 null
                             ),
@@ -102,7 +112,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                                 }
                             ), ($) => Value(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             )),
                         }),
                     }
@@ -167,7 +179,9 @@ export const Value: _i_signatures._T_Value = ($) => _i_generic.process_state_gro
                     {
                         'value': ($) => Value(
                             $,
-                            null
+                            {
+                                'value deserializers': $p['value deserializers'],
+                            }
                         ),
                     }
                 )],

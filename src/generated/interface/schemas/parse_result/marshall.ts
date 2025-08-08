@@ -2,77 +2,33 @@ import * as _pt from 'exupery-core-types'
 
 import * as _i_in from "./data_types/unconstrained"
 import * as _i_out from "../../core/astn_target"
+import * as _i_vs from "./value_serializers"
 
 // **** TYPES
 
-export type _T_Value_Serializers = {
-    readonly 'boolean': (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    readonly 'custom numbers': null
-    readonly 'default number': (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export type _T_s_Parse_Error = (
+export type _T_Parse_Error = (
     $$_: _i_in._T_Parse_Error,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_s_Parse_Result = (
+export type _T_Parse_Result = (
     $$_: _i_in._T_Parse_Result,
     $$_p: {
-        readonly 'value serializers': _T_Value_Serializers
+        readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
-export type Value_Serializers = _T_Value_Serializers
+export type Parse_Error = _T_Parse_Error
 
-export type s_Parse_Error = _T_s_Parse_Error
-
-export type s_Parse_Result = _T_s_Parse_Result
+export type Parse_Result = _T_Parse_Result
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
-export namespace _T_Value_Serializers {
-    
-    export namespace _boolean {
-        export type CONTEXT = boolean
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type _boolean = (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    
-    export namespace custom_numbers {
-    }
-    export type custom_numbers = null
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export namespace _T_s_Parse_Error {
+export namespace _T_Parse_Error {
     
     export namespace CONTEXT {
     }
@@ -82,7 +38,7 @@ export namespace _T_s_Parse_Error {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -90,7 +46,7 @@ export namespace _T_s_Parse_Error {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_s_Parse_Result {
+export namespace _T_Parse_Result {
     
     export namespace CONTEXT {
     }
@@ -100,7 +56,7 @@ export namespace _T_s_Parse_Result {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -110,38 +66,7 @@ export namespace _T_s_Parse_Result {
 
 // *** ALIASES FOR NESTED TYPES
 
-export namespace Value_Serializers {
-    
-    export namespace _boolean {
-        export type CONTEXT = boolean
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type _boolean = (
-        $$_: boolean,
-        $$_p: null,
-    ) => string
-    
-    export namespace custom_numbers {
-    }
-    export type custom_numbers = null
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
-}
-
-export namespace s_Parse_Error {
+export namespace Parse_Error {
     
     export namespace CONTEXT {
     }
@@ -151,7 +76,7 @@ export namespace s_Parse_Error {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {
@@ -159,7 +84,7 @@ export namespace s_Parse_Error {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace s_Parse_Result {
+export namespace Parse_Result {
     
     export namespace CONTEXT {
     }
@@ -169,7 +94,7 @@ export namespace s_Parse_Result {
         
         export namespace value_serializers {
         }
-        export type value_serializers = _T_Value_Serializers
+        export type value_serializers = _i_vs._T_Value_Serializers
     }
     
     export namespace RESULT {

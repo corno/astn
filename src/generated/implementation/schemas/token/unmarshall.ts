@@ -6,7 +6,7 @@ import * as _i_out from "../../../interface/schemas/token/data_types/unconstrain
 import * as _i_signatures from "../../../interface/schemas/token/unmarshall"
 
 
-export const Annotated_Token: _i_signatures._T_Annotated_Token = ($) => _i_generic.process_group(
+export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -17,7 +17,9 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($) => _i_gener
                 }
             ), ($) => Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'start': _pa.cc(_i_generic.get_entry(
                 $,
@@ -26,7 +28,9 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($) => _i_gener
                 }
             ), ($) => Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'trailing trivia': _pa.cc(_i_generic.get_entry(
                 $,
@@ -35,7 +39,9 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($) => _i_gener
                 }
             ), ($) => Trivia(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'type': _pa.cc(_i_generic.get_entry(
                 $,
@@ -44,16 +50,18 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($) => _i_gener
                 }
             ), ($) => Token_Type(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Delimited_String: _i_signatures._T_Delimited_String = ($) => _i_generic.process_text(
+export const Delimited_String: _i_signatures._T_Delimited_String = ($, $p) => _i_generic.process_text(
     $,
     null
 )
-export const Location: _i_signatures._T_Location = ($) => _i_generic.process_group(
+export const Location: _i_signatures._T_Location = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -64,7 +72,9 @@ export const Location: _i_signatures._T_Location = ($) => _i_generic.process_gro
                 }
             ), ($) => _i_generic.process_number(
                 $,
-                null
+                {
+                    'deserializer': $p['value deserializers']['default number'],
+                }
             )),
             'relative': _pa.cc(_i_generic.get_entry(
                 $,
@@ -73,12 +83,14 @@ export const Location: _i_signatures._T_Location = ($) => _i_generic.process_gro
                 }
             ), ($) => Relative_Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Range: _i_signatures._T_Range = ($) => _i_generic.process_group(
+export const Range: _i_signatures._T_Range = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -89,7 +101,9 @@ export const Range: _i_signatures._T_Range = ($) => _i_generic.process_group(
                 }
             ), ($) => Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'start': _pa.cc(_i_generic.get_entry(
                 $,
@@ -98,12 +112,14 @@ export const Range: _i_signatures._T_Range = ($) => _i_generic.process_group(
                 }
             ), ($) => Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Relative_Location: _i_signatures._T_Relative_Location = ($) => _i_generic.process_group(
+export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -114,7 +130,9 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($) => _i_g
                 }
             ), ($) => _i_generic.process_number(
                 $,
-                null
+                {
+                    'deserializer': $p['value deserializers']['default number'],
+                }
             )),
             'line': _pa.cc(_i_generic.get_entry(
                 $,
@@ -123,12 +141,14 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($) => _i_g
                 }
             ), ($) => _i_generic.process_number(
                 $,
-                null
+                {
+                    'deserializer': $p['value deserializers']['default number'],
+                }
             )),
         }),
     }
 )
-export const String_Type: _i_signatures._T_String_Type = ($) => _i_generic.process_state_group(
+export const String_Type: _i_signatures._T_String_Type = ($, $p) => _i_generic.process_state_group(
     $,
     {
         'states': _pa.dictionary_literal({
@@ -163,7 +183,7 @@ export const String_Type: _i_signatures._T_String_Type = ($) => _i_generic.proce
         }),
     }
 )
-export const Token_Type: _i_signatures._T_Token_Type = ($) => _i_generic.process_state_group(
+export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => _i_generic.process_state_group(
     $,
     {
         'states': _pa.dictionary_literal({
@@ -256,7 +276,9 @@ export const Token_Type: _i_signatures._T_Token_Type = ($) => _i_generic.process
                                 }
                             ), ($) => String_Type(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             )),
                             'value': _pa.cc(_i_generic.get_entry(
                                 $,
@@ -265,7 +287,9 @@ export const Token_Type: _i_signatures._T_Token_Type = ($) => _i_generic.process
                                 }
                             ), ($) => Delimited_String(
                                 $,
-                                null
+                                {
+                                    'value deserializers': $p['value deserializers'],
+                                }
                             )),
                         }),
                     }
@@ -303,7 +327,7 @@ export const Token_Type: _i_signatures._T_Token_Type = ($) => _i_generic.process
         }),
     }
 )
-export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($) => _i_generic.process_group(
+export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -314,7 +338,9 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($) => _i_gen
                 }
             ), ($) => Location(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'leading trivia': _pa.cc(_i_generic.get_entry(
                 $,
@@ -323,7 +349,9 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($) => _i_gen
                 }
             ), ($) => Trivia(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'tokens': _pa.cc(_i_generic.get_entry(
                 $,
@@ -335,14 +363,16 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($) => _i_gen
                 {
                     'value': ($) => Annotated_Token(
                         $,
-                        null
+                        {
+                            'value deserializers': $p['value deserializers'],
+                        }
                     ),
                 }
             )),
         }),
     }
 )
-export const Trivia: _i_signatures._T_Trivia = ($) => _i_generic.process_group(
+export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -374,7 +404,9 @@ export const Trivia: _i_signatures._T_Trivia = ($) => _i_generic.process_group(
                                     }
                                 ), ($) => Range(
                                     $,
-                                    null
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
                                 )),
                                 'trailing whitespace': _pa.cc(_i_generic.get_entry(
                                     $,
@@ -383,7 +415,9 @@ export const Trivia: _i_signatures._T_Trivia = ($) => _i_generic.process_group(
                                     }
                                 ), ($) => Whitespace(
                                     $,
-                                    null
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
                                 )),
                                 'type': _pa.cc(_i_generic.get_entry(
                                     $,
@@ -423,12 +457,14 @@ export const Trivia: _i_signatures._T_Trivia = ($) => _i_generic.process_group(
                 }
             ), ($) => Whitespace(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
         }),
     }
 )
-export const Whitespace: _i_signatures._T_Whitespace = ($) => _i_generic.process_group(
+export const Whitespace: _i_signatures._T_Whitespace = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
@@ -439,7 +475,9 @@ export const Whitespace: _i_signatures._T_Whitespace = ($) => _i_generic.process
                 }
             ), ($) => Range(
                 $,
-                null
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
             )),
             'value': _pa.cc(_i_generic.get_entry(
                 $,

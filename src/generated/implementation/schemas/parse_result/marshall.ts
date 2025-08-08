@@ -7,7 +7,7 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../interface/schemas/parse_result/marshall"
 
 
-export const Parse_Error: _i_signatures._T_s_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -148,7 +148,7 @@ export const Parse_Error: _i_signatures._T_s_Parse_Error = ($, $p) => ['verbose 
         }
     })]),
 })]
-export const Parse_Result: _i_signatures._T_s_Parse_Result = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'failure': return _pa.ss($, ($) => ({
             'state': "failure",

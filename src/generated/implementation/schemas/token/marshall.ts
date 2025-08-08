@@ -5,7 +5,7 @@ import * as _i_out from "../../../interface/core/astn_target"
 import * as _i_signatures from "../../../interface/schemas/token/marshall"
 
 
-export const Annotated_Token: _i_signatures._T_s_Annotated_Token = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'end': _pa.cc($['end'], ($) => Location(
         $,
         {
@@ -31,11 +31,11 @@ export const Annotated_Token: _i_signatures._T_s_Annotated_Token = ($, $p) => ['
         }
     )),
 })]
-export const Delimited_String: _i_signatures._T_s_Delimited_String = ($, $p) => ['text', ({
+export const Delimited_String: _i_signatures._T_Delimited_String = ($, $p) => ['text', ({
     'delimiter': ['quote', null],
     'value': $,
 })]
-export const Location: _i_signatures._T_s_Location = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Location: _i_signatures._T_Location = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'absolute': _pa.cc($['absolute'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': _pd.implement_me(),
@@ -47,7 +47,7 @@ export const Location: _i_signatures._T_s_Location = ($, $p) => ['verbose group'
         }
     )),
 })]
-export const Range: _i_signatures._T_s_Range = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Range: _i_signatures._T_Range = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'end': _pa.cc($['end'], ($) => Location(
         $,
         {
@@ -61,7 +61,7 @@ export const Range: _i_signatures._T_s_Range = ($, $p) => ['verbose group', _pa.
         }
     )),
 })]
-export const Relative_Location: _i_signatures._T_s_Relative_Location = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'column': _pa.cc($['column'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': _pd.implement_me(),
@@ -71,7 +71,7 @@ export const Relative_Location: _i_signatures._T_s_Relative_Location = ($, $p) =
         'value': _pd.implement_me(),
     })]),
 })]
-export const String_Type: _i_signatures._T_s_String_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const String_Type: _i_signatures._T_String_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'apostrophed': return _pa.ss($, ($) => ({
             'state': "apostrophed",
@@ -92,7 +92,7 @@ export const String_Type: _i_signatures._T_s_String_Type = ($, $p) => ['state', 
         default: return _pa.au($[0])
     }
 })]
-export const Token_Type: _i_signatures._T_s_Token_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case '!': return _pa.ss($, ($) => ({
             'state': "!",
@@ -174,7 +174,7 @@ export const Token_Type: _i_signatures._T_s_Token_Type = ($, $p) => ['state', _p
         default: return _pa.au($[0])
     }
 })]
-export const Tokenizer_Result: _i_signatures._T_s_Tokenizer_Result = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'end': _pa.cc($['end'], ($) => Location(
         $,
         {
@@ -194,7 +194,7 @@ export const Tokenizer_Result: _i_signatures._T_s_Tokenizer_Result = ($, $p) => 
         }
     ))]),
 })]
-export const Trivia: _i_signatures._T_s_Trivia = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Trivia: _i_signatures._T_Trivia = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'comments': _pa.cc($['comments'], ($) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
         'content': _pa.cc($['content'], ($) => ['text', ({
             'delimiter': ['quote', null],
@@ -233,7 +233,7 @@ export const Trivia: _i_signatures._T_s_Trivia = ($, $p) => ['verbose group', _p
         }
     )),
 })]
-export const Whitespace: _i_signatures._T_s_Whitespace = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Whitespace: _i_signatures._T_Whitespace = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'range': _pa.cc($['range'], ($) => Range(
         $,
         {

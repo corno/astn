@@ -133,14 +133,18 @@ export const process_unconstrained_dictionary = <X>(
 
 export const process_number = (
     $: t._T_Value,
-    $p: null
+    $p: {
+        'deserializer': ($: string, $p: null) => number
+    }
 ): number => {
-    return 42 //FIXME
+    return _ed.implement_me()
 }
 
 export const process_boolean = (
     $: t._T_Value,
-    $p: null
+    $p: {
+        'deserializer': ($: string, $p: null) => boolean
+    }
 
 ): boolean => {
     return _ed.implement_me()
