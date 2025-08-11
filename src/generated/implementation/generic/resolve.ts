@@ -1,4 +1,4 @@
-import * as pa from 'exupery-core-alg'
+import * as _ea from 'exupery-core-alg'
 import * as pt from 'exupery-core-types'
 import * as pd from 'exupery-core-data'
 
@@ -41,7 +41,7 @@ export const dictionary_to_lookup = <T>(
     $: pt.Dictionary<T>,
     $p: null,
 ): i.Acyclic_Lookup<T> => {
-    return pa.set($.map(($) => (['resolved', $])))
+    return _ea.set($.map(($) => (['resolved', $])))
 }
 
 export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
@@ -56,15 +56,15 @@ export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
             'key': $p.reference.key,
             'entry': $.__get_entry($p.reference.key).transform(
                 ($) => $,
-                () => pa.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
+                () => _ea.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
             )
         }),
-        () => pa.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
+        () => _ea.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
     )
 }
 
 export const push_stack = <T>($: pt.Array<T>, $p: { 'element': T }): pt.Array<T> => {
-    return pa.pure.list.build<T>(($i) => {
+    return _ea.pure.list.build<T>(($i) => {
         $i['add list']($)
         $i['add element']($p['element'])
     })
@@ -78,26 +78,37 @@ export const get_entry_from_stack = <Source, T>(
         'location 2 string': i.Location_to_String<Source>
     },
 ): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
-
-    const get_lookup_from_stack = <T>(
-        $: i.Lookup_Stack<T>,
-        $p: { 'up steps': number }
-    ): i.Acyclic_Lookup<T> => $.__get_element_at($.__get_length() - 1 - $p['up steps']).transform(
-        ($) => $,
-        () => pa.panic(`index out of bounds, ${$.__get_length()} ${$p['up steps']}`),
-    )
-    const x = get_entry(
-        get_lookup_from_stack($, { 'up steps': $p.reference['up steps'] }),
-        {
-            'reference': $p.reference,
-            'location 2 string': $p['location 2 string'],
-        }
-    )
-    return {
-        'key': x.key,
-        'entry': x.entry,
-        'up steps': $p.reference['up steps'],
+    const ref = $p.reference
+    const get_entry_from_stack = (
+        up_steps_taken: number
+    ): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
+        return $.__get_element_at($.__get_length() - 1 - up_steps_taken).transform(
+            ($): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
+                return $.transform(
+                    ($) => {
+                        return $.__get_entry(ref.key).transform(
+                            ($) => _ea.cc($, ($) => {
+                                switch ($[0]) {
+                                    case 'error': return _ea.ss($, ($) => get_entry_from_stack(up_steps_taken += 1))
+                                    case 'resolved': return _ea.ss($, ($): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => ({
+                                        'key': ref.key,
+                                        'up steps': up_steps_taken,
+                                        'entry': $,
+                                    }))
+                                    default: return _ea.au($[0])
+                                }
+                            }),
+                            () => _ea.panic(`no clue yet of what is happening here`),
+                        )
+                    },
+                    () => _ea.panic(`index out of bounds, ${up_steps_taken}`),
+                )
+            },
+            () => _ea.panic(`no element found at index ${up_steps_taken}`)
+        )
     }
+
+    return get_entry_from_stack(0)
 }
 
 export const get_entry = <Source, T>(
@@ -111,31 +122,31 @@ export const get_entry = <Source, T>(
         ($) => ({
             'key': $p.reference.key,
             'entry': $.__get_entry($p.reference.key).transform(
-                ($) => pa.cc($, ($) => {
+                ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
-                        case 'error': return pa.ss($, ($) => pa.cc($, ($) => {
+                        case 'error': return _ea.ss($, ($) => _ea.cc($, ($) => {
                             switch ($[0]) {
-                                case 'circular': return pa.ss($, ($) => {
-                                    const keys = pa.pure.text.build(($i) => {
+                                case 'circular': return _ea.ss($, ($) => {
+                                    const keys = _ea.pure.text.build(($i) => {
                                         $.__for_each(($) => {
                                             $i['add snippet'](` '${$}', `)
                                         })
                                     })
-                                    return pa.panic("circular dependency: '", $p.reference.key, "' (", keys, ")@ ", $p['location 2 string']($p.reference.location))
+                                    return _ea.panic("circular dependency: '", $p.reference.key, "' (", keys, ")@ ", $p['location 2 string']($p.reference.location))
                                 })
-                                default: return pa.au($[0])
+                                default: return _ea.au($[0])
                             }
                         }))
-                        case 'resolved': return pa.ss($, ($) => $)
-                        default: return pa.au($[0])
+                        case 'resolved': return _ea.ss($, ($) => $)
+                        default: return _ea.au($[0])
                     }
                 }),
                 () => {
-                    return pa.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
+                    return _ea.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
                 }
             )
         }),
-        () => pa.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
+        () => _ea.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
     )
 }
 
@@ -147,14 +158,14 @@ export const resolve_path = <Source, Unresolved_Element, Resolved_Element, Seed>
     },
 ): Path<Source, Resolved_Element, Seed> => {
     let current: Path<Source, Resolved_Element, Seed> = {
-        'list': pa.array_literal([]),
+        'list': _ea.array_literal([]),
         'result': {
             'data': $p.seed,
         },
     }
     $.list.__for_each(($) => {
         const result = $p.map($.element, current.result.data)
-        const data = pa.pure.list.build<Resolved_Element>(($i) => {
+        const data = _ea.pure.list.build<Resolved_Element>(($i) => {
             current.list.__for_each(($) => {
                 $i['add element']($)
             })
@@ -222,7 +233,7 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
                     ($) => {
                     },
                     () => {
-                        pa.panic("missing entry '", key, "' @ ", location_to_string(location))
+                        _ea.panic("missing entry '", key, "' @ ", location_to_string(location))
                     }
                 )
             })
@@ -261,7 +272,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
     const finished: { [key: string]: TResolved } = {}
 
-    const ordered_list = pa.pure.list.build<pt.Key_Value_Pair<TResolved>>(($i) => {
+    const ordered_list = _ea.pure.list.build<pt.Key_Value_Pair<TResolved>>(($i) => {
 
         const source_dictionary = $
 
@@ -279,7 +290,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                 'value': $,
                 'location': location,
             }, {
-                'possibly circular dependent siblings': pa.set({
+                'possibly circular dependent siblings': _ea.set({
                     __get_entry(key) {
                         //does the entry exist?
                         return source_dictionary.dictionary.__get_entry(key).map(($) => {
@@ -291,7 +302,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                             return {
                                 'compute': () => {
                                     if (subscr.entry === null) {
-                                        pa.panic(`entry not set: ${key}`)
+                                        _ea.panic(`entry not set: ${key}`)
                                     }
                                     return subscr.entry
                                 }
@@ -301,21 +312,21 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                     },
 
                 }),
-                'not circular dependent siblings': pa.set({
+                'not circular dependent siblings': _ea.set({
                     __get_entry(key): pt.Optional_Value<i.Non_Circular_Result<TResolved>> {
                         const status = status_dictionary[key]
                         if (status === undefined) {
                             return source_dictionary.dictionary.__get_entry(key).transform(
-                                ($) => pa.set(['resolved', process_entry($.entry, $.location, key)]),
+                                ($) => _ea.set(['resolved', process_entry($.entry, $.location, key)]),
                                 () => {
-                                    return pa.not_set()
+                                    return _ea.not_set()
                                     // throw new ResolveError("")
                                 }
                             )
                         } else {
                             const get_keys_of_entries_being_processed = () => {
-                                return pa.pure.list.build<string>(($i) => {
-                                    pa.dictionary_literal(status_dictionary).map(($, key) => {
+                                return _ea.pure.list.build<string>(($i) => {
+                                    _ea.dictionary_literal(status_dictionary).map(($, key) => {
                                         if ($[0] === 'processing') {
                                             $i['add element'](key)
                                         }
@@ -323,17 +334,17 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
                                 })
                             }
-                            return pa.cc(status, (s) => {
+                            return _ea.cc(status, (s) => {
                                 switch (s[0]) {
                                     case 'failed':
-                                        return pa.ss(s, (s) => {
+                                        return _ea.ss(s, (s) => {
                                             //nothing to report
 
 
 
 
 
-                                            return pa.set(['error', ['circular', get_keys_of_entries_being_processed()]])
+                                            return _ea.set(['error', ['circular', get_keys_of_entries_being_processed()]])
                                             //return notSet()
                                         })
                                     case 'processing':
@@ -349,11 +360,11 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                                             //$se.onError(`the following entries are referencing each other: ${keys.join(", ")}`)
                                         }
                                         status_dictionary[key_of_entry_being_processed] = ['failed', null]
-                                        return pa.set(['error', ['circular', get_keys_of_entries_being_processed()]])
+                                        return _ea.set(['error', ['circular', get_keys_of_entries_being_processed()]])
 
                                     case 'success':
-                                        return pa.set(['resolved', s[1]])
-                                    default: return pa.au(s[0])
+                                        return _ea.set(['resolved', s[1]])
+                                    default: return _ea.au(s[0])
                                 }
                             })
                         }
@@ -374,15 +385,15 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                 process_entry($.entry, $.location, key)
             }
         })
-        pa.dictionary_literal(all_siblings_subscribed_entries).map(($, key) => {
+        _ea.dictionary_literal(all_siblings_subscribed_entries).map(($, key) => {
             if (finished[key] === undefined) {
-                pa.panic(`implementation error: entry not resolved: ${key}`)
+                _ea.panic(`implementation error: entry not resolved: ${key}`)
             }
             all_siblings_subscribed_entries[key].entry = finished[key]
         })
     })
     return {
-        'dictionary': pa.dictionary_literal(finished),
+        'dictionary': _ea.dictionary_literal(finished),
         'ordered list': ordered_list,
     }
 }

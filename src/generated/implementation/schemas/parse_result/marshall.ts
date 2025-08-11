@@ -36,14 +36,20 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                             'state': "unexpected character",
                             'value': ['text', ({
                                 'delimiter': ['backtick', null],
-                                'value': _pd.implement_me(),
+                                'value': $p['value serializers']['default number'](
+                                    $,
+                                    null
+                                ),
                             })],
                         }))
                         case 'unexpected control character': return _pa.ss($, ($) => ({
                             'state': "unexpected control character",
                             'value': ['text', ({
                                 'delimiter': ['backtick', null],
-                                'value': _pd.implement_me(),
+                                'value': $p['value serializers']['default number'](
+                                    $,
+                                    null
+                                ),
                             })],
                         }))
                         case 'unexpected end of input': return _pa.ss($, ($) => ({

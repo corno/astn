@@ -6,7 +6,7 @@ import * as t from "../../interface/core/astn_source"
 import * as unconstrained from "../../interface/core/unconstrained"
 import * as unresolved from "../../interface/core/unresolved"
 
-export const process_state_group = <X>(
+export const process_unconstrained_state_group = <X>(
     $: t._T_Value,
     $p: {
         'states': _et.Dictionary<($: t._T_Value) => X>,
@@ -15,12 +15,6 @@ export const process_state_group = <X>(
 ): X => {
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => _ed.implement_me())
-            case 'include': return _ea.ss($, ($) => _ed.implement_me())
-            case 'indexed collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'not set': return _ea.ss($, ($) => _ed.implement_me())
-            case 'ordered collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'set optional value': return _ea.ss($, ($) => _ed.implement_me())
             case 'tagged value': return _ea.ss($, ($) => {
                 const data = $.value
                 return $p.states.__get_entry(
@@ -30,9 +24,35 @@ export const process_state_group = <X>(
                     () => _ed.implement_me()
                 )
             })
-            default: return _ea.au($[0])
+            default: return _ea.panic(`Unexpected type for state group: ${$[0]}`)
         }
     })
+}
+
+export const process_unresolved_state_group = <X>(
+    $: t._T_Value,
+    $p: {
+        'states': _et.Dictionary<($: t._T_Value) => X>,
+    }
+
+): unresolved.State_Group<t._T_Range, X> => {
+    return {
+        'location': $.range,
+        'state group': _ea.cc($.type, ($) => {
+            switch ($[0]) {
+                case 'tagged value': return _ea.ss($, ($) => {
+                    const data = $.value
+                    return $p.states.__get_entry(
+                        $.state.value
+                    ).transform(
+                        ($) => $(data),
+                        () => _ed.implement_me()
+                    )
+                })
+                default: return _ea.panic(`Unexpected type for state group: ${$[0]}`)
+            }
+        })
+    }
 }
 
 export const process_group = <X>(
@@ -44,11 +64,8 @@ export const process_group = <X>(
 ): X => {
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => _ed.implement_me())
-            case 'include': return _ea.ss($, ($) => _ed.implement_me())
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return _ea.ss($, ($) => _ed.implement_me())
                     case 'verbose group': return _ea.ss($, ($) => {
                         return $p.properties(_ea.pure.dictionary["build, overwrite clashing keys"](($i) => {
                             $.entries.__for_each(($) => {
@@ -59,14 +76,10 @@ export const process_group = <X>(
                             })
                         }))
                     })
-                    default: return _ea.au($[0])
+                    default: return _ea.panic(`Unexpected type for group: ${$[0]}`)
                 }
             }))
-            case 'not set': return _ea.ss($, ($) => _ed.implement_me())
-            case 'ordered collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'set optional value': return _ea.ss($, ($) => _ed.implement_me())
-            case 'tagged value': return _ed.implement_me()
-            default: return _ea.au($[0])
+            default: return _ea.panic(`Unexpected type for group: ${$[0]}`)
         }
     })
 }
@@ -80,7 +93,7 @@ export const get_entry = (
 ): t._T_Value => {
     return $.__get_entry($p.key).transform(
         ($) => $,
-        () => _ed.implement_me()
+        () => _ea.panic(`no such entry: ${$p.key}`)
     )
 }
 
@@ -89,9 +102,37 @@ export const process_unresolved_dictionary = <X>(
     $p: {
         'value': ($: t._T_Value) => X
     }
-
-): unresolved.Dictionary<null, X> => {
-    return _ed.implement_me()
+): unresolved.Dictionary<t._T_Range, X> => {
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                switch ($[0]) {
+                    case 'dictionary': return _ea.ss($, ($) => {
+                        return {
+                            'location': {
+                                'start': $["{"].range.start,
+                                'end': $["}"].range.end,
+                            },
+                            'dictionary': _ea.pure.dictionary["build, overwrite clashing keys"](($i) => {
+                                $.entries.__for_each(($) => {
+                                    const key_location = $.key.range
+                                    $i['add entry']($.key.value, $.value.transform(
+                                        ($) => ({
+                                            'location': key_location,
+                                            'entry': $p.value($.value),
+                                        }),
+                                        () => _ed.implement_me() //what to do if the property has no value?
+                                    ))
+                                })
+                            })
+                        }
+                    })
+                    default: return _ea.panic(`Unexpected type for dictionary: ${$[0]}`)
+                }
+            }))
+            default: return _ea.panic(`Unexpected type for dictionary: ${$[0]}`)
+        }
+    })
 }
 
 export const process_unconstrained_dictionary = <X>(
@@ -99,12 +140,9 @@ export const process_unconstrained_dictionary = <X>(
     $p: {
         'value': ($: t._T_Value) => X
     }
-
 ): unconstrained.Dictionary<null, X> => {
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => _ed.implement_me())
-            case 'include': return _ea.ss($, ($) => _ed.implement_me())
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
                     case 'dictionary': return _ea.ss($, ($) => {
@@ -112,20 +150,15 @@ export const process_unconstrained_dictionary = <X>(
                             $.entries.__for_each(($) => {
                                 $i['add entry']($.key.value, $.value.transform(
                                     ($) => $p.value($.value),
-                                    () => _ed.implement_me()
+                                    () => _ed.implement_me() //what to do if the property has no value?
                                 ))
                             })
                         })
                     })
-                    case 'verbose group': return _ea.ss($, ($) => _ed.implement_me())
-                    default: return _ea.au($[0])
+                    default: return _ea.panic(`Unexpected type for dictionary: ${$[0]}`)
                 }
             }))
-            case 'not set': return _ea.ss($, ($) => _ed.implement_me())
-            case 'ordered collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'set optional value': return _ea.ss($, ($) => _ed.implement_me())
-            case 'tagged value': return _ed.implement_me()
-            default: return _ea.au($[0])
+            default: return _ea.panic(`Unexpected type for dictionary: ${$[0]}`)
         }
     })
 }
@@ -137,7 +170,13 @@ export const process_number = (
         'deserializer': ($: string, $p: null) => number
     }
 ): number => {
-    return _ed.implement_me()
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
+            default: return _ea.panic(`Unexpected type for number: ${$[0]}`)
+
+        }
+    })
 }
 
 export const process_boolean = (
@@ -147,7 +186,12 @@ export const process_boolean = (
     }
 
 ): boolean => {
-    return _ed.implement_me()
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
+            default: return _ea.panic(`Unexpected type for boolean: ${$[0]}`)
+        }
+    })
 }
 
 export const process_text = (
@@ -158,13 +202,7 @@ export const process_text = (
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => $.value)
-            case 'include': return _ea.ss($, ($) => _ed.implement_me())
-            case 'indexed collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'not set': return _ea.ss($, ($) => _ed.implement_me())
-            case 'ordered collection': return _ea.ss($, ($) => _ed.implement_me())
-            case 'set optional value': return _ea.ss($, ($) => _ed.implement_me())
-            case 'tagged value': return _ea.ss($, ($) => _ed.implement_me())
-            default: return _ea.au($[0])
+            default: return _ea.panic(`Unexpected type for text: ${$[0]}`)
         }
     })
 }
@@ -174,9 +212,26 @@ export const process_unresolved_list = <X>(
     $p: {
         'value': ($: t._T_Value) => X
     }
-
-): unresolved.List<null, X> => {
-    return _ed.implement_me()
+): unresolved.List<t._T_Range, X> => {
+    return {
+        'location': $.range,
+        'list': _ea.cc($.type, ($) => {
+            switch ($[0]) {
+                case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                    switch ($[0]) {
+                        case 'list': return _ea.ss($, ($) => {
+                            return $["elements"].map(($) => ({
+                                'location': $.value.range,
+                                'element': $p.value($.value)
+                            }))
+                        })
+                        default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+                    }
+                }))
+                default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+            }
+        })
+    }
 }
 
 export const process_unconstrained_list = <X>(
@@ -196,47 +251,68 @@ export const process_optional = <X>(
     }
 
 ): _et.Optional_Value<X> => {
-    return _ed.implement_me()
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'not set': return _ea.ss($, ($) => _ea.not_set())
+            case 'set optional value': return _ea.ss($, ($) => _ea.set($p.value($.value)))
+            default: return _ea.panic(`Unexpected type for nothing: ${$[0]}`)
+
+        }
+    })
 }
 
 export const process_nothing = (
     $: t._T_Value,
     $p: null
 ): null => {
-    return _ed.implement_me()
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'not set': return _ea.ss($, ($) => null)
+            default: return _ea.panic(`Unexpected type for nothing: ${$[0]}`)
+
+        }
+    })
 }
 
-export const wrap_unconstrained_state_group = <X>(
-    $: X,
-    $p: null,
-): unconstrained.State_Group<null, X> => {
-    return $
-}
-
-export const wrap_unresolved_state_group = <X>(
-    $: X,
-    $p: null,
-): unresolved.State_Group<null, X> => {
-    return _ed.implement_me()
-}
-
-export const process_selected_reference = (
-    $: any,
+export const process_selected_reference = <X>(
+    $: t._T_Value,
     $p: null
-): unresolved.Reference_To_Normal_Dictionary_Entry<null, null> => {
-    return _ed.implement_me()
+): unresolved.Reference_To_Normal_Dictionary_Entry<t._T_Range, X> => {
+    return {
+        'key': _ea.cc($.type, ($) => {
+            switch ($[0]) {
+                case 'string': return _ea.ss($, ($) => $.value)
+                default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
+            }
+        }),
+        'location': $.range,
+    }
 }
 
-export const process_stack_reference = (
-    $: any,
+export const process_stack_reference = <X>(
+    $: t._T_Value,
     $p: null
-): unresolved.Reference_To_Stacked_Dictionary_Entry<null, null> => {
-    return _ed.implement_me()
+): unresolved.Reference_To_Stacked_Dictionary_Entry<t._T_Range, X> => {
+    return {
+        'key': _ea.cc($.type, ($) => {
+            switch ($[0]) {
+                case 'string': return _ea.ss($, ($) => $.value)
+                default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
+            }
+        }),
+        'location': $.range,
+    }
 }
 
 export const process_derived_reference = (
-    $: any,
+    $: t._T_Value,
     $p: null
 ): null => {
-    return _ed.implement_me()
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'not set': return _ea.ss($, ($) => null)
+            default: return _ea.panic(`Unexpected type for derived reference: ${$[0]}`)
+
+        }
+    })
 }

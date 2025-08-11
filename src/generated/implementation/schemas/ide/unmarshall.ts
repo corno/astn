@@ -2,6 +2,7 @@ import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
+import * as _i_in from "../../../interface/core/astn_source"
 import * as _i_out from "../../../interface/schemas/ide/data_types/unconstrained"
 import * as _i_r_token from "../token/unmarshall"
 import * as _i_signatures from "../../../interface/schemas/ide/unmarshall"
@@ -48,91 +49,82 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => _i_gen
 export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.process_unconstrained_list(
     $,
     {
-        'value': ($) => _i_generic.process_state_group(
+        'value': ($) => _i_generic.process_unconstrained_state_group(
             $,
             {
                 'states': _pa.dictionary_literal({
-                    'delete': ($): _i_out._T_Text_Edits.L => _i_generic.wrap_unconstrained_state_group(
-                        ['delete', _i_generic.process_group(
-                            $,
-                            {
-                                'properties': ($) => ({
-                                    'range': _pa.cc(_i_generic.get_entry(
-                                        $,
-                                        {
-                                            'key': "range",
-                                        }
-                                    ), ($) => Relative_Range(
-                                        $,
-                                        {
-                                            'value deserializers': $p['value deserializers'],
-                                        }
-                                    )),
-                                }),
-                            }
-                        )],
-                        null
-                    ),
-                    'insert': ($): _i_out._T_Text_Edits.L => _i_generic.wrap_unconstrained_state_group(
-                        ['insert', _i_generic.process_group(
-                            $,
-                            {
-                                'properties': ($) => ({
-                                    'location': _pa.cc(_i_generic.get_entry(
-                                        $,
-                                        {
-                                            'key': "location",
-                                        }
-                                    ), ($) => _i_r_token.Relative_Location(
-                                        $,
-                                        {
-                                            'value deserializers': $p['value deserializers'],
-                                        }
-                                    )),
-                                    'text': _pa.cc(_i_generic.get_entry(
-                                        $,
-                                        {
-                                            'key': "text",
-                                        }
-                                    ), ($) => _i_generic.process_text(
-                                        $,
-                                        null
-                                    )),
-                                }),
-                            }
-                        )],
-                        null
-                    ),
-                    'replace': ($): _i_out._T_Text_Edits.L => _i_generic.wrap_unconstrained_state_group(
-                        ['replace', _i_generic.process_group(
-                            $,
-                            {
-                                'properties': ($) => ({
-                                    'range': _pa.cc(_i_generic.get_entry(
-                                        $,
-                                        {
-                                            'key': "range",
-                                        }
-                                    ), ($) => Relative_Range(
-                                        $,
-                                        {
-                                            'value deserializers': $p['value deserializers'],
-                                        }
-                                    )),
-                                    'text': _pa.cc(_i_generic.get_entry(
-                                        $,
-                                        {
-                                            'key': "text",
-                                        }
-                                    ), ($) => _i_generic.process_text(
-                                        $,
-                                        null
-                                    )),
-                                }),
-                            }
-                        )],
-                        null
-                    ),
+                    'delete': ($): _i_out._T_Text_Edits.L.SG => ['delete', _i_generic.process_group(
+                        $,
+                        {
+                            'properties': ($) => ({
+                                'range': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "range",
+                                    }
+                                ), ($) => Relative_Range(
+                                    $,
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
+                                )),
+                            }),
+                        }
+                    )],
+                    'insert': ($): _i_out._T_Text_Edits.L.SG => ['insert', _i_generic.process_group(
+                        $,
+                        {
+                            'properties': ($) => ({
+                                'location': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "location",
+                                    }
+                                ), ($) => _i_r_token.Relative_Location(
+                                    $,
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
+                                )),
+                                'text': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "text",
+                                    }
+                                ), ($) => _i_generic.process_text(
+                                    $,
+                                    null
+                                )),
+                            }),
+                        }
+                    )],
+                    'replace': ($): _i_out._T_Text_Edits.L.SG => ['replace', _i_generic.process_group(
+                        $,
+                        {
+                            'properties': ($) => ({
+                                'range': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "range",
+                                    }
+                                ), ($) => Relative_Range(
+                                    $,
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
+                                )),
+                                'text': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "text",
+                                    }
+                                ), ($) => _i_generic.process_text(
+                                    $,
+                                    null
+                                )),
+                            }),
+                        }
+                    )],
                 }),
             }
         ),

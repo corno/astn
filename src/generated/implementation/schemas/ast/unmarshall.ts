@@ -2,6 +2,7 @@ import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
+import * as _i_in from "../../../interface/core/astn_source"
 import * as _i_out from "../../../interface/schemas/ast/data_types/unconstrained"
 import * as _i_r_token from "../token/unmarshall"
 import * as _i_signatures from "../../../interface/schemas/ast/unmarshall"
@@ -279,339 +280,306 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                 {
                     'key': "type",
                 }
-            ), ($) => _i_generic.process_state_group(
+            ), ($) => _i_generic.process_unconstrained_state_group(
                 $,
                 {
                     'states': _pa.dictionary_literal({
-                        'include': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['include', _i_generic.process_group(
-                                $,
-                                {
-                                    'properties': ($) => ({
-                                        '@': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "@",
-                                            }
-                                        ), ($) => Structural_Token(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                        'path': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "path",
-                                            }
-                                        ), ($) => String(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
-                        'indexed collection': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['indexed collection', _i_generic.process_state_group(
-                                $,
-                                {
-                                    'states': _pa.dictionary_literal({
-                                        'dictionary': ($): _i_out._T_Value._type.SG.indexed_collection => _i_generic.wrap_unconstrained_state_group(
-                                            ['dictionary', _i_generic.process_group(
-                                                $,
-                                                {
-                                                    'properties': ($) => ({
-                                                        'entries': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "entries",
-                                                            }
-                                                        ), ($) => Key_Value_Pairs(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        '{': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "{",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        '}': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "}",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                    }),
-                                                }
-                                            )],
-                                            null
-                                        ),
-                                        'verbose group': ($): _i_out._T_Value._type.SG.indexed_collection => _i_generic.wrap_unconstrained_state_group(
-                                            ['verbose group', _i_generic.process_group(
-                                                $,
-                                                {
-                                                    'properties': ($) => ({
-                                                        '(': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "(",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        ')': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': ")",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        'entries': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "entries",
-                                                            }
-                                                        ), ($) => Key_Value_Pairs(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                    }),
-                                                }
-                                            )],
-                                            null
-                                        ),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
-                        'not set': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['not set', _i_generic.process_group(
-                                $,
-                                {
-                                    'properties': ($) => ({
-                                        '~': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "~",
-                                            }
-                                        ), ($) => Structural_Token(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
-                        'ordered collection': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['ordered collection', _i_generic.process_state_group(
-                                $,
-                                {
-                                    'states': _pa.dictionary_literal({
-                                        'concise group': ($): _i_out._T_Value._type.SG.ordered_collection => _i_generic.wrap_unconstrained_state_group(
-                                            ['concise group', _i_generic.process_group(
-                                                $,
-                                                {
-                                                    'properties': ($) => ({
-                                                        '<': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "<",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        '>': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': ">",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        'elements': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "elements",
-                                                            }
-                                                        ), ($) => Elements(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                    }),
-                                                }
-                                            )],
-                                            null
-                                        ),
-                                        'list': ($): _i_out._T_Value._type.SG.ordered_collection => _i_generic.wrap_unconstrained_state_group(
-                                            ['list', _i_generic.process_group(
-                                                $,
-                                                {
-                                                    'properties': ($) => ({
-                                                        '[': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "[",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        ']': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "]",
-                                                            }
-                                                        ), ($) => Structural_Token(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                        'elements': _pa.cc(_i_generic.get_entry(
-                                                            $,
-                                                            {
-                                                                'key': "elements",
-                                                            }
-                                                        ), ($) => Elements(
-                                                            $,
-                                                            {
-                                                                'value deserializers': $p['value deserializers'],
-                                                            }
-                                                        )),
-                                                    }),
-                                                }
-                                            )],
-                                            null
-                                        ),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
-                        'set optional value': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['set optional value', _i_generic.process_group(
-                                $,
-                                {
-                                    'properties': ($) => ({
-                                        '*': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "*",
-                                            }
-                                        ), ($) => Structural_Token(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                        'value': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "value",
-                                            }
-                                        ), ($) => Value(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
-                        'string': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['string', String(
-                                $,
-                                {
-                                    'value deserializers': $p['value deserializers'],
-                                }
-                            )],
-                            null
-                        ),
-                        'tagged value': ($): _i_out._T_Value._type => _i_generic.wrap_unconstrained_state_group(
-                            ['tagged value', _i_generic.process_group(
-                                $,
-                                {
-                                    'properties': ($) => ({
-                                        'state': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "state",
-                                            }
-                                        ), ($) => String(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                        'value': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "value",
-                                            }
-                                        ), ($) => Value(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                        '|': _pa.cc(_i_generic.get_entry(
-                                            $,
-                                            {
-                                                'key': "|",
-                                            }
-                                        ), ($) => Structural_Token(
-                                            $,
-                                            {
-                                                'value deserializers': $p['value deserializers'],
-                                            }
-                                        )),
-                                    }),
-                                }
-                            )],
-                            null
-                        ),
+                        'include': ($): _i_out._T_Value._type.SG => ['include', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    '@': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "@",
+                                        }
+                                    ), ($) => Structural_Token(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                    'path': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "path",
+                                        }
+                                    ), ($) => String(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
+                        'indexed collection': ($): _i_out._T_Value._type.SG => ['indexed collection', _i_generic.process_unconstrained_state_group(
+                            $,
+                            {
+                                'states': _pa.dictionary_literal({
+                                    'dictionary': ($): _i_out._T_Value._type.SG.indexed_collection.SG => ['dictionary', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                'entries': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "entries",
+                                                    }
+                                                ), ($) => Key_Value_Pairs(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                '{': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "{",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                '}': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "}",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                    'verbose group': ($): _i_out._T_Value._type.SG.indexed_collection.SG => ['verbose group', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                '(': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "(",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                ')': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': ")",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                'entries': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "entries",
+                                                    }
+                                                ), ($) => Key_Value_Pairs(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                }),
+                            }
+                        )],
+                        'not set': ($): _i_out._T_Value._type.SG => ['not set', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    '~': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "~",
+                                        }
+                                    ), ($) => Structural_Token(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
+                        'ordered collection': ($): _i_out._T_Value._type.SG => ['ordered collection', _i_generic.process_unconstrained_state_group(
+                            $,
+                            {
+                                'states': _pa.dictionary_literal({
+                                    'concise group': ($): _i_out._T_Value._type.SG.ordered_collection.SG => ['concise group', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                '<': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "<",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                '>': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': ">",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                'elements': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "elements",
+                                                    }
+                                                ), ($) => Elements(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                    'list': ($): _i_out._T_Value._type.SG.ordered_collection.SG => ['list', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                '[': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "[",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                ']': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "]",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                'elements': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "elements",
+                                                    }
+                                                ), ($) => Elements(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                }),
+                            }
+                        )],
+                        'set optional value': ($): _i_out._T_Value._type.SG => ['set optional value', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    '*': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "*",
+                                        }
+                                    ), ($) => Structural_Token(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                    'value': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "value",
+                                        }
+                                    ), ($) => Value(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
+                        'string': ($): _i_out._T_Value._type.SG => ['string', String(
+                            $,
+                            {
+                                'value deserializers': $p['value deserializers'],
+                            }
+                        )],
+                        'tagged value': ($): _i_out._T_Value._type.SG => ['tagged value', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    'state': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "state",
+                                        }
+                                    ), ($) => String(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                    'value': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "value",
+                                        }
+                                    ), ($) => Value(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                    '|': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "|",
+                                        }
+                                    ), ($) => Structural_Token(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
                     }),
                 }
             )),
