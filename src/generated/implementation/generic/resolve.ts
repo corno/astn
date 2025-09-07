@@ -1,6 +1,6 @@
 import * as _ea from 'exupery-core-alg'
-import * as pt from 'exupery-core-types'
-import * as pd from 'exupery-core-data'
+import * as _et from 'exupery-core-types'
+import * as _edata from 'exupery-core-data'
 
 import * as unresolved$ from "../../interface/core/unresolved"
 import * as resolved$ from "../../interface/core/resolved"
@@ -24,7 +24,7 @@ export type Key_Value_Location_Triplet<Source, T> = {
     'location': Source
 }
 export type Path<Source, Resolved_Element, Seed> = {
-    'list': pt.Array<Resolved_Element>
+    'list': _et.Array<Resolved_Element>
     'result': {
         'data': Seed
     }
@@ -34,11 +34,11 @@ export type Resolved_Step<Resolved_Element, Seed> = {
     'result': Seed
 }
 
-export type _T_Location_Info = pd.Source_Location
-export type Location_Info = pd.Source_Location
+export type _T_Location_Info = _edata.Source_Location
+export type Location_Info = _edata.Source_Location
 
 export const dictionary_to_lookup = <T>(
-    $: pt.Dictionary<T>,
+    $: _et.Dictionary<T>,
     $p: null,
 ): i.Acyclic_Lookup<T> => {
     return _ea.set($.map(($) => (['resolved', $])))
@@ -63,7 +63,7 @@ export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
     )
 }
 
-export const push_stack = <T>($: pt.Array<T>, $p: { 'element': T }): pt.Array<T> => {
+export const push_stack = <T>($: _et.Array<T>, $p: { 'element': T }): _et.Array<T> => {
     return _ea.pure.list.build<T>(($i) => {
         $i['add list']($)
         $i['add element']($p['element'])
@@ -197,7 +197,7 @@ export const resolve_dictionary = <Source, TUnresolved, TResolved>(
 export const resolve_dense_dictionary = <Source, TUnresolved, TResolved, TBenchmark>(
     $: unresolved$.Dictionary<Source, TUnresolved>,
     $p: {
-        'denseness benchmark': pt.Dictionary<TBenchmark>
+        'denseness benchmark': _et.Dictionary<TBenchmark>
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
             'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
         }) => TResolved,
@@ -210,7 +210,7 @@ export const resolve_dense_dictionary = <Source, TUnresolved, TResolved, TBenchm
 export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved, TBenchmark>(
     $: unresolved$.Dictionary<Source, TUnresolved>,
     $p: {
-        'denseness benchmark': pt.Dictionary<TBenchmark>
+        'denseness benchmark': _et.Dictionary<TBenchmark>
         'map': ($: Key_Value_Location_Triplet<Source, TUnresolved>, $l: {
             'possibly circular dependent siblings': i.Cyclic_Lookup<TResolved>
             'not circular dependent siblings': i.Acyclic_Lookup<TResolved>
@@ -222,8 +222,8 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
     const result = resolve_ordered_dictionary($, $p)
     $p['denseness benchmark'].map(($) => {
         const validate_denseness = (
-            benchmark: pt.Dictionary<TBenchmark>,
-            focus: pt.Dictionary<TResolved>,
+            benchmark: _et.Dictionary<TBenchmark>,
+            focus: _et.Dictionary<TResolved>,
             location: Source,
             location_to_string: i.Location_to_String<Source>,
         ) => {
@@ -272,7 +272,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
     const finished: { [key: string]: TResolved } = {}
 
-    const ordered_list = _ea.pure.list.build<pt.Key_Value_Pair<TResolved>>(($i) => {
+    const ordered_list = _ea.pure.list.build<_et.Key_Value_Pair<TResolved>>(($i) => {
 
         const source_dictionary = $
 
@@ -313,7 +313,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
                 }),
                 'not circular dependent siblings': _ea.set({
-                    __get_entry(key): pt.Optional_Value<i.Non_Circular_Result<TResolved>> {
+                    __get_entry(key): _et.Optional_Value<i.Non_Circular_Result<TResolved>> {
                         const status = status_dictionary[key]
                         if (status === undefined) {
                             return source_dictionary.dictionary.__get_entry(key).transform(
