@@ -1,8 +1,8 @@
-import * as _pt from 'exupery-core-types'
+import * as _et from 'exupery-core-types'
 
 export type _T_Document = {
     readonly 'content': _T_Value
-    readonly 'header': _pt.Optional_Value<{
+    readonly 'header': _et.Optional_Value<{
         readonly '!': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -56,15 +56,15 @@ export type _T_Tagged_Value = {
     readonly '|': _T_Structural_Token
 }
 
-export type _T_Elements = _pt.Array<{
-    readonly ',': _pt.Optional_Value<_T_Structural_Token>
+export type _T_Elements = _et.Array<{
+    readonly ',': _et.Optional_Value<_T_Structural_Token>
     readonly 'value': _T_Value
 }>
 
-export type _T_Key_Value_Pairs = _pt.Array<{
-    readonly ',': _pt.Optional_Value<_T_Structural_Token>
+export type _T_Key_Value_Pairs = _et.Array<{
+    readonly ',': _et.Optional_Value<_T_Structural_Token>
     readonly 'key': _T_String
-    readonly 'value': _pt.Optional_Value<{
+    readonly 'value': _et.Optional_Value<{
         readonly ':': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -104,7 +104,7 @@ export type _T_Relative_Location = {
 }
 
 export type _T_Trivia = {
-    readonly 'comments': _pt.Array<{
+    readonly 'comments': _et.Array<{
         readonly 'content': string
         readonly 'range': _T_Range
         readonly 'trailing whitespace': _T_Whitespace
