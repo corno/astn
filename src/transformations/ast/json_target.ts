@@ -55,6 +55,7 @@ export const Value = (
                 }
             })))])
             case 'include': return _ea.ss($, ($) => ['string', "FIXME include not implemented yet"])
+            case 'missing data': return _ea.ss($, ($) => ['null', null])
             case 'tagged value': return _ea.ss($, ($): _out.Value => ['array', _ea.array_literal([
                 ['string', $.state.value],
                 Value($.value),

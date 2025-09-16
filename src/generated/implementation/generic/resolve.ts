@@ -37,6 +37,50 @@ export type Resolved_Step<Resolved_Element, Seed> = {
 export type _T_Location_Info = _edata.Source_Location
 export type Location_Info = _edata.Source_Location
 
+export type Resolve_Error<Source> = {
+    'location': Source
+    'type': Resolve_Error_Type
+}
+
+export type Resolve_Error_Type =
+    | ['circular dependency', {
+        'keys': _et.Array<string>,
+    }]
+    | ['no such entry', {
+        'key': string,
+    }]
+    | ['no context lookup', null]
+    | ['missing denseness entry', {
+        'key': string,
+    }]
+    | ['index out of bounds', {
+        'up steps taken': number,
+    }]
+    | ['no element found at index', {
+        'index': number,
+    }]
+
+export const abort = <Source>(location: Source, type: Resolve_Error_Type): never => {
+    return _ea.panic(_ea.cc(type, ($) => {
+        switch ($[0]) {
+            case 'no such entry': return _ea.ss($, ($) => `no such entry: '${$['key']}'`)
+            case 'missing denseness entry': return _ea.ss($, ($) => `missing denseness entry: '${$['key']}'`)
+            case 'circular dependency': return _ea.ss($, ($) => {
+                const keys = _ea.pure.text.build(($i) => {
+                    $['keys'].__for_each(($) => {
+                        $i['add snippet'](` '${$}', `)
+                    })
+                })
+                return `circular dependency: (${keys})`
+            })
+            case 'no context lookup': return _ea.ss($, ($) => `no context lookup`)
+            case 'index out of bounds': return _ea.ss($, ($) => `index out of bounds, ${$['up steps taken']}`)
+            case 'no element found at index': return _ea.ss($, ($) => `no element found at index, ${$['index']}`)
+            default: return _ea.au($[0])
+        }
+    }))
+}
+
 export const dictionary_to_lookup = <T>(
     $: _et.Dictionary<T>,
     $p: null,
@@ -56,10 +100,10 @@ export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
             'key': $p.reference.key,
             'entry': $.__get_entry($p.reference.key).transform(
                 ($) => $,
-                () => _ea.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
+                () => abort($p.reference.location, ['no such entry', { 'key': $p.reference.key }])
             )
         }),
-        () => _ea.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
+        () => abort($p.reference.location, ['no context lookup', null])
     )
 }
 
@@ -101,10 +145,10 @@ export const get_entry_from_stack = <Source, T>(
                             () => _ea.panic(`no clue yet of what is happening here`),
                         )
                     },
-                    () => _ea.panic(`index out of bounds, ${up_steps_taken}`),
+                    () => abort(ref.location, ['index out of bounds', { 'up steps taken': up_steps_taken }]),
                 )
             },
-            () => _ea.panic(`no element found at index ${up_steps_taken}`)
+            () => abort(ref.location, ['no element found at index', { 'index': up_steps_taken }])
         )
     }
 
@@ -127,12 +171,7 @@ export const get_entry = <Source, T>(
                         case 'error': return _ea.ss($, ($) => _ea.cc($, ($) => {
                             switch ($[0]) {
                                 case 'circular': return _ea.ss($, ($) => {
-                                    const keys = _ea.pure.text.build(($i) => {
-                                        $.__for_each(($) => {
-                                            $i['add snippet'](` '${$}', `)
-                                        })
-                                    })
-                                    return _ea.panic("circular dependency: '", $p.reference.key, "' (", keys, ")@ ", $p['location 2 string']($p.reference.location))
+                                    return abort($p.reference.location, ['circular dependency', { 'keys': $ }])
                                 })
                                 default: return _ea.au($[0])
                             }
@@ -142,11 +181,11 @@ export const get_entry = <Source, T>(
                     }
                 }),
                 () => {
-                    return _ea.panic("no such entry: '", $p.reference.key, "' @ ", $p['location 2 string']($p.reference.location))
+                    return abort($p.reference.location, ['no such entry', { 'key': $p.reference.key }])
                 }
             )
         }),
-        () => _ea.panic("no context lookup @ ", $p['location 2 string']($p.reference.location))
+        () => abort($p.reference.location, ['no context lookup', null])
     )
 }
 
@@ -233,7 +272,7 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
                     ($) => {
                     },
                     () => {
-                        _ea.panic("missing entry '", key, "' @ ", location_to_string(location))
+                        abort(location, ['missing denseness entry', { 'key': key }])
                     }
                 )
             })
@@ -302,7 +341,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                             return {
                                 'compute': () => {
                                     if (subscr.entry === null) {
-                                        _ea.panic(`entry not set: ${key}`)
+                                        return _ea.panic(`entry not set: ${key}`)
                                     }
                                     return subscr.entry
                                 }

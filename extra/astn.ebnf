@@ -12,6 +12,7 @@ value   ::= concise_group
         | include
         | list
         | no_value
+        | missing_data
         | set_optional_value
         | string
         | tagged_value
@@ -29,6 +30,9 @@ list    ::= '[' elements ']'
 
 no_value
         ::= '~'
+
+missing_data
+        ::= '#'
 
 set_optional_value
         ::= '*' value

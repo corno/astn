@@ -190,6 +190,7 @@ export const Value = (
                 Structural_Token($['*'], $p),
                 Value($['value'], $p),
             ])))
+            case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
             default: return _ea.au($[0])
         }
     })

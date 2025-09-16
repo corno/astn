@@ -200,6 +200,17 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
                     }
                 })],
             }))
+            case 'missing data': return _pa.ss($, ($) => ({
+                'state': "missing data",
+                'value': ['verbose group', _pa.dictionary_literal({
+                    '#': _pa.cc($['#'], ($) => Structural_Token(
+                        $,
+                        {
+                            'value serializers': $p['value serializers'],
+                        }
+                    )),
+                })],
+            }))
             case 'not set': return _pa.ss($, ($) => ({
                 'state': "not set",
                 'value': ['verbose group', _pa.dictionary_literal({

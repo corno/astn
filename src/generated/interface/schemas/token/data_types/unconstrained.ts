@@ -37,6 +37,7 @@ export type _T_String_Type = _i_core._T_State_Group<null,
 
 export type _T_Token_Type = _i_core._T_State_Group<null, 
     | readonly ['!', null]
+    | readonly ['#', null]
     | readonly ['(', null]
     | readonly [')', null]
     | readonly ['*', null]
@@ -167,6 +168,7 @@ export namespace _T_Token_Type {
     
     export namespace SG {
         export type $ex_ = null
+        export type $ha_ = null
         export type $po_ = null
         export type $pc_ = null
         export type $sr_ = null
@@ -199,6 +201,7 @@ export namespace _T_Token_Type {
     }
     export type SG = 
         | readonly ['!', null]
+        | readonly ['#', null]
         | readonly ['(', null]
         | readonly [')', null]
         | readonly ['*', null]
@@ -365,6 +368,7 @@ export namespace Token_Type {
     
     export namespace SG {
         export type $ex_ = null
+        export type $ha_ = null
         export type $po_ = null
         export type $pc_ = null
         export type $sr_ = null
@@ -397,6 +401,7 @@ export namespace Token_Type {
     }
     export type SG = 
         | readonly ['!', null]
+        | readonly ['#', null]
         | readonly ['(', null]
         | readonly [')', null]
         | readonly ['*', null]

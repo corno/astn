@@ -58,6 +58,9 @@ export type _T_Value = {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
+        }]
         | readonly ['not set', {
             readonly '~': _T_Structural_Token
         }]
@@ -322,6 +325,16 @@ export namespace _T_Value {
                 }]
             >
             
+            export namespace missing_data {
+                
+                export namespace $ha_ {
+                }
+                export type $ha_ = _T_Structural_Token
+            }
+            export type missing_data = {
+                readonly '#': _T_Structural_Token
+            }
+            
             export namespace not_set {
                 
                 export namespace $ti_ {
@@ -457,6 +470,9 @@ export namespace _T_Value {
                     readonly 'entries': _T_Key_Value_Pairs
                 }]
             >]
+            | readonly ['missing data', {
+                readonly '#': _T_Structural_Token
+            }]
             | readonly ['not set', {
                 readonly '~': _T_Structural_Token
             }]
@@ -500,6 +516,9 @@ export namespace _T_Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
+        }]
         | readonly ['not set', {
             readonly '~': _T_Structural_Token
         }]
@@ -750,6 +769,16 @@ export namespace Value {
                 }]
             >
             
+            export namespace missing_data {
+                
+                export namespace $ha_ {
+                }
+                export type $ha_ = _T_Structural_Token
+            }
+            export type missing_data = {
+                readonly '#': _T_Structural_Token
+            }
+            
             export namespace not_set {
                 
                 export namespace $ti_ {
@@ -885,6 +914,9 @@ export namespace Value {
                     readonly 'entries': _T_Key_Value_Pairs
                 }]
             >]
+            | readonly ['missing data', {
+                readonly '#': _T_Structural_Token
+            }]
             | readonly ['not set', {
                 readonly '~': _T_Structural_Token
             }]
@@ -928,6 +960,9 @@ export namespace Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
+        }]
         | readonly ['not set', {
             readonly '~': _T_Structural_Token
         }]

@@ -400,6 +400,24 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                 }),
                             }
                         )],
+                        'missing data': ($): _i_out._T_Value._type.SG => ['missing data', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    '#': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "#",
+                                        }
+                                    ), ($) => Structural_Token(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
                         'not set': ($): _i_out._T_Value._type.SG => ['not set', _i_generic.process_group(
                             $,
                             {

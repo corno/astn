@@ -107,6 +107,10 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.
             'state': "!",
             'value': ['nothing', null],
         }))
+        case '#': return _pa.ss($, ($) => ({
+            'state': "#",
+            'value': ['nothing', null],
+        }))
         case '(': return _pa.ss($, ($) => ({
             'state': "(",
             'value': ['nothing', null],

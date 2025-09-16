@@ -232,6 +232,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                 quotation_mark: 0x22,       // "
                 slash: 0x2F,               // /
                 tilde: 0x7E,               // ~
+                hash: 0x23,                // #
 
                 space: 0x20,               // space
                 tab: 0x09,                 // \t
@@ -266,6 +267,9 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                     return [')', null]
 
                 //individuals
+                case Character.hash:
+                    st['consume character']()
+                    return ['#', null]
                 case Character.pipe:
                     st['consume character']()
                     return ['|', null]
