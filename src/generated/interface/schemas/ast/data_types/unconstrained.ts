@@ -40,7 +40,6 @@ export type _T_Structural_Token = {
 }
 
 export type _T_Value = {
-    readonly 'range': _i_imports_token._T_Range
     readonly 'type': _i_core._T_State_Group<null, 
         | readonly ['include', {
             readonly '@': _T_Structural_Token
@@ -232,10 +231,6 @@ export namespace _T_Structural_Token {
 }
 
 export namespace _T_Value {
-    
-    export namespace range {
-    }
-    export type range = _i_imports_token._T_Range
     
     export namespace _type {
         
@@ -676,10 +671,6 @@ export namespace Structural_Token {
 }
 
 export namespace Value {
-    
-    export namespace range {
-    }
-    export type range = _i_imports_token._T_Range
     
     export namespace _type {
         

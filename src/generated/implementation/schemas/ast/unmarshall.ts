@@ -264,17 +264,6 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
     $,
     {
         'properties': ($) => ({
-            'range': _pa.cc(_i_generic.get_entry(
-                $,
-                {
-                    'key': "range",
-                }
-            ), ($) => _i_r_token.Range(
-                $,
-                {
-                    'value deserializers': $p['value deserializers'],
-                }
-            )),
             'type': _pa.cc(_i_generic.get_entry(
                 $,
                 {

@@ -121,12 +121,6 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['
     )),
 })]
 export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary_literal({
-    'range': _pa.cc($['range'], ($) => _i_r_token.Range(
-        $,
-        {
-            'value serializers': $p['value serializers'],
-        }
-    )),
     'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'include': return _pa.ss($, ($) => ({
