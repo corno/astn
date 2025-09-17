@@ -5,12 +5,7 @@ import * as _in from "../../generated/interface/schemas/ast/data_types/unconstra
 import * as _out from "../../generated/interface/schemas/token/data_types/unconstrained"
 
 export const Value = (
-    $: _in.Value,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
+    $: _in.Value
 ): _out.Range => {
     return _ea.cc($.type, ($): _out.Range => {
         switch ($[0]) {
@@ -47,12 +42,12 @@ export const Value = (
             }))
             case 'tagged value': return _ea.ss($, ($) => ({
                 'start': $['|'].range.start,
-                'end': Value($['value'], $p).end
+                'end': Value($['value']).end
             }))
             case 'not set': return _ea.ss($, ($) => $['~'].range)
             case 'set optional value': return _ea.ss($, ($) => ({
                 'start': $['*'].range.start,
-                'end': Value($['value'], $p).end
+                'end': Value($['value']).end
             }))
             case 'missing data': return _ea.ss($, ($) => $['#'].range)
             default: return _ea.au($[0])

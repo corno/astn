@@ -37,7 +37,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/corno/astn.git"
+    "url": "git+https://github.com/corno/astn.git"
   },
   "bugs": {
     "url": "https://github.com/corno/astn/issues"
@@ -50,9 +50,9 @@
     "exupery-core-alg": "^0.1.4",
     "exupery-core-data": "^0.1.9",
     "exupery-core-dev": "^0.1.1",
-    "exupery-core-resources": "^0.2.1",
+    "exupery-core-resources": "^0.2.2",
     "pareto-fountain-pen": "^0.1.12",
     "pareto-json": "^0.1.1",
-    "pareto-standard-operations": "^0.1.1"
+    "pareto-standard-operations": "^0.1.2"
   }
 }
