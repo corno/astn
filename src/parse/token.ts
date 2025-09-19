@@ -3,24 +3,29 @@ import * as _et from 'exupery-core-types'
 
 import * as _out from "../generated/interface/schemas/token/data_types/unconstrained"
 
-import { String_Iterator, WhitespaceChars } from "./string_iterator"
+import { String_Iterator } from "./string_iterator"
 import { throw_parse_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
 //this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
 
+
+const WhitespaceChars = {
+    tab: 0x09,                  // \t
+    line_feed: 0x0A,            // \n
+    carriage_return: 0x0D,      // \r
+    space: 0x20,                //
+    comma: 0x2C,                // ,
+}
+
+
 export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace => {
+
     const start = string_iterator['create location info']()
     return {
         'value': _ea.impure.text['from character list'](_ea.pure.list.build<number>(($i) => {
             while (true) {
 
-                const Character = {
-                    tab: 0x09,                  // \t
-                    line_feed: 0x0A,            // \n
-                    carriage_return: 0x0D,      // \r
-                    space: 0x20,                //
-                }
 
                 {
                     const $ = string_iterator['get current character']()
@@ -38,19 +43,23 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
 
                     }
                     switch ($) {
-                        case Character.tab:
+                        case 0x09: // \t
                             string_iterator['consume character']()
                             $i['add element']($)
                             break
-                        case Character.line_feed:
+                        case 0x0A: // \n
                             string_iterator['consume character']()
                             $i['add element']($)
                             break
-                        case Character.carriage_return:
+                        case 0x0D: // \r
                             string_iterator['consume character']()
                             $i['add element']($)
                             break
-                        case Character.space:
+                        case 0x20: // space
+                            string_iterator['consume character']()
+                            $i['add element']($)
+                            break
+                        case 0x2C: // ,
                             string_iterator['consume character']()
                             $i['add element']($)
                             break
@@ -227,7 +236,6 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                 backtick: 0x60,            // `
                 bang: 0x21,
                 colon: 0x3A,                // :
-                comma: 0x2C,                // ,
                 pipe: 0x7C,                // |
                 quotation_mark: 0x22,       // "
                 slash: 0x2F,               // /
@@ -288,9 +296,6 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                 case Character.colon:
                     st['consume character']()
                     return [':', null]
-                case Character.comma:
-                    st['consume character']()
-                    return [',', null]
                 case Character.quotation_mark:
                     st['consume character']()
                     return ['string', {
@@ -345,11 +350,11 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                                     $ === Character.backtick ||
                                     $ === Character.bang ||
                                     $ === Character.colon ||
-                                    $ === Character.comma ||
                                     $ === Character.pipe ||
                                     $ === Character.quotation_mark ||
                                     $ === Character.slash ||
                                     $ === Character.tilde ||
+                                    $ === WhitespaceChars.comma ||
                                     $ === WhitespaceChars.space ||
                                     $ === WhitespaceChars.tab ||
                                     $ === WhitespaceChars.line_feed ||

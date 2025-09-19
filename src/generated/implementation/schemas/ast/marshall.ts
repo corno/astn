@@ -6,6 +6,190 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../interface/schemas/ast/marshall"
 
 
+export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+    switch ($[0]) {
+        case 'indexed collection': return _pa.ss($, ($) => ({
+            'state': "indexed collection",
+            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                switch ($[0]) {
+                    case 'dictionary': return _pa.ss($, ($) => ({
+                        'state': "dictionary",
+                        'value': ['verbose group', _pa.dictionary_literal({
+                            'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            '{': _pa.cc($['{'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            '}': _pa.cc($['}'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                        })],
+                    }))
+                    case 'verbose group': return _pa.ss($, ($) => ({
+                        'state': "verbose group",
+                        'value': ['verbose group', _pa.dictionary_literal({
+                            '(': _pa.cc($['('], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            ')': _pa.cc($[')'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                        })],
+                    }))
+                    default: return _pa.au($[0])
+                }
+            })],
+        }))
+        case 'missing data': return _pa.ss($, ($) => ({
+            'state': "missing data",
+            'value': ['verbose group', _pa.dictionary_literal({
+                '#': _pa.cc($['#'], ($) => Structural_Token(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })],
+        }))
+        case 'not set': return _pa.ss($, ($) => ({
+            'state': "not set",
+            'value': ['verbose group', _pa.dictionary_literal({
+                '~': _pa.cc($['~'], ($) => Structural_Token(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })],
+        }))
+        case 'ordered collection': return _pa.ss($, ($) => ({
+            'state': "ordered collection",
+            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                switch ($[0]) {
+                    case 'concise group': return _pa.ss($, ($) => ({
+                        'state': "concise group",
+                        'value': ['verbose group', _pa.dictionary_literal({
+                            '<': _pa.cc($['<'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            '>': _pa.cc($['>'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            'elements': _pa.cc($['elements'], ($) => Elements(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                        })],
+                    }))
+                    case 'list': return _pa.ss($, ($) => ({
+                        'state': "list",
+                        'value': ['verbose group', _pa.dictionary_literal({
+                            '[': _pa.cc($['['], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            ']': _pa.cc($[']'], ($) => Structural_Token(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                            'elements': _pa.cc($['elements'], ($) => Elements(
+                                $,
+                                {
+                                    'value serializers': $p['value serializers'],
+                                }
+                            )),
+                        })],
+                    }))
+                    default: return _pa.au($[0])
+                }
+            })],
+        }))
+        case 'set optional value': return _pa.ss($, ($) => ({
+            'state': "set optional value",
+            'value': ['verbose group', _pa.dictionary_literal({
+                '*': _pa.cc($['*'], ($) => Structural_Token(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+                'value': _pa.cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })],
+        }))
+        case 'string': return _pa.ss($, ($) => ({
+            'state': "string",
+            'value': String(
+                $,
+                {
+                    'value serializers': $p['value serializers'],
+                }
+            ),
+        }))
+        case 'tagged value': return _pa.ss($, ($) => ({
+            'state': "tagged value",
+            'value': ['verbose group', _pa.dictionary_literal({
+                'state': _pa.cc($['state'], ($) => String(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+                'value': _pa.cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+                '|': _pa.cc($['|'], ($) => Structural_Token(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })],
+        }))
+        default: return _pa.au($[0])
+    }
+})]
 export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'content': _pa.cc($['content'], ($) => Value(
         $,
@@ -32,15 +216,6 @@ export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', 
     )]),
 })]
 export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
-    ',': _pa.cc($[','], ($) => ['optional', $.transform(
-        ($): _i_out._T_Value.SG.optional => ['set', Structural_Token(
-            $,
-            {
-                'value serializers': $p['value serializers'],
-            }
-        )],
-        () => ['not set', null]
-    )]),
     'value': _pa.cc($['value'], ($) => Value(
         $,
         {
@@ -123,6 +298,15 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['
 export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary_literal({
     'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
+            case 'concrete': return _pa.ss($, ($) => ({
+                'state': "concrete",
+                'value': Concrete_Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                ),
+            }))
             case 'include': return _pa.ss($, ($) => ({
                 'state': "include",
                 'value': ['verbose group', _pa.dictionary_literal({
@@ -133,185 +317,6 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
                         }
                     )),
                     'path': _pa.cc($['path'], ($) => String(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                })],
-            }))
-            case 'indexed collection': return _pa.ss($, ($) => ({
-                'state': "indexed collection",
-                'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
-                    switch ($[0]) {
-                        case 'dictionary': return _pa.ss($, ($) => ({
-                            'state': "dictionary",
-                            'value': ['verbose group', _pa.dictionary_literal({
-                                'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                '{': _pa.cc($['{'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                '}': _pa.cc($['}'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                            })],
-                        }))
-                        case 'verbose group': return _pa.ss($, ($) => ({
-                            'state': "verbose group",
-                            'value': ['verbose group', _pa.dictionary_literal({
-                                '(': _pa.cc($['('], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                ')': _pa.cc($[')'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                            })],
-                        }))
-                        default: return _pa.au($[0])
-                    }
-                })],
-            }))
-            case 'missing data': return _pa.ss($, ($) => ({
-                'state': "missing data",
-                'value': ['verbose group', _pa.dictionary_literal({
-                    '#': _pa.cc($['#'], ($) => Structural_Token(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                })],
-            }))
-            case 'not set': return _pa.ss($, ($) => ({
-                'state': "not set",
-                'value': ['verbose group', _pa.dictionary_literal({
-                    '~': _pa.cc($['~'], ($) => Structural_Token(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                })],
-            }))
-            case 'ordered collection': return _pa.ss($, ($) => ({
-                'state': "ordered collection",
-                'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
-                    switch ($[0]) {
-                        case 'concise group': return _pa.ss($, ($) => ({
-                            'state': "concise group",
-                            'value': ['verbose group', _pa.dictionary_literal({
-                                '<': _pa.cc($['<'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                '>': _pa.cc($['>'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                'elements': _pa.cc($['elements'], ($) => Elements(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                            })],
-                        }))
-                        case 'list': return _pa.ss($, ($) => ({
-                            'state': "list",
-                            'value': ['verbose group', _pa.dictionary_literal({
-                                '[': _pa.cc($['['], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                ']': _pa.cc($[']'], ($) => Structural_Token(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                                'elements': _pa.cc($['elements'], ($) => Elements(
-                                    $,
-                                    {
-                                        'value serializers': $p['value serializers'],
-                                    }
-                                )),
-                            })],
-                        }))
-                        default: return _pa.au($[0])
-                    }
-                })],
-            }))
-            case 'set optional value': return _pa.ss($, ($) => ({
-                'state': "set optional value",
-                'value': ['verbose group', _pa.dictionary_literal({
-                    '*': _pa.cc($['*'], ($) => Structural_Token(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                    'value': _pa.cc($['value'], ($) => Value(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                })],
-            }))
-            case 'string': return _pa.ss($, ($) => ({
-                'state': "string",
-                'value': String(
-                    $,
-                    {
-                        'value serializers': $p['value serializers'],
-                    }
-                ),
-            }))
-            case 'tagged value': return _pa.ss($, ($) => ({
-                'state': "tagged value",
-                'value': ['verbose group', _pa.dictionary_literal({
-                    'state': _pa.cc($['state'], ($) => String(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                    'value': _pa.cc($['value'], ($) => Value(
-                        $,
-                        {
-                            'value serializers': $p['value serializers'],
-                        }
-                    )),
-                    '|': _pa.cc($['|'], ($) => Structural_Token(
                         $,
                         {
                             'value serializers': $p['value serializers'],

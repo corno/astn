@@ -36,23 +36,23 @@ export const process_unresolved_state_group = <X>(
     }
 
 ): unresolved.State_Group<t._T_Range, X> => {
-    return {
-        'location': $.range,
-        'state group': _ea.cc($.type, ($) => {
-            switch ($[0]) {
-                case 'tagged value': return _ea.ss($, ($) => {
-                    const data = $.value
-                    return $p.states.__get_entry(
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'tagged value': return _ea.ss($, ($) => {
+                const data = $.value
+                return {
+                    'location': $["|"].range,
+                    'state group': $p.states.__get_entry(
                         $.state.value
                     ).transform(
                         ($) => $(data),
                         () => _ed.implement_me()
                     )
-                })
-                default: return _ea.panic(`Unexpected type for state group: ${$[0]}`)
-            }
-        })
-    }
+                }
+            })
+            default: return _ea.panic(`Unexpected type for state group: ${$[0]}`)
+        }
+    })
 }
 
 export const process_group = <X>(
@@ -213,25 +213,26 @@ export const process_unresolved_list = <X>(
         'value': ($: t._T_Value) => X
     }
 ): unresolved.List<t._T_Range, X> => {
-    return {
-        'location': $.range,
-        'list': _ea.cc($.type, ($) => {
-            switch ($[0]) {
-                case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
-                    switch ($[0]) {
-                        case 'list': return _ea.ss($, ($) => {
-                            return $["elements"].map(($) => ({
-                                'location': $.value.range,
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                switch ($[0]) {
+                    case 'list': return _ea.ss($, ($) => {
+                        const temp = $["["]
+                        return {
+                            'location': $["["].range,
+                            'list': $["elements"].map(($) => ({
+                                'location': temp.range,
                                 'element': $p.value($.value)
                             }))
-                        })
-                        default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
-                    }
-                }))
-                default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
-            }
-        })
-    }
+                        }
+                    })
+                    default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+                }
+            }))
+            default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+        }
+    })
 }
 
 export const process_unconstrained_list = <X>(
@@ -278,30 +279,30 @@ export const process_selected_reference = <X>(
     $: t._T_Value,
     $p: null
 ): unresolved.Reference_To_Normal_Dictionary_Entry<t._T_Range, X> => {
-    return {
-        'key': _ea.cc($.type, ($) => {
-            switch ($[0]) {
-                case 'string': return _ea.ss($, ($) => $.value)
-                default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
-            }
-        }),
-        'location': $.range,
-    }
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'string': return _ea.ss($, ($) => ({
+                'key': $.value,
+                'location': $.range,
+            }))
+            default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
+        }
+    })
 }
 
 export const process_stack_reference = <X>(
     $: t._T_Value,
     $p: null
 ): unresolved.Reference_To_Stacked_Dictionary_Entry<t._T_Range, X> => {
-    return {
-        'key': _ea.cc($.type, ($) => {
-            switch ($[0]) {
-                case 'string': return _ea.ss($, ($) => $.value)
-                default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
-            }
-        }),
-        'location': $.range,
-    }
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'string': return _ea.ss($, ($) => ({
+                'key': $.value,
+                'location': $.range,
+            }))
+            default: return _ea.panic(`Unexpected type for selected reference key: ${$[0]}`)
+        }
+    })
 }
 
 export const process_derived_reference = (

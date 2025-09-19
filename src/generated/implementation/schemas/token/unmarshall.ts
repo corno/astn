@@ -196,10 +196,6 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => _i_generic.pro
                 $,
                 null
             )],
-            ',': ($): _i_out._T_Token_Type.SG => [',', _i_generic.process_nothing(
-                $,
-                null
-            )],
             ':': ($): _i_out._T_Token_Type.SG => [':', _i_generic.process_nothing(
                 $,
                 null

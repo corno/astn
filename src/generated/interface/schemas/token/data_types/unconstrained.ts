@@ -41,7 +41,6 @@ export type _T_Token_Type = _i_core._T_State_Group<null,
     | readonly ['(', null]
     | readonly [')', null]
     | readonly ['*', null]
-    | readonly [',', null]
     | readonly [':', null]
     | readonly ['<', null]
     | readonly ['>', null]
@@ -172,7 +171,6 @@ export namespace _T_Token_Type {
         export type $po_ = null
         export type $pc_ = null
         export type $sr_ = null
-        export type $cm_ = null
         export type $cl_ = null
         export type $st_ = null
         export type $gt_ = null
@@ -205,7 +203,6 @@ export namespace _T_Token_Type {
         | readonly ['(', null]
         | readonly [')', null]
         | readonly ['*', null]
-        | readonly [',', null]
         | readonly [':', null]
         | readonly ['<', null]
         | readonly ['>', null]
@@ -372,7 +369,6 @@ export namespace Token_Type {
         export type $po_ = null
         export type $pc_ = null
         export type $sr_ = null
-        export type $cm_ = null
         export type $cl_ = null
         export type $st_ = null
         export type $gt_ = null
@@ -405,7 +401,6 @@ export namespace Token_Type {
         | readonly ['(', null]
         | readonly [')', null]
         | readonly ['*', null]
-        | readonly [',', null]
         | readonly [':', null]
         | readonly ['<', null]
         | readonly ['>', null]

@@ -62,14 +62,6 @@ export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($
             }
             $i['add element']({
                 'value': Value(token_iterator),
-                ',': _ea.block(() => {
-                    const current_token = token_iterator['get required token'](_ea.array_literal([end_token, [',', null], ['a value', null]]))
-                    if (current_token.type[0] !== ',') {
-                        return _ea.not_set()
-                    }
-                    token_iterator['consume token']()
-                    return _ea.set(Structural_Token(current_token))
-                })
             })
         }
     })
@@ -97,14 +89,7 @@ export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reac
                         'value': Value(token_iterator)
                     })
                 }),
-                ',': _ea.block(() => {
-                    const current_token = token_iterator['get required token'](_ea.array_literal([['a string', null], [',', null], end_token]))
-                    if (current_token.type[0] !== ',') {
-                        return _ea.not_set()
-                    }
-                    token_iterator['consume token']()
-                    return _ea.set(Structural_Token(current_token))
-                })
+                ',':  _ea.not_set()
             })
         }
     })
@@ -118,11 +103,11 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
             switch ($[0]) {
                 case 'string': return _ea.ss($, ($): d_ast.Value._type => {
 
-                    return ['string', String(token_iterator)]
+                    return ['concrete', ['string', String(token_iterator)]]
                 })
                 case '{': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return ['indexed collection', ['dictionary', {
+                    return ['concrete', ['indexed collection', ['dictionary', {
                         '{': Structural_Token(token),
                         'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}',['}', null]),
                         '}': _ea.block(() => {
@@ -130,11 +115,11 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                             token_iterator['consume token']()
                             return Structural_Token(current_token)
                         })
-                    }]]
+                    }]]]
                 })
                 case '(': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return ['indexed collection', ['verbose group', {
+                    return ['concrete', ['indexed collection', ['verbose group', {
                         '(': Structural_Token(token),
                         'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', [')', null]),
                         ')': _ea.block(() => {
@@ -142,11 +127,11 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                             token_iterator['consume token']()
                             return Structural_Token(current_token)
                         })
-                    }]]
+                    }]]]
                 })
                 case '[': return _ea.ss($, ($): d_ast.Value._type => {
                     token_iterator['consume token']()
-                    return ['ordered collection', ['list', {
+                    return ['concrete', ['ordered collection', ['list', {
                         '[': Structural_Token(token),
                         'elements': Elements(token_iterator, ($) => $[0] === ']', [']', null]),
                         ']': _ea.block(() => {
@@ -154,11 +139,11 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                             token_iterator['consume token']()
                             return Structural_Token(current_token)
                         }),
-                    }]]
+                    }]]]
                 })
                 case '<': return _ea.ss($, ($): d_ast.Value._type => {
                     token_iterator['consume token']()
-                    return ['ordered collection', ['concise group', {
+                    return ['concrete', ['ordered collection', ['concise group', {
                         '<': Structural_Token(token),
                         'elements': Elements(token_iterator, ($) => $[0] === '>', ['>', null]),
                         '>': _ea.block(() => {
@@ -166,7 +151,7 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                             token_iterator['consume token']()
                             return Structural_Token(current_token)
                         }),
-                    }]]
+                    }]]]
                 })
                 case '@': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
@@ -177,24 +162,24 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                 })
                 case '~': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return ['not set', {
+                    return ['concrete', ['not set', {
                         '~': Structural_Token(token),
-                    }]
+                    }]]
                 })
                 case '|': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return ['tagged value', {
+                    return ['concrete', ['tagged value', {
                         '|': Structural_Token(token),
                         'state': String(token_iterator),
                         'value': Value(token_iterator)
-                    }]
+                    }]]
                 })
                 case '*': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return ['set optional value', {
+                    return ['concrete', ['set optional value', {
                         '*': Structural_Token(token),
                         'value': Value(token_iterator)
-                    }]
+                    }]]
                 })
 
                 default:

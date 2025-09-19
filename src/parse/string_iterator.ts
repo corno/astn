@@ -40,7 +40,7 @@ const op = {
     'starts with': _ea.impure.text['starts with'],
 }
 
-export const WhitespaceChars = {
+const WhitespaceChars = {
     tab: 0x09,                  // \t
     line_feed: 0x0A,            // \n
     carriage_return: 0x0D,      // \r

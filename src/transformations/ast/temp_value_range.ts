@@ -9,30 +9,46 @@ export const Value = (
 ): _out.Range => {
     return _ea.cc($.type, ($): _out.Range => {
         switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => $.range)
-            case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+            case 'concrete': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return _ea.ss($, ($) => ({
-                        'start': $['{'].range.start,
-                        'end': $['}'].range.end
+                    case 'string': return _ea.ss($, ($) => $.range)
+                    case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                        switch ($[0]) {
+                            case 'dictionary': return _ea.ss($, ($) => ({
+                                'start': $['{'].range.start,
+                                'end': $['}'].range.end
+                            }))
+                            case 'verbose group': return _ea.ss($, ($) => ({
+                                'start': $['('].range.start,
+                                'end': $[')'].range.end
+                            }))
+                            default: return _ea.au($[0])
+                        }
                     }))
-                    case 'verbose group': return _ea.ss($, ($) => ({
-                        'start': $['('].range.start,
-                        'end': $[')'].range.end
+                    case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                        switch ($[0]) {
+                            case 'list': return _ea.ss($, ($) => ({
+                                'start': $['['].range.start,
+                                'end': $[']'].range.end
+                            }))
+                            case 'concise group': return _ea.ss($, ($) => ({
+                                'start': $['<'].range.start,
+                                'end': $['>'].range.end
+                            }))
+                            default: return _ea.au($[0])
+                        }
                     }))
-                    default: return _ea.au($[0])
-                }
-            }))
-            case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
-                switch ($[0]) {
-                    case 'list': return _ea.ss($, ($) => ({
-                        'start': $['['].range.start,
-                        'end': $[']'].range.end
+                    case 'tagged value': return _ea.ss($, ($) => ({
+                        'start': $['|'].range.start,
+                        'end': Value($['value']).end
                     }))
-                    case 'concise group': return _ea.ss($, ($) => ({
-                        'start': $['<'].range.start,
-                        'end': $['>'].range.end
+                    case 'not set': return _ea.ss($, ($) => $['~'].range)
+                    case 'set optional value': return _ea.ss($, ($) => ({
+                        'start': $['*'].range.start,
+                        'end': Value($['value']).end
                     }))
+                    case 'missing data': return _ea.ss($, ($) => $['#'].range)
+
                     default: return _ea.au($[0])
                 }
             }))
@@ -40,16 +56,6 @@ export const Value = (
                 'start': $['@'].range.start,
                 'end': $.path.range.end
             }))
-            case 'tagged value': return _ea.ss($, ($) => ({
-                'start': $['|'].range.start,
-                'end': Value($['value']).end
-            }))
-            case 'not set': return _ea.ss($, ($) => $['~'].range)
-            case 'set optional value': return _ea.ss($, ($) => ({
-                'start': $['*'].range.start,
-                'end': Value($['value']).end
-            }))
-            case 'missing data': return _ea.ss($, ($) => $['#'].range)
             default: return _ea.au($[0])
         }
     })

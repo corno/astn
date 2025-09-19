@@ -122,15 +122,6 @@ export const Elements = (
     return op.flatten($.map(($) => {
         return op.flatten(_ea.array_literal([
             Value($.value, $p),
-            $[','].transform(
-                ($) => op.flatten(_ea.array_literal<_out.Text_Edits>([
-                    $p['remove commas']
-                        ? _ea.array_literal([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
-                        : _ea.array_literal([]),
-                    Structural_Token($, $p)
-                ])),
-                () => _ea.array_literal([])
-            ),
         ]))
     }))
 }
@@ -145,34 +136,51 @@ export const Value = (
 ): _out.Text_Edits => {
     return _ea.cc($.type, ($) => {
         switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => _ea.array_literal([]))
-            case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+            case 'concrete': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                        Structural_Token($['{'], $p),
-                        Key_Value_Pairs($['entries'], $p),
-                        Structural_Token($['}'], $p),
+                    case 'string': return _ea.ss($, ($) => _ea.array_literal([]))
+                    case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                        switch ($[0]) {
+                            case 'dictionary': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                                Structural_Token($['{'], $p),
+                                Key_Value_Pairs($['entries'], $p),
+                                Structural_Token($['}'], $p),
+                            ])))
+                            case 'verbose group': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                                Structural_Token($['('], $p),
+                                Key_Value_Pairs($['entries'], $p),
+                                Structural_Token($[')'], $p),
+                            ])))
+                            default: return _ea.au($[0])
+                        }
+                    }))
+                    case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                        switch ($[0]) {
+                            case 'list': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                                Structural_Token($['['], $p),
+                                Elements($.elements, $p),
+                                Structural_Token($[']'], $p),
+                            ])))
+                            case 'concise group': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                                Structural_Token($['<'], $p),
+                                Elements($['elements'], $p),
+                                Structural_Token($['>'], $p),
+                            ])))
+                            default: return _ea.au($[0])
+                        }
+                    }))
+                    case 'tagged value': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                        Structural_Token($['|'], $p),
+                        String($['state'], $p),
+                        Value($['value'], $p),
                     ])))
-                    case 'verbose group': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                        Structural_Token($['('], $p),
-                        Key_Value_Pairs($['entries'], $p),
-                        Structural_Token($[')'], $p),
+                    case 'not set': return _ea.ss($, ($) => Structural_Token($['~'], $p))
+                    case 'set optional value': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
+                        Structural_Token($['*'], $p),
+                        Value($['value'], $p),
                     ])))
-                    default: return _ea.au($[0])
-                }
-            }))
-            case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
-                switch ($[0]) {
-                    case 'list': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                        Structural_Token($['['], $p),
-                        Elements($.elements, $p),
-                        Structural_Token($[']'], $p),
-                    ])))
-                    case 'concise group': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                        Structural_Token($['<'], $p),
-                        Elements($['elements'], $p),
-                        Structural_Token($['>'], $p),
-                    ])))
+                    case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
+
                     default: return _ea.au($[0])
                 }
             }))
@@ -180,17 +188,6 @@ export const Value = (
                 Structural_Token($['@'], $p),
                 String($['path'], $p),
             ])))
-            case 'tagged value': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                Structural_Token($['|'], $p),
-                String($['state'], $p),
-                Value($['value'], $p),
-            ])))
-            case 'not set': return _ea.ss($, ($) => Structural_Token($['~'], $p))
-            case 'set optional value': return _ea.ss($, ($) => op.flatten(_ea.array_literal([
-                Structural_Token($['*'], $p),
-                Value($['value'], $p),
-            ])))
-            case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
             default: return _ea.au($[0])
         }
     })

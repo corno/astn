@@ -5,6 +5,11 @@ import * as _i_out from "./data_types/unconstrained"
 
 // **** TYPES
 
+export type _T_Concrete_Value = (
+    $$_: _i_in._T_Concrete_Value,
+    $$_p: null,
+) => _i_out._T_Concrete_Value
+
 export type _T_Document = (
     $$_: _i_in._T_Document,
     $$_p: null,
@@ -37,6 +42,8 @@ export type _T_Value = (
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
+export type Concrete_Value = _T_Concrete_Value
+
 export type Document = _T_Document
 
 export type Elements = _T_Elements
@@ -50,6 +57,20 @@ export type Structural_Token = _T_Structural_Token
 export type Value = _T_Value
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
+
+export namespace _T_Concrete_Value {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Concrete_Value
+    
+    export namespace PARAMS {
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Concrete_Value
+}
 
 export namespace _T_Document {
     
@@ -136,6 +157,20 @@ export namespace _T_Value {
 }
 
 // *** ALIASES FOR NESTED TYPES
+
+export namespace Concrete_Value {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Concrete_Value
+    
+    export namespace PARAMS {
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Concrete_Value
+}
 
 export namespace Document {
     
