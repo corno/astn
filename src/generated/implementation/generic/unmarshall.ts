@@ -6,6 +6,18 @@ import * as t from "../../interface/core/astn_source"
 import * as unconstrained from "../../interface/core/unconstrained"
 import * as unresolved from "../../interface/core/unresolved"
 
+const process_value = (
+    $: t._T_Value,
+): t._T_Concrete_Value => {
+    return _ea.cc($.type, ($) => {
+        switch ($[0]) {
+            case 'concrete': return _ea.ss($, ($) => $)
+            case 'include': return _ed.implement_me()
+            default: return _ea.au($[0])
+        }
+    })
+}
+
 export const process_unconstrained_state_group = <X>(
     $: t._T_Value,
     $p: {
@@ -13,7 +25,7 @@ export const process_unconstrained_state_group = <X>(
     }
 
 ): X => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'tagged value': return _ea.ss($, ($) => {
                 const data = $.value
@@ -36,7 +48,7 @@ export const process_unresolved_state_group = <X>(
     }
 
 ): unresolved.State_Group<t._T_Range, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'tagged value': return _ea.ss($, ($) => {
                 const data = $.value
@@ -62,7 +74,7 @@ export const process_group = <X>(
     }
 
 ): X => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
@@ -103,7 +115,7 @@ export const process_unresolved_dictionary = <X>(
         'value': ($: t._T_Value) => X
     }
 ): unresolved.Dictionary<t._T_Range, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
@@ -141,7 +153,7 @@ export const process_unconstrained_dictionary = <X>(
         'value': ($: t._T_Value) => X
     }
 ): unconstrained.Dictionary<null, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
@@ -170,7 +182,7 @@ export const process_number = (
         'deserializer': ($: string, $p: null) => number
     }
 ): number => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
             default: return _ea.panic(`Unexpected type for number: ${$[0]}`)
@@ -186,7 +198,7 @@ export const process_boolean = (
     }
 
 ): boolean => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
             default: return _ea.panic(`Unexpected type for boolean: ${$[0]}`)
@@ -199,7 +211,7 @@ export const process_text = (
     $p: null
 
 ): string => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => $.value)
             default: return _ea.panic(`Unexpected type for text: ${$[0]}`)
@@ -213,7 +225,7 @@ export const process_unresolved_list = <X>(
         'value': ($: t._T_Value) => X
     }
 ): unresolved.List<t._T_Range, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
@@ -252,7 +264,7 @@ export const process_optional = <X>(
     }
 
 ): _et.Optional_Value<X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'not set': return _ea.ss($, ($) => _ea.not_set())
             case 'set optional value': return _ea.ss($, ($) => _ea.set($p.value($.value)))
@@ -266,7 +278,7 @@ export const process_nothing = (
     $: t._T_Value,
     $p: null
 ): null => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'not set': return _ea.ss($, ($) => null)
             default: return _ea.panic(`Unexpected type for nothing: ${$[0]}`)
@@ -279,7 +291,7 @@ export const process_selected_reference = <X>(
     $: t._T_Value,
     $p: null
 ): unresolved.Reference_To_Normal_Dictionary_Entry<t._T_Range, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => ({
                 'key': $.value,
@@ -294,7 +306,7 @@ export const process_stack_reference = <X>(
     $: t._T_Value,
     $p: null
 ): unresolved.Reference_To_Stacked_Dictionary_Entry<t._T_Range, X> => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => ({
                 'key': $.value,
@@ -309,7 +321,7 @@ export const process_derived_reference = (
     $: t._T_Value,
     $p: null
 ): null => {
-    return _ea.cc($.type, ($) => {
+    return _ea.cc(process_value($), ($) => {
         switch ($[0]) {
             case 'not set': return _ea.ss($, ($) => null)
             default: return _ea.panic(`Unexpected type for derived reference: ${$[0]}`)
