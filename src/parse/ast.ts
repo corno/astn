@@ -1,15 +1,15 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as d_ast from "../generated/interface/schemas/ast/data_types/unconstrained"
-import * as d_parse_result from "../generated/interface/schemas/parse_result/data_types/unconstrained"
-import * as d_token from "../generated/interface/schemas/token/data_types/unconstrained"
+import * as _target from "../generated/interface/schemas/ast/data_types/target"
+import * as d_parse_result from "../generated/interface/schemas/parse_result/data_types/target"
+import * as _source from "../generated/interface/schemas/token/data_types/source"
 
 import * as pg from "./astn_parse_generic"
 
 //this file contains the parser functionality, each function return a type from the 'ast' schema
 
-export const Structural_Token = (token: d_token.Annotated_Token): d_ast.Structural_Token => {
+export const Structural_Token = (token: _source.Annotated_Token): _target.Structural_Token => {
     return {
         'trailing trivia': token['trailing trivia'],
         'range': {
@@ -19,7 +19,7 @@ export const Structural_Token = (token: d_token.Annotated_Token): d_ast.Structur
     }
 }
 
-export const String = (token_iterator: pg.ASTN_Token_Iterator): d_ast.String => {
+export const String = (token_iterator: pg.ASTN_Token_Iterator): _target.String => {
     const token = token_iterator['get required token'](_ea.array_literal([['a string', null]]))
     if (token.type[0] !== 'string') {
         return pg.throw_unexpected_token(token, _ea.array_literal([['a string', null]]))
@@ -36,7 +36,7 @@ export const String = (token_iterator: pg.ASTN_Token_Iterator): d_ast.String => 
     }
 }
 
-export const Document = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Document => {
+export const Document = (token_iterator: pg.ASTN_Token_Iterator): _target.Document => {
     return {
         'header': _ea.block(() => {
             const token = token_iterator['get required token'](_ea.array_literal([['!', null], ['a value', null]]))
@@ -53,8 +53,8 @@ export const Document = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Document
     }
 }
 
-export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: d_token.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): d_ast.Elements => {
-    return _ea.pure.list.build<d_ast.Elements.L>(($i): void => {
+export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: _source.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): _target.Elements => {
+    return _ea.pure.list.build<_target.Elements.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
@@ -67,8 +67,8 @@ export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($
     })
 }
 
-export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: d_token.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): d_ast.Key_Value_Pairs => {
-    return _ea.pure.list.build<d_ast.Key_Value_Pairs.L>(($i): void => {
+export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: _source.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): _target.Key_Value_Pairs => {
+    return _ea.pure.list.build<_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
@@ -95,13 +95,13 @@ export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reac
     })
 }
 
-export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
+export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => {
     const token = token_iterator['get required token'](_ea.array_literal([['a value', null]]))
     return {
-        'type': _ea.cc(token.type, ($): d_ast.Value._type => {
+        'type': _ea.cc(token.type, ($): _target.Value._type => {
 
             switch ($[0]) {
-                case 'string': return _ea.ss($, ($): d_ast.Value._type => {
+                case 'string': return _ea.ss($, ($): _target.Value._type => {
 
                     return ['concrete', ['string', String(token_iterator)]]
                 })
@@ -129,7 +129,7 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                         })
                     }]]]
                 })
-                case '[': return _ea.ss($, ($): d_ast.Value._type => {
+                case '[': return _ea.ss($, ($): _target.Value._type => {
                     token_iterator['consume token']()
                     return ['concrete', ['ordered collection', ['list', {
                         '[': Structural_Token(token),
@@ -141,7 +141,7 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): d_ast.Value => {
                         }),
                     }]]]
                 })
-                case '<': return _ea.ss($, ($): d_ast.Value._type => {
+                case '<': return _ea.ss($, ($): _target.Value._type => {
                     token_iterator['consume token']()
                     return ['concrete', ['ordered collection', ['concise group', {
                         '<': Structural_Token(token),

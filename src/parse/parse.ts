@@ -2,8 +2,7 @@ import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
 import * as d_ast from "./ast"
-import * as d_parse_result from "../generated/interface/schemas/parse_result/data_types/unconstrained"
-import * as d_token from "../generated/interface/schemas/token/data_types/unconstrained" //FXIME this file should ot 
+import * as _target from "../generated/interface/schemas/parse_result/data_types/target"
 
 import * as pg from "./astn_parse_generic"
 import * as si from "./string_iterator"
@@ -15,7 +14,7 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): d_parse_result.Parse_Result => {
+): _target.Parse_Result => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']
@@ -36,7 +35,7 @@ export const parse = (
 
     } catch (error) {
         if (error instanceof _ea.Error) {
-            const parse_error: d_parse_result.Parse_Error = error.type //this has to be the case
+            const parse_error: _target.Parse_Error = error.type //this has to be the case
             return ['failure', parse_error]
         }
         return _ea.panic("unknown error thrown")

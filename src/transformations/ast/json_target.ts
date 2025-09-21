@@ -1,8 +1,8 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../generated/interface/schemas/ast/data_types/unconstrained"
-import * as _out from "pareto-json/dist/generated/interface/schemas/json/data_types/unconstrained"
+import * as _in from "../../generated/interface/schemas/ast/data_types/source"
+import * as _out from "pareto-json/dist/generated/interface/schemas/json/data_types/target"
 
 const op = {
     // 'flatten': pso.pure.list.flatten,
