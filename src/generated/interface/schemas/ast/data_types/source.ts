@@ -18,9 +18,6 @@ export type _T_Concrete_Value = _i_core._T_State_Group<null,
             readonly 'entries': _T_Key_Value_Pairs
         }]
     >]
-    | readonly ['missing data', {
-        readonly '#': _T_Structural_Token
-    }]
     | readonly ['not set', {
         readonly '~': _T_Structural_Token
     }]
@@ -87,6 +84,9 @@ export type _T_Value = {
         | readonly ['include', {
             readonly '@': _T_Structural_Token
             readonly 'path': _T_String
+        }]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
         }]
     >
 }
@@ -181,16 +181,6 @@ export namespace _T_Concrete_Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >
-        
-        export namespace missing_data {
-            
-            export namespace $ha_ {
-            }
-            export type $ha_ = _T_Structural_Token
-        }
-        export type missing_data = {
-            readonly '#': _T_Structural_Token
-        }
         
         export namespace not_set {
             
@@ -323,9 +313,6 @@ export namespace _T_Concrete_Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >]
-        | readonly ['missing data', {
-            readonly '#': _T_Structural_Token
-        }]
         | readonly ['not set', {
             readonly '~': _T_Structural_Token
         }]
@@ -494,6 +481,16 @@ export namespace _T_Value {
                 readonly '@': _T_Structural_Token
                 readonly 'path': _T_String
             }
+            
+            export namespace missing_data {
+                
+                export namespace $ha_ {
+                }
+                export type $ha_ = _T_Structural_Token
+            }
+            export type missing_data = {
+                readonly '#': _T_Structural_Token
+            }
         }
         export type SG = 
             | readonly ['concrete', _T_Concrete_Value]
@@ -501,12 +498,18 @@ export namespace _T_Value {
                 readonly '@': _T_Structural_Token
                 readonly 'path': _T_String
             }]
+            | readonly ['missing data', {
+                readonly '#': _T_Structural_Token
+            }]
     }
     export type _type = _i_core._T_State_Group<null, 
         | readonly ['concrete', _T_Concrete_Value]
         | readonly ['include', {
             readonly '@': _T_Structural_Token
             readonly 'path': _T_String
+        }]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
         }]
     >
 }
@@ -585,16 +588,6 @@ export namespace Concrete_Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >
-        
-        export namespace missing_data {
-            
-            export namespace $ha_ {
-            }
-            export type $ha_ = _T_Structural_Token
-        }
-        export type missing_data = {
-            readonly '#': _T_Structural_Token
-        }
         
         export namespace not_set {
             
@@ -727,9 +720,6 @@ export namespace Concrete_Value {
                 readonly 'entries': _T_Key_Value_Pairs
             }]
         >]
-        | readonly ['missing data', {
-            readonly '#': _T_Structural_Token
-        }]
         | readonly ['not set', {
             readonly '~': _T_Structural_Token
         }]
@@ -898,6 +888,16 @@ export namespace Value {
                 readonly '@': _T_Structural_Token
                 readonly 'path': _T_String
             }
+            
+            export namespace missing_data {
+                
+                export namespace $ha_ {
+                }
+                export type $ha_ = _T_Structural_Token
+            }
+            export type missing_data = {
+                readonly '#': _T_Structural_Token
+            }
         }
         export type SG = 
             | readonly ['concrete', _T_Concrete_Value]
@@ -905,12 +905,18 @@ export namespace Value {
                 readonly '@': _T_Structural_Token
                 readonly 'path': _T_String
             }]
+            | readonly ['missing data', {
+                readonly '#': _T_Structural_Token
+            }]
     }
     export type _type = _i_core._T_State_Group<null, 
         | readonly ['concrete', _T_Concrete_Value]
         | readonly ['include', {
             readonly '@': _T_Structural_Token
             readonly 'path': _T_String
+        }]
+        | readonly ['missing data', {
+            readonly '#': _T_Structural_Token
         }]
     >
 }

@@ -47,7 +47,6 @@ export const Value = (
                         'start': $['*'].range.start,
                         'end': Value($['value']).end
                     }))
-                    case 'missing data': return _ea.ss($, ($) => $['#'].range)
 
                     default: return _ea.au($[0])
                 }
@@ -56,6 +55,7 @@ export const Value = (
                 'start': $['@'].range.start,
                 'end': $.path.range.end
             }))
+            case 'missing data': return _ea.ss($, ($) => $['#'].range)
             default: return _ea.au($[0])
         }
     })

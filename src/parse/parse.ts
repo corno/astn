@@ -23,7 +23,7 @@ export const parse = (
             'string iterator': string_iterator
         })
         // tokenizer_result.tokens.__for_each(($) => {
-        //     pdev.log_debug_message(`token: ${_ea.cc($.type, ($) => {
+        //     _edev.log_debug_message(`token: ${_ea.cc($.type, ($) => {
         //         switch ($[0]) {
         //             case 'string': return _ea.ss($, ($) => `string: ${$.value.value}`)
         //             default: return `structural: ${$[0]}`

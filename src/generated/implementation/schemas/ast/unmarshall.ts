@@ -99,24 +99,6 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => _i_gen
                     }),
                 }
             )],
-            'missing data': ($): _i_out._T_Concrete_Value.SG => ['missing data', _i_generic.process_group(
-                $,
-                {
-                    'properties': ($) => ({
-                        '#': _pa.cc(_i_generic.get_entry(
-                            $,
-                            {
-                                'key': "#",
-                            }
-                        ), ($) => Structural_Token(
-                            $,
-                            {
-                                'value deserializers': $p['value deserializers'],
-                            }
-                        )),
-                    }),
-                }
-            )],
             'not set': ($): _i_out._T_Concrete_Value.SG => ['not set', _i_generic.process_group(
                 $,
                 {
@@ -576,6 +558,24 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                             'key': "path",
                                         }
                                     ), ($) => String(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
+                            }
+                        )],
+                        'missing data': ($): _i_out._T_Value._type.SG => ['missing data', _i_generic.process_group(
+                            $,
+                            {
+                                'properties': ($) => ({
+                                    '#': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "#",
+                                        }
+                                    ), ($) => Structural_Token(
                                         $,
                                         {
                                             'value deserializers': $p['value deserializers'],

@@ -427,7 +427,21 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                 return
             }
             switch ($) {
-                case Character.reverse_solidus:
+                case Character.line_feed:
+                case Character.carriage_return:
+                    if (!allow_newlines) {
+                        return throw_parse_error(
+                            ['lexer', ['unexpected end of line in delimited string', null]],
+                            {
+                                'start': start,
+                                'end': string_iterator['create location info']()
+                            }
+                        )
+                    }
+                    string_iterator['consume character']()
+                    $i['add element']($)
+                    break
+                case Character.reverse_solidus: // \ (escape)
                     string_iterator['consume character']()
                     {
                         const $ = string_iterator['get current character']()
@@ -462,28 +476,10 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 $i['add element'](Character.form_feed)
                                 break
                             case Character.n:
-                                if (allow_newlines) {
-                                    return throw_parse_error(
-                                        ['lexer', ['unexpected end of line in delimited string', null]],
-                                        {
-                                            'start': start,
-                                            'end': string_iterator['create location info']()
-                                        }
-                                    )
-                                }
                                 string_iterator['consume character']()
                                 $i['add element'](Character.line_feed)
                                 break
                             case Character.r:
-                                if (allow_newlines) {
-                                    return throw_parse_error(
-                                        ['lexer', ['unexpected end of line in delimited string', null]],
-                                        {
-                                            'start': start,
-                                            'end': string_iterator['create location info']()
-                                        }
-                                    )
-                                }
                                 string_iterator['consume character']()
                                 $i['add element'](Character.carriage_return)
                                 break
