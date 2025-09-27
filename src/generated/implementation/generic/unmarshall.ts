@@ -79,7 +79,7 @@ export const process_group = <X>(
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
                     case 'verbose group': return _ea.ss($, ($) => {
-                        return $p.properties(_ea.pure.dictionary["build, overwrite clashing keys"](($i) => {
+                        return $p.properties(_ea.build_dictionary(($i) => {
                             $.entries.__for_each(($) => {
                                 $i['add entry']($.key.value, $.value.transform(
                                     ($) => $.value,
@@ -125,7 +125,7 @@ export const process_unresolved_dictionary = <X>(
                                 'start': $["{"].range.start,
                                 'end': $["}"].range.end,
                             },
-                            'dictionary': _ea.pure.dictionary["build, overwrite clashing keys"](($i) => {
+                            'dictionary': _ea.build_dictionary(($i) => {
                                 $.entries.__for_each(($) => {
                                     const key_location = $.key.range
                                     $i['add entry']($.key.value, $.value.transform(
@@ -158,7 +158,7 @@ export const process_unconstrained_dictionary = <X>(
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
                     case 'dictionary': return _ea.ss($, ($) => {
-                        return _ea.pure.dictionary["build, overwrite clashing keys"](($i) => {
+                        return _ea.build_dictionary(($i) => {
                             $.entries.__for_each(($) => {
                                 $i['add entry']($.key.value, $.value.transform(
                                     ($) => $p.value($.value),

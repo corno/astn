@@ -1,6 +1,8 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
+import * as _esl from "exupery-standard-library"
+
 //language independent parser functionality
 
 export type Location = {
@@ -36,8 +38,8 @@ export type String_Iterator = {
 
 
 const op = {
-    'to character list': _ea.impure.text['to character list'],
-    'starts with': _ea.impure.text['starts with'],
+    'to character list': _esl.impure.text['to character list'],
+    'starts with': _esl.impure.text['starts with'],
 }
 
 const WhitespaceChars = {

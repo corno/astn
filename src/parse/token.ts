@@ -1,6 +1,8 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
+import * as _esl from "exupery-standard-library"
+
 import * as _out from "../generated/interface/schemas/token/data_types/target"
 
 import { String_Iterator } from "./string_iterator"
@@ -23,7 +25,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
 
     const start = string_iterator['create location info']()
     return {
-        'value': _ea.impure.text['from character list'](_ea.pure.list.build<number>(($i) => {
+        'value': _esl.impure.text['from character list'](_ea.build_list<number>(($i) => {
             while (true) {
 
 
@@ -81,7 +83,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
 
     return {
         'leading whitespace': Whitespace(string_iterator),
-        'comments': _ea.pure.list.build(($i) => {
+        'comments': _ea.build_list(($i) => {
             while (true) {
                 const $ = string_iterator['get current character']()
                 if ($ === null) {
@@ -114,7 +116,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
+                                    'content': _esl.impure.text['from character list'](_ea.build_list(($i) => {
                                         while (true) {
                                             const $ = string_iterator['get current character']()
                                             if ($ === null) {
@@ -143,7 +145,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                 string_iterator['consume character']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
+                                    'content': _esl.impure.text['from character list'](_ea.build_list(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -318,7 +320,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
+                        'value': _esl.impure.text['from character list'](_ea.build_list(($i) => {
                             while (true) {
                                 const $ = st['get current character']()
                                 if ($ === null) {
@@ -399,7 +401,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
 
     }
     const start = string_iterator['create location info']()
-    const txt = _ea.impure.text['from character list'](_ea.pure.list.build(($i) => {
+    const txt = _esl.impure.text['from character list'](_ea.build_list(($i) => {
         while (true) {
             const $ = string_iterator['get current character']()
             if ($ === null) {
@@ -489,7 +491,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 break
                             case Character.u:
                                 string_iterator['consume character']()
-                                $i['add element'](_ea.impure.integer['parse hexadecimal'](_ea.impure.text['from character list']((_ea.pure.list.build(($i) => {
+                                $i['add element'](_esl.impure.integer['parse hexadecimal'](_esl.impure.text['from character list']((_ea.build_list(($i) => {
                                     const get_char = () => {
                                         const char = string_iterator['get current character']()
                                         if (char === null) {
@@ -547,7 +549,7 @@ export const Tokenizer_Result = (
 ): _out.Tokenizer_Result => {
     return {
         'leading trivia': Trivia($p['string iterator']),
-        'tokens': _ea.pure.list.build<_out.Annotated_Token>($i => {
+        'tokens': _ea.build_list<_out.Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
                 const token = Annotated_Token($p['string iterator'])

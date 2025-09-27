@@ -54,7 +54,7 @@ export const Document = (token_iterator: pg.ASTN_Token_Iterator): _target.Docume
 }
 
 export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: _source.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): _target.Elements => {
-    return _ea.pure.list.build<_target.Elements.L>(($i): void => {
+    return _ea.build_list<_target.Elements.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
@@ -68,7 +68,7 @@ export const Elements = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($
 }
 
 export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reached: ($: _source.Token_Type) => boolean, end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L): _target.Key_Value_Pairs => {
-    return _ea.pure.list.build<_target.Key_Value_Pairs.L>(($i): void => {
+    return _ea.build_list<_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.array_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
