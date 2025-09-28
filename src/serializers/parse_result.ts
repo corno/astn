@@ -2,7 +2,7 @@ import * as _ea from 'exupery-core-alg'
 
 import * as _source from "../generated/interface/schemas/parse_result/data_types/source"
 
-import * as pso from "pareto-standard-operations"
+import { $$ as op_join_with_separator } from "pareto-standard-operations/dist/impure/text/join_list_of_texts_with_separator"
 
 export const Parse_Error_Type = ($: _source.Parse_Error._type): string => {
     return _ea.cc($, ($) => {
@@ -23,7 +23,7 @@ export const Parse_Error_Type = ($: _source.Parse_Error._type): string => {
                     default: return _ea.au($[0])
                 }
             }))
-            case 'parser': return _ea.ss($, ($) => `expected ${pso.impure.text['join list of texts with separator'](
+            case 'parser': return _ea.ss($, ($) => `expected ${op_join_with_separator(
                 $.expected.map(($) => _ea.cc($, ($) => {
                     switch ($[0]) {
                         case '!': return "'!'"

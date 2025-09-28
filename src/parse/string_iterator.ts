@@ -1,7 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _esl from "exupery-standard-library"
 
 //language independent parser functionality
 
@@ -36,11 +35,8 @@ export type String_Iterator = {
     'starts with': ($: string) => boolean
 }
 
-
-const op = {
-    'to character list': _esl.impure.text['to character list'],
-    'starts with': _esl.impure.text['starts with'],
-}
+import { $$ as op_to_character_list } from "exupery-standard-library/dist/text/to_character_list"
+import { $$ as op_starts_with } from "exupery-standard-library/dist/text/starts_with"
 
 const WhitespaceChars = {
     tab: 0x09,                  // \t
@@ -65,7 +61,7 @@ export const create_string_iterator = (
     }
 ): String_Iterator => {
     const source = $
-    const characters = op['to character list']($)
+    const characters = op_to_character_list($)
     const length = characters.__get_length()
 
     type Relative_Position_Information = {
@@ -123,7 +119,7 @@ export const create_string_iterator = (
 
     return {
         'consume string': ($: string) => {
-            op['to character list']($).__for_each(() => {
+            op_to_character_list($).__for_each(() => {
                 consume_character()
             })
         },
@@ -172,7 +168,7 @@ export const create_string_iterator = (
                 : relative_position['column']
         },
         'starts with': ($: string) => {
-            return op['starts with'](
+            return op_starts_with(
                 source,
                 $,
                 position,

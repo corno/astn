@@ -7,15 +7,11 @@ import {
     b, l, block,
 } from "pareto-fountain-pen/dist/shorthands/block"
 
-import { impure } from "pareto-standard-operations"
-
-const op = {
-    'enrich list elements with position information': impure.list['enrich with position information'],
-    'serialize with apostrophe delimiter': impure.text['serialize with apostrophe delimiter'],
-    'serialize with quote delimiter': impure.text['serialize with quote delimiter'],
-    'serialize with grave delimiter': impure.text['serialize with grave delimiter'],
-    'dictionary to list': impure.dictionary['to list, sorted by code point']
-}
+import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/impure/list/enrich_with_position_information"
+import { $$ as op_serialize_with_apostrophe_delimiter } from "pareto-standard-operations/dist/impure/text/serialize_with_apostrophe_delimiter"
+import { $$ as op_serialize_with_quote_delimiter } from "pareto-standard-operations/dist/impure/text/serialize_with_quote_delimiter"
+import { $$ as op_serialize_with_grave_delimiter } from "pareto-standard-operations/dist/impure/text/serialize_with_grave_delimiter"
+import { $$ as op_dictionary_to_list } from "pareto-standard-operations/dist/impure/dictionary/to_list_sorted_by_code_point"
 
 type Style = ['concise', null] | ['verbose', null]
 
@@ -51,8 +47,8 @@ export const Value = (
                 case 'dictionary': return pa.ss($, ($) => l.sub([
                     l.snippet("{"),
                     l.indent([
-                        b.sub_decorated(op['dictionary to list']($).map(($) => b.nested_line([
-                            l.snippet(op['serialize with grave delimiter']($.key)),
+                        b.sub_decorated(op_dictionary_to_list($).map(($) => b.nested_line([
+                            l.snippet(op_serialize_with_grave_delimiter($.key)),
                             l.snippet(": "),
                             Value($.value, { 'style': $p.style, 'in concise group': false }),
                         ]))),
@@ -61,21 +57,21 @@ export const Value = (
                 ]))
                 case 'verbose group': return pa.ss($, ($) => l.sub([
                     $p['in concise group']
-                        ? l.sub_decorated(op['dictionary to list']($).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true })))
+                        ? l.sub_decorated(op_dictionary_to_list($).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true })))
                         : pa.block(() => {
                             const entries = $
                             return pa.cc($p.style, ($) => {
                                 switch ($[0]) {
                                     case 'concise': return pa.ss($, ($) => l.sub([
                                         l.snippet("<"),
-                                        l.sub_decorated(op['dictionary to list'](entries).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true }))),
+                                        l.sub_decorated(op_dictionary_to_list(entries).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true }))),
                                         l.snippet(" >")
                                     ]))
                                     case 'verbose': return pa.ss($, ($) => l.sub([
                                         l.snippet("("),
                                         l.indent([
-                                            b.sub_decorated(op['dictionary to list'](entries).map(($) => b.nested_line([
-                                                l.snippet(op['serialize with apostrophe delimiter']($.key)),
+                                            b.sub_decorated(op_dictionary_to_list(entries).map(($) => b.nested_line([
+                                                l.snippet(op_serialize_with_apostrophe_delimiter($.key)),
                                                 l.snippet(": "),
                                                 Value($.value, { 'style': $p.style, 'in concise group': false }),
                                             ]))),
@@ -89,7 +85,7 @@ export const Value = (
                 ]))
                 case 'list': return pa.ss($, ($) => l.sub([
                     l.snippet("["),
-                    l.sub_decorated(op['enrich list elements with position information']($).map(($) => l.sub([
+                    l.sub_decorated(op_enrich_list_elements_with_position_information($).map(($) => l.sub([
                         l.snippet(" "),
                         Value($.value, { 'style': $p.style, 'in concise group': false }),
                     ]))),
@@ -97,14 +93,14 @@ export const Value = (
                 ]))
                 case 'concise group': return pa.ss($, ($) => l.sub([
                     l.snippet("<"),
-                    l.sub_decorated(op['enrich list elements with position information']($).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true }))),
+                    l.sub_decorated(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, { 'style': $p.style, 'in concise group': true }))),
                     l.snippet(" >"),
                 ]))
                 case 'state': return pa.ss($, ($) => l.sub([
                     $p['in concise group']
                         ? l.nothing()
                         : l.snippet("| "),
-                    l.snippet(op['serialize with apostrophe delimiter']($.state)),
+                    l.snippet(op_serialize_with_apostrophe_delimiter($.state)),
                     $p['in concise group']
                         ? l.nothing()
                         : l.snippet(" "),
@@ -126,8 +122,8 @@ export const Value = (
                     const value = $.value
                     return pa.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return pa.ss($, ($) => l.snippet(op['serialize with grave delimiter'](value)))
-                            case 'quote': return pa.ss($, ($) => l.snippet(op['serialize with quote delimiter'](value)))
+                            case 'backtick': return pa.ss($, ($) => l.snippet(op_serialize_with_grave_delimiter(value)))
+                            case 'quote': return pa.ss($, ($) => l.snippet(op_serialize_with_quote_delimiter(value)))
                             case 'none': return pa.ss($, ($) => l.snippet(value))
                             default: return pa.au($[0])
                         }

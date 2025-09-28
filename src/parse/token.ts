@@ -1,13 +1,14 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _esl from "exupery-standard-library"
-
 import * as _out from "../generated/interface/schemas/token/data_types/target"
 
 import { String_Iterator } from "./string_iterator"
 import { throw_parse_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
+
+import { $$ as op_from_character_list } from "exupery-standard-library/dist/text/from_character_list"
+import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/integer/parse_hexadecimal"
 
 //this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
 
@@ -25,7 +26,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
 
     const start = string_iterator['create location info']()
     return {
-        'value': _esl.impure.text['from character list'](_ea.build_list<number>(($i) => {
+        'value': op_from_character_list(_ea.build_list<number>(($i) => {
             while (true) {
 
 
@@ -116,7 +117,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': _esl.impure.text['from character list'](_ea.build_list(($i) => {
+                                    'content': op_from_character_list(_ea.build_list(($i) => {
                                         while (true) {
                                             const $ = string_iterator['get current character']()
                                             if ($ === null) {
@@ -145,7 +146,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                 string_iterator['consume character']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': _esl.impure.text['from character list'](_ea.build_list(($i) => {
+                                    'content': op_from_character_list(_ea.build_list(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -320,7 +321,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': _esl.impure.text['from character list'](_ea.build_list(($i) => {
+                        'value': op_from_character_list(_ea.build_list(($i) => {
                             while (true) {
                                 const $ = st['get current character']()
                                 if ($ === null) {
@@ -401,7 +402,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
 
     }
     const start = string_iterator['create location info']()
-    const txt = _esl.impure.text['from character list'](_ea.build_list(($i) => {
+    const txt = op_from_character_list(_ea.build_list(($i) => {
         while (true) {
             const $ = string_iterator['get current character']()
             if ($ === null) {
@@ -491,7 +492,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 break
                             case Character.u:
                                 string_iterator['consume character']()
-                                $i['add element'](_esl.impure.integer['parse hexadecimal'](_esl.impure.text['from character list']((_ea.build_list(($i) => {
+                                $i['add element'](op_parse_hexadecimal(op_from_character_list((_ea.build_list(($i) => {
                                     const get_char = () => {
                                         const char = string_iterator['get current character']()
                                         if (char === null) {
