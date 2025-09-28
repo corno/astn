@@ -51,7 +51,7 @@
     "exupery-core-bin": "^0.1.5",
     "exupery-core-data": "^0.1.10",
     "exupery-core-dev": "^0.1.1",
-    "pareto-fountain-pen": "^0.1.20",
+    "pareto-fountain-pen": "^0.1.22",
     "pareto-json": "^0.1.5",
     "pareto-standard-operations": "^0.1.5"
   }
