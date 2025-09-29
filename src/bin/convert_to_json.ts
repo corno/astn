@@ -17,7 +17,7 @@ import { $$ as get_instream_data } from "exupery-resources/dist/queries/get_inst
 
 _eb.run_unsafe_program(
     ($) => get_instream_data(
-    ).execute_unsafe_command(($) => _ea.cc(
+    ).process_unsafe(($) => _ea.cc(
         parse.parse(
             $,
             {
