@@ -14,9 +14,6 @@ export type _T_Concrete_Value =
             readonly 'entries': _T_Key_Value_Pairs
         }]
     ]
-    | readonly ['missing data', {
-        readonly '#': _T_Structural_Token
-    }]
     | readonly ['not set', {
         readonly '~': _T_Structural_Token
     }]
@@ -83,6 +80,9 @@ export type _T_Value = {
     | readonly ['include', {
         readonly '@': _T_Structural_Token
         readonly 'path': _T_String
+    }]
+    | readonly ['missing data', {
+        readonly '#': _T_Structural_Token
     }]
 }
 

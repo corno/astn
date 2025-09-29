@@ -13,6 +13,7 @@ const process_value = (
         switch ($[0]) {
             case 'concrete': return _ea.ss($, ($) => $)
             case 'include': return _ed.implement_me()
+            case 'missing data': return _ed.implement_me()
             default: return _ea.au($[0])
         }
     })
