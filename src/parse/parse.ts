@@ -34,9 +34,12 @@ export const parse = (
         return ['success', d_ast.Document(token_iterator)]
 
     } catch (error) {
-        if (error instanceof _ea.Error) {
-            const parse_error: _target.Parse_Error = error.type //this has to be the case
-            return ['failure', parse_error]
+        if (error instanceof pg.Parse_Error_Class) {
+            
+            return ['failure', {
+                'type': error.type,
+                'range': error.range
+            }]
         }
         return _ea.panic("unknown error thrown")
     }

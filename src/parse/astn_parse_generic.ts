@@ -6,14 +6,20 @@ import * as si from "./string_iterator"
 import * as _source from "../generated/interface/schemas/token/data_types/source"
 import * as d_parse_result from "../generated/interface/schemas/parse_result/data_types/target"
 
+export class Parse_Error_Class {
+    
+    constructor (
+        public readonly type: d_parse_result.Parse_Error._type,
+        public readonly range: _source.Range,
+    ) {
+     }
+}
+
 export const throw_parse_error = (
     type: d_parse_result.Parse_Error._type,
     range: _source.Range
 ): never => {
-    throw new _ea.Error<d_parse_result.Parse_Error>({
-        'type': type,
-        'range': range
-    })
+    throw new Parse_Error_Class(type, range)
 }
 
 export const throw_unexpected_token = (

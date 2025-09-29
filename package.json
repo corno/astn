@@ -47,7 +47,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "exupery-core-alg": "^0.1.7",
+    "exupery-core-alg": "^0.1.8",
     "exupery-core-bin": "^0.1.5",
     "exupery-core-data": "^0.1.10",
     "exupery-core-dev": "^0.1.2",
