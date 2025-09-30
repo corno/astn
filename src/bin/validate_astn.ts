@@ -37,7 +37,9 @@ _eb.run_unsafe_program(
                     _ea.array_literal([
                         "document is valid ASTN"
                     ])
-                ).throw_exception(1))
+                ).throw_exception({
+                    'exit code': 1
+                }))
                 default: return _ea.au($[0])
             }
         }

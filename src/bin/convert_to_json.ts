@@ -39,7 +39,9 @@ _eb.run_unsafe_program(
                             'newline': '\n'
                         }
                     )])
-                ).throw_exception(1))
+                ).throw_exception({
+                    'exit code': 1
+                }))
                 default: return _ea.au($[0])
             }
         }
