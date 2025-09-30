@@ -15,8 +15,8 @@ import { $$ as log_error } from "exupery-resources/dist/actions/log_error"
 import { $$ as get_instream_data } from "exupery-resources/dist/queries/get_instream_data"
 
 
-export const $$: _eb.Run_Unsafe_Program_Main = ($, $i) => get_instream_data(
-).process_unsafe(($i, $) => _ea.cc(
+export const $$: _eb.Run_Unguaranteed_Procedure_Main = ($, $i) => get_instream_data(
+).process_unguaranteed(($i, $) => _ea.cc(
     parse.parse(
         $,
         {
