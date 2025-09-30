@@ -3,18 +3,20 @@ import * as _et from 'exupery-core-types'
 
 import * as d_ast from "./ast"
 import * as _target from "../generated/interface/schemas/parse_result/data_types/target"
+import * as s_ast from "../generated/interface/schemas/ast/data_types/target"
 
 import * as pg from "./astn_parse_generic"
 import * as si from "./string_iterator"
 
 import * as tokenize from "./token"
 
+
 export const parse = (
     $: string,
     $p: {
         'tab size': number
     }
-): _target.Parse_Result => {
+): _ea.Unsafe_Transformation_Result<s_ast.Document, _target.Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']
@@ -31,15 +33,15 @@ export const parse = (
         //     })}`)
         // })
         const token_iterator = pg.create_astn_token_iterator(tokenizer_result.tokens, tokenizer_result.end)
-        return ['success', d_ast.Document(token_iterator)]
+        return _ea.transformation.successful(d_ast.Document(token_iterator))
 
     } catch (error) {
         if (error instanceof pg.Parse_Error_Class) {
             
-            return ['failure', {
+            return _ea.transformation.failed({
                 'type': error.type,
                 'range': error.range
-            }]
+            })
         }
         return _ea.panic("unknown error thrown")
     }

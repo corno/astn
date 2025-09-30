@@ -24,28 +24,23 @@ export const $$: _eb.Run_Unsafe_Program_Main = ($, $i) => get_instream_data(
         }
     ),
     ($) => {
-        switch ($[0]) {
-            case 'failure': return _ea.ss($, ($) => {
-                return $i.then_safe(() => log_error(
-                    _ea.array_literal([
-                        `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
-                    ])
-                )).throw_exception({
-                    'exit code': 1
-                })
-            })
-            case 'success': return _ea.ss($, ($) => {
-                return $i.then_safe(() => log(
-                    _ea.array_literal([s_json.Document(
-                        t_ast_2_json.Document($),
-                        {
-                            'indentation': "    ",
-                            'newline': '\n'
-                        }
-                    )])
-                ))
-            })
-            default: return _ea.au($[0])
-        }
+        return $.transform(
+            ($) => $i.execute(() => log(
+                _ea.array_literal([s_json.Document(
+                    t_ast_2_json.Document($),
+                    {
+                        'indentation': "    ",
+                        'newline': '\n'
+                    }
+                )])
+            )),
+            ($) => $i.execute(() => log_error(
+                _ea.array_literal([
+                    `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
+                ])
+            )).throw_exception({
+                'exit code': 1
+            }),
+        )
     }
 ))
