@@ -10,8 +10,8 @@ import * as create_error_message from "../serializers/parse_result"
 import * as t_ast_2_json from "../transformations/ast/json_target"
 import * as s_json from "pareto-json/dist/serializers/json"
 
-import { $$ as log } from "exupery-resources/dist/commands/log"
-import { $$ as log_error } from "exupery-resources/dist/commands/log_error"
+import { $$ as log } from "exupery-resources/dist/actions/log"
+import { $$ as log_error } from "exupery-resources/dist/actions/log_error"
 import { $$ as get_instream_data } from "exupery-resources/dist/queries/get_instream_data"
 
 
@@ -26,17 +26,15 @@ export const $$: _eb.Run_Unsafe_Program_Main = ($, $i) => get_instream_data(
     ($) => {
         return $.transform(
             ($) => $i.execute(() => log(
-                _ea.array_literal([s_json.Document(
-                    t_ast_2_json.Document($),
-                    {
-                        'indentation': "    ",
-                        'newline': '\n'
-                    }
-                )])
+                _ea.array_literal([
+                    "document is valid ASTN"
+                ])
             )),
             ($) => $i.execute(() => log_error(
                 _ea.array_literal([
-                    `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
+                    `Parse Error: ${create_error_message.Parse_Error($, {
+                        'position info': ['one based', null]
+                    })}`
                 ])
             )).throw_exception({
                 'exit code': 1

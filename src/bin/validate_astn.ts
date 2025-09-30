@@ -2,6 +2,6 @@
 
 import * as _eb from 'exupery-core-bin'
 
-import { $$ } from "../commands/validate_astn"
+import { $$ } from "../procedures/validate_astn"
 
 _eb.run_unsafe_program($$)
