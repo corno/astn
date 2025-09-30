@@ -7,6 +7,9 @@ import * as _easync from 'exupery-core-async'
 import * as parse from "../parse/parse"
 import * as create_error_message from "../serializers/parse_result"
 
+import * as t_ast_2_json from "../transformations/ast/json_target"
+import * as s_json from "pareto-json/dist/serializers/json"
+
 import { $$ as log } from "exupery-resources/dist/commands/log"
 import { $$ as log_error } from "exupery-resources/dist/commands/log_error"
 import { $$ as get_instream_data } from "exupery-resources/dist/queries/get_instream_data"
@@ -23,23 +26,24 @@ _eb.run_unsafe_program(
         ),
         ($) => {
             switch ($[0]) {
-                case 'failure': return _ea.ss($, ($) => log_error(
-                    _ea.array_literal([
-                        `Parse Error: ${create_error_message.Parse_Error(
-                            $,
-                            {
-                                'position info': ['one based', null]
-                            }
-                        )}`
-                    ])
-                ).cast_to_unsafe())
-                case 'success': return _ea.ss($, ($) => log(
-                    _ea.array_literal([
-                        "document is valid ASTN"
-                    ])
-                ).throw_exception({
-                    'exit code': 1
-                }))
+                case 'failure': return _ea.ss($, ($) => {
+                    return _easync.command.unsafe.initialize<_eb.Error>(
+                    ).then_safe(() => log_error(
+                        _ea.array_literal([
+                            `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
+                        ])
+                    )).throw_exception({
+                        'exit code': 1
+                    })
+                })
+                case 'success': return _ea.ss($, ($) => {
+                    return _easync.command.unsafe.initialize<_eb.Error>(
+                    ).then_safe(() => log(
+                        _ea.array_literal([
+                            "document is valid ASTN"
+                        ])
+                    ))
+                })
                 default: return _ea.au($[0])
             }
         }
