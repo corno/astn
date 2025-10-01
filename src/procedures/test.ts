@@ -6,6 +6,6 @@ import * as _easync from 'exupery-core-async'
 
 import { $$ as cmd_log_error } from "exupery-resources/dist/actions/log_error"
 
-export const $$: _eb.Run_Unguaranteed_Procedure_Main = ($i) => $i.execute(() => cmd_log_error(_ea.array_literal([
+export const $$: _eb.Unguaranteed_Main = ($i) => $i.execute(() => cmd_log_error(_ea.array_literal([
     "No tests yet"
 ])))
