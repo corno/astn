@@ -15,11 +15,18 @@ export class Parse_Error_Class {
      }
 }
 
-export const throw_parse_error = (
+const throw_parse_error = (
     type: d_parse_result.Parse_Error._type,
     range: _source.Range
 ): never => {
     throw new Parse_Error_Class(type, range)
+}
+
+export const throw_lexer_error = (
+    type: d_parse_result.Parse_Error._type.SG.lexer,
+    range: _source.Range
+): never => {
+    throw new Parse_Error_Class(['lexer', type], range)
 }
 
 export const throw_unexpected_token = (

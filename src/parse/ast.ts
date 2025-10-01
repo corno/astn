@@ -89,7 +89,7 @@ export const Key_Value_Pairs = (token_iterator: pg.ASTN_Token_Iterator, end_reac
                         'value': Value(token_iterator)
                     })
                 }),
-                ',':  _ea.not_set()
+                ',': _ea.not_set()
             })
         }
     })
@@ -109,7 +109,7 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => 
                     token_iterator['consume token']()
                     return ['concrete', ['indexed collection', ['dictionary', {
                         '{': Structural_Token(token),
-                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}',['}', null]),
+                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', ['}', null]),
                         '}': _ea.block(() => {
                             const current_token = token_iterator['get required token'](_ea.array_literal([['}', null]]))
                             token_iterator['consume token']()
@@ -181,12 +181,56 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => 
                         'value': Value(token_iterator)
                     }]]
                 })
+                case '#': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return ['missing data', {
+                        '#': Structural_Token(token),
+                    }]
+                })
 
-                default:
-                    //unexpected token
+
+                //unexpected tokens
+
+                case '!': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
                     return pg.throw_unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ]))
+                })
+                case ':': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return pg.throw_unexpected_token(token, _ea.array_literal([
+                        ['a value', null]
+                    ]))
+                })
+                case ')': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return pg.throw_unexpected_token(token, _ea.array_literal([
+                        ['a value', null]
+                    ]))
+                })
+                case '>': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return pg.throw_unexpected_token(token, _ea.array_literal([
+                        ['a value', null]
+                    ]))
+                })
+                case ']': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return pg.throw_unexpected_token(token, _ea.array_literal([
+                        ['a value', null]
+                    ]))
+                })
+                case '}': return _ea.ss($, ($) => {
+                    token_iterator['consume token']()
+                    return pg.throw_unexpected_token(token, _ea.array_literal([
+                        ['a value', null]
+                    ]))
+                })
+
+
+                default: return _ea.au($[0])
+
             }
         })
     }

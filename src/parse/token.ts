@@ -4,7 +4,7 @@ import * as _et from 'exupery-core-types'
 import * as _out from "../generated/interface/schemas/token/data_types/target"
 
 import { String_Iterator } from "./string_iterator"
-import { throw_parse_error } from "./astn_parse_generic"
+import { throw_lexer_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
 import { $$ as op_from_character_list } from "exupery-standard-library/dist/text/from_character_list"
@@ -36,8 +36,8 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
                         return
                     }
                     if (is_control_character($)) {
-                        throw_parse_error(
-                            ['lexer', ['unexpected control character', $]],
+                        throw_lexer_error(
+                             ['unexpected control character', $],
                             {
                                 'start': string_iterator['create location info'](),
                                 'end': string_iterator['create location info'](),
@@ -98,8 +98,8 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                             const start = string_iterator['create location info']()
                             string_iterator['consume character']()
                             const end = string_iterator['create location info']()
-                            return throw_parse_error(
-                                ['lexer', ['dangling slash', null]],
+                            return throw_lexer_error(
+                                ['dangling slash', null],
                                 {
                                     'start': start,
                                     'end': end
@@ -155,8 +155,8 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                         while (true) {
                                             const $ = string_iterator['get current character']()
                                             if ($ === null) {
-                                                return throw_parse_error(
-                                                    ['lexer', ['unterminated block comment', null]],
+                                                return throw_lexer_error(
+                                                    ['unterminated block comment', null],
                                                     {
                                                         'start': start,
                                                         'end': string_iterator['create location info']()
@@ -189,8 +189,8 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                                 break
                             }
                             default:
-                                return throw_parse_error(
-                                    ['lexer', ['dangling slash', null]],
+                                return throw_lexer_error(
+                                     ['dangling slash', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
@@ -209,8 +209,8 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
 export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
     const $ = st['get current character']()
     if ($ === null) {
-        return throw_parse_error(
-            ['lexer', ['unexpected end of input', null]],
+        return throw_lexer_error(
+            ['unexpected end of input', null],
             {
                 'start': st['create location info'](),
                 'end': st['create location info'](),
@@ -329,8 +329,8 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
                                 }
 
                                 if (is_control_character($)) {
-                                    throw_parse_error(
-                                        ['lexer', ['unexpected control character', $]],
+                                    throw_lexer_error(
+                                         ['unexpected control character', $],
                                         {
                                             'start': st['create location info'](),
                                             'end': st['create location info'](),
@@ -407,8 +407,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
             const $ = string_iterator['get current character']()
             if ($ === null) {
 
-                return throw_parse_error(
-                    ['lexer', ['unterminated string', null]],
+                return throw_lexer_error(
+                    ['unterminated string', null],
                     {
                         'start': start,
                         'end': string_iterator['create location info']()
@@ -416,8 +416,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                 )
             }
             if (is_control_character($)) {
-                throw_parse_error(
-                    ['lexer', ['unexpected control character', $]],
+                throw_lexer_error(
+                    ['unexpected control character', $],
                     {
                         'start': string_iterator['create location info'](),
                         'end': string_iterator['create location info'](),
@@ -433,8 +433,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                 case Character.line_feed:
                 case Character.carriage_return:
                     if (!allow_newlines) {
-                        return throw_parse_error(
-                            ['lexer', ['unexpected end of line in delimited string', null]],
+                        return throw_lexer_error(
+                             ['unexpected end of line in delimited string', null],
                             {
                                 'start': start,
                                 'end': string_iterator['create location info']()
@@ -449,8 +449,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                     {
                         const $ = string_iterator['get current character']()
                         if ($ === null) {
-                            return throw_parse_error(
-                                ['lexer', ['missing character after escape', null]],
+                            return throw_lexer_error(
+                                ['missing character after escape', null],
                                 {
                                     'start': start,
                                     'end': string_iterator['create location info']()
@@ -496,8 +496,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                     const get_char = () => {
                                         const char = string_iterator['get current character']()
                                         if (char === null) {
-                                            return throw_parse_error(
-                                                ['lexer', ['unterminated unicode escape sequence', null]],
+                                            return throw_lexer_error(
+                                                ['unterminated unicode escape sequence', null],
                                                 {
                                                     'start': start,
                                                     'end': string_iterator['create location info']()
@@ -505,8 +505,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                             )
                                         }
                                         if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
-                                            return throw_parse_error(
-                                                ['lexer', ['invalid unicode escape sequence', null]],
+                                            return throw_lexer_error(
+                                                ['invalid unicode escape sequence', null],
                                                 {
                                                     'start': start,
                                                     'end': string_iterator['create location info']()
@@ -523,8 +523,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 })))))
                                 break
                             default:
-                                return throw_parse_error(
-                                    ['lexer', ['unknown escape character', null]],
+                                return throw_lexer_error(
+                                     ['unknown escape character', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
