@@ -71,30 +71,41 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_uncon
                     }),
                 }
             )],
-            'state': ($): _i_out._T_Value.SG => ['state', _i_generic.process_group(
+            'state': ($): _i_out._T_Value.SG => ['state', _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'properties': ($) => ({
-                        'state': _pa.cc(_i_generic.get_entry(
-                            $,
-                            {
-                                'key': "state",
-                            }
-                        ), ($) => _i_generic.process_text(
+                    'states': _pa.dictionary_literal({
+                        'missing data': ($): _i_out._T_Value.SG.state.SG => ['missing data', _i_generic.process_nothing(
                             $,
                             null
-                        )),
-                        'value': _pa.cc(_i_generic.get_entry(
+                        )],
+                        'set': ($): _i_out._T_Value.SG.state.SG => ['set', _i_generic.process_group(
                             $,
                             {
-                                'key': "value",
+                                'properties': ($) => ({
+                                    'state': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "state",
+                                        }
+                                    ), ($) => _i_generic.process_text(
+                                        $,
+                                        null
+                                    )),
+                                    'value': _pa.cc(_i_generic.get_entry(
+                                        $,
+                                        {
+                                            'key': "value",
+                                        }
+                                    ), ($) => Value(
+                                        $,
+                                        {
+                                            'value deserializers': $p['value deserializers'],
+                                        }
+                                    )),
+                                }),
                             }
-                        ), ($) => Value(
-                            $,
-                            {
-                                'value deserializers': $p['value deserializers'],
-                            }
-                        )),
+                        )],
                     }),
                 }
             )],

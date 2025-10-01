@@ -15,10 +15,13 @@ export type _T_Value = _i_core._T_State_Group<null,
         | readonly ['not set', null]
         | readonly ['set', _T_Value]
     >]
-    | readonly ['state', {
-        readonly 'state': string
-        readonly 'value': _T_Value
-    }]
+    | readonly ['state', _i_core._T_State_Group<null, 
+        | readonly ['missing data', null]
+        | readonly ['set', {
+            readonly 'state': string
+            readonly 'value': _T_Value
+        }]
+    >]
     | readonly ['text', {
         readonly 'delimiter': _i_core._T_State_Group<null, 
             | readonly ['backtick', null]
@@ -89,16 +92,36 @@ export namespace _T_Value {
         >
         
         export namespace state {
-            export type state = string
             
-            export namespace value {
+            export namespace SG {
+                export type missing_data = null
+                
+                export namespace _set {
+                    export type state = string
+                    
+                    export namespace value {
+                    }
+                    export type value = _T_Value
+                }
+                export type _set = {
+                    readonly 'state': string
+                    readonly 'value': _T_Value
+                }
             }
-            export type value = _T_Value
+            export type SG = 
+                | readonly ['missing data', null]
+                | readonly ['set', {
+                    readonly 'state': string
+                    readonly 'value': _T_Value
+                }]
         }
-        export type state = {
-            readonly 'state': string
-            readonly 'value': _T_Value
-        }
+        export type state = _i_core._T_State_Group<null, 
+            | readonly ['missing data', null]
+            | readonly ['set', {
+                readonly 'state': string
+                readonly 'value': _T_Value
+            }]
+        >
         
         export namespace text {
             
@@ -147,10 +170,13 @@ export namespace _T_Value {
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
         >]
-        | readonly ['state', {
-            readonly 'state': string
-            readonly 'value': _T_Value
-        }]
+        | readonly ['state', _i_core._T_State_Group<null, 
+            | readonly ['missing data', null]
+            | readonly ['set', {
+                readonly 'state': string
+                readonly 'value': _T_Value
+            }]
+        >]
         | readonly ['text', {
             readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
@@ -215,16 +241,36 @@ export namespace Value {
         >
         
         export namespace state {
-            export type state = string
             
-            export namespace value {
+            export namespace SG {
+                export type missing_data = null
+                
+                export namespace _set {
+                    export type state = string
+                    
+                    export namespace value {
+                    }
+                    export type value = _T_Value
+                }
+                export type _set = {
+                    readonly 'state': string
+                    readonly 'value': _T_Value
+                }
             }
-            export type value = _T_Value
+            export type SG = 
+                | readonly ['missing data', null]
+                | readonly ['set', {
+                    readonly 'state': string
+                    readonly 'value': _T_Value
+                }]
         }
-        export type state = {
-            readonly 'state': string
-            readonly 'value': _T_Value
-        }
+        export type state = _i_core._T_State_Group<null, 
+            | readonly ['missing data', null]
+            | readonly ['set', {
+                readonly 'state': string
+                readonly 'value': _T_Value
+            }]
+        >
         
         export namespace text {
             
@@ -273,10 +319,13 @@ export namespace Value {
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
         >]
-        | readonly ['state', {
-            readonly 'state': string
-            readonly 'value': _T_Value
-        }]
+        | readonly ['state', _i_core._T_State_Group<null, 
+            | readonly ['missing data', null]
+            | readonly ['set', {
+                readonly 'state': string
+                readonly 'value': _T_Value
+            }]
+        >]
         | readonly ['text', {
             readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
