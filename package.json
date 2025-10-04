@@ -1,6 +1,6 @@
 {
   "name": "astn",
-  "version": "0.111.0",
+  "version": "0.111.1",
   "description": "A TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
