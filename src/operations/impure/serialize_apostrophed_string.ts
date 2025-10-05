@@ -14,4 +14,4 @@ export const $$ = ($: {
             'escape character code': 92, // \
         }
     )
-    + $['add delimiters'] ? "'" : ""
+    + ($['add delimiters'] ? "'" : "")
