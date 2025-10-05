@@ -46,7 +46,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                 case 'dictionary': return _ea.ss($, ($) => l.sub([
                     l.snippet($p['write delimiters'] ? "{" : ""),
                     l.indent([
-                        b.sub_decorated(op_dictionary_to_list($).map(($) => b.nested_line([
+                        b.sub(op_dictionary_to_list($).map(($) => b.nested_line([
                             l.snippet(op_serialize_with_grave_delimiter({
                                 'value': $.key,
                                 'add delimiters': true,
@@ -66,7 +66,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                         return l.sub([
                             l.snippet($p['write delimiters'] ? "(" : ""),
                             l.indent([
-                                b.sub_decorated(op_dictionary_to_list(entries).map(($) => b.nested_line([
+                                b.sub(op_dictionary_to_list(entries).map(($) => b.nested_line([
                                     l.snippet(op_serialize_with_apostrophe_delimiter({
                                         'value': $.key,
                                         'add delimiters': true,
@@ -84,7 +84,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                 ]))
                 case 'list': return _ea.ss($, ($) => l.sub([
                     l.snippet($p['write delimiters'] ? "[" : ""),
-                    l.sub_decorated(op_enrich_list_elements_with_position_information($).map(($) => l.sub([
+                    l.sub(op_enrich_list_elements_with_position_information($).map(($) => l.sub([
                         l.snippet(" "),
                         Value($.value, {
                             'in concise group': false,
@@ -95,7 +95,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                 ]))
                 case 'concise group': return _ea.ss($, ($) => l.sub([
                     l.snippet($p['write delimiters'] ? "<" : ""),
-                    l.sub_decorated(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
+                    l.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
                         'in concise group': true,
                         'write delimiters': true,
                     }))),
