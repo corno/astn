@@ -2,7 +2,7 @@ import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
 import * as _i_out from "../../../interface/core/astn_target"
-import * as _i_signatures from "../../../interface/schemas/target/marshall"
+import * as _i_signatures from "../../../interface/schemas/sealed_target/marshall"
 
 
 export const Document: _i_signatures._T_Document = ($, $p) => Value(
@@ -13,15 +13,6 @@ export const Document: _i_signatures._T_Document = ($, $p) => Value(
 )
 export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
-        case 'concise group': return _pa.ss($, ($) => ({
-            'state': "concise group",
-            'value': ['list', $.map(($) => Value(
-                $,
-                {
-                    'value serializers': $p['value serializers'],
-                }
-            ))],
-        }))
         case 'dictionary': return _pa.ss($, ($) => ({
             'state': "dictionary",
             'value': ['dictionary', $.map(($) => Value(
@@ -67,29 +58,17 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'state': return _pa.ss($, ($) => ({
             'state': "state",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
-                switch ($[0]) {
-                    case 'missing data': return _pa.ss($, ($) => ({
-                        'state': "missing data",
-                        'value': ['nothing', null],
-                    }))
-                    case 'set': return _pa.ss($, ($) => ({
-                        'state': "set",
-                        'value': ['verbose group', _pa.dictionary_literal({
-                            'state': _pa.cc($['state'], ($) => ['text', ({
-                                'delimiter': ['quote', null],
-                                'value': $,
-                            })]),
-                            'value': _pa.cc($['value'], ($) => Value(
-                                $,
-                                {
-                                    'value serializers': $p['value serializers'],
-                                }
-                            )),
-                        })],
-                    }))
-                    default: return _pa.au($[0])
-                }
+            'value': ['verbose group', _pa.dictionary_literal({
+                'state': _pa.cc($['state'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'value': _pa.cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
             })],
         }))
         case 'text': return _pa.ss($, ($) => ({

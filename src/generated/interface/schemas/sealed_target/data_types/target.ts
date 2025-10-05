@@ -1,31 +1,33 @@
-import * as _et from 'exupery-core-types'
+import * as _pt from 'exupery-core-types'
+
+import * as _i_core from "../../../core/unconstrained"
 
 // **** TYPES
 
 export type _T_Document = _T_Value
 
-export type _T_Value = 
-    | readonly ['dictionary', _et.Dictionary<_T_Value>]
-    | readonly ['list', _et.Array<_T_Value>]
+export type _T_Value = _i_core._T_State_Group<null, 
+    | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+    | readonly ['list', _i_core._T_List<null, _T_Value>]
     | readonly ['nothing', null]
-    | readonly ['optional', 
+    | readonly ['optional', _i_core._T_State_Group<null, 
         | readonly ['not set', null]
         | readonly ['set', _T_Value]
-    ]
+    >]
     | readonly ['state', {
         readonly 'state': string
         readonly 'value': _T_Value
     }]
     | readonly ['text', {
-        readonly 'delimiter': 
+        readonly 'delimiter': _i_core._T_State_Group<null, 
             | readonly ['backtick', null]
             | readonly ['none', null]
             | readonly ['quote', null]
-        
+        >
         readonly 'value': string
     }]
-    | readonly ['verbose group', _et.Dictionary<_T_Value>]
-
+    | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
+>
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
@@ -42,21 +44,13 @@ export namespace _T_Value {
     
     export namespace SG {
         
-        export namespace concise_group {
-            
-            export namespace L {
-            }
-            export type L = _T_Value
-        }
-        export type concise_group = _et.Array<_T_Value>
-        
         export namespace dictionary {
             
             export namespace D {
             }
             export type D = _T_Value
         }
-        export type dictionary = _et.Dictionary<_T_Value>
+        export type dictionary = _i_core._T_Dictionary<null, _T_Value>
         
         export namespace list {
             
@@ -64,7 +58,7 @@ export namespace _T_Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.Array<_T_Value>
+        export type list = _i_core._T_List<null, _T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -80,10 +74,10 @@ export namespace _T_Value {
                 | readonly ['not set', null]
                 | readonly ['set', _T_Value]
         }
-        export type optional = 
+        export type optional = _i_core._T_State_Group<null, 
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
-        
+        >
         
         export namespace state {
             export type state = string
@@ -111,19 +105,19 @@ export namespace _T_Value {
                     | readonly ['none', null]
                     | readonly ['quote', null]
             }
-            export type delimiter = 
+            export type delimiter = _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
-            
+            >
             export type value = string
         }
         export type text = {
-            readonly 'delimiter': 
+            readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
-            
+            >
             readonly 'value': string
         }
         
@@ -133,29 +127,29 @@ export namespace _T_Value {
             }
             export type D = _T_Value
         }
-        export type verbose_group = _et.Dictionary<_T_Value>
+        export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.Array<_T_Value>]
-        | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.Array<_T_Value>]
+        | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['list', _i_core._T_List<null, _T_Value>]
         | readonly ['nothing', null]
-        | readonly ['optional', 
+        | readonly ['optional', _i_core._T_State_Group<null, 
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
-        ]
+        >]
         | readonly ['state', {
             readonly 'state': string
             readonly 'value': _T_Value
         }]
         | readonly ['text', {
-            readonly 'delimiter': 
+            readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
+            >
             readonly 'value': string
         }]
-        | readonly ['verbose group', _et.Dictionary<_T_Value>]
+        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
 }
 
 // *** ALIASES FOR NESTED TYPES
@@ -167,21 +161,13 @@ export namespace Value {
     
     export namespace SG {
         
-        export namespace concise_group {
-            
-            export namespace L {
-            }
-            export type L = _T_Value
-        }
-        export type concise_group = _et.Array<_T_Value>
-        
         export namespace dictionary {
             
             export namespace D {
             }
             export type D = _T_Value
         }
-        export type dictionary = _et.Dictionary<_T_Value>
+        export type dictionary = _i_core._T_Dictionary<null, _T_Value>
         
         export namespace list {
             
@@ -189,7 +175,7 @@ export namespace Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.Array<_T_Value>
+        export type list = _i_core._T_List<null, _T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -205,9 +191,10 @@ export namespace Value {
                 | readonly ['not set', null]
                 | readonly ['set', _T_Value]
         }
-        export type optional = 
+        export type optional = _i_core._T_State_Group<null, 
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
+        >
         
         export namespace state {
             export type state = string
@@ -235,17 +222,19 @@ export namespace Value {
                     | readonly ['none', null]
                     | readonly ['quote', null]
             }
-            export type delimiter = 
+            export type delimiter = _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
+            >
             export type value = string
         }
         export type text = {
-            readonly 'delimiter': 
+            readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
+            >
             readonly 'value': string
         }
         
@@ -255,27 +244,27 @@ export namespace Value {
             }
             export type D = _T_Value
         }
-        export type verbose_group = _et.Dictionary<_T_Value>
+        export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.Array<_T_Value>]
-        | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.Array<_T_Value>]
+        | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['list', _i_core._T_List<null, _T_Value>]
         | readonly ['nothing', null]
-        | readonly ['optional', 
+        | readonly ['optional', _i_core._T_State_Group<null, 
             | readonly ['not set', null]
             | readonly ['set', _T_Value]
-        ]
+        >]
         | readonly ['state', {
             readonly 'state': string
             readonly 'value': _T_Value
         }]
         | readonly ['text', {
-            readonly 'delimiter': 
+            readonly 'delimiter': _i_core._T_State_Group<null, 
                 | readonly ['backtick', null]
                 | readonly ['none', null]
                 | readonly ['quote', null]
+            >
             readonly 'value': string
         }]
-        | readonly ['verbose group', _et.Dictionary<_T_Value>]
+        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
 }

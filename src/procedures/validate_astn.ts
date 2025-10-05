@@ -8,20 +8,20 @@ import * as create_error_message from "../serializers/parse_result"
 import * as t_ast_2_json from "../transformations/ast/json_target"
 import * as s_json from "pareto-json/dist/serializers/json"
 
-import { $$ as a_log } from "exupery-resources/dist/actions/log"
-import { $$ as a_log_error } from "exupery-resources/dist/actions/log_error"
+import { $$ as p_log } from "exupery-resources/dist/procedures/log"
+import { $$ as p_log_error } from "exupery-resources/dist/procedures/log_error"
 
 import * as D_Resources from "exupery-resources/dist/types"
 import * as _target from "../generated/interface/schemas/parse_result/data_types/target"
 
 import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/get_instream_data"
 
-export const $$: _eb.Unguaranteed_Main = _easync.u.p.action(
-    _easync.u.a.g(a_log),
-    _easync.u.q.g(
+export const $$: _eb.Unguaranteed_Main_Initializer = () => _easync.up.action(
+    _easync.upi.g(p_log),
+    _easync.uq.g(
         q_get_instream_data,
-        _easync.u.q.fixed(null),
-        _easync.u.t.u(
+        _easync.uq.fixed(null),
+        _easync.ut.u(
             ($) => parse.parse(
                 $,
                 {
@@ -38,7 +38,7 @@ export const $$: _eb.Unguaranteed_Main = _easync.u.p.action(
                 'exit code': 1
             }),
             _easync.eh(
-                a_log,
+                p_log,
                 ($) => ({
                     'lines': _ea.array_literal([
                         `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`

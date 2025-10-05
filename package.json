@@ -47,12 +47,12 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "exupery-core-alg": "^0.1.11",
-    "exupery-core-bin": "^0.1.16",
+    "exupery-core-alg": "^0.1.12",
+    "exupery-core-bin": "^0.1.18",
     "exupery-core-data": "^0.1.10",
     "exupery-core-dev": "^0.1.2",
-    "pareto-fountain-pen": "^0.1.27",
+    "pareto-fountain-pen": "^0.1.31",
     "pareto-json": "^0.1.6",
-    "pareto-standard-operations": "^0.1.6"
+    "pareto-standard-operations": "^0.1.7"
   }
 }
