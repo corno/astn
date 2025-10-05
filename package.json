@@ -52,7 +52,7 @@
     "exupery-core-data": "^0.1.10",
     "exupery-core-dev": "^0.1.2",
     "pareto-fountain-pen": "^0.1.31",
-    "pareto-json": "^0.1.7",
+    "pareto-json": "^0.1.8",
     "pareto-standard-operations": "^0.1.11"
   }
 }

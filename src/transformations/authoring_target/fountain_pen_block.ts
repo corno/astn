@@ -44,7 +44,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
         _ea.cc($, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _ea.ss($, ($) => l.sub([
-                    l.snippet($p['write delimiters'] ? "{" : ""),
+                    $p['write delimiters'] ? l.snippet("{") : l.nothing(),
                     l.indent([
                         b.sub(op_dictionary_to_list($).map(($) => b.nested_line([
                             l.snippet(op_serialize_with_grave_delimiter({
@@ -58,13 +58,13 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                             }),
                         ]))),
                     ]),
-                    l.snippet($p['write delimiters'] ? "}" : ""),
+                    $p['write delimiters'] ? l.snippet("}") : l.nothing(),
                 ]))
                 case 'verbose group': return _ea.ss($, ($) => l.sub([
                     _ea.block(() => {
                         const entries = $
                         return l.sub([
-                            l.snippet($p['write delimiters'] ? "(" : ""),
+                            $p['write delimiters'] ? l.snippet("(") : l.nothing(),
                             l.indent([
                                 b.sub(op_dictionary_to_list(entries).map(($) => b.nested_line([
                                     l.snippet(op_serialize_with_apostrophe_delimiter({
@@ -78,12 +78,12 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                                     }),
                                 ]))),
                             ]),
-                            l.snippet($p['write delimiters'] ? ")" : ""),
+                            $p['write delimiters'] ? l.snippet(")") : l.nothing(),
                         ])
                     })
                 ]))
                 case 'list': return _ea.ss($, ($) => l.sub([
-                    l.snippet($p['write delimiters'] ? "[" : ""),
+                    $p['write delimiters'] ? l.snippet("[") : l.nothing(),
                     l.sub(op_enrich_list_elements_with_position_information($).map(($) => l.sub([
                         l.snippet(" "),
                         Value($.value, {
@@ -91,23 +91,23 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                             'write delimiters': true,
                         }),
                     ]))),
-                    l.snippet($p['write delimiters'] ? " ]" : " "),
+                    $p['write delimiters'] ? l.snippet("]") : l.nothing(),
                 ]))
                 case 'concise group': return _ea.ss($, ($) => l.sub([
-                    l.snippet($p['write delimiters'] ? "<" : ""),
+                    $p['write delimiters'] ? l.snippet("<") : l.nothing(),
                     l.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
                         'in concise group': true,
                         'write delimiters': true,
                     }))),
-                    l.snippet($p['write delimiters'] ? " >" : " "),
+                    $p['write delimiters'] ? l.snippet(">") : l.nothing(),
                 ]))
                 case 'state': return _ea.ss($, ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _ea.ss($, ($) => l.snippet("| #"))
                         case 'set': return _ea.ss($, ($) => l.sub([
-                            $p['in concise group'] || !$p['write delimiters']
+                            $p['in concise group']
                                 ? l.nothing()
-                                : l.snippet("| "),
+                                : $p['write delimiters'] ? l.snippet("| ") : l.nothing(),
                             l.snippet(op_serialize_with_apostrophe_delimiter({
                                 'value': $.state,
                                 'add delimiters': $p['write delimiters'],
