@@ -49,7 +49,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                         b.sub_decorated(op_dictionary_to_list($).map(($) => b.nested_line([
                             l.snippet(op_serialize_with_grave_delimiter({
                                 'value': $.key,
-                                'add delimiters': $p['write delimiters'],
+                                'add delimiters': true,
                             })),
                             l.snippet(": "),
                             Value($.value, {
@@ -69,7 +69,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                                 b.sub_decorated(op_dictionary_to_list(entries).map(($) => b.nested_line([
                                     l.snippet(op_serialize_with_apostrophe_delimiter({
                                         'value': $.key,
-                                        'add delimiters': $p['write delimiters'],
+                                        'add delimiters': true,
                                     })),
                                     l.snippet(": "),
                                     Value($.value, {
