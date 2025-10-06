@@ -44,7 +44,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
         _ea.cc($, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _ea.ss($, ($) => l.sub([
-                    $p['write delimiters'] ? l.snippet("{") : l.nothing(),
+                    $p['write delimiters'] ? l.snippet("{") : l.snippet(""), //we always want a newline here
                     l.indent([
                         b.sub(op_dictionary_to_list($).map(($) => b.nested_line([
                             l.snippet(op_serialize_with_grave_delimiter({
@@ -64,7 +64,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                     _ea.block(() => {
                         const entries = $
                         return l.sub([
-                            $p['write delimiters'] ? l.snippet("(") : l.nothing(),
+                            $p['write delimiters'] ? l.snippet("(") : l.snippet(""), //we always want a newline here
                             l.indent([
                                 b.sub(op_dictionary_to_list(entries).map(($) => b.nested_line([
                                     l.snippet(op_serialize_with_apostrophe_delimiter({
