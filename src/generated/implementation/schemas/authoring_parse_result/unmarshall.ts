@@ -3,10 +3,10 @@ import * as _pd from 'exupery-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
 import * as _i_in from "../../../interface/core/astn_source"
-import * as _i_out from "../../../interface/schemas/parse_result/data_types/target"
-import * as _i_r_ast from "../ast/unmarshall"
+import * as _i_out from "../../../interface/schemas/authoring_parse_result/data_types/target"
+import * as _i_r_ast from "../authoring_ast/unmarshall"
 import * as _i_r_token from "../token/unmarshall"
-import * as _i_signatures from "../../../interface/schemas/parse_result/unmarshall"
+import * as _i_signatures from "../../../interface/schemas/authoring_parse_result/unmarshall"
 
 
 export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.process_group(

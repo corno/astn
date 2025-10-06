@@ -1,6 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as _source from "../generated/interface/schemas/parse_result/data_types/source"
+import * as _source from "../generated/interface/schemas/authoring_parse_result/data_types/source"
 
 import { $$ as op_join_with_separator } from "pareto-standard-operations/dist/impure/text/join_list_of_texts_with_separator"
 
