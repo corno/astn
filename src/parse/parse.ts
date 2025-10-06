@@ -40,7 +40,10 @@ export const parse = (
             
             return _ea.transformation.failed({
                 'type': error.type,
-                'range': error.range
+                'range': {
+                    'start': error.range.start,
+                    'end': error.range.end,
+                }
             })
         }
         return _ea.panic("unknown error thrown")
