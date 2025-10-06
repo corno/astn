@@ -56,10 +56,16 @@ export const Value = (
                             default: return _ea.au($[0])
                         }
                     })))])
-                    case 'tagged value': return _ea.ss($, ($): _out.Value => ['array', _ea.array_literal([
-                        ['string', $.state.value],
-                        Value($.value),
-                    ])])
+                    case 'tagged value': return _ea.ss($, ($): _out.Value => _ea.cc($.status, ($) => {
+                        switch ($[0]) {
+                            case 'missing data': return _ea.ss($, ($) => ['null', null])
+                            case 'set': return _ea.ss($, ($) => ['array', _ea.array_literal([
+                                ['string', $.state.value],
+                                Value($.value),
+                            ])])
+                            default: return _ea.au($[0])
+                        }
+                    }))
                     case 'not set': return _ea.ss($, ($) => ['null', null])
                     case 'set optional value': return _ea.ss($, ($): _out.Value => ['array', _ea.array_literal([
                         Value($.value),

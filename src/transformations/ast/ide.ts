@@ -167,8 +167,16 @@ export const Value = (
                     }))
                     case 'tagged value': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
                         Structural_Token($['|'], $p),
-                        String($['state'], $p),
-                        Value($['value'], $p),
+                        _ea.cc($.status, ($) => {
+                            switch ($[0]) {
+                                case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
+                                case 'set': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                                    String($['state'], $p),
+                                    Value($['value'], $p),
+                                ])))
+                                default: return _ea.au($[0])
+                            }
+                        })
                     ])))
                     case 'not set': return _ea.ss($, ($) => Structural_Token($['~'], $p))
                     case 'set optional value': return _ea.ss($, ($) => op_flatten(_ea.array_literal([

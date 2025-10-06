@@ -40,7 +40,13 @@ export const Value = (
                     }))
                     case 'tagged value': return _ea.ss($, ($) => ({
                         'start': $['|'].range.start,
-                        'end': Value($['value']).end
+                        'end': _ea.cc($.status, ($) => {
+                            switch ($[0]) {
+                                case 'missing data': return _ea.ss($, ($) => $['#'].range.end)
+                                case 'set': return _ea.ss($, ($) => Value($['value']).end)
+                                default: return _ea.au($[0])
+                            }
+                        })
                     }))
                     case 'not set': return _ea.ss($, ($) => $['~'].range)
                     case 'set optional value': return _ea.ss($, ($) => ({

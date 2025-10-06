@@ -156,18 +156,39 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         case 'tagged value': return _pa.ss($, ($) => ({
             'state': "tagged value",
             'value': ['verbose group', _pa.dictionary_literal({
-                'state': _pa.cc($['state'], ($) => String(
-                    $,
-                    {
-                        'value serializers': $p['value serializers'],
+                'status': _pa.cc($['status'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                    switch ($[0]) {
+                        case 'missing data': return _pa.ss($, ($) => ({
+                            'state': "missing data",
+                            'value': ['verbose group', _pa.dictionary_literal({
+                                '#': _pa.cc($['#'], ($) => Structural_Token(
+                                    $,
+                                    {
+                                        'value serializers': $p['value serializers'],
+                                    }
+                                )),
+                            })],
+                        }))
+                        case 'set': return _pa.ss($, ($) => ({
+                            'state': "set",
+                            'value': ['verbose group', _pa.dictionary_literal({
+                                'state': _pa.cc($['state'], ($) => String(
+                                    $,
+                                    {
+                                        'value serializers': $p['value serializers'],
+                                    }
+                                )),
+                                'value': _pa.cc($['value'], ($) => Value(
+                                    $,
+                                    {
+                                        'value serializers': $p['value serializers'],
+                                    }
+                                )),
+                            })],
+                        }))
+                        default: return _pa.au($[0])
                     }
-                )),
-                'value': _pa.cc($['value'], ($) => Value(
-                    $,
-                    {
-                        'value serializers': $p['value serializers'],
-                    }
-                )),
+                })]),
                 '|': _pa.cc($['|'], ($) => Structural_Token(
                     $,
                     {

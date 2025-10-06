@@ -142,6 +142,10 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                                                             $,
                                                             null
                                                         )],
+                                                        '#': ($): _i_out._T_Parse_Error._type.SG.parser.expected.L.SG => ['#', _i_generic.process_nothing(
+                                                            $,
+                                                            null
+                                                        )],
                                                         ')': ($): _i_out._T_Parse_Error._type.SG.parser.expected.L.SG => [')', _i_generic.process_nothing(
                                                             $,
                                                             null

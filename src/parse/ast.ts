@@ -168,10 +168,30 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => 
                 })
                 case '|': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
+                    const token = token_iterator['get required token'](_ea.array_literal([['a value', null], ['#', null]]))
+
                     return ['concrete', ['tagged value', {
                         '|': Structural_Token(token),
-                        'state': String(token_iterator),
-                        'value': Value(token_iterator)
+                        'status': _ea.cc(token.type, ($): _target.Concrete_Value.SG.tagged_value.status => {
+                            switch ($[0]) {
+                                case 'string': return _ea.ss($, ($) => {
+                                    return ['set', {
+                                        'state': String(token_iterator),
+                                        'value': Value(token_iterator)
+                                    }]
+                                })
+                                case '#': return _ea.ss($, ($) => {
+                                    token_iterator['consume token']()
+                                    return ['missing data', {
+                                        '#': Structural_Token(token),
+                                    }]
+                                })
+                                default: return pg.throw_unexpected_token(token, _ea.array_literal([
+                                    ['a value', null],
+                                    ['#', null],
+                                ]))
+                            }
+                        })
                     }]]
                 })
                 case '*': return _ea.ss($, ($) => {

@@ -31,6 +31,7 @@ export type _T_Parse_Error = {
             >
             readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                 | readonly ['!', null]
+                | readonly ['#', null]
                 | readonly [')', null]
                 | readonly [',', null]
                 | readonly [':', null]
@@ -146,6 +147,7 @@ export namespace _T_Parse_Error {
                         
                         export namespace SG {
                             export type $ex_ = null
+                            export type $ha_ = null
                             export type $pc_ = null
                             export type $cm_ = null
                             export type $cl_ = null
@@ -158,6 +160,7 @@ export namespace _T_Parse_Error {
                         }
                         export type SG = 
                             | readonly ['!', null]
+                            | readonly ['#', null]
                             | readonly [')', null]
                             | readonly [',', null]
                             | readonly [':', null]
@@ -170,6 +173,7 @@ export namespace _T_Parse_Error {
                     }
                     export type L = _i_core._T_State_Group<null, 
                         | readonly ['!', null]
+                        | readonly ['#', null]
                         | readonly [')', null]
                         | readonly [',', null]
                         | readonly [':', null]
@@ -183,6 +187,7 @@ export namespace _T_Parse_Error {
                 }
                 export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -203,6 +208,7 @@ export namespace _T_Parse_Error {
                 >
                 readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -238,6 +244,7 @@ export namespace _T_Parse_Error {
                 >
                 readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -273,6 +280,7 @@ export namespace _T_Parse_Error {
             >
             readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                 | readonly ['!', null]
+                | readonly ['#', null]
                 | readonly [')', null]
                 | readonly [',', null]
                 | readonly [':', null]
@@ -394,6 +402,7 @@ export namespace Parse_Error {
                         
                         export namespace SG {
                             export type $ex_ = null
+                            export type $ha_ = null
                             export type $pc_ = null
                             export type $cm_ = null
                             export type $cl_ = null
@@ -406,6 +415,7 @@ export namespace Parse_Error {
                         }
                         export type SG = 
                             | readonly ['!', null]
+                            | readonly ['#', null]
                             | readonly [')', null]
                             | readonly [',', null]
                             | readonly [':', null]
@@ -418,6 +428,7 @@ export namespace Parse_Error {
                     }
                     export type L = _i_core._T_State_Group<null, 
                         | readonly ['!', null]
+                        | readonly ['#', null]
                         | readonly [')', null]
                         | readonly [',', null]
                         | readonly [':', null]
@@ -431,6 +442,7 @@ export namespace Parse_Error {
                 }
                 export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -451,6 +463,7 @@ export namespace Parse_Error {
                 >
                 readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -486,6 +499,7 @@ export namespace Parse_Error {
                 >
                 readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                     | readonly ['!', null]
+                    | readonly ['#', null]
                     | readonly [')', null]
                     | readonly [',', null]
                     | readonly [':', null]
@@ -521,6 +535,7 @@ export namespace Parse_Error {
             >
             readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
                 | readonly ['!', null]
+                | readonly ['#', null]
                 | readonly [')', null]
                 | readonly [',', null]
                 | readonly [':', null]

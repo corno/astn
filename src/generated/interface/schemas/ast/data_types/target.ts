@@ -39,8 +39,15 @@ export type _T_Concrete_Value = _i_core._T_State_Group<null,
     }]
     | readonly ['string', _T_String]
     | readonly ['tagged value', {
-        readonly 'state': _T_String
-        readonly 'value': _T_Value
+        readonly 'status': _i_core._T_State_Group<null, 
+            | readonly ['missing data', {
+                readonly '#': _T_Structural_Token
+            }]
+            | readonly ['set', {
+                readonly 'state': _T_String
+                readonly 'value': _T_Value
+            }]
+        >
         readonly '|': _T_Structural_Token
     }]
 >
@@ -282,21 +289,68 @@ export namespace _T_Concrete_Value {
         
         export namespace tagged_value {
             
-            export namespace state {
+            export namespace status {
+                
+                export namespace SG {
+                    
+                    export namespace missing_data {
+                        
+                        export namespace $ha_ {
+                        }
+                        export type $ha_ = _T_Structural_Token
+                    }
+                    export type missing_data = {
+                        readonly '#': _T_Structural_Token
+                    }
+                    
+                    export namespace _set {
+                        
+                        export namespace state {
+                        }
+                        export type state = _T_String
+                        
+                        export namespace value {
+                        }
+                        export type value = _T_Value
+                    }
+                    export type _set = {
+                        readonly 'state': _T_String
+                        readonly 'value': _T_Value
+                    }
+                }
+                export type SG = 
+                    | readonly ['missing data', {
+                        readonly '#': _T_Structural_Token
+                    }]
+                    | readonly ['set', {
+                        readonly 'state': _T_String
+                        readonly 'value': _T_Value
+                    }]
             }
-            export type state = _T_String
-            
-            export namespace value {
-            }
-            export type value = _T_Value
+            export type status = _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             
             export namespace $vb_ {
             }
             export type $vb_ = _T_Structural_Token
         }
         export type tagged_value = {
-            readonly 'state': _T_String
-            readonly 'value': _T_Value
+            readonly 'status': _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             readonly '|': _T_Structural_Token
         }
     }
@@ -334,8 +388,15 @@ export namespace _T_Concrete_Value {
         }]
         | readonly ['string', _T_String]
         | readonly ['tagged value', {
-            readonly 'state': _T_String
-            readonly 'value': _T_Value
+            readonly 'status': _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             readonly '|': _T_Structural_Token
         }]
 }
@@ -689,21 +750,68 @@ export namespace Concrete_Value {
         
         export namespace tagged_value {
             
-            export namespace state {
+            export namespace status {
+                
+                export namespace SG {
+                    
+                    export namespace missing_data {
+                        
+                        export namespace $ha_ {
+                        }
+                        export type $ha_ = _T_Structural_Token
+                    }
+                    export type missing_data = {
+                        readonly '#': _T_Structural_Token
+                    }
+                    
+                    export namespace _set {
+                        
+                        export namespace state {
+                        }
+                        export type state = _T_String
+                        
+                        export namespace value {
+                        }
+                        export type value = _T_Value
+                    }
+                    export type _set = {
+                        readonly 'state': _T_String
+                        readonly 'value': _T_Value
+                    }
+                }
+                export type SG = 
+                    | readonly ['missing data', {
+                        readonly '#': _T_Structural_Token
+                    }]
+                    | readonly ['set', {
+                        readonly 'state': _T_String
+                        readonly 'value': _T_Value
+                    }]
             }
-            export type state = _T_String
-            
-            export namespace value {
-            }
-            export type value = _T_Value
+            export type status = _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             
             export namespace $vb_ {
             }
             export type $vb_ = _T_Structural_Token
         }
         export type tagged_value = {
-            readonly 'state': _T_String
-            readonly 'value': _T_Value
+            readonly 'status': _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             readonly '|': _T_Structural_Token
         }
     }
@@ -741,8 +849,15 @@ export namespace Concrete_Value {
         }]
         | readonly ['string', _T_String]
         | readonly ['tagged value', {
-            readonly 'state': _T_String
-            readonly 'value': _T_Value
+            readonly 'status': _i_core._T_State_Group<null, 
+                | readonly ['missing data', {
+                    readonly '#': _T_Structural_Token
+                }]
+                | readonly ['set', {
+                    readonly 'state': _T_String
+                    readonly 'value': _T_Value
+                }]
+            >
             readonly '|': _T_Structural_Token
         }]
 }

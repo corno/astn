@@ -36,6 +36,7 @@ export const Parse_Error_Type = ($: _source.Parse_Error._type): string => {
                         case 'a string': return "a string"
                         case 'a value': return "a value"
                         case '}': return "'}'"
+                        case '#': return "'#'"
                         default: return _ea.au($[0])
                     }
                 })), 

@@ -243,26 +243,63 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => _i_gen
                 $,
                 {
                     'properties': ($) => ({
-                        'state': _pa.cc(_i_generic.get_entry(
+                        'status': _pa.cc(_i_generic.get_entry(
                             $,
                             {
-                                'key': "state",
+                                'key': "status",
                             }
-                        ), ($) => String(
+                        ), ($) => _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'value deserializers': $p['value deserializers'],
-                            }
-                        )),
-                        'value': _pa.cc(_i_generic.get_entry(
-                            $,
-                            {
-                                'key': "value",
-                            }
-                        ), ($) => Value(
-                            $,
-                            {
-                                'value deserializers': $p['value deserializers'],
+                                'states': _pa.dictionary_literal({
+                                    'missing data': ($): _i_out._T_Concrete_Value.SG.tagged_value.status.SG => ['missing data', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                '#': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "#",
+                                                    }
+                                                ), ($) => Structural_Token(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                    'set': ($): _i_out._T_Concrete_Value.SG.tagged_value.status.SG => ['set', _i_generic.process_group(
+                                        $,
+                                        {
+                                            'properties': ($) => ({
+                                                'state': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "state",
+                                                    }
+                                                ), ($) => String(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                                'value': _pa.cc(_i_generic.get_entry(
+                                                    $,
+                                                    {
+                                                        'key': "value",
+                                                    }
+                                                ), ($) => Value(
+                                                    $,
+                                                    {
+                                                        'value deserializers': $p['value deserializers'],
+                                                    }
+                                                )),
+                                            }),
+                                        }
+                                    )],
+                                }),
                             }
                         )),
                         '|': _pa.cc(_i_generic.get_entry(

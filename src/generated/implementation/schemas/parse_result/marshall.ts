@@ -109,6 +109,10 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                                 'state': "!",
                                 'value': ['nothing', null],
                             }))
+                            case '#': return _pa.ss($, ($) => ({
+                                'state': "#",
+                                'value': ['nothing', null],
+                            }))
                             case ')': return _pa.ss($, ($) => ({
                                 'state': ")",
                                 'value': ['nothing', null],
