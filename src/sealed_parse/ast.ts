@@ -170,6 +170,13 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => 
                 }]
             })
 
+            case '~': return _ea.ss($, ($) => {
+                token_iterator['consume token']()
+                return ['not set', {
+                    '~': Structural_Token(token),
+                }]
+            })
+
 
             //unexpected tokens
 
@@ -182,12 +189,6 @@ export const Value = (token_iterator: pg.ASTN_Token_Iterator): _target.Value => 
             })
 
             case '@': return _ea.ss($, ($) => {
-                token_iterator['consume token']()
-                return pg.throw_unexpected_token(token, _ea.array_literal([
-                    ['a value', null]
-                ]))
-            })
-            case '~': return _ea.ss($, ($) => {
                 token_iterator['consume token']()
                 return pg.throw_unexpected_token(token, _ea.array_literal([
                     ['a value', null]

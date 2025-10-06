@@ -5,7 +5,7 @@ import * as _easync from 'exupery-core-async'
 import * as parse from "../authoring_parse/parse"
 import * as create_error_message from "../serializers/parse_result"
 
-import * as t_ast_2_json from "../transformations/ast/json_target"
+import * as t_ast_2_json from "../transformations/authoring_ast/json_target"
 import * as s_json from "pareto-json/dist/serializers/json"
 
 import { $$ as p_log } from "exupery-resources/dist/procedures/log"

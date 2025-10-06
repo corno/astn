@@ -1,7 +1,7 @@
 import * as _et from 'exupery-core-types'
 
 
-export type _T_Concrete_Value =
+export type _T_Value =
     | readonly ['indexed collection',
         | readonly ['dictionary', {
             readonly 'entries': _T_Key_Value_Pairs
@@ -72,18 +72,6 @@ export type _T_String = {
 export type _T_Structural_Token = {
     readonly 'range': _T_Range
     readonly 'trailing trivia': _T_Trivia
-}
-
-export type _T_Value = {
-    readonly 'type':
-    | readonly ['concrete', _T_Concrete_Value]
-    | readonly ['include', {
-        readonly '@': _T_Structural_Token
-        readonly 'path': _T_String
-    }]
-    | readonly ['missing data', {
-        readonly '#': _T_Structural_Token
-    }]
 }
 
 // the following types come from the 'Token' schema
