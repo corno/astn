@@ -11,7 +11,6 @@ import { $$ as op_enrich_list_elements_with_position_information } from "pareto-
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/serialize_apostrophed_string"
 import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/serialize_quoted_string"
 import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/serialize_backticked_string"
-import { $$ as op_dictionary_to_list } from "pareto-standard-operations/dist/impure/dictionary/to_list_sorted_by_code_point"
 
 export type Parameters = {
     'write delimiters': boolean
@@ -25,7 +24,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
     return l.sub([
         // does it need a leading space
         $p['in concise group']
-            ? _ea.cc($, ($) => {
+            ? _ea.cc($.type, ($) => {
                 switch ($[0]) {
                     case 'verbose group': return _ea.ss($, ($) => true)
                     case 'concise group': return _ea.ss($, ($) => false)
@@ -41,12 +40,12 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                 ? l.snippet(" ")
                 : l.nothing()
             : l.nothing(),
-        _ea.cc($, ($) => {
+        _ea.cc($.type, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _ea.ss($, ($) => l.sub([
                     $p['write delimiters'] ? l.snippet("{") : l.snippet(""), //we always want a newline here
                     l.indent([
-                        b.sub(op_dictionary_to_list($).map(($) => b.nested_line([
+                        b.sub($.map(($) => b.nested_line([
                             l.snippet(op_serialize_with_grave_delimiter({
                                 'value': $.key,
                                 'add delimiters': true,
@@ -66,7 +65,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                         return l.sub([
                             $p['write delimiters'] ? l.snippet("(") : l.snippet(""), //we always want a newline here
                             l.indent([
-                                b.sub(op_dictionary_to_list(entries).map(($) => b.nested_line([
+                                b.sub(entries.map(($) => b.nested_line([
                                     l.snippet(op_serialize_with_apostrophe_delimiter({
                                         'value': $.key,
                                         'add delimiters': true,
