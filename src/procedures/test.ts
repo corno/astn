@@ -10,7 +10,7 @@ export const $$: _eb.Unguaranteed_Main_Initializer = () => _easync.up.action(
             return _easync.command.unguaranteed['raise exception'](null)
         },
         () => ({
-            'exit code': 1
+            'exit code': 0
         }),
         _easync.eh(
             p_log_error,
