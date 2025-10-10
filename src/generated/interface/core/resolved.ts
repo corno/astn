@@ -11,7 +11,10 @@ export type _T_List<M_Source, T_L> = _pt.Array<T_L>
 
 export type _T_Ordered_Dictionary<M_Source, T_D> = {
     readonly 'dictionary': _pt.Dictionary<T_D>
-    readonly 'ordered list': _pt.Array<_pt.Key_Value_Pair<T_D>>
+    readonly 'ordered list': _pt.Array<{
+        readonly 'key': string
+        readonly 'value': T_D
+    }>
 }
 
 export type _T_Reference_To_Circular_Dependent_Sibling<M_Source, T_Dictionary_Entry> = {
@@ -70,11 +73,18 @@ export namespace _T_Ordered_Dictionary {
     export namespace ordered_list {
         
         export namespace L {
-            export type K<M_Source, T_D> = T_D
+            export type key<M_Source, T_D> = string
+            export type value<M_Source, T_D> = T_D
         }
-        export type L<M_Source, T_D> = _pt.Key_Value_Pair<T_D>
+        export type L<M_Source, T_D> = {
+            readonly 'key': string
+            readonly 'value': T_D
+        }
     }
-    export type ordered_list<M_Source, T_D> = _pt.Array<_pt.Key_Value_Pair<T_D>>
+    export type ordered_list<M_Source, T_D> = _pt.Array<{
+        readonly 'key': string
+        readonly 'value': T_D
+    }>
 }
 
 export namespace _T_Reference_To_Circular_Dependent_Sibling {
@@ -117,11 +127,18 @@ export namespace Ordered_Dictionary {
     export namespace ordered_list {
         
         export namespace L {
-            export type K<M_Source, T_D> = T_D
+            export type key<M_Source, T_D> = string
+            export type value<M_Source, T_D> = T_D
         }
-        export type L<M_Source, T_D> = _pt.Key_Value_Pair<T_D>
+        export type L<M_Source, T_D> = {
+            readonly 'key': string
+            readonly 'value': T_D
+        }
     }
-    export type ordered_list<M_Source, T_D> = _pt.Array<_pt.Key_Value_Pair<T_D>>
+    export type ordered_list<M_Source, T_D> = _pt.Array<{
+        readonly 'key': string
+        readonly 'value': T_D
+    }>
 }
 
 export namespace Reference_To_Circular_Dependent_Sibling {
