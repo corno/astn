@@ -1,37 +1,123 @@
-# ASTN (Abstract Syntax Tree Notation)
+<div align="center">
+  <img src="./images/icon.png" alt="ASTN Logo" width="120" height="120"/>
+  
+  # ASTN
+  ### Abstract Syntax Tree Notation
+  
+  [![npm version](https://img.shields.io/npm/v/astn?color=blue&style=flat-square)](https://www.npmjs.com/package/astn)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+  [![License](https://img.shields.io/badge/License-Apache%202.0-green?style=flat-square)](LICENSE)
+  [![VS Code Extension](https://img.shields.io/badge/VS%20Code-Extension%20Available-blue?style=flat-square&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=astn)
+  
+  **A human-editable data format that extends JSON with type awareness**
 
-A TypeScript library for parsing and formatting ASTN documents (Abstract Syntax Tree Notation) - a human-editable data format designed for structured content.
+  <br/>
+  
+  <div align="center">
+    <table>
+      <tr>
+        <td align="center" style="border: 2px solid #0366d6; border-radius: 8px; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+          <strong>💡 ASTN does for JSON what TypeScript does for JavaScript</strong>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <br/>
+  
+  *Enhanced readability • Rich data structures • Built-in formatting*
+</div>
 
-**ASTN is a superset of JSON** - any valid JSON document is also valid ASTN, but ASTN provides a number additional features for enhanced readability and functionality.
+---
 
-## Features of the ASTN specification
+## 📚 Table of Contents
 
-- 📋 **Multiple string types** - Support for quoted, backticked, apostrophed, and undelimited strings
-- 💬 **Comments** - Line and block comment support
-- 🏗️ **Rich data structures** - dictionaries, lists, groups, tagged values, include, set, not set
-- 📄 **Document headers** - Optional header metadata for documents
-- 🔗 **File inclusion** - Import other ASTN files with `@` syntax
-- ✨ **Flexible punctuation** - Commas are optional, trailing commas are allowed
+- [✨ Features](#features)
+- [🚀 Quick Start](#quick-start)
+- [🆚 JSON vs ASTN Comparison](#json-vs-astn-comparison)
+- [📖 ASTN Syntax Overview](#astn-syntax-overview)
+- [🔧 VS Code Extension](#vs-code-extension)
+- [⚡ CLI Usage](#cli-usage)
+- [📚 Documentation](#documentation)
 
-## Sample file
+---
 
-[sample AST File](./sample_astn_file.astn)
+**ASTN is a superset of JSON** - any valid JSON document is also valid ASTN, but ASTN provides additional features for enhanced readability and functionality.
 
-## Features of this tool
+## ✨ Features
 
-- 🚀 **Fast parsing** - Efficient lexer and parser implementation
-- 📝 **Format validation** - Comprehensive error reporting with location information
-- 🎨 **Code formatting** - Built-in formatter for consistent code style
+<table>
+<tr>
+<td width="50%">
 
-## Installation
+### 📝 **Enhanced Syntax**
+- 📋 **Multiple string types** - quoted, backticked, apostrophed, and undelimited
+- 💬 **Comments** - Line and block comments throughout
+- ✨ **Flexible punctuation** - Optional commas, trailing commas allowed
+
+</td>
+<td width="50%">
+
+### 🏗️ **Rich Data Structures** 
+- 🗂️ **Dictionaries & Lists** - Clear instance vs schema distinction
+- 🏷️ **Tagged values** - Type information embedded in data
+- 📄 **Document headers** - Optional metadata for documents
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔗 **Advanced Features**
+- � **File inclusion** - Import other files with `@` syntax
+- ❓ **Optional values** - Explicit optional/not-set markers
+- 🎯 **Groups** - Concise and verbose structured data
+
+</td>
+<td width="50%">
+
+### 🚀 **Developer Experience**
+- ⚡ **Fast parsing** - Efficient lexer and parser
+- � **Rich validation** - Comprehensive error reporting
+- 🎨 **Auto-formatting** - Built-in code formatter
+
+</td>
+</tr>
+</table>
+
+## 🚀 Quick Start
+
+### 📝 For Authoring ASTN Files
+
+Want to start writing ASTN files or create ASTN schemas? Get the best editing experience with VS Code:
+
+1. **Install VS Code Extension**
+   - Search for "**astn**" in the VS Code Extensions marketplace
+   - Or install directly: `ext install astn`
+
+2. **Create a new file** with `.astn` extension
+
+3. **Create rich textual languages effortlessly** - Design expressive, domain-specific formats that read naturally and feel powerful, without needing to learn anything about parsing or language implementation. ASTN handles all the technical complexity while you focus on creating beautiful, meaningful syntax.
+
+4. **Start writing!** Check out our [sample ASTN file](./sample_astn_file.astn) to see the syntax in action
+
+5. **Features you'll get:**
+   - 🎨 Syntax highlighting
+   - 🔍 Real-time error detection
+   - 📝 IntelliSense and autocompletion
+   - 🔧 Automatic formatting
+
+### 💻 For Software Development
+
+Want to parse and work with ASTN files in your application?
+
+#### Installation
 
 ```bash
 npm install astn
 ```
 
-## Quick Start
-
-### Parsing ASTN
+#### Parsing ASTN
 
 ```typescript
 import { Parser } from 'astn';
@@ -57,7 +143,7 @@ if (result[0] === 'success') {
 }
 ```
 
-### Formatting ASTN
+#### Formatting ASTN
 
 ```typescript
 import * as format from 'astn/format';
@@ -71,7 +157,7 @@ const edits = format.Document(document, {
 });
 ```
 
-### Error Handling
+#### Error Handling
 
 ```typescript
 import * as create_error_message from 'astn/create_error_message';
@@ -106,9 +192,9 @@ Since ASTN is a superset of JSON, any valid JSON works as-is:
 
 But ASTN extends JSON with additional features for better readability and functionality.
 
-### JSON vs ASTN Comparison
+## 🆚 JSON vs ASTN Comparison
 
-Here's the same data structure in JSON vs ASTN, showing ASTN's enhanced features:
+Here's the same data structure showing ASTN's enhanced features:
 
 <table>
 <tr>
@@ -362,7 +448,11 @@ undelimited_string     // Flexible literals (dates, numbers, booleans, etc.)
 }
 ```
 
-## VS Code Extension
+## 🔧 VS Code Extension
+
+<div align="center">
+  <img src="https://img.shields.io/badge/VS%20Code-Extension%20Available-blue?style=for-the-badge&logo=visualstudiocode" alt="VS Code Extension"/>
+</div>
 
 For the best development experience with ASTN files, install the **ASTN** VS Code extension:
 
@@ -370,11 +460,11 @@ For the best development experience with ASTN files, install the **ASTN** VS Cod
 - **Features**: Syntax highlighting, error detection, and formatting support
 - **Installation**: Search for "astn" in the VS Code Extensions marketplace
 
-The extension provides:
-- 🎨 Syntax highlighting for `.astn` files
-- 🔍 Real-time error detection and validation
-- 📝 IntelliSense and autocompletion
-- 🔧 Integrated formatting support
+### Extension Features:
+- 🎨 **Syntax highlighting** for `.astn` files
+- 🔍 **Real-time error detection** and validation
+- 📝 **IntelliSense** and autocompletion
+- 🔧 **Integrated formatting** support
 
 ## CLI Usage
 
@@ -400,19 +490,36 @@ npx astn-validate < input.astn
 - `format.Document(doc, options)` - Format a document
 - `create_error_message.Parse_Error(error, options)` - Create human-readable error messages
 
-## Documentation
+## 📚 Documentation
 
-- [Railroad Diagrams](./documentation/railroad_diagram/index.md)
-- [EBNF Grammar](./extra/astn.ebnf)
+<div align="center">
 
-## Contributing
+| Resource | Description |
+|----------|-------------|
+| 🚂 [Railroad Diagrams](./documentation/railroad_diagram/index.md) | Visual syntax diagrams |
+| 📝 [EBNF Grammar](./extra/astn.ebnf) | Formal grammar specification |
+| 📋 [Sample File](./sample_astn_file.astn) | Example ASTN syntax |
+
+</div>
+
+---
+
+<div align="center">
+
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+## 📄 License
 
-Apache 2.0 License - see LICENSE file for details.
+Apache 2.0 License - see [LICENSE](LICENSE) file for details.
 
-## Version
+## 📦 Version
 
-Current version: 0.110.5
+Current version: **0.110.5**
+
+---
+
+<sub>Made with ❤️ for better data formats</sub>
+
+</div>
