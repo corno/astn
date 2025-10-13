@@ -15,12 +15,18 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
     switch ($[0]) {
         case 'dictionary': return _pa.ss($, ($) => ({
             'state': "dictionary",
-            'value': ['dictionary', $.map(($) => Value(
-                $,
-                {
-                    'value serializers': $p['value serializers'],
-                }
-            ))],
+            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+                'key': _pa.cc($['key'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'value': _pa.cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })])],
         }))
         case 'list': return _pa.ss($, ($) => ({
             'state': "list",
@@ -99,12 +105,18 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'verbose group': return _pa.ss($, ($) => ({
             'state': "verbose group",
-            'value': ['dictionary', $.map(($) => Value(
-                $,
-                {
-                    'value serializers': $p['value serializers'],
-                }
-            ))],
+            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+                'key': _pa.cc($['key'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'value': _pa.cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })])],
         }))
         default: return _pa.au($[0])
     }

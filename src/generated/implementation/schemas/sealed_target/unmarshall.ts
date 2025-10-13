@@ -17,13 +17,34 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_uncon
     $,
     {
         'states': _pa.dictionary_literal({
-            'dictionary': ($): _i_out._T_Value.SG => ['dictionary', _i_generic.process_unconstrained_dictionary(
+            'dictionary': ($): _i_out._T_Value.SG => ['dictionary', _i_generic.process_unconstrained_list(
                 $,
                 {
-                    'value': ($) => Value(
+                    'value': ($) => _i_generic.process_group(
                         $,
                         {
-                            'value deserializers': $p['value deserializers'],
+                            'properties': ($) => ({
+                                'key': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "key",
+                                    }
+                                ), ($) => _i_generic.process_text(
+                                    $,
+                                    null
+                                )),
+                                'value': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "value",
+                                    }
+                                ), ($) => Value(
+                                    $,
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
+                                )),
+                            }),
                         }
                     ),
                 }
@@ -127,13 +148,34 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_uncon
                     }),
                 }
             )],
-            'verbose group': ($): _i_out._T_Value.SG => ['verbose group', _i_generic.process_unconstrained_dictionary(
+            'verbose group': ($): _i_out._T_Value.SG => ['verbose group', _i_generic.process_unconstrained_list(
                 $,
                 {
-                    'value': ($) => Value(
+                    'value': ($) => _i_generic.process_group(
                         $,
                         {
-                            'value deserializers': $p['value deserializers'],
+                            'properties': ($) => ({
+                                'key': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "key",
+                                    }
+                                ), ($) => _i_generic.process_text(
+                                    $,
+                                    null
+                                )),
+                                'value': _pa.cc(_i_generic.get_entry(
+                                    $,
+                                    {
+                                        'key': "value",
+                                    }
+                                ), ($) => Value(
+                                    $,
+                                    {
+                                        'value deserializers': $p['value deserializers'],
+                                    }
+                                )),
+                            }),
                         }
                     ),
                 }

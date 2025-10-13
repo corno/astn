@@ -7,7 +7,10 @@ import * as _i_core from "../../../core/resolved"
 export type _T_Document = _T_Value
 
 export type _T_Value = _i_core._T_State_Group<null, 
-    | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+    | readonly ['dictionary', _i_core._T_List<null, {
+        readonly 'key': string
+        readonly 'value': _T_Value
+    }>]
     | readonly ['list', _i_core._T_List<null, _T_Value>]
     | readonly ['nothing', null]
     | readonly ['optional', _i_core._T_State_Group<null, 
@@ -26,7 +29,10 @@ export type _T_Value = _i_core._T_State_Group<null,
         >
         readonly 'value': string
     }]
-    | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
+    | readonly ['verbose group', _i_core._T_List<null, {
+        readonly 'key': string
+        readonly 'value': _T_Value
+    }>]
 >
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
@@ -46,11 +52,22 @@ export namespace _T_Value {
         
         export namespace dictionary {
             
-            export namespace D {
+            export namespace L {
+                export type key = string
+                
+                export namespace value {
+                }
+                export type value = _T_Value
             }
-            export type D = _T_Value
+            export type L = {
+                readonly 'key': string
+                readonly 'value': _T_Value
+            }
         }
-        export type dictionary = _i_core._T_Dictionary<null, _T_Value>
+        export type dictionary = _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>
         
         export namespace list {
             
@@ -123,14 +140,28 @@ export namespace _T_Value {
         
         export namespace verbose_group {
             
-            export namespace D {
+            export namespace L {
+                export type key = string
+                
+                export namespace value {
+                }
+                export type value = _T_Value
             }
-            export type D = _T_Value
+            export type L = {
+                readonly 'key': string
+                readonly 'value': _T_Value
+            }
         }
-        export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
+        export type verbose_group = _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>
     }
     export type SG = 
-        | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['dictionary', _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>]
         | readonly ['list', _i_core._T_List<null, _T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', _i_core._T_State_Group<null, 
@@ -149,7 +180,10 @@ export namespace _T_Value {
             >
             readonly 'value': string
         }]
-        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['verbose group', _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>]
 }
 
 // *** ALIASES FOR NESTED TYPES
@@ -163,11 +197,22 @@ export namespace Value {
         
         export namespace dictionary {
             
-            export namespace D {
+            export namespace L {
+                export type key = string
+                
+                export namespace value {
+                }
+                export type value = _T_Value
             }
-            export type D = _T_Value
+            export type L = {
+                readonly 'key': string
+                readonly 'value': _T_Value
+            }
         }
-        export type dictionary = _i_core._T_Dictionary<null, _T_Value>
+        export type dictionary = _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>
         
         export namespace list {
             
@@ -240,14 +285,28 @@ export namespace Value {
         
         export namespace verbose_group {
             
-            export namespace D {
+            export namespace L {
+                export type key = string
+                
+                export namespace value {
+                }
+                export type value = _T_Value
             }
-            export type D = _T_Value
+            export type L = {
+                readonly 'key': string
+                readonly 'value': _T_Value
+            }
         }
-        export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
+        export type verbose_group = _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>
     }
     export type SG = 
-        | readonly ['dictionary', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['dictionary', _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>]
         | readonly ['list', _i_core._T_List<null, _T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', _i_core._T_State_Group<null, 
@@ -266,5 +325,8 @@ export namespace Value {
             >
             readonly 'value': string
         }]
-        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
+        | readonly ['verbose group', _i_core._T_List<null, {
+            readonly 'key': string
+            readonly 'value': _T_Value
+        }>]
 }
