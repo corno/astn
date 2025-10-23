@@ -49,10 +49,10 @@
   "dependencies": {
     "exupery-core-alg": "^0.1.12",
     "exupery-core-bin": "^0.1.18",
-    "exupery-core-data": "^0.1.10",
-    "exupery-core-dev": "^0.1.2",
+    "exupery-core-data": "^0.1.11",
+    "exupery-core-dev": "^0.1.3",
     "pareto-fountain-pen": "^0.1.33",
     "pareto-json": "^0.1.10",
-    "pareto-standard-operations": "^0.1.12"
+    "pareto-standard-operations": "^0.1.13"
   }
 }
