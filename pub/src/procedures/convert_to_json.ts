@@ -11,7 +11,6 @@ import * as s_json from "pareto-json/dist/serializers/json"
 import { $$ as p_log } from "exupery-resources/dist/procedures/log"
 import { $$ as p_log_error } from "exupery-resources/dist/procedures/log_error"
 
-import * as D_Resources from "exupery-resources/dist/types"
 import * as _target from "../generated/interface/schemas/authoring_parse_result/data_types/target"
 
 
