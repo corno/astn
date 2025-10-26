@@ -462,6 +462,14 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 string_iterator['consume character']()
                                 $i['add element'](Character.quotation_mark)
                                 break
+                            case Character.apostrophe:
+                                string_iterator['consume character']()
+                                $i['add element'](Character.apostrophe)
+                                break
+                            case Character.backtick:
+                                string_iterator['consume character']()
+                                $i['add element'](Character.backtick)
+                                break
                             case Character.reverse_solidus:
                                 string_iterator['consume character']()
                                 $i['add element'](Character.reverse_solidus)
