@@ -5,7 +5,7 @@ import * as _in from "../../generated/interface/schemas/authoring_ast/data_types
 import * as _in_token from "../../generated/interface/schemas/token/data_types/source"
 import * as _out from "../../generated/interface/schemas/ide/data_types/target"
 
-import { $$ as op_flatten } from "pareto-standard-operations/dist/pure/list/flatten"
+import { $$ as op_flatten } from "pareto-standard-operations/dist/operations/pure/list/flatten"
 
 export const Whitespace = (
     $: _in_token.Whitespace,

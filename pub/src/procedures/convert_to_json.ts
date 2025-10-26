@@ -2,8 +2,8 @@ import * as _ea from 'exupery-core-alg'
 import * as _eb from 'exupery-core-bin'
 import * as _easync from 'exupery-core-async'
 
-import * as parse from "../authoring_parse/parse"
-import * as create_error_message from "../serializers/parse_result"
+import * as parse from "../exceptional/authoring_parse/parse"
+import * as create_error_message from "../exceptional/serializers/parse_result"
 
 import * as t_ast_2_json from "../transformations/authoring_ast/json_target"
 import * as s_json from "pareto-json/dist/serializers/json"

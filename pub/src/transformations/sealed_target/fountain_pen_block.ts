@@ -7,9 +7,9 @@ import {
     b, l, block,
 } from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/serialize_apostrophed_string"
-import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/serialize_quoted_string"
-import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/serialize_backticked_string"
+import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/string/serialize_apostrophed_string"
+import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/string/serialize_quoted_string"
+import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/string/serialize_backticked_string"
 
 export const Value = (
     $: d_in.Value,

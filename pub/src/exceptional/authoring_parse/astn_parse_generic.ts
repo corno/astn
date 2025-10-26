@@ -3,8 +3,8 @@ import * as _et from 'exupery-core-types'
 
 import * as si from "./string_iterator"
 
-import * as _source from "../generated/interface/schemas/token/data_types/source"
-import * as d_parse_result from "../generated/interface/schemas/sealed_parse_result/data_types/target"
+import * as _source from "../../generated/interface/schemas/token/data_types/source"
+import * as d_parse_result from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
 
 export class Parse_Error_Class {
     

@@ -1,18 +1,17 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import { $$ as op_escape_character } from "pareto-standard-operations/dist/impure/text/escape_character"
+import { $$ as op_escape_character } from "pareto-standard-operations/dist/operations/impure/text/escape_character"
 
 export const $$ = ($: {
     'value': string
     'add delimiters': boolean
-}): string => ($['add delimiters'] ? '`' : '')
+}): string => ($['add delimiters'] ? "'" : "")
     + op_escape_character(
         $.value,
         {
-            'character code': 96, // `
+            'character code': 39, // '
             'escape character code': 92, // \
-
         }
     )
-    + ($['add delimiters'] ? '`' : '')
+    + ($['add delimiters'] ? "'" : "")

@@ -1,16 +1,16 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _out from "../generated/interface/schemas/token/data_types/target"
+import * as _out from "../../generated/interface/schemas/token/data_types/target"
 
 import { String_Iterator } from "./string_iterator"
 import { throw_lexer_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
-import { $$ as op_from_character_list } from "exupery-standard-library/dist/text/from_character_list"
-import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/integer/parse_hexadecimal"
+import { $$ as op_from_character_list } from "exupery-standard-library/dist/operations/impure/text/from_character_list"
+import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/operations/impure/integer/parse_hexadecimal"
 
-//this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
+//this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
 
 const WhitespaceChars = {

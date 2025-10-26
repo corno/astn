@@ -1,9 +1,9 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _target from "../generated/interface/schemas/sealed_ast/data_types/target"
-import * as d_parse_result from "../generated/interface/schemas/sealed_parse_result/data_types/target"
-import * as _source from "../generated/interface/schemas/token/data_types/source"
+import * as _target from "../../generated/interface/schemas/sealed_ast/data_types/target"
+import * as d_parse_result from "../../generated/interface/schemas/sealed_parse_result/data_types/target"
+import * as _source from "../../generated/interface/schemas/token/data_types/source"
 
 import * as pg from "./astn_parse_generic"
 
