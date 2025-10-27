@@ -11,84 +11,84 @@ import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure
 
 export const Value = (
     $: d_in.Value,
-): d_out.Line_Part => {
-    return sh.l.sub([
+): d_out.Block_Part => {
+    return sh.b.sub([
         _ea.cc($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _ea.ss($, ($) => sh.l.sub([
-                    sh.l.snippet("{"),
-                    sh.l.indent([
-                        sh.g.sub($.map(($) => sh.g.nested_line([
-                            sh.l.snippet(op_serialize_with_grave_delimiter({
+                case 'dictionary': return _ea.ss($, ($) => sh.b.sub([
+                    sh.b.snippet("{"),
+                    sh.b.indent([
+                        sh.g.sub($.map(($) => sh.g.nested_block([
+                            sh.b.snippet(op_serialize_with_grave_delimiter({
                                 'value': $.key,
                                 'add delimiters': true
                             })),
-                            sh.l.snippet(": "),
+                            sh.b.snippet(": "),
                             Value($.value),
                         ]))),
                     ]),
-                    sh.l.snippet("}"),
+                    sh.b.snippet("}"),
                 ]))
-                case 'verbose group': return _ea.ss($, ($) => sh.l.sub([
+                case 'verbose group': return _ea.ss($, ($) => sh.b.sub([
                     _ea.block(() => {
-                        return sh.l.sub([
-                            sh.l.snippet("("),
-                            sh.l.indent([
-                                sh.g.sub($.map(($) => sh.g.nested_line([
-                                    sh.l.snippet(op_serialize_with_apostrophe_delimiter({
+                        return sh.b.sub([
+                            sh.b.snippet("("),
+                            sh.b.indent([
+                                sh.g.sub($.map(($) => sh.g.nested_block([
+                                    sh.b.snippet(op_serialize_with_apostrophe_delimiter({
                                 'value': $.key,
                                 'add delimiters': true
                             })),
-                                    sh.l.snippet(": "),
+                                    sh.b.snippet(": "),
                                     Value($.value),
                                 ]))),
                             ]),
-                            sh.l.snippet(")"),
+                            sh.b.snippet(")"),
                         ])
                     })
                 ]))
-                case 'list': return _ea.ss($, ($) => sh.l.sub([
-                    sh.l.snippet("["),
-                   sh.l.sub($.map(($) => sh.l.sub([
-                        sh.l.snippet(" "),
+                case 'list': return _ea.ss($, ($) => sh.b.sub([
+                    sh.b.snippet("["),
+                   sh.b.sub($.map(($) => sh.b.sub([
+                        sh.b.snippet(" "),
                         Value($),
                     ]))),
-                    sh.l.snippet(" ]"),
+                    sh.b.snippet(" ]"),
                 ]))
-                case 'state': return _ea.ss($, ($) => sh.l.sub([
-                    sh.l.snippet("| "),
-                    sh.l.snippet(op_serialize_with_apostrophe_delimiter({
+                case 'state': return _ea.ss($, ($) => sh.b.sub([
+                    sh.b.snippet("| "),
+                    sh.b.snippet(op_serialize_with_apostrophe_delimiter({
                                 'value': $.state,
                                 'add delimiters': true
                             })),
-                    sh.l.snippet(" "),
+                    sh.b.snippet(" "),
                     Value($.value),
                 ]))
                 case 'optional': return _ea.ss($, ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
-                        case 'not set': return _ea.ss($, ($) => sh.l.snippet("~"))
-                        case 'set': return _ea.ss($, ($) => sh.l.sub([
-                            sh.l.snippet("* "),
+                        case 'not set': return _ea.ss($, ($) => sh.b.snippet("~"))
+                        case 'set': return _ea.ss($, ($) => sh.b.sub([
+                            sh.b.snippet("* "),
                             Value($),
                         ]))
 
                         default: return _ea.au($[0])
                     }
                 }))
-                case 'nothing': return _ea.ss($, ($) => sh.l.snippet("~"))
+                case 'nothing': return _ea.ss($, ($) => sh.b.snippet("~"))
                 case 'text': return _ea.ss($, ($) => {
                     const value = $.value
                     return _ea.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _ea.ss($, ($) => sh.l.snippet(op_serialize_with_grave_delimiter({
+                            case 'backtick': return _ea.ss($, ($) => sh.b.snippet(op_serialize_with_grave_delimiter({
                                 'value': value,
                                 'add delimiters': true
                             })))
-                            case 'quote': return _ea.ss($, ($) => sh.l.snippet(op_serialize_with_quote_delimiter({
+                            case 'quote': return _ea.ss($, ($) => sh.b.snippet(op_serialize_with_quote_delimiter({
                                 'value': value,
                                 'add delimiters': true
                             })))
-                            case 'none': return _ea.ss($, ($) => sh.l.snippet(value))
+                            case 'none': return _ea.ss($, ($) => sh.b.snippet(value))
                             default: return _ea.au($[0])
                         }
                     })
@@ -104,6 +104,6 @@ export const Document = (
     $p: {
     }
 
-): d_out.Group => sh.group([ sh.g.nested_line([
+): d_out.Group => sh.group([ sh.g.nested_block([
     Value($),
 ])])
