@@ -8,13 +8,13 @@ import * as create_error_message from "../../exceptional/serializers/parse_resul
 import * as t_ast_2_json from "../../transformations/authoring_parse_tree/json_target"
 import * as s_json from "pareto-json/dist/serializers/json"
 
-import { $$ as p_log } from "exupery-resources/dist/procedures/log"
-import { $$ as p_log_error } from "exupery-resources/dist/procedures/log_error"
+import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
+import { $$ as p_log_error } from "exupery-resources/dist/procedures/guaranteed/log_error"
 
 import * as _target from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
 
 
-import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/get_instream_data"
+import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/guaranteed/get_instream_data"
 
 export const $$: _eb.Unguaranteed_Main_Initializer = (
 
