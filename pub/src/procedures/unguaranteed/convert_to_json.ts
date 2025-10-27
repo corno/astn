@@ -9,7 +9,6 @@ import * as t_ast_2_json from "../../transformations/authoring_parse_tree/json_t
 import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
-import { $$ as p_log_error } from "exupery-resources/dist/procedures/guaranteed/log_error"
 
 import * as _target from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
 
