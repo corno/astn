@@ -6,7 +6,7 @@ import * as parse from "../../exceptional/authoring_parse/parse"
 import * as create_error_message from "../../exceptional/serializers/parse_result"
 
 import * as t_ast_2_json from "../../transformations/authoring_parse_tree/json_target"
-import * as s_json from "pareto-json/dist/serializers/json"
+import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
 import { $$ as p_log_error } from "exupery-resources/dist/procedures/guaranteed/log_error"
