@@ -4,17 +4,6 @@
   "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    },
-    "./bin/*": "./dist/bin/*",
-    "./exceptional/*": "./dist/exceptional/*",
-    "./generated/*": "./dist/generated/*",
-    "./operations/*": "./dist/operations/*",
-    "./procedures/*": "./dist/procedures/*",
-    "./transformations/*": "./dist/transformations/*"
-  },
   "bin": {
     "astn-validate": "./dist/bin/validate_astn.js"
   },
