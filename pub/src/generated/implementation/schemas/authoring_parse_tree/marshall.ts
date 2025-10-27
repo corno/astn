@@ -3,7 +3,7 @@ import * as _pd from 'exupery-core-dev'
 
 import * as _i_out from "../../../interface/core/astn_target"
 import * as _i_r_token from "../token/marshall"
-import * as _i_signatures from "../../../interface/schemas/authoring_ast/marshall"
+import * as _i_signatures from "../../../interface/schemas/authoring_parse_tree/marshall"
 
 
 export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {

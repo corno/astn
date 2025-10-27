@@ -2,7 +2,7 @@ import * as _pa from 'exupery-core-alg'
 import * as _pd from 'exupery-core-dev'
 
 import * as _i_out from "../../../interface/core/astn_target"
-import * as _i_r_ast from "../authoring_ast/marshall"
+import * as _i_r_parse_tree from "../authoring_parse_tree/marshall"
 import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../interface/schemas/authoring_parse_result/marshall"
 
@@ -171,7 +171,7 @@ export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', 
         }))
         case 'success': return _pa.ss($, ($) => ({
             'state': "success",
-            'value': _i_r_ast.Document(
+            'value': _i_r_parse_tree.Document(
                 $,
                 {
                     'value serializers': $p['value serializers'],

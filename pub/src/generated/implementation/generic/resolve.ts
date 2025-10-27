@@ -1,6 +1,5 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
-import * as _edata from 'exupery-core-data'
 
 import * as unresolved$ from "../../interface/core/unresolved"
 import * as resolved$ from "../../interface/core/resolved"
@@ -33,9 +32,6 @@ export type Resolved_Step<Resolved_Element, Seed> = {
     'element': Resolved_Element,
     'result': Seed
 }
-
-export type _T_Location_Info = _edata.Source_Location
-export type Location_Info = _edata.Source_Location
 
 export type Resolve_Error<Source> = {
     'location': Source

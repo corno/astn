@@ -1,7 +1,7 @@
 import * as _pt from 'exupery-core-types'
 
 import * as _i_core from "../../../core/unconstrained"
-import * as _i_imports_ast from "../../authoring_ast/data_types/target"
+import * as _i_imports_parse_tree from "../../authoring_parse_tree/data_types/target"
 import * as _i_imports_token from "../../token/data_types/target"
 
 // **** TYPES
@@ -48,7 +48,7 @@ export type _T_Parse_Error = {
 
 export type _T_Parse_Result = _i_core._T_State_Group<null, 
     | readonly ['failure', _T_Parse_Error]
-    | readonly ['success', _i_imports_ast._T_Document]
+    | readonly ['success', _i_imports_parse_tree._T_Document]
 >
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
@@ -305,11 +305,11 @@ export namespace _T_Parse_Result {
         
         export namespace success {
         }
-        export type success = _i_imports_ast._T_Document
+        export type success = _i_imports_parse_tree._T_Document
     }
     export type SG = 
         | readonly ['failure', _T_Parse_Error]
-        | readonly ['success', _i_imports_ast._T_Document]
+        | readonly ['success', _i_imports_parse_tree._T_Document]
 }
 
 // *** ALIASES FOR NESTED TYPES
@@ -560,9 +560,9 @@ export namespace Parse_Result {
         
         export namespace success {
         }
-        export type success = _i_imports_ast._T_Document
+        export type success = _i_imports_parse_tree._T_Document
     }
     export type SG = 
         | readonly ['failure', _T_Parse_Error]
-        | readonly ['success', _i_imports_ast._T_Document]
+        | readonly ['success', _i_imports_parse_tree._T_Document]
 }

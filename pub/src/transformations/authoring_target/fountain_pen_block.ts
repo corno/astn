@@ -3,9 +3,7 @@ import * as _ea from 'exupery-core-alg'
 import * as d_in from "../../generated/interface/schemas/authoring_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/generated/interface/schemas/block/data_types/target"
 
-import {
-    b, l, block,
-} from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/operations/impure/list/enrich_with_position_information"
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/string/serialize_apostrophed_string"
@@ -21,7 +19,7 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
     $,
     $p,
 ) => {
-    return l.sub([
+    return sh.l.sub([
         // does it need a leading space
         $p['in concise group']
             ? _ea.cc($.type, ($) => {
@@ -37,83 +35,83 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                     default: return _ea.au($[0])
                 }
             })
-                ? l.snippet(" ")
-                : l.nothing()
-            : l.nothing(),
+                ? sh.l.snippet(" ")
+                : sh.l.nothing()
+            : sh.l.nothing(),
         _ea.cc($.type, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _ea.ss($, ($) => l.sub([
-                    $p['write delimiters'] ? l.snippet("{") : l.snippet(""), //we always want a newline here
-                    l.indent([
-                        b.sub($.map(($) => b.nested_line([
-                            l.snippet(op_serialize_with_grave_delimiter({
+                case 'dictionary': return _ea.ss($, ($) => sh.l.sub([
+                    $p['write delimiters'] ? sh.l.snippet("{") : sh.l.snippet(""), //we always want a newline here
+                    sh.l.indent([
+                        sh.g.sub($.map(($) => sh.g.nested_line([
+                            sh.l.snippet(op_serialize_with_grave_delimiter({
                                 'value': $.key,
                                 'add delimiters': true,
                             })),
-                            l.snippet(": "),
+                            sh.l.snippet(": "),
                             Value($.value, {
                                 'in concise group': false,
                                 'write delimiters': true,
                             }),
                         ]))),
                     ]),
-                    $p['write delimiters'] ? l.snippet("}") : l.nothing(),
+                    $p['write delimiters'] ? sh.l.snippet("}") : sh.l.nothing(),
                 ]))
-                case 'verbose group': return _ea.ss($, ($) => l.sub([
+                case 'verbose group': return _ea.ss($, ($) => sh.l.sub([
                     _ea.block(() => {
                         const entries = $
-                        return l.sub([
-                            $p['write delimiters'] ? l.snippet("(") : l.snippet(""), //we always want a newline here
-                            l.indent([
-                                b.sub(entries.map(($) => b.nested_line([
-                                    l.snippet(op_serialize_with_apostrophe_delimiter({
+                        return sh.l.sub([
+                            $p['write delimiters'] ? sh.l.snippet("(") : sh.l.snippet(""), //we always want a newline here
+                            sh.l.indent([
+                                sh.g.sub(entries.map(($) => sh.g.nested_line([
+                                    sh.l.snippet(op_serialize_with_apostrophe_delimiter({
                                         'value': $.key,
                                         'add delimiters': true,
                                     })),
-                                    l.snippet(": "),
+                                    sh.l.snippet(": "),
                                     Value($.value, {
                                         'in concise group': false,
                                         'write delimiters': true,
                                     }),
                                 ]))),
                             ]),
-                            $p['write delimiters'] ? l.snippet(")") : l.nothing(),
+                            $p['write delimiters'] ? sh.l.snippet(")") : sh.l.nothing(),
                         ])
                     })
                 ]))
-                case 'list': return _ea.ss($, ($) => l.sub([
-                    $p['write delimiters'] ? l.snippet("[") : l.nothing(),
-                    l.sub(op_enrich_list_elements_with_position_information($).map(($) => l.sub([
-                        l.snippet(" "),
+                case 'list': return _ea.ss($, ($) => sh.l.sub([
+                    $p['write delimiters'] ? sh.l.snippet("[") : sh.l.nothing(),
+                   sh.l.sub(op_enrich_list_elements_with_position_information($).map(($) => sh.l.sub([
+                        sh.l.snippet(" "),
                         Value($.value, {
                             'in concise group': false,
                             'write delimiters': true,
                         }),
                     ]))),
-                    $p['write delimiters'] ? l.snippet("]") : l.nothing(),
+                    $p['write delimiters'] ? sh.l.snippet("]") : sh.l.nothing(),
                 ]))
-                case 'concise group': return _ea.ss($, ($) => l.sub([
-                    $p['write delimiters'] ? l.snippet("<") : l.nothing(),
-                    l.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
+                case 'concise group': return _ea.ss($, ($) => sh.l.sub([
+                    $p['write delimiters'] ? sh.l.snippet("<") : sh.l.nothing(),
+                   sh.l.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
                         'in concise group': true,
                         'write delimiters': true,
                     }))),
-                    $p['write delimiters'] ? l.snippet(">") : l.nothing(),
+                    $p['write delimiters'] ? sh.l.snippet(">") : sh.l.nothing(),
                 ]))
                 case 'state': return _ea.ss($, ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
-                        case 'missing data': return _ea.ss($, ($) => l.snippet("| #"))
-                        case 'set': return _ea.ss($, ($) => l.sub([
+                        case 'missing data': return _ea.ss($, ($) => sh.l.snippet("| #"))
+                        case 'set': return _ea.ss($, ($) => sh.l.sub([
                             $p['in concise group']
-                                ? l.nothing()
-                                : $p['write delimiters'] ? l.snippet("| ") : l.nothing(),
-                            l.snippet(op_serialize_with_apostrophe_delimiter({
+                                ? sh.l.nothing()
+                                : $p['write delimiters'] ? sh.l.snippet("| ") : sh.l.nothing(),
+                            sh.l.snippet(op_serialize_with_apostrophe_delimiter({
                                 'value': $.state,
                                 'add delimiters': $p['write delimiters'],
                             })),
                             $p['in concise group']
-                                ? l.nothing()
-                                : l.snippet(" "),
+                                ? sh.l.nothing()
+                                : sh.l.snippet(" "),
                             Value($.value, {
                                 'in concise group': $p['in concise group'],
                                 'write delimiters': true
@@ -124,9 +122,9 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                 }))
                 case 'optional': return _ea.ss($, ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
-                        case 'not set': return _ea.ss($, ($) => l.snippet("~"))
-                        case 'set': return _ea.ss($, ($) => l.sub([
-                            l.snippet("* "),
+                        case 'not set': return _ea.ss($, ($) => sh.l.snippet("~"))
+                        case 'set': return _ea.ss($, ($) => sh.l.sub([
+                            sh.l.snippet("* "),
                             Value($, {
                                 'in concise group': $p['in concise group'],
                                 'write delimiters': true,
@@ -136,20 +134,20 @@ export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Pa
                         default: return _ea.au($[0])
                     }
                 }))
-                case 'nothing': return _ea.ss($, ($) => l.snippet("~"))
+                case 'nothing': return _ea.ss($, ($) => sh.l.snippet("~"))
                 case 'text': return _ea.ss($, ($) => {
                     const value = $.value
                     return _ea.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _ea.ss($, ($) => l.snippet(op_serialize_with_grave_delimiter({
+                            case 'backtick': return _ea.ss($, ($) => sh.l.snippet(op_serialize_with_grave_delimiter({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'quote': return _ea.ss($, ($) => l.snippet(op_serialize_with_quote_delimiter({
+                            case 'quote': return _ea.ss($, ($) => sh.l.snippet(op_serialize_with_quote_delimiter({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'none': return _ea.ss($, ($) => l.snippet(value))
+                            case 'none': return _ea.ss($, ($) => sh.l.snippet(value))
                             default: return _ea.au($[0])
                         }
                     })
@@ -165,7 +163,7 @@ export const Document = (
     $p: {
     }
 
-): d_out.Block => block([b.nested_line([
+): d_out.Group => sh.group([ sh.g.nested_line([
     Value($, {
         'in concise group': false,
         'write delimiters': true,
