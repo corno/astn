@@ -1,7 +1,7 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
+import * as _in from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
 import * as _out from "pareto-json/dist/generated/interface/schemas/json/data_types/target"
 
 const op = {

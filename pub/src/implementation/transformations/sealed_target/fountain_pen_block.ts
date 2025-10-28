@@ -1,13 +1,13 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as d_in from "../../interface/generated/pareto/schemas/sealed_target/data_types/source"
+import * as d_in from "../../../interface/generated/pareto/schemas/sealed_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/generated/interface/schemas/block/data_types/target"
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/string/serialize_apostrophed_string"
-import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/string/serialize_quoted_string"
-import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/string/serialize_backticked_string"
+import { $$ as op_serialize_with_apostrophe_delimiter } from "../../../implementation/operations/impure/string/serialize_apostrophed_string"
+import { $$ as op_serialize_with_quote_delimiter } from "../../../implementation/operations/impure/string/serialize_quoted_string"
+import { $$ as op_serialize_with_grave_delimiter } from "../../../implementation/operations/impure/string/serialize_backticked_string"
 
 export const Value = (
     $: d_in.Value,

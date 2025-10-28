@@ -2,6 +2,6 @@
 
 import * as _eb from 'exupery-core-bin'
 
-import { $$ } from "../procedures/unguaranteed/validate_astn"
+import { $$ } from "../implementation/procedures/unguaranteed/validate_astn"
 
 _eb.run_unguaranteed_main_procedure($$)

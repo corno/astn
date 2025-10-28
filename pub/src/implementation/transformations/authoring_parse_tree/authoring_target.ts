@@ -1,8 +1,8 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
-import * as _out from "../../interface/generated/pareto/schemas/authoring_target/data_types/target"
+import * as _in from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
+import * as _out from "../../../interface/generated/pareto/schemas/authoring_target/data_types/target"
 
 // export const Value = (
 //     $: _in.Value,
