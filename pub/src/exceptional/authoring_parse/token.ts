@@ -1,7 +1,7 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _out from "../../generated/interface/schemas/token/data_types/target"
+import * as _out from "../../interface/generated/pareto/schemas/token/data_types/target"
 
 import { String_Iterator } from "./string_iterator"
 import { throw_lexer_error } from "./astn_parse_generic"

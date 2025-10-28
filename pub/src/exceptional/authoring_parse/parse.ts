@@ -2,8 +2,8 @@ import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
 import * as d_ast from "./ast"
-import * as _target from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
-import * as s_ast from "../../generated/interface/schemas/authoring_parse_tree/data_types/target"
+import * as _target from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as s_ast from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 
 import * as pg from "./astn_parse_generic"
 import * as si from "./string_iterator"

@@ -1,6 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as d_in from "../../generated/interface/schemas/authoring_target/data_types/source"
+import * as d_in from "../../interface/generated/pareto/schemas/authoring_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/generated/interface/schemas/block/data_types/target"
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"

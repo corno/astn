@@ -8,7 +8,7 @@ import * as create_error_message from "../../exceptional/serializers/parse_resul
 import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
 import { $$ as p_log_error } from "exupery-resources/dist/procedures/guaranteed/log_error"
 
-import * as _target from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
+import * as _target from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/guaranteed/get_instream_data"
 

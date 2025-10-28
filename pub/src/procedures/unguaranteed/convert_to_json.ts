@@ -10,7 +10,7 @@ import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
 
-import * as _target from "../../generated/interface/schemas/authoring_parse_result/data_types/target"
+import * as _target from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 
 import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/guaranteed/get_instream_data"

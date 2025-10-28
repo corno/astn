@@ -1,6 +1,6 @@
 // import * as pa from 'exupery-core-alg'
 
-// import * as d_in from "../generated/interface/schemas/target/resolved"
+// import * as d_in from "../interface/generated/pareto/schemas/target/resolved"
 
 // import * as t_astn_instance_to_fountain_pen from "../transformations/fountain_pen/astn"
 
