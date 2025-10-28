@@ -3,3 +3,4 @@
 /pub/node_modules
 /test/dist
 /test/node_modules
+/this_should_be_flagged_as_superfluous
