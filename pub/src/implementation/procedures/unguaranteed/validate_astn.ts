@@ -5,12 +5,12 @@ import * as _easync from 'exupery-core-async'
 import * as parse from "../../../exceptional/authoring_parse/parse"
 import * as create_error_message from "../../../exceptional/serializers/parse_result"
 
-import { $$ as p_log } from "exupery-resources/dist/procedures/guaranteed/log"
-import { $$ as p_log_error } from "exupery-resources/dist/procedures/guaranteed/log_error"
+import { $$ as p_log } from "exupery-resources/dist/implementation/procedures/guaranteed/log"
+import { $$ as p_log_error } from "exupery-resources/dist/implementation/procedures/guaranteed/log_error"
 
 import * as _target from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import { $$ as q_get_instream_data } from "exupery-resources/dist/queries/guaranteed/get_instream_data"
+import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/queries/guaranteed/get_instream_data"
 
 export const $$: _eb.Unguaranteed_Main_Initializer = () => _easync.up.action(
     _easync.upi.g(p_log),
