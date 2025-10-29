@@ -6,6 +6,8 @@ import * as _in_token from "../../../interface/generated/pareto/schemas/token/da
 import * as _out from "../../../interface/generated/pareto/schemas/ide/data_types/target"
 
 import { $$ as op_flatten } from "pareto-standard-operations/dist/implementation/operations/pure/list/flatten"
+import { Signature } from "../../../interface/algorithms/transformations/authoring_parse_tree/ide"
+
 
 export const Whitespace = (
     $: _in_token.Whitespace,

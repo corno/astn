@@ -14,6 +14,8 @@ import * as _target from "../../../interface/generated/pareto/schemas/authoring_
 
 
 import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/queries/guaranteed/get_instream_data"
+import { Signature } from "../../../interface/algorithms/procedures/unguaranteed/convert_to_json"
+
 
 export const $$: _eb.Unguaranteed_Main_Initializer = (
 

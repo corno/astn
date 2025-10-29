@@ -3,6 +3,8 @@ import * as _ea from 'exupery-core-alg'
 
 import * as _in from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
 import * as _out from "../../../interface/generated/pareto/schemas/authoring_target/data_types/target"
+import { Signature } from "../../../interface/algorithms/transformations/authoring_parse_tree/authoring_target"
+
 
 // export const Value = (
 //     $: _in.Value,

@@ -11,6 +11,8 @@ import { $$ as p_log_error } from "exupery-resources/dist/implementation/procedu
 import * as _target from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/queries/guaranteed/get_instream_data"
+import { Signature } from "../../../interface/algorithms/procedures/unguaranteed/validate_astn"
+
 
 export const $$: _eb.Unguaranteed_Main_Initializer = () => _easync.up.action(
     _easync.upi.g(p_log),

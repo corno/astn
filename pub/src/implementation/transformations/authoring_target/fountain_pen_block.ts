@@ -9,6 +9,8 @@ import { $$ as op_enrich_list_elements_with_position_information } from "pareto-
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../../implementation/operations/impure/string/serialize_apostrophed_string"
 import { $$ as op_serialize_with_quote_delimiter } from "../../../implementation/operations/impure/string/serialize_quoted_string"
 import { $$ as op_serialize_with_grave_delimiter } from "../../../implementation/operations/impure/string/serialize_backticked_string"
+import { Signature } from "../../../interface/algorithms/transformations/authoring_target/fountain_pen_block"
+
 
 export type Parameters = {
     'write delimiters': boolean

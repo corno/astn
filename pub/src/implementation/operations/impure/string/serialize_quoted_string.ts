@@ -2,6 +2,8 @@ import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
 import { $$ as op_escape_character } from "pareto-standard-operations/dist/implementation/operations/impure/text/escape_character"
+import { Signature } from "../../../../interface/algorithms/operations/impure/string/serialize_quoted_string"
+
 
 export const $$ = ($: {
     'value': string
