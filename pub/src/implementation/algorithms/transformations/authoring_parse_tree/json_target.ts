@@ -1,9 +1,9 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
+import * as _in from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
 import * as _out from "pareto-json/dist/interface/generated/pareto/schemas/json/data_types/target"
-import { Signature } from "../../../interface/algorithms/transformations/authoring_parse_tree/json_target"
+import { Signature } from "../../../../interface/algorithms/transformations/authoring_parse_tree/json_target"
 
 
 const op = {

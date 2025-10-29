@@ -1,12 +1,12 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _in from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
-import * as _in_token from "../../../interface/generated/pareto/schemas/token/data_types/source"
-import * as _out from "../../../interface/generated/pareto/schemas/ide/data_types/target"
+import * as _in from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
+import * as _in_token from "../../../../interface/generated/pareto/schemas/token/data_types/source"
+import * as _out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
 
 import { $$ as op_flatten } from "pareto-standard-operations/dist/implementation/operations/pure/list/flatten"
-import { Signature } from "../../../interface/algorithms/transformations/authoring_parse_tree/ide"
+import { Signature } from "../../../../interface/algorithms/transformations/authoring_parse_tree/ide"
 
 
 export const Whitespace = (
