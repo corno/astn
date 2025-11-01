@@ -4,7 +4,7 @@ import * as _eb from 'exupery-core-bin'
 import * as _ea from 'exupery-core-alg'
 import * as _ed from 'exupery-core-dev'
 
-import { $$ as x } from "exupery-resources/dist/queries/guaranteed/execute_query_executable_and_catch"
+import { $$ as x } from "exupery-resources/dist/implementation/queries/guaranteed/execute_query_executable_and_catch"
 
 
 // x({
