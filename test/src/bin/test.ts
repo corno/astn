@@ -6,7 +6,6 @@ import * as _ed from 'exupery-core-dev'
 
 import { $$ as x } from "exupery-resources/dist/implementation/queries/guaranteed/execute_query_executable_and_catch"
 
-
 // x({
 //     'program': "./pub/dist/bin/convert_to_json.js",
 //     'args': _ea.array_literal([])
