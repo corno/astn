@@ -1,18 +1,17 @@
 import * as _et from "exupery-core-types"
 import * as _ea from "exupery-core-alg"
-import * as _ed from "exupery-core-dev"
 
 import * as t from "../../../../interface/generated/pareto/core/astn_source"
 import * as unconstrained from "../../../../interface/generated/pareto/core/unconstrained"
 import * as unresolved from "../../../../interface/generated/pareto/core/unresolved"
 
-export const process_unconstrained_state_group = <X>(
+export const process_unconstrained_state_group = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'states': _et.Dictionary<($: t._T_Value) => X>,
+        'states': _et.Dictionary<($: t._T_Value) => Mapped_Value>,
     }
 
-): X => {
+): Mapped_Value => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'tagged value': return _ea.ss($, ($) => {
@@ -21,7 +20,7 @@ export const process_unconstrained_state_group = <X>(
                     $.state.value
                 ).transform(
                     ($) => $(data),
-                    () => _ed.implement_me()
+                    () => _ea.panic(`Unexpected state: ${$.state.value}`)
                 )
             })
             default: return _ea.panic(`Unexpected type for state group: ${$[0]}`)
@@ -29,13 +28,13 @@ export const process_unconstrained_state_group = <X>(
     })
 }
 
-export const process_unresolved_state_group = <X>(
+export const process_unresolved_state_group = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'states': _et.Dictionary<($: t._T_Value) => X>,
+        'states': _et.Dictionary<($: t._T_Value) => Mapped_Value>,
     }
 
-): unresolved.State_Group<t._T_Range, X> => {
+): unresolved.State_Group<t._T_Range, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'tagged value': return _ea.ss($, ($) => {
@@ -46,7 +45,7 @@ export const process_unresolved_state_group = <X>(
                         $.state.value
                     ).transform(
                         ($) => $(data),
-                        () => _ed.implement_me()
+                        () => _ea.panic(`Unexpected state: ${$.state.value}`)
                     )
                 }
             })
@@ -55,13 +54,13 @@ export const process_unresolved_state_group = <X>(
     })
 }
 
-export const process_group = <X>(
+export const process_group = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'properties': ($: _et.Dictionary<t._T_Value>) => X,
+        'properties': ($: _et.Dictionary<t._T_Value>) => Mapped_Value,
     }
 
-): X => {
+): Mapped_Value => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -71,7 +70,7 @@ export const process_group = <X>(
                             $.entries.__for_each(($) => {
                                 $i['add entry']($.key.value, $.value.transform(
                                     ($) => $.value,
-                                    () => _ed.implement_me()
+                                    () => _ea.panic(`no value for property: ${$.key.value}`)
                                 ))
                             })
                         }))
@@ -97,12 +96,12 @@ export const get_entry = (
     )
 }
 
-export const process_unresolved_dictionary = <X>(
+export const process_unresolved_dictionary = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'value': ($: t._T_Value) => X
+        'value': ($: t._T_Value) => Mapped_Value
     }
-): unresolved.Dictionary<t._T_Range, X> => {
+): unresolved.Dictionary<t._T_Range, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -121,7 +120,7 @@ export const process_unresolved_dictionary = <X>(
                                             'location': key_location,
                                             'entry': $p.value($.value),
                                         }),
-                                        () => _ed.implement_me() //what to do if the property has no value?
+                                        () => _ea.panic(`no value for property: ${$.key.value}`)
                                     ))
                                 })
                             })
@@ -135,12 +134,12 @@ export const process_unresolved_dictionary = <X>(
     })
 }
 
-export const process_unconstrained_dictionary = <X>(
+export const process_unconstrained_dictionary = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'value': ($: t._T_Value) => X
+        'value': ($: t._T_Value) => Mapped_Value
     }
-): unconstrained.Dictionary<null, X> => {
+): unconstrained.Dictionary<null, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -150,7 +149,7 @@ export const process_unconstrained_dictionary = <X>(
                             $.entries.__for_each(($) => {
                                 $i['add entry']($.key.value, $.value.transform(
                                     ($) => $p.value($.value),
-                                    () => _ed.implement_me() //what to do if the property has no value?
+                                    () => _ea.panic(`no value for property: ${$.key.value}`)
                                 ))
                             })
                         })
@@ -207,12 +206,12 @@ export const process_text = (
     })
 }
 
-export const process_unresolved_list = <X>(
+export const process_unresolved_list = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'value': ($: t._T_Value) => X
+        'value': ($: t._T_Value) => Mapped_Value
     }
-): unresolved.List<t._T_Range, X> => {
+): unresolved.List<t._T_Range, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -235,23 +234,35 @@ export const process_unresolved_list = <X>(
     })
 }
 
-export const process_unconstrained_list = <X>(
+export const process_unconstrained_list = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'value': ($: t._T_Value) => X
+        'value': ($: t._T_Value) => Mapped_Value
     }
 
-): unconstrained.List<null, X> => {
-    return _ed.implement_me()
+): unconstrained.List<null, Mapped_Value> => {
+    return _ea.cc($, ($) => {
+        switch ($[0]) {
+            case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                switch ($[0]) {
+                    case 'list': return _ea.ss($, ($) => {
+                        return $["elements"].map(($) => $p.value($.value))
+                    })
+                    default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+                }
+            }))
+            default: return _ea.panic(`Unexpected type for list: ${$[0]}`)
+        }
+    })
 }
 
-export const process_optional = <X>(
+export const process_optional = <Mapped_Value>(
     $: t._T_Value,
     $p: {
-        'value': ($: t._T_Value) => X
+        'value': ($: t._T_Value) => Mapped_Value
     }
 
-): _et.Optional_Value<X> => {
+): _et.Optional_Value<Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'not set': return _ea.ss($, ($) => _ea.not_set())
@@ -275,10 +286,10 @@ export const process_nothing = (
     })
 }
 
-export const process_selected_reference = <X>(
+export const process_selected_reference = <Mapped_Value>(
     $: t._T_Value,
     $p: null
-): unresolved.Reference_To_Normal_Dictionary_Entry<t._T_Range, X> => {
+): unresolved.Reference_To_Normal_Dictionary_Entry<t._T_Range, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => ({
@@ -290,10 +301,10 @@ export const process_selected_reference = <X>(
     })
 }
 
-export const process_stack_reference = <X>(
+export const process_stack_reference = <Mapped_Value>(
     $: t._T_Value,
     $p: null
-): unresolved.Reference_To_Stacked_Dictionary_Entry<t._T_Range, X> => {
+): unresolved.Reference_To_Stacked_Dictionary_Entry<t._T_Range, Mapped_Value> => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'string': return _ea.ss($, ($) => ({

@@ -1,7 +1,7 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _out from "../../interface/generated/pareto/schemas/token/data_types/target"
+import * as _out from "../../../../../interface/generated/pareto/core/token"
 
 import { String_Iterator } from "./string_iterator"
 import { throw_lexer_error } from "./astn_parse_generic"
@@ -22,7 +22,7 @@ const WhitespaceChars = {
 }
 
 
-export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace => {
+export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace => {
 
     const start = string_iterator['create location info']()
     return {
@@ -80,7 +80,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
     }
 }
 
-export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
+export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
 
     return {
         'leading whitespace': Whitespace(string_iterator),
@@ -206,7 +206,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
     }
 }
 
-export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
+export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token => {
     const $ = st['get current character']()
     if ($ === null) {
         return throw_lexer_error(
@@ -219,7 +219,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
     }
     return {
         'start': st['create location info'](),
-        'type': _ea.block((): _out.Token_Type => {
+        'type': _ea.block((): _out._T_Token_Type => {
 
             const Character = {
 
@@ -377,7 +377,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
     }
 }
 
-export const Delimited_String = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): _out.Delimited_String => {
+export const Delimited_String = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): _out._T_Delimited_String => {
 
     const Character = {
         backspace: 0x08,            // \b
@@ -555,10 +555,10 @@ export const Tokenizer_Result = (
     $p: {
         'string iterator': String_Iterator
     }
-): _out.Tokenizer_Result => {
+): _out._T_Tokenizer_Result => {
     return {
         'leading trivia': Trivia($p['string iterator']),
-        'tokens': _ea.build_list<_out.Annotated_Token>($i => {
+        'tokens': _ea.build_list<_out._T_Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
                 const token = Annotated_Token($p['string iterator'])

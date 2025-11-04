@@ -2,8 +2,8 @@ import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
 import * as d_ast from "./ast"
-import * as _target from "../../interface/generated/pareto/schemas/sealed_parse_result/data_types/target"
-import * as s_ast from "../../interface/generated/pareto/schemas/sealed_ast/data_types/target"
+import * as _target from "../../../../../interface/generated/pareto/core/parse_result"
+import * as s_ast from "../../../../../interface/generated/pareto/core/astn_source"
 
 import * as pg from "./astn_parse_generic"
 import * as si from "./string_iterator"
@@ -16,7 +16,7 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): _ea.Unguaranteed_Transformation_Result<s_ast.Document, _target.Parse_Error> => {
+): _ea.Unguaranteed_Transformation_Result<s_ast._T_Document, _target._T_Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']

@@ -53,14 +53,31 @@ export type _T_Elements = _et.Array<{
     readonly 'value': _T_Value
 }>
 
+export namespace _T_Elements {
+    export type L = {
+        readonly 'value': _T_Value
+    }
+}
+
 export type _T_Key_Value_Pairs = _et.Array<{
     readonly ',': _et.Optional_Value<_T_Structural_Token>
     readonly 'key': _T_String
-    readonly 'value': _et.Optional_Value<{
+    readonly 'value': _et.Optional_Value<{ //this one should not be optional
         readonly ':': _T_Structural_Token
         readonly 'value': _T_Value
     }>
 }>
+
+export namespace _T_Key_Value_Pairs {
+    export type L = {
+        readonly ',': _et.Optional_Value<_T_Structural_Token>
+        readonly 'key': _T_String
+        readonly 'value': _et.Optional_Value<{//this one should not be optional
+            readonly ':': _T_Structural_Token
+            readonly 'value': _T_Value
+        }>
+    }
+}
 
 export type _T_String = {
     readonly 'range': _T_Range
