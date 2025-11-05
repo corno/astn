@@ -26,8 +26,6 @@ export const Whitespace = (
     return {
         'value': op_from_character_list(_ea.build_list<number>(($i) => {
             while (true) {
-
-
                 {
                     const $ = string_iterator['get current character']()
                     if ($ === null) {
