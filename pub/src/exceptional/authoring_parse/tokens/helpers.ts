@@ -7,9 +7,15 @@ import * as _source from "../../../interface/generated/pareto/schemas/token/data
 import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import { Parse_Error_Class } from "../ast/helpers"
 
-export const throw_lexer_error = (
+export const lexer_error = (
     type: d_parse_result.Parse_Error._type.SG.lexer,
     range: _source.Range
-): never => {
-    throw new Parse_Error_Class(['lexer', type], range)
+): d_parse_result.Parse_Error => {
+    return {
+        'type': ['lexer', type],
+        'range': {
+            'start': range.start,
+            'end': range.end,
+        }
+    }
 }
