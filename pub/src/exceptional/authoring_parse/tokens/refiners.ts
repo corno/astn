@@ -1,15 +1,13 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import { Abort } from '../refine_guard'
-
 import * as _out from "../../../interface/generated/pareto/schemas/token/data_types/target"
 
 import * as _parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 
 import { Characters_Iterator } from "./iterator"
-import { lexer_error } from "./helpers"
+import { lexer_error } from "../../../shorthands/parse_result"
 import { is_control_character } from "./iterator"
 
 import { $$ as op_from_character_list } from "exupery-standard-library/dist/implementation/operations/impure/text/from_character_list"
@@ -19,7 +17,7 @@ import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/implem
 
 export const Whitespace = (
     string_iterator: Characters_Iterator,
-    abort: Abort<_parse_result.Parse_Error>,
+    abort: _ea.Abort<_parse_result.Parse_Error>,
 ): _out.Whitespace => {
 
     const start = string_iterator['create location info']()
@@ -78,7 +76,7 @@ export const Whitespace = (
 
 export const Trivia = (
     string_iterator: Characters_Iterator,
-    abort: Abort<_parse_result.Parse_Error>,
+    abort: _ea.Abort<_parse_result.Parse_Error>,
 ): _out.Trivia => {
 
     return {
@@ -207,7 +205,7 @@ export const Trivia = (
 
 export const Annotated_Token = (
     st: Characters_Iterator,
-    abort: Abort<_parse_result.Parse_Error>,
+    abort: _ea.Abort<_parse_result.Parse_Error>,
 ): _out.Annotated_Token => {
     const WhitespaceChars = {
         tab: 0x09,                  // \t
@@ -391,7 +389,7 @@ export const Delimited_String = (
     string_iterator: Characters_Iterator,
     is_end_character: (character: number) => boolean,
     allow_newlines: boolean,
-    abort: Abort<_parse_result.Parse_Error>,
+    abort: _ea.Abort<_parse_result.Parse_Error>,
 ): _out.Delimited_String => {
 
     const Character = {
@@ -567,7 +565,7 @@ export const Delimited_String = (
 
 export const Tokenizer_Result = (
     string_iterator: Characters_Iterator,
-    abort: Abort<_parse_result.Parse_Error>
+    abort: _ea.Abort<_parse_result.Parse_Error>
 ): _out.Tokenizer_Result => {
     return {
         'leading trivia': Trivia(string_iterator, abort),

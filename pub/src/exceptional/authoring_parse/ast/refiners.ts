@@ -6,14 +6,14 @@ import * as d_parse_result from "../../../interface/generated/pareto/schemas/aut
 import * as _source from "../../../interface/generated/pareto/schemas/token/data_types/source"
 
 import * as ti from "./iterator"
+import * as sh from "../../../shorthands/parse_result"
 import * as h from "./helpers"
-import { Abort } from '../refine_guard'
 
 //this file contains the parser functionality, each function return a type from the 'ast' schema
 
 export const Structural_Token = (
     token: _source.Annotated_Token,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.Structural_Token => {
     return {
         'trailing trivia': token['trailing trivia'],
@@ -26,11 +26,11 @@ export const Structural_Token = (
 
 export const String = (
     token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.String => {
     const token = h.get_required_token(token_iterator, _ea.array_literal([['a string', null]]), abort)
     if (token.type[0] !== 'string') {
-        return abort(h.unexpected_token(token, _ea.array_literal([['a string', null]])))
+        return abort(sh.unexpected_token(token, _ea.array_literal([['a string', null]])))
     }
     token_iterator['consume token']()
     return {
@@ -46,7 +46,7 @@ export const String = (
 
 export const Document = (
     token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.Document => {
     return {
         'header': _ea.block(() => {
@@ -68,7 +68,7 @@ export const Elements = (
     token_iterator: ti.ASTN_Tokens_Iterator,
     end_reached: ($: _source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.Elements => {
     return _ea.build_list<_target.Elements.L>(($i): void => {
         while (true) {
@@ -87,7 +87,7 @@ export const Key_Value_Pairs = (
     token_iterator: ti.ASTN_Tokens_Iterator,
     end_reached: ($: _source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.Key_Value_Pairs => {
     return _ea.build_list<_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
@@ -118,7 +118,7 @@ export const Key_Value_Pairs = (
 
 export const Value = (
     token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: Abort<d_parse_result.Parse_Error>,
+    abort: _ea.Abort<d_parse_result.Parse_Error>,
 ): _target.Value => {
     const token = h.get_required_token(token_iterator, _ea.array_literal([['a value', null]]), abort)
     return {
@@ -210,7 +210,7 @@ export const Value = (
                                         '#': Structural_Token(token, abort),
                                     }]
                                 })
-                                default: return abort(h.unexpected_token(token, _ea.array_literal([
+                                default: return abort(sh.unexpected_token(token, _ea.array_literal([
                                     ['a value', null],
                                     ['#', null],
                                 ])))
@@ -237,37 +237,37 @@ export const Value = (
 
                 case '!': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ':': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ')': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case '>': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ']': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case '}': return _ea.ss($, ($) => {
                     token_iterator['consume token']()
-                    return abort(h.unexpected_token(token, _ea.array_literal([
+                    return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
