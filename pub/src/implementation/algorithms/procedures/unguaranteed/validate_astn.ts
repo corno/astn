@@ -5,12 +5,12 @@ import * as _easync from 'exupery-core-async'
 import * as parse from "../../../../exceptional/authoring_parse/parse"
 import * as create_error_message from "../../transformations/parse_result/string"
 
-import { $$ as p_log } from "exupery-resources/dist/implementation/procedures/guaranteed/log"
-import { $$ as p_log_error } from "exupery-resources/dist/implementation/procedures/guaranteed/log_error"
+import { $$ as p_log } from "exupery-resources/dist/implementation/algorithms/procedures/guaranteed/log"
+import { $$ as p_log_error } from "exupery-resources/dist/implementation/algorithms/procedures/guaranteed/log_error"
 
 import * as _target from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/queries/guaranteed/get_instream_data"
+import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/algorithms/queries/guaranteed/get_instream_data"
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
 
