@@ -4,7 +4,7 @@ import * as _et from 'exupery-core-types'
 
 //language independent parser functionality
 
-export type Location = {
+export type Iterator_Location = {
     'absolute': number
     'relative': {
         'line': number
@@ -12,7 +12,7 @@ export type Location = {
     }
 }
 
-export type String_Iterator = {
+export type Characters_Iterator = {
 
     'consume character': () => void
     'consume string': ($: string) => void
@@ -22,8 +22,8 @@ export type String_Iterator = {
      */
     'get current character': () => number | null
     'look ahead': ($: number) => number | null
-    'create offset location info': (subtract: number) => Location
-    'create location info': () => Location
+    'create offset location info': (subtract: number) => Iterator_Location
+    'create location info': () => Iterator_Location
     'create location info string': () => string
     /**
      * if no non-whitespace character has been found yet on the current line,
@@ -59,7 +59,7 @@ export const create_string_iterator = (
     $p: {
         'tab size': number
     }
-): String_Iterator => {
+): Characters_Iterator => {
     const source = $
     const characters = op_to_character_list($)
     const length = characters.__get_length()
@@ -175,9 +175,4 @@ export const create_string_iterator = (
             )
         }
     }
-}
-
-export type Token_Iterator<Expected, Token> = {
-    'get required token': (expected: _et.Array<Expected>) => Token,
-    'consume token': () => void,
 }

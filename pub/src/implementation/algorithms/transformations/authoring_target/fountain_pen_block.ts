@@ -17,7 +17,7 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export const Value: _ea.Guaranteed_Transformation_With_Parameters<d_in.Value, Parameters, d_out.Block_Part> = (
+export const Value: _ea.Transformation_With_Parameters<d_in.Value, Parameters, d_out.Block_Part> = (
     $,
     $p,
 ) => {

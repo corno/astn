@@ -1,28 +1,20 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _out from "../../interface/generated/pareto/schemas/token/data_types/target"
+import * as _out from "../../../interface/generated/pareto/schemas/token/data_types/target"
 
-import { String_Iterator } from "./string_iterator"
-import { throw_lexer_error } from "./astn_parse_generic"
-import { is_control_character } from './string_iterator'
+import { Characters_Iterator } from "./iterator"
+import { throw_lexer_error } from "./helpers"
+import { is_control_character } from "./iterator"
 
 import { $$ as op_from_character_list } from "exupery-standard-library/dist/implementation/operations/impure/text/from_character_list"
 import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/implementation/operations/impure/integer/parse_hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
-
-const WhitespaceChars = {
-    tab: 0x09,                  // \t
-    line_feed: 0x0A,            // \n
-    carriage_return: 0x0D,      // \r
-    space: 0x20,                //
-    comma: 0x2C,                // ,
-}
-
-
-export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace => {
+export const Whitespace = (
+    string_iterator: Characters_Iterator
+): _out.Whitespace => {
 
     const start = string_iterator['create location info']()
     return {
@@ -37,7 +29,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
                     }
                     if (is_control_character($)) {
                         throw_lexer_error(
-                             ['unexpected control character', $],
+                            ['unexpected control character', $],
                             {
                                 'start': string_iterator['create location info'](),
                                 'end': string_iterator['create location info'](),
@@ -80,7 +72,9 @@ export const Whitespace = (string_iterator: String_Iterator): _out.Whitespace =>
     }
 }
 
-export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
+export const Trivia = (
+    string_iterator: Characters_Iterator
+): _out.Trivia => {
 
     return {
         'leading whitespace': Whitespace(string_iterator),
@@ -190,7 +184,7 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
                             }
                             default:
                                 return throw_lexer_error(
-                                     ['dangling slash', null],
+                                    ['dangling slash', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
@@ -206,7 +200,17 @@ export const Trivia = (string_iterator: String_Iterator): _out.Trivia => {
     }
 }
 
-export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
+export const Annotated_Token = (
+    st: Characters_Iterator
+): _out.Annotated_Token => {
+    const WhitespaceChars = {
+        tab: 0x09,                  // \t
+        line_feed: 0x0A,            // \n
+        carriage_return: 0x0D,      // \r
+        space: 0x20,                //
+        comma: 0x2C,                // ,
+    }
+
     const $ = st['get current character']()
     if ($ === null) {
         return throw_lexer_error(
@@ -330,7 +334,7 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
 
                                 if (is_control_character($)) {
                                     throw_lexer_error(
-                                         ['unexpected control character', $],
+                                        ['unexpected control character', $],
                                         {
                                             'start': st['create location info'](),
                                             'end': st['create location info'](),
@@ -377,7 +381,11 @@ export const Annotated_Token = (st: String_Iterator): _out.Annotated_Token => {
     }
 }
 
-export const Delimited_String = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): _out.Delimited_String => {
+export const Delimited_String = (
+    string_iterator: Characters_Iterator,
+    is_end_character: (character: number) => boolean,
+    allow_newlines: boolean
+): _out.Delimited_String => {
 
     const Character = {
         backspace: 0x08,            // \b
@@ -434,7 +442,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                 case Character.carriage_return:
                     if (!allow_newlines) {
                         return throw_lexer_error(
-                             ['unexpected end of line in delimited string', null],
+                            ['unexpected end of line in delimited string', null],
                             {
                                 'start': start,
                                 'end': string_iterator['create location info']()
@@ -532,7 +540,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 break
                             default:
                                 return throw_lexer_error(
-                                     ['unknown escape character', null],
+                                    ['unknown escape character', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
@@ -551,20 +559,17 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
 }
 
 export const Tokenizer_Result = (
-    $: null,
-    $p: {
-        'string iterator': String_Iterator
-    }
+    string_iterator: Characters_Iterator
 ): _out.Tokenizer_Result => {
     return {
-        'leading trivia': Trivia($p['string iterator']),
+        'leading trivia': Trivia(string_iterator),
         'tokens': _ea.build_list<_out.Annotated_Token>($i => {
-            while ($p['string iterator']['get current character']() !== null) {
+            while (string_iterator['get current character']() !== null) {
 
-                const token = Annotated_Token($p['string iterator'])
+                const token = Annotated_Token(string_iterator)
                 $i['add element'](token)
             }
         }),
-        'end': $p['string iterator']['create location info']()
+        'end': string_iterator['create location info']()
     }
 }

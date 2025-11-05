@@ -16,7 +16,7 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): _ea.Unguaranteed_Transformation_Result<s_ast._T_Document, _target._T_Parse_Error> => {
+): _ea.Refinement_Result<s_ast._T_Document, _target._T_Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']
@@ -33,12 +33,12 @@ export const parse = (
         //     })}`)
         // })
         const token_iterator = pg.create_astn_token_iterator(tokenizer_result.tokens, tokenizer_result.end)
-        return _ea.transformation.successful(d_ast.Document(token_iterator))
+        return _ea.refinement.successful(d_ast.Document(token_iterator))
 
     } catch (error) {
         if (error instanceof pg.Parse_Error_Class) {
-            
-            return _ea.transformation.failed({
+
+            return _ea.refinement.failed({
                 'type': error.type,
                 'range': {
                     'start': error.range.start,

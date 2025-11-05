@@ -1,14 +1,15 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as d_ast from "./ast"
+import * as d_ast from "./ast/refiners"
 import * as _target from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as s_ast from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 
-import * as pg from "./astn_parse_generic"
-import * as si from "./string_iterator"
+import * as pg from "./ast/iterator"
+import * as si from "./tokens/iterator"
 
-import * as tokenize from "./token"
+import * as tokenize from "./tokens/refiners"
+import { Parse_Error_Class } from "./ast/helpers"
 
 
 export const parse = (
@@ -16,14 +17,12 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): _ea.Unguaranteed_Transformation_Result<s_ast.Document, _target.Parse_Error> => {
+): _ea.Refinement_Result<s_ast.Document, _target.Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']
         })
-        const tokenizer_result = tokenize.Tokenizer_Result(null, {
-            'string iterator': string_iterator
-        })
+        const tokenizer_result = tokenize.Tokenizer_Result(string_iterator)
         // tokenizer_result.tokens.__for_each(($) => {
         //     _edev.log_debug_message(`token: ${_ea.cc($.type, ($) => {
         //         switch ($[0]) {
@@ -33,12 +32,12 @@ export const parse = (
         //     })}`)
         // })
         const token_iterator = pg.create_astn_token_iterator(tokenizer_result.tokens, tokenizer_result.end)
-        return _ea.transformation.successful(d_ast.Document(token_iterator))
+        return _ea.refinement.successful(d_ast.Document(token_iterator))
 
     } catch (error) {
-        if (error instanceof pg.Parse_Error_Class) {
-            
-            return _ea.transformation.failed({
+        if (error instanceof Parse_Error_Class) {
+
+            return _ea.refinement.failed({
                 'type': error.type,
                 'range': {
                     'start': error.range.start,

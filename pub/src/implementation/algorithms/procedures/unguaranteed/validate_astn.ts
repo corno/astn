@@ -3,7 +3,7 @@ import * as _eb from 'exupery-core-bin'
 import * as _easync from 'exupery-core-async'
 
 import * as parse from "../../../../exceptional/authoring_parse/parse"
-import * as create_error_message from "../../../../exceptional/serializers/parse_result"
+import * as create_error_message from "../../transformations/parse_result/string"
 
 import { $$ as p_log } from "exupery-resources/dist/implementation/procedures/guaranteed/log"
 import { $$ as p_log_error } from "exupery-resources/dist/implementation/procedures/guaranteed/log_error"
