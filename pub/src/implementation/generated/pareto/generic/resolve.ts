@@ -57,7 +57,7 @@ export type Resolve_Error_Type =
     }]
 
 export const abort = <Source>(location: Source, type: Resolve_Error_Type, location_to_string: i.Location_to_String<Source>): never => {
-    return _ea.panic(
+    return _ea.deprecated_panic(
         _ea.cc(type, ($) => {
             switch ($[0]) {
                 case 'no such entry': return _ea.ss($, ($) => `no such entry: '${$['key']}'`)
@@ -141,7 +141,7 @@ export const get_entry_from_stack = <Source, T>(
                                     default: return _ea.au($[0])
                                 }
                             }),
-                            () => _ea.panic(`no clue yet of what is happening here`),
+                            () => _ea.deprecated_panic(`no clue yet of what is happening here`),
                         )
                     },
                     () => abort(ref.location, ['index out of bounds', { 'up steps taken': up_steps_taken }], $p['location 2 string']),
@@ -340,7 +340,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                             return {
                                 'compute': () => {
                                     if (subscr.entry === null) {
-                                        return _ea.panic(`entry not set: ${key}`)
+                                        return _ea.deprecated_panic(`entry not set: ${key}`)
                                     }
                                     return subscr.entry
                                 }
@@ -425,7 +425,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
         })
         _ea.dictionary_literal(all_siblings_subscribed_entries).map(($, key) => {
             if (finished[key] === undefined) {
-                _ea.panic(`implementation error: entry not resolved: ${key}`)
+                _ea.deprecated_panic(`implementation error: entry not resolved: ${key}`)
             }
             all_siblings_subscribed_entries[key].entry = finished[key]
         })

@@ -11,6 +11,8 @@ import * as ai from "./ast/iterator"
 import * as ti from "./tokens/iterator"
 
 import * as tokenize from "./tokens/refiners"
+import { create_context as create_ast_context } from "./ast/context"
+import { create_context as create_tokens_context } from "./tokens/context"
 
 export const parse = (
     $: string,
@@ -21,11 +23,11 @@ export const parse = (
     return _ea.create_refinement_context<d_token.Tokenizer_Result, _parse_result.Parse_Error, _parse_result.Parse_Error>(
         ($) => $,
         (abort) => {
-            return tokenize.Tokenizer_Result(
-                ti.create_iterator($, {
+            const iter = ti.create_iterator($, {
                     'tab size': $p['tab size']
-                }),
-                abort
+                })
+            return tokenize.Tokenizer_Result(
+                create_tokens_context(iter, abort)
             )
         }
     ).with_result(($) => {
@@ -33,8 +35,7 @@ export const parse = (
             ($) => $,
             (abort) => {
                 return d_ast.Document(
-                    ai.create_iterator($.tokens, $.end),
-                    abort,
+                    create_ast_context(ai.create_iterator($.tokens, $.end), abort)
                 )
             }
         )

@@ -7,13 +7,13 @@ import * as _source from "../../../interface/generated/pareto/schemas/token/data
 
 import * as ti from "./iterator"
 import * as sh from "../../../shorthands/parse_result"
-import * as h from "./helpers"
+import * as c from "./context"
 
 //this file contains the parser functionality, each function return a type from the 'ast' schema
 
 export const Structural_Token = (
-    token: _source.Annotated_Token,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    token: _source.Annotated_Token, //FIXME: this should be an iterator
+    context: c.Refinement_Context
 ): _target.Structural_Token => {
     return {
         'trailing trivia': token['trailing trivia'],
@@ -25,14 +25,13 @@ export const Structural_Token = (
 }
 
 export const String = (
-    token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    context: c.Refinement_Context
 ): _target.String => {
-    const token = h.get_required_token(token_iterator, _ea.array_literal([['a string', null]]), abort)
+    const token = context.get_required_token(_ea.array_literal([['a string', null]]))
     if (token.type[0] !== 'string') {
-        return abort(sh.unexpected_token(token, _ea.array_literal([['a string', null]])))
+        return context.unexpected_token(token, _ea.array_literal([['a string', null]]))
     }
-    token_iterator['consume']()
+    context.iterator['consume']()
     return {
         'range': {
             'start': token['start'],
@@ -45,69 +44,66 @@ export const String = (
 }
 
 export const Document = (
-    token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    context: c.Refinement_Context
 ): _target.Document => {
     return {
         'header': _ea.block(() => {
-            const token = h.get_required_token(token_iterator, _ea.array_literal([['!', null], ['a value', null]]), abort)
+            const token = context.get_required_token(_ea.array_literal([['!', null], ['a value', null]]))
             if (token.type[0] !== '!') {
                 return _ea.not_set()
             }
-            token_iterator['consume']()
+            context.iterator['consume']()
             return _ea.set({
-                '!': Structural_Token(token, abort),
-                'value': Value(token_iterator, abort)
+                '!': Structural_Token(token, context),
+                'value': Value(context)
             })
         }),
-        'content': Value(token_iterator, abort)
+        'content': Value(context)
     }
 }
 
 export const Elements = (
-    token_iterator: ti.ASTN_Tokens_Iterator,
     end_reached: ($: _source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    context: c.Refinement_Context
 ): _target.Elements => {
     return _ea.build_list<_target.Elements.L>(($i): void => {
         while (true) {
-            const current_token = h.get_required_token(token_iterator, _ea.array_literal([end_token, ['a value', null]]), abort)
+            const current_token = context.get_required_token(_ea.array_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
             $i['add element']({
-                'value': Value(token_iterator, abort),
+                'value': Value(context)
             })
         }
     })
 }
 
 export const Key_Value_Pairs = (
-    token_iterator: ti.ASTN_Tokens_Iterator,
     end_reached: ($: _source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    context: c.Refinement_Context
 ): _target.Key_Value_Pairs => {
     return _ea.build_list<_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
-            const current_token = h.get_required_token(token_iterator, _ea.array_literal([end_token, ['a string', null]]), abort)
+            const current_token = context.get_required_token(_ea.array_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
 
             $i['add element']({
-                'key': String(token_iterator, abort),
+                'key': String(context),
                 'value': _ea.block(() => {
-                    const candidate_colon = h.get_required_token(token_iterator, _ea.array_literal([['a string', null], [':', null], end_token]), abort)
+                    const candidate_colon = context.get_required_token(_ea.array_literal([['a string', null], [':', null], end_token]))
                     if (candidate_colon.type[0] !== ':') {
                         return _ea.not_set()
                     }
-                    token_iterator['consume']()
+                    context.iterator['consume']()
 
                     return _ea.set({
-                        ':': Structural_Token(candidate_colon, abort),
-                        'value': Value(token_iterator, abort)
+                        ':': Structural_Token(candidate_colon, context),
+                        'value': Value(context)
                     })
                 }),
                 ',': _ea.not_set()
@@ -117,164 +113,160 @@ export const Key_Value_Pairs = (
 }
 
 export const Value = (
-    token_iterator: ti.ASTN_Tokens_Iterator,
-    abort: _ea.Abort<d_parse_result.Parse_Error>,
+    context: c.Refinement_Context
 ): _target.Value => {
-    const token = h.get_required_token(token_iterator, _ea.array_literal([['a value', null]]), abort)
+    const token = context.get_required_token(_ea.array_literal([['a value', null]]))
     return {
         'type': _ea.cc(token.type, ($): _target.Value._type => {
 
             switch ($[0]) {
                 case 'string': return _ea.ss($, ($): _target.Value._type => {
 
-                    return ['concrete', ['string', String(token_iterator, abort)]]
+                    return ['concrete', ['string', String(context)]]
                 })
                 case '{': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['indexed collection', ['dictionary', {
-                        '{': Structural_Token(token, abort),
-                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', ['}', null], abort),
+                        '{': Structural_Token(token, context),
+                        'entries': Key_Value_Pairs(($) => $[0] === '}', ['}', null], context),
                         '}': _ea.block(() => {
-                            const current_token = h.get_required_token(token_iterator, _ea.array_literal([['}', null]]), abort)
-                            token_iterator['consume']()
-                            return Structural_Token(current_token, abort)
+                            const current_token = context.get_required_token(_ea.array_literal([['}', null]]))
+                            context.iterator['consume']()
+                            return Structural_Token(current_token, context)
                         })
                     }]]]
                 })
                 case '(': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['indexed collection', ['verbose group', {
-                        '(': Structural_Token(token, abort),
-                        'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', [')', null], abort),
+                        '(': Structural_Token(token, context),
+                        'entries': Key_Value_Pairs(($) => $[0] === ')', [')', null], context),
                         ')': _ea.block(() => {
-                            const current_token = h.get_required_token(token_iterator, _ea.array_literal([[')', null]]), abort)
-                            token_iterator['consume']()
-                            return Structural_Token(current_token, abort)
+                            const current_token = context.get_required_token(_ea.array_literal([[')', null]]))
+                            context.iterator['consume']()
+                            return Structural_Token(current_token, context)
                         })
                     }]]]
                 })
                 case '[': return _ea.ss($, ($): _target.Value._type => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['ordered collection', ['list', {
-                        '[': Structural_Token(token, abort),
-                        'elements': Elements(token_iterator, ($) => $[0] === ']', [']', null], abort),
+                        '[': Structural_Token(token, context),
+                        'elements': Elements(($) => $[0] === ']', [']', null], context),
                         ']': _ea.block(() => {
-                            const current_token = h.get_required_token(token_iterator, _ea.array_literal([[']', null]]), abort)
-                            token_iterator['consume']()
-                            return Structural_Token(current_token, abort)
+                            const current_token = context.get_required_token(_ea.array_literal([[']', null]]))
+                            context.iterator['consume']()
+                            return Structural_Token(current_token, context)
                         }),
                     }]]]
                 })
                 case '<': return _ea.ss($, ($): _target.Value._type => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['ordered collection', ['concise group', {
-                        '<': Structural_Token(token, abort),
-                        'elements': Elements(token_iterator, ($) => $[0] === '>', ['>', null], abort),
+                        '<': Structural_Token(token, context),
+                        'elements': Elements(($) => $[0] === '>', ['>', null], context),
                         '>': _ea.block(() => {
-                            const current_token = h.get_required_token(token_iterator, _ea.array_literal([['>', null]]), abort)
-                            token_iterator['consume']()
-                            return Structural_Token(current_token, abort)
+                            const current_token = context.get_required_token(_ea.array_literal([['>', null]]))
+                            context.iterator['consume']()
+                            return Structural_Token(current_token, context)
                         }),
                     }]]]
                 })
                 case '@': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['include', {
-                        '@': Structural_Token(token, abort),
-                        'path': String(token_iterator, abort)
+                        '@': Structural_Token(token, context),
+                        'path': String(context)
                     }]
                 })
                 case '~': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['not set', {
-                        '~': Structural_Token(token, abort),
+                        '~': Structural_Token(token, context),
                     }]]
                 })
                 case '|': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    const token = h.get_required_token(token_iterator, _ea.array_literal([['a value', null], ['#', null]]), abort)
+                    context.iterator['consume']()
+                    const token = context.get_required_token(_ea.array_literal([['a value', null], ['#', null]]))
 
                     return ['concrete', ['tagged value', {
-                        '|': Structural_Token(token, abort),
+                        '|': Structural_Token(token, context),
                         'status': _ea.cc(token.type, ($): _target.Concrete_Value.SG.tagged_value.status => {
                             switch ($[0]) {
                                 case 'string': return _ea.ss($, ($) => {
                                     return ['set', {
-                                        'state': String(token_iterator, abort),
-                                        'value': Value(token_iterator, abort)
+                                        'state': String(context),
+                                        'value': Value(context)
                                     }]
                                 })
                                 case '#': return _ea.ss($, ($) => {
-                                    token_iterator['consume']()
+                                    context.iterator['consume']()
                                     return ['missing data', {
-                                        '#': Structural_Token(token, abort),
+                                        '#': Structural_Token(token, context),
                                     }]
                                 })
-                                default: return abort(sh.unexpected_token(token, _ea.array_literal([
+                                default: return context.unexpected_token(token, _ea.array_literal([
                                     ['a value', null],
                                     ['#', null],
-                                ])))
+                                ]))
                             }
                         })
                     }]]
                 })
                 case '*': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['concrete', ['set optional value', {
-                        '*': Structural_Token(token, abort),
-                        'value': Value(token_iterator, abort)
+                        '*': Structural_Token(token, context),
+                        'value': Value(context)
                     }]]
                 })
                 case '#': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
+                    context.iterator['consume']()
                     return ['missing data', {
-                        '#': Structural_Token(token, abort),
+                        '#': Structural_Token(token, context),
                     }]
                 })
-
 
                 //unexpected tokens
 
                 case '!': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
                 case ':': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
                 case ')': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
                 case '>': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
                 case ']': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
                 case '}': return _ea.ss($, ($) => {
-                    token_iterator['consume']()
-                    return abort(sh.unexpected_token(token, _ea.array_literal([
+                    context.iterator['consume']()
+                    return context.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
-                    ])))
+                    ]))
                 })
 
-
                 default: return _ea.au($[0])
-
             }
         })
     }

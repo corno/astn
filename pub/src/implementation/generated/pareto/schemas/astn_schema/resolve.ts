@@ -285,7 +285,7 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pa.block(() =
                         case 'external': return _pa.ss($, ($) => ['external', _pa.block(() => {
                             const c_import = params['values']['imports'].transform(
                                 ($) => $,
-                                () => _pa.panic('ABORT SELECTION')
+                                () => _pa.deprecated_panic('ABORT SELECTION')
                             )
                             return _pa.block(() => {
                                 const p_import: _i_out._T_Type_Node.SG.component.SG.external._import = _pa.cc($['import'], ($) => _i_generic.get_entry(
@@ -450,7 +450,7 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pa.block(() =
                         case 'global': return _pa.ss($, ($) => ['global', _pa.block(() => {
                             const c_globals = params['values']['globals'].transform(
                                 ($) => $,
-                                () => _pa.panic('ABORT SELECTION')
+                                () => _pa.deprecated_panic('ABORT SELECTION')
                             )
                             return _i_generic.get_entry(
                                 _i_generic.dictionary_to_lookup(

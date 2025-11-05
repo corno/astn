@@ -5,10 +5,9 @@ import * as _out from "../../../interface/generated/pareto/schemas/token/data_ty
 
 import * as _parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
+import * as c from "./context"
 
-import { Characters_Iterator } from "./iterator"
-import { lexer_error } from "../../../shorthands/parse_result"
-import { is_control_character } from "./iterator"
+import { Characters_Iterator, is_control_character } from "./iterator"
 
 import { $$ as op_from_character_list } from "exupery-standard-library/dist/implementation/operations/impure/text/from_character_list"
 import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/implementation/operations/impure/integer/parse_hexadecimal"
@@ -24,48 +23,47 @@ const temp_get_current_character = ($: Characters_Iterator): number | null => {
 }
 
 export const Whitespace = (
-    string_iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    context: c.Refinement_Context,
 ): _out.Whitespace => {
 
-    const start = string_iterator['get state']().location
+    const start = context.iterator['get state']().location
     return {
         'value': op_from_character_list(_ea.build_list<number>(($i) => {
             while (true) {
                 {
-                    const $ = temp_get_current_character(string_iterator)
+                    const $ = temp_get_current_character(context.iterator)
                     if ($ === null) {
                         return
                     }
                     if (is_control_character($)) {
-                        return abort(lexer_error(
+                        return context.lexer_error(
                             ['unexpected control character', $],
                             {
-                                'start': string_iterator['get state']().location,
-                                'end': string_iterator['get state']().location,
+                                'start': context.iterator['get state']().location,
+                                'end': context.iterator['get state']().location,
                             }
-                        ))
+                        )
 
                     }
                     switch ($) {
                         case 0x09: // \t
-                            string_iterator['consume']()
+                            context.iterator['consume']()
                             $i['add element']($)
                             break
                         case 0x0A: // \n
-                            string_iterator['consume']()
+                            context.iterator['consume']()
                             $i['add element']($)
                             break
                         case 0x0D: // \r
-                            string_iterator['consume']()
+                            context.iterator['consume']()
                             $i['add element']($)
                             break
                         case 0x20: // space
-                            string_iterator['consume']()
+                            context.iterator['consume']()
                             $i['add element']($)
                             break
                         case 0x2C: // ,
-                            string_iterator['consume']()
+                            context.iterator['consume']()
                             $i['add element']($)
                             break
                         default:
@@ -77,47 +75,46 @@ export const Whitespace = (
         })),
         'range': {
             'start': start,
-            'end': string_iterator['get state']().location,
+            'end': context.iterator['get state']().location,
         }
     }
 }
 
 export const Trivia = (
-    string_iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    context: c.Refinement_Context,
 ): _out.Trivia => {
 
     return {
-        'leading whitespace': Whitespace(string_iterator, abort),
+        'leading whitespace': Whitespace(context),
         'comments': _ea.build_list(($i) => {
             while (true) {
-                const $ = temp_get_current_character(string_iterator)
+                const $ = temp_get_current_character(context.iterator)
                 if ($ === null) {
                     return //normal end of input
                 }
                 switch ($) {
                     case 0x2F: // /
-                        const start = string_iterator['get state']().location
-                        const next_char = string_iterator['look ahead'](1).transform(
+                        const start = context.iterator['get state']().location
+                        const next_char = context.iterator['look ahead'](1).transform(
                             ($) => $,
                             () => null
                         )
                         if (next_char === null) {
-                            const start = string_iterator['get state']().location
-                            string_iterator['consume']()
-                            const end = string_iterator['get state']().location
-                            return abort(lexer_error(
+                            const start = context.iterator['get state']().location
+                            context.iterator['consume']()
+                            const end = context.iterator['get state']().location
+                            return context.lexer_error(
                                 ['dangling slash', null],
                                 {
                                     'start': start,
                                     'end': end
                                 }
-                            ))
+                            )
                         }
                         switch (next_char) {
                             case 0x2F: // /
-                                string_iterator['consume']() // consume the first /
-                                string_iterator['consume']() // consume the second /
+                                context.iterator['consume']() // consume the first /
+                                context.iterator['consume']() // consume the second /
                                 const Character = {
                                     line_feed: 0x0A,            // \n
                                     carriage_return: 0x0D,      // \r
@@ -127,7 +124,7 @@ export const Trivia = (
                                     'type': ['line', null],
                                     'content': op_from_character_list(_ea.build_list(($i) => {
                                         while (true) {
-                                            const $ = temp_get_current_character(string_iterator)
+                                            const $ = temp_get_current_character(context.iterator)
                                             if ($ === null) {
                                                 return
                                             }
@@ -137,21 +134,21 @@ export const Trivia = (
                                                 case Character.carriage_return:
                                                     return
                                                 default:
-                                                    string_iterator['consume']()
+                                                    context.iterator['consume']()
                                                     $i['add element']($)
                                             }
                                         }
                                     })),
                                     'range': {
                                         'start': start,
-                                        'end': string_iterator['get state']().location,
+                                        'end': context.iterator['get state']().location,
                                     },
-                                    'trailing whitespace': Whitespace(string_iterator, abort)
+                                    'trailing whitespace': Whitespace(context)
                                 })
                                 break
                             case 0x2A: {// *
-                                string_iterator['consume']() // consume the first /
-                                string_iterator['consume']() // consume the asterisk
+                                context.iterator['consume']() // consume the first /
+                                context.iterator['consume']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
                                     'content': op_from_character_list(_ea.build_list(($i) => {
@@ -161,18 +158,18 @@ export const Trivia = (
                                             asterisk: 0x2A,             // *
                                         }
                                         while (true) {
-                                            const $ = temp_get_current_character(string_iterator)
+                                            const $ = temp_get_current_character(context.iterator)
                                             if ($ === null) {
-                                                return abort(lexer_error(
+                                                return context.lexer_error(
                                                     ['unterminated block comment', null],
                                                     {
                                                         'start': start,
-                                                        'end': string_iterator['get state']().location
+                                                        'end': context.iterator['get state']().location
                                                     }
-                                                ))
+                                                )
                                             }
                                             if ($ === Character.solidus && found_asterisk) {
-                                                string_iterator['consume']() // consume the solidus
+                                                context.iterator['consume']() // consume the solidus
                                                 //found asterisk before solidus, so this is the end of the comment
                                                 return
                                             }
@@ -185,25 +182,25 @@ export const Trivia = (
                                             } else {
                                                 $i['add element']($)
                                             }
-                                            string_iterator['consume']()
+                                            context.iterator['consume']()
                                         }
                                     })),
                                     'range': {
                                         'start': start,
-                                        'end': string_iterator['get state']().location,
+                                        'end': context.iterator['get state']().location,
                                     },
-                                    'trailing whitespace': Whitespace(string_iterator, abort)
+                                    'trailing whitespace': Whitespace(context)
                                 })
                                 break
                             }
                             default:
-                                return abort(lexer_error(
+                                return context.lexer_error(
                                     ['dangling slash', null],
                                     {
                                         'start': start,
-                                        'end': string_iterator['get state']().location
+                                        'end': context.iterator['get state']().location
                                     }
-                                ))
+                                )
                         }
                         break
                     default:
@@ -215,8 +212,7 @@ export const Trivia = (
 }
 
 export const Annotated_Token = (
-    st: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    context: c.Refinement_Context,
 ): _out.Annotated_Token => {
     const WhitespaceChars = {
         tab: 0x09,                  // \t
@@ -226,18 +222,18 @@ export const Annotated_Token = (
         comma: 0x2C,                // ,
     }
 
-    const $ = temp_get_current_character(st)
+    const $ = temp_get_current_character(context.iterator)
     if ($ === null) {
-        return abort(lexer_error(
+        return context.lexer_error(
             ['unexpected end of input', null],
             {
-                'start': st['get state']().location,
-                'end': st['get state']().location,
+                'start': context.iterator['get state']().location,
+                'end': context.iterator['get state']().location,
             }
-        ))
+        )
     }
     return {
-        'start': st['get state']().location,
+        'start': context.iterator['get state']().location,
         'type': _ea.block((): _out.Token_Type => {
 
             const Character = {
@@ -270,70 +266,70 @@ export const Annotated_Token = (
             }
             switch ($) {
                 case Character.open_brace:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['{', null]
                 case Character.open_bracket:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['[', null]
                 case Character.open_angle_bracket:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['<', null]
                 case Character.open_paren:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['(', null]
 
 
                 case Character.close_brace:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['}', null]
                 case Character.close_bracket:
-                    st['consume']()
+                    context.iterator['consume']()
                     return [']', null]
                 case Character.close_angle_bracket:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['>', null]
                 case Character.close_paren:
-                    st['consume']()
+                    context.iterator['consume']()
                     return [')', null]
 
                 //individuals
                 case Character.hash:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['#', null]
                 case Character.pipe:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['|', null]
                 case Character.tilde:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['~', null]
                 case Character.asterisk:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['*', null]
                 case Character.at:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['@', null]
                 case Character.bang:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['!', null]
                 case Character.colon:
-                    st['consume']()
+                    context.iterator['consume']()
                     return [':', null]
                 case Character.quotation_mark:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.quotation_mark, true, abort),
+                        'value': Delimited_String(($) => $ === Character.quotation_mark, true, context),
                         'type': ['quoted', null],
                     }]
                 case Character.backtick:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.backtick, false, abort),
+                        'value': Delimited_String(($) => $ === Character.backtick, false, context),
                         'type': ['backticked', null],
                     }]
                 case Character.apostrophe:
-                    st['consume']()
+                    context.iterator['consume']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.apostrophe, false, abort),
+                        'value': Delimited_String(($) => $ === Character.apostrophe, false, context),
                         'type': ['apostrophed', null],
                     }]
 
@@ -342,19 +338,19 @@ export const Annotated_Token = (
                         'type': ['undelimited', null],
                         'value': op_from_character_list(_ea.build_list(($i) => {
                             while (true) {
-                                const $ = temp_get_current_character(st)
+                                const $ = temp_get_current_character(context.iterator)
                                 if ($ === null) {
                                     return
                                 }
 
                                 if (is_control_character($)) {
-                                    return abort(lexer_error(
+                                    return context.lexer_error(
                                         ['unexpected control character', $],
                                         {
-                                            'start': st['get state']().location,
-                                            'end': st['get state']().location,
+                                            'start': context.iterator['get state']().location,
+                                            'end': context.iterator['get state']().location,
                                         }
-                                    ))
+                                    )
 
                                 }
                                 if (
@@ -384,23 +380,22 @@ export const Annotated_Token = (
                                 ) {
                                     return
                                 }
-                                st['consume']()
+                                context.iterator['consume']()
                                 $i['add element']($)
                             }
                         })),
                     }]
             }
         }),
-        'end': st['get state']().location,
-        'trailing trivia': Trivia(st, abort)
+        'end': context.iterator['get state']().location,
+        'trailing trivia': Trivia(context)
     }
 }
 
 export const Delimited_String = (
-    string_iterator: Characters_Iterator,
     is_end_character: (character: number) => boolean,
     allow_newlines: boolean,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    context: c.Refinement_Context,
 ): _out.Delimited_String => {
 
     const Character = {
@@ -425,127 +420,127 @@ export const Delimited_String = (
         F: 0x46,                    // F
 
     }
-    const start = string_iterator['get state']().location
+    const start = context.iterator['get state']().location
     const txt = op_from_character_list(_ea.build_list(($i) => {
         while (true) {
-            const $ = temp_get_current_character(string_iterator)
+            const $ = temp_get_current_character(context.iterator)
             if ($ === null) {
 
-                return abort(lexer_error(
+                return context.lexer_error(
                     ['unterminated string', null],
                     {
                         'start': start,
-                        'end': string_iterator['get state']().location
+                        'end': context.iterator['get state']().location
                     }
-                ))
+                )
             }
             if (is_control_character($)) {
-                return abort(lexer_error(
+                return context.lexer_error(
                     ['unexpected control character', $],
                     {
-                        'start': string_iterator['get state']().location,
-                        'end': string_iterator['get state']().location,
+                        'start': context.iterator['get state']().location,
+                        'end': context.iterator['get state']().location,
                     }
-                ))
+                )
 
             }
             if (is_end_character($)) {
-                string_iterator['consume']() // consume the end character
+                context.iterator['consume']() // consume the end character
                 return
             }
             switch ($) {
                 case Character.line_feed:
                 case Character.carriage_return:
                     if (!allow_newlines) {
-                        return abort(lexer_error(
+                        return context.lexer_error(
                             ['unexpected end of line in delimited string', null],
                             {
                                 'start': start,
-                                'end': string_iterator['get state']().location
+                                'end': context.iterator['get state']().location
                             }
-                        ))
+                        )
                     }
-                    string_iterator['consume']()
+                    context.iterator['consume']()
                     $i['add element']($)
                     break
                 case Character.reverse_solidus: // \ (escape)
-                    string_iterator['consume']()
+                    context.iterator['consume']()
                     {
-                        const $ = temp_get_current_character(string_iterator)
+                        const $ = temp_get_current_character(context.iterator)
                         if ($ === null) {
-                            return abort(lexer_error(
+                            return context.lexer_error(
                                 ['missing character after escape', null],
                                 {
                                     'start': start,
-                                    'end': string_iterator['get state']().location
+                                    'end': context.iterator['get state']().location
                                 }
-                            ))
+                            )
                         }
                         switch ($) {
                             case Character.quotation_mark:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.quotation_mark)
                                 break
                             case Character.apostrophe:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.apostrophe)
                                 break
                             case Character.backtick:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.backtick)
                                 break
                             case Character.reverse_solidus:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.reverse_solidus)
                                 break
                             case Character.solidus:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.solidus)
                                 break
                             case Character.b:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.backspace)
                                 break
                             case Character.f:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.form_feed)
                                 break
                             case Character.n:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.line_feed)
                                 break
                             case Character.r:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.carriage_return)
                                 break
                             case Character.t:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](Character.tab)
                                 break
                             case Character.u:
-                                string_iterator['consume']()
+                                context.iterator['consume']()
                                 $i['add element'](op_parse_hexadecimal(op_from_character_list((_ea.build_list(($i) => {
                                     const get_char = () => {
-                                        const char = temp_get_current_character(string_iterator)
+                                        const char = temp_get_current_character(context.iterator)
                                         if (char === null) {
-                                            return abort(lexer_error(
+                                            return context.lexer_error(
                                                 ['unterminated unicode escape sequence', null],
                                                 {
                                                     'start': start,
-                                                    'end': string_iterator['get state']().location
+                                                    'end': context.iterator['get state']().location
                                                 }
-                                            ))
+                                            )
                                         }
                                         if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
-                                            return abort(lexer_error(
+                                            return context.lexer_error(
                                                 ['invalid unicode escape sequence', null],
                                                 {
                                                     'start': start,
-                                                    'end': string_iterator['get state']().location
+                                                    'end': context.iterator['get state']().location
                                                 }
-                                            ))
+                                            )
                                         }
-                                        string_iterator['consume']()
+                                        context.iterator['consume']()
                                         return char
                                     }
                                     $i['add element'](get_char())
@@ -555,18 +550,18 @@ export const Delimited_String = (
                                 })))))
                                 break
                             default:
-                                return abort(lexer_error(
+                                return context.lexer_error(
                                     ['unknown escape character', null],
                                     {
                                         'start': start,
-                                        'end': string_iterator['get state']().location
+                                        'end': context.iterator['get state']().location
                                     }
-                                ))
+                                )
                         }
                     }
                     break
                 default:
-                    string_iterator['consume']()
+                    context.iterator['consume']()
                     $i['add element']($)
             }
         }
@@ -575,18 +570,17 @@ export const Delimited_String = (
 }
 
 export const Tokenizer_Result = (
-    string_iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>
+    context: c.Refinement_Context
 ): _out.Tokenizer_Result => {
     return {
-        'leading trivia': Trivia(string_iterator, abort),
+        'leading trivia': Trivia(context),
         'tokens': _ea.build_list<_out.Annotated_Token>($i => {
-            while (temp_get_current_character(string_iterator) !== null) {
+            while (temp_get_current_character(context.iterator) !== null) {
 
-                const token = Annotated_Token(string_iterator, abort)
+                const token = Annotated_Token(context)
                 $i['add element'](token)
             }
         }),
-        'end': string_iterator['get state']().location
+        'end': context.iterator['get state']().location
     }
 }

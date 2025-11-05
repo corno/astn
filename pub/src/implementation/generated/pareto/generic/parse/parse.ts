@@ -46,6 +46,6 @@ export const parse = (
                 }
             })
         }
-        return _ea.panic("unknown error thrown")
+        return _ea.deprecated_panic("unknown error thrown")
     }
 }
