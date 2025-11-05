@@ -1,6 +1,8 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
+import { $$ as op_to_character_list } from "exupery-standard-library/dist/implementation/operations/impure/text/to_character_list"
+import { Iterator } from '../iterator'
 
 //language independent parser functionality
 
@@ -12,31 +14,18 @@ export type Iterator_Location = {
     }
 }
 
-export type Characters_Iterator = {
-
-    'consume character': () => void
-    'consume string': ($: string) => void
-    /**
-     * returns the current character, or null if the end of the string has been reached.
-     * equivalent to `look ahead(0)`
-     */
-    'get current character': () => number | null
-    'look ahead': ($: number) => number | null
-    'create offset location info': (subtract: number) => Iterator_Location
-    'create location info': () => Iterator_Location
-    'create location info string': () => string
+export type Token_Iterator_State = {
+    'location': Iterator_Location
     /**
      * if no non-whitespace character has been found yet on the current line,
      * this will return the current column,
      * otherwise it will return the offset of that first non-whitespace character
      * (which is the indentation of the line)
      */
-    'get line indentation': () => number
-    'starts with': ($: string) => boolean
+    'line indentation': number
 }
 
-import { $$ as op_to_character_list } from "exupery-standard-library/dist/implementation/operations/impure/text/to_character_list"
-import { $$ as op_starts_with } from "exupery-standard-library/dist/implementation/operations/impure/text/starts_with"
+export type Characters_Iterator = Iterator<number, Token_Iterator_State>
 
 const WhitespaceChars = {
     tab: 0x09,                  // \t
@@ -54,15 +43,13 @@ export const is_control_character = ($: number): boolean => {
  * while keeping track of line numbers, columns, and line indentation.
  */
 
-export const create_string_iterator = (
+export const create_iterator = (
     $: string,
     $p: {
         'tab size': number
     }
 ): Characters_Iterator => {
-    const source = $
     const characters = op_to_character_list($)
-    const length = characters.__get_length()
 
     type Relative_Position_Information = {
         'line': number
@@ -78,101 +65,70 @@ export const create_string_iterator = (
         'line indentation': null
     }
 
-    const consume_character = () => {
-        const c = characters.__get_element_at(position)
-        const start = relative_position
-        relative_position = c.transform(
-            ($) => {
-                return $ === WhitespaceChars.line_feed
-                    ? {
-                        'line': relative_position.line + 1,
-                        'column': 0,
-                        'line indentation': null,
-                    }
-                    : found_carriage_return_before
+    return {
+        'consume': () => {
+            const c = characters.__get_element_at(position)
+            const start = relative_position
+            relative_position = c.transform(
+                ($) => {
+                    return $ === WhitespaceChars.line_feed
                         ? {
                             'line': relative_position.line + 1,
                             'column': 0,
                             'line indentation': null,
                         }
-                        : {
-                            'line': relative_position.line,
-                            'column': relative_position['column'] + ($ === WhitespaceChars.tab
-                                ? $p['tab size']
-                                : 1),
-                            'line indentation': relative_position['line indentation'] !== null
-                                ? relative_position['line indentation']
-                                : $ === WhitespaceChars.space || $ === WhitespaceChars.tab
-                                    ? null
-                                    : relative_position['column'],
-                        }
-            },
-            () => relative_position //this is weird, we were already at the end of the list
-        )
+                        : found_carriage_return_before
+                            ? {
+                                'line': relative_position.line + 1,
+                                'column': 0,
+                                'line indentation': null,
+                            }
+                            : {
+                                'line': relative_position.line,
+                                'column': relative_position['column'] + ($ === WhitespaceChars.tab
+                                    ? $p['tab size']
+                                    : 1),
+                                'line indentation': relative_position['line indentation'] !== null
+                                    ? relative_position['line indentation']
+                                    : $ === WhitespaceChars.space || $ === WhitespaceChars.tab
+                                        ? null
+                                        : relative_position['column'],
+                            }
+                },
+                () => relative_position //this is weird, we were already at the end of the list
+            )
 
-        found_carriage_return_before = c.transform(
-            ($) => $ === WhitespaceChars.carriage_return,
-            () => false
-        )
-        position += 1
-    }
-
-    return {
-        'consume string': ($: string) => {
-            op_to_character_list($).__for_each(() => {
-                consume_character()
-            })
+            found_carriage_return_before = c.transform(
+                ($) => $ === WhitespaceChars.carriage_return,
+                () => false
+            )
+            position += 1
         },
-        'consume character': consume_character,
-        'get current character': () => {
-            if (position === length) {
-                return null
-            }
+        'get current': () => {
             return characters.__get_element_at(position).transform(
-                ($) => $,
-                () => null
+                ($) => _ea.set($),
+                () => _ea.not_set()
             )
         },
-        'look ahead': ($: number) => {
-            const next_position = position + $;
-            if (next_position >= length) {
-                return null
-            }
-            return characters.__get_element_at(next_position).transform(
-                ($) => $,
-                () => null
+        'look ahead': (offset: number) => {
+            return characters.__get_element_at(position + offset).transform(
+                ($) => _ea.set($),
+                () => _ea.not_set()
             )
         },
-        'create location info': () => {
+        'get state': () => {
             return {
-                'absolute': position,
-                'relative': {
-                    'line': relative_position.line,
-                    'column': relative_position['column'],
-                }
+                'location': {
+                    'absolute': position,
+                    'relative': {
+                        'line': relative_position.line,
+                        'column': relative_position['column'],
+                    }
+                },
+                'line indentation': relative_position['line indentation'] !== null
+                    ? relative_position['line indentation']
+                    : relative_position['column']
             }
-        },
-        'create offset location info': (subtract) => {
-            return {
-                'absolute': position - subtract,
-                'relative': {
-                    'line': relative_position.line,
-                    'column': relative_position['column'] - subtract,
-                }
-            }
-        },
-        'create location info string': () => `${relative_position.line}:${relative_position['column']}`,
-        'get line indentation': () => {
-            return relative_position['line indentation'] !== null
-                ? relative_position['line indentation']
-                : relative_position['column']
-        },
-        'starts with': ($: string) => {
-            return op_starts_with(
-                source,
-                $,
-                position,
-            )
         }
     }
 }

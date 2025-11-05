@@ -32,7 +32,7 @@ export const String = (
     if (token.type[0] !== 'string') {
         return abort(sh.unexpected_token(token, _ea.array_literal([['a string', null]])))
     }
-    token_iterator['consume token']()
+    token_iterator['consume']()
     return {
         'range': {
             'start': token['start'],
@@ -54,7 +54,7 @@ export const Document = (
             if (token.type[0] !== '!') {
                 return _ea.not_set()
             }
-            token_iterator['consume token']()
+            token_iterator['consume']()
             return _ea.set({
                 '!': Structural_Token(token, abort),
                 'value': Value(token_iterator, abort)
@@ -103,7 +103,7 @@ export const Key_Value_Pairs = (
                     if (candidate_colon.type[0] !== ':') {
                         return _ea.not_set()
                     }
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
 
                     return _ea.set({
                         ':': Structural_Token(candidate_colon, abort),
@@ -130,68 +130,68 @@ export const Value = (
                     return ['concrete', ['string', String(token_iterator, abort)]]
                 })
                 case '{': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['indexed collection', ['dictionary', {
                         '{': Structural_Token(token, abort),
                         'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', ['}', null], abort),
                         '}': _ea.block(() => {
                             const current_token = h.get_required_token(token_iterator, _ea.array_literal([['}', null]]), abort)
-                            token_iterator['consume token']()
+                            token_iterator['consume']()
                             return Structural_Token(current_token, abort)
                         })
                     }]]]
                 })
                 case '(': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['indexed collection', ['verbose group', {
                         '(': Structural_Token(token, abort),
                         'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', [')', null], abort),
                         ')': _ea.block(() => {
                             const current_token = h.get_required_token(token_iterator, _ea.array_literal([[')', null]]), abort)
-                            token_iterator['consume token']()
+                            token_iterator['consume']()
                             return Structural_Token(current_token, abort)
                         })
                     }]]]
                 })
                 case '[': return _ea.ss($, ($): _target.Value._type => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['ordered collection', ['list', {
                         '[': Structural_Token(token, abort),
                         'elements': Elements(token_iterator, ($) => $[0] === ']', [']', null], abort),
                         ']': _ea.block(() => {
                             const current_token = h.get_required_token(token_iterator, _ea.array_literal([[']', null]]), abort)
-                            token_iterator['consume token']()
+                            token_iterator['consume']()
                             return Structural_Token(current_token, abort)
                         }),
                     }]]]
                 })
                 case '<': return _ea.ss($, ($): _target.Value._type => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['ordered collection', ['concise group', {
                         '<': Structural_Token(token, abort),
                         'elements': Elements(token_iterator, ($) => $[0] === '>', ['>', null], abort),
                         '>': _ea.block(() => {
                             const current_token = h.get_required_token(token_iterator, _ea.array_literal([['>', null]]), abort)
-                            token_iterator['consume token']()
+                            token_iterator['consume']()
                             return Structural_Token(current_token, abort)
                         }),
                     }]]]
                 })
                 case '@': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['include', {
                         '@': Structural_Token(token, abort),
                         'path': String(token_iterator, abort)
                     }]
                 })
                 case '~': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['not set', {
                         '~': Structural_Token(token, abort),
                     }]]
                 })
                 case '|': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     const token = h.get_required_token(token_iterator, _ea.array_literal([['a value', null], ['#', null]]), abort)
 
                     return ['concrete', ['tagged value', {
@@ -205,7 +205,7 @@ export const Value = (
                                     }]
                                 })
                                 case '#': return _ea.ss($, ($) => {
-                                    token_iterator['consume token']()
+                                    token_iterator['consume']()
                                     return ['missing data', {
                                         '#': Structural_Token(token, abort),
                                     }]
@@ -219,14 +219,14 @@ export const Value = (
                     }]]
                 })
                 case '*': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['concrete', ['set optional value', {
                         '*': Structural_Token(token, abort),
                         'value': Value(token_iterator, abort)
                     }]]
                 })
                 case '#': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return ['missing data', {
                         '#': Structural_Token(token, abort),
                     }]
@@ -236,37 +236,37 @@ export const Value = (
                 //unexpected tokens
 
                 case '!': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ':': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ')': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case '>': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case ']': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))
                 })
                 case '}': return _ea.ss($, ($) => {
-                    token_iterator['consume token']()
+                    token_iterator['consume']()
                     return abort(sh.unexpected_token(token, _ea.array_literal([
                         ['a value', null]
                     ])))

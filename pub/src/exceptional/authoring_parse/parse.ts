@@ -12,8 +12,6 @@ import * as ti from "./tokens/iterator"
 
 import * as tokenize from "./tokens/refiners"
 
-
-
 export const parse = (
     $: string,
     $p: {
@@ -22,7 +20,7 @@ export const parse = (
 ): _ea.Refinement_Result<s_ast.Document, _parse_result.Parse_Error> => {
     const tokenizer_result = _ea.refine_guard<d_token.Tokenizer_Result, _parse_result.Parse_Error>((abort) => {
         return tokenize.Tokenizer_Result(
-            ti.create_string_iterator($, {
+            ti.create_iterator($, {
                 'tab size': $p['tab size']
             }),
             abort
@@ -32,7 +30,7 @@ export const parse = (
         ($) => {
             return _ea.refine_guard((abort) => {
                 return d_ast.Document(
-                    ai.create_astn_token_iterator($.tokens, $.end),
+                    ai.create_iterator($.tokens, $.end),
                     abort,
                 )
             })
