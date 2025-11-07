@@ -17,7 +17,7 @@ import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/convert_to_json"
 
 
-export const $$: _eb.Unguaranteed_Main_Initializer = (
+export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error> = (
 
 ) => _easync.up.action(
     _easync.upi.g(p_log),

@@ -13,13 +13,6 @@
     "LICENSE",
     "documentation"
   ],
-  "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf dist",
-    "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "validate": "node dist/bin/validate_astn.js"
-  },
   "keywords": [
     "astn",
     "parser",
@@ -47,11 +40,11 @@
   },
   "dependencies": {
     "exupery-core-alg": "^0.2.0",
-    "exupery-core-bin": "^0.2.0",
+    "exupery-core-bin": "^0.2.1",
     "exupery-core-data": "^0.2.0",
     "exupery-core-dev": "^0.2.0",
     "pareto-fountain-pen": "^0.2.0",
     "pareto-json": "^0.2.0",
-    "pareto-standard-operations": "^0.2.0"
+    "pareto-standard-operations": "^0.2.1"
   }
 }
