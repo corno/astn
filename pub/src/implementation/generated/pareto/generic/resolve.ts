@@ -125,7 +125,7 @@ export const get_entry_from_stack = <Source, T>(
     const get_entry_from_stack = (
         up_steps_taken: number
     ): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
-        return $.__get_element_at($.__get_length() - 1 - up_steps_taken).transform(
+        return $.__get_element_at($.__get_number_of_elements() - 1 - up_steps_taken).transform(
             ($): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
                 return $.transform(
                     ($) => {
@@ -338,7 +338,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                             }
                             const subscr = all_siblings_subscribed_entries[key]
                             return {
-                                'compute': () => {
+                                'get circular dependent': () => {
                                     if (subscr.entry === null) {
                                         return _ea.deprecated_panic(`entry not set: ${key}`)
                                     }

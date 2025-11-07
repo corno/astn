@@ -18,7 +18,7 @@ export type _T_Ordered_Dictionary<M_Source, T_D> = {
 }
 
 export type _T_Reference_To_Circular_Dependent_Sibling<M_Source, T_Dictionary_Entry> = {
-    readonly 'entry': _pt.Computed_Value<T_Dictionary_Entry>
+    readonly 'entry': _pt.Circular_Dependency<T_Dictionary_Entry>
     readonly 'key': string
 }
 
@@ -92,7 +92,7 @@ export namespace _T_Reference_To_Circular_Dependent_Sibling {
     export namespace entry {
         export type C<M_Source, T_Dictionary_Entry> = T_Dictionary_Entry
     }
-    export type entry<M_Source, T_Dictionary_Entry> = _pt.Computed_Value<T_Dictionary_Entry>
+    export type entry<M_Source, T_Dictionary_Entry> = _pt.Circular_Dependency<T_Dictionary_Entry>
     export type key<M_Source, T_Dictionary_Entry> = string
 }
 
@@ -146,7 +146,7 @@ export namespace Reference_To_Circular_Dependent_Sibling {
     export namespace entry {
         export type C<M_Source, T_Dictionary_Entry> = T_Dictionary_Entry
     }
-    export type entry<M_Source, T_Dictionary_Entry> = _pt.Computed_Value<T_Dictionary_Entry>
+    export type entry<M_Source, T_Dictionary_Entry> = _pt.Circular_Dependency<T_Dictionary_Entry>
     export type key<M_Source, T_Dictionary_Entry> = string
 }
 
