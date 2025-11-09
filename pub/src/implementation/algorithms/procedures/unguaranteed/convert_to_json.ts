@@ -17,10 +17,10 @@ import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/convert_to_json"
 
 
-export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error> = (
+export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error, null> = (
 
 ) => _easync.up.action(
-    _easync.upi.g(p_log),
+    _easync.upi.g(p_log, null),
     _easync.uq.g(
         q_get_instream_data,
         _easync.uq.fixed(null),
@@ -54,7 +54,10 @@ export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.
                     ])
 
                 }),
+                null,
             )
         ),
-    )
+        null,
+    ),
+    null,
 )

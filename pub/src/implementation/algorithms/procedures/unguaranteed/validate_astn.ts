@@ -14,8 +14,8 @@ import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
 
-export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error> = () => _easync.up.action(
-    _easync.upi.g(p_log),
+export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error, null> = () => _easync.up.action(
+    _easync.upi.g(p_log, null),
     _easync.uq.g(
         q_get_instream_data,
         _easync.uq.fixed(null),
@@ -42,7 +42,10 @@ export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.
                         `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
                     ])
                 }),
+                null,
             )
         ),
-    )
+        null,
+    ),
+    null,
 )

@@ -1,0 +1,8 @@
+Repository: astn
+Path: /home/corno/workspace/pareto-canon/packages/astn
+Last Commit: 2025-11-07 (e14cdc4)
+Message: new version
+Branch: main
+Remote: git@github.com:corno/astn
+-------------------------------------------------
+
