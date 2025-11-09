@@ -14,7 +14,7 @@ import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
 
-export const $$: _easync.Unguaranteed_Procedure_Initializer<_eb.Parameters, _eb.Error, null> = () => _easync.up.action(
+export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, null> = () => _easync.up.action(
     _easync.upi.g(p_log, null),
     _easync.uq.g(
         q_get_instream_data,
