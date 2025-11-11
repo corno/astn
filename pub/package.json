@@ -43,7 +43,7 @@
     "exupery-core-bin": "^0.3.3",
     "exupery-core-data": "^0.3.0",
     "exupery-core-dev": "^0.3.0",
-    "pareto-fountain-pen": "^0.3.2",
+    "pareto-fountain-pen": "^0.3.3",
     "pareto-json": "^0.3.0",
     "pareto-standard-operations": "^0.3.0"
   }
