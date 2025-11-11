@@ -8,21 +8,29 @@ import * as create_error_message from "../../transformations/parse_result/string
 import * as t_ast_2_json from "../../transformations/authoring_parse_tree/json_target"
 import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
-import { $$ as p_log } from "exupery-resources/dist/implementation/algorithms/procedures/guaranteed/log"
+import * as d_get_instream_data from "exupery-resources/dist/interface/generated/pareto/schemas/get_instream_data/data_types/source"
+import * as d_log from "exupery-resources/dist/interface/generated/pareto/schemas/log/data_types/source"
 
 import * as _target from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 
-import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/algorithms/queries/guaranteed/get_instream_data"
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/convert_to_json"
 
+export type Resources = {
+    'queries': {
+        'get instream data': _easync.Guaranteed_Query<null, d_get_instream_data.Result, null>
+    },
+    'procedures': {
+        'log': _easync.Guaranteed_Procedure<d_log.Parameters, null>
+    }
+}
 
-export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, null> = (
-
+export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, Resources> = (
+    $p, $r,
 ) => _easync.up.action(
-    _easync.upi.g(p_log, null),
+    _easync.upi.g($r.procedures.log, null),
     _easync.uq.g(
-        q_get_instream_data,
+        $r.queries['get instream data'],
         _easync.uq.fixed(null),
         _easync.ut.u(
             ($) => parse.parse(
@@ -47,7 +55,7 @@ export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, null>
                 'exit code': 1
             }),
             _easync.eh(
-                p_log,
+                $r.procedures.log,
                 ($) => ({
                     'lines': _ea.array_literal([
                         `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`

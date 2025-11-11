@@ -5,19 +5,28 @@ import * as _easync from 'exupery-core-async'
 import * as parse from "../../../../exceptional/authoring_parse/parse"
 import * as create_error_message from "../../transformations/parse_result/string"
 
-import { $$ as p_log } from "exupery-resources/dist/implementation/algorithms/procedures/guaranteed/log"
-import { $$ as p_log_error } from "exupery-resources/dist/implementation/algorithms/procedures/guaranteed/log_error"
+import * as d_get_instream_data from "exupery-resources/dist/interface/generated/pareto/schemas/get_instream_data/data_types/source"
+import * as d_log from "exupery-resources/dist/interface/generated/pareto/schemas/log/data_types/source"
+import * as d_log_error from "exupery-resources/dist/interface/generated/pareto/schemas/log_error/data_types/source"
 
 import * as _target from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import { $$ as q_get_instream_data } from "exupery-resources/dist/implementation/algorithms/queries/guaranteed/get_instream_data"
 import { Signature } from "../../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
+export type Resources = {
+    'queries': {
+        'get instream data': _easync.Guaranteed_Query<null, d_get_instream_data.Result, null>
+    },
+    'procedures': {
+        'log': _easync.Guaranteed_Procedure<d_log.Parameters, null>
+        'log error': _easync.Guaranteed_Procedure<d_log_error.Parameters, null>
+    }
+}
 
-export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, null> = () => _easync.up.action(
-    _easync.upi.g(p_log, null),
+export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, Resources> = ($p, $r) => _easync.up.action(
+    _easync.upi.g($r.procedures.log, null),
     _easync.uq.g(
-        q_get_instream_data,
+        $r.queries['get instream data'],
         _easync.uq.fixed(null),
         _easync.ut.u(
             ($) => parse.parse(
@@ -36,7 +45,7 @@ export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, null>
                 'exit code': 1
             }),
             _easync.eh(
-                p_log,
+                $r.procedures['log error'],
                 ($) => ({
                     'lines': _ea.array_literal([
                         `Parse Error: ${create_error_message.Parse_Error($, { 'position info': ['one based', null] })}`
