@@ -1,7 +1,7 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import { $$ as op_to_character_list } from "exupery-standard-library/dist/implementation/algorithms/operations/impure/text/to_character_list"
+import { $$ as op_to_character_list } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/text/to_character_list"
 import { Iterator } from '../iterator'
 
 //language independent parser functionality

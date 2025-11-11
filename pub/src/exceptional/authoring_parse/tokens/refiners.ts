@@ -9,8 +9,8 @@ import * as c from "./context"
 
 import { Characters_Iterator, is_control_character } from "./iterator"
 
-import { $$ as op_from_character_list } from "exupery-standard-library/dist/implementation/algorithms/operations/impure/text/from_character_list"
-import { $$ as op_parse_hexadecimal } from "exupery-standard-library/dist/implementation/algorithms/operations/impure/integer/parse_hexadecimal"
+import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/text/from_character_list"
+import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/integer/parse_hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
