@@ -32,7 +32,6 @@ export type String_Iterator = {
      * (which is the indentation of the line)
      */
     'get line indentation': () => number
-    'starts with': ($: string) => boolean
 }
 
 import { $$ as op_to_character_list } from "exupery-standard-library/dist/implementation/algorithms/operations/impure/text/to_character_list"
@@ -167,13 +166,6 @@ export const create_string_iterator = (
                 ? relative_position['line indentation']
                 : relative_position['column']
         },
-        'starts with': ($: string) => {
-            return op_starts_with(
-                source,
-                $,
-                position,
-            )
-        }
     }
 }
 
