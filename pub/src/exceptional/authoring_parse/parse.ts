@@ -2,17 +2,17 @@ import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
 
-import * as d_ast from "./ast/refiners"
+import * as d_ast from "../../implementation/algorithms/refiners/authoring_parse_tree/refiners"
 import * as _parse_result from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as s_ast from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 import * as d_token from "../../interface/generated/pareto/schemas/token/data_types/target"
 
-import * as ai from "./ast/iterator"
-import * as ti from "./tokens/iterator"
+import * as ai from "../../implementation/algorithms/refiners/authoring_parse_tree/iterator"
+import * as ti from "../../implementation/algorithms/refiners/token/iterator"
 
-import * as tokenize from "./tokens/refiners"
-import { create_context as create_ast_context } from "./ast/context"
-import { create_context as create_tokens_context } from "./tokens/context"
+import * as tokenize from "../../implementation/algorithms/refiners/token/refiners"
+import { create_context as create_ast_context } from "../../implementation/algorithms/refiners/authoring_parse_tree/context"
+import { create_context as create_tokens_context } from "../../implementation/algorithms/refiners/token/context"
 
 export const parse = (
     $: string,

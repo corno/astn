@@ -1,10 +1,10 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as string_iterator from "../tokens/iterator"
+import * as string_iterator from "../token/iterator"
 
-import * as _source from "../../../interface/generated/pareto/schemas/token/data_types/source"
-import { Iterator } from "../iterator"
+import * as _source from "../../../../interface/generated/pareto/schemas/token/data_types/source"
+import { Iterator } from "../../../../exceptional/authoring_parse/iterator"
 
 
 export type My_Location = {

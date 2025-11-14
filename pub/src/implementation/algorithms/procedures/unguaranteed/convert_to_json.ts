@@ -4,9 +4,9 @@ import * as _easync from 'exupery-core-async'
 import * as _et from 'exupery-core-types'
 
 import * as parse from "../../../../exceptional/authoring_parse/parse"
-import * as create_error_message from "../../transformations/parse_result/string"
+import * as create_error_message from "../../transformers/parse_result/string"
 
-import * as t_ast_2_json from "../../transformations/authoring_parse_tree/json_target"
+import * as t_ast_2_json from "../../transformers/authoring_parse_tree/json_target"
 import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 import * as d_get_instream_data from "exupery-resources/dist/interface/generated/pareto/schemas/get_instream_data/data_types/source"

@@ -1,7 +1,7 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import { Iterator } from '../iterator'
+import { Iterator } from '../../../../exceptional/authoring_parse/iterator'
 
 //language independent parser functionality
 

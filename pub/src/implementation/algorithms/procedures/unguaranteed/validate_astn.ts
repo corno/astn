@@ -4,7 +4,7 @@ import * as _easync from 'exupery-core-async'
 import * as _et from 'exupery-core-types'
 
 import * as parse from "../../../../exceptional/authoring_parse/parse"
-import * as create_error_message from "../../transformations/parse_result/string"
+import * as create_error_message from "../../transformers/parse_result/string"
 
 import * as d_get_instream_data from "exupery-resources/dist/interface/generated/pareto/schemas/get_instream_data/data_types/source"
 import * as d_log from "exupery-resources/dist/interface/generated/pareto/schemas/log/data_types/source"

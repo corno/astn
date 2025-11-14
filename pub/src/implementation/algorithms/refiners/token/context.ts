@@ -1,11 +1,11 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as _source from "../../../interface/generated/pareto/schemas/token/data_types/source"
-import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as _source from "../../../../interface/generated/pareto/schemas/token/data_types/source"
+import * as d_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import { Characters_Iterator } from "./iterator"
 
-import * as sh from "../../../shorthands/parse_result"
+import * as sh from "../../../../shorthands/parse_result"
 
 export type Refinement_Context = {
     iterator: Characters_Iterator

@@ -3,38 +3,71 @@
 import * as _eb from 'exupery-core-bin'
 import * as _ea from 'exupery-core-alg'
 import * as _ed from 'exupery-core-dev'
+import * as _easync from 'exupery-core-async'
+import * as _et from 'exupery-core-types'
 
-// import { $$ as x } from "exupery-resources/dist/implementation/queries/guaranteed/execute_query_executable_and_catch"
+import * as d_read_directory from "exupery-resources/dist/interface/generated/pareto/schemas/read_directory/data_types/source"
 
-// x({
-//     'program': "./pub/dist/bin/convert_to_json.js",
-//     'args': _ea.array_literal([])
-// }).__start(
-//     ($) => {
-//         _ea.cc($, ($) => {
-//             switch ($[0]) {
-//                 case 'success': return _ea.ss($, ($) => {
-//                     _ed.log_debug_message(`succes: ${$.stdout}`, () => { })
+const temp_execute_procedure_with_asynchronous_data = <Procedure_Parameters, Error, Procedure_Resources>(
+    query: _et.Unguaranteed_Query_Promise<Procedure_Parameters, Error>,
+    procedure: _et.Unguaranteed_Procedure<Procedure_Parameters, Error, Procedure_Resources>,
+    resources: Procedure_Resources,
+) => {
+    return _easync.__create_unguaranteed_procedure<Error>({
+        'execute': (on_success, on_exception) => {
+            query.__start(
+                (query_result) => {
+                    procedure(query_result, resources).__start(
+                        on_success,
+                        on_exception
+                    )
+                },
+                on_exception
+            )
+        }
+    })
+}
 
-//                 })
-//                 case 'error': return _ea.ss($, ($) => _ea.cc($, ($) => {
-//                     switch ($[0]) {
-//                         case 'failed to spawn': return _ea.ss($, ($) => {
-//                             _ed.log_debug_message(`error: ${$.message}`, () => { })
 
-//                         })
-//                         case 'non zero exit code': return _ea.ss($, ($) => {
-//                             _ed.log_debug_message(`error: ${$.exitCode}>${$.stderr}`, () => { })
 
-//                         })
-//                         default: return _ea.au($[0])
-//                     }
-//                 }))
-//                 default: return _ea.au($[0])
+// _eb.run_unguaranteed_main_procedure(
+//     ($r) => {
+//         return {
+//             'queries': {
+//                 'read file': $r.queries['read file'],
+//                 'read directory': $r.queries['read directory'],
+//             },
+//             'procedures': {
+//                 'write file': $r.procedures['write file'],
 //             }
-//         })
-//         on
+//         }
+//     },
+//     ($p, $r) => {
+//         return temp_execute_procedure_with_asynchronous_data<d_read_directory.Result, _eb.Error>(
+//             $r.queries['read directory'](
+//                 {
+//                     'prepend results with path': false,
+//                     'path': {
+//                         'escape spaces in path': true,
+//                         'path': "/some/path/to/a/file.txt",
+//                     },
+//                 },
+//                 null,
+//             ).map_exception_(($) => ({
+//                 'exit code': 1,
+//             })),
+//             $r.procedures['write file'](
+//                 {
+//                     'path': {
+//                         'escape spaces in path': true,
+//                         'path': "/some/path/to/a/file.txt",
+//                     },
+//                     'data': "some data",
+//                 },
+//                 null
+//             ).map_error(($) => ({
+//                 'exit code': 1,
+//             })),
+//         )
 //     }
 // )
-
-_ed.log_debug_message("TEST NOT IMPLEMENTED YET", () => { })
