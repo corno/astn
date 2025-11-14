@@ -16,7 +16,7 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): _ea.Refinement_Result<s_ast._T_Document, _target._T_Parse_Error> => {
+): _et.Refinement_Result<s_ast._T_Document, _target._T_Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']

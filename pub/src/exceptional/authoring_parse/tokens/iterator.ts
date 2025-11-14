@@ -1,7 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import { $$ as op_to_character_list } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/text/to_character_list"
 import { Iterator } from '../iterator'
 
 //language independent parser functionality
@@ -49,7 +48,7 @@ export const create_iterator = (
         'tab size': number
     }
 ): Characters_Iterator => {
-    const characters = op_to_character_list($)
+    const characters = _ea.text_to_character_list($)
 
     type Relative_Position_Information = {
         'line': number

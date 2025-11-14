@@ -1,6 +1,7 @@
 import * as _ea from 'exupery-core-alg'
 import * as _eb from 'exupery-core-bin'
 import * as _easync from 'exupery-core-async'
+import * as _et from 'exupery-core-types'
 
 import * as parse from "../../../../exceptional/authoring_parse/parse"
 import * as create_error_message from "../../transformations/parse_result/string"
@@ -18,14 +19,14 @@ import { Signature } from "../../../../interface/algorithms/procedures/unguarant
 
 export type Resources = {
     'queries': {
-        'get instream data': _easync.Guaranteed_Query<null, d_get_instream_data.Result, null>
+        'get instream data': _et.Guaranteed_Query<null, d_get_instream_data.Result, null>
     },
     'procedures': {
-        'log': _easync.Guaranteed_Procedure<d_log.Parameters, null>
+        'log': _et.Guaranteed_Procedure<d_log.Parameters, null>
     }
 }
 
-export const $$: _easync.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, Resources> = (
+export const $$: _et.Unguaranteed_Procedure<_eb.Parameters, _eb.Error, Resources> = (
     $p, $r,
 ) => _easync.up.action(
     _easync.upi.g($r.procedures.log, null),

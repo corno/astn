@@ -1,4 +1,5 @@
 import * as _ea from 'exupery-core-alg'
+import * as _et from 'exupery-core-types'
 
 import * as d_in from "../../../../interface/generated/pareto/schemas/authoring_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
@@ -17,7 +18,7 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export const Value: _ea.Transformation_With_Parameters<d_in.Value, Parameters, d_out.Block_Part> = (
+export const Value: _et.Transformer_With_Parameters<d_in.Value, Parameters, d_out.Block_Part> = (
     $,
     $p,
 ) => {

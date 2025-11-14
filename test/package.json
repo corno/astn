@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "exupery-core-bin": "^0.3.10",
+    "exupery-core-bin": "^0.3.11",
     "exupery-core-dev": "^0.3.1",
-    "exupery-resources": "^0.3.5"
+    "exupery-resources": "^0.3.6"
   }
 }
