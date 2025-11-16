@@ -1,5 +1,6 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
+import * as _ei from 'exupery-core-internals'
 
 import * as d_ast from "./ast"
 import * as _target from "../../../../../interface/generated/pareto/core/parse_result"
@@ -16,7 +17,7 @@ export const parse = (
     $p: {
         'tab size': number
     }
-): _et.Refinement_Result<s_ast._T_Document, _target._T_Parse_Error> => {
+): _et.Data_Preparation_Result<s_ast._T_Document, _target._T_Parse_Error> => {
     try {
         const string_iterator = si.create_string_iterator($, {
             'tab size': $p['tab size']
@@ -33,12 +34,12 @@ export const parse = (
         //     })}`)
         // })
         const token_iterator = pg.create_astn_token_iterator(tokenizer_result.tokens, tokenizer_result.end)
-        return _ea.refinement.successful(d_ast.Document(token_iterator))
+        return _ei.data_processing.successful(d_ast.Document(token_iterator))
 
     } catch (error) {
         if (error instanceof pg.Parse_Error_Class) {
-
-            return _ea.refinement.failed({
+            
+            return _ei.data_processing.failed({
                 'type': error.type,
                 'range': {
                     'start': error.range.start,

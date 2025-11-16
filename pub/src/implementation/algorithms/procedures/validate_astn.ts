@@ -16,7 +16,7 @@ import { Signature } from "../../../interface/algorithms/procedures/unguaranteed
 
 export type Resources = {
     'queries': {
-        'get instream data': _et.Query<null, d_get_instream_data.Result, null>
+        'get instream data': _et.Data_Preparer<null, d_get_instream_data.Result, null>
     },
     'procedures': {
         'log': _et.Command<d_log.Parameters, null>
