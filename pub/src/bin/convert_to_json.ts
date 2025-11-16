@@ -2,20 +2,19 @@
 
 import * as _eb from 'exupery-core-bin'
 
-import { $$ as procedure } from "../implementation/algorithms/procedures/unguaranteed/convert_to_json"
+import { $$ as procedure } from "../implementation/algorithms/procedures/convert_to_json"
 
-import * as d_resources from "../implementation/algorithms/procedures/unguaranteed/convert_to_json"
+import * as d_resources from "../implementation/algorithms/procedures/convert_to_json"
 
-_eb.run_unguaranteed_main_procedure<d_resources.Resources>(
+_eb.run_main_procedure(
     ($r) => {
-        return {
+        return procedure({
             'queries': {
                 'get instream data': $r.queries['get instream data'],
             },
             'procedures': {
-                'log': $r.procedures.log,
+                'log': $r.commands.log,
             }
-        }
+        })
     },
-    procedure
 )

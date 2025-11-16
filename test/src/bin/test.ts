@@ -8,29 +8,10 @@ import * as _et from 'exupery-core-types'
 
 import * as d_read_directory from "exupery-resources/dist/interface/generated/pareto/schemas/read_directory/data_types/source"
 
-const temp_execute_procedure_with_asynchronous_data = <Procedure_Parameters, Error, Procedure_Resources>(
-    query: _et.Unguaranteed_Query_Promise<Procedure_Parameters, Error>,
-    procedure: _et.Unguaranteed_Procedure<Procedure_Parameters, Error, Procedure_Resources>,
-    resources: Procedure_Resources,
-) => {
-    return _easync.__create_unguaranteed_procedure<Error>({
-        'execute': (on_success, on_exception) => {
-            query.__start(
-                (query_result) => {
-                    procedure(query_result, resources).__start(
-                        on_success,
-                        on_exception
-                    )
-                },
-                on_exception
-            )
-        }
-    })
-}
 
 
 
-// _eb.run_unguaranteed_main_procedure(
+// _eb.run_main_procedure(
 //     ($r) => {
 //         return {
 //             'queries': {
@@ -38,7 +19,7 @@ const temp_execute_procedure_with_asynchronous_data = <Procedure_Parameters, Err
 //                 'read directory': $r.queries['read directory'],
 //             },
 //             'procedures': {
-//                 'write file': $r.procedures['write file'],
+//                 'write file': $r.commands['write file'],
 //             }
 //         }
 //     },
@@ -56,7 +37,7 @@ const temp_execute_procedure_with_asynchronous_data = <Procedure_Parameters, Err
 //             ).map_exception_(($) => ({
 //                 'exit code': 1,
 //             })),
-//             $r.procedures['write file'](
+//             $r.commands['write file'](
 //                 {
 //                     'path': {
 //                         'escape spaces in path': true,
