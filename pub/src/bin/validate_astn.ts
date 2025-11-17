@@ -9,7 +9,7 @@ import * as d_resources from "../implementation/algorithms/procedures/validate_a
 _eb.run_main_procedure(
     ($r) => {
         return procedure({
-            'procedures': {
+            'commands': {
                 'log': $r.commands.log,
                 'log error': $r.commands['log error']
             },

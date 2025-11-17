@@ -24,20 +24,23 @@ export const parse = (
         ($) => $,
         (abort) => {
             const iter = ti.create_iterator($, {
-                    'tab size': $p['tab size']
-                })
+                'tab size': $p['tab size']
+            })
             return tokenize.Tokenizer_Result(
                 create_tokens_context(iter, abort)
             )
         }
-    ).with_result(($) => {
-        return _ea.create_refinement_context<s_ast.Document, _parse_result.Parse_Error, _parse_result.Parse_Error>(
-            ($) => $,
-            (abort) => {
-                return d_ast.Document(
-                    create_ast_context(ai.create_iterator($.tokens, $.end), abort)
-                )
-            }
-        )
-    })
+    ).process(
+        ($) => {
+            return _ea.create_refinement_context<s_ast.Document, _parse_result.Parse_Error, _parse_result.Parse_Error>(
+                ($) => $,
+                (abort) => {
+                    return d_ast.Document(
+                        create_ast_context(ai.create_iterator($.tokens, $.end), abort)
+                    )
+                }
+            )
+        },
+        ($) => $
+    )
 }

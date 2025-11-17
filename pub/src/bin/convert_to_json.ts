@@ -12,8 +12,9 @@ _eb.run_main_procedure(
             'queries': {
                 'get instream data': $r.queries['get instream data'],
             },
-            'procedures': {
-                'log': $r.commands.log,
+            'commands': {
+                'write to stdout': $r.commands['write to stdout'],
+                'log error': $r.commands['log error'],
             }
         })
     },
