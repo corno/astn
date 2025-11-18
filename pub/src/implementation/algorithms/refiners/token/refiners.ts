@@ -10,7 +10,7 @@ import * as c from "./context"
 import { Characters_Iterator, is_control_character } from "./iterator"
 
 import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/text/from_character_list"
-import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/algorithms/deserializers/integer/hexadecimal"
+import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/algorithms/integer/hexadecimal/deserializer"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
@@ -519,35 +519,38 @@ export const Delimited_String = (
                                 break
                             case Character.u:
                                 context.iterator['consume']()
-                                $i['add element'](op_parse_hexadecimal(op_from_character_list((_ea.build_list(($i) => {
-                                    const get_char = () => {
-                                        const char = temp_get_current_character(context.iterator)
-                                        if (char === null) {
-                                            return context.lexer_error(
-                                                ['unterminated unicode escape sequence', null],
-                                                {
-                                                    'start': start,
-                                                    'end': context.iterator['get state']().location
-                                                }
-                                            )
+                                $i['add element'](op_parse_hexadecimal(
+                                    op_from_character_list((_ea.build_list(($i) => {
+                                        const get_char = () => {
+                                            const char = temp_get_current_character(context.iterator)
+                                            if (char === null) {
+                                                return context.lexer_error(
+                                                    ['unterminated unicode escape sequence', null],
+                                                    {
+                                                        'start': start,
+                                                        'end': context.iterator['get state']().location
+                                                    }
+                                                )
+                                            }
+                                            if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
+                                                return context.lexer_error(
+                                                    ['invalid unicode escape sequence', null],
+                                                    {
+                                                        'start': start,
+                                                        'end': context.iterator['get state']().location
+                                                    }
+                                                )
+                                            }
+                                            context.iterator['consume']()
+                                            return char
                                         }
-                                        if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
-                                            return context.lexer_error(
-                                                ['invalid unicode escape sequence', null],
-                                                {
-                                                    'start': start,
-                                                    'end': context.iterator['get state']().location
-                                                }
-                                            )
-                                        }
-                                        context.iterator['consume']()
-                                        return char
-                                    }
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                })))))
+                                        $i['add element'](get_char())
+                                        $i['add element'](get_char())
+                                        $i['add element'](get_char())
+                                        $i['add element'](get_char())
+                                    }))),
+                                    () => _ea.deprecated_panic("IMPLEMENT ME")
+                                ))
                                 break
                             default:
                                 return context.lexer_error(

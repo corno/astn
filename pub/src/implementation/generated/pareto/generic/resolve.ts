@@ -23,7 +23,7 @@ export type Key_Value_Location_Triplet<Source, T> = {
     'location': Source
 }
 export type Path<Source, Resolved_Element, Seed> = {
-    'list': _et.Array<Resolved_Element>
+    'list': _et.List<Resolved_Element>
     'result': {
         'data': Seed
     }
@@ -40,7 +40,7 @@ export type Resolve_Error<Source> = {
 
 export type Resolve_Error_Type =
     | ['circular dependency', {
-        'keys': _et.Array<string>,
+        'keys': _et.List<string>,
     }]
     | ['no such entry', {
         'key': string,
@@ -106,7 +106,7 @@ export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
     )
 }
 
-export const push_stack = <T>($: _et.Array<T>, $p: { 'element': T }): _et.Array<T> => {
+export const push_stack = <T>($: _et.List<T>, $p: { 'element': T }): _et.List<T> => {
     return _ea.build_list<T>(($i) => {
         $i['add list']($)
         $i['add element']($p['element'])
@@ -196,7 +196,7 @@ export const resolve_path = <Source, Unresolved_Element, Resolved_Element, Seed>
     },
 ): Path<Source, Resolved_Element, Seed> => {
     let current: Path<Source, Resolved_Element, Seed> = {
-        'list': _ea.array_literal([]),
+        'list': _ea.list_literal([]),
         'result': {
             'data': $p.seed,
         },

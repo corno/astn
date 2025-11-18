@@ -36,7 +36,7 @@ export type Parser_Error = {
         readonly 'found': _i_imports_token._T_Token_Type
     }]
 
-    readonly 'expected': _et.Array<Expected
+    readonly 'expected': _et.List<Expected
     >
 }
 

@@ -6,7 +6,7 @@ export type _T_Location_2_String<Source> = Location_to_String<Source>
 
 
 export type Non_Circular_Result<T> =
-    | ['error', ['circular', _et.Array<string>]]
+    | ['error', ['circular', _et.List<string>]]
     | ['resolved', T]
 
 export type Acyclic_Lookup<T> = _et.Optional_Value<_et.Lookup<Non_Circular_Result<T>>> //FIXME should this not be optional?
@@ -17,5 +17,5 @@ export type Possibly_Circular_Result<T> = _et.Circular_Dependency<T>
 export type Cyclic_Lookup<T> = _et.Optional_Value<_et.Lookup<Possibly_Circular_Result<T>>> //FIXME should this not be optional?
 export type _T_Cyclic_Lookup<T> = Cyclic_Lookup<T>
 
-export type Lookup_Stack<T> = _et.Array<Acyclic_Lookup<T>>
+export type Lookup_Stack<T> = _et.List<Acyclic_Lookup<T>>
 export type _T_Lookup_Stack<T> = Lookup_Stack<T>

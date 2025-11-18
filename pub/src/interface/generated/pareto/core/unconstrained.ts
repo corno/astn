@@ -1,11 +1,11 @@
-import * as _pt from 'exupery-core-types'
+import * as _et from 'exupery-core-types'
 
 
 // **** TYPES
 
-export type _T_Dictionary<M_Source, T_D> = _pt.Dictionary<T_D>
+export type _T_Dictionary<M_Source, T_D> = _et.Dictionary<T_D>
 
-export type _T_List<M_Source, T_L> = _pt.Array<T_L>
+export type _T_List<M_Source, T_L> = _et.List<T_L>
 
 export type _T_State_Group<M_Source, T_SG> = T_SG
 

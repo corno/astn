@@ -12,35 +12,24 @@ import * as d_main from "exupery-resources/dist/interface/temp_main"
 
 import { Signature } from "../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
-export type Resources = {
-    'queries': {
-        'get instream data': _et.Data_Preparer<null, d_get_instream_data.Result, null>
-    },
-    'commands': {
-        'log': _et.Command<d_log.Parameters, null>
-        'log error': _et.Command<d_log_error.Parameters, null>
-    }
+export type Query_Resources = {
+    'get instream data': _et.Stager<d_get_instream_data.Result, null, null>
 }
-export type Procedure = _et.Command_Procedure<d_main.Parameters, d_main.Error, Resources>
 
-
-
-
+export type Command_Resources = {
+    'log': _et.Command<null, d_log.Parameters>
+    'log error': _et.Command<null, d_log_error.Parameters>
+}
+export type Procedure = _et.Command_Procedure<d_main.Error, d_main.Parameters, Command_Resources, Query_Resources>
 
 import * as parse from "../../../exceptional/authoring_parse/parse"
 import * as t_parse_result_to_string from "../transformers/parse_result/string"
 
 export const $$: Procedure = _easync.create_command_procedure(
-    ($r, $p) => $r.commands['log'].execute.prepare(
-        ($): d_main.Error => {
-            //highly unlikely for log to fail
-            return {
-                'exit code': 1,
-            }
-        },
-        $r.queries['get instream data'](null).transform_error_temp(($): d_main.Error => ({
+    ($p, $cr, $qr) => _easync.p.prepare_data(
+        $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
             'exit code': 1,
-        })).process(
+        })).stage(
             ($) => {
                 return parse.parse(
                     $,
@@ -49,7 +38,7 @@ export const $$: Procedure = _easync.create_command_procedure(
                     }
                 ).transform(($) => {
                     return {
-                        'lines': _ea.array_literal(["Document is valid ASTN"]),
+                        'lines': _ea.list_literal(["Document is valid ASTN"]),
                     }
                 })
             },
@@ -59,6 +48,16 @@ export const $$: Procedure = _easync.create_command_procedure(
                     'exit code': 1,
                 }
             }
+        ),
+        ($v) => $cr['log'].execute(
+            $v,
+            ($): d_main.Error => {
+                //highly unlikely for log to fail
+                return {
+                    'exit code': 1,
+                }
+            },
         )
     )
 )
+

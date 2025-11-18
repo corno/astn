@@ -20,7 +20,7 @@ export const parse_error = (
 
 export const unexpected_token = (
     found: d_target_token.Annotated_Token,
-    expected: _et.Array<d_target.Parse_Error._type.SG.parser.expected.L>,
+    expected: _et.List<d_target.Parse_Error._type.SG.parser.expected.L>,
 ): d_target.Parse_Error => {
     return parse_error(
         ['parser', {

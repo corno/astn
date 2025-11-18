@@ -27,9 +27,9 @@ export const Structural_Token = (
 export const String = (
     context: c.Refinement_Context
 ): _target.String => {
-    const token = context.get_required_token(_ea.array_literal([['a string', null]]))
+    const token = context.get_required_token(_ea.list_literal([['a string', null]]))
     if (token.type[0] !== 'string') {
-        return context.unexpected_token(token, _ea.array_literal([['a string', null]]))
+        return context.unexpected_token(token, _ea.list_literal([['a string', null]]))
     }
     context.iterator['consume']()
     return {
@@ -48,7 +48,7 @@ export const Document = (
 ): _target.Document => {
     return {
         'header': _ea.block(() => {
-            const token = context.get_required_token(_ea.array_literal([['!', null], ['a value', null]]))
+            const token = context.get_required_token(_ea.list_literal([['!', null], ['a value', null]]))
             if (token.type[0] !== '!') {
                 return _ea.not_set()
             }
@@ -69,7 +69,7 @@ export const Elements = (
 ): _target.Elements => {
     return _ea.build_list<_target.Elements.L>(($i): void => {
         while (true) {
-            const current_token = context.get_required_token(_ea.array_literal([end_token, ['a value', null]]))
+            const current_token = context.get_required_token(_ea.list_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
@@ -87,7 +87,7 @@ export const Key_Value_Pairs = (
 ): _target.Key_Value_Pairs => {
     return _ea.build_list<_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
-            const current_token = context.get_required_token(_ea.array_literal([end_token, ['a string', null]]))
+            const current_token = context.get_required_token(_ea.list_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
                 return
             }
@@ -95,7 +95,7 @@ export const Key_Value_Pairs = (
             $i['add element']({
                 'key': String(context),
                 'value': _ea.block(() => {
-                    const candidate_colon = context.get_required_token(_ea.array_literal([['a string', null], [':', null], end_token]))
+                    const candidate_colon = context.get_required_token(_ea.list_literal([['a string', null], [':', null], end_token]))
                     if (candidate_colon.type[0] !== ':') {
                         return _ea.not_set()
                     }
@@ -115,7 +115,7 @@ export const Key_Value_Pairs = (
 export const Value = (
     context: c.Refinement_Context
 ): _target.Value => {
-    const token = context.get_required_token(_ea.array_literal([['a value', null]]))
+    const token = context.get_required_token(_ea.list_literal([['a value', null]]))
     return {
         'type': _ea.cc(token.type, ($): _target.Value._type => {
 
@@ -130,7 +130,7 @@ export const Value = (
                         '{': Structural_Token(token, context),
                         'entries': Key_Value_Pairs(($) => $[0] === '}', ['}', null], context),
                         '}': _ea.block(() => {
-                            const current_token = context.get_required_token(_ea.array_literal([['}', null]]))
+                            const current_token = context.get_required_token(_ea.list_literal([['}', null]]))
                             context.iterator['consume']()
                             return Structural_Token(current_token, context)
                         })
@@ -142,7 +142,7 @@ export const Value = (
                         '(': Structural_Token(token, context),
                         'entries': Key_Value_Pairs(($) => $[0] === ')', [')', null], context),
                         ')': _ea.block(() => {
-                            const current_token = context.get_required_token(_ea.array_literal([[')', null]]))
+                            const current_token = context.get_required_token(_ea.list_literal([[')', null]]))
                             context.iterator['consume']()
                             return Structural_Token(current_token, context)
                         })
@@ -154,7 +154,7 @@ export const Value = (
                         '[': Structural_Token(token, context),
                         'elements': Elements(($) => $[0] === ']', [']', null], context),
                         ']': _ea.block(() => {
-                            const current_token = context.get_required_token(_ea.array_literal([[']', null]]))
+                            const current_token = context.get_required_token(_ea.list_literal([[']', null]]))
                             context.iterator['consume']()
                             return Structural_Token(current_token, context)
                         }),
@@ -166,7 +166,7 @@ export const Value = (
                         '<': Structural_Token(token, context),
                         'elements': Elements(($) => $[0] === '>', ['>', null], context),
                         '>': _ea.block(() => {
-                            const current_token = context.get_required_token(_ea.array_literal([['>', null]]))
+                            const current_token = context.get_required_token(_ea.list_literal([['>', null]]))
                             context.iterator['consume']()
                             return Structural_Token(current_token, context)
                         }),
@@ -187,7 +187,7 @@ export const Value = (
                 })
                 case '|': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    const token = context.get_required_token(_ea.array_literal([['a value', null], ['#', null]]))
+                    const token = context.get_required_token(_ea.list_literal([['a value', null], ['#', null]]))
 
                     return ['concrete', ['tagged value', {
                         '|': Structural_Token(token, context),
@@ -205,7 +205,7 @@ export const Value = (
                                         '#': Structural_Token(token, context),
                                     }]
                                 })
-                                default: return context.unexpected_token(token, _ea.array_literal([
+                                default: return context.unexpected_token(token, _ea.list_literal([
                                     ['a value', null],
                                     ['#', null],
                                 ]))
@@ -231,37 +231,37 @@ export const Value = (
 
                 case '!': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })
                 case ':': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })
                 case ')': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })
                 case '>': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })
                 case ']': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })
                 case '}': return _ea.ss($, ($) => {
                     context.iterator['consume']()
-                    return context.unexpected_token(token, _ea.array_literal([
+                    return context.unexpected_token(token, _ea.list_literal([
                         ['a value', null]
                     ]))
                 })

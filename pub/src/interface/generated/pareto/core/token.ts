@@ -56,15 +56,15 @@ export type _T_Token_Type =
 export type _T_Tokenizer_Result = {
     readonly 'end': _T_Location
     readonly 'leading trivia': _T_Trivia
-    readonly 'tokens': _et.Array<_T_Annotated_Token>
+    readonly 'tokens': _et.List<_T_Annotated_Token>
 }
 
 export namespace _T_Tokenizer_Result {
-    export type tokens = _et.Array<_T_Annotated_Token>
+    export type tokens = _et.List<_T_Annotated_Token>
 }
 
 export type _T_Trivia = {
-    readonly 'comments': _et.Array<{
+    readonly 'comments': _et.List<{
         readonly 'content': string
         readonly 'range': _T_Range
         readonly 'trailing whitespace': _T_Whitespace

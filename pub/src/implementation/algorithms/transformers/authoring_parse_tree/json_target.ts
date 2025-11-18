@@ -61,7 +61,7 @@ export const Value = (
                     case 'tagged value': return _ea.ss($, ($): _out.Value => _ea.cc($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _ea.ss($, ($) => ['null', null])
-                            case 'set': return _ea.ss($, ($) => ['array', _ea.array_literal([
+                            case 'set': return _ea.ss($, ($) => ['array', _ea.list_literal([
                                 ['string', $.state.value],
                                 Value($.value),
                             ])])
@@ -69,7 +69,7 @@ export const Value = (
                         }
                     }))
                     case 'not set': return _ea.ss($, ($) => ['null', null])
-                    case 'set optional value': return _ea.ss($, ($): _out.Value => ['array', _ea.array_literal([
+                    case 'set optional value': return _ea.ss($, ($): _out.Value => ['array', _ea.list_literal([
                         Value($.value),
                     ])])
                     default: return _ea.au($[0])

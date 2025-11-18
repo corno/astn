@@ -6,7 +6,7 @@ export type _T_Document = _T_Value
 
 export type _T_Value = 
     | readonly ['dictionary', _et.Dictionary<_T_Value>]
-    | readonly ['list', _et.Array<_T_Value>]
+    | readonly ['list', _et.List<_T_Value>]
     | readonly ['nothing', null]
     | readonly ['optional', 
         | readonly ['not set', null]
@@ -48,7 +48,7 @@ export namespace _T_Value {
             }
             export type L = _T_Value
         }
-        export type concise_group = _et.Array<_T_Value>
+        export type concise_group = _et.List<_T_Value>
         
         export namespace dictionary {
             
@@ -64,7 +64,7 @@ export namespace _T_Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.Array<_T_Value>
+        export type list = _et.List<_T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -136,9 +136,9 @@ export namespace _T_Value {
         export type verbose_group = _et.Dictionary<_T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.Array<_T_Value>]
+        | readonly ['concise group', _et.List<_T_Value>]
         | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.Array<_T_Value>]
+        | readonly ['list', _et.List<_T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', 
             | readonly ['not set', null]
@@ -173,7 +173,7 @@ export namespace Value {
             }
             export type L = _T_Value
         }
-        export type concise_group = _et.Array<_T_Value>
+        export type concise_group = _et.List<_T_Value>
         
         export namespace dictionary {
             
@@ -189,7 +189,7 @@ export namespace Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.Array<_T_Value>
+        export type list = _et.List<_T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -258,9 +258,9 @@ export namespace Value {
         export type verbose_group = _et.Dictionary<_T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.Array<_T_Value>]
+        | readonly ['concise group', _et.List<_T_Value>]
         | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.Array<_T_Value>]
+        | readonly ['list', _et.List<_T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', 
             | readonly ['not set', null]

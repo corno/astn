@@ -17,7 +17,7 @@ export const Whitespace = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return _ea.array_literal([
+    return _ea.list_literal([
         //FIXME
     ])
 }
@@ -30,21 +30,21 @@ export const Trivia = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.array_literal([
+    return op_flatten(_ea.list_literal([
         Whitespace($['leading whitespace'], $p),
         op_flatten($['comments'].map(($) => {
-            return op_flatten(_ea.array_literal([
+            return op_flatten(_ea.list_literal([
                 //FIXME
                 // _ea.cc($['type'], ($) => {
                 //     switch ($[0]) {
-                //         case 'line': return _ea.ss($, ($) => _ea.array_literal([]))
-                //         case 'block': return _ea.ss($, ($) => _ea.array_literal([]))
+                //         case 'line': return _ea.ss($, ($) => _ea.list_literal([]))
+                //         case 'block': return _ea.ss($, ($) => _ea.list_literal([]))
                 //         default: return _ea.au($[0])        
                 //     }
                 // }),
-                // _ea.array_literal([$['content']]),
-                // _ea.array_literal([$['begin']]),
-                // _ea.array_literal([$['end']]),
+                // _ea.list_literal([$['content']]),
+                // _ea.list_literal([$['begin']]),
+                // _ea.list_literal([$['end']]),
                 Whitespace($['trailing whitespace'], $p),
             ]))
         })),
@@ -71,7 +71,7 @@ export const String = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.array_literal([
+    return op_flatten(_ea.list_literal([
         Trivia($['trailing trivia'], $p),
         //FIX right type
     ]))
@@ -86,23 +86,23 @@ export const Key_Value_Pairs = (
     }
 ): _out.Text_Edits => {
     return op_flatten($.map(($) => {
-        return op_flatten(_ea.array_literal([
+        return op_flatten(_ea.list_literal([
             String($.key, $p),
             $.value.transform(
-                ($) => op_flatten(_ea.array_literal([
+                ($) => op_flatten(_ea.list_literal([
                     Structural_Token($[':'], $p),
                     Value($.value, $p),
                 ])),
-                () => _ea.array_literal([])
+                () => _ea.list_literal([])
             ),
             $[','].transform(
-                ($) => op_flatten(_ea.array_literal<_out.Text_Edits>([
+                ($) => op_flatten(_ea.list_literal<_out.Text_Edits>([
                     $p['remove commas']
-                        ? _ea.array_literal<_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
-                        : _ea.array_literal([]),
+                        ? _ea.list_literal<_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
+                        : _ea.list_literal([]),
                     Structural_Token($, $p)
                 ])),
-                () => _ea.array_literal([])
+                () => _ea.list_literal([])
             ),
         ]))
     }))
@@ -118,7 +118,7 @@ export const Elements = (
     }
 ): _out.Text_Edits => {
     return op_flatten($.map(($) => {
-        return op_flatten(_ea.array_literal([
+        return op_flatten(_ea.list_literal([
             Value($.value, $p),
         ]))
     }))
@@ -136,15 +136,15 @@ export const Value = (
         switch ($[0]) {
             case 'concrete': return _ea.ss($, ($) => _ea.cc($, ($) => {
                 switch ($[0]) {
-                    case 'string': return _ea.ss($, ($) => _ea.array_literal([]))
+                    case 'string': return _ea.ss($, ($) => _ea.list_literal([]))
                     case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                         switch ($[0]) {
-                            case 'dictionary': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                            case 'dictionary': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                                 Structural_Token($['{'], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($['}'], $p),
                             ])))
-                            case 'verbose group': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                            case 'verbose group': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                                 Structural_Token($['('], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($[')'], $p),
@@ -154,12 +154,12 @@ export const Value = (
                     }))
                     case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                         switch ($[0]) {
-                            case 'list': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                            case 'list': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                                 Structural_Token($['['], $p),
                                 Elements($.elements, $p),
                                 Structural_Token($[']'], $p),
                             ])))
-                            case 'concise group': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                            case 'concise group': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                                 Structural_Token($['<'], $p),
                                 Elements($['elements'], $p),
                                 Structural_Token($['>'], $p),
@@ -167,12 +167,12 @@ export const Value = (
                             default: return _ea.au($[0])
                         }
                     }))
-                    case 'tagged value': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                    case 'tagged value': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                         Structural_Token($['|'], $p),
                         _ea.cc($.status, ($) => {
                             switch ($[0]) {
                                 case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
-                                case 'set': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                                case 'set': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                                     String($['state'], $p),
                                     Value($['value'], $p),
                                 ])))
@@ -181,7 +181,7 @@ export const Value = (
                         })
                     ])))
                     case 'not set': return _ea.ss($, ($) => Structural_Token($['~'], $p))
-                    case 'set optional value': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+                    case 'set optional value': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                         Structural_Token($['*'], $p),
                         Value($['value'], $p),
                     ])))
@@ -189,7 +189,7 @@ export const Value = (
                     default: return _ea.au($[0])
                 }
             }))
-            case 'include': return _ea.ss($, ($) => op_flatten(_ea.array_literal([
+            case 'include': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
                 Structural_Token($['@'], $p),
                 String($['path'], $p),
             ])))
@@ -207,14 +207,14 @@ export const Document = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.array_literal<_out.Text_Edits>([
+    return op_flatten(_ea.list_literal<_out.Text_Edits>([
 
         $.header.transform(
-            ($) => op_flatten(_ea.array_literal([
+            ($) => op_flatten(_ea.list_literal([
                 Structural_Token($['!'], $p),
                 Value($.value, $p)
             ])),
-            () => _ea.array_literal([])
+            () => _ea.list_literal([])
         ),
         Value($.content, $p),
     ]))

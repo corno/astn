@@ -31,7 +31,7 @@ export const throw_lexer_error = (
 
 export const throw_unexpected_token = (
     found: _source._T_Annotated_Token,
-    expected: _et.Array<d_parse_result.Expected>,
+    expected: _et.List<d_parse_result.Expected>,
 ): never => {
     return throw_parse_error(
         ['parser', {

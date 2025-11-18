@@ -49,7 +49,7 @@ export type _T_Document = {
     }>
 }
 
-export type _T_Elements = _et.Array<{
+export type _T_Elements = _et.List<{
     readonly 'value': _T_Value
 }>
 
@@ -59,7 +59,7 @@ export namespace _T_Elements {
     }
 }
 
-export type _T_Key_Value_Pairs = _et.Array<{
+export type _T_Key_Value_Pairs = _et.List<{
     readonly ',': _et.Optional_Value<_T_Structural_Token>
     readonly 'key': _T_String
     readonly 'value': _et.Optional_Value<{ //this one should not be optional
@@ -110,7 +110,7 @@ export type _T_Relative_Location = {
 }
 
 export type _T_Trivia = {
-    readonly 'comments': _et.Array<{
+    readonly 'comments': _et.List<{
         readonly 'content': string
         readonly 'range': _T_Range
         readonly 'trailing whitespace': _T_Whitespace

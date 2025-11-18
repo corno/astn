@@ -1,4 +1,4 @@
-import * as _pt from 'exupery-core-types'
+import * as _et from 'exupery-core-types'
 
 import * as _i_resolve from "../../../core/resolve"
 import * as _i_resolved from "./source"
@@ -16,8 +16,8 @@ export type _T_Dictionary = <F_Source>(
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     },
@@ -44,8 +44,8 @@ export type _T_Group = <F_Source>(
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     },
@@ -124,8 +124,8 @@ export type _T_Type = <F_Source>(
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     },
@@ -141,8 +141,8 @@ export type _T_Type_Node = <F_Source>(
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     },
@@ -155,8 +155,8 @@ export type _T_Types = <F_Source>(
         readonly 'parameters': {
             readonly 'lookups': null
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     },
@@ -235,7 +235,7 @@ export namespace _T_Dictionary {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -243,11 +243,11 @@ export namespace _T_Dictionary {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -256,8 +256,8 @@ export namespace _T_Dictionary {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -349,7 +349,7 @@ export namespace _T_Group {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -357,11 +357,11 @@ export namespace _T_Group {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -370,8 +370,8 @@ export namespace _T_Group {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -651,7 +651,7 @@ export namespace _T_Type {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -659,11 +659,11 @@ export namespace _T_Type {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -672,8 +672,8 @@ export namespace _T_Type {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -730,7 +730,7 @@ export namespace _T_Type_Node {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -738,11 +738,11 @@ export namespace _T_Type_Node {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -751,8 +751,8 @@ export namespace _T_Type_Node {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -790,7 +790,7 @@ export namespace _T_Types {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -798,18 +798,18 @@ export namespace _T_Types {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
             readonly 'lookups': null
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -868,7 +868,7 @@ export namespace Dictionary {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -876,11 +876,11 @@ export namespace Dictionary {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -889,8 +889,8 @@ export namespace Dictionary {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -982,7 +982,7 @@ export namespace Group {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -990,11 +990,11 @@ export namespace Group {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -1003,8 +1003,8 @@ export namespace Group {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -1284,7 +1284,7 @@ export namespace Type {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -1292,11 +1292,11 @@ export namespace Type {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -1305,8 +1305,8 @@ export namespace Type {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -1363,7 +1363,7 @@ export namespace Type_Node {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -1371,11 +1371,11 @@ export namespace Type_Node {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
@@ -1384,8 +1384,8 @@ export namespace Type_Node {
                 readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
             }
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }
@@ -1423,7 +1423,7 @@ export namespace Types {
                     }
                     export type O<F_Source> = _i_resolved._T_Globals
                 }
-                export type globals<F_Source> = _pt.Optional_Value<_i_resolved._T_Globals>
+                export type globals<F_Source> = _et.Optional_Value<_i_resolved._T_Globals>
                 
                 export namespace imports {
                     
@@ -1431,18 +1431,18 @@ export namespace Types {
                     }
                     export type O<F_Source> = _i_resolved._T_Imports
                 }
-                export type imports<F_Source> = _pt.Optional_Value<_i_resolved._T_Imports>
+                export type imports<F_Source> = _et.Optional_Value<_i_resolved._T_Imports>
             }
             export type values<F_Source> = {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
         export type parameters<F_Source> = {
             readonly 'lookups': null
             readonly 'values': {
-                readonly 'globals': _pt.Optional_Value<_i_resolved._T_Globals>
-                readonly 'imports': _pt.Optional_Value<_i_resolved._T_Imports>
+                readonly 'globals': _et.Optional_Value<_i_resolved._T_Globals>
+                readonly 'imports': _et.Optional_Value<_i_resolved._T_Imports>
             }
         }
     }

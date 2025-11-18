@@ -18,7 +18,7 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export const Value: _et.Transformer_With_Parameters<d_in.Value, Parameters, d_out.Block_Part> = (
+export const Value: _et.Transformer_With_Parameters<d_out.Block_Part, d_in.Value, Parameters> = (
     $,
     $p,
 ) => {
@@ -84,7 +84,7 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, Parameters, d_ou
                 ]))
                 case 'list': return _ea.ss($, ($) => sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("[") : sh.b.nothing(),
-                   sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => sh.b.sub([
+                    sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => sh.b.sub([
                         sh.b.snippet(" "),
                         Value($.value, {
                             'in concise group': false,
@@ -95,7 +95,7 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, Parameters, d_ou
                 ]))
                 case 'concise group': return _ea.ss($, ($) => sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("<") : sh.b.nothing(),
-                   sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
+                    sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
                         'in concise group': true,
                         'write delimiters': true,
                     }))),
@@ -166,7 +166,7 @@ export const Document = (
     $p: {
     }
 
-): d_out.Group => sh.group([ sh.g.nested_block([
+): d_out.Group => sh.group([sh.g.nested_block([
     Value($, {
         'in concise group': false,
         'write delimiters': true,

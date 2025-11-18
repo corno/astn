@@ -1,4 +1,4 @@
-import * as _pt from 'exupery-core-types'
+import * as _et from 'exupery-core-types'
 
 
 // **** TYPES
@@ -6,7 +6,7 @@ import * as _pt from 'exupery-core-types'
 export type _T_Derived_Reference<M_Source, T_Type> = null
 
 export type _T_Dictionary<M_Source, T_D> = {
-    readonly 'dictionary': _pt.Dictionary<{
+    readonly 'dictionary': _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>
@@ -14,7 +14,7 @@ export type _T_Dictionary<M_Source, T_D> = {
 }
 
 export type _T_List<M_Source, T_L> = {
-    readonly 'list': _pt.Array<{
+    readonly 'list': _et.List<{
         readonly 'element': T_L
         readonly 'location': M_Source
     }>
@@ -22,7 +22,7 @@ export type _T_List<M_Source, T_L> = {
 }
 
 export type _T_Ordered_Dictionary<M_Source, T_D> = {
-    readonly 'dictionary': _pt.Dictionary<{
+    readonly 'dictionary': _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>
@@ -82,7 +82,7 @@ export namespace _T_Dictionary {
             readonly 'location': M_Source
         }
     }
-    export type dictionary<M_Source, T_D> = _pt.Dictionary<{
+    export type dictionary<M_Source, T_D> = _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>
@@ -102,7 +102,7 @@ export namespace _T_List {
             readonly 'location': M_Source
         }
     }
-    export type list<M_Source, T_L> = _pt.Array<{
+    export type list<M_Source, T_L> = _et.List<{
         readonly 'element': T_L
         readonly 'location': M_Source
     }>
@@ -122,7 +122,7 @@ export namespace _T_Ordered_Dictionary {
             readonly 'location': M_Source
         }
     }
-    export type dictionary<M_Source, T_D> = _pt.Dictionary<{
+    export type dictionary<M_Source, T_D> = _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>
@@ -164,7 +164,7 @@ export namespace Dictionary {
             readonly 'location': M_Source
         }
     }
-    export type dictionary<M_Source, T_D> = _pt.Dictionary<{
+    export type dictionary<M_Source, T_D> = _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>
@@ -184,7 +184,7 @@ export namespace List {
             readonly 'location': M_Source
         }
     }
-    export type list<M_Source, T_L> = _pt.Array<{
+    export type list<M_Source, T_L> = _et.List<{
         readonly 'element': T_L
         readonly 'location': M_Source
     }>
@@ -204,7 +204,7 @@ export namespace Ordered_Dictionary {
             readonly 'location': M_Source
         }
     }
-    export type dictionary<M_Source, T_D> = _pt.Dictionary<{
+    export type dictionary<M_Source, T_D> = _et.Dictionary<{
         readonly 'entry': T_D
         readonly 'location': M_Source
     }>

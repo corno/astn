@@ -10,11 +10,11 @@ import * as sh from "../../../../shorthands/parse_result"
 export type Refinement_Context = {
     iterator: ASTN_Tokens_Iterator
     get_required_token: (
-        expected: _et.Array<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
+        expected: _et.List<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
     ) => _source.Annotated_Token
     unexpected_token: (
         token: _source.Annotated_Token,
-        expected: _et.Array<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
+        expected: _et.List<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
     ) => never
 }
 
