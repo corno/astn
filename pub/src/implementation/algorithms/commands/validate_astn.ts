@@ -26,38 +26,42 @@ import * as parse from "../../../exceptional/authoring_parse/parse"
 import * as t_parse_result_to_string from "../transformers/parse_result/string"
 
 export const $$: Procedure = _easync.create_command_procedure(
-    ($p, $cr, $qr) => _easync.p.prepare_data(
-        $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
-            'exit code': 1,
-        })).stage(
-            ($) => {
-                return parse.parse(
-                    $,
-                    {
-                        'tab size': 4,
-                    }
-                ).transform(($) => {
+    ($p, $cr, $qr) => [
+        _easync.p.stage(
+            $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
+                'exit code': 1,
+            })).stage(
+                ($) => {
+                    return parse.parse(
+                        $,
+                        {
+                            'tab size': 4,
+                        }
+                    ).transform(($) => {
+                        return {
+                            'lines': _ea.list_literal(["Document is valid ASTN"]),
+                        }
+                    })
+                },
+                ($): d_main.Error => {
+                    _ed.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
                     return {
-                        'lines': _ea.list_literal(["Document is valid ASTN"]),
+                        'exit code': 1,
                     }
-                })
-            },
-            ($): d_main.Error => {
-                _ed.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
-                return {
-                    'exit code': 1,
                 }
-            }
-        ),
-        ($v) => $cr['log'].execute(
-            $v,
-            ($): d_main.Error => {
-                //highly unlikely for log to fail
-                return {
-                    'exit code': 1,
-                }
-            },
+            ),
+            ($v) => [
+                $cr['log'].execute(
+                    $v,
+                    ($): d_main.Error => {
+                        //highly unlikely for log to fail
+                        return {
+                            'exit code': 1,
+                        }
+                    },
+                )
+            ]
         )
-    )
+    ]
 )
 

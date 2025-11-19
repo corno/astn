@@ -33,41 +33,45 @@ import * as t_ast_2_json from "../transformers/authoring_parse_tree/json_target"
 import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 export const $$: Procedure = _easync.create_command_procedure(
-    ($p, $cr, $qr) => _easync.p.prepare_data(
-        $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
-            'exit code': 1,
-        })).stage(
-            ($) => {
-                return parse.parse(
-                    $,
-                    {
-                        'tab size': 4,
-                    }
-                ).transform(($) => {
-                    return s_json.Document(
-                        t_ast_2_json.Document($),
+    ($p, $cr, $qr) => [
+        _easync.p.stage(
+            $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
+                'exit code': 1,
+            })).stage(
+                ($) => {
+                    return parse.parse(
+                        $,
                         {
-                            'indentation': "    ",
-                            'newline': '\n'
+                            'tab size': 4,
                         }
-                    )
-                })
-            },
-            ($): d_main.Error => {
-                _ed.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
-                return {
-                    'exit code': 1,
+                    ).transform(($) => {
+                        return s_json.Document(
+                            t_ast_2_json.Document($),
+                            {
+                                'indentation': "    ",
+                                'newline': '\n'
+                            }
+                        )
+                    })
+                },
+                ($): d_main.Error => {
+                    _ed.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
+                    return {
+                        'exit code': 1,
+                    }
                 }
-            }
-        ),
-        ($v) => $cr['write to stdout'].execute(
-            $v,
-            ($): d_main.Error => {
-                //highly unlikely for log to fail
-                return {
-                    'exit code': 1,
-                }
-            },
+            ),
+            ($v) => [
+                $cr['write to stdout'].execute(
+                    $v,
+                    ($): d_main.Error => {
+                        //highly unlikely for log to fail
+                        return {
+                            'exit code': 1,
+                        }
+                    },
+                )
+            ]
         )
-    )
+    ]
 )
