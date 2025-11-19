@@ -13,7 +13,7 @@ import * as d_main from "exupery-resources/dist/interface/temp_main"
 import { Signature } from "../../../interface/algorithms/procedures/unguaranteed/validate_astn"
 
 export type Query_Resources = {
-    'get instream data': _et.Stager<d_get_instream_data.Result, null, null>
+    'get instream data': _et.Query<d_get_instream_data.Result, null, null>
 }
 
 export type Command_Resources = {
@@ -35,9 +35,12 @@ import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [
         _easync.p.stage(
-            $qr['get instream data'](null).transform_error_temp(($): d_main.Error => ({
-                'exit code': 1,
-            })).stage(
+            $qr['get instream data'](
+                null,
+                ($): d_main.Error => ({
+                    'exit code': 1,
+                }),
+            ).stage(
                 ($) => {
                     return parse.parse(
                         $,

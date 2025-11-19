@@ -14,12 +14,13 @@ import * as tokenize from "../../implementation/algorithms/refiners/token/refine
 import { create_context as create_ast_context } from "../../implementation/algorithms/refiners/authoring_parse_tree/context"
 import { create_context as create_tokens_context } from "../../implementation/algorithms/refiners/token/context"
 
-export const parse = (
+export const parse = <Target_Error>(
     $: string,
     $p: {
         'tab size': number
-    }
-): _et.Staging_Result<s_ast.Document, _parse_result.Parse_Error> => {
+    },
+    error_transformer: _et.Transformer<Target_Error, _parse_result.Parse_Error>,
+): _et.Staging_Result<s_ast.Document, Target_Error> => {
     return _ea.create_refinement_context<d_token.Tokenizer_Result, _parse_result.Parse_Error, _parse_result.Parse_Error>(
         ($) => $,
         (abort) => {
@@ -42,5 +43,7 @@ export const parse = (
             )
         },
         ($) => $
+    ).transform_error_temp(
+        error_transformer
     )
 }
