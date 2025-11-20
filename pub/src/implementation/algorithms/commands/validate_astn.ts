@@ -27,7 +27,7 @@ import * as t_parse_result_to_string from "../transformers/parse_result/string"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [
-        _easync.p.stage(
+        _easync.p.stage_without_error_transformation(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
