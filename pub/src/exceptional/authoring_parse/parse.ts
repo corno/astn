@@ -19,7 +19,7 @@ export const parse = (
     $p: {
         'tab size': number
     },
-): _et.Staging_Result<s_ast.Document, _parse_result.Parse_Error> => {
+): _et.Refinement_Result<s_ast.Document, _parse_result.Parse_Error> => {
     return _ea.create_refinement_context<d_token.Tokenizer_Result, _parse_result.Parse_Error, _parse_result.Parse_Error>(
         ($) => $,
         (abort) => {
@@ -30,7 +30,7 @@ export const parse = (
                 create_tokens_context(iter, abort)
             )
         }
-    ).stage(
+    ).refine(
         ($) => {
             return _ea.create_refinement_context<s_ast.Document, _parse_result.Parse_Error, _parse_result.Parse_Error>(
                 ($) => $,

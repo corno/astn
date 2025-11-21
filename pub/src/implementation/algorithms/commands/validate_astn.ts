@@ -27,20 +27,20 @@ import * as t_parse_result_to_string from "../transformers/parse_result/string"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [
-        _easync.p.stage_without_error_transformation(
+        _easync.p.query_without_error_transformation(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
                     'exit code': 1,
                 })
-            ).stage(
+            ).refine(
                 ($) => {
                     return parse.parse(
                         $,
                         {
                             'tab size': 4,
                         }
-                    ).transform(($) => {
+                    ).transform_result(($) => {
                         return {
                             'lines': _ea.list_literal(["Document is valid ASTN"]),
                         }

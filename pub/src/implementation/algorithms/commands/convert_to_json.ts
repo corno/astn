@@ -34,20 +34,20 @@ import * as s_json from "pareto-json/dist/exceptional/serializers/json"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [
-        _easync.p.stage_without_error_transformation(
+        _easync.p.query_without_error_transformation(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
                     'exit code': 1,
                 }),
-            ).stage(
+            ).refine(
                 ($) => {
                     return parse.parse(
                         $,
                         {
                             'tab size': 4,
                         }
-                    ).transform(($) => {
+                    ).transform_result(($) => {
                         return s_json.Document(
                             t_ast_2_json.Document($),
                             {
