@@ -1,15 +1,15 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import * as string_iterator from "../token/iterator"
+import * as string_iterator from "../../token/text/iterator"
 
-import * as _source from "../../../../interface/generated/pareto/schemas/token/data_types/source"
-import { Iterator } from "../../../../exceptional/authoring_parse/iterator"
+import * as _source from "../../../../../interface/generated/pareto/schemas/token/data_types/source"
+import { Iterator } from "../../../../../core/iterator"
 
 
 export type My_Location = {
-        'start': string_iterator.Iterator_Location
-        'end': string_iterator.Iterator_Location
+    'start': string_iterator.Iterator_Location
+    'end': string_iterator.Iterator_Location
 }
 
 export type ASTN_Tokens_Iterator = Iterator<_source.Annotated_Token, My_Location>

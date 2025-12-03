@@ -1,6 +1,6 @@
-! "a header" //the header is optional if set it is a ! followed by any type of value
+! "a header" //the header is optional. If set it is a ! followed by any type of value
 
-( //a verbose group
+( //the start of a verbose group (see explanation below)
 
     //a line comment
 
@@ -11,18 +11,18 @@
     'collections': (
 
         /* verbose group:
-        a verbose group represents an instance of a type with properties. the possible keys (property names)
+        a verbose group represents an instance of a type with properties. the possible property names and their types
         in a verbose group are predetermined by a schema.
-        The convention is that keys in verbose groups should have apostrophes.
+        The convention is that property names in verbose groups should have apostrophes.
         */
         'a verbose group': (
             'my number': 42
-            'my string': "foo", //commas are optional and trailing commas are allowed
+            'my text value': "foo", //commas are optional and trailing commas are allowed
         )
 
         /* concise group
         a concise group contains the same information as a verbose group; types with properties. However, in this case
-        the properties are omitted. The order in which the properties should be specified is up to the implementation.
+        the property names are omitted. The order in which the properties should be specified is determined by the schema.
         Notice how the example below contains the same information as the one above
         */
         'a concise group': <42, "foo">
@@ -43,40 +43,40 @@
 
     )
 
-    'strings': (
-        //there are 4 flavors of strings; backticked, apostrophed, quoted and undelimited
+    'text values': (
+        //there are 4 flavors of text values; backticked, apostrophed, quoted and undelimited
 
-        'a backticked string': `abc` //used for identifiers (the keys of dictionary entries and values that reference a dictionary entry)
-        //when you see a backticked string you can assume that it is the name of an entry/record/instance
+        'a backticked text value': `abc` //used for identifiers (the keys of dictionary entries and values that reference a dictionary entry)
+        //when you see a backticked text value you can assume that it is the name of an entry/record/instance
         
-        'a quoted string': "ABC"
-        // 'a quoted string with escaped characters': "abc\"def"
-        // 'a quoted string with newline': "abc\ndef"
-        'a quoted string with apostrophe': "abc'def"
-        'a quoted string with backtick': "abc`def"
-        'a quoted string spanning multiple lines': "abc
+        'a quoted text value': "ABC"
+        'a quoted text value with escaped characters': "abc\"def"
+        //'a quoted text value with newline': "abc\ndef"
+        'a quoted text value with apostrophe': "abc'def"
+        'a quoted text value with backtick': "abc`def"
+        'a quoted text value spanning multiple lines': "abc
         def
         ghi"
 
-        'an apostrophed sting': 'my apostrophed string' //apostrophed strings can be used as keys as well as values, but the convention
-        //expects them only as keys (and state names, see below). (So this example is not canonical)
+        'an apostrophed text value': 'my apostrophed text value' //apostrophed text values can be used as keys as well as values, but the convention
+        //expects them only as property names (and state names, see below). (So this example is not canonical)
 
-        /* undelimited strings
-        these are strings, with no delimiters, can be used to denote numbers, dates, booleans.
-        JSON's numbers, null, true, and false are undelimited strings in ASTN. It is up to the implementation to interpret the string into the appropriate value.
+        /* undelimited text values
+        these are text values, with no delimiters and they can be used to denote text values like numbers, dates, booleans.
+        JSON's numbers, null, true, and false are undelimited text values in ASTN. It is up to the implementation to interpret the text value into the appropriate value.
         */
-        'an undelimited string': abc
-        'my date': 2023-10-01 //dates can be written as undelimited strings
-        'my number': 42 //numbers can be written as undelimited strings
-        'my boolean': true //booleans can be written as undelimited strings
+        'an undelimited text value': abc
+        'my date': 2023-10-01 //dates can be written as undelimited text values
+        'my number': 42 //numbers can be written as undelimited text values
+        'my boolean': true //booleans can be written as undelimited text values
     )
 
     /*
-    a tagged value is a value that has a state name and a value. The state name is the first value, the second value is the data associated with that state.
+    a state value is a value that has a state name and a value. The state name is the first value, the second value is the data associated with that state.
     the idea is that the person editing the file selects a state from a couple of possibilities, and based on that choice provides the data that is associated with that state.
     */
-    'a tagged value': | 'my state' foo // the first value ('my state') tells the selected state.
-    //The second value is the data assoicated with that specific state
+    'a state value': | 'my state' foo // the first value ('my state') tells the selected state.
+    //The second value is the data associated with that specific state
 
     /*
     astn files can include other astn files. This is done by using the `@` symbol followed by the path to the file.
@@ -96,4 +96,10 @@
     sometimes it is needed to explictly state that a value is set, in that case you can use the *
     */
     'a set value': * "abc"
+
+    /*missing data
+
+    sometimes it is needed to explictly state that data is missing, in that case you can use the #
+    */
+    //'missing data': #
 )

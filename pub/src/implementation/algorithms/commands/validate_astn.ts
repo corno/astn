@@ -22,7 +22,7 @@ export type Command_Resources = {
 }
 export type Procedure = _et.Command_Procedure<d_main.Error, d_main.Parameters, Command_Resources, Query_Resources>
 
-import * as parse from "../../../exceptional/authoring_parse/parse"
+import * as parse from "../refiners/authoring_parse_tree/text/refiners"
 import * as t_parse_result_to_string from "../transformers/parse_result/string"
 
 export const $$: Procedure = _easync.create_command_procedure(
