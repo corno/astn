@@ -39,8 +39,8 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "exupery-core-alg": "^0.5.12",
-    "exupery-core-bin": "^0.3.32",
+    "exupery-core-alg": "^0.5.14",
+    "exupery-core-bin": "^0.3.34",
     "exupery-core-data": "^0.3.3",
     "exupery-core-dev": "^0.3.2",
     "pareto-fountain-pen": "^0.3.13",
