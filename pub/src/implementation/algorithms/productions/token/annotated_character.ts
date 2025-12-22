@@ -583,7 +583,7 @@ export const Delimited_String = (
                                         $i['add element'](get_char())
                                         $i['add element'](get_char())
                                     }))),
-                                    () => _ea.deprecated_panic("IMPLEMENT ME")
+                                    () => _ea.deprecated_panic("IMPLEMENT ME: abort from unicode parsing")
                                 ))
                                 break
                             default:
