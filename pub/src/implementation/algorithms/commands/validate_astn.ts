@@ -37,7 +37,7 @@ export const $$: Procedure = _easync.create_command_procedure(
                 })
             ).refine(
                 ($) => {
-                    return _ea.create_refinement_context<d_parse_tree._T_Document, d_parse_result.Parse_Error>((abort) => r_parse.parse(
+                    return _ea.create_refinement_context<d_parse_tree._T_Document, d_parse_result.Parse_Error>((abort) => r_parse.Document(
                         $,
                         {
                             'tab size': 4,

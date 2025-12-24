@@ -11,7 +11,7 @@ import * as ti from "../../../../../temp_core/annotate_characters"
 
 import * as tokenize from "../../../productions/token/annotated_character"
 
-export const parse = (
+export const Document = (
     $: string,
     $p: {
         'tab size': number
