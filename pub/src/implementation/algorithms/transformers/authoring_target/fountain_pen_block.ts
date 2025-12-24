@@ -8,7 +8,7 @@ import { Signature } from "../../../../interface/algorithms/transformations/auth
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/list/enrich_with_position_information"
+import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/implementation/operations/impure/list/enrich_with_position_information"
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/string/serialize_apostrophed_string"
 import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/string/serialize_quoted_string"
 import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/string/serialize_backticked_string"
@@ -19,7 +19,7 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export const Value: _et.Transformer_New_With_Parameters<d_in.Value, d_out.Block_Part, Parameters> = (
+export const Value: _et.Transformer_With_Parameters<d_in.Value, d_out.Block_Part, Parameters> = (
     $,
     $p,
 ) => {

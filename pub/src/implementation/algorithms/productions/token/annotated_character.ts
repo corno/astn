@@ -9,8 +9,8 @@ import { Annotated_Character } from "../../../../temp_core/annotate_characters"
 
 export type Characters_Iterator = _et.Iterator<Annotated_Character>
 
-import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/text/from_character_list"
-import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/algorithms/integer/hexadecimal/deserializer"
+import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/operations/impure/text/from_character_list"
+import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 

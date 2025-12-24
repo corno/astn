@@ -5,7 +5,7 @@ import * as _in from "../../../../interface/generated/pareto/schemas/authoring_p
 import * as _in_token from "../../../../interface/generated/pareto/schemas/token/data_types/source"
 import * as _out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
 
-import { $$ as op_flatten } from "pareto-standard-operations/dist/implementation/algorithms/operations/pure/list/flatten"
+import { $$ as op_flatten } from "pareto-standard-operations/dist/implementation/operations/pure/list/flatten"
 import { Signature } from "../../../../interface/algorithms/transformations/authoring_parse_tree/ide"
 
 

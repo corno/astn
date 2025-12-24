@@ -35,7 +35,7 @@ export const $$: Procedure = _easync.create_command_procedure(
                 ($): d_main.Error => ({
                     'exit code': 1,
                 })
-            ).refine(
+            ).deprecated_refine_old(
                 ($) => {
                     return _ea.create_refinement_context<d_parse_tree._T_Document, d_parse_result.Parse_Error>((abort) => r_parse.Document(
                         $,
