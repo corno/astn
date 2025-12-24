@@ -16,26 +16,17 @@ export const parse = (
     $p: {
         'tab size': number
     },
-): _et.Refinement_Result<s_ast.Document, _parse_result.Parse_Error> => {
-    return _ea.create_refinement_context<d_token.Tokenizer_Result, _parse_result.Parse_Error>(
-        (abort) => {
-            const iter = _ea.create_iterator(ti.annotate_characters($, {
-                'tab size': $p['tab size']
-            }))
-            return tokenize.Tokenizer_Result(
-                iter,
-                abort
-            )
-        }
-    ).refine(
-        ($) => _ea.create_refinement_context<s_ast.Document, _parse_result.Parse_Error>(
-            (abort) => {
-                return d_ast.Document(
-                    _ea.create_iterator($.tokens),
-                    abort,
-                )
-            }
-        ),
-        ($) => $
+    abort: ($: _parse_result.Parse_Error) => never
+): s_ast.Document => {
+    const iter = _ea.create_iterator(ti.annotate_characters($, {
+        'tab size': $p['tab size']
+    }))
+    const tr = tokenize.Tokenizer_Result(
+        iter,
+        abort
+    )
+    return d_ast.Document(
+        _ea.create_iterator(tr.tokens),
+        abort,
     )
 }

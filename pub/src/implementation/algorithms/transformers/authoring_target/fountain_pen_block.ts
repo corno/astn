@@ -4,13 +4,14 @@ import * as _et from 'exupery-core-types'
 import * as d_in from "../../../../interface/generated/pareto/schemas/authoring_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
 
+import { Signature } from "../../../../interface/algorithms/transformations/authoring_target/fountain_pen_block"
+
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/implementation/algorithms/operations/impure/list/enrich_with_position_information"
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../operations/impure/string/serialize_apostrophed_string"
 import { $$ as op_serialize_with_quote_delimiter } from "../../operations/impure/string/serialize_quoted_string"
 import { $$ as op_serialize_with_grave_delimiter } from "../../operations/impure/string/serialize_backticked_string"
-import { Signature } from "../../../../interface/algorithms/transformations/authoring_target/fountain_pen_block"
 
 
 export type Parameters = {
@@ -18,7 +19,7 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export const Value: _et.Transformer_With_Parameters<d_out.Block_Part, d_in.Value, Parameters> = (
+export const Value: _et.Transformer_New_With_Parameters<d_in.Value, d_out.Block_Part, Parameters> = (
     $,
     $p,
 ) => {
