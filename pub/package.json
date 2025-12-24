@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "exupery-core-alg": "^0.5.15",
-    "exupery-core-bin": "^0.3.42",
+    "exupery-core-bin": "^0.3.43",
     "exupery-core-data": "^0.3.3",
     "exupery-core-dev": "^0.3.3",
     "pareto-fountain-pen": "^0.3.15",
