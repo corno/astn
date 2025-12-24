@@ -2,9 +2,9 @@
 
 import * as _eb from 'exupery-core-bin'
 
-import { $$ as procedure } from "../implementation/algorithms/commands/convert_to_json"
+import { $$ as procedure } from "../implementation/commands/convert_to_json"
 
-import * as d_resources from "../implementation/algorithms/commands/convert_to_json"
+import * as d_resources from "../implementation/commands/convert_to_json"
 
 _eb.run_main_procedure(
     ($r) => {

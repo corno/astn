@@ -2,9 +2,9 @@
 
 import * as _eb from 'exupery-core-bin'
 
-import { $$ as procedure } from "../implementation/algorithms/commands/validate_astn"
+import { $$ as procedure } from "../implementation/commands/validate_astn"
 
-import * as d_resources from "../implementation/algorithms/commands/validate_astn"
+import * as d_resources from "../implementation/commands/validate_astn"
 
 _eb.run_main_procedure(
     ($r) => {
