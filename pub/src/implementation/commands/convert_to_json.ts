@@ -15,25 +15,21 @@ import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_m
 
 import * as resources_exupery from "exupery-resources/dist/interface/resources"
 
-export type Query_Resources = {
-    'get instream data': _et.Query<d_get_instream_data.Result, null, null>
-}
+export type Procedure = _et.Command_Procedure<
+    resources_exupery.commands.main,
+    {
+        'write to stdout': resources_exupery.commands.write_to_stdout,
+        'log error': resources_exupery.commands.log_error,
+    },
+    {
+        'get instream data': resources_exupery.queries.get_instream_data,
+    }
+>
 
-export type Command_Resources = {
-    'write to stdout': _et.Command<null, d_write_to_stdout.Parameters>
-    'log error': _et.Command<null, d_log_error.Parameters>
-}
-export type Procedure = _et.Command_Procedure<resources_exupery.commands.main, Command_Resources, Query_Resources>
-
-
-
-
-
-
-import * as r_parse from "../refiners/authoring_parse_tree/text/refiners"
-import * as t_parse_result_to_string from "../transformers/parse_result/string"
-import * as t_ast_2_json from "../transformers/authoring_parse_tree/json_target"
-import * as s_json from "pareto-json/dist/exceptional/serializers/json"
+import * as r_parse from "../deserializers/schemas/authoring_parse_tree"
+import * as t_parse_result_to_string from "../serializers/schemas/parse_result"
+import * as t_ast_2_json from "../transformers/schemas/authoring_parse_tree/json_target"
+import * as s_json from "pareto-json/dist/implementation/serializers/json"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [

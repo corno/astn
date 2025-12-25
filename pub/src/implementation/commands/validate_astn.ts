@@ -25,8 +25,8 @@ export type Command_Resources = {
 }
 export type Procedure = _et.Command_Procedure<resources_exupery.commands.main, Command_Resources, Query_Resources>
 
-import * as r_parse from "../refiners/authoring_parse_tree/text/refiners"
-import * as t_parse_result_to_string from "../transformers/parse_result/string"
+import * as r_parse from "../deserializers/schemas/authoring_parse_tree"
+import * as t_parse_result_to_string from "../serializers/schemas/parse_result"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [

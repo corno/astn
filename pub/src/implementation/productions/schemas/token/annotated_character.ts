@@ -1,20 +1,19 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-import * as _out from "../../../interface/generated/pareto/schemas/token/data_types/target"
+import * as _out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
 
-import * as _parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as _parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import { Annotated_Character } from "../../../temp_core/annotate_characters"
+import { Annotated_Character } from "../../../deserializers/schemas/annotated_characters"
 
 export type Characters_Iterator = _et.Iterator<Annotated_Character>
 
-import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/operations/impure/text/from_character_list"
 import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
-import * as sh from "../../../shorthands/parse_result"
+import * as sh from "../../../../shorthands/parse_result"
 
 const temp_get_current_character_or_null = (iterator: Characters_Iterator): Annotated_Character | null => {
     return iterator['get current']().transform(
@@ -59,7 +58,7 @@ export const Whitespace = (
 ): _out.Whitespace => {
     const start_location = temp_get_current_location(iterator)
     return {
-        'value': op_from_character_list(_ea.build_list<number>(($i) => {
+        'value': _ea.build_text(($i) => {
             while (true) {
                 {
                     const $ = temp_get_current_character_or_null(iterator)
@@ -79,23 +78,23 @@ export const Whitespace = (
                     switch ($.code) {
                         case 0x09: // \t
                             iterator['consume']()
-                            $i['add element']($.code)
+                            $i['add character']($.code)
                             break
                         case 0x0A: // \n
                             iterator['consume']()
-                            $i['add element']($.code)
+                            $i['add character']($.code)
                             break
                         case 0x0D: // \r
                             iterator['consume']()
-                            $i['add element']($.code)
+                            $i['add character']($.code)
                             break
                         case 0x20: // space
                             iterator['consume']()
-                            $i['add element']($.code)
+                            $i['add character']($.code)
                             break
                         case 0x2C: // ,
                             iterator['consume']()
-                            $i['add element']($.code)
+                            $i['add character']($.code)
                             break
                         default:
                             return
@@ -103,7 +102,7 @@ export const Whitespace = (
                     }
                 }
             }
-        })),
+        }),
         'range': {
             'start': start_location,
             'end': temp_get_current_location(iterator),
@@ -154,7 +153,7 @@ export const Trivia = (
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': op_from_character_list(_ea.build_list(($i) => {
+                                    'content': _ea.build_text(($i) => {
                                         while (true) {
                                             const $ = temp_get_current_character_or_null(iterator)
                                             if ($ === null) {
@@ -167,10 +166,10 @@ export const Trivia = (
                                                     return
                                                 default:
                                                     iterator['consume']()
-                                                    $i['add element']($.code)
+                                                    $i['add character']($.code)
                                             }
                                         }
-                                    })),
+                                    }),
                                     'range': {
                                         'start': start,
                                         'end': temp_get_current_location(iterator),
@@ -183,7 +182,7 @@ export const Trivia = (
                                 iterator['consume']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': op_from_character_list(_ea.build_list(($i) => {
+                                    'content': _ea.build_text(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -207,16 +206,16 @@ export const Trivia = (
                                             }
                                             //not a solidus, so this is part of the comment
                                             if (found_asterisk) {
-                                                $i['add element'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
+                                                $i['add character'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
                                             }
                                             if ($.code === Character.asterisk) {
                                                 found_asterisk = true
                                             } else {
-                                                $i['add element']($.code)
+                                                $i['add character']($.code)
                                             }
                                             iterator['consume']()
                                         }
-                                    })),
+                                    }),
                                     'range': {
                                         'start': start,
                                         'end': temp_get_current_location(iterator),
@@ -369,7 +368,7 @@ export const Annotated_Token = (
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': op_from_character_list(_ea.build_list(($i) => {
+                        'value': _ea.build_text(($i) => {
                             while (true) {
                                 const $ = temp_get_current_character_or_null(iterator)
                                 if ($ === null) {
@@ -414,9 +413,9 @@ export const Annotated_Token = (
                                     return
                                 }
                                 iterator['consume']()
-                                $i['add element']($.code)
+                                $i['add character']($.code)
                             }
-                        })),
+                        }),
                     }]
             }
         }),
@@ -455,7 +454,7 @@ export const Delimited_String = (
 
     }
     const start = temp_get_current_location(iterator)
-    const txt = op_from_character_list(_ea.build_list(($i) => {
+    const txt = _ea.build_text(($i) => {
         while (true) {
             const $ = temp_get_current_character_or_null(iterator)
             if ($ === null) {
@@ -495,7 +494,7 @@ export const Delimited_String = (
                         ))
                     }
                     iterator['consume']()
-                    $i['add element']($.code)
+                    $i['add character']($.code)
                     break
                 case Character.reverse_solidus: // \ (escape)
                     iterator['consume']()
@@ -513,48 +512,48 @@ export const Delimited_String = (
                         switch ($.code) {
                             case Character.quotation_mark:
                                 iterator['consume']()
-                                $i['add element'](Character.quotation_mark)
+                                $i['add character'](Character.quotation_mark)
                                 break
                             case Character.apostrophe:
                                 iterator['consume']()
-                                $i['add element'](Character.apostrophe)
+                                $i['add character'](Character.apostrophe)
                                 break
                             case Character.backtick:
                                 iterator['consume']()
-                                $i['add element'](Character.backtick)
+                                $i['add character'](Character.backtick)
                                 break
                             case Character.reverse_solidus:
                                 iterator['consume']()
-                                $i['add element'](Character.reverse_solidus)
+                                $i['add character'](Character.reverse_solidus)
                                 break
                             case Character.solidus:
                                 iterator['consume']()
-                                $i['add element'](Character.solidus)
+                                $i['add character'](Character.solidus)
                                 break
                             case Character.b:
                                 iterator['consume']()
-                                $i['add element'](Character.backspace)
+                                $i['add character'](Character.backspace)
                                 break
                             case Character.f:
                                 iterator['consume']()
-                                $i['add element'](Character.form_feed)
+                                $i['add character'](Character.form_feed)
                                 break
                             case Character.n:
                                 iterator['consume']()
-                                $i['add element'](Character.line_feed)
+                                $i['add character'](Character.line_feed)
                                 break
                             case Character.r:
                                 iterator['consume']()
-                                $i['add element'](Character.carriage_return)
+                                $i['add character'](Character.carriage_return)
                                 break
                             case Character.t:
                                 iterator['consume']()
-                                $i['add element'](Character.tab)
+                                $i['add character'](Character.tab)
                                 break
                             case Character.u:
                                 iterator['consume']()
-                                $i['add element'](op_parse_hexadecimal(
-                                    op_from_character_list((_ea.build_list(($i) => {
+                                $i['add character'](op_parse_hexadecimal(
+                                    _ea.build_text(($i) => {
                                         const get_char = () => {
                                             const char = temp_get_current_character_or_null(iterator)
                                             if (char === null) {
@@ -578,11 +577,11 @@ export const Delimited_String = (
                                             iterator['consume']()
                                             return char.code
                                         }
-                                        $i['add element'](get_char())
-                                        $i['add element'](get_char())
-                                        $i['add element'](get_char())
-                                        $i['add element'](get_char())
-                                    }))),
+                                        $i['add character'](get_char())
+                                        $i['add character'](get_char())
+                                        $i['add character'](get_char())
+                                        $i['add character'](get_char())
+                                    }),
                                     () => _ea.deprecated_panic("IMPLEMENT ME: abort from unicode parsing")
                                 ))
                                 break
@@ -599,10 +598,10 @@ export const Delimited_String = (
                     break
                 default:
                     iterator['consume']()
-                    $i['add element']($.code)
+                    $i['add character']($.code)
             }
         }
-    }))
+    })
     return txt
 }
 

@@ -1,10 +1,10 @@
 import * as _ea from 'exupery-core-alg'
 
-import * as _source from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
+import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
 
 import { $$ as op_join_with_separator } from "pareto-standard-operations/dist/implementation/operations/impure/text/join_list_of_texts_with_separator"
 
-export const Parse_Error_Type = ($: _source.Parse_Error._type): string => {
+export const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => {
     return _ea.cc($, ($) => {
         switch ($[0]) {
             case 'lexer': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -58,7 +58,7 @@ export const Parse_Error_Type = ($: _source.Parse_Error._type): string => {
 }
 
 export const Parse_Error = (
-    $: _source.Parse_Error,
+    $: d_parse_result.Parse_Error,
     $p: {
         'position info':
         |[ 'zero based', null]
