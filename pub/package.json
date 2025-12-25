@@ -44,7 +44,7 @@
     "exupery-core-data": "^0.3.3",
     "exupery-core-dev": "^0.3.3",
     "pareto-fountain-pen": "^0.3.17",
-    "pareto-json": "^0.3.3",
+    "pareto-json": "^0.3.4",
     "pareto-standard-operations": "^0.3.21"
   }
 }
