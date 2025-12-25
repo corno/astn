@@ -8,9 +8,12 @@ import * as _ed from 'exupery-core-dev'
 import * as d_get_instream_data from "exupery-resources/dist/interface/generated/pareto/schemas/get_instream_data/data_types/source"
 import * as d_write_to_stdout from "exupery-resources/dist/interface/generated/pareto/schemas/write_to_stdout/data_types/source"
 import * as d_log_error from "exupery-resources/dist/interface/generated/pareto/schemas/log_error/data_types/source"
-import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_main"
 import * as d_parse_result from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as d_parse_tree from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_main"
+
+
+import * as resources_exupery from "exupery-resources/dist/interface/resources"
 
 export type Query_Resources = {
     'get instream data': _et.Query<d_get_instream_data.Result, null, null>
@@ -20,7 +23,7 @@ export type Command_Resources = {
     'write to stdout': _et.Command<null, d_write_to_stdout.Parameters>
     'log error': _et.Command<null, d_log_error.Parameters>
 }
-export type Procedure = _et.Command_Procedure<_et.Command<d_main.Error, d_main.Parameters>, Command_Resources, Query_Resources>
+export type Procedure = _et.Command_Procedure<resources_exupery.commands.main, Command_Resources, Query_Resources>
 
 
 

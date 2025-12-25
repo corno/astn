@@ -12,15 +12,18 @@ import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_m
 import * as d_parse_result from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as d_parse_tree from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 
+
+import * as resources_exupery from "exupery-resources/dist/interface/resources"
+
 export type Query_Resources = {
     'get instream data': _et.Query<d_get_instream_data.Result, null, null>
 }
 
 export type Command_Resources = {
-    'log': _et.Command<null, d_log.Parameters>
-    'log error': _et.Command<null, d_log_error.Parameters>
+    'log': resources_exupery.commands.log
+    'log error': resources_exupery.commands.log_error
 }
-export type Procedure = _et.Command_Procedure<_et.Command<d_main.Error, d_main.Parameters>, Command_Resources, Query_Resources>
+export type Procedure = _et.Command_Procedure<resources_exupery.commands.main, Command_Resources, Query_Resources>
 
 import * as r_parse from "../refiners/authoring_parse_tree/text/refiners"
 import * as t_parse_result_to_string from "../transformers/parse_result/string"
