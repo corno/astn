@@ -6,7 +6,7 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/sche
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as op_enrich_list_elements_with_position_information } from "pareto-standard-operations/dist/implementation/operations/impure/list/enrich_with_position_information"
+import { $$ as op_enrich_list_elements_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
 import { $$ as op_serialize_with_apostrophe_delimiter } from "../../../serializers/primitives/text/apostrophed"
 import { $$ as op_serialize_with_quote_delimiter } from "../../../serializers/primitives/text/quoted"
 import { $$ as op_serialize_with_grave_delimiter } from "../../../serializers/primitives/text/backticked"

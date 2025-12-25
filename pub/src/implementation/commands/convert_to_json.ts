@@ -29,7 +29,7 @@ export type Procedure = _et.Command_Procedure<
 import * as r_parse from "../deserializers/schemas/authoring_parse_tree"
 import * as t_parse_result_to_string from "../serializers/schemas/parse_result"
 import * as t_ast_2_json from "../transformers/schemas/authoring_parse_tree/json_target"
-import * as s_json from "pareto-json/dist/implementation/serializers/json"
+import * as s_json from "pareto-json/dist/implementation/serializers/schemas/json"
 
 export const $$: Procedure = _easync.create_command_procedure(
     ($p, $cr, $qr) => [

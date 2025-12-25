@@ -7,7 +7,6 @@ import { String_Iterator } from "./string_iterator"
 import { throw_lexer_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
-import { $$ as op_from_character_list } from "pareto-standard-operations/dist/implementation/operations/impure/text/from_character_list"
 import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
 //this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
@@ -25,7 +24,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace
 
     const start = string_iterator['create location info']()
     return {
-        'value': op_from_character_list(_ea.build_list<number>(($i) => {
+        'value': _ea.build_text(($i) => {
             while (true) {
 
 
@@ -47,23 +46,23 @@ export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace
                     switch ($) {
                         case 0x09: // \t
                             string_iterator['consume character']()
-                            $i['add element']($)
+                            $i['add character']($)
                             break
                         case 0x0A: // \n
                             string_iterator['consume character']()
-                            $i['add element']($)
+                            $i['add character']($)
                             break
                         case 0x0D: // \r
                             string_iterator['consume character']()
-                            $i['add element']($)
+                            $i['add character']($)
                             break
                         case 0x20: // space
                             string_iterator['consume character']()
-                            $i['add element']($)
+                            $i['add character']($)
                             break
                         case 0x2C: // ,
                             string_iterator['consume character']()
-                            $i['add element']($)
+                            $i['add character']($)
                             break
                         default:
                             return
@@ -71,7 +70,7 @@ export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace
                     }
                 }
             }
-        })),
+        }),
         'range': {
             'start': start,
             'end': string_iterator['create location info'](),
@@ -116,7 +115,7 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': op_from_character_list(_ea.build_list(($i) => {
+                                    'content': _ea.build_text(($i) => {
                                         while (true) {
                                             const $ = string_iterator['get current character']()
                                             if ($ === null) {
@@ -129,10 +128,10 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                                     return
                                                 default:
                                                     string_iterator['consume character']()
-                                                    $i['add element']($)
+                                                    $i['add character']($)
                                             }
                                         }
-                                    })),
+                                    }),
                                     'range': {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
@@ -145,7 +144,7 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                 string_iterator['consume character']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': op_from_character_list(_ea.build_list(($i) => {
+                                    'content': _ea.build_text(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -169,16 +168,16 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                             }
                                             //not a solidus, so this is part of the comment
                                             if (found_asterisk) {
-                                                $i['add element'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
+                                                $i['add character'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
                                             }
                                             if ($ === Character.asterisk) {
                                                 found_asterisk = true
                                             } else {
-                                                $i['add element']($)
+                                                $i['add character']($)
                                             }
                                             string_iterator['consume character']()
                                         }
-                                    })),
+                                    }),
                                     'range': {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
@@ -320,7 +319,7 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': op_from_character_list(_ea.build_list(($i) => {
+                        'value': _ea.build_text(($i) => {
                             while (true) {
                                 const $ = st['get current character']()
                                 if ($ === null) {
@@ -365,9 +364,9 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
                                     return
                                 }
                                 st['consume character']()
-                                $i['add element']($)
+                                $i['add character']($)
                             }
-                        })),
+                        }),
                     }]
             }
         }),
@@ -401,7 +400,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
 
     }
     const start = string_iterator['create location info']()
-    const txt = op_from_character_list(_ea.build_list(($i) => {
+    const txt = _ea.build_text(($i) => {
         while (true) {
             const $ = string_iterator['get current character']()
             if ($ === null) {
@@ -441,7 +440,7 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                         )
                     }
                     string_iterator['consume character']()
-                    $i['add element']($)
+                    $i['add character']($)
                     break
                 case Character.reverse_solidus: // \ (escape)
                     string_iterator['consume character']()
@@ -459,47 +458,47 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                         switch ($) {
                             case Character.quotation_mark:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.quotation_mark)
+                                $i['add character'](Character.quotation_mark)
                                 break
                             case Character.apostrophe:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.apostrophe)
+                                $i['add character'](Character.apostrophe)
                                 break
                             case Character.backtick:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.backtick)
+                                $i['add character'](Character.backtick)
                                 break
                             case Character.reverse_solidus:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.reverse_solidus)
+                                $i['add character'](Character.reverse_solidus)
                                 break
                             case Character.solidus:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.solidus)
+                                $i['add character'](Character.solidus)
                                 break
                             case Character.b:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.backspace)
+                                $i['add character'](Character.backspace)
                                 break
                             case Character.f:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.form_feed)
+                                $i['add character'](Character.form_feed)
                                 break
                             case Character.n:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.line_feed)
+                                $i['add character'](Character.line_feed)
                                 break
                             case Character.r:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.carriage_return)
+                                $i['add character'](Character.carriage_return)
                                 break
                             case Character.t:
                                 string_iterator['consume character']()
-                                $i['add element'](Character.tab)
+                                $i['add character'](Character.tab)
                                 break
                             case Character.u:
                                 string_iterator['consume character']()
-                                $i['add element'](op_parse_hexadecimal(op_from_character_list((_ea.build_list(($i) => {
+                                $i['add character'](op_parse_hexadecimal(_ea.build_text(($i) => {
                                     const get_char = () => {
                                         const char = string_iterator['get current character']()
                                         if (char === null) {
@@ -523,11 +522,11 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                         string_iterator['consume character']()
                                         return char
                                     }
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                    $i['add element'](get_char())
-                                }))), () => _ea.deprecated_panic('unreachable')))
+                                    $i['add character'](get_char())
+                                    $i['add character'](get_char())
+                                    $i['add character'](get_char())
+                                    $i['add character'](get_char())
+                                }), () => _ea.deprecated_panic('unreachable')))
                                 break
                             default:
                                 return throw_lexer_error(
@@ -542,10 +541,10 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                     break
                 default:
                     string_iterator['consume character']()
-                    $i['add element']($)
+                    $i['add character']($)
             }
         }
-    }))
+    })
     return txt
 }
 
