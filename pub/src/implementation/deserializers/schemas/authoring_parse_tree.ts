@@ -11,14 +11,18 @@ import * as p_authoring_parse_tree from "../../productions/schemas/authoring_par
 
 import * as tokenize from "../../productions/schemas/token/annotated_character"
 
-export const Document = (
-    $: string,
-    $p: {
-        'tab size': number
-    },
-    abort: ($: d_authoring_parse_result.Parse_Error) => never
-): d_authoring_parse_tree.Document => {
-    const iter = _ea.create_iterator(ds_annotated_characters.annotate_characters($, {
+export namespace signatures {
+    export type Document = (
+        $: string,
+        $p: {
+            'tab size': number
+        },
+        abort: ($: d_authoring_parse_result.Parse_Error) => never
+    ) => d_authoring_parse_tree.Document
+}
+
+export const Document: signatures.Document = ($, $p, abort) => {
+    const iter = _ea.create_iterator(ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }))
     const tr = tokenize.Tokenizer_Result(

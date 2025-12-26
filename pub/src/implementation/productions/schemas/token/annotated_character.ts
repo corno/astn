@@ -5,9 +5,8 @@ import * as _out from "../../../../interface/generated/pareto/schemas/token/data
 
 import * as _parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import { Annotated_Character } from "../../../deserializers/schemas/annotated_characters"
-
-export type Characters_Iterator = _et.Iterator<Annotated_Character>
+import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
+export type Characters_Iterator = _et.Iterator<d_annotated_characters.Annotated_Character>
 
 import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
@@ -15,7 +14,7 @@ import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementa
 
 import * as sh from "../../../../shorthands/parse_result"
 
-const temp_get_current_character_or_null = (iterator: Characters_Iterator): Annotated_Character | null => {
+const temp_get_current_character_or_null = (iterator: Characters_Iterator): d_annotated_characters.Annotated_Character | null => {
     return iterator['get current']().transform(
         ($) => $,
         () => null
@@ -29,7 +28,7 @@ const WhitespaceChars = {
     space: 0x20,                //
 }
 
-export const is_control_character = ($: Annotated_Character): boolean => {
+export const is_control_character = ($: d_annotated_characters.Annotated_Character): boolean => {
     return ($.code < 0x20 && $.code !== WhitespaceChars.tab && $.code !== WhitespaceChars.line_feed && $.code !== WhitespaceChars.carriage_return)
 }
 

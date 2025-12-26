@@ -1,56 +1,48 @@
 import * as _ea from 'exupery-core-alg'
 import * as _et from 'exupery-core-types'
 
-//language independent parser functionality
+import * as d_annotated_characters from "../../../interface/to_be_generated/annotated_characters"
 
-export type Iterator_Location = {
-    'absolute': number
-    'relative': {
-        'line': number
-        'column': number
-    }
-}
-
-export type Token_Iterator_State = {
-    'location': Iterator_Location
-    /**
-     * if no non-whitespace character has been found yet on the current line,
-     * this will return the current column,
-     * otherwise it will return the offset of that first non-whitespace character
-     * (which is the indentation of the line)
-     */
-    'line indentation': number
-}
-
-const WhitespaceChars = {
-    tab: 0x09,                  // \t
-    line_feed: 0x0A,            // \n
-    carriage_return: 0x0D,      // \r
-    space: 0x20,                //
+export namespace signatures {
+    export type Annotated_Characters = (
+        $: string,
+        $p: {
+            'tab size': number
+        }
+    ) => d_annotated_characters.Annotated_Characters
 }
 
 /**
  * Creates a string iterator that allows iterating over characters in a string,
  * while keeping track of line numbers, columns, and line indentation.
  */
+export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => {
 
-
-export type Annotated_Character = {
-    'code': number
-    'location': {
-        'line': number
-        'column': number
+    type Iterator_Location = {
+        'absolute': number
+        'relative': {
+            'line': number
+            'column': number
+        }
     }
-    'line indentation': number
-}
 
-
-export const annotate_characters = (
-    $: string,
-    $p: {
-        'tab size': number
+    type Token_Iterator_State = {
+        'location': Iterator_Location
+        /**
+         * if no non-whitespace character has been found yet on the current line,
+         * this will return the current column,
+         * otherwise it will return the offset of that first non-whitespace character
+         * (which is the indentation of the line)
+         */
+        'line indentation': number
     }
-): _et.List<Annotated_Character> => {
+
+    const WhitespaceChars = {
+        tab: 0x09,                  // \t
+        line_feed: 0x0A,            // \n
+        carriage_return: 0x0D,      // \r
+        space: 0x20,                //
+    }
     const characters = _ea.text_to_character_list($)
 
     type Relative_Position_Information = {
@@ -68,7 +60,7 @@ export const annotate_characters = (
     let found_carriage_return_before = false
 
 
-    return _ea.build_list<Annotated_Character>(($i) => {
+    return _ea.build_list<d_annotated_characters.Annotated_Character>(($i) => {
         while (true) {
             position += 1
             const character = characters.__get_element_at(position)
