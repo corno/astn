@@ -1,13 +1,13 @@
 import * as _et from 'exupery-core-types'
 import * as _ea from 'exupery-core-alg'
 
-import { $$ as op_escape_character } from "pareto-standard-operations/dist/implementation/serializers/primitives/text/escaped_character"
+import { $$ as s_escaped_character } from "pareto-standard-operations/dist/implementation/serializers/primitives/text/escaped_character"
 
 export const $$ = ($: {
     'value': string
     'add delimiters': boolean
 }): string => ($['add delimiters'] ? '"' : '')
-    + op_escape_character(
+    + s_escaped_character(
         $.value,
         {
             'character code': 34, // "

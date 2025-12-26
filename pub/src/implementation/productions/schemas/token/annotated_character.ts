@@ -9,7 +9,7 @@ import { Annotated_Character } from "../../../deserializers/schemas/annotated_ch
 
 export type Characters_Iterator = _et.Iterator<Annotated_Character>
 
-import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
+import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
@@ -552,7 +552,7 @@ export const Delimited_String = (
                                 break
                             case Character.u:
                                 iterator['consume']()
-                                $i['add character'](op_parse_hexadecimal(
+                                $i['add character'](ds_hexadecimal(
                                     _ea.build_text(($i) => {
                                         const get_char = () => {
                                             const char = temp_get_current_character_or_null(iterator)

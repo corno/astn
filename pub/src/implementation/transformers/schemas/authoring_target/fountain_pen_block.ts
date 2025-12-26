@@ -7,9 +7,9 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/sche
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 import { $$ as op_enrich_list_elements_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
-import { $$ as op_serialize_with_apostrophe_delimiter } from "../../../serializers/primitives/text/apostrophed"
-import { $$ as op_serialize_with_quote_delimiter } from "../../../serializers/primitives/text/quoted"
-import { $$ as op_serialize_with_grave_delimiter } from "../../../serializers/primitives/text/backticked"
+import { $$ as s_apostrophed } from "../../../serializers/primitives/text/apostrophed"
+import { $$ as s_quoted } from "../../../serializers/primitives/text/quoted"
+import { $$ as s_backticked } from "../../../serializers/primitives/text/backticked"
 
 
 export type Parameters = {
@@ -46,7 +46,7 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, d_out.Block_Part
                     $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
-                            sh.b.snippet(op_serialize_with_grave_delimiter({
+                            sh.b.snippet(s_backticked({
                                 'value': $.key,
                                 'add delimiters': true,
                             })),
@@ -66,7 +66,7 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, d_out.Block_Part
                             $p['write delimiters'] ? sh.b.snippet("(") : sh.b.snippet(""), //we always want a newline here
                             sh.b.indent([
                                 sh.g.sub(entries.map(($) => sh.g.nested_block([
-                                    sh.b.snippet(op_serialize_with_apostrophe_delimiter({
+                                    sh.b.snippet(s_apostrophed({
                                         'value': $.key,
                                         'add delimiters': true,
                                     })),
@@ -107,7 +107,7 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, d_out.Block_Part
                             $p['in concise group']
                                 ? sh.b.nothing()
                                 : $p['write delimiters'] ? sh.b.snippet("| ") : sh.b.nothing(),
-                            sh.b.snippet(op_serialize_with_apostrophe_delimiter({
+                            sh.b.snippet(s_apostrophed({
                                 'value': $.state,
                                 'add delimiters': $p['write delimiters'],
                             })),
@@ -141,11 +141,11 @@ export const Value: _et.Transformer_With_Parameters<d_in.Value, d_out.Block_Part
                     const value = $.value
                     return _ea.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _ea.ss($, ($) => sh.b.snippet(op_serialize_with_grave_delimiter({
+                            case 'backtick': return _ea.ss($, ($) => sh.b.snippet(s_backticked({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'quote': return _ea.ss($, ($) => sh.b.snippet(op_serialize_with_quote_delimiter({
+                            case 'quote': return _ea.ss($, ($) => sh.b.snippet(s_quoted({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
