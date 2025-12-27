@@ -97,7 +97,7 @@ export const get_possibly_circular_dependent_sibling_entry = <Source, T>(
     return $.transform(
         ($) => ({
             'key': $p.reference.key,
-            'entry': $.__get_entry($p.reference.key).transform(
+            'entry': $.get_entry($p.reference.key).transform(
                 ($) => $,
                 () => abort($p.reference.location, ['no such entry', { 'key': $p.reference.key }], $p['location 2 string']),
             )
@@ -125,11 +125,11 @@ export const get_entry_from_stack = <Source, T>(
     const get_entry_from_stack = (
         up_steps_taken: number
     ): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
-        return $.__get_element_at($.__get_number_of_elements() - 1 - up_steps_taken).transform(
+        return $.__get_element_at($.get_number_of_elements() - 1 - up_steps_taken).transform(
             ($): resolved$.Reference_To_Stacked_Dictionary_Entry<Source, T> => {
                 return $.transform(
                     ($) => {
-                        return $.__get_entry(ref.key).transform(
+                        return $.get_entry(ref.key).transform(
                             ($) => _ea.cc($, ($) => {
                                 switch ($[0]) {
                                     case 'error': return _ea.ss($, ($) => get_entry_from_stack(up_steps_taken += 1))
@@ -164,7 +164,7 @@ export const get_entry = <Source, T>(
     return $.transform(
         ($) => ({
             'key': $p.reference.key,
-            'entry': $.__get_entry($p.reference.key).transform(
+            'entry': $.get_entry($p.reference.key).transform(
                 ($) => _ea.cc($, ($) => {
                     switch ($[0]) {
                         case 'error': return _ea.ss($, ($) => _ea.cc($, ($) => {
@@ -267,7 +267,7 @@ export const resolve_dense_ordered_dictionary = <Source, TUnresolved, TResolved,
         ) => {
             benchmark.map(($, key) => {
                 const benchmark = $
-                focus.__get_entry(key).transform(
+                focus.get_entry(key).transform(
                     ($) => {
                     },
                     () => {
@@ -329,9 +329,9 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                 'location': location,
             }, {
                 'possibly circular dependent siblings': _ea.set({
-                    __get_entry(key) {
+                    get_entry(key) {
                         //does the entry exist?
-                        return source_dictionary.dictionary.__get_entry(key).map(($) => {
+                        return source_dictionary.dictionary.get_entry(key).map(($) => {
                             //yes, it exists in the source dictionary
                             if (all_siblings_subscribed_entries[key] === undefined) {
                                 all_siblings_subscribed_entries[key] = { 'entry': null }
@@ -351,10 +351,10 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
 
                 }),
                 'not circular dependent siblings': _ea.set({
-                    __get_entry(key): _et.Optional_Value<i.Non_Circular_Result<TResolved>> {
+                    get_entry(key): _et.Optional_Value<i.Non_Circular_Result<TResolved>> {
                         const status = status_dictionary[key]
                         if (status === undefined) {
-                            return source_dictionary.dictionary.__get_entry(key).transform(
+                            return source_dictionary.dictionary.get_entry(key).transform(
                                 ($) => _ea.set(['resolved', process_entry($.entry, $.location, key)]),
                                 () => {
                                     return _ea.not_set()

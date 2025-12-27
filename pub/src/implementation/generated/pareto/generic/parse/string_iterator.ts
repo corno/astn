@@ -59,7 +59,7 @@ export const create_string_iterator = (
 ): String_Iterator => {
     const source = $
     const characters = op_to_character_list($)
-    const length = characters.__get_number_of_elements()
+    const length = characters.get_number_of_elements()
 
     type Relative_Position_Information = {
         'line': number

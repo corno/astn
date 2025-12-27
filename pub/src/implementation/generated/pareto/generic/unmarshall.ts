@@ -16,7 +16,7 @@ export const process_unconstrained_state_group = <Mapped_Value>(
         switch ($[0]) {
             case 'tagged value': return _ea.ss($, ($) => {
                 const data = $.value
-                return $p.states.__get_entry(
+                return $p.states.get_entry(
                     $.state.value
                 ).transform(
                     ($) => $(data),
@@ -41,7 +41,7 @@ export const process_unresolved_state_group = <Mapped_Value>(
                 const data = $.value
                 return {
                     'location': $["|"].range,
-                    'state group': $p.states.__get_entry(
+                    'state group': $p.states.get_entry(
                         $.state.value
                     ).transform(
                         ($) => $(data),
@@ -90,7 +90,7 @@ export const get_entry = (
     }
 
 ): t._T_Value => {
-    return $.__get_entry($p.key).transform(
+    return $.get_entry($p.key).transform(
         ($) => $,
         () => _ea.deprecated_panic(`no such entry: ${$p.key}`)
     )
