@@ -5,8 +5,6 @@ import * as _in from "../../../../interface/generated/pareto/schemas/authoring_p
 import * as _in_token from "../../../../interface/generated/pareto/schemas/token/data_types/source"
 import * as _out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
 
-import { $$ as op_flatten } from "pareto-standard-operations/dist/implementation/operations/pure/list/flatten"
-
 export const Whitespace = (
     $: _in_token.Whitespace,
     $p: {
@@ -28,10 +26,10 @@ export const Trivia = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.list_literal([
+    return _ea.list_literal([
         Whitespace($['leading whitespace'], $p),
-        op_flatten($['comments'].map(($) => {
-            return op_flatten(_ea.list_literal([
+        $['comments'].map(($) => {
+            return _ea.list_literal([
                 //FIXME
                 // _ea.cc($['type'], ($) => {
                 //     switch ($[0]) {
@@ -44,10 +42,10 @@ export const Trivia = (
                 // _ea.list_literal([$['begin']]),
                 // _ea.list_literal([$['end']]),
                 Whitespace($['trailing whitespace'], $p),
-            ]))
-        })),
+            ]).flatten(($) => $)
+        }).flatten(($) => $),
 
-    ]))
+    ]).flatten(($) => $)
 }
 
 export const Structural_Token = (
@@ -69,10 +67,10 @@ export const String = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.list_literal([
+    return _ea.list_literal([
         Trivia($['trailing trivia'], $p),
         //FIX right type
-    ]))
+    ]).flatten(($) => $)
 }
 
 export const Key_Value_Pairs = (
@@ -83,27 +81,27 @@ export const Key_Value_Pairs = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten($.map(($) => {
-        return op_flatten(_ea.list_literal([
+    return $.flatten(($) => {
+        return _ea.list_literal([
             String($.key, $p),
             $.value.transform(
-                ($) => op_flatten(_ea.list_literal([
+                ($) => _ea.list_literal([
                     Structural_Token($[':'], $p),
                     Value($.value, $p),
-                ])),
+                ]).flatten(($) => $),
                 () => _ea.list_literal([])
             ),
             $[','].transform(
-                ($) => op_flatten(_ea.list_literal<_out.Text_Edits>([
+                ($) => _ea.list_literal<_out.Text_Edits>([
                     $p['remove commas']
                         ? _ea.list_literal<_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
                         : _ea.list_literal([]),
                     Structural_Token($, $p)
-                ])),
+                ]).flatten(($) => $),
                 () => _ea.list_literal([])
             ),
-        ]))
-    }))
+        ]).flatten(($) => $)
+    })
 }
 
 
@@ -115,11 +113,9 @@ export const Elements = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten($.map(($) => {
-        return op_flatten(_ea.list_literal([
-            Value($.value, $p),
-        ]))
-    }))
+    return $.flatten(($) => {
+        return Value($.value, $p)
+    })
 }
 
 export const Value = (
@@ -137,60 +133,60 @@ export const Value = (
                     case 'string': return _ea.ss($, ($) => _ea.list_literal([]))
                     case 'indexed collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                         switch ($[0]) {
-                            case 'dictionary': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                            case 'dictionary': return _ea.ss($, ($) => _ea.list_literal([
                                 Structural_Token($['{'], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($['}'], $p),
-                            ])))
-                            case 'verbose group': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                            ]).flatten(($) => $))
+                            case 'verbose group': return _ea.ss($, ($) => _ea.list_literal([
                                 Structural_Token($['('], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($[')'], $p),
-                            ])))
+                            ]).flatten(($) => $))
                             default: return _ea.au($[0])
                         }
                     }))
                     case 'ordered collection': return _ea.ss($, ($) => _ea.cc($, ($) => {
                         switch ($[0]) {
-                            case 'list': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                            case 'list': return _ea.ss($, ($) => _ea.list_literal([
                                 Structural_Token($['['], $p),
                                 Elements($.elements, $p),
                                 Structural_Token($[']'], $p),
-                            ])))
-                            case 'concise group': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                            ]).flatten(($) => $))
+                            case 'concise group': return _ea.ss($, ($) => _ea.list_literal([
                                 Structural_Token($['<'], $p),
                                 Elements($['elements'], $p),
                                 Structural_Token($['>'], $p),
-                            ])))
+                            ]).flatten(($) => $))
                             default: return _ea.au($[0])
                         }
                     }))
-                    case 'tagged value': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                    case 'tagged value': return _ea.ss($, ($) => _ea.list_literal<_out.Text_Edits>([
                         Structural_Token($['|'], $p),
                         _ea.cc($.status, ($) => {
                             switch ($[0]) {
                                 case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
-                                case 'set': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                                case 'set': return _ea.ss($, ($) => _ea.list_literal([
                                     String($['state'], $p),
                                     Value($['value'], $p),
-                                ])))
+                                ]).flatten(($) => $))
                                 default: return _ea.au($[0])
                             }
                         })
-                    ])))
+                    ]).flatten(($) => $))
                     case 'not set': return _ea.ss($, ($) => Structural_Token($['~'], $p))
-                    case 'set optional value': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+                    case 'set optional value': return _ea.ss($, ($) => _ea.list_literal([
                         Structural_Token($['*'], $p),
                         Value($['value'], $p),
-                    ])))
+                    ]).flatten(($) => $))
 
                     default: return _ea.au($[0])
                 }
             }))
-            case 'include': return _ea.ss($, ($) => op_flatten(_ea.list_literal([
+            case 'include': return _ea.ss($, ($) => _ea.list_literal([
                 Structural_Token($['@'], $p),
                 String($['path'], $p),
-            ])))
+            ]).flatten(($) => $))
             case 'missing data': return _ea.ss($, ($) => Structural_Token($['#'], $p))
             default: return _ea.au($[0])
         }
@@ -205,15 +201,15 @@ export const Document = (
         'current indentation': string
     }
 ): _out.Text_Edits => {
-    return op_flatten(_ea.list_literal<_out.Text_Edits>([
+    return _ea.list_literal<_out.Text_Edits>([
 
         $.header.transform(
-            ($) => op_flatten(_ea.list_literal([
+            ($) => _ea.list_literal([
                 Structural_Token($['!'], $p),
                 Value($.value, $p)
-            ])),
+            ]).flatten(($) => $),
             () => _ea.list_literal([])
         ),
         Value($.content, $p),
-    ]))
+    ]).flatten(($) => $)
 }
