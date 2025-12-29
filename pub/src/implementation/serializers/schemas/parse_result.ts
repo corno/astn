@@ -1,13 +1,13 @@
-import * as _ea from 'exupery-core-alg'
+import * as _pt from 'pareto-core-transformer'
 
 import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
 
 import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/serializers/schemas/list_of_separated_texts"
 
 export const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => {
-    return _ea.cc($, ($) => {
+    return _pt.cc($, ($) => {
         switch ($[0]) {
-            case 'lexer': return _ea.ss($, ($) => _ea.cc($, ($) => {
+            case 'lexer': return _pt.ss($, ($) => _pt.cc($, ($) => {
                 switch ($[0]) {
                     case 'unexpected control character': return `found unexpected control character`
                     case 'unexpected end of line in delimited string': return `found unexpected end of line in delimited string`
@@ -20,11 +20,11 @@ export const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string =>
                     case 'unknown escape character': return `found unknown escape character`
                     case 'unexpected end of input': return `found unexpected end of input`
                     case 'dangling slash': return `found dangling slash`
-                    default: return _ea.au($[0])
+                    default: return _pt.au($[0])
                 }
             }))
-            case 'parser': return _ea.ss($, ($) => `expected ${s_list_of_separated_texts(
-                $.expected.map(($) => _ea.cc($, ($) => {
+            case 'parser': return _pt.ss($, ($) => `expected ${s_list_of_separated_texts(
+                $.expected.map(($) => _pt.cc($, ($) => {
                     switch ($[0]) {
                         case '!': return "'!'"
                         case ')': return "')'"
@@ -37,22 +37,22 @@ export const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string =>
                         case 'a value': return "a value"
                         case '}': return "'}'"
                         case '#': return "'#'"
-                        default: return _ea.au($[0])
+                        default: return _pt.au($[0])
                     }
                 })), 
                 { 'separator': " or " }
-            )}, found ${_ea.cc($.cause, ($) => {
+            )}, found ${_pt.cc($.cause, ($) => {
                 switch ($[0]) {
-                    case 'unexpected token': return _ea.ss($, ($) => {
+                    case 'unexpected token': return _pt.ss($, ($) => {
                         return $.found[0]
                     })
-                    case 'missing token': return _ea.ss($, ($) => {
+                    case 'missing token': return _pt.ss($, ($) => {
                         return `nothing`
                     })
-                    default: return _ea.au($[0])
+                    default: return _pt.au($[0])
                 }
             })}`)
-            default: return _ea.au($[0])
+            default: return _pt.au($[0])
         }
     })
 }
@@ -65,11 +65,11 @@ export const Parse_Error = (
         |[ 'one based', null]
     }
 ): string => {
-    const extra: number = _ea.cc($p['position info'], ($) => {
+    const extra: number = _pt.cc($p['position info'], ($) => {
         switch ($[0]) {
             case 'zero based': return 0
             case 'one based': return 1
-            default: return _ea.au($[0])
+            default: return _pt.au($[0])
         }
     })
     return `failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.range.start.relative.line + extra}:${$.range.start.relative.column + extra}`

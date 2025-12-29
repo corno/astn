@@ -1,4 +1,4 @@
-import * as _ea from 'exupery-core-alg'
+import * as _pt from 'pareto-core-transformer'
 
 import * as d_in from "../../../../interface/generated/pareto/schemas/sealed_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
@@ -14,9 +14,9 @@ export const Value = (
     $: d_in.Value,
 ): d_out.Block_Part => {
     return sh.b.sub([
-        _ea.cc($, ($) => {
+        _pt.cc($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _ea.ss($, ($) => sh.b.sub([
+                case 'dictionary': return _pt.ss($, ($) => sh.b.sub([
                     sh.b.snippet("{"),
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
@@ -30,71 +30,69 @@ export const Value = (
                     ]),
                     sh.b.snippet("}"),
                 ]))
-                case 'verbose group': return _ea.ss($, ($) => sh.b.sub([
-                    _ea.block(() => {
-                        return sh.b.sub([
-                            sh.b.snippet("("),
-                            sh.b.indent([
-                                sh.g.sub($.map(($) => sh.g.nested_block([
-                                    sh.b.snippet(s_apostrophed({
-                                'value': $.key,
-                                'add delimiters': true
-                            })),
-                                    sh.b.snippet(": "),
-                                    Value($.value),
-                                ]))),
-                            ]),
-                            sh.b.snippet(")"),
-                        ])
-                    })
+                case 'verbose group': return _pt.ss($, ($) => sh.b.sub([
+                    sh.b.sub([
+                        sh.b.snippet("("),
+                        sh.b.indent([
+                            sh.g.sub($.map(($) => sh.g.nested_block([
+                                sh.b.snippet(s_apostrophed({
+                                    'value': $.key,
+                                    'add delimiters': true
+                                })),
+                                sh.b.snippet(": "),
+                                Value($.value),
+                            ]))),
+                        ]),
+                        sh.b.snippet(")"),
+                    ])
                 ]))
-                case 'list': return _ea.ss($, ($) => sh.b.sub([
+                case 'list': return _pt.ss($, ($) => sh.b.sub([
                     sh.b.snippet("["),
-                   sh.b.sub($.map(($) => sh.b.sub([
+                    sh.b.sub($.map(($) => sh.b.sub([
                         sh.b.snippet(" "),
                         Value($),
                     ]))),
                     sh.b.snippet(" ]"),
                 ]))
-                case 'state': return _ea.ss($, ($) => sh.b.sub([
+                case 'state': return _pt.ss($, ($) => sh.b.sub([
                     sh.b.snippet("| "),
                     sh.b.snippet(s_apostrophed({
-                                'value': $.state,
-                                'add delimiters': true
-                            })),
+                        'value': $.state,
+                        'add delimiters': true
+                    })),
                     sh.b.snippet(" "),
                     Value($.value),
                 ]))
-                case 'optional': return _ea.ss($, ($) => _ea.cc($, ($) => {
+                case 'optional': return _pt.ss($, ($) => _pt.cc($, ($) => {
                     switch ($[0]) {
-                        case 'not set': return _ea.ss($, ($) => sh.b.snippet("~"))
-                        case 'set': return _ea.ss($, ($) => sh.b.sub([
+                        case 'not set': return _pt.ss($, ($) => sh.b.snippet("~"))
+                        case 'set': return _pt.ss($, ($) => sh.b.sub([
                             sh.b.snippet("* "),
                             Value($),
                         ]))
 
-                        default: return _ea.au($[0])
+                        default: return _pt.au($[0])
                     }
                 }))
-                case 'nothing': return _ea.ss($, ($) => sh.b.snippet("~"))
-                case 'text': return _ea.ss($, ($) => {
+                case 'nothing': return _pt.ss($, ($) => sh.b.snippet("~"))
+                case 'text': return _pt.ss($, ($) => {
                     const value = $.value
-                    return _ea.cc($.delimiter, ($) => {
+                    return _pt.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _ea.ss($, ($) => sh.b.snippet(s_backticked({
+                            case 'backtick': return _pt.ss($, ($) => sh.b.snippet(s_backticked({
                                 'value': value,
                                 'add delimiters': true
                             })))
-                            case 'quote': return _ea.ss($, ($) => sh.b.snippet(s_quoted({
+                            case 'quote': return _pt.ss($, ($) => sh.b.snippet(s_quoted({
                                 'value': value,
                                 'add delimiters': true
                             })))
-                            case 'none': return _ea.ss($, ($) => sh.b.snippet(value))
-                            default: return _ea.au($[0])
+                            case 'none': return _pt.ss($, ($) => sh.b.snippet(value))
+                            default: return _pt.au($[0])
                         }
                     })
                 })
-                default: return _ea.au($[0])
+                default: return _pt.au($[0])
             }
         })
     ])
@@ -105,6 +103,6 @@ export const Document = (
     $p: {
     }
 
-): d_out.Group => sh.group([ sh.g.nested_block([
+): d_out.Group => sh.group([sh.g.nested_block([
     Value($),
 ])])

@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _pi from 'pareto-core-interface'
 
 import * as resources_exupery from "exupery-resources/dist/interface/resources"
 
@@ -8,7 +8,7 @@ export namespace queries {
 
 export namespace commands {
 
-    export type convert_to_json = _et.Command_Procedure<
+    export type convert_to_json = _pi.Command_Procedure<
         resources_exupery.commands.main,
         {
             'log error': resources_exupery.commands.log_error
@@ -19,7 +19,7 @@ export namespace commands {
         }
     >
 
-    export type validate_astn = _et.Command_Procedure<
+    export type validate_astn = _pi.Command_Procedure<
         resources_exupery.commands.main,
         {
             'log': resources_exupery.commands.log,

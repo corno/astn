@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _pi from 'pareto-core-interface'
 
 export type Annotated_Character = {
     'code': number
@@ -9,4 +9,4 @@ export type Annotated_Character = {
     'line indentation': number
 }
 
-export type Annotated_Characters = _et.List<Annotated_Character>
+export type Annotated_Characters = _pi.List<Annotated_Character>

@@ -1,5 +1,5 @@
-import * as _pa from 'exupery-core-alg'
-import * as _pd from 'exupery-core-dev'
+import * as _pa from 'pareto-core-refiner'
+import * as _pd from 'pareto-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
 import * as _i_in from "../../../../../interface/generated/pareto/core/astn_source"

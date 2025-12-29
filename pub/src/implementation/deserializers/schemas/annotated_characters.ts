@@ -1,5 +1,5 @@
-import * as _ea from 'exupery-core-alg'
-import * as _et from 'exupery-core-types'
+import * as _pt from 'pareto-core-deserializer'
+import * as _pi from 'pareto-core-interface'
 
 import * as d_annotated_characters from "../../../interface/to_be_generated/annotated_characters"
 
@@ -43,7 +43,7 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
         carriage_return: 0x0D,      // \r
         space: 0x20,                //
     }
-    const characters = _ea.text_to_character_list($)
+    const characters = _pt.text_to_character_list($)
 
     type Relative_Position_Information = {
         'line': number
@@ -60,7 +60,7 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
     let found_carriage_return_before = false
 
 
-    return _ea.build_list<d_annotated_characters.Annotated_Character>(($i) => {
+    return _pt.build_list<d_annotated_characters.Annotated_Character>(($i) => {
         while (true) {
             position += 1
             const character = characters.__get_element_at(position)

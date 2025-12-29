@@ -1,5 +1,5 @@
-import * as _et from 'exupery-core-types'
-import * as _ea from 'exupery-core-alg'
+import * as _pi from 'pareto-core-interface'
+import * as _pt from 'pareto-core-transformer'
 
 import * as d_target from "../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as d_target_token from "../interface/generated/pareto/schemas/token/data_types/source"
@@ -20,7 +20,7 @@ export const parse_error = (
 
 export const unexpected_token = (
     found: d_target_token.Annotated_Token,
-    expected: _et.List<d_target.Parse_Error._type.SG.parser.expected.L>,
+    expected: _pi.List<d_target.Parse_Error._type.SG.parser.expected.L>,
 ): d_target.Parse_Error => {
     return parse_error(
         ['parser', {

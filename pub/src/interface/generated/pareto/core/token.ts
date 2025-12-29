@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _et from 'pareto-core-interface'
 
 export type _T_Annotated_Token = {
     readonly 'end': _T_Location

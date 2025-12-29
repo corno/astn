@@ -1,5 +1,5 @@
-import * as _ea from 'exupery-core-alg'
-import * as _et from 'exupery-core-types'
+import * as _pt from 'pareto-core-deserializer'
+import * as _pi from 'pareto-core-interface'
 
 
 import * as d_authoring_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
@@ -22,7 +22,7 @@ export namespace signatures {
 }
 
 export const Document: signatures.Document = ($, $p, abort) => {
-    const iter = _ea.create_iterator(ds_annotated_characters.Annotated_Characters($, {
+    const iter = _pt.create_iterator(ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }))
     const tr = tokenize.Tokenizer_Result(
@@ -30,7 +30,7 @@ export const Document: signatures.Document = ($, $p, abort) => {
         abort
     )
     return p_authoring_parse_tree.Document(
-        _ea.create_iterator(tr.tokens),
+        _pt.create_iterator(tr.tokens),
         abort,
     )
 }

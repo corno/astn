@@ -1,10 +1,11 @@
-import * as _ea from 'exupery-core-alg' 
-import * as _et from 'exupery-core-types'
+import * as _ea from 'pareto-core-deserializer'
+import * as _pinternals from 'pareto-core-internals'
+import * as _et from 'pareto-core-interface'
 
 import * as _out from "../../../../../interface/generated/pareto/core/token"
 
 import { String_Iterator } from "./string_iterator"
-import { throw_lexer_error } from "./astn_parse_generic"
+import { My_Lexer_Error, throw_lexer_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
 import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
@@ -20,7 +21,10 @@ const WhitespaceChars = {
 }
 
 
-export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace => {
+export const Whitespace = (
+    string_iterator: String_Iterator,
+    abort: ($: My_Lexer_Error) => never,
+): _out._T_Whitespace => {
 
     const start = string_iterator['create location info']()
     return {
@@ -35,11 +39,12 @@ export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace
                     }
                     if (is_control_character($)) {
                         throw_lexer_error(
-                             ['unexpected control character', $],
+                            ['unexpected control character', $],
                             {
                                 'start': string_iterator['create location info'](),
                                 'end': string_iterator['create location info'](),
-                            }
+                            },
+                            abort,
                         )
 
                     }
@@ -78,10 +83,13 @@ export const Whitespace = (string_iterator: String_Iterator): _out._T_Whitespace
     }
 }
 
-export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
+export const Trivia = (
+    string_iterator: String_Iterator,
+    abort: ($: My_Lexer_Error) => never,
+): _out._T_Trivia => {
 
     return {
-        'leading whitespace': Whitespace(string_iterator),
+        'leading whitespace': Whitespace(string_iterator, abort),
         'comments': _ea.build_list(($i) => {
             while (true) {
                 const $ = string_iterator['get current character']()
@@ -101,7 +109,8 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                 {
                                     'start': start,
                                     'end': end
-                                }
+                                },
+                                abort,
                             )
                         }
                         switch (next_char) {
@@ -136,7 +145,7 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
                                     },
-                                    'trailing whitespace': Whitespace(string_iterator)
+                                    'trailing whitespace': Whitespace(string_iterator, abort)
                                 })
                                 break
                             case 0x2A: {// *
@@ -158,7 +167,8 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                                     {
                                                         'start': start,
                                                         'end': string_iterator['create location info']()
-                                                    }
+                                                    },
+                                                    abort,
                                                 )
                                             }
                                             if ($ === Character.solidus && found_asterisk) {
@@ -182,17 +192,18 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
                                         'start': start,
                                         'end': string_iterator['create location info'](),
                                     },
-                                    'trailing whitespace': Whitespace(string_iterator)
+                                    'trailing whitespace': Whitespace(string_iterator, abort)
                                 })
                                 break
                             }
                             default:
                                 return throw_lexer_error(
-                                     ['dangling slash', null],
+                                    ['dangling slash', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
-                                    }
+                                    },
+                                    abort,
                                 )
                         }
                         break
@@ -204,7 +215,10 @@ export const Trivia = (string_iterator: String_Iterator): _out._T_Trivia => {
     }
 }
 
-export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token => {
+export const Annotated_Token = (
+    st: String_Iterator,
+    abort: ($: My_Lexer_Error) => never,
+): _out._T_Annotated_Token => {
     const $ = st['get current character']()
     if ($ === null) {
         return throw_lexer_error(
@@ -212,7 +226,8 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
             {
                 'start': st['create location info'](),
                 'end': st['create location info'](),
-            }
+            },
+            abort,
         )
     }
     return {
@@ -300,19 +315,19 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
                 case Character.quotation_mark:
                     st['consume character']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.quotation_mark, true),
+                        'value': Delimited_String(st, ($) => $ === Character.quotation_mark, true, abort),
                         'type': ['quoted', null],
                     }]
                 case Character.backtick:
                     st['consume character']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.backtick, false),
+                        'value': Delimited_String(st, ($) => $ === Character.backtick, false, abort),
                         'type': ['backticked', null],
                     }]
                 case Character.apostrophe:
                     st['consume character']()
                     return ['string', {
-                        'value': Delimited_String(st, ($) => $ === Character.apostrophe, false),
+                        'value': Delimited_String(st, ($) => $ === Character.apostrophe, false, abort),
                         'type': ['apostrophed', null],
                     }]
 
@@ -328,11 +343,12 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
 
                                 if (is_control_character($)) {
                                     throw_lexer_error(
-                                         ['unexpected control character', $],
+                                        ['unexpected control character', $],
                                         {
                                             'start': st['create location info'](),
                                             'end': st['create location info'](),
-                                        }
+                                        },
+                                        abort
                                     )
 
                                 }
@@ -371,11 +387,16 @@ export const Annotated_Token = (st: String_Iterator): _out._T_Annotated_Token =>
             }
         }),
         'end': st['create location info'](),
-        'trailing trivia': Trivia(st)
+        'trailing trivia': Trivia(st, abort),
     }
 }
 
-export const Delimited_String = (string_iterator: String_Iterator, is_end_character: (character: number) => boolean, allow_newlines: boolean): _out._T_Delimited_String => {
+export const Delimited_String = (
+    string_iterator: String_Iterator,
+    is_end_character: (character: number) => boolean,
+    allow_newlines: boolean,
+    abort: ($: My_Lexer_Error) => never,
+): _out._T_Delimited_String => {
 
     const Character = {
         backspace: 0x08,            // \b
@@ -410,7 +431,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                     {
                         'start': start,
                         'end': string_iterator['create location info']()
-                    }
+                    },
+                    abort,
                 )
             }
             if (is_control_character($)) {
@@ -419,7 +441,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                     {
                         'start': string_iterator['create location info'](),
                         'end': string_iterator['create location info'](),
-                    }
+                    },
+                    abort,
                 )
 
             }
@@ -432,11 +455,12 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                 case Character.carriage_return:
                     if (!allow_newlines) {
                         return throw_lexer_error(
-                             ['unexpected end of line in delimited string', null],
+                            ['unexpected end of line in delimited string', null],
                             {
                                 'start': start,
                                 'end': string_iterator['create location info']()
-                            }
+                            },
+                            abort
                         )
                     }
                     string_iterator['consume character']()
@@ -452,7 +476,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                 {
                                     'start': start,
                                     'end': string_iterator['create location info']()
-                                }
+                                },  
+                                abort,
                             )
                         }
                         switch ($) {
@@ -507,7 +532,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                                 {
                                                     'start': start,
                                                     'end': string_iterator['create location info']()
-                                                }
+                                                },
+                                                abort,
                                             )
                                         }
                                         if (char < Character.a || (char > Character.f && char < Character.A) || char > Character.F || char < 0x30 || char > 0x39) {
@@ -516,7 +542,8 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                                 {
                                                     'start': start,
                                                     'end': string_iterator['create location info']()
-                                                }
+                                                },
+                                                abort,
                                             )
                                         }
                                         string_iterator['consume character']()
@@ -526,15 +553,16 @@ export const Delimited_String = (string_iterator: String_Iterator, is_end_charac
                                     $i['add character'](get_char())
                                     $i['add character'](get_char())
                                     $i['add character'](get_char())
-                                }), () => _ea.deprecated_panic('unreachable')))
+                                }), () => _pinternals.panic(`unreachable`)))
                                 break
                             default:
                                 return throw_lexer_error(
-                                     ['unknown escape character', null],
+                                    ['unknown escape character', null],
                                     {
                                         'start': start,
                                         'end': string_iterator['create location info']()
-                                    }
+                                    },
+                                    abort,
                                 )
                         }
                     }
@@ -552,14 +580,15 @@ export const Tokenizer_Result = (
     $: null,
     $p: {
         'string iterator': String_Iterator
-    }
+    },
+    abort: ($: My_Lexer_Error) => never,
 ): _out._T_Tokenizer_Result => {
     return {
-        'leading trivia': Trivia($p['string iterator']),
+        'leading trivia': Trivia($p['string iterator'], abort),
         'tokens': _ea.build_list<_out._T_Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
-                const token = Annotated_Token($p['string iterator'])
+                const token = Annotated_Token($p['string iterator'], abort,)
                 $i['add element'](token)
             }
         }),

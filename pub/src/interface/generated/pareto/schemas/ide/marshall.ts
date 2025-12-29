@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _et from 'pareto-core-interface'
 
 import * as _i_in from "./data_types/source"
 import * as _i_out from "../../core/astn_target"

@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _et from 'pareto-core-interface'
 
 import * as _i_imports_token from "./token"
 import * as _i_imports_ast from "./astn_source"

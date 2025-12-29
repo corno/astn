@@ -1,4 +1,4 @@
-import * as _et from 'exupery-core-types'
+import * as _et from 'pareto-core-interface'
 
 
 export type Location_to_String<Source> = ($: Source) => string

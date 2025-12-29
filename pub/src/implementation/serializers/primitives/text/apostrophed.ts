@@ -1,5 +1,5 @@
-import * as _et from 'exupery-core-types'
-import * as _ea from 'exupery-core-alg'
+import * as _pi from 'pareto-core-interface'
+import * as _pt from 'pareto-core-transformer'
 
 import { $$ as s_escaped_character } from "pareto-standard-operations/dist/implementation/serializers/primitives/text/escaped_character"
 

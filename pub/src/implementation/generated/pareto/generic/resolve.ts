@@ -1,5 +1,6 @@
-import * as _ea from 'exupery-core-alg'
-import * as _et from 'exupery-core-types'
+import * as _ea from 'pareto-core-refiner'
+import * as _ps from 'pareto-core-serializer'
+import * as _et from 'pareto-core-interface'
 
 import * as unresolved$ from "../../../../interface/generated/pareto/core/unresolved"
 import * as resolved$ from "../../../../interface/generated/pareto/core/resolved"
@@ -57,13 +58,13 @@ export type Resolve_Error_Type =
     }]
 
 export const abort = <Source>(location: Source, type: Resolve_Error_Type, location_to_string: i.Location_to_String<Source>): never => {
-    return _ea.deprecated_panic(
+    return _ea.fixme_abort(
         _ea.cc(type, ($) => {
             switch ($[0]) {
                 case 'no such entry': return _ea.ss($, ($) => `no such entry: '${$['key']}'`)
                 case 'missing denseness entry': return _ea.ss($, ($) => `missing denseness entry: '${$['key']}'`)
                 case 'circular dependency': return _ea.ss($, ($) => {
-                    const keys = _ea.build_text(($i) => {
+                    const keys = _ps.build_text(($i) => {
                         $['keys'].__for_each(($) => {
                             $i['add snippet'](` '${$}', `)
                         })
@@ -141,7 +142,7 @@ export const get_entry_from_stack = <Source, T>(
                                     default: return _ea.au($[0])
                                 }
                             }),
-                            () => _ea.deprecated_panic(`no clue yet of what is happening here`),
+                            () => _ea.fixme_abort(`no clue yet of what is happening here`),
                         )
                     },
                     () => abort(ref.location, ['index out of bounds', { 'up steps taken': up_steps_taken }], $p['location 2 string']),
@@ -340,7 +341,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
                             return {
                                 'get circular dependent': () => {
                                     if (subscr.entry === null) {
-                                        return _ea.deprecated_panic(`entry not set: ${key}`)
+                                        return _ea.fixme_abort(`entry not set: ${key}`)
                                     }
                                     return subscr.entry
                                 }
@@ -425,7 +426,7 @@ export const resolve_ordered_dictionary = <Source, TUnresolved, TResolved>(
         })
         _ea.dictionary_literal(all_siblings_subscribed_entries).map(($, key) => {
             if (finished[key] === undefined) {
-                _ea.deprecated_panic(`implementation error: entry not resolved: ${key}`)
+                _ea.fixme_abort(`implementation error: entry not resolved: ${key}`)
             }
             all_siblings_subscribed_entries[key].entry = finished[key]
         })

@@ -1,12 +1,14 @@
-import * as _ea from 'exupery-core-alg'
-import * as _et from 'exupery-core-types'
+import * as _pt from 'pareto-core-refiner'
+import * as _pi from 'pareto-core-interface'
+import * as _pinternals from 'pareto-core-internals'
+import * as _pdev from 'pareto-core-dev'
 
 import * as _out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
 
 import * as _parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
 import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
-export type Characters_Iterator = _et.Iterator<d_annotated_characters.Annotated_Character>
+export type Characters_Iterator = _pi.Iterator<d_annotated_characters.Annotated_Character>
 
 import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
@@ -53,11 +55,11 @@ const temp_get_current_location = (iterator: Characters_Iterator): _out.Location
 
 export const Whitespace = (
     iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Parse_Error>,
 ): _out.Whitespace => {
     const start_location = temp_get_current_location(iterator)
     return {
-        'value': _ea.build_text(($i) => {
+        'value': _pinternals.build_text(($i) => {
             while (true) {
                 {
                     const $ = temp_get_current_character_or_null(iterator)
@@ -111,12 +113,12 @@ export const Whitespace = (
 
 export const Trivia = (
     iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Parse_Error>,
 ): _out.Trivia => {
 
     return {
         'leading whitespace': Whitespace(iterator, abort),
-        'comments': _ea.build_list(($i) => {
+        'comments': _pt.build_list(($i) => {
             while (true) {
                 const $ = temp_get_current_character_or_null(iterator)
                 if ($ === null) {
@@ -152,7 +154,7 @@ export const Trivia = (
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': _ea.build_text(($i) => {
+                                    'content': _pinternals.build_text(($i) => {
                                         while (true) {
                                             const $ = temp_get_current_character_or_null(iterator)
                                             if ($ === null) {
@@ -181,7 +183,7 @@ export const Trivia = (
                                 iterator['consume']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': _ea.build_text(($i) => {
+                                    'content': _pinternals.build_text(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -243,7 +245,7 @@ export const Trivia = (
 
 export const Annotated_Token = (
     iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Parse_Error>,
 ): _out.Annotated_Token => {
     const WhitespaceChars = {
         tab: 0x09,                  // \t
@@ -265,7 +267,7 @@ export const Annotated_Token = (
     }
     return {
         'start': temp_get_current_location(iterator),
-        'type': _ea.block((): _out.Token_Type => {
+        'type': _pt.block((): _out.Token_Type => {
 
             const Character = {
 
@@ -367,7 +369,7 @@ export const Annotated_Token = (
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': _ea.build_text(($i) => {
+                        'value': _pinternals.build_text(($i) => {
                             while (true) {
                                 const $ = temp_get_current_character_or_null(iterator)
                                 if ($ === null) {
@@ -427,7 +429,7 @@ export const Delimited_String = (
     is_end_character: (character: number) => boolean,
     allow_newlines: boolean,
     iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Parse_Error>,
 ): _out.Delimited_String => {
 
     const Character = {
@@ -453,7 +455,7 @@ export const Delimited_String = (
 
     }
     const start = temp_get_current_location(iterator)
-    const txt = _ea.build_text(($i) => {
+    const txt = _pinternals.build_text(($i) => {
         while (true) {
             const $ = temp_get_current_character_or_null(iterator)
             if ($ === null) {
@@ -552,7 +554,7 @@ export const Delimited_String = (
                             case Character.u:
                                 iterator['consume']()
                                 $i['add character'](ds_hexadecimal(
-                                    _ea.build_text(($i) => {
+                                    _pinternals.build_text(($i) => {
                                         const get_char = () => {
                                             const char = temp_get_current_character_or_null(iterator)
                                             if (char === null) {
@@ -581,7 +583,7 @@ export const Delimited_String = (
                                         $i['add character'](get_char())
                                         $i['add character'](get_char())
                                     }),
-                                    () => _ea.deprecated_panic("IMPLEMENT ME: abort from unicode parsing")
+                                    () => _pdev.implement_me("IMPLEMENT ME: abort from unicode parsing")
                                 ))
                                 break
                             default:
@@ -606,11 +608,11 @@ export const Delimited_String = (
 
 export const Tokenizer_Result = (
     iterator: Characters_Iterator,
-    abort: _ea.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Parse_Error>,
 ): _out.Tokenizer_Result => {
     return {
         'leading trivia': Trivia(iterator, abort),
-        'tokens': _ea.build_list<_out.Annotated_Token>($i => {
+        'tokens': _pt.build_list<_out.Annotated_Token>($i => {
             while (temp_get_current_character_or_null(iterator) !== null) {
 
                 const token = Annotated_Token(iterator, abort)

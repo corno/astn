@@ -1,4 +1,5 @@
-import * as _ea from 'exupery-core-alg'
+import * as _ea from 'pareto-core-serializer'
+import * as _pi from 'pareto-core-interface'
 
 import * as astn_target from "../../../../interface/generated/pareto/core/astn_target"
 
@@ -16,7 +17,7 @@ export const Document = (
 export const Value = (
     $: astn_target.Value,
     indent: string,
-    $i: _ea.Text_Builder
+    $i: _pi.Text_Builder
 ) => {
     _ea.cc($, ($) => {
         switch ($[0]) {

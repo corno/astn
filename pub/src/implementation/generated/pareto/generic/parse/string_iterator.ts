@@ -1,5 +1,5 @@
-import * as _ea from 'exupery-core-alg'
-import * as _et from 'exupery-core-types'
+import * as _ea from 'pareto-core-internals'
+import * as _et from 'pareto-core-interface'
 
 //language independent parser functionality
 
@@ -33,7 +33,7 @@ export type String_Iterator = {
     'get line indentation': () => number
 }
 
-import { text_to_character_list as op_to_character_list } from 'exupery-core-alg/dist/text_to_character_list'
+import { text_to_character_list as op_to_character_list } from 'pareto-core-internals'
 
 const WhitespaceChars = {
     tab: 0x09,                  // \t
