@@ -44,6 +44,6 @@
     "pareto-fountain-pen": "^0.3.19",
     "pareto-host-nodejs": "^0.1.1",
     "pareto-json": "^0.3.6",
-    "pareto-standard-operations": "^0.3.28"
+    "pareto-standard-operations": "^0.3.29"
   }
 }
