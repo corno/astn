@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import * as _eb from 'exupery-core-bin'
 import * as _pt from 'pareto-core-transformer'
 import * as _ed from 'pareto-core-dev'
-import * as _easync from 'exupery-core-async'
 import * as _pi from 'pareto-core-interface'
 
 import * as d_read_directory from "exupery-resources/dist/interface/generated/pareto/schemas/read_directory/data_types/source"
