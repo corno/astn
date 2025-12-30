@@ -15,7 +15,7 @@ export namespace commands {
             'write to stdout': resources_exupery.commands.write_to_stdout
         },
         {
-            'get instream data': resources_exupery.queries.get_instream_data
+            'get instream data': resources_exupery.queries.get_instream_data,
         }
     >
 
@@ -26,7 +26,7 @@ export namespace commands {
             'log error': resources_exupery.commands.log_error
         },
         {
-            'get instream data': resources_exupery.queries.get_instream_data
+            'get instream data': resources_exupery.queries.get_instream_data,
         }
     >
 
