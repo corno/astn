@@ -1,31 +1,16 @@
-import * as _pi from 'pareto-core-interface'
 import * as _pt from 'pareto-core-transformer'
 
-import * as _in from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
-import * as _in_token from "../../../../interface/generated/pareto/schemas/token/data_types/source"
-import * as _out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
+import * as d_out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
 
-export const Whitespace = (
-    $: _in_token.Whitespace,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+import * as signatures from "../../../../interface/signatures/transformers/authoring_parse_tree/ide"
+
+export const Whitespace: signatures.Whitespace = ($, $p) => {
     return _pt.list_literal([
         //FIXME
     ])
 }
 
-export const Trivia = (
-    $: _in_token.Trivia,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const Trivia: signatures.Trivia = ($, $p) => {
     return _pt.list_literal([
         Whitespace($['leading whitespace'], $p),
         $['comments'].map(($) => {
@@ -48,39 +33,18 @@ export const Trivia = (
     ]).flatten(($) => $)
 }
 
-export const Structural_Token = (
-    $: _in.Structural_Token,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const Structural_Token: signatures.Structural_Token = ($, $p) => {
     return Trivia($['trailing trivia'], $p)
 }
 
-export const String = (
-    $: _in.String,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const String: signatures.String = ($, $p) => {
     return _pt.list_literal([
         Trivia($['trailing trivia'], $p),
         //FIX right type
     ]).flatten(($) => $)
 }
 
-export const Key_Value_Pairs = (
-    $: _in.Key_Value_Pairs,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => {
     return $.flatten(($) => {
         return _pt.list_literal([
             String($.key, $p),
@@ -92,9 +56,9 @@ export const Key_Value_Pairs = (
                 () => _pt.list_literal([])
             ),
             $[','].transform(
-                ($) => _pt.list_literal<_out.Text_Edits>([
+                ($) => _pt.list_literal([
                     $p['remove commas']
-                        ? _pt.list_literal<_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
+                        ? _pt.list_literal<d_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
                         : _pt.list_literal([]),
                     Structural_Token($, $p)
                 ]).flatten(($) => $),
@@ -105,27 +69,13 @@ export const Key_Value_Pairs = (
 }
 
 
-export const Elements = (
-    $: _in.Elements,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const Elements: signatures.Elements = ($, $p) => {
     return $.flatten(($) => {
         return Value($.value, $p)
     })
 }
 
-export const Value = (
-    $: _in.Value,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
+export const Value: signatures.Value = ($, $p) => {
     return _pt.cc($.type, ($) => {
         switch ($[0]) {
             case 'concrete': return _pt.ss($, ($) => _pt.cc($, ($) => {
@@ -161,7 +111,7 @@ export const Value = (
                             default: return _pt.au($[0])
                         }
                     }))
-                    case 'tagged value': return _pt.ss($, ($) => _pt.list_literal<_out.Text_Edits>([
+                    case 'tagged value': return _pt.ss($, ($) => _pt.list_literal<d_out.Text_Edits>([
                         Structural_Token($['|'], $p),
                         _pt.cc($.status, ($) => {
                             switch ($[0]) {
@@ -193,15 +143,8 @@ export const Value = (
     })
 }
 
-export const Document = (
-    $: _in.Document,
-    $p: {
-        'remove commas': boolean
-        'indentation string': string
-        'current indentation': string
-    }
-): _out.Text_Edits => {
-    return _pt.list_literal<_out.Text_Edits>([
+export const Document: signatures.Document = ($, $p) => {
+    return _pt.list_literal([
 
         $.header.transform(
             ($) => _pt.list_literal([

@@ -1,26 +1,17 @@
 import * as _pt from 'pareto-core-transformer'
-import * as _pi from 'pareto-core-interface'
 
-import * as d_in from "../../../../interface/generated/pareto/schemas/authoring_target/data_types/source"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
+import * as signatures from "../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
 
+//shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
+//dependencies
 import { $$ as op_enrich_list_elements_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
 import { $$ as s_apostrophed } from "../../../serializers/primitives/text/apostrophed"
 import { $$ as s_quoted } from "../../../serializers/primitives/text/quoted"
 import { $$ as s_backticked } from "../../../serializers/primitives/text/backticked"
 
-
-export type Parameters = {
-    'write delimiters': boolean
-    'in concise group': boolean
-}
-
-export const Value: _pi.Transformer_With_Parameters<d_in.Value, d_out.Block_Part, Parameters> = (
-    $,
-    $p,
-) => {
+export const Value: signatures.Value = ($, $p) => {
     return sh.b.sub([
         // does it need a leading space
         $p['in concise group']
@@ -157,12 +148,7 @@ export const Value: _pi.Transformer_With_Parameters<d_in.Value, d_out.Block_Part
     ])
 }
 
-export const Document = (
-    $: d_in.Document,
-    $p: {
-    }
-
-): d_out.Group => sh.group([sh.g.nested_block([
+export const Document: signatures.Document = ($, $p) => sh.group([sh.g.nested_block([
     Value($, {
         'in concise group': false,
         'write delimiters': true,

@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 import * as _pt from 'pareto-core-transformer'
-import * as _ed from 'pareto-core-dev'
-import * as _pi from 'pareto-core-interface'
 
 import * as d_read_directory from "exupery-resources/dist/interface/generated/pareto/schemas/read_directory/data_types/source"
 

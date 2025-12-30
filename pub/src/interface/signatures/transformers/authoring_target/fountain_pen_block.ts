@@ -1,0 +1,12 @@
+import * as _pi from 'pareto-core-interface'
+
+import * as d_in from "../../../generated/pareto/schemas/authoring_target/data_types/source"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
+
+export type Parameters = {
+    'write delimiters': boolean
+    'in concise group': boolean
+}
+
+export type Value = _pi.Transformer_With_Parameters<d_in.Value, d_out.Block_Part, Parameters>
+export type Document = _pi.Transformer_With_Parameters<d_in.Document, d_out.Group, {}>

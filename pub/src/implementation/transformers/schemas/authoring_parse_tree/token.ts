@@ -1,13 +1,9 @@
-import * as _pi from 'pareto-core-interface'
 import * as _pt from 'pareto-core-transformer'
 
-import * as _in from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
-import * as _out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
+import * as signatures from "../../../../interface/signatures/transformers/authoring_parse_tree/token"
 
-export const Value = (
-    $: _in.Value
-): _out.Range => {
-    return _pt.cc($.type, ($): _out.Range => {
+export const Value: signatures.Value = ($) => {
+    return _pt.cc($.type, ($) => {
         switch ($[0]) {
             case 'concrete': return _pt.ss($, ($) => _pt.cc($, ($) => {
                 switch ($[0]) {

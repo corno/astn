@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core-interface'
 import * as _pinternals from 'pareto-core-internals'
 import * as _pdev from 'pareto-core-dev'
 
-import * as _out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
+import * as d_out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
 
 import * as _parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
@@ -34,16 +34,16 @@ export const is_control_character = ($: d_annotated_characters.Annotated_Charact
     return ($.code < 0x20 && $.code !== WhitespaceChars.tab && $.code !== WhitespaceChars.line_feed && $.code !== WhitespaceChars.carriage_return)
 }
 
-const temp_get_current_location = (iterator: Characters_Iterator): _out.Location => {
+const temp_get_current_location = (iterator: Characters_Iterator): d_out.Location => {
     return iterator['get current']().transform(
-        ($): _out.Location => ({
+        ($): d_out.Location => ({
             'absolute': iterator['get position'](),
             'relative': {
                 'line': $.location.line,
                 'column': $.location.column,
             }
         }),
-        (): _out.Location => ({
+        (): d_out.Location => ({
             'absolute': iterator['get position'](),
             'relative': {
                 'line': -1,
@@ -56,7 +56,7 @@ const temp_get_current_location = (iterator: Characters_Iterator): _out.Location
 export const Whitespace = (
     iterator: Characters_Iterator,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): _out.Whitespace => {
+): d_out.Whitespace => {
     const start_location = temp_get_current_location(iterator)
     return {
         'value': _pinternals.build_text(($i) => {
@@ -114,7 +114,7 @@ export const Whitespace = (
 export const Trivia = (
     iterator: Characters_Iterator,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): _out.Trivia => {
+): d_out.Trivia => {
 
     return {
         'leading whitespace': Whitespace(iterator, abort),
@@ -246,7 +246,7 @@ export const Trivia = (
 export const Annotated_Token = (
     iterator: Characters_Iterator,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): _out.Annotated_Token => {
+): d_out.Annotated_Token => {
     const WhitespaceChars = {
         tab: 0x09,                  // \t
         line_feed: 0x0A,            // \n
@@ -267,7 +267,7 @@ export const Annotated_Token = (
     }
     return {
         'start': temp_get_current_location(iterator),
-        'type': _pt.block((): _out.Token_Type => {
+        'type': _pt.block((): d_out.Token_Type => {
 
             const Character = {
 
@@ -430,7 +430,7 @@ export const Delimited_String = (
     allow_newlines: boolean,
     iterator: Characters_Iterator,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): _out.Delimited_String => {
+): d_out.Delimited_String => {
 
     const Character = {
         backspace: 0x08,            // \b
@@ -609,10 +609,10 @@ export const Delimited_String = (
 export const Tokenizer_Result = (
     iterator: Characters_Iterator,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): _out.Tokenizer_Result => {
+): d_out.Tokenizer_Result => {
     return {
         'leading trivia': Trivia(iterator, abort),
-        'tokens': _pt.build_list<_out.Annotated_Token>($i => {
+        'tokens': _pt.build_list<d_out.Annotated_Token>($i => {
             while (temp_get_current_character_or_null(iterator) !== null) {
 
                 const token = Annotated_Token(iterator, abort)
