@@ -22,26 +22,24 @@ export const $$: signatures.commands.validate_astn = _pc.create_command_procedur
                 ($): d_main.Error => ({
                     'exit code': 1,
                 })
-            ).deprecated_refine_old(
-                ($) => {
-                    return _pinternals.deprecated_create_refinement_context<d_parse_tree._T_Document, d_parse_result.Parse_Error>((abort) => ds_authoring_parse_tree.Document(
+            ).refine_without_error_transformation(
+                ($, abort) => {
+                    ds_authoring_parse_tree.Document( //this is just to validate
                         $,
                         {
                             'tab size': 4,
                         },
-                        abort,
-                    )).transform_result(($) => {
-                        return {
-                            'lines': _pt.list_literal(["Document is valid ASTN"]),
-                        }
-                    })
-                },
-                ($): d_main.Error => {
-                    _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
+                        ($) => {
+                            _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
+                            return abort({
+                                'exit code': 1,
+                            })
+                        },
+                    )
                     return {
-                        'exit code': 1,
+                        'lines': _pt.list_literal(["Document is valid ASTN"]),
                     }
-                }
+                },
             ),
             ($v) => [
                 $cr['log'].execute(

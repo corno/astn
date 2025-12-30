@@ -24,30 +24,30 @@ export const $$: signatures.commands.convert_to_json = _pc.create_command_proced
                 ($): d_main.Error => ({
                     'exit code': 1,
                 }),
-            ).deprecated_refine_old(
-                ($) => {
-                    return _pinternals.deprecated_create_refinement_context<d_parse_tree._T_Document, d_parse_result.Parse_Error>((abort) => ds_authoring_parse_tree.Document(
+            ).refine_without_error_transformation(
+                ($, abort) => s_json.Document(
+                    t_ast_2_json.Document(ds_authoring_parse_tree.Document(
                         $,
                         {
                             'tab size': 4,
                         },
-                        abort,
-                    )).transform_result(($) => {
-                        return s_json.Document(
-                            t_ast_2_json.Document($),
-                            {
-                                'indentation': "    ",
-                                'newline': '\n'
+                        ($) => {
+                            _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error(
+                                $, {
+                                'position info': ['one based', null]
                             }
-                        )
-                    })
-                },
-                ($): d_main.Error => {
-                    _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
-                    return {
-                        'exit code': 1,
+                            ), () => { })
+                            return abort({
+                                'exit code': 1,
+                            })
+                        },
+                    )),
+                    {
+                        'indentation': "    ",
+                        'newline': '\n'
                     }
-                }
+                ),
+
             ),
             ($v) => [
                 $cr['write to stdout'].execute(
