@@ -1,6 +1,6 @@
 import * as _pt from 'pareto-core-transformer'
 
-import * as signatures from "../../../../interface/signatures/transformers/authoring_parse_tree/json_target"
+import * as signatures from "../../../../../interface/signatures/transformers/authoring_parse_tree/json_target"
 
 export const Document: signatures.Document = ($) => {
     return Value($.content)

@@ -1,15 +1,15 @@
 import * as _pt from 'pareto-core-transformer'
 
-import * as signatures from "../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
+import * as signatures from "../../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
 import { $$ as op_enrich_list_elements_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
-import { $$ as s_apostrophed } from "../../../serializers/primitives/text/apostrophed"
-import { $$ as s_quoted } from "../../../serializers/primitives/text/quoted"
-import { $$ as s_backticked } from "../../../serializers/primitives/text/backticked"
+import { $$ as s_apostrophed } from "../../../primitives/text/serializers/apostrophed"
+import { $$ as s_quoted } from "../../../primitives/text/serializers/quoted"
+import { $$ as s_backticked } from "../../../primitives/text/serializers/backticked"
 
 export const Value: signatures.Value = ($, $p) => {
     return sh.b.sub([

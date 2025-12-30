@@ -1,7 +1,7 @@
 import * as _pt from 'pareto-core-deserializer'
 import * as _pi from 'pareto-core-interface'
 
-import * as d_annotated_characters from "../../../interface/to_be_generated/annotated_characters"
+import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
 
 export namespace signatures {
     export type Annotated_Characters = (

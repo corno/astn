@@ -3,18 +3,18 @@ import * as _pi from 'pareto-core-interface'
 import * as _pinternals from 'pareto-core-internals'
 import * as _pdev from 'pareto-core-dev'
 
-import * as d_out from "../../../../interface/generated/pareto/schemas/token/data_types/target"
+import * as d_out from "../../../../../interface/generated/pareto/schemas/token/data_types/target"
 
-import * as _parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as _parse_result from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 
-import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
+import * as d_annotated_characters from "../../../../../interface/to_be_generated/annotated_characters"
 export type Characters_Iterator = _pi.Iterator<d_annotated_characters.Annotated_Character>
 
 import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 
-import * as sh from "../../../../shorthands/parse_result"
+import * as sh from "../../../../../shorthands/parse_result"
 
 const temp_get_current_character_or_null = (iterator: Characters_Iterator): d_annotated_characters.Annotated_Character | null => {
     return iterator['get current']().transform(

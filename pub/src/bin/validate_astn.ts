@@ -2,9 +2,9 @@
 
 import * as _pn from 'pareto-host-nodejs'
 
-import { $$ as procedure } from "../implementation/commands/validate_astn"
+import { $$ as procedure } from "../implementation/manual/commands/validate_astn"
 
-import * as d_resources from "../implementation/commands/validate_astn"
+import * as d_resources from "../implementation/manual/commands/validate_astn"
 
 _pn.run_main_procedure(
     ($r) => {

@@ -1,13 +1,13 @@
 import * as _pt from 'pareto-core-refiner'
 import * as _pi from 'pareto-core-interface'
 
-import * as _target from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
-import * as d_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
-import * as _source from "../../../../interface/generated/pareto/schemas/token/data_types/source"
+import * as _target from "../../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_parse_result from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as _source from "../../../../../interface/generated/pareto/schemas/token/data_types/source"
 
 //this file contains the parser functionality, each function represents a 'production'/'grammar rule' and return a type from the 'ast' schema
 
-import * as sh from "../../../../shorthands/parse_result"
+import * as sh from "../../../../../shorthands/parse_result"
 
 const get_required_token = (
     iterator: _pi.Iterator<_source.Annotated_Token>,

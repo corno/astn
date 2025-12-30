@@ -1,13 +1,13 @@
 import * as _pt from 'pareto-core-transformer'
 
-import * as d_in from "../../../../interface/generated/pareto/schemas/sealed_target/data_types/source"
+import * as d_in from "../../../../../interface/generated/pareto/schemas/sealed_target/data_types/source"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as s_apostrophed } from "../../../serializers/primitives/text/apostrophed"
-import { $$ as s_quoted } from "../../../serializers/primitives/text/quoted"
-import { $$ as s_backticked } from "../../../serializers/primitives/text/backticked"
+import { $$ as s_apostrophed } from "../../../primitives/text/serializers/apostrophed"
+import { $$ as s_quoted } from "../../../primitives/text/serializers/quoted"
+import { $$ as s_backticked } from "../../../primitives/text/serializers/backticked"
 
 
 export const Value = (

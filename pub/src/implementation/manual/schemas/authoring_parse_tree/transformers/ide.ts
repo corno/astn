@@ -1,8 +1,8 @@
 import * as _pt from 'pareto-core-transformer'
 
-import * as d_out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
+import * as d_out from "../../../../../interface/generated/pareto/schemas/ide/data_types/target"
 
-import * as signatures from "../../../../interface/signatures/transformers/authoring_parse_tree/ide"
+import * as signatures from "../../../../../interface/signatures/transformers/authoring_parse_tree/ide"
 
 export const Whitespace: signatures.Whitespace = ($, $p) => {
     return _pt.list_literal([

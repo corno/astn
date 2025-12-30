@@ -3,16 +3,16 @@ import * as _pc from 'pareto-core-command'
 import * as _pdev from 'pareto-core-dev'
 import * as _pinternals from 'pareto-core-internals'
 
-import * as signatures from "../../interface/signatures"
+import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_main"
-import * as d_parse_result from "../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
-import * as d_parse_tree from "../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as d_parse_tree from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 
 //dependencies
-import * as ds_authoring_parse_tree from "../deserializers/schemas/authoring_parse_tree"
-import * as t_parse_result_to_string from "../serializers/schemas/parse_result"
+import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
+import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 
 export const $$: signatures.commands.validate_astn = _pc.create_command_procedure(
     ($p, $cr, $qr) => [

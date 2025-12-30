@@ -1,6 +1,6 @@
 import * as _pt from 'pareto-core-transformer'
 
-import * as signatures from "../../../../interface/signatures/transformers/authoring_parse_tree/token"
+import * as signatures from "../../../../../interface/signatures/transformers/authoring_parse_tree/token"
 
 export const Value: signatures.Value = ($) => {
     return _pt.cc($.type, ($) => {

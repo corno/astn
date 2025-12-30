@@ -2,9 +2,9 @@
 
 import * as _pn from 'pareto-host-nodejs'
 
-import { $$ as procedure } from "../implementation/commands/convert_to_json"
+import { $$ as procedure } from "../implementation/manual/commands/convert_to_json"
 
-import * as d_resources from "../implementation/commands/convert_to_json"
+import * as d_resources from "../implementation/manual/commands/convert_to_json"
 
 _pn.run_main_procedure(
     ($r) => {
