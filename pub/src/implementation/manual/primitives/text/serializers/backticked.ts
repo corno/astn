@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core-interface'
 import * as _pt from 'pareto-core-transformer'
 
-import { $$ as s_escaped_character } from "pareto-standard-operations/dist/implementation/serializers/primitives/text/escaped_character"
+import { $$ as s_escaped_character } from "pareto-standard-operations/dist/implementation/manual/primitives/text/serializers/escaped_character"
 
 export const $$ = ($: {
     'value': string

@@ -8,7 +8,7 @@ import { String_Iterator } from "./string_iterator"
 import { My_Lexer_Error, throw_lexer_error } from "./astn_parse_generic"
 import { is_control_character } from './string_iterator'
 
-import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
+import { $$ as op_parse_hexadecimal } from "pareto-standard-operations/dist/implementation/manual/primitives/integer/deserializers/hexadecimal"
 
 //this file contains the tokenizer functionality, each functoin return a type from the 'token' schema
 

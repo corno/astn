@@ -2,7 +2,7 @@ import * as _pt from 'pareto-core-serializer'
 
 import * as d_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
 
-import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/serializers/schemas/list_of_separated_texts"
+import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/temp_serializers/schemas/list_of_separated_texts"
 
 export const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => {
     return _pt.cc($, ($) => {

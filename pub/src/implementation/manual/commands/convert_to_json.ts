@@ -14,7 +14,7 @@ import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_m
 import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
 import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 import * as t_ast_2_json from "../schemas/authoring_parse_tree/transformers/json_target"
-import * as s_json from "pareto-json/dist/implementation/serializers/schemas/json"
+import * as s_json from "pareto-json/dist/implementation/manual/schemas/json/serializers"
 
 export const $$: signatures.commands.convert_to_json = _pc.create_command_procedure(
     ($p, $cr, $qr) => [

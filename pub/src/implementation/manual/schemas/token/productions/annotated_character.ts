@@ -10,7 +10,7 @@ import * as _parse_result from "../../../../../interface/generated/pareto/schema
 import * as d_annotated_characters from "../../../../../interface/to_be_generated/annotated_characters"
 export type Characters_Iterator = _pi.Iterator<d_annotated_characters.Annotated_Character>
 
-import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/deserializers/primitives/integer/hexadecimal"
+import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementation/manual/primitives/integer/deserializers/hexadecimal"
 
 //this file contains the tokenizer functionality, each function return a type from the 'token' schema
 

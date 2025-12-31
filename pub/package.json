@@ -1,6 +1,6 @@
 {
   "name": "astn",
-  "version": "0.113.18",
+  "version": "0.113.19",
   "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -40,10 +40,10 @@
   },
   "dependencies": {
     "pareto-core-refiner": "^0.1.6",
-    "pareto-fountain-pen": "^0.3.22",
+    "pareto-fountain-pen": "^0.3.23",
     "pareto-host-nodejs": "^0.1.1",
-    "pareto-json": "^0.3.6",
-    "pareto-resources": "^0.1.0",
-    "pareto-standard-operations": "^0.3.30"
+    "pareto-json": "^0.3.7",
+    "pareto-resources": "^0.1.1",
+    "pareto-standard-operations": "^0.3.32"
   }
 }
