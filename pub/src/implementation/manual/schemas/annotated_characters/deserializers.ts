@@ -4,12 +4,9 @@ import * as _pi from 'pareto-core-interface'
 import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
 
 export namespace signatures {
-    export type Annotated_Characters = (
-        $: string,
-        $p: {
-            'tab size': number
-        }
-    ) => d_annotated_characters.Annotated_Characters
+
+    export type Annotated_Characters = _pi.Deserializer_Without_Error_With_Parameters<d_annotated_characters.Annotated_Characters, { 'tab size': number }>
+    
 }
 
 /**
@@ -17,25 +14,6 @@ export namespace signatures {
  * while keeping track of line numbers, columns, and line indentation.
  */
 export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => {
-
-    type Iterator_Location = {
-        'absolute': number
-        'relative': {
-            'line': number
-            'column': number
-        }
-    }
-
-    type Token_Iterator_State = {
-        'location': Iterator_Location
-        /**
-         * if no non-whitespace character has been found yet on the current line,
-         * this will return the current column,
-         * otherwise it will return the offset of that first non-whitespace character
-         * (which is the indentation of the line)
-         */
-        'line indentation': number
-    }
 
     const WhitespaceChars = {
         tab: 0x09,                  // \t

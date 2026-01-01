@@ -6,9 +6,7 @@ import * as _pinternals from 'pareto-core-internals'
 import * as signatures from "../../../interface/signatures"
 
 //data types
-import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_main"
-import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
-import * as d_parse_tree from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 
 //dependencies
 import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
@@ -26,14 +24,14 @@ export const $$: signatures.commands.validate_astn = _pc.create_command_procedur
                 ($, abort) => {
                     ds_authoring_parse_tree.Document( //this is just to validate
                         $,
-                        {
-                            'tab size': 4,
-                        },
                         ($) => {
                             _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
                             return abort({
                                 'exit code': 1,
                             })
+                        },
+                        {
+                            'tab size': 4,
                         },
                     )
                     return {

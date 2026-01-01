@@ -12,16 +12,12 @@ import * as p_authoring_parse_tree from "./productions/token"
 import * as tokenize from "../token/productions/annotated_character"
 
 export namespace signatures {
-    export type Document = (
-        $: string,
-        $p: {
-            'tab size': number
-        },
-        abort: ($: d_authoring_parse_result.Parse_Error) => never
-    ) => d_authoring_parse_tree.Document
+
+    export type Document = _pi.Deserializer_With_Parameters<d_authoring_parse_tree.Document, d_authoring_parse_result.Parse_Error, { 'tab size': number }>
+    
 }
 
-export const Document: signatures.Document = ($, $p, abort) => {
+export const Document: signatures.Document = ($, abort, $p,) => {
     const iter = _pt.create_iterator(ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }))

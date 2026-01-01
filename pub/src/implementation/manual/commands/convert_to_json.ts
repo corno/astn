@@ -8,7 +8,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_parse_result from "../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as d_parse_tree from "../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
-import * as d_main from "exupery-resources/dist/interface/to_be_generated/temp_main"
+import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 
 //dependencies
 import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
@@ -28,9 +28,6 @@ export const $$: signatures.commands.convert_to_json = _pc.create_command_proced
                 ($, abort) => s_json.Document(
                     t_ast_2_json.Document(ds_authoring_parse_tree.Document(
                         $,
-                        {
-                            'tab size': 4,
-                        },
                         ($) => {
                             _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error(
                                 $, {
@@ -40,6 +37,9 @@ export const $$: signatures.commands.convert_to_json = _pc.create_command_proced
                             return abort({
                                 'exit code': 1,
                             })
+                        },
+                        {
+                            'tab size': 4,
                         },
                     )),
                     {
