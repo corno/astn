@@ -37,8 +37,7 @@ export const Value: signatures.Value = ($, $p) => {
                     $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
-                            sh.b.snippet(s_backticked({
-                                'value': $.key,
+                            sh.b.snippet(s_backticked($.key, {
                                 'add delimiters': true,
                             })),
                             sh.b.snippet(": "),
@@ -55,8 +54,7 @@ export const Value: signatures.Value = ($, $p) => {
                         $p['write delimiters'] ? sh.b.snippet("(") : sh.b.snippet(""), //we always want a newline here
                         sh.b.indent([
                             sh.g.sub($.map(($) => sh.g.nested_block([
-                                sh.b.snippet(s_apostrophed({
-                                    'value': $.key,
+                                sh.b.snippet(s_apostrophed($.key, {
                                     'add delimiters': true,
                                 })),
                                 sh.b.snippet(": "),
@@ -95,8 +93,7 @@ export const Value: signatures.Value = ($, $p) => {
                             $p['in concise group']
                                 ? sh.b.nothing()
                                 : $p['write delimiters'] ? sh.b.snippet("| ") : sh.b.nothing(),
-                            sh.b.snippet(s_apostrophed({
-                                'value': $.state,
+                            sh.b.snippet(s_apostrophed($.state, {
                                 'add delimiters': $p['write delimiters'],
                             })),
                             $p['in concise group']
@@ -129,12 +126,10 @@ export const Value: signatures.Value = ($, $p) => {
                     const value = $.value
                     return _p.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked({
-                                'value': value,
+                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted({
-                                'value': value,
+                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted(value, {
                                 'add delimiters': $p['write delimiters'],
                             })))
                             case 'none': return _p.ss($, ($) => sh.b.snippet(value))

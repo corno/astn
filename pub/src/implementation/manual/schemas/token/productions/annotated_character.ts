@@ -1,4 +1,4 @@
-import * as _pt from 'pareto-core-refiner'
+import * as _p from 'pareto-core-refiner'
 import * as _pi from 'pareto-core-interface'
 import * as _pinternals from 'pareto-core-internals'
 import * as _pdev from 'pareto-core-dev'
@@ -118,7 +118,7 @@ export const Trivia = (
 
     return {
         'leading whitespace': Whitespace(iterator, abort),
-        'comments': _pt.build_list(($i) => {
+        'comments': _p.build_list(($i) => {
             while (true) {
                 const $ = temp_get_current_character_or_null(iterator)
                 if ($ === null) {
@@ -267,7 +267,7 @@ export const Annotated_Token = (
     }
     return {
         'start': temp_get_current_location(iterator),
-        'type': _pt.block((): d_out.Token_Type => {
+        'type': _p.block((): d_out.Token_Type => {
 
             const Character = {
 
@@ -612,7 +612,7 @@ export const Tokenizer_Result = (
 ): d_out.Tokenizer_Result => {
     return {
         'leading trivia': Trivia(iterator, abort),
-        'tokens': _pt.build_list<d_out.Annotated_Token>($i => {
+        'tokens': _p.build_list<d_out.Annotated_Token>($i => {
             while (temp_get_current_character_or_null(iterator) !== null) {
 
                 const token = Annotated_Token(iterator, abort)

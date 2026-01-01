@@ -20,8 +20,7 @@ export const Value = (
                     sh.b.snippet("{"),
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
-                            sh.b.snippet(s_backticked({
-                                'value': $.key,
+                            sh.b.snippet(s_backticked($.key, {
                                 'add delimiters': true
                             })),
                             sh.b.snippet(": "),
@@ -35,8 +34,7 @@ export const Value = (
                         sh.b.snippet("("),
                         sh.b.indent([
                             sh.g.sub($.map(($) => sh.g.nested_block([
-                                sh.b.snippet(s_apostrophed({
-                                    'value': $.key,
+                                sh.b.snippet(s_apostrophed($.key, {
                                     'add delimiters': true
                                 })),
                                 sh.b.snippet(": "),
@@ -56,8 +54,7 @@ export const Value = (
                 ]))
                 case 'state': return _p.ss($, ($) => sh.b.sub([
                     sh.b.snippet("| "),
-                    sh.b.snippet(s_apostrophed({
-                        'value': $.state,
+                    sh.b.snippet(s_apostrophed($.state, {
                         'add delimiters': true
                     })),
                     sh.b.snippet(" "),
@@ -79,12 +76,10 @@ export const Value = (
                     const value = $.value
                     return _p.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked({
-                                'value': value,
+                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
                                 'add delimiters': true
                             })))
-                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted({
-                                'value': value,
+                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted(value, {
                                 'add delimiters': true
                             })))
                             case 'none': return _p.ss($, ($) => sh.b.snippet(value))
