@@ -1,4 +1,4 @@
-import * as _pt from 'pareto-core-transformer'
+import * as _p from 'pareto-core-transformer'
 
 import * as signatures from "../../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
 
@@ -15,25 +15,25 @@ export const Value: signatures.Value = ($, $p) => {
     return sh.b.sub([
         // does it need a leading space
         $p['in concise group']
-            ? _pt.cc($.type, ($) => {
+            ? _p.cc($.type, ($) => {
                 switch ($[0]) {
-                    case 'verbose group': return _pt.ss($, ($) => true)
-                    case 'concise group': return _pt.ss($, ($) => false)
-                    case 'dictionary': return _pt.ss($, ($) => true)
-                    case 'list': return _pt.ss($, ($) => true)
-                    case 'nothing': return _pt.ss($, ($) => true)
-                    case 'state': return _pt.ss($, ($) => true)
-                    case 'text': return _pt.ss($, ($) => true)
-                    case 'optional': return _pt.ss($, ($) => true)
-                    default: return _pt.au($[0])
+                    case 'verbose group': return _p.ss($, ($) => true)
+                    case 'concise group': return _p.ss($, ($) => false)
+                    case 'dictionary': return _p.ss($, ($) => true)
+                    case 'list': return _p.ss($, ($) => true)
+                    case 'nothing': return _p.ss($, ($) => true)
+                    case 'state': return _p.ss($, ($) => true)
+                    case 'text': return _p.ss($, ($) => true)
+                    case 'optional': return _p.ss($, ($) => true)
+                    default: return _p.au($[0])
                 }
             })
                 ? sh.b.snippet(" ")
                 : sh.b.nothing()
             : sh.b.nothing(),
-        _pt.cc($.type, ($) => {
+        _p.cc($.type, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _pt.ss($, ($) => sh.b.sub([
+                case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
@@ -50,7 +50,7 @@ export const Value: signatures.Value = ($, $p) => {
                     ]),
                     $p['write delimiters'] ? sh.b.snippet("}") : sh.b.nothing(),
                 ]))
-                case 'verbose group': return _pt.ss($, ($) => sh.b.sub([
+                case 'verbose group': return _p.ss($, ($) => sh.b.sub([
                     sh.b.sub([
                         $p['write delimiters'] ? sh.b.snippet("(") : sh.b.snippet(""), //we always want a newline here
                         sh.b.indent([
@@ -69,7 +69,7 @@ export const Value: signatures.Value = ($, $p) => {
                         $p['write delimiters'] ? sh.b.snippet(")") : sh.b.nothing(),
                     ])
                 ]))
-                case 'list': return _pt.ss($, ($) => sh.b.sub([
+                case 'list': return _p.ss($, ($) => sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("[") : sh.b.nothing(),
                     sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => sh.b.sub([
                         sh.b.snippet(" "),
@@ -80,7 +80,7 @@ export const Value: signatures.Value = ($, $p) => {
                     ]))),
                     $p['write delimiters'] ? sh.b.snippet("]") : sh.b.nothing(),
                 ]))
-                case 'concise group': return _pt.ss($, ($) => sh.b.sub([
+                case 'concise group': return _p.ss($, ($) => sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("<") : sh.b.nothing(),
                     sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
                         'in concise group': true,
@@ -88,10 +88,10 @@ export const Value: signatures.Value = ($, $p) => {
                     }))),
                     $p['write delimiters'] ? sh.b.snippet(">") : sh.b.nothing(),
                 ]))
-                case 'state': return _pt.ss($, ($) => _pt.cc($, ($) => {
+                case 'state': return _p.ss($, ($) => _p.cc($, ($) => {
                     switch ($[0]) {
-                        case 'missing data': return _pt.ss($, ($) => sh.b.snippet("| #"))
-                        case 'set': return _pt.ss($, ($) => sh.b.sub([
+                        case 'missing data': return _p.ss($, ($) => sh.b.snippet("| #"))
+                        case 'set': return _p.ss($, ($) => sh.b.sub([
                             $p['in concise group']
                                 ? sh.b.nothing()
                                 : $p['write delimiters'] ? sh.b.snippet("| ") : sh.b.nothing(),
@@ -107,13 +107,13 @@ export const Value: signatures.Value = ($, $p) => {
                                 'write delimiters': true
                             }),
                         ]))
-                        default: return _pt.au($[0])
+                        default: return _p.au($[0])
                     }
                 }))
-                case 'optional': return _pt.ss($, ($) => _pt.cc($, ($) => {
+                case 'optional': return _p.ss($, ($) => _p.cc($, ($) => {
                     switch ($[0]) {
-                        case 'not set': return _pt.ss($, ($) => sh.b.snippet("~"))
-                        case 'set': return _pt.ss($, ($) => sh.b.sub([
+                        case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
+                        case 'set': return _p.ss($, ($) => sh.b.sub([
                             sh.b.snippet("* "),
                             Value($, {
                                 'in concise group': $p['in concise group'],
@@ -121,28 +121,28 @@ export const Value: signatures.Value = ($, $p) => {
                             }),
                         ]))
 
-                        default: return _pt.au($[0])
+                        default: return _p.au($[0])
                     }
                 }))
-                case 'nothing': return _pt.ss($, ($) => sh.b.snippet("~"))
-                case 'text': return _pt.ss($, ($) => {
+                case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
+                case 'text': return _p.ss($, ($) => {
                     const value = $.value
-                    return _pt.cc($.delimiter, ($) => {
+                    return _p.cc($.delimiter, ($) => {
                         switch ($[0]) {
-                            case 'backtick': return _pt.ss($, ($) => sh.b.snippet(s_backticked({
+                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'quote': return _pt.ss($, ($) => sh.b.snippet(s_quoted({
+                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted({
                                 'value': value,
                                 'add delimiters': $p['write delimiters'],
                             })))
-                            case 'none': return _pt.ss($, ($) => sh.b.snippet(value))
-                            default: return _pt.au($[0])
+                            case 'none': return _p.ss($, ($) => sh.b.snippet(value))
+                            default: return _p.au($[0])
                         }
                     })
                 })
-                default: return _pt.au($[0])
+                default: return _p.au($[0])
             }
         })
     ])

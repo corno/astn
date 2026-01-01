@@ -1,5 +1,5 @@
 import * as _pt from 'pareto-core-transformer'
-import * as _pc from 'pareto-core-command'
+import * as _p from 'pareto-core-command'
 import * as _pdev from 'pareto-core-dev'
 import * as _pinternals from 'pareto-core-internals'
 
@@ -12,9 +12,9 @@ import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_ma
 import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
 import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 
-export const $$: signatures.commands.validate_astn = _pc.create_command_procedure(
+export const $$: signatures.commands.validate_astn = _p.create_command_procedure(
     ($p, $cr, $qr) => [
-        _pc.query_without_error_transformation(
+        _p.query_without_error_transformation(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
