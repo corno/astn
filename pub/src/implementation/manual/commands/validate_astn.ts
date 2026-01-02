@@ -12,7 +12,7 @@ import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_ma
 import * as ds_authoring_parse_tree from "../schemas/authoring_parse_tree/deserializers"
 import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 
-export const $$: signatures.commands.validate_astn = _p.create_command_procedure(
+export const $$: signatures.commands.validate_astn = _p.command_procedure(
     ($p, $cr, $qr) => [
         _p.query_without_error_transformation(
             $qr['get instream data'](

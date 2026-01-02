@@ -16,7 +16,7 @@ import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 import * as t_ast_2_json from "../schemas/authoring_parse_tree/transformers/json_target"
 import * as s_json from "pareto-json/dist/implementation/manual/schemas/json/serializers"
 
-export const $$: signatures.commands.convert_to_json = _p.create_command_procedure(
+export const $$: signatures.commands.convert_to_json = _p.command_procedure(
     ($p, $cr, $qr) => [
         _p.query_without_error_transformation(
             $qr['get instream data'](
