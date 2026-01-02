@@ -156,10 +156,7 @@ export const Value = (
         'type': _pt.cc(token.type, ($): _target.Value._type => {
 
             switch ($[0]) {
-                case 'string': return _pt.ss($, ($): _target.Value._type => {
-
-                    return ['concrete', ['string', String(iterator, abort)]]
-                })
+                case 'string': return _pt.ss($, ($): _target.Value._type => ['concrete', ['string', String(iterator, abort)]])
                 case '{': return _pt.ss($, ($) => {
                     iterator['consume']()
                     return ['concrete', ['indexed collection', ['dictionary', {
