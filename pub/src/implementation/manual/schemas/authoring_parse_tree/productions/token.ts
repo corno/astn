@@ -1,19 +1,19 @@
 import * as _pt from 'pareto-core-refiner'
 import * as _pi from 'pareto-core-interface'
 
-import * as _target from "../../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_target from "../../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
 import * as d_parse_result from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
-import * as _source from "../../../../../interface/generated/pareto/schemas/token/data_types/source"
+import * as d_source from "../../../../../interface/generated/pareto/schemas/token/data_types/source"
 
 //this file contains the parser functionality, each function represents a 'production'/'grammar rule' and return a type from the 'ast' schema
 
 import * as sh from "../../../../../shorthands/parse_result"
 
 const get_required_token = (
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
     expected: _pi.List<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
-): _source.Annotated_Token => {
+): d_source.Annotated_Token => {
     return iterator['get current']().transform(
         ($) => $,
         () => abort(sh.parse_error(
@@ -42,10 +42,10 @@ const get_required_token = (
 }
 
 export const Structural_Token = (
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-    token: _source.Annotated_Token, //FIXME: this should be an iterator
-): _target.Structural_Token => {
+    token: d_source.Annotated_Token, //FIXME: this should be an iterator
+): d_target.Structural_Token => {
     return {
         'trailing trivia': token['trailing trivia'],
         'range': {
@@ -56,9 +56,9 @@ export const Structural_Token = (
 }
 
 export const String = (
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): _target.String => {
+): d_target.String => {
     const token = get_required_token(iterator, abort, _pt.list_literal([['a string', null]]))
     if (token.type[0] !== 'string') {
         return abort(sh.unexpected_token(token, _pt.list_literal([['a string', null]])))
@@ -76,9 +76,9 @@ export const String = (
 }
 
 export const Document = (
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): _target.Document => {
+): d_target.Document => {
     return {
         'header': _pt.block(() => {
             const token = get_required_token(iterator, abort, _pt.list_literal([['!', null], ['a value', null]]))
@@ -96,12 +96,12 @@ export const Document = (
 }
 
 export const Elements = (
-    end_reached: ($: _source.Token_Type) => boolean,
+    end_reached: ($: d_source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): _target.Elements => {
-    return _pt.build_list<_target.Elements.L>(($i): void => {
+): d_target.Elements => {
+    return _pt.build_list<d_target.Elements.L>(($i): void => {
         while (true) {
             const current_token = get_required_token(iterator, abort, _pt.list_literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
@@ -115,12 +115,12 @@ export const Elements = (
 }
 
 export const Key_Value_Pairs = (
-    end_reached: ($: _source.Token_Type) => boolean,
+    end_reached: ($: d_source.Token_Type) => boolean,
     end_token: d_parse_result.Parse_Error._type.SG.parser.expected.L,
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): _target.Key_Value_Pairs => {
-    return _pt.build_list<_target.Key_Value_Pairs.L>(($i): void => {
+): d_target.Key_Value_Pairs => {
+    return _pt.build_list<d_target.Key_Value_Pairs.L>(($i): void => {
         while (true) {
             const current_token = get_required_token(iterator, abort, _pt.list_literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
@@ -148,15 +148,15 @@ export const Key_Value_Pairs = (
 }
 
 export const Value = (
-    iterator: _pi.Iterator<_source.Annotated_Token>,
+    iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): _target.Value => {
+): d_target.Value => {
     const token = get_required_token(iterator, abort, _pt.list_literal([['a value', null]]))
     return {
-        'type': _pt.cc(token.type, ($): _target.Value._type => {
+        'type': _pt.cc(token.type, ($): d_target.Value._type => {
 
             switch ($[0]) {
-                case 'string': return _pt.ss($, ($): _target.Value._type => ['concrete', ['string', String(iterator, abort)]])
+                case 'string': return _pt.ss($, ($): d_target.Value._type => ['concrete', ['string', String(iterator, abort)]])
                 case '{': return _pt.ss($, ($) => {
                     iterator['consume']()
                     return ['concrete', ['indexed collection', ['dictionary', {
@@ -181,7 +181,7 @@ export const Value = (
                         })
                     }]]]
                 })
-                case '[': return _pt.ss($, ($): _target.Value._type => {
+                case '[': return _pt.ss($, ($): d_target.Value._type => {
                     iterator['consume']()
                     return ['concrete', ['ordered collection', ['list', {
                         '[': Structural_Token(iterator, abort, token),
@@ -193,7 +193,7 @@ export const Value = (
                         }),
                     }]]]
                 })
-                case '<': return _pt.ss($, ($): _target.Value._type => {
+                case '<': return _pt.ss($, ($): d_target.Value._type => {
                     iterator['consume']()
                     return ['concrete', ['ordered collection', ['concise group', {
                         '<': Structural_Token(iterator, abort, token),
@@ -224,7 +224,7 @@ export const Value = (
 
                     return ['concrete', ['tagged value', {
                         '|': Structural_Token(iterator, abort, token),
-                        'status': _pt.cc(token.type, ($): _target.Concrete_Value.SG.tagged_value.status => {
+                        'status': _pt.cc(token.type, ($): d_target.Concrete_Value.SG.tagged_value.status => {
                             switch ($[0]) {
                                 case 'string': return _pt.ss($, ($) => {
                                     return ['set', {
