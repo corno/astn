@@ -1,7 +1,7 @@
 import * as _pr from 'pareto-core-refiner'
 import * as _pd from 'pareto-core-dev'
 
-import * as _i_generic from "../../generic/resolve"
+import * as _i_generic from 'pareto-core-refiner/dist/resolve'
 import * as _i_out from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/source"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/resolve"
 
@@ -153,8 +153,8 @@ export const r_Schema: _i_signatures._T_Schema = ($, $p) => _pr.block(() => {
                 'parameters': ({
                     'lookups': null,
                     'values': ({
-                        'globals': _pr.set(p_globals),
-                        'imports': _pr.set(p_imports),
+                        'globals': _pr.optional.set(p_globals),
+                        'imports': _pr.optional.set(p_imports),
                     }),
                 }),
             }

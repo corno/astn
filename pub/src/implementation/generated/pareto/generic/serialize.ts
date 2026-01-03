@@ -9,7 +9,7 @@ const indentation = `    `
 export const Document = (
     $: astn_target.Document
 ): string => {
-    return _ea.build_text(($i) => {
+    return _ea.text.build(($i) => {
         Value($, ``, $i)
     })
 }

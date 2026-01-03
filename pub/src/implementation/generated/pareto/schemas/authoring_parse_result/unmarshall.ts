@@ -32,11 +32,11 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
             ), ($) => _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'lexer': ($): _i_out._T_Parse_Error._type.SG => ['lexer', _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'dangling slash': ($): _i_out._T_Parse_Error._type.SG.lexer.SG => ['dangling slash', _i_generic.process_nothing(
                                         $,
                                         null
@@ -100,7 +100,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                                     ), ($) => _i_generic.process_unconstrained_state_group(
                                         $,
                                         {
-                                            'states': _pa.dictionary_literal({
+                                            'states': _pa.dictionary.literal({
                                                 'missing token': ($): _i_out._T_Parse_Error._type.SG.parser.cause.SG => ['missing token', _i_generic.process_nothing(
                                                     $,
                                                     null
@@ -137,7 +137,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                                             'value': ($) => _i_generic.process_unconstrained_state_group(
                                                 $,
                                                 {
-                                                    'states': _pa.dictionary_literal({
+                                                    'states': _pa.dictionary.literal({
                                                         '!': ($): _i_out._T_Parse_Error._type.SG.parser.expected.L.SG => ['!', _i_generic.process_nothing(
                                                             $,
                                                             null
@@ -199,7 +199,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
 export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => _i_generic.process_unconstrained_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'failure': ($): _i_out._T_Parse_Result.SG => ['failure', Parse_Error(
                 $,
                 {

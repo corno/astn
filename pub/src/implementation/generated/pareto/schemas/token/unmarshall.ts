@@ -152,7 +152,7 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => 
 export const String_Type: _i_signatures._T_String_Type = ($, $p) => _i_generic.process_unconstrained_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'apostrophed': ($): _i_out._T_String_Type.SG => ['apostrophed', _i_generic.process_nothing(
                 $,
                 null
@@ -175,7 +175,7 @@ export const String_Type: _i_signatures._T_String_Type = ($, $p) => _i_generic.p
 export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => _i_generic.process_unconstrained_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             '!': ($): _i_out._T_Token_Type.SG => ['!', _i_generic.process_nothing(
                 $,
                 null
@@ -368,7 +368,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                                 ), ($) => _i_generic.process_unconstrained_state_group(
                                     $,
                                     {
-                                        'states': _pa.dictionary_literal({
+                                        'states': _pa.dictionary.literal({
                                             'block': ($): _i_out._T_Trivia.comments.L._type.SG => ['block', _i_generic.process_nothing(
                                                 $,
                                                 null

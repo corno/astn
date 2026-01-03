@@ -14,19 +14,23 @@ import * as tokenize from "../token/productions/annotated_character"
 export namespace signatures {
 
     export type Document = _pi.Deserializer_With_Parameters<d_authoring_parse_tree.Document, d_authoring_parse_result.Parse_Error, { 'tab size': number }>
-    
+
 }
 
 export const Document: signatures.Document = ($, abort, $p,) => {
-    const iter = _pt.create_iterator(ds_annotated_characters.Annotated_Characters($, {
-        'tab size': $p['tab size']
-    }))
-    const tr = tokenize.Tokenizer_Result(
-        iter,
-        abort
-    )
-    return p_authoring_parse_tree.Document(
-        _pt.create_iterator(tr.tokens),
-        abort,
+    return _pt.iterate_partially( //fixme: make this iterate_fully
+        ds_annotated_characters.Annotated_Characters($, {
+            'tab size': $p['tab size']
+        }),
+        (iter) => _pt.iterate_partially(//fixme: make this iterate_fully
+            tokenize.Tokenizer_Result(
+                iter,
+                abort
+            ).tokens,
+            (iter) => p_authoring_parse_tree.Document(
+                iter,
+                abort,
+            )
+        )
     )
 }

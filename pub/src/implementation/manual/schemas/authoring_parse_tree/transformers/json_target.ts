@@ -45,7 +45,7 @@ export const Value: signatures.Value = ($) => {
                     case 'tagged value': return _p.ss($, ($) => _p.cc($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => ['null', null])
-                            case 'set': return _p.ss($, ($) => ['array', _p.list_literal([
+                            case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
                                 ['string', $.state.value],
                                 Value($.value),
                             ])])
@@ -53,7 +53,7 @@ export const Value: signatures.Value = ($) => {
                         }
                     }))
                     case 'not set': return _p.ss($, ($) => ['null', null])
-                    case 'set optional value': return _p.ss($, ($) => ['array', _p.list_literal([
+                    case 'set optional value': return _p.ss($, ($) => ['array', _p.list.literal([
                         Value($.value),
                     ])])
                     default: return _p.au($[0])

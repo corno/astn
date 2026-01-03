@@ -11,11 +11,11 @@ import * as _i_signatures from "../../../../../interface/generated/pareto/schema
 export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => _i_generic.process_unconstrained_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'indexed collection': ($): _i_out._T_Concrete_Value.SG => ['indexed collection', _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'dictionary': ($): _i_out._T_Concrete_Value.SG.indexed_collection.SG => ['dictionary', _i_generic.process_group(
                             $,
                             {
@@ -120,7 +120,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => _i_gen
             'ordered collection': ($): _i_out._T_Concrete_Value.SG => ['ordered collection', _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'concise group': ($): _i_out._T_Concrete_Value.SG.ordered_collection.SG => ['concise group', _i_generic.process_group(
                             $,
                             {
@@ -251,7 +251,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => _i_gen
                         ), ($) => _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'missing data': ($): _i_out._T_Concrete_Value.SG.tagged_value.status.SG => ['missing data', _i_generic.process_group(
                                         $,
                                         {
@@ -567,7 +567,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
             ), ($) => _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'concrete': ($): _i_out._T_Value._type.SG => ['concrete', Concrete_Value(
                             $,
                             {

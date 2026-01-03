@@ -143,7 +143,7 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
 export const Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => _i_generic.process_unresolved_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'schema': ($): _i_out._T_Schema_Tree.SG<_i_in._T_Range> => ['schema', Schema(
                 $,
                 {
@@ -182,7 +182,7 @@ export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => _i_generic.proce
             ), ($) => _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'multi line': ($): _i_out._T_Text_Type._type.SG<_i_in._T_Range> => ['multi line', _i_generic.process_nothing(
                             $,
                             null
@@ -218,11 +218,11 @@ export const Type: _i_signatures._T_Type = ($, $p) => _i_generic.process_group(
 export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.process_unresolved_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'component': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['component', _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'external': ($): _i_out._T_Type_Node.SG.component.SG<_i_in._T_Range> => ['external', _i_generic.process_group(
                             $,
                             {
@@ -311,7 +311,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                         ), ($) => _i_generic.process_unresolved_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'derived': ($): _i_out._T_Type_Node.SG.reference._type.SG<_i_in._T_Range> => ['derived', _i_generic.process_nothing(
                                         $,
                                         null
@@ -340,7 +340,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
             'text': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['text', _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'global': ($): _i_out._T_Type_Node.SG.text.SG<_i_in._T_Range> => ['global', _i_generic.process_selected_reference(
                             $,
                             null

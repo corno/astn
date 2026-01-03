@@ -52,7 +52,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
         'value': ($) => _i_generic.process_unconstrained_state_group(
             $,
             {
-                'states': _pa.dictionary_literal({
+                'states': _pa.dictionary.literal({
                     'delete': ($): _i_out._T_Text_Edits.L.SG => ['delete', _i_generic.process_group(
                         $,
                         {

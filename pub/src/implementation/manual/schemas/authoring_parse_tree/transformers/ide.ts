@@ -5,27 +5,27 @@ import * as d_out from "../../../../../interface/generated/pareto/schemas/ide/da
 import * as signatures from "../../../../../interface/signatures/transformers/authoring_parse_tree/ide"
 
 export const Whitespace: signatures.Whitespace = ($, $p) => {
-    return _p.list_literal([
+    return _p.list.literal([
         //FIXME
     ])
 }
 
 export const Trivia: signatures.Trivia = ($, $p) => {
-    return _p.list_literal([
+    return _p.list.literal([
         Whitespace($['leading whitespace'], $p),
         $['comments'].map(($) => {
-            return _p.list_literal([
+            return _p.list.literal([
                 //FIXME
                 // _p.cc($['type'], ($) => {
                 //     switch ($[0]) {
-                //         case 'line': return _p.ss($, ($) => _p.list_literal([]))
-                //         case 'block': return _p.ss($, ($) => _p.list_literal([]))
+                //         case 'line': return _p.ss($, ($) => _p.list.literal([]))
+                //         case 'block': return _p.ss($, ($) => _p.list.literal([]))
                 //         default: return _p.au($[0])        
                 //     }
                 // }),
-                // _p.list_literal([$['content']]),
-                // _p.list_literal([$['begin']]),
-                // _p.list_literal([$['end']]),
+                // _p.list.literal([$['content']]),
+                // _p.list.literal([$['begin']]),
+                // _p.list.literal([$['end']]),
                 Whitespace($['trailing whitespace'], $p),
             ]).flatten(($) => $)
         }).flatten(($) => $),
@@ -38,7 +38,7 @@ export const Structural_Token: signatures.Structural_Token = ($, $p) => {
 }
 
 export const String: signatures.String = ($, $p) => {
-    return _p.list_literal([
+    return _p.list.literal([
         Trivia($['trailing trivia'], $p),
         //FIX right type
     ]).flatten(($) => $)
@@ -46,23 +46,23 @@ export const String: signatures.String = ($, $p) => {
 
 export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => {
     return $.flatten(($) => {
-        return _p.list_literal([
+        return _p.list.literal([
             String($.key, $p),
             $.value.transform(
-                ($) => _p.list_literal([
+                ($) => _p.list.literal([
                     Structural_Token($[':'], $p),
                     Value($.value, $p),
                 ]).flatten(($) => $),
-                () => _p.list_literal([])
+                () => _p.list.literal([])
             ),
             $[','].transform(
-                ($) => _p.list_literal([
+                ($) => _p.list.literal([
                     $p['remove commas']
-                        ? _p.list_literal<d_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
-                        : _p.list_literal([]),
+                        ? _p.list.literal<d_out.Text_Edits.L>([['replace', { 'range': { 'start': $.range.start.relative, 'end': $.range.end.relative }, 'text': '' }]])
+                        : _p.list.literal([]),
                     Structural_Token($, $p)
                 ]).flatten(($) => $),
-                () => _p.list_literal([])
+                () => _p.list.literal([])
             ),
         ]).flatten(($) => $)
     })
@@ -80,15 +80,15 @@ export const Value: signatures.Value = ($, $p) => {
         switch ($[0]) {
             case 'concrete': return _p.ss($, ($) => _p.cc($, ($) => {
                 switch ($[0]) {
-                    case 'string': return _p.ss($, ($) => _p.list_literal([]))
+                    case 'string': return _p.ss($, ($) => _p.list.literal([]))
                     case 'indexed collection': return _p.ss($, ($) => _p.cc($, ($) => {
                         switch ($[0]) {
-                            case 'dictionary': return _p.ss($, ($) => _p.list_literal([
+                            case 'dictionary': return _p.ss($, ($) => _p.list.literal([
                                 Structural_Token($['{'], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($['}'], $p),
                             ]).flatten(($) => $))
-                            case 'verbose group': return _p.ss($, ($) => _p.list_literal([
+                            case 'verbose group': return _p.ss($, ($) => _p.list.literal([
                                 Structural_Token($['('], $p),
                                 Key_Value_Pairs($['entries'], $p),
                                 Structural_Token($[')'], $p),
@@ -98,12 +98,12 @@ export const Value: signatures.Value = ($, $p) => {
                     }))
                     case 'ordered collection': return _p.ss($, ($) => _p.cc($, ($) => {
                         switch ($[0]) {
-                            case 'list': return _p.ss($, ($) => _p.list_literal([
+                            case 'list': return _p.ss($, ($) => _p.list.literal([
                                 Structural_Token($['['], $p),
                                 Elements($.elements, $p),
                                 Structural_Token($[']'], $p),
                             ]).flatten(($) => $))
-                            case 'concise group': return _p.ss($, ($) => _p.list_literal([
+                            case 'concise group': return _p.ss($, ($) => _p.list.literal([
                                 Structural_Token($['<'], $p),
                                 Elements($['elements'], $p),
                                 Structural_Token($['>'], $p),
@@ -111,12 +111,12 @@ export const Value: signatures.Value = ($, $p) => {
                             default: return _p.au($[0])
                         }
                     }))
-                    case 'tagged value': return _p.ss($, ($) => _p.list_literal<d_out.Text_Edits>([
+                    case 'tagged value': return _p.ss($, ($) => _p.list.literal<d_out.Text_Edits>([
                         Structural_Token($['|'], $p),
                         _p.cc($.status, ($) => {
                             switch ($[0]) {
                                 case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
-                                case 'set': return _p.ss($, ($) => _p.list_literal([
+                                case 'set': return _p.ss($, ($) => _p.list.literal([
                                     String($['state'], $p),
                                     Value($['value'], $p),
                                 ]).flatten(($) => $))
@@ -125,7 +125,7 @@ export const Value: signatures.Value = ($, $p) => {
                         })
                     ]).flatten(($) => $))
                     case 'not set': return _p.ss($, ($) => Structural_Token($['~'], $p))
-                    case 'set optional value': return _p.ss($, ($) => _p.list_literal([
+                    case 'set optional value': return _p.ss($, ($) => _p.list.literal([
                         Structural_Token($['*'], $p),
                         Value($['value'], $p),
                     ]).flatten(($) => $))
@@ -133,7 +133,7 @@ export const Value: signatures.Value = ($, $p) => {
                     default: return _p.au($[0])
                 }
             }))
-            case 'include': return _p.ss($, ($) => _p.list_literal([
+            case 'include': return _p.ss($, ($) => _p.list.literal([
                 Structural_Token($['@'], $p),
                 String($['path'], $p),
             ]).flatten(($) => $))
@@ -144,14 +144,14 @@ export const Value: signatures.Value = ($, $p) => {
 }
 
 export const Document: signatures.Document = ($, $p) => {
-    return _p.list_literal([
+    return _p.list.literal([
 
         $.header.transform(
-            ($) => _p.list_literal([
+            ($) => _p.list.literal([
                 Structural_Token($['!'], $p),
                 Value($.value, $p)
             ]).flatten(($) => $),
-            () => _p.list_literal([])
+            () => _p.list.literal([])
         ),
         Value($.content, $p),
     ]).flatten(($) => $)

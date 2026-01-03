@@ -15,7 +15,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
     switch ($[0]) {
         case 'dictionary': return _pa.ss($, ($) => ({
             'state': "dictionary",
-            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
                 'key': _pa.cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
@@ -64,7 +64,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'state': return _pa.ss($, ($) => ({
             'state': "state",
-            'value': ['verbose group', _pa.dictionary_literal({
+            'value': ['verbose group', _pa.dictionary.literal({
                 'state': _pa.cc($['state'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
@@ -79,7 +79,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'text': return _pa.ss($, ($) => ({
             'state': "text",
-            'value': ['verbose group', _pa.dictionary_literal({
+            'value': ['verbose group', _pa.dictionary.literal({
                 'delimiter': _pa.cc($['delimiter'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'backtick': return _pa.ss($, ($) => ({
@@ -105,7 +105,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'verbose group': return _pa.ss($, ($) => ({
             'state': "verbose group",
-            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
                 'key': _pa.cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,

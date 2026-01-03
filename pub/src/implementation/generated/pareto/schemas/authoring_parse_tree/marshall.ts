@@ -14,7 +14,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                 switch ($[0]) {
                     case 'dictionary': return _pa.ss($, ($) => ({
                         'state': "dictionary",
-                        'value': ['verbose group', _pa.dictionary_literal({
+                        'value': ['verbose group', _pa.dictionary.literal({
                             'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
                                 $,
                                 {
@@ -37,7 +37,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                     }))
                     case 'verbose group': return _pa.ss($, ($) => ({
                         'state': "verbose group",
-                        'value': ['verbose group', _pa.dictionary_literal({
+                        'value': ['verbose group', _pa.dictionary.literal({
                             '(': _pa.cc($['('], ($) => Structural_Token(
                                 $,
                                 {
@@ -64,7 +64,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         }))
         case 'not set': return _pa.ss($, ($) => ({
             'state': "not set",
-            'value': ['verbose group', _pa.dictionary_literal({
+            'value': ['verbose group', _pa.dictionary.literal({
                 '~': _pa.cc($['~'], ($) => Structural_Token(
                     $,
                     {
@@ -79,7 +79,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                 switch ($[0]) {
                     case 'concise group': return _pa.ss($, ($) => ({
                         'state': "concise group",
-                        'value': ['verbose group', _pa.dictionary_literal({
+                        'value': ['verbose group', _pa.dictionary.literal({
                             '<': _pa.cc($['<'], ($) => Structural_Token(
                                 $,
                                 {
@@ -102,7 +102,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                     }))
                     case 'list': return _pa.ss($, ($) => ({
                         'state': "list",
-                        'value': ['verbose group', _pa.dictionary_literal({
+                        'value': ['verbose group', _pa.dictionary.literal({
                             '[': _pa.cc($['['], ($) => Structural_Token(
                                 $,
                                 {
@@ -129,7 +129,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         }))
         case 'set optional value': return _pa.ss($, ($) => ({
             'state': "set optional value",
-            'value': ['verbose group', _pa.dictionary_literal({
+            'value': ['verbose group', _pa.dictionary.literal({
                 '*': _pa.cc($['*'], ($) => Structural_Token(
                     $,
                     {
@@ -155,12 +155,12 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         }))
         case 'tagged value': return _pa.ss($, ($) => ({
             'state': "tagged value",
-            'value': ['verbose group', _pa.dictionary_literal({
+            'value': ['verbose group', _pa.dictionary.literal({
                 'status': _pa.cc($['status'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'missing data': return _pa.ss($, ($) => ({
                             'state': "missing data",
-                            'value': ['verbose group', _pa.dictionary_literal({
+                            'value': ['verbose group', _pa.dictionary.literal({
                                 '#': _pa.cc($['#'], ($) => Structural_Token(
                                     $,
                                     {
@@ -171,7 +171,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                         }))
                         case 'set': return _pa.ss($, ($) => ({
                             'state': "set",
-                            'value': ['verbose group', _pa.dictionary_literal({
+                            'value': ['verbose group', _pa.dictionary.literal({
                                 'state': _pa.cc($['state'], ($) => String(
                                     $,
                                     {
@@ -200,7 +200,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         default: return _pa.au($[0])
     }
 })]
-export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _pa.dictionary.literal({
     'content': _pa.cc($['content'], ($) => Value(
         $,
         {
@@ -208,7 +208,7 @@ export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', 
         }
     )),
     'header': _pa.cc($['header'], ($) => ['optional', $.transform(
-        ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary_literal({
+        ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary.literal({
             '!': _pa.cc($['!'], ($) => Structural_Token(
                 $,
                 {
@@ -225,7 +225,7 @@ export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', 
         () => ['not set', null]
     )]),
 })]
-export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
     'value': _pa.cc($['value'], ($) => Value(
         $,
         {
@@ -233,7 +233,7 @@ export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($)
         }
     )),
 })])]
-export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary_literal({
+export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
     ',': _pa.cc($[','], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', Structural_Token(
             $,
@@ -250,7 +250,7 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
         }
     )),
     'value': _pa.cc($['value'], ($) => ['optional', $.transform(
-        ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary_literal({
+        ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary.literal({
             ':': _pa.cc($[':'], ($) => Structural_Token(
                 $,
                 {
@@ -267,7 +267,7 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
         () => ['not set', null]
     )]),
 })])]
-export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _pa.dictionary.literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -291,7 +291,7 @@ export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _pa.
         'value': $,
     })]),
 })]
-export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['verbose group', _pa.dictionary.literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -305,7 +305,7 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['
         }
     )),
 })]
-export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary.literal({
     'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'concrete': return _pa.ss($, ($) => ({
@@ -319,7 +319,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
             }))
             case 'include': return _pa.ss($, ($) => ({
                 'state': "include",
-                'value': ['verbose group', _pa.dictionary_literal({
+                'value': ['verbose group', _pa.dictionary.literal({
                     '@': _pa.cc($['@'], ($) => Structural_Token(
                         $,
                         {
@@ -336,7 +336,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
             }))
             case 'missing data': return _pa.ss($, ($) => ({
                 'state': "missing data",
-                'value': ['verbose group', _pa.dictionary_literal({
+                'value': ['verbose group', _pa.dictionary.literal({
                     '#': _pa.cc($['#'], ($) => Structural_Token(
                         $,
                         {

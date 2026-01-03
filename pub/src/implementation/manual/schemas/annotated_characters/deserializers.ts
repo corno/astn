@@ -21,7 +21,7 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
         carriage_return: 0x0D,      // \r
         space: 0x20,                //
     }
-    const characters = _p.text_to_character_list($)
+    const characters = _p.list.from_text($, ($) => $)
 
     type Relative_Position_Information = {
         'line': number
@@ -38,10 +38,10 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
     let found_carriage_return_before = false
 
 
-    return _p.build_list<d_annotated_characters.Annotated_Character>(($i) => {
+    return _p.list.build<d_annotated_characters.Annotated_Character>(($i) => {
         while (true) {
             position += 1
-            const character = characters.__get_element_at(position)
+            const character = characters.__get_possible_element_at(position)
 
             //handle character
             character.map(($) => {

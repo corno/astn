@@ -25,7 +25,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
             ), ($) => _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'concise group': ($): _i_out._T_Value._type.SG => ['concise group', _i_generic.process_unconstrained_list(
                             $,
                             {
@@ -87,7 +87,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                         'optional': ($): _i_out._T_Value._type.SG => ['optional', _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'not set': ($): _i_out._T_Value._type.SG.optional.SG => ['not set', _i_generic.process_nothing(
                                         $,
                                         null
@@ -104,7 +104,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                         'state': ($): _i_out._T_Value._type.SG => ['state', _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'missing data': ($): _i_out._T_Value._type.SG.state.SG => ['missing data', _i_generic.process_nothing(
                                         $,
                                         null
@@ -151,7 +151,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                     ), ($) => _i_generic.process_unconstrained_state_group(
                                         $,
                                         {
-                                            'states': _pa.dictionary_literal({
+                                            'states': _pa.dictionary.literal({
                                                 'backtick': ($): _i_out._T_Value._type.SG.text.delimiter.SG => ['backtick', _i_generic.process_nothing(
                                                     $,
                                                     null

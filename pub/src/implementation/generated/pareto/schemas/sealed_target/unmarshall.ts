@@ -16,7 +16,7 @@ export const Document: _i_signatures._T_Document = ($, $p) => Value(
 export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_unconstrained_state_group(
     $,
     {
-        'states': _pa.dictionary_literal({
+        'states': _pa.dictionary.literal({
             'dictionary': ($): _i_out._T_Value.SG => ['dictionary', _i_generic.process_unconstrained_list(
                 $,
                 {
@@ -67,7 +67,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_uncon
             'optional': ($): _i_out._T_Value.SG => ['optional', _i_generic.process_unconstrained_state_group(
                 $,
                 {
-                    'states': _pa.dictionary_literal({
+                    'states': _pa.dictionary.literal({
                         'not set': ($): _i_out._T_Value.SG.optional.SG => ['not set', _i_generic.process_nothing(
                             $,
                             null
@@ -120,7 +120,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_uncon
                         ), ($) => _i_generic.process_unconstrained_state_group(
                             $,
                             {
-                                'states': _pa.dictionary_literal({
+                                'states': _pa.dictionary.literal({
                                     'backtick': ($): _i_out._T_Value.SG.text.delimiter.SG => ['backtick', _i_generic.process_nothing(
                                         $,
                                         null

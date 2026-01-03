@@ -35,7 +35,7 @@ export const $$: signatures.commands.validate_astn = _p.command_procedure(
                         },
                     )
                     return {
-                        'lines': _pt.list_literal(["Document is valid ASTN"]),
+                        'lines': _pt.list.literal(["Document is valid ASTN"]),
                     }
                 },
             ),

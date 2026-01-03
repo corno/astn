@@ -7,7 +7,7 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/marshall"
 
 
-export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary_literal({
+export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary.literal({
     'range': _pa.cc($['range'], ($) => _i_r_token.Range(
         $,
         {
@@ -82,7 +82,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
             }))
             case 'parser': return _pa.ss($, ($) => ({
                 'state': "parser",
-                'value': ['verbose group', _pa.dictionary_literal({
+                'value': ['verbose group', _pa.dictionary.literal({
                     'cause': _pa.cc($['cause'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
                         switch ($[0]) {
                             case 'missing token': return _pa.ss($, ($) => ({
@@ -91,7 +91,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                             }))
                             case 'unexpected token': return _pa.ss($, ($) => ({
                                 'state': "unexpected token",
-                                'value': ['verbose group', _pa.dictionary_literal({
+                                'value': ['verbose group', _pa.dictionary.literal({
                                     'found': _pa.cc($['found'], ($) => _i_r_token.Token_Type(
                                         $,
                                         {
