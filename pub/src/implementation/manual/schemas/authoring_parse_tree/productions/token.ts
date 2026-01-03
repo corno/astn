@@ -77,22 +77,20 @@ export const String = (
 export const Document = (
     iterator: _pi.Iterator<d_source.Annotated_Token>,
     abort: _pi.Abort<d_parse_result.Parse_Error>,
-): d_target.Document => {
-    return {
-        'header': _p.block(() => {
-            const token = get_required_token(iterator, abort, _p.list.literal([['!', null], ['a value', null]]))
-            if (token.type[0] !== '!') {
-                return _p.optional.not_set()
-            }
-            iterator.discard()
-            return _p.optional.set({
-                '!': Structural_Token(iterator, abort, token),
-                'value': Value(iterator, abort)
-            })
-        }),
-        'content': Value(iterator, abort)
-    }
-}
+): d_target.Document => ({
+    'header': _p.block(() => {
+        const token = get_required_token(iterator, abort, _p.list.literal([['!', null], ['a value', null]]))
+        if (token.type[0] !== '!') {
+            return _p.optional.not_set()
+        }
+        iterator.discard()
+        return _p.optional.set({
+            '!': Structural_Token(iterator, abort, token),
+            'value': Value(iterator, abort)
+        })
+    }),
+    'content': Value(iterator, abort)
+})
 
 export const Elements = (
     end_reached: ($: d_source.Token_Type) => boolean,

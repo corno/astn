@@ -7,15 +7,13 @@ import { $$ as procedure } from "../implementation/manual/commands/convert_to_js
 import * as d_resources from "../implementation/manual/commands/convert_to_json"
 
 _pn.run_main_procedure(
-    ($r) => {
-        return procedure(
-            {
-                'write to stdout': $r.commands['write to stdout'],
-                'log error': $r.commands['log error'],
-            },
-            {
-                'get instream data': $r.queries['get instream data'],
-            },
-        )
-    },
+    ($r) => procedure(
+        {
+            'write to stdout': $r.commands['write to stdout'],
+            'log error': $r.commands['log error'],
+        },
+        {
+            'get instream data': $r.queries['get instream data'],
+        },
+    ),
 )
