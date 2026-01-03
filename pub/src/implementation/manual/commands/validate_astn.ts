@@ -14,31 +14,30 @@ import * as t_parse_result_to_string from "../schemas/parse_result/serializers"
 
 export const $$: signatures.commands.validate_astn = _p.command_procedure(
     ($p, $cr, $qr) => [
-        _p.query_without_error_transformation(
+        _p.query(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
                     'exit code': 1,
                 })
-            ).refine_without_error_transformation(
-                ($, abort) => {
-                    ds_authoring_parse_tree.Document( //this is just to validate
-                        $,
-                        ($) => {
-                            _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
-                            return abort({
-                                'exit code': 1,
-                            })
-                        },
-                        {
-                            'tab size': 4,
-                        },
-                    )
-                    return {
-                        'lines': _pt.list.literal(["Document is valid ASTN"]),
-                    }
-                },
             ),
+            ($, abort) => {
+                ds_authoring_parse_tree.Document( //this is just to validate
+                    $,
+                    ($) => {
+                        _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error($, { 'position info': ['one based', null] }), () => { })
+                        return abort({
+                            'exit code': 1,
+                        })
+                    },
+                    {
+                        'tab size': 4,
+                    },
+                )
+                return {
+                    'lines': _pt.list.literal(["Document is valid ASTN"]),
+                }
+            },
             ($v) => [
                 $cr['log'].execute(
                     $v,

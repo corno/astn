@@ -18,36 +18,34 @@ import * as s_json from "pareto-json/dist/implementation/manual/schemas/json/ser
 
 export const $$: signatures.commands.convert_to_json = _p.command_procedure(
     ($p, $cr, $qr) => [
-        _p.query_without_error_transformation(
+        _p.query(
             $qr['get instream data'](
                 null,
                 ($): d_main.Error => ({
                     'exit code': 1,
                 }),
-            ).refine_without_error_transformation(
-                ($, abort) => s_json.Document(
-                    t_ast_2_json.Document(ds_authoring_parse_tree.Document(
-                        $,
-                        ($) => {
-                            _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error(
-                                $, {
-                                'position info': ['one based', null]
-                            }
-                            ), () => { })
-                            return abort({
-                                'exit code': 1,
-                            })
-                        },
-                        {
-                            'tab size': 4,
-                        },
-                    )),
+            ),
+            ($, abort) => s_json.Document(
+                t_ast_2_json.Document(ds_authoring_parse_tree.Document(
+                    $,
+                    ($) => {
+                        _pdev.log_debug_message("Parsing failed" + t_parse_result_to_string.Parse_Error(
+                            $, {
+                            'position info': ['one based', null]
+                        }
+                        ), () => { })
+                        return abort({
+                            'exit code': 1,
+                        })
+                    },
                     {
-                        'indentation': "    ",
-                        'newline': '\n'
-                    }
-                ),
-
+                        'tab size': 4,
+                    },
+                )),
+                {
+                    'indentation': "    ",
+                    'newline': '\n'
+                }
             ),
             ($v) => [
                 $cr['write to stdout'].execute(
