@@ -4,13 +4,11 @@ import * as _pn from 'pareto-host-nodejs'
 
 import { $$ as procedure } from "../implementation/manual/commands/validate_astn"
 
-import * as d_resources from "../implementation/manual/commands/validate_astn"
-
 _pn.run_main_procedure(
     ($r) => {
         return procedure(
             {
-                'log': $r.commands.log,
+                'write to stdout': $r.commands['write to stdout'],
                 'log error': $r.commands['log error']
             },
             {
