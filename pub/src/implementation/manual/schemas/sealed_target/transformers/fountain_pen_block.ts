@@ -12,86 +12,84 @@ import { $$ as s_backticked } from "../../../primitives/text/serializers/backtic
 
 export const Value = (
     $: d_in.Value,
-): d_out.Block_Part => {
-    return sh.b.sub([
-        _p.cc($, ($) => {
-            switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => sh.b.sub([
-                    sh.b.snippet("{"),
+): d_out.Block_Part => sh.b.sub([
+    _p.cc($, ($) => {
+        switch ($[0]) {
+            case 'dictionary': return _p.ss($, ($) => sh.b.sub([
+                sh.b.snippet("{"),
+                sh.b.indent([
+                    sh.g.sub($.map(($) => sh.g.nested_block([
+                        sh.b.snippet(s_backticked($.key, {
+                            'add delimiters': true
+                        })),
+                        sh.b.snippet(": "),
+                        Value($.value),
+                    ]))),
+                ]),
+                sh.b.snippet("}"),
+            ]))
+            case 'verbose group': return _p.ss($, ($) => sh.b.sub([
+                sh.b.sub([
+                    sh.b.snippet("("),
                     sh.b.indent([
                         sh.g.sub($.map(($) => sh.g.nested_block([
-                            sh.b.snippet(s_backticked($.key, {
+                            sh.b.snippet(s_apostrophed($.key, {
                                 'add delimiters': true
                             })),
                             sh.b.snippet(": "),
                             Value($.value),
                         ]))),
                     ]),
-                    sh.b.snippet("}"),
-                ]))
-                case 'verbose group': return _p.ss($, ($) => sh.b.sub([
-                    sh.b.sub([
-                        sh.b.snippet("("),
-                        sh.b.indent([
-                            sh.g.sub($.map(($) => sh.g.nested_block([
-                                sh.b.snippet(s_apostrophed($.key, {
-                                    'add delimiters': true
-                                })),
-                                sh.b.snippet(": "),
-                                Value($.value),
-                            ]))),
-                        ]),
-                        sh.b.snippet(")"),
-                    ])
-                ]))
-                case 'list': return _p.ss($, ($) => sh.b.sub([
-                    sh.b.snippet("["),
-                    sh.b.sub($.map(($) => sh.b.sub([
-                        sh.b.snippet(" "),
-                        Value($),
-                    ]))),
-                    sh.b.snippet(" ]"),
-                ]))
-                case 'state': return _p.ss($, ($) => sh.b.sub([
-                    sh.b.snippet("| "),
-                    sh.b.snippet(s_apostrophed($.state, {
-                        'add delimiters': true
-                    })),
+                    sh.b.snippet(")"),
+                ])
+            ]))
+            case 'list': return _p.ss($, ($) => sh.b.sub([
+                sh.b.snippet("["),
+                sh.b.sub($.map(($) => sh.b.sub([
                     sh.b.snippet(" "),
-                    Value($.value),
-                ]))
-                case 'optional': return _p.ss($, ($) => _p.cc($, ($) => {
-                    switch ($[0]) {
-                        case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
-                        case 'set': return _p.ss($, ($) => sh.b.sub([
-                            sh.b.snippet("* "),
-                            Value($),
-                        ]))
+                    Value($),
+                ]))),
+                sh.b.snippet(" ]"),
+            ]))
+            case 'state': return _p.ss($, ($) => sh.b.sub([
+                sh.b.snippet("| "),
+                sh.b.snippet(s_apostrophed($.state, {
+                    'add delimiters': true
+                })),
+                sh.b.snippet(" "),
+                Value($.value),
+            ]))
+            case 'optional': return _p.ss($, ($) => _p.cc($, ($) => {
+                switch ($[0]) {
+                    case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
+                    case 'set': return _p.ss($, ($) => sh.b.sub([
+                        sh.b.snippet("* "),
+                        Value($),
+                    ]))
 
+                    default: return _p.au($[0])
+                }
+            }))
+            case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
+            case 'text': return _p.ss($, ($) => {
+                const value = $.value
+                return _p.cc($.delimiter, ($) => {
+                    switch ($[0]) {
+                        case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
+                            'add delimiters': true
+                        })))
+                        case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted(value, {
+                            'add delimiters': true
+                        })))
+                        case 'none': return _p.ss($, ($) => sh.b.snippet(value))
                         default: return _p.au($[0])
                     }
-                }))
-                case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
-                case 'text': return _p.ss($, ($) => {
-                    const value = $.value
-                    return _p.cc($.delimiter, ($) => {
-                        switch ($[0]) {
-                            case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
-                                'add delimiters': true
-                            })))
-                            case 'quote': return _p.ss($, ($) => sh.b.snippet(s_quoted(value, {
-                                'add delimiters': true
-                            })))
-                            case 'none': return _p.ss($, ($) => sh.b.snippet(value))
-                            default: return _p.au($[0])
-                        }
-                    })
                 })
-                default: return _p.au($[0])
-            }
-        })
-    ])
-}
+            })
+            default: return _p.au($[0])
+        }
+    })
+])
 
 export const Document = (
     $: d_in.Document,

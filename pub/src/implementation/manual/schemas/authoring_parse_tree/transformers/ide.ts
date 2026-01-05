@@ -10,22 +10,20 @@ export const Whitespace: signatures.Whitespace = ($, $p) => _p.list.literal([
 
 export const Trivia: signatures.Trivia = ($, $p) => _p.list.literal([
     Whitespace($['leading whitespace'], $p),
-    $['comments'].map(($) => {
-        return _p.list.literal([
-            //FIXME
-            // _p.cc($['type'], ($) => {
-            //     switch ($[0]) {
-            //         case 'line': return _p.ss($, ($) => _p.list.literal([]))
-            //         case 'block': return _p.ss($, ($) => _p.list.literal([]))
-            //         default: return _p.au($[0])        
-            //     }
-            // }),
-            // _p.list.literal([$['content']]),
-            // _p.list.literal([$['begin']]),
-            // _p.list.literal([$['end']]),
-            Whitespace($['trailing whitespace'], $p),
-        ]).flatten(($) => $)
-    }).flatten(($) => $),
+    $['comments'].map(($) => _p.list.literal([
+        //FIXME
+        // _p.cc($['type'], ($) => {
+        //     switch ($[0]) {
+        //         case 'line': return _p.ss($, ($) => _p.list.literal([]))
+        //         case 'block': return _p.ss($, ($) => _p.list.literal([]))
+        //         default: return _p.au($[0])        
+        //     }
+        // }),
+        // _p.list.literal([$['content']]),
+        // _p.list.literal([$['begin']]),
+        // _p.list.literal([$['end']]),
+        Whitespace($['trailing whitespace'], $p),
+    ]).flatten(($) => $)).flatten(($) => $),
 
 ]).flatten(($) => $)
 

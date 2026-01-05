@@ -66,9 +66,7 @@ export const Parse_Error: signatures.Parse_Error = ($, $p) => {
                     case 'unexpected token': return _p.ss($, ($) => {
                         return $.found[0]
                     })
-                    case 'missing token': return _p.ss($, ($) => {
-                        return `nothing`
-                    })
+                    case 'missing token': return _p.ss($, ($) => `nothing`)
                     default: return _p.au($[0])
                 }
             })}`)

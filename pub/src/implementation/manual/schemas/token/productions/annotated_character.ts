@@ -15,12 +15,10 @@ import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementa
 
 import * as sh from "../../../../../shorthands/parse_result"
 
-const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => {
-    return iterator.look().transform(
-        ($) => $,
-        () => null
-    )
-}
+const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => iterator.look().transform(
+    ($) => $,
+    () => null
+)
 
 const WhitespaceChars = {
     tab: 0x09,                  // \t
@@ -29,28 +27,28 @@ const WhitespaceChars = {
     space: 0x20,                //
 }
 
-export const is_control_character = ($: d_annotated_characters.Annotated_Character): boolean => {
-    return ($.code < 0x20 && $.code !== WhitespaceChars.tab && $.code !== WhitespaceChars.line_feed && $.code !== WhitespaceChars.carriage_return)
-}
+export const is_control_character = ($: d_annotated_characters.Annotated_Character): boolean =>
+    $.code < 0x20
+    && $.code !== WhitespaceChars.tab
+    && $.code !== WhitespaceChars.line_feed
+    && $.code !== WhitespaceChars.carriage_return
 
-const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => {
-    return iterator.look().transform(
-        ($): d_out.Location => ({
-            'absolute': iterator['get position'](),
-            'relative': {
-                'line': $.location.line,
-                'column': $.location.column,
-            }
-        }),
-        (): d_out.Location => ({
-            'absolute': iterator['get position'](),
-            'relative': {
-                'line': -1,
-                'column': -1,
-            }
-        }),
-    )
-}
+const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => iterator.look().transform(
+    ($): d_out.Location => ({
+        'absolute': iterator['get position'](),
+        'relative': {
+            'line': $.location.line,
+            'column': $.location.column,
+        }
+    }),
+    (): d_out.Location => ({
+        'absolute': iterator['get position'](),
+        'relative': {
+            'line': -1,
+            'column': -1,
+        }
+    }),
+)
 
 export const Whitespace = (
     iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
@@ -113,134 +111,131 @@ export const Whitespace = (
 export const Trivia = (
     iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
-): d_out.Trivia => {
-
-    return {
-        'leading whitespace': Whitespace(iterator, abort),
-        'comments': _p.list.build(($i) => {
-            while (true) {
-                const $ = temp_get_current_character_or_null(iterator)
-                if ($ === null) {
-                    return //normal end of input
-                }
-                switch ($.code) {
-                    case 0x2F: // /
+): d_out.Trivia => ({
+    'leading whitespace': Whitespace(iterator, abort),
+    'comments': _p.list.build(($i) => {
+        while (true) {
+            const $ = temp_get_current_character_or_null(iterator)
+            if ($ === null) {
+                return //normal end of input
+            }
+            switch ($.code) {
+                case 0x2F: // /
+                    const start = temp_get_current_location(iterator)
+                    const next_char = iterator['look ahead'](1).transform(
+                        ($) => $,
+                        () => null
+                    )
+                    if (next_char === null) {
                         const start = temp_get_current_location(iterator)
-                        const next_char = iterator['look ahead'](1).transform(
-                            ($) => $,
-                            () => null
-                        )
-                        if (next_char === null) {
-                            const start = temp_get_current_location(iterator)
-                            iterator.discard()
-                            const end = temp_get_current_location(iterator)
+                        iterator.discard()
+                        const end = temp_get_current_location(iterator)
+                        return abort(sh.lexer_error(
+                            ['dangling slash', null],
+                            {
+                                'start': start,
+                                'end': end
+                            }
+                        ))
+                    }
+                    switch (next_char.code) {
+                        case 0x2F: // /
+                            iterator.discard() // consume the first /
+                            iterator.discard() // consume the second /
+                            const Character = {
+                                line_feed: 0x0A,            // \n
+                                carriage_return: 0x0D,      // \r
+                                solidus: 0x2F,              // /
+                            }
+                            $i['add element']({
+                                'type': ['line', null],
+                                'content': _pinternals.text_build(($i) => {
+                                    while (true) {
+                                        const $ = temp_get_current_character_or_null(iterator)
+                                        if ($ === null) {
+                                            return
+                                        }
+                                        switch ($.code) {
+                                            case Character.line_feed:
+                                                return
+                                            case Character.carriage_return:
+                                                return
+                                            default:
+                                                iterator.discard()
+                                                $i['add character']($.code)
+                                        }
+                                    }
+                                }),
+                                'range': {
+                                    'start': start,
+                                    'end': temp_get_current_location(iterator),
+                                },
+                                'trailing whitespace': Whitespace(iterator, abort)
+                            })
+                            break
+                        case 0x2A: {// *
+                            iterator.discard() // consume the first /
+                            iterator.discard() // consume the asterisk
+                            $i['add element']({
+                                'type': ['block', null],
+                                'content': _pinternals.text_build(($i) => {
+                                    let found_asterisk = false
+                                    const Character = {
+                                        solidus: 0x2F,              // /
+                                        asterisk: 0x2A,             // *
+                                    }
+                                    while (true) {
+                                        const $ = temp_get_current_character_or_null(iterator)
+                                        if ($ === null) {
+                                            return abort(sh.lexer_error(
+                                                ['unterminated block comment', null],
+                                                {
+                                                    'start': start,
+                                                    'end': temp_get_current_location(iterator)
+                                                }
+                                            ))
+                                        }
+                                        if ($.code === Character.solidus && found_asterisk) {
+                                            iterator.discard() // consume the solidus
+                                            //found asterisk before solidus, so this is the end of the comment
+                                            return
+                                        }
+                                        //not a solidus, so this is part of the comment
+                                        if (found_asterisk) {
+                                            $i['add character'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
+                                        }
+                                        if ($.code === Character.asterisk) {
+                                            found_asterisk = true
+                                        } else {
+                                            $i['add character']($.code)
+                                        }
+                                        iterator.discard()
+                                    }
+                                }),
+                                'range': {
+                                    'start': start,
+                                    'end': temp_get_current_location(iterator),
+                                },
+                                'trailing whitespace': Whitespace(iterator, abort)
+                            })
+                            break
+                        }
+                        default:
                             return abort(sh.lexer_error(
                                 ['dangling slash', null],
                                 {
                                     'start': start,
-                                    'end': end
+                                    'end': temp_get_current_location(iterator)
                                 }
                             ))
-                        }
-                        switch (next_char.code) {
-                            case 0x2F: // /
-                                iterator.discard() // consume the first /
-                                iterator.discard() // consume the second /
-                                const Character = {
-                                    line_feed: 0x0A,            // \n
-                                    carriage_return: 0x0D,      // \r
-                                    solidus: 0x2F,              // /
-                                }
-                                $i['add element']({
-                                    'type': ['line', null],
-                                    'content': _pinternals.text_build(($i) => {
-                                        while (true) {
-                                            const $ = temp_get_current_character_or_null(iterator)
-                                            if ($ === null) {
-                                                return
-                                            }
-                                            switch ($.code) {
-                                                case Character.line_feed:
-                                                    return
-                                                case Character.carriage_return:
-                                                    return
-                                                default:
-                                                    iterator.discard()
-                                                    $i['add character']($.code)
-                                            }
-                                        }
-                                    }),
-                                    'range': {
-                                        'start': start,
-                                        'end': temp_get_current_location(iterator),
-                                    },
-                                    'trailing whitespace': Whitespace(iterator, abort)
-                                })
-                                break
-                            case 0x2A: {// *
-                                iterator.discard() // consume the first /
-                                iterator.discard() // consume the asterisk
-                                $i['add element']({
-                                    'type': ['block', null],
-                                    'content': _pinternals.text_build(($i) => {
-                                        let found_asterisk = false
-                                        const Character = {
-                                            solidus: 0x2F,              // /
-                                            asterisk: 0x2A,             // *
-                                        }
-                                        while (true) {
-                                            const $ = temp_get_current_character_or_null(iterator)
-                                            if ($ === null) {
-                                                return abort(sh.lexer_error(
-                                                    ['unterminated block comment', null],
-                                                    {
-                                                        'start': start,
-                                                        'end': temp_get_current_location(iterator)
-                                                    }
-                                                ))
-                                            }
-                                            if ($.code === Character.solidus && found_asterisk) {
-                                                iterator.discard() // consume the solidus
-                                                //found asterisk before solidus, so this is the end of the comment
-                                                return
-                                            }
-                                            //not a solidus, so this is part of the comment
-                                            if (found_asterisk) {
-                                                $i['add character'](Character.asterisk) // add the asterisk that was found before but was not part of the end delimiter
-                                            }
-                                            if ($.code === Character.asterisk) {
-                                                found_asterisk = true
-                                            } else {
-                                                $i['add character']($.code)
-                                            }
-                                            iterator.discard()
-                                        }
-                                    }),
-                                    'range': {
-                                        'start': start,
-                                        'end': temp_get_current_location(iterator),
-                                    },
-                                    'trailing whitespace': Whitespace(iterator, abort)
-                                })
-                                break
-                            }
-                            default:
-                                return abort(sh.lexer_error(
-                                    ['dangling slash', null],
-                                    {
-                                        'start': start,
-                                        'end': temp_get_current_location(iterator)
-                                    }
-                                ))
-                        }
-                        break
-                    default:
-                        return
-                }
+                    }
+                    break
+                default:
+                    return
             }
-        })
-    }
-}
+        }
+    })
+})
 
 export const Annotated_Token = (
     iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
