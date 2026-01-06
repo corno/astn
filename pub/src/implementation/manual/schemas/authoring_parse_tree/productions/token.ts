@@ -15,7 +15,7 @@ export namespace signatures {
     export type Value = _pi.Production<d_target.Value, d_parse_result.Parse_Error, d_source.Annotated_Token>
 
     export type Structural_Token = _pi.Production_With_Parameters<d_target.Structural_Token, d_parse_result.Parse_Error, d_source.Annotated_Token, {
-        'expected token': d_source.Annotated_Token._type
+        'current': d_source.Annotated_Token
     }>
     export type String = _pi.Production<d_target.String, d_parse_result.Parse_Error, d_source.Annotated_Token>
 
@@ -23,32 +23,29 @@ export namespace signatures {
     export type Key_Value_Pair = _pi.Production<d_target.Key_Value_Pairs.L, d_parse_result.Parse_Error, d_source.Annotated_Token>
 }
 
-const loop = <Iterator_Element>(
+
+const build_list = <Iterator_Element, List_Element>(
     iterator: _pi.Iterator<Iterator_Element>,
-    callback: (
-        element: Iterator_Element,
-        $i: {
-            'end reached': () => void
-        },
-    ) => void
-) => {
-    while (true) {
-        let end_reached = false
-        iterator.look().transform(
-            ($) => callback(
-                $,
-                {
-                    'end reached': () => {
-                        end_reached = true
-                    }
-                }
-            ),
-            () => { end_reached = true }
-        )
-        if (end_reached) {
-            return
+    end_reached: ($: Iterator_Element, iterator: _pi.Iterator<Iterator_Element>) => boolean,
+    handle: ($: Iterator_Element, iterator: _pi.Iterator<Iterator_Element>) => List_Element[]
+): _pi.List<List_Element> => {
+    return _p.list.deprecated_build(($i) => {
+        while (true) {
+            const next_element = iterator.look()
+            if (next_element.transform(
+                ($) => end_reached($, iterator),
+                () => true
+            )) {
+                return
+            }
+            next_element.map(($) => {
+                const elements = handle($, iterator)
+                _p.list.literal(elements).__for_each(($) => {
+                    $i['add element']($)
+                })
+            })
         }
-    }
+    })
 }
 
 const create_missing_token_error = (
@@ -107,7 +104,7 @@ export const Document: signatures.Document = (iterator, abort) => ({
         ]), (token) => token.type[0] !== '!'
             ? _p.optional.not_set()
             : _p.optional.set({
-                '!': Structural_Token(iterator, abort, { 'expected token': ['!', null] }),
+                '!': Structural_Token(iterator, abort, { 'current': token,}),
                 'value': Value(iterator, abort)
             })
     ),
@@ -125,78 +122,58 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
             switch ($[0]) {
                 case 'string': return _p.ss($, ($): d_target.Value._type => ['concrete', ['string', String(iterator, abort)]])
                 case '{': return _p.ss($, ($) => ['concrete', ['indexed collection', ['dictionary', {
-                    '{': Structural_Token(iterator, abort, { 'expected token': ['{', null] }),
-                    'entries': _p.list.deprecated_build(($i): void => {
-                        loop(
-                            iterator,
-                            (current_token, $i2) => {
-                                if (current_token.type[0] === '}') {
-                                    $i2['end reached']()
-                                } else {
-                                    $i['add element'](Key_Value_Pair(iterator, abort))
-                                }
-                            }
-                        )
-                    }),
-                    '}': Structural_Token(iterator, abort, { 'expected token': ['}', null] })
+                    '{': Structural_Token(iterator, abort, { 'current': token,}),
+                    'entries': build_list(
+                        iterator,
+                        (current_token) => current_token.type[0] === '}',
+                        (current_token, iterator) => [
+                            Key_Value_Pair(iterator, abort)
+                        ]
+                    ),
+                    '}': Structural_Token(iterator, abort, { 'current': token,})
                 }]]])
                 case '(': return _p.ss($, ($) => ['concrete', ['indexed collection', ['verbose group', {
-                    '(': Structural_Token(iterator, abort, { 'expected token': ['(', null] }),
-                    'entries': _p.list.deprecated_build(($i): void => {
-                        loop(
-                            iterator,
-                            (current_token, $i2) => {
-                                if (current_token.type[0] === ')') {
-                                    $i2['end reached']()
-                                } else {
-                                    $i['add element'](Key_Value_Pair(iterator, abort))
-                                }
-                            }
-                        )
-                    }),
-                    ')': Structural_Token(iterator, abort, { 'expected token': [')', null] })
+                    '(': Structural_Token(iterator, abort, { 'current': token,}),
+                    'entries': build_list(
+                        iterator,
+                        (current_token) => current_token.type[0] === ')',
+                        () => [
+                            Key_Value_Pair(iterator, abort)
+                        ]
+                    ),
+                    ')': Structural_Token(iterator, abort, { 'current': token,})
                 }]]])
                 case '[': return _p.ss($, ($): d_target.Value._type => ['concrete', ['ordered collection', ['list', {
-                    '[': Structural_Token(iterator, abort, { 'expected token': ['[', null] }),
-                    'elements': _p.list.deprecated_build(($i): void => {
-                        loop(
-                            iterator,
-                            (current_token, $i2) => {
-                                if (current_token.type[0] === ']') {
-                                    $i2['end reached']()
-                                } else {
-                                    $i['add element'](Element(iterator, abort))
-                                }
-                            }
-                        )
-                    }),
-                    ']': Structural_Token(iterator, abort, { 'expected token': [']', null] })
+                    '[': Structural_Token(iterator, abort, { 'current': token,}),
+                    'elements': build_list(
+                        iterator,
+                        (current_token) => current_token.type[0] === ']',
+                        () => [
+                            Element(iterator, abort)
+                        ]
+                    ),
+                    ']': Structural_Token(iterator, abort, { 'current': token,})
                 }]]])
                 case '<': return _p.ss($, ($): d_target.Value._type => ['concrete', ['ordered collection', ['concise group', {
-                    '<': Structural_Token(iterator, abort, { 'expected token': ['<', null] }),
-                    'elements': _p.list.deprecated_build(($i): void => {
-                        loop(
-                            iterator,
-                            (current_token, $i2) => {
-                                if (current_token.type[0] === '>') {
-                                    $i2['end reached']()
-                                } else {
-                                    $i['add element'](Element(iterator, abort))
-                                }
-                            }
-                        )
-                    }),
-                    '>': Structural_Token(iterator, abort, { 'expected token': ['>', null] })
+                    '<': Structural_Token(iterator, abort, { 'current': token,}),
+                    'elements': build_list(
+                        iterator,
+                        (current_token) => current_token.type[0] === '>',
+                        (current_token, iterator) => [
+                            Element(iterator, abort)
+                        ]
+                    ),
+                    '>': Structural_Token(iterator, abort, { 'current': token,})
                 }]]])
                 case '@': return _p.ss($, ($) => ['include', {
-                    '@': Structural_Token(iterator, abort, { 'expected token': ['@', null] }),
+                    '@': Structural_Token(iterator, abort, { 'current': token,}),
                     'path': String(iterator, abort)
                 }])
                 case '~': return _p.ss($, ($) => ['concrete', ['not set', {
-                    '~': Structural_Token(iterator, abort, { 'expected token': ['~', null] }),
+                    '~': Structural_Token(iterator, abort, { 'current': token,}),
                 }]])
                 case '|': return _p.ss($, ($) => ['concrete', ['tagged value', {
-                    '|': Structural_Token(iterator, abort, { 'expected token': ['|', null] }),
+                    '|': Structural_Token(iterator, abort, { 'current': token,}),
                     'status': consume(
                         iterator,
                         abort,
@@ -211,7 +188,7 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                                     'value': Value(iterator, abort)
                                 }])
                                 case '#': return _p.ss($, ($) => ['missing data', {
-                                    '#': Structural_Token(iterator, abort, { 'expected token': ['#', null] }),
+                                    '#': Structural_Token(iterator, abort, { 'current': token,}),
                                 }])
                                 default: return abort(sh.unexpected_token(token, _p.list.literal([
                                     ['a value', null],
@@ -221,11 +198,11 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                         }))
                 }]])
                 case '*': return _p.ss($, ($) => ['concrete', ['set optional value', {
-                    '*': Structural_Token(iterator, abort, { 'expected token': ['*', null] }),
+                    '*': Structural_Token(iterator, abort, { 'current': token,}),
                     'value': Value(iterator, abort)
                 }]])
                 case '#': return _p.ss($, ($) => ['missing data', {
-                    '#': Structural_Token(iterator, abort, { 'expected token': ['#', null] }),
+                    '#': Structural_Token(iterator, abort, { 'current': token,}),
                 }])
 
                 //unexpected tokens
@@ -254,42 +231,14 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
     })
 )
 
-export const Structural_Token: signatures.Structural_Token = (iterator, abort, $p) => consume(
-    iterator,
-    abort,
-    _p.list.literal([
-        _p.sg($p['expected token'], ($): d_parse_result.Parse_Error._type.SG.parser.expected.L => {
-            switch ($[0]) {
-                case 'string': return _p.ss($, ($) => ['a string', null])
-                case '!': return _p.ss($, ($) => ['!', null])
-                case '#': return _p.ss($, ($) => ['#', null])
-                case ')': return _p.ss($, ($) => [')', null])
-                case ':': return _p.ss($, ($) => [':', null])
-                case '>': return _p.ss($, ($) => ['>', null])
-                case '@': return _p.ss($, ($) => ['@', null])
-                case ']': return _p.ss($, ($) => [']', null])
-                case '}': return _p.ss($, ($) => ['}', null])
-
-                //fix these!
-                case '(': return _p.ss($, ($) => ['!', null])
-                case '*': return _p.ss($, ($) => ['!', null])
-                case '<': return _p.ss($, ($) => ['!', null])
-                case '[': return _p.ss($, ($) => ['!', null])
-                case '{': return _p.ss($, ($) => ['!', null])
-                case '|': return _p.ss($, ($) => ['!', null])
-                case '~': return _p.ss($, ($) => ['!', null])
-                default: return _p.au($[0])
-
-            }
-        })
-    ]),
-    (token) => ({
-        'trailing trivia': token['trailing trivia'],
+export const Structural_Token: signatures.Structural_Token = (iterator, abort, $p) => iterator.discard(
+    () => ({
+        'trailing trivia': $p.current['trailing trivia'],
         'range': {
-            'start': token['start'],
-            'end': token['end']
+            'start': $p.current['start'],
+            'end': $p.current['end']
         }
-    })
+    }),
 )
 
 export const String: signatures.String = (iterator, abort) => consume(
@@ -298,16 +247,16 @@ export const String: signatures.String = (iterator, abort) => consume(
     _p.list.literal([
         ['a string', null]
     ]),
-    (token) => token.type[0] !== 'string'
-        ? abort(sh.unexpected_token(token, _p.list.literal([['a string', null]])))
+    ($) => $.type[0] !== 'string'
+        ? abort(sh.unexpected_token($, _p.list.literal([['a string', null]])))
         : ({
             'range': {
-                'start': token['start'],
-                'end': token['end']
+                'start': $['start'],
+                'end': $['end']
             },
-            'value': token.type[1].value,
-            'type': token.type[1].type,
-            'trailing trivia': token['trailing trivia'],
+            'value': $.type[1].value,
+            'type': $.type[1].type,
+            'trailing trivia': $['trailing trivia'],
         })
 )
 
@@ -322,7 +271,7 @@ export const Key_Value_Pair: signatures.Key_Value_Pair = (iterator, abort) => ({
         ($) => $.type[0] !== ':'
             ? _p.optional.not_set()
             : _p.optional.set({
-                ':': Structural_Token(iterator, abort, { 'expected token': [':', null] }),
+                ':': Structural_Token(iterator, abort, { 'current': $ }),
                 'value': Value(iterator, abort)
             }),
         () => _p.optional.not_set()

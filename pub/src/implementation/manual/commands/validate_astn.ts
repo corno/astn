@@ -7,7 +7,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 
 //dependencies
-import { $$ as create_stream_to_stream_command } from "../create_stream_to_stream_command"
+import { $$ as create_stream_to_stream_command } from "../../../modules/default_tool_signatures/implementation/manual/command_creators/create_stream_to_stream_command"
 import { $$ as my_func } from "../text_to_text/validate_astn"
 
 

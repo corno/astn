@@ -4,16 +4,14 @@ import * as _pn from 'pareto-host-nodejs'
 
 import { $$ as procedure } from "../implementation/manual/commands/convert_to_json"
 
-import * as d_resources from "../implementation/manual/commands/convert_to_json"
-
 _pn.run_main_procedure(
     ($r) => procedure(
         {
-            'write to stdout': $r.commands['write to stdout'],
+            'write file': $r.commands['write file'],
             'log error': $r.commands['log error'],
         },
         {
-            'get instream data': $r.queries['get instream data'],
+            'read file': $r.queries['read file'],
         },
     ),
 )

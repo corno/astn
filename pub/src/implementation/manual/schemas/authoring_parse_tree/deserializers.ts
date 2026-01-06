@@ -1,5 +1,6 @@
 import * as _pt from 'pareto-core-deserializer'
 import * as _pi from 'pareto-core-interface'
+import * as _pdev from 'pareto-core-dev'
 
 
 import * as d_authoring_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
@@ -21,14 +22,19 @@ export const Document: signatures.Document = ($, abort, $p,) => _pt.iterate( //f
     ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }),
-    (iter) => _pt.iterate(//fixme: make this iterate_fully
-        tokenize.Tokenizer_Result(
-            iter,
-            abort
-        ).tokens,
-        (iter) => p_authoring_parse_tree.Document(
-            iter,
-            abort,
+    (iter) => {
+        _pdev.log_debug_message("Tokenizing...", () => { }) 
+        const result =  _pt.iterate(//fixme: make this iterate_fully
+            tokenize.Tokenizer_Result(
+                iter,
+                abort
+            ).tokens,
+            (iter) => p_authoring_parse_tree.Document(
+                iter,
+                abort,
+            )
         )
-    )
+        _pdev.log_debug_message("Tokenization complete.", () => { })
+        return result
+    }
 )

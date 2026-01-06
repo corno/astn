@@ -19,4 +19,15 @@ export namespace commands {
         }
     >
 
+    export type file_in_to_file_out = _pi.Command_Procedure<
+        resources_exupery.commands.main,
+        {
+            'log error': resources_exupery.commands.log_error
+            'write file': resources_exupery.commands.write_file
+        },
+        {
+            'read file': resources_exupery.queries.read_file,
+        }
+    >
+
 }

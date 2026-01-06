@@ -1,5 +1,6 @@
 import * as _p from 'pareto-core-deserializer'
 import * as _pi from 'pareto-core-interface'
+import * as _pdev from 'pareto-core-dev'
 
 import * as d_annotated_characters from "../../../../interface/to_be_generated/annotated_characters"
 
@@ -23,6 +24,7 @@ const loop = <Iterator_Element, State>(
     ) => State
 ): State => {
     let current_state = initial_state
+    _pdev.log_debug_message("Starting loop...", () => { })
     while (true) {
         let end_reached = false
         iterator.look().transform(
@@ -40,9 +42,12 @@ const loop = <Iterator_Element, State>(
             () => { end_reached = true }
         )
         if (end_reached) {
-            return current_state
+            break
         }
     }
+    _pdev.log_debug_message("Loop ended.", () => { })
+    return current_state
+
 }
 
 /**
@@ -77,6 +82,7 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
                         ? state['line indentation']
                         : state['column'],
                 })
+                iterator.discard(() => null)
 
                 return $ === 0x0A /* line feed */
                     ? {
