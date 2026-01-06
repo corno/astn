@@ -8,11 +8,11 @@ export const Whitespace: signatures.Whitespace = ($, $p) => _p.list.literal([
     //FIXME
 ])
 
-export const Trivia: signatures.Trivia = ($, $p) => _p.list.literal([
+export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal([
     Whitespace($['leading whitespace'], $p),
-    $['comments'].map(($) => _p.list.literal([
+    $['comments'].map(($) => _p.list.nested_literal([
         //FIXME
-        // _p.cc($['type'], ($) => {
+        // _p.sg($['type'], ($) => {
         //     switch ($[0]) {
         //         case 'line': return _p.ss($, ($) => _p.list.literal([]))
         //         case 'block': return _p.ss($, ($) => _p.list.literal([]))
@@ -23,16 +23,16 @@ export const Trivia: signatures.Trivia = ($, $p) => _p.list.literal([
         // _p.list.literal([$['begin']]),
         // _p.list.literal([$['end']]),
         Whitespace($['trailing whitespace'], $p),
-    ]).flatten(($) => $)).flatten(($) => $),
+    ]).flatten(($) => $)),
 
-]).flatten(($) => $)
+])
 
 export const Structural_Token: signatures.Structural_Token = ($, $p) => Trivia($['trailing trivia'], $p)
 
-export const String: signatures.String = ($, $p) => _p.list.literal([
+export const String: signatures.String = ($, $p) => _p.list.nested_literal([
     Trivia($['trailing trivia'], $p),
     //FIX right type
-]).flatten(($) => $)
+])
 
 export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => $.flatten(($) => _p.list.literal([
     String($.key, $p),
@@ -57,12 +57,12 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => $.flatten(
 
 export const Elements: signatures.Elements = ($, $p) => $.flatten(($) => Value($.value, $p))
 
-export const Value: signatures.Value = ($, $p) => _p.cc($.type, ($) => {
+export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.cc($, ($) => {
+        case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
                 case 'string': return _p.ss($, ($) => _p.list.literal([]))
-                case 'indexed collection': return _p.ss($, ($) => _p.cc($, ($) => {
+                case 'indexed collection': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => _p.list.literal([
                             Structural_Token($['{'], $p),
@@ -77,7 +77,7 @@ export const Value: signatures.Value = ($, $p) => _p.cc($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 }))
-                case 'ordered collection': return _p.ss($, ($) => _p.cc($, ($) => {
+                case 'ordered collection': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case 'list': return _p.ss($, ($) => _p.list.literal([
                             Structural_Token($['['], $p),
@@ -94,7 +94,7 @@ export const Value: signatures.Value = ($, $p) => _p.cc($.type, ($) => {
                 }))
                 case 'tagged value': return _p.ss($, ($) => _p.list.literal<d_out.Text_Edits>([
                     Structural_Token($['|'], $p),
-                    _p.cc($.status, ($) => {
+                    _p.sg($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
                             case 'set': return _p.ss($, ($) => _p.list.literal([
@@ -114,10 +114,10 @@ export const Value: signatures.Value = ($, $p) => _p.cc($.type, ($) => {
                 default: return _p.au($[0])
             }
         }))
-        case 'include': return _p.ss($, ($) => _p.list.literal([
+        case 'include': return _p.ss($, ($) => _p.list.nested_literal([
             Structural_Token($['@'], $p),
             String($['path'], $p),
-        ]).flatten(($) => $))
+        ]))
         case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
         default: return _p.au($[0])
     }

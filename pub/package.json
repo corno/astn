@@ -39,11 +39,11 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "pareto-core-refiner": "^0.1.16",
-    "pareto-fountain-pen": "^0.3.24",
-    "pareto-host-nodejs": "^0.1.4",
+    "pareto-core-refiner": "^0.1.17",
+    "pareto-fountain-pen": "^0.3.28",
+    "pareto-host-nodejs": "^0.1.5",
     "pareto-json": "^0.3.7",
-    "pareto-resources": "^0.1.6",
-    "pareto-standard-operations": "^0.3.35"
+    "pareto-resources": "^0.1.7",
+    "pareto-standard-operations": "^0.3.36"
   }
 }

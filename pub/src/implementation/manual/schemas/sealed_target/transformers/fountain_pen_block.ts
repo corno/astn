@@ -13,7 +13,7 @@ import { $$ as s_backticked } from "../../../primitives/text/serializers/backtic
 export const Value = (
     $: d_in.Value,
 ): d_out.Block_Part => sh.b.sub([
-    _p.cc($, ($) => {
+    _p.sg($, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                 sh.b.snippet("{"),
@@ -59,7 +59,7 @@ export const Value = (
                 sh.b.snippet(" "),
                 Value($.value),
             ]))
-            case 'optional': return _p.ss($, ($) => _p.cc($, ($) => {
+            case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {
                     case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
                     case 'set': return _p.ss($, ($) => sh.b.sub([
@@ -73,7 +73,7 @@ export const Value = (
             case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
             case 'text': return _p.ss($, ($) => {
                 const value = $.value
-                return _p.cc($.delimiter, ($) => {
+                return _p.sg($.delimiter, ($) => {
                     switch ($[0]) {
                         case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
                             'add delimiters': true

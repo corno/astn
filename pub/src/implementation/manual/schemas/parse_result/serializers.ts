@@ -18,16 +18,16 @@ export namespace signatures {
 
 
 export const Parse_Error: signatures.Parse_Error = ($, $p) => {
-    const extra: number = _p.cc($p['position info'], ($) => {
+    const extra: number = _p.sg($p['position info'], ($) => {
         switch ($[0]) {
             case 'zero based': return 0
             case 'one based': return 1
             default: return _p.au($[0])
         }
     })
-    const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => _p.cc($, ($) => {
+    const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => _p.sg($, ($) => {
         switch ($[0]) {
-            case 'lexer': return _p.ss($, ($) => _p.cc($, ($) => {
+            case 'lexer': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {
                     case 'unexpected control character': return `found unexpected control character`
                     case 'unexpected end of line in delimited string': return `found unexpected end of line in delimited string`
@@ -44,7 +44,7 @@ export const Parse_Error: signatures.Parse_Error = ($, $p) => {
                 }
             }))
             case 'parser': return _p.ss($, ($) => `expected ${s_list_of_separated_texts(
-                $.expected.map(($) => _p.cc($, ($) => {
+                $.expected.map(($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case '!': return "'!'"
                         case ')': return "')'"
@@ -61,11 +61,9 @@ export const Parse_Error: signatures.Parse_Error = ($, $p) => {
                     }
                 })),
                 { 'separator': " or " }
-            )}, found ${_p.cc($.cause, ($) => {
+            )}, found ${_p.sg($.cause, ($) => {
                 switch ($[0]) {
-                    case 'unexpected token': return _p.ss($, ($) => {
-                        return $.found[0]
-                    })
+                    case 'unexpected token': return _p.ss($, ($) => $.found[0])
                     case 'missing token': return _p.ss($, ($) => `nothing`)
                     default: return _p.au($[0])
                 }

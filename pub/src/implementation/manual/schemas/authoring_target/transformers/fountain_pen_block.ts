@@ -14,7 +14,7 @@ import { $$ as s_backticked } from "../../../primitives/text/serializers/backtic
 export const Value: signatures.Value = ($, $p) => sh.b.sub([
     // does it need a leading space
     $p['in concise group']
-        ? _p.cc($.type, ($) => {
+        ? _p.sg($.type, ($) => {
             switch ($[0]) {
                 case 'verbose group': return _p.ss($, ($) => true)
                 case 'concise group': return _p.ss($, ($) => false)
@@ -30,7 +30,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             ? sh.b.snippet(" ")
             : sh.b.nothing()
         : sh.b.nothing(),
-    _p.cc($.type, ($) => {
+    _p.sg($.type, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                 $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
@@ -85,7 +85,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                 }))),
                 $p['write delimiters'] ? sh.b.snippet(">") : sh.b.nothing(),
             ]))
-            case 'state': return _p.ss($, ($) => _p.cc($, ($) => {
+            case 'state': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {
                     case 'missing data': return _p.ss($, ($) => sh.b.snippet("| #"))
                     case 'set': return _p.ss($, ($) => sh.b.sub([
@@ -106,7 +106,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                     default: return _p.au($[0])
                 }
             }))
-            case 'optional': return _p.ss($, ($) => _p.cc($, ($) => {
+            case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {
                     case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
                     case 'set': return _p.ss($, ($) => sh.b.sub([
@@ -122,8 +122,8 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             }))
             case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
             case 'text': return _p.ss($, ($) => {
-                const value = $.value
-                return _p.cc($.delimiter, ($) => {
+                const value = $.value // fixme: move value to the inside of the delimiter states
+                return _p.sg($.delimiter, ($) => {
                     switch ($[0]) {
                         case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
                             'add delimiters': $p['write delimiters'],

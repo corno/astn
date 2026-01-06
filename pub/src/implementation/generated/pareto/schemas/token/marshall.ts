@@ -6,25 +6,25 @@ import * as _i_signatures from "../../../../../interface/generated/pareto/schema
 
 
 export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'end': _pa.cc($['end'], ($) => Location(
+    'end': _pa.deprecated_cc($['end'], ($) => Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'start': _pa.cc($['start'], ($) => Location(
+    'start': _pa.deprecated_cc($['start'], ($) => Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'trailing trivia': _pa.cc($['trailing trivia'], ($) => Trivia(
+    'trailing trivia': _pa.deprecated_cc($['trailing trivia'], ($) => Trivia(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'type': _pa.cc($['type'], ($) => Token_Type(
+    'type': _pa.deprecated_cc($['type'], ($) => Token_Type(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -36,14 +36,14 @@ export const Delimited_String: _i_signatures._T_Delimited_String = ($, $p) => ['
     'value': $,
 })]
 export const Location: _i_signatures._T_Location = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'absolute': _pa.cc($['absolute'], ($) => ['text', ({
+    'absolute': _pa.deprecated_cc($['absolute'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $p['value serializers']['default number'](
             $,
             null
         ),
     })]),
-    'relative': _pa.cc($['relative'], ($) => Relative_Location(
+    'relative': _pa.deprecated_cc($['relative'], ($) => Relative_Location(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -51,13 +51,13 @@ export const Location: _i_signatures._T_Location = ($, $p) => ['verbose group', 
     )),
 })]
 export const Range: _i_signatures._T_Range = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'end': _pa.cc($['end'], ($) => Location(
+    'end': _pa.deprecated_cc($['end'], ($) => Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'start': _pa.cc($['start'], ($) => Location(
+    'start': _pa.deprecated_cc($['start'], ($) => Location(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -65,14 +65,14 @@ export const Range: _i_signatures._T_Range = ($, $p) => ['verbose group', _pa.di
     )),
 })]
 export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'column': _pa.cc($['column'], ($) => ['text', ({
+    'column': _pa.deprecated_cc($['column'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $p['value serializers']['default number'](
             $,
             null
         ),
     })]),
-    'line': _pa.cc($['line'], ($) => ['text', ({
+    'line': _pa.deprecated_cc($['line'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $p['value serializers']['default number'](
             $,
@@ -80,7 +80,7 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => 
         ),
     })]),
 })]
-export const String_Type: _i_signatures._T_String_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const String_Type: _i_signatures._T_String_Type = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'apostrophed': return _pa.ss($, ($) => ({
             'state': "apostrophed",
@@ -101,7 +101,7 @@ export const String_Type: _i_signatures._T_String_Type = ($, $p) => ['state', _p
         default: return _pa.au($[0])
     }
 })]
-export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case '!': return _pa.ss($, ($) => ({
             'state': "!",
@@ -150,13 +150,13 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.
         case 'string': return _pa.ss($, ($) => ({
             'state': "string",
             'value': ['verbose group', _pa.dictionary.literal({
-                'type': _pa.cc($['type'], ($) => String_Type(
+                'type': _pa.deprecated_cc($['type'], ($) => String_Type(
                     $,
                     {
                         'value serializers': $p['value serializers'],
                     }
                 )),
-                'value': _pa.cc($['value'], ($) => Delimited_String(
+                'value': _pa.deprecated_cc($['value'], ($) => Delimited_String(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -184,19 +184,19 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => ['state', _pa.
     }
 })]
 export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'end': _pa.cc($['end'], ($) => Location(
+    'end': _pa.deprecated_cc($['end'], ($) => Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'leading trivia': _pa.cc($['leading trivia'], ($) => Trivia(
+    'leading trivia': _pa.deprecated_cc($['leading trivia'], ($) => Trivia(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'tokens': _pa.cc($['tokens'], ($) => ['list', $.map(($) => Annotated_Token(
+    'tokens': _pa.deprecated_cc($['tokens'], ($) => ['list', $.map(($) => Annotated_Token(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -204,24 +204,24 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => ['
     ))]),
 })]
 export const Trivia: _i_signatures._T_Trivia = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'comments': _pa.cc($['comments'], ($) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-        'content': _pa.cc($['content'], ($) => ['text', ({
+    'comments': _pa.deprecated_cc($['comments'], ($) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
+        'content': _pa.deprecated_cc($['content'], ($) => ['text', ({
             'delimiter': ['quote', null],
             'value': $,
         })]),
-        'range': _pa.cc($['range'], ($) => Range(
+        'range': _pa.deprecated_cc($['range'], ($) => Range(
             $,
             {
                 'value serializers': $p['value serializers'],
             }
         )),
-        'trailing whitespace': _pa.cc($['trailing whitespace'], ($) => Whitespace(
+        'trailing whitespace': _pa.deprecated_cc($['trailing whitespace'], ($) => Whitespace(
             $,
             {
                 'value serializers': $p['value serializers'],
             }
         )),
-        'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+        'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
             switch ($[0]) {
                 case 'block': return _pa.ss($, ($) => ({
                     'state': "block",
@@ -235,7 +235,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => ['verbose group', _pa.
             }
         })]),
     })])]),
-    'leading whitespace': _pa.cc($['leading whitespace'], ($) => Whitespace(
+    'leading whitespace': _pa.deprecated_cc($['leading whitespace'], ($) => Whitespace(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -243,13 +243,13 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => ['verbose group', _pa.
     )),
 })]
 export const Whitespace: _i_signatures._T_Whitespace = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'range': _pa.cc($['range'], ($) => Range(
+    'range': _pa.deprecated_cc($['range'], ($) => Range(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'value': _pa.cc($['value'], ($) => ['text', ({
+    'value': _pa.deprecated_cc($['value'], ($) => ['text', ({
         'delimiter': ['quote', null],
         'value': $,
     })]),

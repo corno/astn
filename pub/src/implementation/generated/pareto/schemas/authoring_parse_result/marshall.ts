@@ -8,17 +8,17 @@ import * as _i_signatures from "../../../../../interface/generated/pareto/schema
 
 
 export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'range': _pa.cc($['range'], ($) => _i_r_token.Range(
+    'range': _pa.deprecated_cc($['range'], ($) => _i_r_token.Range(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+    'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'lexer': return _pa.ss($, ($) => ({
                 'state': "lexer",
-                'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'dangling slash': return _pa.ss($, ($) => ({
                             'state': "dangling slash",
@@ -83,7 +83,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
             case 'parser': return _pa.ss($, ($) => ({
                 'state': "parser",
                 'value': ['verbose group', _pa.dictionary.literal({
-                    'cause': _pa.cc($['cause'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                    'cause': _pa.deprecated_cc($['cause'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                         switch ($[0]) {
                             case 'missing token': return _pa.ss($, ($) => ({
                                 'state': "missing token",
@@ -92,7 +92,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                             case 'unexpected token': return _pa.ss($, ($) => ({
                                 'state': "unexpected token",
                                 'value': ['verbose group', _pa.dictionary.literal({
-                                    'found': _pa.cc($['found'], ($) => _i_r_token.Token_Type(
+                                    'found': _pa.deprecated_cc($['found'], ($) => _i_r_token.Token_Type(
                                         $,
                                         {
                                             'value serializers': $p['value serializers'],
@@ -103,7 +103,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                             default: return _pa.au($[0])
                         }
                     })]),
-                    'expected': _pa.cc($['expected'], ($) => ['list', $.map(($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                    'expected': _pa.deprecated_cc($['expected'], ($) => ['list', $.map(($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                         switch ($[0]) {
                             case '!': return _pa.ss($, ($) => ({
                                 'state': "!",
@@ -158,7 +158,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
         }
     })]),
 })]
-export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'failure': return _pa.ss($, ($) => ({
             'state': "failure",

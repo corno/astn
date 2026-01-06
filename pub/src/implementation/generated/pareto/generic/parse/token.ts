@@ -28,7 +28,7 @@ export const Whitespace = (
 
     const start = string_iterator['create location info']()
     return {
-        'value': _ea.text.build(($i) => {
+        'value': _ea.text.deprecated_build(($i) => {
             while (true) {
 
 
@@ -90,7 +90,7 @@ export const Trivia = (
 
     return {
         'leading whitespace': Whitespace(string_iterator, abort),
-        'comments': _ea.list.build(($i) => {
+        'comments': _ea.list.deprecated_build(($i) => {
             while (true) {
                 const $ = string_iterator['get current character']()
                 if ($ === null) {
@@ -124,7 +124,7 @@ export const Trivia = (
                                 }
                                 $i['add element']({
                                     'type': ['line', null],
-                                    'content': _ea.text.build(($i) => {
+                                    'content': _ea.text.deprecated_build(($i) => {
                                         while (true) {
                                             const $ = string_iterator['get current character']()
                                             if ($ === null) {
@@ -153,7 +153,7 @@ export const Trivia = (
                                 string_iterator['consume character']() // consume the asterisk
                                 $i['add element']({
                                     'type': ['block', null],
-                                    'content': _ea.text.build(($i) => {
+                                    'content': _ea.text.deprecated_build(($i) => {
                                         let found_asterisk = false
                                         const Character = {
                                             solidus: 0x2F,              // /
@@ -232,7 +232,7 @@ export const Annotated_Token = (
     }
     return {
         'start': st['create location info'](),
-        'type': _ea.block((): _out._T_Token_Type => {
+        'type': _ea.deprecated_block((): _out._T_Token_Type => {
 
             const Character = {
 
@@ -334,7 +334,7 @@ export const Annotated_Token = (
                 default:
                     return ['string', {
                         'type': ['undelimited', null],
-                        'value': _ea.text.build(($i) => {
+                        'value': _ea.text.deprecated_build(($i) => {
                             while (true) {
                                 const $ = st['get current character']()
                                 if ($ === null) {
@@ -421,7 +421,7 @@ export const Delimited_String = (
 
     }
     const start = string_iterator['create location info']()
-    const txt = _ea.text.build(($i) => {
+    const txt = _ea.text.deprecated_build(($i) => {
         while (true) {
             const $ = string_iterator['get current character']()
             if ($ === null) {
@@ -523,7 +523,7 @@ export const Delimited_String = (
                                 break
                             case Character.u:
                                 string_iterator['consume character']()
-                                $i['add character'](op_parse_hexadecimal(_ea.text.build(($i) => {
+                                $i['add character'](op_parse_hexadecimal(_ea.text.deprecated_build(($i) => {
                                     const get_char = () => {
                                         const char = string_iterator['get current character']()
                                         if (char === null) {
@@ -585,7 +585,7 @@ export const Tokenizer_Result = (
 ): _out._T_Tokenizer_Result => {
     return {
         'leading trivia': Trivia($p['string iterator'], abort),
-        'tokens': _ea.list.build<_out._T_Annotated_Token>($i => {
+        'tokens': _ea.list.deprecated_build<_out._T_Annotated_Token>($i => {
             while ($p['string iterator']['get current character']() !== null) {
 
                 const token = Annotated_Token($p['string iterator'], abort,)

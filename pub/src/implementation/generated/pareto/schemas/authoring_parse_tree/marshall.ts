@@ -6,28 +6,28 @@ import * as _i_r_token from "../token/marshall"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/authoring_parse_tree/marshall"
 
 
-export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'indexed collection': return _pa.ss($, ($) => ({
             'state': "indexed collection",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
                     case 'dictionary': return _pa.ss($, ($) => ({
                         'state': "dictionary",
                         'value': ['verbose group', _pa.dictionary.literal({
-                            'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
+                            'entries': _pa.deprecated_cc($['entries'], ($) => Key_Value_Pairs(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            '{': _pa.cc($['{'], ($) => Structural_Token(
+                            '{': _pa.deprecated_cc($['{'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            '}': _pa.cc($['}'], ($) => Structural_Token(
+                            '}': _pa.deprecated_cc($['}'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
@@ -38,19 +38,19 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                     case 'verbose group': return _pa.ss($, ($) => ({
                         'state': "verbose group",
                         'value': ['verbose group', _pa.dictionary.literal({
-                            '(': _pa.cc($['('], ($) => Structural_Token(
+                            '(': _pa.deprecated_cc($['('], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            ')': _pa.cc($[')'], ($) => Structural_Token(
+                            ')': _pa.deprecated_cc($[')'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            'entries': _pa.cc($['entries'], ($) => Key_Value_Pairs(
+                            'entries': _pa.deprecated_cc($['entries'], ($) => Key_Value_Pairs(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
@@ -65,7 +65,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         case 'not set': return _pa.ss($, ($) => ({
             'state': "not set",
             'value': ['verbose group', _pa.dictionary.literal({
-                '~': _pa.cc($['~'], ($) => Structural_Token(
+                '~': _pa.deprecated_cc($['~'], ($) => Structural_Token(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -75,24 +75,24 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         }))
         case 'ordered collection': return _pa.ss($, ($) => ({
             'state': "ordered collection",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
                     case 'concise group': return _pa.ss($, ($) => ({
                         'state': "concise group",
                         'value': ['verbose group', _pa.dictionary.literal({
-                            '<': _pa.cc($['<'], ($) => Structural_Token(
+                            '<': _pa.deprecated_cc($['<'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            '>': _pa.cc($['>'], ($) => Structural_Token(
+                            '>': _pa.deprecated_cc($['>'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            'elements': _pa.cc($['elements'], ($) => Elements(
+                            'elements': _pa.deprecated_cc($['elements'], ($) => Elements(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
@@ -103,19 +103,19 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                     case 'list': return _pa.ss($, ($) => ({
                         'state': "list",
                         'value': ['verbose group', _pa.dictionary.literal({
-                            '[': _pa.cc($['['], ($) => Structural_Token(
+                            '[': _pa.deprecated_cc($['['], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            ']': _pa.cc($[']'], ($) => Structural_Token(
+                            ']': _pa.deprecated_cc($[']'], ($) => Structural_Token(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
                                 }
                             )),
-                            'elements': _pa.cc($['elements'], ($) => Elements(
+                            'elements': _pa.deprecated_cc($['elements'], ($) => Elements(
                                 $,
                                 {
                                     'value serializers': $p['value serializers'],
@@ -130,13 +130,13 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         case 'set optional value': return _pa.ss($, ($) => ({
             'state': "set optional value",
             'value': ['verbose group', _pa.dictionary.literal({
-                '*': _pa.cc($['*'], ($) => Structural_Token(
+                '*': _pa.deprecated_cc($['*'], ($) => Structural_Token(
                     $,
                     {
                         'value serializers': $p['value serializers'],
                     }
                 )),
-                'value': _pa.cc($['value'], ($) => Value(
+                'value': _pa.deprecated_cc($['value'], ($) => Value(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -156,12 +156,12 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
         case 'tagged value': return _pa.ss($, ($) => ({
             'state': "tagged value",
             'value': ['verbose group', _pa.dictionary.literal({
-                'status': _pa.cc($['status'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                'status': _pa.deprecated_cc($['status'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'missing data': return _pa.ss($, ($) => ({
                             'state': "missing data",
                             'value': ['verbose group', _pa.dictionary.literal({
-                                '#': _pa.cc($['#'], ($) => Structural_Token(
+                                '#': _pa.deprecated_cc($['#'], ($) => Structural_Token(
                                     $,
                                     {
                                         'value serializers': $p['value serializers'],
@@ -172,13 +172,13 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                         case 'set': return _pa.ss($, ($) => ({
                             'state': "set",
                             'value': ['verbose group', _pa.dictionary.literal({
-                                'state': _pa.cc($['state'], ($) => String(
+                                'state': _pa.deprecated_cc($['state'], ($) => String(
                                     $,
                                     {
                                         'value serializers': $p['value serializers'],
                                     }
                                 )),
-                                'value': _pa.cc($['value'], ($) => Value(
+                                'value': _pa.deprecated_cc($['value'], ($) => Value(
                                     $,
                                     {
                                         'value serializers': $p['value serializers'],
@@ -189,7 +189,7 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
                         default: return _pa.au($[0])
                     }
                 })]),
-                '|': _pa.cc($['|'], ($) => Structural_Token(
+                '|': _pa.deprecated_cc($['|'], ($) => Structural_Token(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -201,21 +201,21 @@ export const Concrete_Value: _i_signatures._T_Concrete_Value = ($, $p) => ['stat
     }
 })]
 export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'content': _pa.cc($['content'], ($) => Value(
+    'content': _pa.deprecated_cc($['content'], ($) => Value(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'header': _pa.cc($['header'], ($) => ['optional', $.transform(
+    'header': _pa.deprecated_cc($['header'], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary.literal({
-            '!': _pa.cc($['!'], ($) => Structural_Token(
+            '!': _pa.deprecated_cc($['!'], ($) => Structural_Token(
                 $,
                 {
                     'value serializers': $p['value serializers'],
                 }
             )),
-            'value': _pa.cc($['value'], ($) => Value(
+            'value': _pa.deprecated_cc($['value'], ($) => Value(
                 $,
                 {
                     'value serializers': $p['value serializers'],
@@ -226,7 +226,7 @@ export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', 
     )]),
 })]
 export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-    'value': _pa.cc($['value'], ($) => Value(
+    'value': _pa.deprecated_cc($['value'], ($) => Value(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -234,7 +234,7 @@ export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($)
     )),
 })])]
 export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-    ',': _pa.cc($[','], ($) => ['optional', $.transform(
+    ',': _pa.deprecated_cc($[','], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', Structural_Token(
             $,
             {
@@ -243,21 +243,21 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
         )],
         () => ['not set', null]
     )]),
-    'key': _pa.cc($['key'], ($) => String(
+    'key': _pa.deprecated_cc($['key'], ($) => String(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'value': _pa.cc($['value'], ($) => ['optional', $.transform(
+    'value': _pa.deprecated_cc($['value'], ($) => ['optional', $.transform(
         ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _pa.dictionary.literal({
-            ':': _pa.cc($[':'], ($) => Structural_Token(
+            ':': _pa.deprecated_cc($[':'], ($) => Structural_Token(
                 $,
                 {
                     'value serializers': $p['value serializers'],
                 }
             )),
-            'value': _pa.cc($['value'], ($) => Value(
+            'value': _pa.deprecated_cc($['value'], ($) => Value(
                 $,
                 {
                     'value serializers': $p['value serializers'],
@@ -268,37 +268,37 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
     )]),
 })])]
 export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'range': _pa.cc($['range'], ($) => _i_r_token.Range(
+    'range': _pa.deprecated_cc($['range'], ($) => _i_r_token.Range(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'trailing trivia': _pa.cc($['trailing trivia'], ($) => _i_r_token.Trivia(
+    'trailing trivia': _pa.deprecated_cc($['trailing trivia'], ($) => _i_r_token.Trivia(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'type': _pa.cc($['type'], ($) => _i_r_token.String_Type(
+    'type': _pa.deprecated_cc($['type'], ($) => _i_r_token.String_Type(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'value': _pa.cc($['value'], ($) => ['text', ({
+    'value': _pa.deprecated_cc($['value'], ($) => ['text', ({
         'delimiter': ['quote', null],
         'value': $,
     })]),
 })]
 export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'range': _pa.cc($['range'], ($) => _i_r_token.Range(
+    'range': _pa.deprecated_cc($['range'], ($) => _i_r_token.Range(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'trailing trivia': _pa.cc($['trailing trivia'], ($) => _i_r_token.Trivia(
+    'trailing trivia': _pa.deprecated_cc($['trailing trivia'], ($) => _i_r_token.Trivia(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -306,7 +306,7 @@ export const Structural_Token: _i_signatures._T_Structural_Token = ($, $p) => ['
     )),
 })]
 export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+    'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'concrete': return _pa.ss($, ($) => ({
                 'state': "concrete",
@@ -320,13 +320,13 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
             case 'include': return _pa.ss($, ($) => ({
                 'state': "include",
                 'value': ['verbose group', _pa.dictionary.literal({
-                    '@': _pa.cc($['@'], ($) => Structural_Token(
+                    '@': _pa.deprecated_cc($['@'], ($) => Structural_Token(
                         $,
                         {
                             'value serializers': $p['value serializers'],
                         }
                     )),
-                    'path': _pa.cc($['path'], ($) => String(
+                    'path': _pa.deprecated_cc($['path'], ($) => String(
                         $,
                         {
                             'value serializers': $p['value serializers'],
@@ -337,7 +337,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['verbose group', _pa.di
             case 'missing data': return _pa.ss($, ($) => ({
                 'state': "missing data",
                 'value': ['verbose group', _pa.dictionary.literal({
-                    '#': _pa.cc($['#'], ($) => Structural_Token(
+                    '#': _pa.deprecated_cc($['#'], ($) => Structural_Token(
                         $,
                         {
                             'value serializers': $p['value serializers'],

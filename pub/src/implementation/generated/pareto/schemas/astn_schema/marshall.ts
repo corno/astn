@@ -6,13 +6,13 @@ import * as _i_signatures from "../../../../../interface/generated/pareto/schema
 
 
 export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'node': _pa.cc($['node'], ($) => Type_Node(
+    'node': _pa.deprecated_cc($['node'], ($) => Type_Node(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'ordered': _pa.cc($['ordered'], ($) => ['text', ({
+    'ordered': _pa.deprecated_cc($['ordered'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $p['value serializers']['boolean'](
             $,
@@ -21,7 +21,7 @@ export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => ['verbose grou
     })]),
 })]
 export const Globals: _i_signatures._T_Globals = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'text types': _pa.cc($['text types'], ($) => ['dictionary', $.map(($) => Text_Type(
+    'text types': _pa.deprecated_cc($['text types'], ($) => ['dictionary', $.map(($) => Text_Type(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -35,33 +35,33 @@ export const Group: _i_signatures._T_Group = ($, $p) => ['dictionary', $.map(($)
     }
 ))]
 export const Imports: _i_signatures._T_Imports = ($, $p) => ['dictionary', $.map(($) => ['verbose group', _pa.dictionary.literal({
-    'schema': _pa.cc($['schema'], ($) => ['nothing', null]),
-    'schema set child': _pa.cc($['schema set child'], ($) => ['text', ({
+    'schema': _pa.deprecated_cc($['schema'], ($) => ['nothing', null]),
+    'schema set child': _pa.deprecated_cc($['schema set child'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $['key'],
     })]),
 })])]
 export const Schema: _i_signatures._T_Schema = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'globals': _pa.cc($['globals'], ($) => Globals(
+    'globals': _pa.deprecated_cc($['globals'], ($) => Globals(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'imports': _pa.cc($['imports'], ($) => Imports(
+    'imports': _pa.deprecated_cc($['imports'], ($) => Imports(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'types': _pa.cc($['types'], ($) => Types(
+    'types': _pa.deprecated_cc($['types'], ($) => Types(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
 })]
-export const Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'schema': return _pa.ss($, ($) => ({
             'state': "schema",
@@ -91,7 +91,7 @@ export const Schemas: _i_signatures._T_Schemas = ($, $p) => ['dictionary', $['di
     }
 ))]
 export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+    'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'multi line': return _pa.ss($, ($) => ({
                 'state': "multi line",
@@ -106,27 +106,27 @@ export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => ['verbose group'
     })]),
 })]
 export const Type: _i_signatures._T_Type = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'node': _pa.cc($['node'], ($) => Type_Node(
+    'node': _pa.deprecated_cc($['node'], ($) => Type_Node(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
 })]
-export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'component': return _pa.ss($, ($) => ({
             'state': "component",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
                     case 'external': return _pa.ss($, ($) => ({
                         'state': "external",
                         'value': ['verbose group', _pa.dictionary.literal({
-                            'import': _pa.cc($['import'], ($) => ['text', ({
+                            'import': _pa.deprecated_cc($['import'], ($) => ['text', ({
                                 'delimiter': ['backtick', null],
                                 'value': $['key'],
                             })]),
-                            'type': _pa.cc($['type'], ($) => ['text', ({
+                            'type': _pa.deprecated_cc($['type'], ($) => ['text', ({
                                 'delimiter': ['backtick', null],
                                 'value': $['key'],
                             })]),
@@ -171,7 +171,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _pa.cc
         case 'list': return _pa.ss($, ($) => ({
             'state': "list",
             'value': ['verbose group', _pa.dictionary.literal({
-                'node': _pa.cc($['node'], ($) => Type_Node(
+                'node': _pa.deprecated_cc($['node'], ($) => Type_Node(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -195,7 +195,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _pa.cc
         case 'reference': return _pa.ss($, ($) => ({
             'state': "reference",
             'value': ['verbose group', _pa.dictionary.literal({
-                'type': _pa.cc($['type'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'derived': return _pa.ss($, ($) => ({
                             'state': "derived",
@@ -221,7 +221,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _pa.cc
         }))
         case 'text': return _pa.ss($, ($) => ({
             'state': "text",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
                     case 'global': return _pa.ss($, ($) => ({
                         'state': "global",

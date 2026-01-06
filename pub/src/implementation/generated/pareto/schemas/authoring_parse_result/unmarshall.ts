@@ -13,7 +13,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
     $,
     {
         'properties': ($) => ({
-            'range': _pa.cc(_i_generic.get_entry(
+            'range': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "range",
@@ -24,7 +24,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'type': _pa.cc(_i_generic.get_entry(
+            'type': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "type",
@@ -92,7 +92,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                             $,
                             {
                                 'properties': ($) => ({
-                                    'cause': _pa.cc(_i_generic.get_entry(
+                                    'cause': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "cause",
@@ -109,7 +109,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                                                     $,
                                                     {
                                                         'properties': ($) => ({
-                                                            'found': _pa.cc(_i_generic.get_entry(
+                                                            'found': _pa.deprecated_cc(_i_generic.get_entry(
                                                                 $,
                                                                 {
                                                                     'key': "found",
@@ -126,7 +126,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                                             }),
                                         }
                                     )),
-                                    'expected': _pa.cc(_i_generic.get_entry(
+                                    'expected': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "expected",

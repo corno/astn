@@ -21,7 +21,7 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => _i_gen
     $,
     {
         'properties': ($) => ({
-            'end': _pa.cc(_i_generic.get_entry(
+            'end': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "end",
@@ -32,7 +32,7 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => _i_gen
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'start': _pa.cc(_i_generic.get_entry(
+            'start': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "start",
@@ -57,7 +57,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
                         $,
                         {
                             'properties': ($) => ({
-                                'range': _pa.cc(_i_generic.get_entry(
+                                'range': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "range",
@@ -75,7 +75,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
                         $,
                         {
                             'properties': ($) => ({
-                                'location': _pa.cc(_i_generic.get_entry(
+                                'location': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "location",
@@ -86,7 +86,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
                                         'value deserializers': $p['value deserializers'],
                                     }
                                 )),
-                                'text': _pa.cc(_i_generic.get_entry(
+                                'text': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "text",
@@ -102,7 +102,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
                         $,
                         {
                             'properties': ($) => ({
-                                'range': _pa.cc(_i_generic.get_entry(
+                                'range': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "range",
@@ -113,7 +113,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => _i_generic.pro
                                         'value deserializers': $p['value deserializers'],
                                     }
                                 )),
-                                'text': _pa.cc(_i_generic.get_entry(
+                                'text': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "text",

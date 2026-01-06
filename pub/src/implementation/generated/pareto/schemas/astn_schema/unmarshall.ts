@@ -11,7 +11,7 @@ export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => _i_generic.pro
     $,
     {
         'properties': ($) => ({
-            'node': _pa.cc(_i_generic.get_entry(
+            'node': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "node",
@@ -22,7 +22,7 @@ export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => _i_generic.pro
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'ordered': _pa.cc(_i_generic.get_entry(
+            'ordered': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "ordered",
@@ -40,7 +40,7 @@ export const Globals: _i_signatures._T_Globals = ($, $p) => _i_generic.process_g
     $,
     {
         'properties': ($) => ({
-            'text types': _pa.cc(_i_generic.get_entry(
+            'text types': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "text types",
@@ -77,7 +77,7 @@ export const Imports: _i_signatures._T_Imports = ($, $p) => _i_generic.process_u
             $,
             {
                 'properties': ($) => ({
-                    'schema': _pa.cc(_i_generic.get_entry(
+                    'schema': _pa.deprecated_cc(_i_generic.get_entry(
                         $,
                         {
                             'key': "schema",
@@ -86,7 +86,7 @@ export const Imports: _i_signatures._T_Imports = ($, $p) => _i_generic.process_u
                         $,
                         null
                     )),
-                    'schema set child': _pa.cc(_i_generic.get_entry(
+                    'schema set child': _pa.deprecated_cc(_i_generic.get_entry(
                         $,
                         {
                             'key': "schema set child",
@@ -104,7 +104,7 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
     $,
     {
         'properties': ($) => ({
-            'globals': _pa.cc(_i_generic.get_entry(
+            'globals': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "globals",
@@ -115,7 +115,7 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'imports': _pa.cc(_i_generic.get_entry(
+            'imports': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "imports",
@@ -126,7 +126,7 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'types': _pa.cc(_i_generic.get_entry(
+            'types': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "types",
@@ -174,7 +174,7 @@ export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => _i_generic.proce
     $,
     {
         'properties': ($) => ({
-            'type': _pa.cc(_i_generic.get_entry(
+            'type': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "type",
@@ -201,7 +201,7 @@ export const Type: _i_signatures._T_Type = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
-            'node': _pa.cc(_i_generic.get_entry(
+            'node': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "node",
@@ -227,7 +227,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                             $,
                             {
                                 'properties': ($) => ({
-                                    'import': _pa.cc(_i_generic.get_entry(
+                                    'import': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "import",
@@ -236,7 +236,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                                         $,
                                         null
                                     )),
-                                    'type': _pa.cc(_i_generic.get_entry(
+                                    'type': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "type",
@@ -275,7 +275,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                 $,
                 {
                     'properties': ($) => ({
-                        'node': _pa.cc(_i_generic.get_entry(
+                        'node': _pa.deprecated_cc(_i_generic.get_entry(
                             $,
                             {
                                 'key': "node",
@@ -303,7 +303,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                 $,
                 {
                     'properties': ($) => ({
-                        'type': _pa.cc(_i_generic.get_entry(
+                        'type': _pa.deprecated_cc(_i_generic.get_entry(
                             $,
                             {
                                 'key': "type",

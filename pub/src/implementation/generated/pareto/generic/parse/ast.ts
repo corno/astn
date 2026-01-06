@@ -44,7 +44,7 @@ export const Document = (
     abort: ($: pg.My_Parse_Error) => never,
 ): _target._T_Document => {
     return {
-        'header': _ea.block(() => {
+        'header': _ea.deprecated_block(() => {
             const token = token_iterator['get required token'](_ea.list.literal([['!', null], ['a value', null]]))
             if (token.type[0] !== '!') {
                 return _ea.optional.not_set()
@@ -65,7 +65,7 @@ export const Elements = (
     end_token: d_parse_result.Expected,
     abort: ($: pg.My_Parse_Error) => never,
 ): _target._T_Elements => {
-    return _ea.list.build<_target._T_Elements.L>(($i): void => {
+    return _ea.list.deprecated_build<_target._T_Elements.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.list.literal([end_token, ['a value', null]]))
             if (end_reached(current_token.type)) {
@@ -84,7 +84,7 @@ export const Key_Value_Pairs = (
     end_token: d_parse_result.Expected,
     abort: ($: pg.My_Parse_Error) => never,
 ): _target._T_Key_Value_Pairs => {
-    return _ea.list.build<_target._T_Key_Value_Pairs.L>(($i): void => {
+    return _ea.list.deprecated_build<_target._T_Key_Value_Pairs.L>(($i): void => {
         while (true) {
             const current_token = token_iterator['get required token'](_ea.list.literal([end_token, ['a string', null]]))
             if (end_reached(current_token.type)) {
@@ -93,7 +93,7 @@ export const Key_Value_Pairs = (
 
             $i['add element']({
                 'key': String(token_iterator, abort),
-                'value': _ea.block(() => {
+                'value': _ea.deprecated_block(() => {
                     const candidate_colon = token_iterator['get required token'](_ea.list.literal([['a string', null], [':', null], end_token]))
                     if (candidate_colon.type[0] !== ':') {
                         return _ea.optional.not_set()
@@ -116,7 +116,7 @@ export const Value = (
     abort: ($: pg.My_Parse_Error) => never,
 ): _target._T_Value => {
     const token = token_iterator['get required token'](_ea.list.literal([['a value', null]]))
-    return _ea.cc(token.type, ($): _target._T_Value => {
+    return _ea.deprecated_cc(token.type, ($): _target._T_Value => {
 
         switch ($[0]) {
             case 'string': return _ea.ss($, ($): _target._T_Value => {
@@ -128,7 +128,7 @@ export const Value = (
                 return ['indexed collection', ['dictionary', {
                     '{': Structural_Token(token),
                     'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === '}', ['}', null], abort),
-                    '}': _ea.block(() => {
+                    '}': _ea.deprecated_block(() => {
                         const current_token = token_iterator['get required token'](_ea.list.literal([['}', null]]))
                         token_iterator['consume token']()
                         return Structural_Token(current_token)
@@ -140,7 +140,7 @@ export const Value = (
                 return ['indexed collection', ['verbose group', {
                     '(': Structural_Token(token),
                     'entries': Key_Value_Pairs(token_iterator, ($) => $[0] === ')', [')', null], abort),
-                    ')': _ea.block(() => {
+                    ')': _ea.deprecated_block(() => {
                         const current_token = token_iterator['get required token'](_ea.list.literal([[')', null]]))
                         token_iterator['consume token']()
                         return Structural_Token(current_token)
@@ -152,7 +152,7 @@ export const Value = (
                 return ['ordered collection', ['list', {
                     '[': Structural_Token(token),
                     'elements': Elements(token_iterator, ($) => $[0] === ']', [']', null], abort),
-                    ']': _ea.block(() => {
+                    ']': _ea.deprecated_block(() => {
                         const current_token = token_iterator['get required token'](_ea.list.literal([[']', null]]))
                         token_iterator['consume token']()
                         return Structural_Token(current_token)
@@ -164,7 +164,7 @@ export const Value = (
                 return ['ordered collection', ['concise group', {
                     '<': Structural_Token(token),
                     'elements': Elements(token_iterator, ($) => $[0] === '>', ['>', null], abort),
-                    '>': _ea.block(() => {
+                    '>': _ea.deprecated_block(() => {
                         const current_token = token_iterator['get required token'](_ea.list.literal([['>', null]]))
                         token_iterator['consume token']()
                         return Structural_Token(current_token)

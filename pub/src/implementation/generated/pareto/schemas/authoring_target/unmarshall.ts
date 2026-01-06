@@ -17,7 +17,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
     $,
     {
         'properties': ($) => ({
-            'type': _pa.cc(_i_generic.get_entry(
+            'type': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "type",
@@ -44,7 +44,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                     $,
                                     {
                                         'properties': ($) => ({
-                                            'key': _pa.cc(_i_generic.get_entry(
+                                            'key': _pa.deprecated_cc(_i_generic.get_entry(
                                                 $,
                                                 {
                                                     'key': "key",
@@ -53,7 +53,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                                 $,
                                                 null
                                             )),
-                                            'value': _pa.cc(_i_generic.get_entry(
+                                            'value': _pa.deprecated_cc(_i_generic.get_entry(
                                                 $,
                                                 {
                                                     'key': "value",
@@ -113,7 +113,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                         $,
                                         {
                                             'properties': ($) => ({
-                                                'state': _pa.cc(_i_generic.get_entry(
+                                                'state': _pa.deprecated_cc(_i_generic.get_entry(
                                                     $,
                                                     {
                                                         'key': "state",
@@ -122,7 +122,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                                     $,
                                                     null
                                                 )),
-                                                'value': _pa.cc(_i_generic.get_entry(
+                                                'value': _pa.deprecated_cc(_i_generic.get_entry(
                                                     $,
                                                     {
                                                         'key': "value",
@@ -143,7 +143,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                             $,
                             {
                                 'properties': ($) => ({
-                                    'delimiter': _pa.cc(_i_generic.get_entry(
+                                    'delimiter': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "delimiter",
@@ -167,7 +167,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                             }),
                                         }
                                     )),
-                                    'value': _pa.cc(_i_generic.get_entry(
+                                    'value': _pa.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "value",
@@ -186,7 +186,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                     $,
                                     {
                                         'properties': ($) => ({
-                                            'key': _pa.cc(_i_generic.get_entry(
+                                            'key': _pa.deprecated_cc(_i_generic.get_entry(
                                                 $,
                                                 {
                                                     'key': "key",
@@ -195,7 +195,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => _i_generic.process_group
                                                 $,
                                                 null
                                             )),
-                                            'value': _pa.cc(_i_generic.get_entry(
+                                            'value': _pa.deprecated_cc(_i_generic.get_entry(
                                                 $,
                                                 {
                                                     'key': "value",

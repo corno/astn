@@ -9,7 +9,7 @@ const indentation = `    `
 export const Document = (
     $: astn_target.Document
 ): string => {
-    return _ea.text.build(($i) => {
+    return _ea.text.deprecated_build(($i) => {
         Value($, ``, $i)
     })
 }
@@ -19,7 +19,7 @@ export const Value = (
     indent: string,
     $i: _pi.Text_Builder
 ) => {
-    _ea.cc($, ($) => {
+    _ea.deprecated_cc($, ($) => {
         switch ($[0]) {
             case 'dictionary': return _ea.ss($, ($) => {
                 $i['add snippet'](`{`)
@@ -49,7 +49,7 @@ export const Value = (
                 $i['add snippet'](`| '${$.state}' `)
                 Value($.value, indent, $i)
             })
-            case 'optional': return _ea.ss($, ($) => _ea.cc($, ($) => {
+            case 'optional': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
                 switch ($[0]) {
                     case 'not set': return _ea.ss($, ($) => $i['add snippet'](`~`))
                     case 'set': return _ea.ss($, ($) => {
@@ -63,7 +63,7 @@ export const Value = (
             case 'nothing': return _ea.ss($, ($) => $i['add snippet'](`~`))
             case 'text': return _ea.ss($, ($) => {
                 const value = $.value
-                return _ea.cc($.delimiter, ($) => {
+                return _ea.deprecated_cc($.delimiter, ($) => {
                     switch ($[0]) {
                         case 'backtick': return _ea.ss($, ($) => $i['add snippet'](`\`${value}\``))
                         case 'quote': return _ea.ss($, ($) => $i['add snippet'](`"${value}"`))

@@ -11,16 +11,16 @@ export const Document: _i_signatures._T_Document = ($, $p) => Value(
         'value serializers': $p['value serializers'],
     }
 )
-export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'dictionary': return _pa.ss($, ($) => ({
             'state': "dictionary",
             'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-                'key': _pa.cc($['key'], ($) => ['text', ({
+                'key': _pa.deprecated_cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
-                'value': _pa.cc($['value'], ($) => Value(
+                'value': _pa.deprecated_cc($['value'], ($) => Value(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -43,7 +43,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         }))
         case 'optional': return _pa.ss($, ($) => ({
             'state': "optional",
-            'value': ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
                     case 'not set': return _pa.ss($, ($) => ({
                         'state': "not set",
@@ -65,11 +65,11 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         case 'state': return _pa.ss($, ($) => ({
             'state': "state",
             'value': ['verbose group', _pa.dictionary.literal({
-                'state': _pa.cc($['state'], ($) => ['text', ({
+                'state': _pa.deprecated_cc($['state'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
-                'value': _pa.cc($['value'], ($) => Value(
+                'value': _pa.deprecated_cc($['value'], ($) => Value(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -80,7 +80,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         case 'text': return _pa.ss($, ($) => ({
             'state': "text",
             'value': ['verbose group', _pa.dictionary.literal({
-                'delimiter': _pa.cc($['delimiter'], ($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+                'delimiter': _pa.deprecated_cc($['delimiter'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
                         case 'backtick': return _pa.ss($, ($) => ({
                             'state': "backtick",
@@ -97,7 +97,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
                         default: return _pa.au($[0])
                     }
                 })]),
-                'value': _pa.cc($['value'], ($) => ['text', ({
+                'value': _pa.deprecated_cc($['value'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
@@ -106,11 +106,11 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.cc($, ($):
         case 'verbose group': return _pa.ss($, ($) => ({
             'state': "verbose group",
             'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-                'key': _pa.cc($['key'], ($) => ['text', ({
+                'key': _pa.deprecated_cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
-                'value': _pa.cc($['value'], ($) => Value(
+                'value': _pa.deprecated_cc($['value'], ($) => Value(
                     $,
                     {
                         'value serializers': $p['value serializers'],

@@ -15,6 +15,16 @@ import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementa
 
 import * as sh from "../../../../../shorthands/parse_result"
 
+
+
+const discard = <T>(
+    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    callback: () => T,
+): T => {
+    iterator.discard()
+    return callback()
+}
+
 const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => iterator.look().transform(
     ($) => $,
     () => null
@@ -156,10 +166,8 @@ export const Trivia = (
                                             return
                                         }
                                         switch ($.code) {
-                                            case Character.line_feed:
-                                                return
-                                            case Character.carriage_return:
-                                                return
+                                            case Character.line_feed: return
+                                            case Character.carriage_return: return
                                             default:
                                                 iterator.discard()
                                                 $i['add character']($.code)

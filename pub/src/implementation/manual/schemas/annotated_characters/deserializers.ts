@@ -6,92 +6,105 @@ import * as d_annotated_characters from "../../../../interface/to_be_generated/a
 export namespace signatures {
 
     export type Annotated_Characters = _pi.Deserializer_Without_Error_With_Parameters<d_annotated_characters.Annotated_Characters, { 'tab size': number }>
-    
+
+}
+
+
+
+const loop = <Iterator_Element, State>(
+    iterator: _pi.Iterator<Iterator_Element>,
+    initial_state: State,
+    callback: (
+        element: Iterator_Element,
+        state: State,
+        $i: {
+            'end reached': () => void
+        },
+    ) => State
+): State => {
+    let current_state = initial_state
+    while (true) {
+        let end_reached = false
+        iterator.look().transform(
+            ($) => {
+                current_state = callback(
+                    $,
+                    current_state,
+                    {
+                        'end reached': () => {
+                            end_reached = true
+                        }
+                    }
+                )
+            },
+            () => { end_reached = true }
+        )
+        if (end_reached) {
+            return current_state
+        }
+    }
 }
 
 /**
  * Creates a string iterator that allows iterating over characters in a string,
  * while keeping track of line numbers, columns, and line indentation.
  */
-export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => {
+export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => _p.list.build<d_annotated_characters.Annotated_Character>(
+    ($i) => _p.iterate_partially(_p.list.from_text($, ($) => $), (iterator) => {
+        type State = {
+            'line': number
+            'column': number
+            'line indentation': number | null
+            'found carriage return before': boolean
+        }
 
-    const WhitespaceChars = {
-        tab: 0x09,                  // \t
-        line_feed: 0x0A,            // \n
-        carriage_return: 0x0D,      // \r
-        space: 0x20,                //
-    }
-    const characters = _p.list.from_text($, ($) => $)
-
-    type Relative_Position_Information = {
-        'line': number
-        'column': number
-        'line indentation': number | null
-    }
-
-    let position = -1
-    let relative_position: Relative_Position_Information = {
-        'line': 0,
-        'column': 0,
-        'line indentation': null
-    }
-    let found_carriage_return_before = false
-
-
-    return _p.list.build<d_annotated_characters.Annotated_Character>(($i) => {
-        while (true) {
-            position += 1
-            const character = characters.__get_possible_element_at(position)
-
-            //handle character
-            character.map(($) => {
-                // Add character with CURRENT position before updating
+        loop<number, State>(
+            iterator,
+            {
+                'line': 0,
+                'column': 0,
+                'line indentation': null,
+                'found carriage return before': false,
+            },
+            ($, state) => {
                 $i['add element']({
                     'code': $,
                     'location': {
-                        'line': relative_position.line,
-                        'column': relative_position['column'],
+                        'line': state.line,
+                        'column': state['column'],
                     },
-                    'line indentation': relative_position['line indentation'] !== null
-                        ? relative_position['line indentation']
-                        : relative_position['column'],
+                    'line indentation': state['line indentation'] !== null
+                        ? state['line indentation']
+                        : state['column'],
                 })
 
-                // Now update position for NEXT character
-                relative_position = $ === WhitespaceChars.line_feed
+                return $ === 0x0A /* line feed */
                     ? {
-                        'line': relative_position.line + 1,
+                        'line': state.line + 1,
                         'column': 0,
                         'line indentation': null,
+                        'found carriage return before': false,
                     }
-                    : found_carriage_return_before
+                    : state['found carriage return before']
                         ? {
-                            'line': relative_position.line + 1,
+                            'line': state.line + 1,
                             'column': 0,
                             'line indentation': null,
+                            'found carriage return before': false,
                         }
                         : {
-                            'line': relative_position.line,
-                            'column': relative_position['column'] + ($ === WhitespaceChars.tab
+                            'line': state.line,
+                            'column': state['column'] + ($ === 0x09 /* tab */
                                 ? $p['tab size']
                                 : 1),
-                            'line indentation': relative_position['line indentation'] !== null
-                                ? relative_position['line indentation']
-                                : $ === WhitespaceChars.space || $ === WhitespaceChars.tab
+                            'line indentation': state['line indentation'] !== null
+                                ? state['line indentation']
+                                : $ === 0x20 /* space */ || $ === 0x09 /* tab */
                                     ? null
-                                    : relative_position['column'],
+                                    : state['column'],
+                            'found carriage return before': $ === 0x0D /* carriage return */,
                         }
-
-                found_carriage_return_before = $ === WhitespaceChars.carriage_return
             })
-
-            const end_reached = character.transform(
-                ($) => false,
-                () => true
-            )
-            if (end_reached) {
-                break
-            }
-        }
     })
-}
+
+)

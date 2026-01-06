@@ -15,26 +15,26 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.map(($) => (
 
 export const Elements: signatures.Elements = ($) => $.map(($) => Value($.value))
 
-export const Value: signatures.Value = ($) => _p.cc($.type, ($) => {
+export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.cc($, ($) => {
+        case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
                 case 'string': return _p.ss($, ($) => ['string', $.value])
-                case 'indexed collection': return _p.ss($, ($) => _p.cc($, ($) => ['object', ['key value array', Key_Value_Pairs(_p.cc($, ($) => {
+                case 'indexed collection': return _p.ss($, ($) => _p.sg($, ($) => ['object', ['key value array', Key_Value_Pairs(_p.sg($, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => $.entries)
                         case 'verbose group': return _p.ss($, ($) => $.entries)
                         default: return _p.au($[0])
                     }
                 }))]]))
-                case 'ordered collection': return _p.ss($, ($) => ['array', _p.cc($, ($) => Elements(_p.cc($, ($) => {
+                case 'ordered collection': return _p.ss($, ($) => ['array', _p.sg($, ($) => Elements(_p.sg($, ($) => {
                     switch ($[0]) {
                         case 'list': return _p.ss($, ($) => $.elements)
                         case 'concise group': return _p.ss($, ($) => $.elements)
                         default: return _p.au($[0])
                     }
                 })))])
-                case 'tagged value': return _p.ss($, ($) => _p.cc($.status, ($) => {
+                case 'tagged value': return _p.ss($, ($) => _p.sg($.status, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([

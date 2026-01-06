@@ -11,7 +11,7 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => _i_g
     $,
     {
         'properties': ($) => ({
-            'end': _pa.cc(_i_generic.get_entry(
+            'end': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "end",
@@ -22,7 +22,7 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => _i_g
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'start': _pa.cc(_i_generic.get_entry(
+            'start': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "start",
@@ -33,7 +33,7 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => _i_g
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'trailing trivia': _pa.cc(_i_generic.get_entry(
+            'trailing trivia': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "trailing trivia",
@@ -44,7 +44,7 @@ export const Annotated_Token: _i_signatures._T_Annotated_Token = ($, $p) => _i_g
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'type': _pa.cc(_i_generic.get_entry(
+            'type': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "type",
@@ -66,7 +66,7 @@ export const Location: _i_signatures._T_Location = ($, $p) => _i_generic.process
     $,
     {
         'properties': ($) => ({
-            'absolute': _pa.cc(_i_generic.get_entry(
+            'absolute': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "absolute",
@@ -77,7 +77,7 @@ export const Location: _i_signatures._T_Location = ($, $p) => _i_generic.process
                     'deserializer': $p['value deserializers']['default number'],
                 }
             )),
-            'relative': _pa.cc(_i_generic.get_entry(
+            'relative': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "relative",
@@ -95,7 +95,7 @@ export const Range: _i_signatures._T_Range = ($, $p) => _i_generic.process_group
     $,
     {
         'properties': ($) => ({
-            'end': _pa.cc(_i_generic.get_entry(
+            'end': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "end",
@@ -106,7 +106,7 @@ export const Range: _i_signatures._T_Range = ($, $p) => _i_generic.process_group
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'start': _pa.cc(_i_generic.get_entry(
+            'start': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "start",
@@ -124,7 +124,7 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => 
     $,
     {
         'properties': ($) => ({
-            'column': _pa.cc(_i_generic.get_entry(
+            'column': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "column",
@@ -135,7 +135,7 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => 
                     'deserializer': $p['value deserializers']['default number'],
                 }
             )),
-            'line': _pa.cc(_i_generic.get_entry(
+            'line': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "line",
@@ -224,7 +224,7 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => _i_generic.pro
                 $,
                 {
                     'properties': ($) => ({
-                        'type': _pa.cc(_i_generic.get_entry(
+                        'type': _pa.deprecated_cc(_i_generic.get_entry(
                             $,
                             {
                                 'key': "type",
@@ -235,7 +235,7 @@ export const Token_Type: _i_signatures._T_Token_Type = ($, $p) => _i_generic.pro
                                 'value deserializers': $p['value deserializers'],
                             }
                         )),
-                        'value': _pa.cc(_i_generic.get_entry(
+                        'value': _pa.deprecated_cc(_i_generic.get_entry(
                             $,
                             {
                                 'key': "value",
@@ -272,7 +272,7 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => _i
     $,
     {
         'properties': ($) => ({
-            'end': _pa.cc(_i_generic.get_entry(
+            'end': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "end",
@@ -283,7 +283,7 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => _i
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'leading trivia': _pa.cc(_i_generic.get_entry(
+            'leading trivia': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "leading trivia",
@@ -294,7 +294,7 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => _i
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'tokens': _pa.cc(_i_generic.get_entry(
+            'tokens': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "tokens",
@@ -317,7 +317,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
     $,
     {
         'properties': ($) => ({
-            'comments': _pa.cc(_i_generic.get_entry(
+            'comments': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "comments",
@@ -329,7 +329,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                         $,
                         {
                             'properties': ($) => ({
-                                'content': _pa.cc(_i_generic.get_entry(
+                                'content': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "content",
@@ -338,7 +338,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                                     $,
                                     null
                                 )),
-                                'range': _pa.cc(_i_generic.get_entry(
+                                'range': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "range",
@@ -349,7 +349,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                                         'value deserializers': $p['value deserializers'],
                                     }
                                 )),
-                                'trailing whitespace': _pa.cc(_i_generic.get_entry(
+                                'trailing whitespace': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "trailing whitespace",
@@ -360,7 +360,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                                         'value deserializers': $p['value deserializers'],
                                     }
                                 )),
-                                'type': _pa.cc(_i_generic.get_entry(
+                                'type': _pa.deprecated_cc(_i_generic.get_entry(
                                     $,
                                     {
                                         'key': "type",
@@ -385,7 +385,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => _i_generic.process_gro
                     ),
                 }
             )),
-            'leading whitespace': _pa.cc(_i_generic.get_entry(
+            'leading whitespace': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "leading whitespace",
@@ -403,7 +403,7 @@ export const Whitespace: _i_signatures._T_Whitespace = ($, $p) => _i_generic.pro
     $,
     {
         'properties': ($) => ({
-            'range': _pa.cc(_i_generic.get_entry(
+            'range': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "range",
@@ -414,7 +414,7 @@ export const Whitespace: _i_signatures._T_Whitespace = ($, $p) => _i_generic.pro
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'value': _pa.cc(_i_generic.get_entry(
+            'value': _pa.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "value",

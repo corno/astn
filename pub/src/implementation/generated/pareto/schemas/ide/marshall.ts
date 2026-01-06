@@ -11,25 +11,25 @@ export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_B
     'value': $,
 })])]
 export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'end': _pa.cc($['end'], ($) => _i_r_token.Relative_Location(
+    'end': _pa.deprecated_cc($['end'], ($) => _i_r_token.Relative_Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
-    'start': _pa.cc($['start'], ($) => _i_r_token.Relative_Location(
+    'start': _pa.deprecated_cc($['start'], ($) => _i_r_token.Relative_Location(
         $,
         {
             'value serializers': $p['value serializers'],
         }
     )),
 })]
-export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map(($) => ['state', _pa.cc($, ($): _i_out._T_Value.SG.state => {
+export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map(($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'delete': return _pa.ss($, ($) => ({
             'state': "delete",
             'value': ['verbose group', _pa.dictionary.literal({
-                'range': _pa.cc($['range'], ($) => Relative_Range(
+                'range': _pa.deprecated_cc($['range'], ($) => Relative_Range(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -40,13 +40,13 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map
         case 'insert': return _pa.ss($, ($) => ({
             'state': "insert",
             'value': ['verbose group', _pa.dictionary.literal({
-                'location': _pa.cc($['location'], ($) => _i_r_token.Relative_Location(
+                'location': _pa.deprecated_cc($['location'], ($) => _i_r_token.Relative_Location(
                     $,
                     {
                         'value serializers': $p['value serializers'],
                     }
                 )),
-                'text': _pa.cc($['text'], ($) => ['text', ({
+                'text': _pa.deprecated_cc($['text'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
@@ -55,13 +55,13 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map
         case 'replace': return _pa.ss($, ($) => ({
             'state': "replace",
             'value': ['verbose group', _pa.dictionary.literal({
-                'range': _pa.cc($['range'], ($) => Relative_Range(
+                'range': _pa.deprecated_cc($['range'], ($) => Relative_Range(
                     $,
                     {
                         'value serializers': $p['value serializers'],
                     }
                 )),
-                'text': _pa.cc($['text'], ($) => ['text', ({
+                'text': _pa.deprecated_cc($['text'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
