@@ -1,7 +1,7 @@
 import * as _pr from 'pareto-core-refiner'
 import * as _pd from 'pareto-core-dev'
 
-import * as _i_generic from 'pareto-core-refiner/dist/resolve'
+import * as _i_generic from 'pareto-core-internals/dist/algorithm_types/refiner/resolve'
 import * as _i_out from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/source"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/resolve"
 

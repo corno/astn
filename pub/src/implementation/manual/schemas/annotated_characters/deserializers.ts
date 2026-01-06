@@ -49,8 +49,8 @@ const loop = <Iterator_Element, State>(
  * Creates a string iterator that allows iterating over characters in a string,
  * while keeping track of line numbers, columns, and line indentation.
  */
-export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => _p.list.build<d_annotated_characters.Annotated_Character>(
-    ($i) => _p.iterate_partially(_p.list.from_text($, ($) => $), (iterator) => {
+export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => _p.list.deprecated_build<d_annotated_characters.Annotated_Character>(
+    ($i) => _p.iterate(_p.list.from_text($, ($) => $), (iterator) => {
         type State = {
             'line': number
             'column': number

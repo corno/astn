@@ -93,6 +93,7 @@ const consume = <T>(
     expected: _pi.List<d_parse_result.Parse_Error._type.SG.parser.expected.L>,
     callback: (token: d_source.Annotated_Token) => T,
 ): T => callback(iterator.consume(
+    ($) => $,
     () => abort(create_missing_token_error(iterator['get position'](), expected))
 ))
 
@@ -125,7 +126,7 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                 case 'string': return _p.ss($, ($): d_target.Value._type => ['concrete', ['string', String(iterator, abort)]])
                 case '{': return _p.ss($, ($) => ['concrete', ['indexed collection', ['dictionary', {
                     '{': Structural_Token(iterator, abort, { 'expected token': ['{', null] }),
-                    'entries': _p.list.build(($i): void => {
+                    'entries': _p.list.deprecated_build(($i): void => {
                         loop(
                             iterator,
                             (current_token, $i2) => {
@@ -141,7 +142,7 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                 }]]])
                 case '(': return _p.ss($, ($) => ['concrete', ['indexed collection', ['verbose group', {
                     '(': Structural_Token(iterator, abort, { 'expected token': ['(', null] }),
-                    'entries': _p.list.build(($i): void => {
+                    'entries': _p.list.deprecated_build(($i): void => {
                         loop(
                             iterator,
                             (current_token, $i2) => {
@@ -157,7 +158,7 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                 }]]])
                 case '[': return _p.ss($, ($): d_target.Value._type => ['concrete', ['ordered collection', ['list', {
                     '[': Structural_Token(iterator, abort, { 'expected token': ['[', null] }),
-                    'elements': _p.list.build(($i): void => {
+                    'elements': _p.list.deprecated_build(($i): void => {
                         loop(
                             iterator,
                             (current_token, $i2) => {
@@ -173,7 +174,7 @@ export const Value: signatures.Value = (iterator, abort) => look_at_required_tok
                 }]]])
                 case '<': return _p.ss($, ($): d_target.Value._type => ['concrete', ['ordered collection', ['concise group', {
                     '<': Structural_Token(iterator, abort, { 'expected token': ['<', null] }),
-                    'elements': _p.list.build(($i): void => {
+                    'elements': _p.list.deprecated_build(($i): void => {
                         loop(
                             iterator,
                             (current_token, $i2) => {

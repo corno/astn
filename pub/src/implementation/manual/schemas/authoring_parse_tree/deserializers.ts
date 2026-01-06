@@ -17,11 +17,11 @@ export namespace signatures {
 
 }
 
-export const Document: signatures.Document = ($, abort, $p,) => _pt.iterate_partially( //fixme: make this iterate_fully
+export const Document: signatures.Document = ($, abort, $p,) => _pt.iterate( //fixme: make this iterate_fully
     ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }),
-    (iter) => _pt.iterate_partially(//fixme: make this iterate_fully
+    (iter) => _pt.iterate(//fixme: make this iterate_fully
         tokenize.Tokenizer_Result(
             iter,
             abort

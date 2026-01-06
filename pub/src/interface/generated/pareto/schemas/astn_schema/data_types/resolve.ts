@@ -1,6 +1,6 @@
 import * as _et from 'pareto-core-interface'
 
-import * as _i_resolve from 'pareto-core-refiner/dist/resolve'
+import * as _i_resolve from 'pareto-core-internals/dist/algorithm_types/refiner/resolve'
 import * as _i_resolved from "./source"
 import * as _i_unresolved from "./target"
 
