@@ -22,7 +22,7 @@ export type Creator = (
             'uri': string
         }
     >,
-) => signatures.commands.transform_file
+) => signatures.commands.file_in_to_file_out
 
 
 export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr) => [

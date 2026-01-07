@@ -16,10 +16,14 @@ import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementa
 import * as sh from "../../../../../shorthands/parse_result"
 
 
-const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => iterator.look().transform(
-    ($) => $,
-    () => null
-)
+const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => {
+    const next = iterator.look()
+    if (next === null) {
+        return null
+    } else {
+        return next[0]
+    }
+}
 
 const WhitespaceChars = {
     tab: 0x09,                  // \t
@@ -34,22 +38,27 @@ export const is_control_character = ($: d_annotated_characters.Annotated_Charact
     && $.code !== WhitespaceChars.line_feed
     && $.code !== WhitespaceChars.carriage_return
 
-const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => iterator.look().transform(
-    ($): d_out.Location => ({
-        'absolute': iterator['get position'](),
-        'relative': {
-            'line': $.location.line,
-            'column': $.location.column,
+const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => {
+    const next = iterator.look()
+    if (next === null) {
+        return {
+            'absolute': iterator['get position'](),
+            'relative': {
+                'line': -1,
+                'column': -1,
+            }
         }
-    }),
-    (): d_out.Location => ({
-        'absolute': iterator['get position'](),
-        'relative': {
-            'line': -1,
-            'column': -1,
+    } else {
+        return {
+            'absolute': iterator['get position'](),
+            'relative': {
+                'line': next[0].location.line,
+                'column': next[0].location.column,
+            }
         }
-    }),
-)
+    }
+}
+
 
 export const Whitespace = (
     iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
@@ -123,10 +132,7 @@ export const Trivia = (
             switch ($.code) {
                 case 0x2F: // /
                     const start = temp_get_current_location(iterator)
-                    const next_char = iterator['look ahead'](1).transform(
-                        ($) => $,
-                        () => null
-                    )
+                    const next_char = iterator['look ahead'](1)
                     if (next_char === null) {
                         const start = temp_get_current_location(iterator)
                         iterator.discard(() => null)
@@ -139,7 +145,7 @@ export const Trivia = (
                             }
                         ))
                     }
-                    switch (next_char.code) {
+                    switch (next_char[0].code) {
                         case 0x2F: // /
                             iterator.discard(() => null) // consume the first /
                             iterator.discard(() => null) // consume the second /
@@ -603,15 +609,18 @@ export const Tokenizer_Result = (
     iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Tokenizer_Result => {
-    return {
-        'leading trivia': Trivia(iterator, abort),
-        'tokens': _p.list.deprecated_build<d_out.Annotated_Token>($i => {
-            while (temp_get_current_character_or_null(iterator) !== null) {
+    return _pdev.log_wrapping_debug_messages(
+        "tokenization",
+        () => ({
+            'leading trivia': Trivia(iterator, abort),
+            'tokens': _p.list.deprecated_build<d_out.Annotated_Token>($i => {
+                while (temp_get_current_character_or_null(iterator) !== null) {
 
-                const token = Annotated_Token(iterator, abort)
-                $i['add element'](token)
-            }
-        }),
-        'end': temp_get_current_location(iterator)
-    }
+                    const token = Annotated_Token(iterator, abort)
+                    $i['add element'](token)
+                }
+            }),
+            'end': temp_get_current_location(iterator)
+        })
+    )
 }

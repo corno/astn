@@ -1,6 +1,7 @@
-import * as _pt from 'pareto-core-deserializer'
+import * as _p from 'pareto-core-deserializer'
 import * as _pi from 'pareto-core-interface'
 import * as _pdev from 'pareto-core-dev'
+import * as _p_new from './productions/temp'
 
 
 import * as d_authoring_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
@@ -18,23 +19,56 @@ export namespace signatures {
 
 }
 
-export const Document: signatures.Document = ($, abort, $p,) => _pt.iterate( //fixme: make this iterate_fully
+export const Document: signatures.Document = ($, abort, $p,) => _p.iterate( //fixme: make this iterate_fully
     ds_annotated_characters.Annotated_Characters($, {
         'tab size': $p['tab size']
     }),
     (iter) => {
-        _pdev.log_debug_message("Tokenizing...", () => { }) 
-        const result =  _pt.iterate(//fixme: make this iterate_fully
+        const result = _p.iterate(//fixme: make this iterate_fully
             tokenize.Tokenizer_Result(
                 iter,
                 abort
             ).tokens,
-            (iter) => p_authoring_parse_tree.Document(
-                iter,
-                abort,
-            )
-        )
-        _pdev.log_debug_message("Tokenization complete.", () => { })
+            (iter) => _pdev.log_wrapping_debug_messages("parse", () => p_authoring_parse_tree.Document(
+                _p_new.create_iterator(
+                    iter,
+                    (expected, element) => abort({
+                        'type': ['parser', {
+                            'expected': expected,
+                            'cause': ['unexpected token', {
+                                'found': element.type,
+                            }],
+                        }],
+                        'range': {
+                            'start': element.start,
+                            'end': element.end,
+                        }
+                    }),
+                    (expected) => abort({
+                        'type': ['parser', {
+                            'expected': expected,
+                            'cause': ['missing token', null],
+                        }],
+                        'range': {
+                            'start': {
+                                'absolute': iter['get position'](),
+                                'relative': {
+                                    'line': -1,
+                                    'column': -1,
+                                }
+                            },
+                            'end': {
+                                'absolute': iter['get position'](),
+                                'relative': {
+                                    'line': -1,
+                                    'column': -1,
+                                }
+                            },
+                        }
+                    }),
+                    () => _p.unreachable_code_path(),
+                ))
+            ))
         return result
     }
 )

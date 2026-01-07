@@ -16,21 +16,21 @@ export const parse_error = (
     }
 })
 
-export const unexpected_token = (
-    found: d_target_token.Annotated_Token,
-    expected: _pi.List<d_target.Parse_Error._type.SG.parser.expected.L>,
-): d_target.Parse_Error => parse_error(
-    ['parser', {
-        'expected': expected,
-        'cause': ['unexpected token', {
-            'found': found.type,
-        }]
-    }],
-    {
-        'start': found.start,
-        'end': found.end
-    }
-)
+// export const unexpected_token = (
+//     found: d_target_token.Annotated_Token,
+//     expected: _pi.List<d_target.Parse_Error._type.SG.parser.expected.L>,
+// ): d_target.Parse_Error => parse_error(
+//     ['parser', {
+//         'expected': expected,
+//         'cause': ['unexpected token', {
+//             'found': found.type,
+//         }]
+//     }],
+//     {
+//         'start': found.start,
+//         'end': found.end
+//     }
+// )
 
 export const lexer_error = (
     type: d_target.Parse_Error._type.SG.lexer,

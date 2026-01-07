@@ -1,23 +1,27 @@
-import * as _p from 'pareto-core-serializer'
+import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
-import * as d_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
+import * as d_in from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data_types/target"
 
-import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/temp_serializers/schemas/list_of_separated_texts"
 
-type Parameters = {
+export type Parameters = {
     'position info':
     | ['zero based', null]
     | ['one based', null]
 }
 
 export namespace signatures {
-    
-    export type Parse_Error = _pi.Serializer_With_Parameters<d_parse_result.Parse_Error, Parameters>
+    export type Parse_Error = _pi.Transformer_With_Parameters<d_in.Parse_Error, d_out.Block_Part, Parameters>
 }
 
+import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-export const Parse_Error: signatures.Parse_Error = ($, $p) => {
+import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/temp_serializers/schemas/list_of_separated_texts"
+
+// import * as t_parse_result_to_fountain_pen from "astn/dist/implementation/manual/schemas/parse_result/serializers"
+
+export const Error: signatures.Parse_Error = ($, $p) => {
     const extra: number = _p.sg($p['position info'], ($) => {
         switch ($[0]) {
             case 'zero based': return 0
@@ -25,7 +29,7 @@ export const Parse_Error: signatures.Parse_Error = ($, $p) => {
             default: return _p.au($[0])
         }
     })
-    const Parse_Error_Type = ($: d_parse_result.Parse_Error._type): string => _p.sg($, ($) => {
+    const Parse_Error_Type = ($: d_in.Parse_Error._type): string => _p.sg($, ($) => {
         switch ($[0]) {
             case 'lexer': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {
@@ -71,5 +75,5 @@ export const Parse_Error: signatures.Parse_Error = ($, $p) => {
             default: return _p.au($[0])
         }
     })
-    return `failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.range.start.relative.line + extra}:${$.range.start.relative.column + extra}`
-};
+    return sh.b.snippet(`failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.range.start.relative.line + extra}:${$.range.start.relative.column + extra}`)
+}
