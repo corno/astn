@@ -1,48 +1,20 @@
-import * as _pa from 'pareto-core-transformer'
-import * as _pd from 'pareto-core-dev'
+import * as _p from 'pareto-core-transformer'
+import * as _pdev from 'pareto-core-dev'
 
+import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/marshall"
 import * as _i_out from "../../../../../interface/generated/pareto/core/astn_target"
 import * as _i_r_parse_tree from "../authoring_parse_tree/marshall"
 import * as _i_r_token from "../token/marshall"
-import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/marshall"
 
 
-export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _pa.dictionary.literal({
-    'range': _pa.deprecated_cc($['range'], ($) => _i_r_token.Range(
-        $,
-        {
-            'value serializers': $p['value serializers'],
-        }
-    )),
-    'type': _pa.deprecated_cc($['type'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _p.dictionary.literal({
+    'type': _p.deprecated_cc($['type'], ($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
-            case 'lexer': return _pa.ss($, ($) => ({
+            case 'lexer': return _p.ss($, ($) => ({
                 'state': "lexer",
-                'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+                'value': ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                     switch ($[0]) {
-                        case 'dangling slash': return _pa.ss($, ($) => ({
-                            'state': "dangling slash",
-                            'value': ['nothing', null],
-                        }))
-                        case 'invalid unicode escape sequence': return _pa.ss($, ($) => ({
-                            'state': "invalid unicode escape sequence",
-                            'value': ['nothing', null],
-                        }))
-                        case 'missing character after escape': return _pa.ss($, ($) => ({
-                            'state': "missing character after escape",
-                            'value': ['nothing', null],
-                        }))
-                        case 'unexpected character': return _pa.ss($, ($) => ({
-                            'state': "unexpected character",
-                            'value': ['text', ({
-                                'delimiter': ['backtick', null],
-                                'value': $p['value serializers']['default number'](
-                                    $,
-                                    null
-                                ),
-                            })],
-                        }))
-                        case 'unexpected control character': return _pa.ss($, ($) => ({
+                        case 'unexpected control character': return _p.ss($, ($) => ({
                             'state': "unexpected control character",
                             'value': ['text', ({
                                 'delimiter': ['backtick', null],
@@ -52,47 +24,118 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                                 ),
                             })],
                         }))
-                        case 'unexpected end of input': return _pa.ss($, ($) => ({
-                            'state': "unexpected end of input",
+                        case 'missing character after escape': return _p.ss($, ($) => ({
+                            'state': "missing character after escape",
                             'value': ['nothing', null],
                         }))
-                        case 'unexpected end of line in delimited string': return _pa.ss($, ($) => ({
+                        case 'unexpected end of line in delimited string': return _p.ss($, ($) => ({
                             'state': "unexpected end of line in delimited string",
                             'value': ['nothing', null],
                         }))
-                        case 'unknown escape character': return _pa.ss($, ($) => ({
-                            'state': "unknown escape character",
-                            'value': ['nothing', null],
+                        case 'unexpected character': return _p.ss($, ($) => ({
+                            'state': "unexpected character",
+                            'value': ['text', ({
+                                'delimiter': ['backtick', null],
+                                'value': $p['value serializers']['default number'](
+                                    $,
+                                    null
+                                ),
+                            })],
                         }))
-                        case 'unterminated block comment': return _pa.ss($, ($) => ({
-                            'state': "unterminated block comment",
-                            'value': ['nothing', null],
-                        }))
-                        case 'unterminated string': return _pa.ss($, ($) => ({
+                        case 'unterminated string': return _p.ss($, ($) => ({
                             'state': "unterminated string",
                             'value': ['nothing', null],
                         }))
-                        case 'unterminated unicode escape sequence': return _pa.ss($, ($) => ({
+                        case 'unterminated block comment': return _p.ss($, ($) => ({
+                            'state': "unterminated block comment",
+                            'value': ['nothing', null],
+                        }))
+                        case 'unterminated unicode escape sequence': return _p.ss($, ($) => ({
                             'state': "unterminated unicode escape sequence",
                             'value': ['nothing', null],
                         }))
-                        default: return _pa.au($[0])
+                        case 'invalid unicode escape sequence': return _p.ss($, ($) => ({
+                            'state': "invalid unicode escape sequence",
+                            'value': ['nothing', null],
+                        }))
+                        case 'unknown escape character': return _p.ss($, ($) => ({
+                            'state': "unknown escape character",
+                            'value': ['nothing', null],
+                        }))
+                        case 'unexpected end of input': return _p.ss($, ($) => ({
+                            'state': "unexpected end of input",
+                            'value': ['nothing', null],
+                        }))
+                        case 'dangling slash': return _p.ss($, ($) => ({
+                            'state': "dangling slash",
+                            'value': ['nothing', null],
+                        }))
+                        default: return _p.au($[0])
                     }
                 })],
             }))
-            case 'parser': return _pa.ss($, ($) => ({
+            case 'parser': return _p.ss($, ($) => ({
                 'state': "parser",
-                'value': ['verbose group', _pa.dictionary.literal({
-                    'cause': _pa.deprecated_cc($['cause'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+                'value': ['verbose group', _p.dictionary.literal({
+                    'expected': _p.deprecated_cc($['expected'], ($) => ['list', $.map(($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                         switch ($[0]) {
-                            case 'missing token': return _pa.ss($, ($) => ({
+                            case 'a string': return _p.ss($, ($) => ({
+                                'state': "a string",
+                                'value': ['nothing', null],
+                            }))
+                            case 'a value': return _p.ss($, ($) => ({
+                                'state': "a value",
+                                'value': ['nothing', null],
+                            }))
+                            case '!': return _p.ss($, ($) => ({
+                                'state': "!",
+                                'value': ['nothing', null],
+                            }))
+                            case '>': return _p.ss($, ($) => ({
+                                'state': ">",
+                                'value': ['nothing', null],
+                            }))
+                            case '}': return _p.ss($, ($) => ({
+                                'state': "}",
+                                'value': ['nothing', null],
+                            }))
+                            case '@': return _p.ss($, ($) => ({
+                                'state': "@",
+                                'value': ['nothing', null],
+                            }))
+                            case ',': return _p.ss($, ($) => ({
+                                'state': ",",
+                                'value': ['nothing', null],
+                            }))
+                            case ':': return _p.ss($, ($) => ({
+                                'state': ":",
+                                'value': ['nothing', null],
+                            }))
+                            case ')': return _p.ss($, ($) => ({
+                                'state': ")",
+                                'value': ['nothing', null],
+                            }))
+                            case ']': return _p.ss($, ($) => ({
+                                'state': "]",
+                                'value': ['nothing', null],
+                            }))
+                            case '#': return _p.ss($, ($) => ({
+                                'state': "#",
+                                'value': ['nothing', null],
+                            }))
+                            default: return _p.au($[0])
+                        }
+                    })])]),
+                    'cause': _p.deprecated_cc($['cause'], ($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+                        switch ($[0]) {
+                            case 'missing token': return _p.ss($, ($) => ({
                                 'state': "missing token",
                                 'value': ['nothing', null],
                             }))
-                            case 'unexpected token': return _pa.ss($, ($) => ({
+                            case 'unexpected token': return _p.ss($, ($) => ({
                                 'state': "unexpected token",
-                                'value': ['verbose group', _pa.dictionary.literal({
-                                    'found': _pa.deprecated_cc($['found'], ($) => _i_r_token.Token_Type(
+                                'value': ['verbose group', _p.dictionary.literal({
+                                    'found': _p.deprecated_cc($['found'], ($) => _i_r_token.Token_Type(
                                         $,
                                         {
                                             'value serializers': $p['value serializers'],
@@ -100,67 +143,24 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
                                     )),
                                 })],
                             }))
-                            default: return _pa.au($[0])
+                            default: return _p.au($[0])
                         }
                     })]),
-                    'expected': _pa.deprecated_cc($['expected'], ($) => ['list', $.map(($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
-                        switch ($[0]) {
-                            case '!': return _pa.ss($, ($) => ({
-                                'state': "!",
-                                'value': ['nothing', null],
-                            }))
-                            case '#': return _pa.ss($, ($) => ({
-                                'state': "#",
-                                'value': ['nothing', null],
-                            }))
-                            case ')': return _pa.ss($, ($) => ({
-                                'state': ")",
-                                'value': ['nothing', null],
-                            }))
-                            case ',': return _pa.ss($, ($) => ({
-                                'state': ",",
-                                'value': ['nothing', null],
-                            }))
-                            case ':': return _pa.ss($, ($) => ({
-                                'state': ":",
-                                'value': ['nothing', null],
-                            }))
-                            case '>': return _pa.ss($, ($) => ({
-                                'state': ">",
-                                'value': ['nothing', null],
-                            }))
-                            case '@': return _pa.ss($, ($) => ({
-                                'state': "@",
-                                'value': ['nothing', null],
-                            }))
-                            case ']': return _pa.ss($, ($) => ({
-                                'state': "]",
-                                'value': ['nothing', null],
-                            }))
-                            case 'a string': return _pa.ss($, ($) => ({
-                                'state': "a string",
-                                'value': ['nothing', null],
-                            }))
-                            case 'a value': return _pa.ss($, ($) => ({
-                                'state': "a value",
-                                'value': ['nothing', null],
-                            }))
-                            case '}': return _pa.ss($, ($) => ({
-                                'state': "}",
-                                'value': ['nothing', null],
-                            }))
-                            default: return _pa.au($[0])
-                        }
-                    })])]),
                 })],
             }))
-            default: return _pa.au($[0])
+            default: return _p.au($[0])
         }
     })]),
+    'range': _p.deprecated_cc($['range'], ($) => _i_r_token.Range(
+        $,
+        {
+            'value serializers': $p['value serializers'],
+        }
+    )),
 })]
-export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
-        case 'failure': return _pa.ss($, ($) => ({
+        case 'failure': return _p.ss($, ($) => ({
             'state': "failure",
             'value': Parse_Error(
                 $,
@@ -169,7 +169,7 @@ export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', 
                 }
             ),
         }))
-        case 'success': return _pa.ss($, ($) => ({
+        case 'success': return _p.ss($, ($) => ({
             'state': "success",
             'value': _i_r_parse_tree.Document(
                 $,
@@ -178,6 +178,6 @@ export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', 
                 }
             ),
         }))
-        default: return _pa.au($[0])
+        default: return _p.au($[0])
     }
 })]

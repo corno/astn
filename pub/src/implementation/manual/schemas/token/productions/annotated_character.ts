@@ -51,18 +51,15 @@ const temp_get_current_location = (iterator: Temp_Iterator<d_annotated_character
     if (next === null) {
         return {
             'absolute': iterator.old['get position'](),
-            'relative': {
-                'line': -1,
-                'column': -1,
-            }
+            'relative': _p.optional.not_set()
         }
     } else {
         return {
             'absolute': iterator.old['get position'](),
-            'relative': {
+            'relative': _p.optional.set({
                 'line': next[0].location.line,
                 'column': next[0].location.column,
-            }
+            })
         }
     }
 }

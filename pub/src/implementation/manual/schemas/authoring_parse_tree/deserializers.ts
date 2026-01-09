@@ -64,17 +64,11 @@ export const Document: signatures.Document = ($, abort, $p,) => _p.iterate( //fi
                         'range': {
                             'start': {
                                 'absolute': iter['get position'](),
-                                'relative': {
-                                    'line': -1,
-                                    'column': -1,
-                                }
+                                'relative': _p.optional.not_set()
                             },
                             'end': {
                                 'absolute': iter['get position'](),
-                                'relative': {
-                                    'line': -1,
-                                    'column': -1,
-                                }
+                                'relative': _p.optional.not_set()
                             },
                         }
                     }),

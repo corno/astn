@@ -19,7 +19,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
-                case 'string': return _p.ss($, ($) => ['string', $.value])
+                case 'text': return _p.ss($, ($) => ['string', $.value])
                 case 'indexed collection': return _p.ss($, ($) => _p.sg($, ($) => ['object', ['key value array', Key_Value_Pairs(_p.sg($, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => $.entries)
@@ -34,7 +34,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 })))])
-                case 'tagged value': return _p.ss($, ($) => _p.sg($.status, ($) => {
+                case 'state': return _p.ss($, ($) => _p.sg($.status, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([

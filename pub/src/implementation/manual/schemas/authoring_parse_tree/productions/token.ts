@@ -88,7 +88,7 @@ export const Value: signatures.Value = (iterator) => iterator.expect(
         'type': _p.sg(token.type, ($): d_target.Value._type => {
             switch ($[0]) {
                 case 'string': return _p.ss($, ($): d_target.Value._type => ['concrete',
-                    ['string', iterator.expect(
+                    ['text', iterator.expect(
                         [
                             ['a string', null]
                         ],
@@ -132,14 +132,14 @@ export const Value: signatures.Value = (iterator) => iterator.expect(
                 case '~': return _p.ss($, ($) => ['concrete', ['not set', {
                     '~': Structural_Token(iterator),
                 }]])
-                case '|': return _p.ss($, ($) => ['concrete', ['tagged value', {
+                case '|': return _p.ss($, ($) => ['concrete', ['state', {
                     '|': Structural_Token(iterator),
                     'status': iterator.expect(
                         [
                             ['a value', null],
                             ['#', null]
                         ],
-                        (token, abort) => _p.sg(token.type, ($): d_target.Concrete_Value.SG.tagged_value.status => {
+                        (token, abort) => _p.sg(token.type, ($): d_target.Concrete_Value.SG.state.status => {
                             switch ($[0]) {
                                 case 'string': return _p.ss($, ($) => ['set', {
                                     'state': String(iterator, { 'string': $ }),

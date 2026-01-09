@@ -48,23 +48,6 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => _p.list.fl
             ]),
             () => _p.list.nested_literal([])
         ),
-        $[','].transform(
-            ($) => _p.list.nested_literal([
-                $p['remove commas']
-                    ? [
-                        ['replace', {
-                            'range': {
-                                'start': $.range.start.relative,
-                                'end': $.range.end.relative
-                            },
-                            'text': ''
-                        }]
-                    ]
-                    : [],
-                Structural_Token($, $p)
-            ]),
-            () => _p.list.literal([])
-        ),
     ])
 )
 
@@ -75,7 +58,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
-                case 'string': return _p.ss($, ($) => _p.list.literal([]))
+                case 'text': return _p.ss($, ($) => _p.list.literal([]))
                 case 'indexed collection': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => _p.list.nested_literal([
@@ -106,7 +89,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 }))
-                case 'tagged value': return _p.ss($, ($) => _p.list.nested_literal<d_out.Text_Edits.L>([
+                case 'state': return _p.ss($, ($) => _p.list.nested_literal<d_out.Text_Edits.L>([
                     Structural_Token($['|'], $p),
                     _p.sg($.status, ($) => {
                         switch ($[0]) {

@@ -7,43 +7,43 @@ import * as _i_imports_token from "../../token/data_types/target"
 // **** TYPES
 
 export type _T_Parse_Error = {
-    readonly 'range': _i_imports_token._T_Range
     readonly 'type': _i_core._T_State_Group<null, 
         | readonly ['lexer', _i_core._T_State_Group<null, 
-            | readonly ['dangling slash', null]
-            | readonly ['invalid unicode escape sequence', null]
-            | readonly ['missing character after escape', null]
-            | readonly ['unexpected character', number]
             | readonly ['unexpected control character', number]
-            | readonly ['unexpected end of input', null]
+            | readonly ['missing character after escape', null]
             | readonly ['unexpected end of line in delimited string', null]
-            | readonly ['unknown escape character', null]
-            | readonly ['unterminated block comment', null]
+            | readonly ['unexpected character', number]
             | readonly ['unterminated string', null]
+            | readonly ['unterminated block comment', null]
             | readonly ['unterminated unicode escape sequence', null]
+            | readonly ['invalid unicode escape sequence', null]
+            | readonly ['unknown escape character', null]
+            | readonly ['unexpected end of input', null]
+            | readonly ['dangling slash', null]
         >]
         | readonly ['parser', {
+            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                | readonly ['a string', null]
+                | readonly ['a value', null]
+                | readonly ['!', null]
+                | readonly ['>', null]
+                | readonly ['}', null]
+                | readonly ['@', null]
+                | readonly [',', null]
+                | readonly [':', null]
+                | readonly [')', null]
+                | readonly [']', null]
+                | readonly ['#', null]
+            >>
             readonly 'cause': _i_core._T_State_Group<null, 
                 | readonly ['missing token', null]
                 | readonly ['unexpected token', {
                     readonly 'found': _i_imports_token._T_Token_Type
                 }]
             >
-            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                | readonly ['!', null]
-                | readonly ['#', null]
-                | readonly [')', null]
-                | readonly [',', null]
-                | readonly [':', null]
-                | readonly ['>', null]
-                | readonly ['@', null]
-                | readonly [']', null]
-                | readonly ['a string', null]
-                | readonly ['a value', null]
-                | readonly ['}', null]
-            >>
         }]
     >
+    readonly 'range': _i_imports_token._T_Range
 }
 
 export type _T_Parse_Result = _i_core._T_State_Group<null, 
@@ -61,10 +61,6 @@ export type Parse_Result = _T_Parse_Result
 
 export namespace _T_Parse_Error {
     
-    export namespace range {
-    }
-    export type range = _i_imports_token._T_Range
-    
     export namespace _type {
         
         export namespace SG {
@@ -72,46 +68,104 @@ export namespace _T_Parse_Error {
             export namespace lexer {
                 
                 export namespace SG {
-                    export type dangling_slash = null
-                    export type invalid_unicode_escape_sequence = null
-                    export type missing_character_after_escape = null
-                    export type unexpected_character = number
                     export type unexpected_control_character = number
-                    export type unexpected_end_of_input = null
+                    export type missing_character_after_escape = null
                     export type unexpected_end_of_line_in_delimited_string = null
-                    export type unknown_escape_character = null
-                    export type unterminated_block_comment = null
+                    export type unexpected_character = number
                     export type unterminated_string = null
+                    export type unterminated_block_comment = null
                     export type unterminated_unicode_escape_sequence = null
+                    export type invalid_unicode_escape_sequence = null
+                    export type unknown_escape_character = null
+                    export type unexpected_end_of_input = null
+                    export type dangling_slash = null
                 }
                 export type SG = 
-                    | readonly ['dangling slash', null]
-                    | readonly ['invalid unicode escape sequence', null]
-                    | readonly ['missing character after escape', null]
-                    | readonly ['unexpected character', number]
                     | readonly ['unexpected control character', number]
-                    | readonly ['unexpected end of input', null]
+                    | readonly ['missing character after escape', null]
                     | readonly ['unexpected end of line in delimited string', null]
-                    | readonly ['unknown escape character', null]
-                    | readonly ['unterminated block comment', null]
+                    | readonly ['unexpected character', number]
                     | readonly ['unterminated string', null]
+                    | readonly ['unterminated block comment', null]
                     | readonly ['unterminated unicode escape sequence', null]
+                    | readonly ['invalid unicode escape sequence', null]
+                    | readonly ['unknown escape character', null]
+                    | readonly ['unexpected end of input', null]
+                    | readonly ['dangling slash', null]
             }
             export type lexer = _i_core._T_State_Group<null, 
-                | readonly ['dangling slash', null]
-                | readonly ['invalid unicode escape sequence', null]
-                | readonly ['missing character after escape', null]
-                | readonly ['unexpected character', number]
                 | readonly ['unexpected control character', number]
-                | readonly ['unexpected end of input', null]
+                | readonly ['missing character after escape', null]
                 | readonly ['unexpected end of line in delimited string', null]
-                | readonly ['unknown escape character', null]
-                | readonly ['unterminated block comment', null]
+                | readonly ['unexpected character', number]
                 | readonly ['unterminated string', null]
+                | readonly ['unterminated block comment', null]
                 | readonly ['unterminated unicode escape sequence', null]
+                | readonly ['invalid unicode escape sequence', null]
+                | readonly ['unknown escape character', null]
+                | readonly ['unexpected end of input', null]
+                | readonly ['dangling slash', null]
             >
             
             export namespace parser {
+                
+                export namespace expected {
+                    
+                    export namespace L {
+                        
+                        export namespace SG {
+                            export type a_string = null
+                            export type a_value = null
+                            export type $ex_ = null
+                            export type $gt_ = null
+                            export type $cc_ = null
+                            export type $at_ = null
+                            export type $cm_ = null
+                            export type $cl_ = null
+                            export type $pc_ = null
+                            export type $bc_ = null
+                            export type $ha_ = null
+                        }
+                        export type SG = 
+                            | readonly ['a string', null]
+                            | readonly ['a value', null]
+                            | readonly ['!', null]
+                            | readonly ['>', null]
+                            | readonly ['}', null]
+                            | readonly ['@', null]
+                            | readonly [',', null]
+                            | readonly [':', null]
+                            | readonly [')', null]
+                            | readonly [']', null]
+                            | readonly ['#', null]
+                    }
+                    export type L = _i_core._T_State_Group<null, 
+                        | readonly ['a string', null]
+                        | readonly ['a value', null]
+                        | readonly ['!', null]
+                        | readonly ['>', null]
+                        | readonly ['}', null]
+                        | readonly ['@', null]
+                        | readonly [',', null]
+                        | readonly [':', null]
+                        | readonly [')', null]
+                        | readonly [']', null]
+                        | readonly ['#', null]
+                    >
+                }
+                export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 
                 export namespace cause {
                     
@@ -140,159 +194,105 @@ export namespace _T_Parse_Error {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                
-                export namespace expected {
-                    
-                    export namespace L {
-                        
-                        export namespace SG {
-                            export type $ex_ = null
-                            export type $ha_ = null
-                            export type $pc_ = null
-                            export type $cm_ = null
-                            export type $cl_ = null
-                            export type $gt_ = null
-                            export type $at_ = null
-                            export type $bc_ = null
-                            export type a_string = null
-                            export type a_value = null
-                            export type $cc_ = null
-                        }
-                        export type SG = 
-                            | readonly ['!', null]
-                            | readonly ['#', null]
-                            | readonly [')', null]
-                            | readonly [',', null]
-                            | readonly [':', null]
-                            | readonly ['>', null]
-                            | readonly ['@', null]
-                            | readonly [']', null]
-                            | readonly ['a string', null]
-                            | readonly ['a value', null]
-                            | readonly ['}', null]
-                    }
-                    export type L = _i_core._T_State_Group<null, 
-                        | readonly ['!', null]
-                        | readonly ['#', null]
-                        | readonly [')', null]
-                        | readonly [',', null]
-                        | readonly [':', null]
-                        | readonly ['>', null]
-                        | readonly ['@', null]
-                        | readonly [']', null]
-                        | readonly ['a string', null]
-                        | readonly ['a value', null]
-                        | readonly ['}', null]
-                    >
-                }
-                export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }
             export type parser = {
+                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 readonly 'cause': _i_core._T_State_Group<null, 
                     | readonly ['missing token', null]
                     | readonly ['unexpected token', {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }
         }
         export type SG = 
             | readonly ['lexer', _i_core._T_State_Group<null, 
-                | readonly ['dangling slash', null]
-                | readonly ['invalid unicode escape sequence', null]
-                | readonly ['missing character after escape', null]
-                | readonly ['unexpected character', number]
                 | readonly ['unexpected control character', number]
-                | readonly ['unexpected end of input', null]
+                | readonly ['missing character after escape', null]
                 | readonly ['unexpected end of line in delimited string', null]
-                | readonly ['unknown escape character', null]
-                | readonly ['unterminated block comment', null]
+                | readonly ['unexpected character', number]
                 | readonly ['unterminated string', null]
+                | readonly ['unterminated block comment', null]
                 | readonly ['unterminated unicode escape sequence', null]
+                | readonly ['invalid unicode escape sequence', null]
+                | readonly ['unknown escape character', null]
+                | readonly ['unexpected end of input', null]
+                | readonly ['dangling slash', null]
             >]
             | readonly ['parser', {
+                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 readonly 'cause': _i_core._T_State_Group<null, 
                     | readonly ['missing token', null]
                     | readonly ['unexpected token', {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }]
     }
     export type _type = _i_core._T_State_Group<null, 
         | readonly ['lexer', _i_core._T_State_Group<null, 
-            | readonly ['dangling slash', null]
-            | readonly ['invalid unicode escape sequence', null]
-            | readonly ['missing character after escape', null]
-            | readonly ['unexpected character', number]
             | readonly ['unexpected control character', number]
-            | readonly ['unexpected end of input', null]
+            | readonly ['missing character after escape', null]
             | readonly ['unexpected end of line in delimited string', null]
-            | readonly ['unknown escape character', null]
-            | readonly ['unterminated block comment', null]
+            | readonly ['unexpected character', number]
             | readonly ['unterminated string', null]
+            | readonly ['unterminated block comment', null]
             | readonly ['unterminated unicode escape sequence', null]
+            | readonly ['invalid unicode escape sequence', null]
+            | readonly ['unknown escape character', null]
+            | readonly ['unexpected end of input', null]
+            | readonly ['dangling slash', null]
         >]
         | readonly ['parser', {
+            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                | readonly ['a string', null]
+                | readonly ['a value', null]
+                | readonly ['!', null]
+                | readonly ['>', null]
+                | readonly ['}', null]
+                | readonly ['@', null]
+                | readonly [',', null]
+                | readonly [':', null]
+                | readonly [')', null]
+                | readonly [']', null]
+                | readonly ['#', null]
+            >>
             readonly 'cause': _i_core._T_State_Group<null, 
                 | readonly ['missing token', null]
                 | readonly ['unexpected token', {
                     readonly 'found': _i_imports_token._T_Token_Type
                 }]
             >
-            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                | readonly ['!', null]
-                | readonly ['#', null]
-                | readonly [')', null]
-                | readonly [',', null]
-                | readonly [':', null]
-                | readonly ['>', null]
-                | readonly ['@', null]
-                | readonly [']', null]
-                | readonly ['a string', null]
-                | readonly ['a value', null]
-                | readonly ['}', null]
-            >>
         }]
     >
+    
+    export namespace range {
+    }
+    export type range = _i_imports_token._T_Range
 }
 
 export namespace _T_Parse_Result {
@@ -316,10 +316,6 @@ export namespace _T_Parse_Result {
 
 export namespace Parse_Error {
     
-    export namespace range {
-    }
-    export type range = _i_imports_token._T_Range
-    
     export namespace _type {
         
         export namespace SG {
@@ -327,46 +323,104 @@ export namespace Parse_Error {
             export namespace lexer {
                 
                 export namespace SG {
-                    export type dangling_slash = null
-                    export type invalid_unicode_escape_sequence = null
-                    export type missing_character_after_escape = null
-                    export type unexpected_character = number
                     export type unexpected_control_character = number
-                    export type unexpected_end_of_input = null
+                    export type missing_character_after_escape = null
                     export type unexpected_end_of_line_in_delimited_string = null
-                    export type unknown_escape_character = null
-                    export type unterminated_block_comment = null
+                    export type unexpected_character = number
                     export type unterminated_string = null
+                    export type unterminated_block_comment = null
                     export type unterminated_unicode_escape_sequence = null
+                    export type invalid_unicode_escape_sequence = null
+                    export type unknown_escape_character = null
+                    export type unexpected_end_of_input = null
+                    export type dangling_slash = null
                 }
                 export type SG = 
-                    | readonly ['dangling slash', null]
-                    | readonly ['invalid unicode escape sequence', null]
-                    | readonly ['missing character after escape', null]
-                    | readonly ['unexpected character', number]
                     | readonly ['unexpected control character', number]
-                    | readonly ['unexpected end of input', null]
+                    | readonly ['missing character after escape', null]
                     | readonly ['unexpected end of line in delimited string', null]
-                    | readonly ['unknown escape character', null]
-                    | readonly ['unterminated block comment', null]
+                    | readonly ['unexpected character', number]
                     | readonly ['unterminated string', null]
+                    | readonly ['unterminated block comment', null]
                     | readonly ['unterminated unicode escape sequence', null]
+                    | readonly ['invalid unicode escape sequence', null]
+                    | readonly ['unknown escape character', null]
+                    | readonly ['unexpected end of input', null]
+                    | readonly ['dangling slash', null]
             }
             export type lexer = _i_core._T_State_Group<null, 
-                | readonly ['dangling slash', null]
-                | readonly ['invalid unicode escape sequence', null]
-                | readonly ['missing character after escape', null]
-                | readonly ['unexpected character', number]
                 | readonly ['unexpected control character', number]
-                | readonly ['unexpected end of input', null]
+                | readonly ['missing character after escape', null]
                 | readonly ['unexpected end of line in delimited string', null]
-                | readonly ['unknown escape character', null]
-                | readonly ['unterminated block comment', null]
+                | readonly ['unexpected character', number]
                 | readonly ['unterminated string', null]
+                | readonly ['unterminated block comment', null]
                 | readonly ['unterminated unicode escape sequence', null]
+                | readonly ['invalid unicode escape sequence', null]
+                | readonly ['unknown escape character', null]
+                | readonly ['unexpected end of input', null]
+                | readonly ['dangling slash', null]
             >
             
             export namespace parser {
+                
+                export namespace expected {
+                    
+                    export namespace L {
+                        
+                        export namespace SG {
+                            export type a_string = null
+                            export type a_value = null
+                            export type $ex_ = null
+                            export type $gt_ = null
+                            export type $cc_ = null
+                            export type $at_ = null
+                            export type $cm_ = null
+                            export type $cl_ = null
+                            export type $pc_ = null
+                            export type $bc_ = null
+                            export type $ha_ = null
+                        }
+                        export type SG = 
+                            | readonly ['a string', null]
+                            | readonly ['a value', null]
+                            | readonly ['!', null]
+                            | readonly ['>', null]
+                            | readonly ['}', null]
+                            | readonly ['@', null]
+                            | readonly [',', null]
+                            | readonly [':', null]
+                            | readonly [')', null]
+                            | readonly [']', null]
+                            | readonly ['#', null]
+                    }
+                    export type L = _i_core._T_State_Group<null, 
+                        | readonly ['a string', null]
+                        | readonly ['a value', null]
+                        | readonly ['!', null]
+                        | readonly ['>', null]
+                        | readonly ['}', null]
+                        | readonly ['@', null]
+                        | readonly [',', null]
+                        | readonly [':', null]
+                        | readonly [')', null]
+                        | readonly [']', null]
+                        | readonly ['#', null]
+                    >
+                }
+                export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 
                 export namespace cause {
                     
@@ -395,159 +449,105 @@ export namespace Parse_Error {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                
-                export namespace expected {
-                    
-                    export namespace L {
-                        
-                        export namespace SG {
-                            export type $ex_ = null
-                            export type $ha_ = null
-                            export type $pc_ = null
-                            export type $cm_ = null
-                            export type $cl_ = null
-                            export type $gt_ = null
-                            export type $at_ = null
-                            export type $bc_ = null
-                            export type a_string = null
-                            export type a_value = null
-                            export type $cc_ = null
-                        }
-                        export type SG = 
-                            | readonly ['!', null]
-                            | readonly ['#', null]
-                            | readonly [')', null]
-                            | readonly [',', null]
-                            | readonly [':', null]
-                            | readonly ['>', null]
-                            | readonly ['@', null]
-                            | readonly [']', null]
-                            | readonly ['a string', null]
-                            | readonly ['a value', null]
-                            | readonly ['}', null]
-                    }
-                    export type L = _i_core._T_State_Group<null, 
-                        | readonly ['!', null]
-                        | readonly ['#', null]
-                        | readonly [')', null]
-                        | readonly [',', null]
-                        | readonly [':', null]
-                        | readonly ['>', null]
-                        | readonly ['@', null]
-                        | readonly [']', null]
-                        | readonly ['a string', null]
-                        | readonly ['a value', null]
-                        | readonly ['}', null]
-                    >
-                }
-                export type expected = _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }
             export type parser = {
+                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 readonly 'cause': _i_core._T_State_Group<null, 
                     | readonly ['missing token', null]
                     | readonly ['unexpected token', {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }
         }
         export type SG = 
             | readonly ['lexer', _i_core._T_State_Group<null, 
-                | readonly ['dangling slash', null]
-                | readonly ['invalid unicode escape sequence', null]
-                | readonly ['missing character after escape', null]
-                | readonly ['unexpected character', number]
                 | readonly ['unexpected control character', number]
-                | readonly ['unexpected end of input', null]
+                | readonly ['missing character after escape', null]
                 | readonly ['unexpected end of line in delimited string', null]
-                | readonly ['unknown escape character', null]
-                | readonly ['unterminated block comment', null]
+                | readonly ['unexpected character', number]
                 | readonly ['unterminated string', null]
+                | readonly ['unterminated block comment', null]
                 | readonly ['unterminated unicode escape sequence', null]
+                | readonly ['invalid unicode escape sequence', null]
+                | readonly ['unknown escape character', null]
+                | readonly ['unexpected end of input', null]
+                | readonly ['dangling slash', null]
             >]
             | readonly ['parser', {
+                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                    | readonly ['a string', null]
+                    | readonly ['a value', null]
+                    | readonly ['!', null]
+                    | readonly ['>', null]
+                    | readonly ['}', null]
+                    | readonly ['@', null]
+                    | readonly [',', null]
+                    | readonly [':', null]
+                    | readonly [')', null]
+                    | readonly [']', null]
+                    | readonly ['#', null]
+                >>
                 readonly 'cause': _i_core._T_State_Group<null, 
                     | readonly ['missing token', null]
                     | readonly ['unexpected token', {
                         readonly 'found': _i_imports_token._T_Token_Type
                     }]
                 >
-                readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                    | readonly ['!', null]
-                    | readonly ['#', null]
-                    | readonly [')', null]
-                    | readonly [',', null]
-                    | readonly [':', null]
-                    | readonly ['>', null]
-                    | readonly ['@', null]
-                    | readonly [']', null]
-                    | readonly ['a string', null]
-                    | readonly ['a value', null]
-                    | readonly ['}', null]
-                >>
             }]
     }
     export type _type = _i_core._T_State_Group<null, 
         | readonly ['lexer', _i_core._T_State_Group<null, 
-            | readonly ['dangling slash', null]
-            | readonly ['invalid unicode escape sequence', null]
-            | readonly ['missing character after escape', null]
-            | readonly ['unexpected character', number]
             | readonly ['unexpected control character', number]
-            | readonly ['unexpected end of input', null]
+            | readonly ['missing character after escape', null]
             | readonly ['unexpected end of line in delimited string', null]
-            | readonly ['unknown escape character', null]
-            | readonly ['unterminated block comment', null]
+            | readonly ['unexpected character', number]
             | readonly ['unterminated string', null]
+            | readonly ['unterminated block comment', null]
             | readonly ['unterminated unicode escape sequence', null]
+            | readonly ['invalid unicode escape sequence', null]
+            | readonly ['unknown escape character', null]
+            | readonly ['unexpected end of input', null]
+            | readonly ['dangling slash', null]
         >]
         | readonly ['parser', {
+            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
+                | readonly ['a string', null]
+                | readonly ['a value', null]
+                | readonly ['!', null]
+                | readonly ['>', null]
+                | readonly ['}', null]
+                | readonly ['@', null]
+                | readonly [',', null]
+                | readonly [':', null]
+                | readonly [')', null]
+                | readonly [']', null]
+                | readonly ['#', null]
+            >>
             readonly 'cause': _i_core._T_State_Group<null, 
                 | readonly ['missing token', null]
                 | readonly ['unexpected token', {
                     readonly 'found': _i_imports_token._T_Token_Type
                 }]
             >
-            readonly 'expected': _i_core._T_List<null, _i_core._T_State_Group<null, 
-                | readonly ['!', null]
-                | readonly ['#', null]
-                | readonly [')', null]
-                | readonly [',', null]
-                | readonly [':', null]
-                | readonly ['>', null]
-                | readonly ['@', null]
-                | readonly [']', null]
-                | readonly ['a string', null]
-                | readonly ['a value', null]
-                | readonly ['}', null]
-            >>
         }]
     >
+    
+    export namespace range {
+    }
+    export type range = _i_imports_token._T_Range
 }
 
 export namespace Parse_Result {

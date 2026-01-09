@@ -1,34 +1,13 @@
-import * as _pa from 'pareto-core-transformer'
-import * as _pd from 'pareto-core-dev'
+import * as _p from 'pareto-core-transformer'
+import * as _pdev from 'pareto-core-dev'
 
-import * as _i_out from "../../../../../interface/generated/pareto/core/astn_target"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/sealed_target/marshall"
+import * as _i_out from "../../../../../interface/generated/pareto/core/astn_target"
 
 
-export const Document: _i_signatures._T_Document = ($, $p) => Value(
-    $,
-    {
-        'value serializers': $p['value serializers'],
-    }
-)
-export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+export const Value: _i_signatures._T_Value = ($, $p) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
-        case 'dictionary': return _pa.ss($, ($) => ({
-            'state': "dictionary",
-            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-                'key': _pa.deprecated_cc($['key'], ($) => ['text', ({
-                    'delimiter': ['quote', null],
-                    'value': $,
-                })]),
-                'value': _pa.deprecated_cc($['value'], ($) => Value(
-                    $,
-                    {
-                        'value serializers': $p['value serializers'],
-                    }
-                )),
-            })])],
-        }))
-        case 'list': return _pa.ss($, ($) => ({
+        case 'list': return _p.ss($, ($) => ({
             'state': "list",
             'value': ['list', $.map(($) => Value(
                 $,
@@ -37,19 +16,75 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated
                 }
             ))],
         }))
-        case 'nothing': return _pa.ss($, ($) => ({
+        case 'dictionary': return _p.ss($, ($) => ({
+            'state': "dictionary",
+            'value': ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+                'key': _p.deprecated_cc($['key'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'value': _p.deprecated_cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })])],
+        }))
+        case 'verbose group': return _p.ss($, ($) => ({
+            'state': "verbose group",
+            'value': ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+                'key': _p.deprecated_cc($['key'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'value': _p.deprecated_cc($['value'], ($) => Value(
+                    $,
+                    {
+                        'value serializers': $p['value serializers'],
+                    }
+                )),
+            })])],
+        }))
+        case 'text': return _p.ss($, ($) => ({
+            'state': "text",
+            'value': ['verbose group', _p.dictionary.literal({
+                'value': _p.deprecated_cc($['value'], ($) => ['text', ({
+                    'delimiter': ['quote', null],
+                    'value': $,
+                })]),
+                'delimiter': _p.deprecated_cc($['delimiter'], ($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+                    switch ($[0]) {
+                        case 'none': return _p.ss($, ($) => ({
+                            'state': "none",
+                            'value': ['nothing', null],
+                        }))
+                        case 'quote': return _p.ss($, ($) => ({
+                            'state': "quote",
+                            'value': ['nothing', null],
+                        }))
+                        case 'backtick': return _p.ss($, ($) => ({
+                            'state': "backtick",
+                            'value': ['nothing', null],
+                        }))
+                        default: return _p.au($[0])
+                    }
+                })]),
+            })],
+        }))
+        case 'nothing': return _p.ss($, ($) => ({
             'state': "nothing",
             'value': ['nothing', null],
         }))
-        case 'optional': return _pa.ss($, ($) => ({
+        case 'optional': return _p.ss($, ($) => ({
             'state': "optional",
-            'value': ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+            'value': ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                 switch ($[0]) {
-                    case 'not set': return _pa.ss($, ($) => ({
+                    case 'not set': return _p.ss($, ($) => ({
                         'state': "not set",
                         'value': ['nothing', null],
                     }))
-                    case 'set': return _pa.ss($, ($) => ({
+                    case 'set': return _p.ss($, ($) => ({
                         'state': "set",
                         'value': Value(
                             $,
@@ -58,18 +93,18 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated
                             }
                         ),
                     }))
-                    default: return _pa.au($[0])
+                    default: return _p.au($[0])
                 }
             })],
         }))
-        case 'state': return _pa.ss($, ($) => ({
+        case 'state': return _p.ss($, ($) => ({
             'state': "state",
-            'value': ['verbose group', _pa.dictionary.literal({
-                'state': _pa.deprecated_cc($['state'], ($) => ['text', ({
+            'value': ['verbose group', _p.dictionary.literal({
+                'state': _p.deprecated_cc($['state'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
                 })]),
-                'value': _pa.deprecated_cc($['value'], ($) => Value(
+                'value': _p.deprecated_cc($['value'], ($) => Value(
                     $,
                     {
                         'value serializers': $p['value serializers'],
@@ -77,47 +112,12 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated
                 )),
             })],
         }))
-        case 'text': return _pa.ss($, ($) => ({
-            'state': "text",
-            'value': ['verbose group', _pa.dictionary.literal({
-                'delimiter': _pa.deprecated_cc($['delimiter'], ($) => ['state', _pa.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
-                    switch ($[0]) {
-                        case 'backtick': return _pa.ss($, ($) => ({
-                            'state': "backtick",
-                            'value': ['nothing', null],
-                        }))
-                        case 'none': return _pa.ss($, ($) => ({
-                            'state': "none",
-                            'value': ['nothing', null],
-                        }))
-                        case 'quote': return _pa.ss($, ($) => ({
-                            'state': "quote",
-                            'value': ['nothing', null],
-                        }))
-                        default: return _pa.au($[0])
-                    }
-                })]),
-                'value': _pa.deprecated_cc($['value'], ($) => ['text', ({
-                    'delimiter': ['quote', null],
-                    'value': $,
-                })]),
-            })],
-        }))
-        case 'verbose group': return _pa.ss($, ($) => ({
-            'state': "verbose group",
-            'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
-                'key': _pa.deprecated_cc($['key'], ($) => ['text', ({
-                    'delimiter': ['quote', null],
-                    'value': $,
-                })]),
-                'value': _pa.deprecated_cc($['value'], ($) => Value(
-                    $,
-                    {
-                        'value serializers': $p['value serializers'],
-                    }
-                )),
-            })])],
-        }))
-        default: return _pa.au($[0])
+        default: return _p.au($[0])
     }
 })]
+export const Document: _i_signatures._T_Document = ($, $p) => Value(
+    $,
+    {
+        'value serializers': $p['value serializers'],
+    }
+)

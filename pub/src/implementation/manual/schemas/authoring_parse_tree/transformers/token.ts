@@ -6,7 +6,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
-                case 'string': return _p.ss($, ($) => $.range)
+                case 'text': return _p.ss($, ($) => $.range)
                 case 'indexed collection': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => ({
@@ -33,7 +33,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 }))
-                case 'tagged value': return _p.ss($, ($) => ({
+                case 'state': return _p.ss($, ($) => ({
                     'start': $['|'].range.start,
                     'end': _p.sg($.status, ($) => {
                         switch ($[0]) {

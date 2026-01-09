@@ -1,11 +1,15 @@
 import * as _pi from 'pareto-core-interface'
 
-import * as _i_in from "./data_types/source"
 import * as _i_out from "../../core/astn_target"
+import * as _i_in from "./data_types/source"
 
 // **** TYPES
 
 export type _T_Value_Serializers = {
+    readonly 'default number': (
+        $$_: number,
+        $$_p: null,
+    ) => string
     readonly 'boolean': (
         $$_: boolean,
         $$_p: null,
@@ -16,10 +20,6 @@ export type _T_Value_Serializers = {
             $$_p: null,
         ) => string
     }
-    readonly 'default number': (
-        $$_: number,
-        $$_p: null,
-    ) => string
 }
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
@@ -30,6 +30,18 @@ export type Value_Serializers = _T_Value_Serializers
 
 export namespace _T_Value_Serializers {
     
+    export namespace default_number {
+        export type CONTEXT = number
+        
+        export namespace PARAMS {
+        }
+        export type RESULT = string
+    }
+    export type default_number = (
+        $$_: number,
+        $$_p: null,
+    ) => string
+    
     export namespace _boolean {
         export type CONTEXT = boolean
         
@@ -62,24 +74,24 @@ export namespace _T_Value_Serializers {
             $$_p: null,
         ) => string
     }
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
 }
 
 // *** ALIASES FOR NESTED TYPES
 
 export namespace Value_Serializers {
     
+    export namespace default_number {
+        export type CONTEXT = number
+        
+        export namespace PARAMS {
+        }
+        export type RESULT = string
+    }
+    export type default_number = (
+        $$_: number,
+        $$_p: null,
+    ) => string
+    
     export namespace _boolean {
         export type CONTEXT = boolean
         
@@ -112,16 +124,4 @@ export namespace Value_Serializers {
             $$_p: null,
         ) => string
     }
-    
-    export namespace default_number {
-        export type CONTEXT = number
-        
-        export namespace PARAMS {
-        }
-        export type RESULT = string
-    }
-    export type default_number = (
-        $$_: number,
-        $$_p: null,
-    ) => string
 }

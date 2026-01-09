@@ -1,59 +1,87 @@
-import * as _pr from 'pareto-core-refiner'
-import * as _pd from 'pareto-core-dev'
+import * as _p from 'pareto-core-refiner'
+import * as _pdev from 'pareto-core-dev'
 
-import * as _i_generic from 'pareto-core-internals/dist/algorithm_types/refiner/resolve'
+import * as _i_generic from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
 import * as _i_out from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/source"
 import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/resolve"
 
 
-export const r_Dictionary: _i_signatures._T_Dictionary = ($, $p) => _pr.deprecated_block(() => {
+export const r_Type: _i_signatures._T_Type = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        const p_node: _i_out._T_Dictionary.node = _pr.deprecated_cc($['node'], ($) => r_Type_Node(
+    return _p.deprecated_block(() => {
+        const p_node: _i_out._T_Type.node = _p.deprecated_cc($['node'], ($) => r_Type_Node(
             $,
             {
                 'location 2 string': l2s,
                 'parameters': ({
-                    'lookups': ({
-                        'noncircular sibling types': params['lookups']['noncircular sibling types'],
-                        'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
-                    }),
                     'values': ({
                         'globals': params['values']['globals'],
                         'imports': params['values']['imports'],
                     }),
+                    'lookups': ({
+                        'noncircular sibling types': params['lookups']['noncircular sibling types'],
+                        'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
+                    }),
                 }),
             }
         ))
-        const p_ordered: _i_out._T_Dictionary.ordered = _pr.deprecated_cc($['ordered'], ($) => $)
         return ({
             'node': p_node,
-            'ordered': p_ordered,
         })
     })
 })
-export const r_Globals: _i_signatures._T_Globals = ($, $p) => _pr.deprecated_block(() => {
+export const r_Types: _i_signatures._T_Types = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        const p_text_types: _i_out._T_Globals.text_types = _pr.deprecated_cc($['text types'], ($) => _pr.deprecated_block(() => {
+    return _p.deprecated_block(() => {
+        return _i_generic.resolve_ordered_dictionary(
+            $,
+            {
+                'map': ($, $p) => _p.deprecated_block(() => {
+                    return _p.deprecated_cc($['value'], ($) => r_Type(
+                        $,
+                        {
+                            'location 2 string': l2s,
+                            'parameters': ({
+                                'values': ({
+                                    'globals': params['values']['globals'],
+                                    'imports': params['values']['imports'],
+                                }),
+                                'lookups': ({
+                                    'noncircular sibling types': $p['not circular dependent siblings'],
+                                    'possibly circular dependent sibling types': $p['possibly circular dependent siblings'],
+                                }),
+                            }),
+                        }
+                    ))
+                }),
+                'location 2 string': l2s,
+            }
+        )
+    })
+})
+export const r_Globals: _i_signatures._T_Globals = ($, $p) => _p.deprecated_block(() => {
+    const l2s = $p['location 2 string']
+    const params = $p['parameters']
+    return _p.deprecated_block(() => {
+        const p_text_types: _i_out._T_Globals.text_types = _p.deprecated_cc($['text types'], ($) => _p.deprecated_block(() => {
             return _i_generic.resolve_dictionary(
                 $,
                 {
-                    'location 2 string': l2s,
-                    'map': ($, $p) => _pr.deprecated_block(() => {
-                        return _pr.deprecated_cc($['value'], ($) => r_Text_Type(
+                    'map': ($, $p) => _p.deprecated_block(() => {
+                        return _p.deprecated_cc($['value'], ($) => r_Text_Type(
                             $,
                             {
                                 'location 2 string': l2s,
                                 'parameters': ({
-                                    'lookups': null,
                                     'values': null,
+                                    'lookups': null,
                                 }),
                             }
                         ))
                     }),
+                    'location 2 string': l2s,
                 }
             )
         }))
@@ -62,186 +90,19 @@ export const r_Globals: _i_signatures._T_Globals = ($, $p) => _pr.deprecated_blo
         })
     })
 })
-export const r_Group: _i_signatures._T_Group = ($, $p) => _pr.deprecated_block(() => {
+export const r_Text_Type: _i_signatures._T_Text_Type = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        return _i_generic.resolve_dictionary(
-            $,
-            {
-                'location 2 string': l2s,
-                'map': ($, $p) => _pr.deprecated_block(() => {
-                    return _pr.deprecated_cc($['value'], ($) => r_Type_Node(
-                        $,
-                        {
-                            'location 2 string': l2s,
-                            'parameters': ({
-                                'lookups': ({
-                                    'noncircular sibling types': params['lookups']['noncircular sibling types'],
-                                    'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
-                                }),
-                                'values': ({
-                                    'globals': params['values']['globals'],
-                                    'imports': params['values']['imports'],
-                                }),
-                            }),
-                        }
-                    ))
-                }),
-            }
-        )
-    })
-})
-export const r_Imports: _i_signatures._T_Imports = ($, $p) => _pr.deprecated_block(() => {
-    const l2s = $p['location 2 string']
-    const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        return _i_generic.resolve_dictionary(
-            $,
-            {
-                'location 2 string': l2s,
-                'map': ($, $p) => _pr.deprecated_block(() => {
-                    return _pr.deprecated_cc($['value'], ($) => _pr.deprecated_block(() => {
-                        const p_schema_set_child: _i_out._T_Imports.D.schema_set_child = _pr.deprecated_cc($['schema set child'], ($) => _i_generic.get_entry_from_stack(
-                            params['lookups']['sibling schemas'],
-                            {
-                                'location 2 string': l2s,
-                                'reference': $,
-                            }
-                        ))
-                        const p_schema: _i_out._T_Imports.D.schema = _pr.deprecated_cc($['schema'], ($) => _pd.implement_me("yy"))
-                        return ({
-                            'schema': p_schema,
-                            'schema set child': p_schema_set_child,
-                        })
-                    }))
-                }),
-            }
-        )
-    })
-})
-export const r_Schema: _i_signatures._T_Schema = ($, $p) => _pr.deprecated_block(() => {
-    const l2s = $p['location 2 string']
-    const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        const p_imports: _i_out._T_Schema.imports = _pr.deprecated_cc($['imports'], ($) => r_Imports(
-            $,
-            {
-                'location 2 string': l2s,
-                'parameters': ({
-                    'lookups': ({
-                        'sibling schemas': params['lookups']['sibling schemas'],
-                    }),
-                    'values': null,
-                }),
-            }
-        ))
-        const p_globals: _i_out._T_Schema.globals = _pr.deprecated_cc($['globals'], ($) => r_Globals(
-            $,
-            {
-                'location 2 string': l2s,
-                'parameters': ({
-                    'lookups': null,
-                    'values': null,
-                }),
-            }
-        ))
-        const p_types: _i_out._T_Schema.types = _pr.deprecated_cc($['types'], ($) => r_Types(
-            $,
-            {
-                'location 2 string': l2s,
-                'parameters': ({
-                    'lookups': null,
-                    'values': ({
-                        'globals': _pr.optional.set(p_globals),
-                        'imports': _pr.optional.set(p_imports),
-                    }),
-                }),
-            }
-        ))
-        return ({
-            'globals': p_globals,
-            'imports': p_imports,
-            'types': p_types,
-        })
-    })
-})
-export const r_Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => _pr.deprecated_block(() => {
-    const l2s = $p['location 2 string']
-    const params = $p['parameters']
-    return _pr.deprecated_cc($['state group'], ($): _i_out._T_Schema_Tree => {
-        switch ($[0]) {
-            case 'schema': return _pr.ss($, ($) => ['schema', _pr.deprecated_block(() => {
-                return r_Schema(
-                    $,
-                    {
-                        'location 2 string': l2s,
-                        'parameters': ({
-                            'lookups': ({
-                                'sibling schemas': params['lookups']['sibling schemas'],
-                            }),
-                            'values': null,
-                        }),
-                    }
-                )
-            })])
-            case 'set': return _pr.ss($, ($) => ['set', _pr.deprecated_block(() => {
-                return r_Schemas(
-                    $,
-                    {
-                        'location 2 string': l2s,
-                        'parameters': ({
-                            'lookups': ({
-                                'sibling schemas': params['lookups']['sibling schemas'],
-                            }),
-                            'values': null,
-                        }),
-                    }
-                )
-            })])
-            default: return _pr.au($[0])
-        }
-    })
-})
-export const r_Schemas: _i_signatures._T_Schemas = ($, $p) => _pr.deprecated_block(() => {
-    const l2s = $p['location 2 string']
-    const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        return _i_generic.resolve_ordered_dictionary(
-            $,
-            {
-                'location 2 string': l2s,
-                'map': ($, $p) => _pr.deprecated_block(() => {
-                    return _pr.deprecated_cc($['value'], ($) => r_Schema_Tree(
-                        $,
-                        {
-                            'location 2 string': l2s,
-                            'parameters': ({
-                                'lookups': ({
-                                    'sibling schemas': _pd.implement_me("yy"),
-                                }),
-                                'values': null,
-                            }),
-                        }
-                    ))
-                }),
-            }
-        )
-    })
-})
-export const r_Text_Type: _i_signatures._T_Text_Type = ($, $p) => _pr.deprecated_block(() => {
-    const l2s = $p['location 2 string']
-    const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        const p_type: _i_out._T_Text_Type._type = _pr.deprecated_cc($['type'], ($) => _pr.deprecated_cc($['state group'], ($): _i_out._T_Text_Type._type => {
+    return _p.deprecated_block(() => {
+        const p_type: _i_out._T_Text_Type._type = _p.deprecated_cc($['type'], ($) => _p.deprecated_cc($['state group'], ($): _i_out._T_Text_Type._type => {
             switch ($[0]) {
-                case 'multi line': return _pr.ss($, ($) => ['multi line', _pr.deprecated_block(() => {
+                case 'multi line': return _p.ss($, ($) => ['multi line', _p.deprecated_block(() => {
                     return null
                 })])
-                case 'single line': return _pr.ss($, ($) => ['single line', _pr.deprecated_block(() => {
+                case 'single line': return _p.ss($, ($) => ['single line', _p.deprecated_block(() => {
                     return null
                 })])
-                default: return _pr.au($[0])
+                default: return _p.au($[0])
             }
         }))
         return ({
@@ -249,63 +110,95 @@ export const r_Text_Type: _i_signatures._T_Text_Type = ($, $p) => _pr.deprecated
         })
     })
 })
-export const r_Type: _i_signatures._T_Type = ($, $p) => _pr.deprecated_block(() => {
+export const r_Group: _i_signatures._T_Group = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_block(() => {
-        const p_node: _i_out._T_Type.node = _pr.deprecated_cc($['node'], ($) => r_Type_Node(
+    return _p.deprecated_block(() => {
+        return _i_generic.resolve_dictionary(
+            $,
+            {
+                'map': ($, $p) => _p.deprecated_block(() => {
+                    return _p.deprecated_cc($['value'], ($) => r_Type_Node(
+                        $,
+                        {
+                            'location 2 string': l2s,
+                            'parameters': ({
+                                'values': ({
+                                    'globals': params['values']['globals'],
+                                    'imports': params['values']['imports'],
+                                }),
+                                'lookups': ({
+                                    'noncircular sibling types': params['lookups']['noncircular sibling types'],
+                                    'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
+                                }),
+                            }),
+                        }
+                    ))
+                }),
+                'location 2 string': l2s,
+            }
+        )
+    })
+})
+export const r_Dictionary: _i_signatures._T_Dictionary = ($, $p) => _p.deprecated_block(() => {
+    const l2s = $p['location 2 string']
+    const params = $p['parameters']
+    return _p.deprecated_block(() => {
+        const p_node: _i_out._T_Dictionary.node = _p.deprecated_cc($['node'], ($) => r_Type_Node(
             $,
             {
                 'location 2 string': l2s,
                 'parameters': ({
-                    'lookups': ({
-                        'noncircular sibling types': params['lookups']['noncircular sibling types'],
-                        'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
-                    }),
                     'values': ({
                         'globals': params['values']['globals'],
                         'imports': params['values']['imports'],
                     }),
+                    'lookups': ({
+                        'noncircular sibling types': params['lookups']['noncircular sibling types'],
+                        'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
+                    }),
                 }),
             }
         ))
+        const p_ordered: _i_out._T_Dictionary.ordered = _p.deprecated_cc($['ordered'], ($) => $)
         return ({
             'node': p_node,
+            'ordered': p_ordered,
         })
     })
 })
-export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pr.deprecated_block(() => {
+export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_cc($['state group'], ($): _i_out._T_Type_Node => {
+    return _p.deprecated_cc($['state group'], ($): _i_out._T_Type_Node => {
         switch ($[0]) {
-            case 'component': return _pr.ss($, ($) => ['component', _pr.deprecated_block(() => {
-                return _pr.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.component => {
+            case 'component': return _p.ss($, ($) => ['component', _p.deprecated_block(() => {
+                return _p.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.component => {
                     switch ($[0]) {
-                        case 'external': return _pr.ss($, ($) => ['external', _pr.deprecated_block(() => {
+                        case 'external': return _p.ss($, ($) => ['external', _p.deprecated_block(() => {
                             const c_import = params['values']['imports'].transform(
                                 ($) => $,
-                                () => _pr.fixme_abort('ABORT SELECTION')
+                                () => _p.fixme_abort('ABORT SELECTION')
                             )
-                            return _pr.deprecated_block(() => {
-                                const p_import: _i_out._T_Type_Node.SG.component.SG.external._import = _pr.deprecated_cc($['import'], ($) => _i_generic.get_entry(
+                            return _p.deprecated_block(() => {
+                                const p_import: _i_out._T_Type_Node.SG.component.SG.external._import = _p.deprecated_cc($['import'], ($) => _i_generic.get_entry(
                                     _i_generic.dictionary_to_lookup(
                                         c_import,
                                         null
                                     ),
                                     {
-                                        'location 2 string': l2s,
                                         'reference': $,
+                                        'location 2 string': l2s,
                                     }
                                 ))
-                                const p_type: _i_out._T_Type_Node.SG.component.SG.external._type = _pr.deprecated_cc($['type'], ($) => _i_generic.get_entry(
+                                const p_type: _i_out._T_Type_Node.SG.component.SG.external._type = _p.deprecated_cc($['type'], ($) => _i_generic.get_entry(
                                     _i_generic.dictionary_to_lookup(
                                         p_import['entry']['schema']['types']['dictionary'],
                                         null
                                     ),
                                     {
-                                        'location 2 string': l2s,
                                         'reference': $,
+                                        'location 2 string': l2s,
                                     }
                                 ))
                                 return ({
@@ -314,73 +207,73 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pr.deprecated
                                 })
                             })
                         })])
-                        case 'internal': return _pr.ss($, ($) => ['internal', _pr.deprecated_block(() => {
+                        case 'internal': return _p.ss($, ($) => ['internal', _p.deprecated_block(() => {
                             return _i_generic.get_entry(
                                 params['lookups']['noncircular sibling types'],
                                 {
-                                    'location 2 string': l2s,
                                     'reference': $,
+                                    'location 2 string': l2s,
                                 }
                             )
                         })])
-                        case 'internal cyclic': return _pr.ss($, ($) => ['internal cyclic', _pr.deprecated_block(() => {
+                        case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _p.deprecated_block(() => {
                             return _i_generic.get_possibly_circular_dependent_sibling_entry(
                                 params['lookups']['possibly circular dependent sibling types'],
                                 {
-                                    'location 2 string': l2s,
                                     'reference': $,
+                                    'location 2 string': l2s,
                                 }
                             )
                         })])
-                        default: return _pr.au($[0])
+                        default: return _p.au($[0])
                     }
                 })
             })])
-            case 'dictionary': return _pr.ss($, ($) => ['dictionary', _pr.deprecated_block(() => {
+            case 'dictionary': return _p.ss($, ($) => ['dictionary', _p.deprecated_block(() => {
                 return r_Dictionary(
                     $,
                     {
                         'location 2 string': l2s,
                         'parameters': ({
-                            'lookups': ({
-                                'noncircular sibling types': params['lookups']['noncircular sibling types'],
-                                'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
-                            }),
                             'values': ({
                                 'globals': params['values']['globals'],
                                 'imports': params['values']['imports'],
+                            }),
+                            'lookups': ({
+                                'noncircular sibling types': params['lookups']['noncircular sibling types'],
+                                'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
                             }),
                         }),
                     }
                 )
             })])
-            case 'group': return _pr.ss($, ($) => ['group', _pr.deprecated_block(() => {
+            case 'group': return _p.ss($, ($) => ['group', _p.deprecated_block(() => {
                 return r_Group(
                     $,
                     {
                         'location 2 string': l2s,
                         'parameters': ({
-                            'lookups': ({
-                                'noncircular sibling types': params['lookups']['noncircular sibling types'],
-                                'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
-                            }),
                             'values': ({
                                 'globals': params['values']['globals'],
                                 'imports': params['values']['imports'],
+                            }),
+                            'lookups': ({
+                                'noncircular sibling types': params['lookups']['noncircular sibling types'],
+                                'possibly circular dependent sibling types': params['lookups']['possibly circular dependent sibling types'],
                             }),
                         }),
                     }
                 )
             })])
-            case 'list': return _pr.ss($, ($) => ['list', _pr.deprecated_block(() => {
-                return _pr.deprecated_block(() => {
-                    const p_node: _i_out._T_Type_Node.SG.list.node = _pr.deprecated_cc($['node'], ($) => r_Type_Node(
+            case 'list': return _p.ss($, ($) => ['list', _p.deprecated_block(() => {
+                return _p.deprecated_block(() => {
+                    const p_node: _i_out._T_Type_Node.SG.list.node = _p.deprecated_cc($['node'], ($) => r_Type_Node(
                         $,
                         {
                             'location 2 string': l2s,
                             'parameters': ({
-                                'lookups': params['lookups'],
                                 'values': params['values'],
+                                'lookups': params['lookups'],
                             }),
                         }
                     ))
@@ -389,68 +282,50 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pr.deprecated
                     })
                 })
             })])
-            case 'nothing': return _pr.ss($, ($) => ['nothing', _pr.deprecated_block(() => {
+            case 'nothing': return _p.ss($, ($) => ['nothing', _p.deprecated_block(() => {
                 return null
             })])
-            case 'optional': return _pr.ss($, ($) => ['optional', _pr.deprecated_block(() => {
+            case 'optional': return _p.ss($, ($) => ['optional', _p.deprecated_block(() => {
                 return r_Type_Node(
                     $,
                     {
                         'location 2 string': l2s,
                         'parameters': ({
-                            'lookups': params['lookups'],
                             'values': params['values'],
+                            'lookups': params['lookups'],
                         }),
                     }
                 )
             })])
-            case 'reference': return _pr.ss($, ($) => ['reference', _pr.deprecated_block(() => {
-                return _pr.deprecated_block(() => {
-                    const p_type: _i_out._T_Type_Node.SG.reference._type = _pr.deprecated_cc($['type'], ($) => _pr.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.reference._type => {
-                        switch ($[0]) {
-                            case 'derived': return _pr.ss($, ($) => ['derived', _pr.deprecated_block(() => {
-                                return null
-                            })])
-                            case 'selected': return _pr.ss($, ($) => ['selected', _pr.deprecated_block(() => {
-                                return null
-                            })])
-                            default: return _pr.au($[0])
-                        }
-                    }))
-                    return ({
-                        'type': p_type,
-                    })
-                })
-            })])
-            case 'state group': return _pr.ss($, ($) => ['state group', _pr.deprecated_block(() => {
-                return _pr.deprecated_block(() => {
+            case 'state group': return _p.ss($, ($) => ['state group', _p.deprecated_block(() => {
+                return _p.deprecated_block(() => {
                     return _i_generic.resolve_dictionary(
                         $,
                         {
-                            'location 2 string': l2s,
-                            'map': ($, $p) => _pr.deprecated_block(() => {
-                                return _pr.deprecated_cc($['value'], ($) => r_Type_Node(
+                            'map': ($, $p) => _p.deprecated_block(() => {
+                                return _p.deprecated_cc($['value'], ($) => r_Type_Node(
                                     $,
                                     {
                                         'location 2 string': l2s,
                                         'parameters': ({
-                                            'lookups': params['lookups'],
                                             'values': params['values'],
+                                            'lookups': params['lookups'],
                                         }),
                                     }
                                 ))
                             }),
+                            'location 2 string': l2s,
                         }
                     )
                 })
             })])
-            case 'text': return _pr.ss($, ($) => ['text', _pr.deprecated_block(() => {
-                return _pr.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.text => {
+            case 'text': return _p.ss($, ($) => ['text', _p.deprecated_block(() => {
+                return _p.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.text => {
                     switch ($[0]) {
-                        case 'global': return _pr.ss($, ($) => ['global', _pr.deprecated_block(() => {
+                        case 'global': return _p.ss($, ($) => ['global', _p.deprecated_block(() => {
                             const c_globals = params['values']['globals'].transform(
                                 ($) => $,
-                                () => _pr.fixme_abort('ABORT SELECTION')
+                                () => _p.fixme_abort('ABORT SELECTION')
                             )
                             return _i_generic.get_entry(
                                 _i_generic.dictionary_to_lookup(
@@ -458,57 +333,164 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _pr.deprecated
                                     null
                                 ),
                                 {
-                                    'location 2 string': l2s,
                                     'reference': $,
+                                    'location 2 string': l2s,
                                 }
                             )
                         })])
-                        case 'local': return _pr.ss($, ($) => ['local', _pr.deprecated_block(() => {
+                        case 'local': return _p.ss($, ($) => ['local', _p.deprecated_block(() => {
                             return r_Text_Type(
                                 $,
                                 {
                                     'location 2 string': l2s,
                                     'parameters': ({
-                                        'lookups': null,
                                         'values': null,
+                                        'lookups': null,
                                     }),
                                 }
                             )
                         })])
-                        default: return _pr.au($[0])
+                        default: return _p.au($[0])
                     }
                 })
             })])
-            default: return _pr.au($[0])
+            default: return _p.au($[0])
         }
     })
 })
-export const r_Types: _i_signatures._T_Types = ($, $p) => _pr.deprecated_block(() => {
+export const r_Schemas: _i_signatures._T_Schemas = ($, $p) => _p.deprecated_block(() => {
     const l2s = $p['location 2 string']
     const params = $p['parameters']
-    return _pr.deprecated_block(() => {
+    return _p.deprecated_block(() => {
         return _i_generic.resolve_ordered_dictionary(
             $,
             {
-                'location 2 string': l2s,
-                'map': ($, $p) => _pr.deprecated_block(() => {
-                    return _pr.deprecated_cc($['value'], ($) => r_Type(
+                'map': ($, $p) => _p.deprecated_block(() => {
+                    return _p.deprecated_cc($['value'], ($) => r_Schema_Tree(
                         $,
                         {
                             'location 2 string': l2s,
                             'parameters': ({
+                                'values': null,
                                 'lookups': ({
-                                    'noncircular sibling types': $p['not circular dependent siblings'],
-                                    'possibly circular dependent sibling types': $p['possibly circular dependent siblings'],
-                                }),
-                                'values': ({
-                                    'globals': params['values']['globals'],
-                                    'imports': params['values']['imports'],
+                                    'sibling schemas': _pdev.implement_me("marker tbd"),
                                 }),
                             }),
                         }
                     ))
                 }),
+                'location 2 string': l2s,
+            }
+        )
+    })
+})
+export const r_Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => _p.deprecated_block(() => {
+    const l2s = $p['location 2 string']
+    const params = $p['parameters']
+    return _p.deprecated_cc($['state group'], ($): _i_out._T_Schema_Tree => {
+        switch ($[0]) {
+            case 'schema': return _p.ss($, ($) => ['schema', _p.deprecated_block(() => {
+                return r_Schema(
+                    $,
+                    {
+                        'location 2 string': l2s,
+                        'parameters': ({
+                            'values': null,
+                            'lookups': ({
+                                'sibling schemas': params['lookups']['sibling schemas'],
+                            }),
+                        }),
+                    }
+                )
+            })])
+            case 'set': return _p.ss($, ($) => ['set', _p.deprecated_block(() => {
+                return r_Schemas(
+                    $,
+                    {
+                        'location 2 string': l2s,
+                        'parameters': ({
+                            'values': null,
+                            'lookups': ({
+                                'sibling schemas': params['lookups']['sibling schemas'],
+                            }),
+                        }),
+                    }
+                )
+            })])
+            default: return _p.au($[0])
+        }
+    })
+})
+export const r_Schema: _i_signatures._T_Schema = ($, $p) => _p.deprecated_block(() => {
+    const l2s = $p['location 2 string']
+    const params = $p['parameters']
+    return _p.deprecated_block(() => {
+        const p_imports: _i_out._T_Schema.imports = _p.deprecated_cc($['imports'], ($) => r_Imports(
+            $,
+            {
+                'location 2 string': l2s,
+                'parameters': ({
+                    'values': null,
+                    'lookups': ({
+                        'sibling schemas': params['lookups']['sibling schemas'],
+                    }),
+                }),
+            }
+        ))
+        const p_globals: _i_out._T_Schema.globals = _p.deprecated_cc($['globals'], ($) => r_Globals(
+            $,
+            {
+                'location 2 string': l2s,
+                'parameters': ({
+                    'values': null,
+                    'lookups': null,
+                }),
+            }
+        ))
+        const p_types: _i_out._T_Schema.types = _p.deprecated_cc($['types'], ($) => r_Types(
+            $,
+            {
+                'location 2 string': l2s,
+                'parameters': ({
+                    'values': ({
+                        'globals': _p.optional.set(p_globals),
+                        'imports': _p.optional.set(p_imports),
+                    }),
+                    'lookups': null,
+                }),
+            }
+        ))
+        return ({
+            'imports': p_imports,
+            'globals': p_globals,
+            'types': p_types,
+        })
+    })
+})
+export const r_Imports: _i_signatures._T_Imports = ($, $p) => _p.deprecated_block(() => {
+    const l2s = $p['location 2 string']
+    const params = $p['parameters']
+    return _p.deprecated_block(() => {
+        return _i_generic.resolve_dictionary(
+            $,
+            {
+                'map': ($, $p) => _p.deprecated_block(() => {
+                    return _p.deprecated_cc($['value'], ($) => _p.deprecated_block(() => {
+                        const p_schema_set_child: _i_out._T_Imports.D.schema_set_child = _p.deprecated_cc($['schema set child'], ($) => _i_generic.get_entry_from_stack(
+                            params['lookups']['sibling schemas'],
+                            {
+                                'reference': $,
+                                'location 2 string': l2s,
+                            }
+                        ))
+                        const p_schema: _i_out._T_Imports.D.schema = _p.deprecated_cc($['schema'], ($) => _pdev.implement_me("marker tbd"))
+                        return ({
+                            'schema set child': p_schema_set_child,
+                            'schema': p_schema,
+                        })
+                    }))
+                }),
+                'location 2 string': l2s,
             }
         )
     })

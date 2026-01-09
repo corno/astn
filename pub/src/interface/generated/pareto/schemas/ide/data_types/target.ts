@@ -5,17 +5,12 @@ import * as _i_imports_token from "../../token/data_types/target"
 
 // **** TYPES
 
-export type _T_Key_Value_Pairs_To_Be_Sorted = _i_core._T_Dictionary<null, string>
-
 export type _T_Relative_Range = {
-    readonly 'end': _i_imports_token._T_Relative_Location
     readonly 'start': _i_imports_token._T_Relative_Location
+    readonly 'end': _i_imports_token._T_Relative_Location
 }
 
 export type _T_Text_Edits = _i_core._T_List<null, _i_core._T_State_Group<null, 
-    | readonly ['delete', {
-        readonly 'range': _T_Relative_Range
-    }]
     | readonly ['insert', {
         readonly 'location': _i_imports_token._T_Relative_Location
         readonly 'text': string
@@ -24,31 +19,32 @@ export type _T_Text_Edits = _i_core._T_List<null, _i_core._T_State_Group<null,
         readonly 'range': _T_Relative_Range
         readonly 'text': string
     }]
+    | readonly ['delete', {
+        readonly 'range': _T_Relative_Range
+    }]
 >>
 
-// **** FRIENDLY NAMES FOR THE GLOBAL TYPES
+export type _T_Key_Value_Pairs_To_Be_Sorted = _i_core._T_Dictionary<null, string>
 
-export type Key_Value_Pairs_To_Be_Sorted = _T_Key_Value_Pairs_To_Be_Sorted
+// **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
 export type Relative_Range = _T_Relative_Range
 
 export type Text_Edits = _T_Text_Edits
 
+export type Key_Value_Pairs_To_Be_Sorted = _T_Key_Value_Pairs_To_Be_Sorted
+
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
-export namespace _T_Key_Value_Pairs_To_Be_Sorted {
-    export type D = string
-}
-
 export namespace _T_Relative_Range {
-    
-    export namespace end {
-    }
-    export type end = _i_imports_token._T_Relative_Location
     
     export namespace start {
     }
     export type start = _i_imports_token._T_Relative_Location
+    
+    export namespace end {
+    }
+    export type end = _i_imports_token._T_Relative_Location
 }
 
 export namespace _T_Text_Edits {
@@ -57,16 +53,6 @@ export namespace _T_Text_Edits {
         
         export namespace SG {
             
-            export namespace _delete {
-                
-                export namespace range {
-                }
-                export type range = _T_Relative_Range
-            }
-            export type _delete = {
-                readonly 'range': _T_Relative_Range
-            }
-            
             export namespace insert {
                 
                 export namespace location {
@@ -90,11 +76,18 @@ export namespace _T_Text_Edits {
                 readonly 'range': _T_Relative_Range
                 readonly 'text': string
             }
+            
+            export namespace _delete {
+                
+                export namespace range {
+                }
+                export type range = _T_Relative_Range
+            }
+            export type _delete = {
+                readonly 'range': _T_Relative_Range
+            }
         }
         export type SG = 
-            | readonly ['delete', {
-                readonly 'range': _T_Relative_Range
-            }]
             | readonly ['insert', {
                 readonly 'location': _i_imports_token._T_Relative_Location
                 readonly 'text': string
@@ -103,11 +96,11 @@ export namespace _T_Text_Edits {
                 readonly 'range': _T_Relative_Range
                 readonly 'text': string
             }]
+            | readonly ['delete', {
+                readonly 'range': _T_Relative_Range
+            }]
     }
     export type L = _i_core._T_State_Group<null, 
-        | readonly ['delete', {
-            readonly 'range': _T_Relative_Range
-        }]
         | readonly ['insert', {
             readonly 'location': _i_imports_token._T_Relative_Location
             readonly 'text': string
@@ -116,24 +109,27 @@ export namespace _T_Text_Edits {
             readonly 'range': _T_Relative_Range
             readonly 'text': string
         }]
+        | readonly ['delete', {
+            readonly 'range': _T_Relative_Range
+        }]
     >
+}
+
+export namespace _T_Key_Value_Pairs_To_Be_Sorted {
+    export type D = string
 }
 
 // *** ALIASES FOR NESTED TYPES
 
-export namespace Key_Value_Pairs_To_Be_Sorted {
-    export type D = string
-}
-
 export namespace Relative_Range {
-    
-    export namespace end {
-    }
-    export type end = _i_imports_token._T_Relative_Location
     
     export namespace start {
     }
     export type start = _i_imports_token._T_Relative_Location
+    
+    export namespace end {
+    }
+    export type end = _i_imports_token._T_Relative_Location
 }
 
 export namespace Text_Edits {
@@ -142,16 +138,6 @@ export namespace Text_Edits {
         
         export namespace SG {
             
-            export namespace _delete {
-                
-                export namespace range {
-                }
-                export type range = _T_Relative_Range
-            }
-            export type _delete = {
-                readonly 'range': _T_Relative_Range
-            }
-            
             export namespace insert {
                 
                 export namespace location {
@@ -175,11 +161,18 @@ export namespace Text_Edits {
                 readonly 'range': _T_Relative_Range
                 readonly 'text': string
             }
+            
+            export namespace _delete {
+                
+                export namespace range {
+                }
+                export type range = _T_Relative_Range
+            }
+            export type _delete = {
+                readonly 'range': _T_Relative_Range
+            }
         }
         export type SG = 
-            | readonly ['delete', {
-                readonly 'range': _T_Relative_Range
-            }]
             | readonly ['insert', {
                 readonly 'location': _i_imports_token._T_Relative_Location
                 readonly 'text': string
@@ -188,11 +181,11 @@ export namespace Text_Edits {
                 readonly 'range': _T_Relative_Range
                 readonly 'text': string
             }]
+            | readonly ['delete', {
+                readonly 'range': _T_Relative_Range
+            }]
     }
     export type L = _i_core._T_State_Group<null, 
-        | readonly ['delete', {
-            readonly 'range': _T_Relative_Range
-        }]
         | readonly ['insert', {
             readonly 'location': _i_imports_token._T_Relative_Location
             readonly 'text': string
@@ -201,5 +194,12 @@ export namespace Text_Edits {
             readonly 'range': _T_Relative_Range
             readonly 'text': string
         }]
+        | readonly ['delete', {
+            readonly 'range': _T_Relative_Range
+        }]
     >
+}
+
+export namespace Key_Value_Pairs_To_Be_Sorted {
+    export type D = string
 }

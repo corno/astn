@@ -75,5 +75,11 @@ export const Error: signatures.Parse_Error = ($, $p) => {
             default: return _p.au($[0])
         }
     })
-    return sh.b.snippet(`failed to parse ASTN, ${Parse_Error_Type($.type)} @ ${$.range.start.relative.line + extra}:${$.range.start.relative.column + extra}`)
+    return sh.b.sub([
+         sh.b.snippet(`failed to parse ASTN, ${Parse_Error_Type($.type)}`),
+         $.range.start.relative.transform(
+            ($) => sh.b.snippet(`@ ${$.line + extra}:${$.column + extra}`),
+            () => sh.b.nothing()
+        ),  
+    ])
 }

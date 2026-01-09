@@ -1,36 +1,45 @@
-import * as _pa from 'pareto-core-refiner'
-import * as _pd from 'pareto-core-dev'
+import * as _p from 'pareto-core-refiner'
+import * as _pdev from 'pareto-core-dev'
 
 import * as _i_generic from "../../generic/unmarshall"
+import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/astn_schema/unmarshall"
 import * as _i_in from "../../../../../interface/generated/pareto/core/astn_source"
 import * as _i_out from "../../../../../interface/generated/pareto/schemas/astn_schema/data_types/target"
-import * as _i_signatures from "../../../../../interface/generated/pareto/schemas/astn_schema/unmarshall"
 
 
-export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => _i_generic.process_group(
+export const Schemas: _i_signatures._T_Schemas = ($, $p) => _i_generic.process_unresolved_dictionary(
+    $,
+    {
+        'value': ($) => Schema_Tree(
+            $,
+            {
+                'value deserializers': $p['value deserializers'],
+            }
+        ),
+    }
+)
+export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
-            'node': _pa.deprecated_cc(_i_generic.get_entry(
+            'type': _p.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
-                    'key': "node",
+                    'key': "type",
                 }
-            ), ($) => Type_Node(
+            ), ($) => _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'value deserializers': $p['value deserializers'],
-                }
-            )),
-            'ordered': _pa.deprecated_cc(_i_generic.get_entry(
-                $,
-                {
-                    'key': "ordered",
-                }
-            ), ($) => _i_generic.process_boolean(
-                $,
-                {
-                    'deserializer': $p['value deserializers']['boolean'],
+                    'states': _p.dictionary.literal({
+                        'multi line': ($): _i_out._T_Text_Type._type.SG<_i_in._T_Range> => ['multi line', _i_generic.process_nothing(
+                            $,
+                            null
+                        )],
+                        'single line': ($): _i_out._T_Text_Type._type.SG<_i_in._T_Range> => ['single line', _i_generic.process_nothing(
+                            $,
+                            null
+                        )],
+                    }),
                 }
             )),
         }),
@@ -40,7 +49,7 @@ export const Globals: _i_signatures._T_Globals = ($, $p) => _i_generic.process_g
     $,
     {
         'properties': ($) => ({
-            'text types': _pa.deprecated_cc(_i_generic.get_entry(
+            'text types': _p.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "text types",
@@ -59,43 +68,31 @@ export const Globals: _i_signatures._T_Globals = ($, $p) => _i_generic.process_g
         }),
     }
 )
-export const Group: _i_signatures._T_Group = ($, $p) => _i_generic.process_unresolved_dictionary(
+export const Type: _i_signatures._T_Type = ($, $p) => _i_generic.process_group(
     $,
     {
-        'value': ($) => Type_Node(
+        'properties': ($) => ({
+            'node': _p.deprecated_cc(_i_generic.get_entry(
+                $,
+                {
+                    'key': "node",
+                }
+            ), ($) => Type_Node(
+                $,
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
+            )),
+        }),
+    }
+)
+export const Types: _i_signatures._T_Types = ($, $p) => _i_generic.process_unresolved_dictionary(
+    $,
+    {
+        'value': ($) => Type(
             $,
             {
                 'value deserializers': $p['value deserializers'],
-            }
-        ),
-    }
-)
-export const Imports: _i_signatures._T_Imports = ($, $p) => _i_generic.process_unresolved_dictionary(
-    $,
-    {
-        'value': ($) => _i_generic.process_group(
-            $,
-            {
-                'properties': ($) => ({
-                    'schema': _pa.deprecated_cc(_i_generic.get_entry(
-                        $,
-                        {
-                            'key': "schema",
-                        }
-                    ), ($) => _i_generic.process_derived_reference(
-                        $,
-                        null
-                    )),
-                    'schema set child': _pa.deprecated_cc(_i_generic.get_entry(
-                        $,
-                        {
-                            'key': "schema set child",
-                        }
-                    ), ($) => _i_generic.process_stack_reference(
-                        $,
-                        null
-                    )),
-                }),
             }
         ),
     }
@@ -104,18 +101,7 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
     $,
     {
         'properties': ($) => ({
-            'globals': _pa.deprecated_cc(_i_generic.get_entry(
-                $,
-                {
-                    'key': "globals",
-                }
-            ), ($) => Globals(
-                $,
-                {
-                    'value deserializers': $p['value deserializers'],
-                }
-            )),
-            'imports': _pa.deprecated_cc(_i_generic.get_entry(
+            'imports': _p.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "imports",
@@ -126,7 +112,18 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
                     'value deserializers': $p['value deserializers'],
                 }
             )),
-            'types': _pa.deprecated_cc(_i_generic.get_entry(
+            'globals': _p.deprecated_cc(_i_generic.get_entry(
+                $,
+                {
+                    'key': "globals",
+                }
+            ), ($) => Globals(
+                $,
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
+            )),
+            'types': _p.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "types",
@@ -143,65 +140,57 @@ export const Schema: _i_signatures._T_Schema = ($, $p) => _i_generic.process_gro
 export const Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => _i_generic.process_unresolved_state_group(
     $,
     {
-        'states': _pa.dictionary.literal({
-            'schema': ($): _i_out._T_Schema_Tree.SG<_i_in._T_Range> => ['schema', Schema(
-                $,
-                {
-                    'value deserializers': $p['value deserializers'],
-                }
-            )],
+        'states': _p.dictionary.literal({
             'set': ($): _i_out._T_Schema_Tree.SG<_i_in._T_Range> => ['set', Schemas(
                 $,
                 {
                     'value deserializers': $p['value deserializers'],
                 }
             )],
+            'schema': ($): _i_out._T_Schema_Tree.SG<_i_in._T_Range> => ['schema', Schema(
+                $,
+                {
+                    'value deserializers': $p['value deserializers'],
+                }
+            )],
         }),
     }
 )
-export const Schemas: _i_signatures._T_Schemas = ($, $p) => _i_generic.process_unresolved_dictionary(
+export const Imports: _i_signatures._T_Imports = ($, $p) => _i_generic.process_unresolved_dictionary(
     $,
     {
-        'value': ($) => Schema_Tree(
+        'value': ($) => _i_generic.process_group(
             $,
             {
-                'value deserializers': $p['value deserializers'],
+                'properties': ($) => ({
+                    'schema set child': _p.deprecated_cc(_i_generic.get_entry(
+                        $,
+                        {
+                            'key': "schema set child",
+                        }
+                    ), ($) => _i_generic.process_stack_reference(
+                        $,
+                        null
+                    )),
+                    'schema': _p.deprecated_cc(_i_generic.get_entry(
+                        $,
+                        {
+                            'key': "schema",
+                        }
+                    ), ($) => _i_generic.process_derived_reference(
+                        $,
+                        null
+                    )),
+                }),
             }
         ),
     }
 )
-export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => _i_generic.process_group(
+export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => _i_generic.process_group(
     $,
     {
         'properties': ($) => ({
-            'type': _pa.deprecated_cc(_i_generic.get_entry(
-                $,
-                {
-                    'key': "type",
-                }
-            ), ($) => _i_generic.process_unresolved_state_group(
-                $,
-                {
-                    'states': _pa.dictionary.literal({
-                        'multi line': ($): _i_out._T_Text_Type._type.SG<_i_in._T_Range> => ['multi line', _i_generic.process_nothing(
-                            $,
-                            null
-                        )],
-                        'single line': ($): _i_out._T_Text_Type._type.SG<_i_in._T_Range> => ['single line', _i_generic.process_nothing(
-                            $,
-                            null
-                        )],
-                    }),
-                }
-            )),
-        }),
-    }
-)
-export const Type: _i_signatures._T_Type = ($, $p) => _i_generic.process_group(
-    $,
-    {
-        'properties': ($) => ({
-            'node': _pa.deprecated_cc(_i_generic.get_entry(
+            'node': _p.deprecated_cc(_i_generic.get_entry(
                 $,
                 {
                     'key': "node",
@@ -212,22 +201,44 @@ export const Type: _i_signatures._T_Type = ($, $p) => _i_generic.process_group(
                     'value deserializers': $p['value deserializers'],
                 }
             )),
+            'ordered': _p.deprecated_cc(_i_generic.get_entry(
+                $,
+                {
+                    'key': "ordered",
+                }
+            ), ($) => _i_generic.process_boolean(
+                $,
+                {
+                    'deserializer': $p['value deserializers']['boolean'],
+                }
+            )),
         }),
+    }
+)
+export const Group: _i_signatures._T_Group = ($, $p) => _i_generic.process_unresolved_dictionary(
+    $,
+    {
+        'value': ($) => Type_Node(
+            $,
+            {
+                'value deserializers': $p['value deserializers'],
+            }
+        ),
     }
 )
 export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.process_unresolved_state_group(
     $,
     {
-        'states': _pa.dictionary.literal({
+        'states': _p.dictionary.literal({
             'component': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['component', _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'states': _pa.dictionary.literal({
+                    'states': _p.dictionary.literal({
                         'external': ($): _i_out._T_Type_Node.SG.component.SG<_i_in._T_Range> => ['external', _i_generic.process_group(
                             $,
                             {
                                 'properties': ($) => ({
-                                    'import': _pa.deprecated_cc(_i_generic.get_entry(
+                                    'import': _p.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "import",
@@ -236,7 +247,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                                         $,
                                         null
                                     )),
-                                    'type': _pa.deprecated_cc(_i_generic.get_entry(
+                                    'type': _p.deprecated_cc(_i_generic.get_entry(
                                         $,
                                         {
                                             'key': "type",
@@ -275,7 +286,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                 $,
                 {
                     'properties': ($) => ({
-                        'node': _pa.deprecated_cc(_i_generic.get_entry(
+                        'node': _p.deprecated_cc(_i_generic.get_entry(
                             $,
                             {
                                 'key': "node",
@@ -299,33 +310,6 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                     'value deserializers': $p['value deserializers'],
                 }
             )],
-            'reference': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['reference', _i_generic.process_group(
-                $,
-                {
-                    'properties': ($) => ({
-                        'type': _pa.deprecated_cc(_i_generic.get_entry(
-                            $,
-                            {
-                                'key': "type",
-                            }
-                        ), ($) => _i_generic.process_unresolved_state_group(
-                            $,
-                            {
-                                'states': _pa.dictionary.literal({
-                                    'derived': ($): _i_out._T_Type_Node.SG.reference._type.SG<_i_in._T_Range> => ['derived', _i_generic.process_nothing(
-                                        $,
-                                        null
-                                    )],
-                                    'selected': ($): _i_out._T_Type_Node.SG.reference._type.SG<_i_in._T_Range> => ['selected', _i_generic.process_nothing(
-                                        $,
-                                        null
-                                    )],
-                                }),
-                            }
-                        )),
-                    }),
-                }
-            )],
             'state group': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['state group', _i_generic.process_unresolved_dictionary(
                 $,
                 {
@@ -340,7 +324,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
             'text': ($): _i_out._T_Type_Node.SG<_i_in._T_Range> => ['text', _i_generic.process_unresolved_state_group(
                 $,
                 {
-                    'states': _pa.dictionary.literal({
+                    'states': _p.dictionary.literal({
                         'global': ($): _i_out._T_Type_Node.SG.text.SG<_i_in._T_Range> => ['global', _i_generic.process_selected_reference(
                             $,
                             null
@@ -355,16 +339,5 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => _i_generic.proce
                 }
             )],
         }),
-    }
-)
-export const Types: _i_signatures._T_Types = ($, $p) => _i_generic.process_unresolved_dictionary(
-    $,
-    {
-        'value': ($) => Type(
-            $,
-            {
-                'value deserializers': $p['value deserializers'],
-            }
-        ),
     }
 )

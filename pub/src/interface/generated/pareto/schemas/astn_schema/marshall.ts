@@ -1,13 +1,20 @@
 import * as _pi from 'pareto-core-interface'
 
-import * as _i_in from "./data_types/source"
 import * as _i_out from "../../core/astn_target"
+import * as _i_in from "./data_types/source"
 import * as _i_vs from "./value_serializers"
 
 // **** TYPES
 
-export type _T_Dictionary = (
-    $$_: _i_in._T_Dictionary,
+export type _T_Schemas = (
+    $$_: _i_in._T_Schemas,
+    $$_p: {
+        readonly 'value serializers': _i_vs._T_Value_Serializers
+    },
+) => _i_out._T_Value
+
+export type _T_Text_Type = (
+    $$_: _i_in._T_Text_Type,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
@@ -20,15 +27,15 @@ export type _T_Globals = (
     },
 ) => _i_out._T_Value
 
-export type _T_Group = (
-    $$_: _i_in._T_Group,
+export type _T_Type = (
+    $$_: _i_in._T_Type,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_Imports = (
-    $$_: _i_in._T_Imports,
+export type _T_Types = (
+    $$_: _i_in._T_Types,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
@@ -48,22 +55,22 @@ export type _T_Schema_Tree = (
     },
 ) => _i_out._T_Value
 
-export type _T_Schemas = (
-    $$_: _i_in._T_Schemas,
+export type _T_Imports = (
+    $$_: _i_in._T_Imports,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_Text_Type = (
-    $$_: _i_in._T_Text_Type,
+export type _T_Dictionary = (
+    $$_: _i_in._T_Dictionary,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
 ) => _i_out._T_Value
 
-export type _T_Type = (
-    $$_: _i_in._T_Type,
+export type _T_Group = (
+    $$_: _i_in._T_Group,
     $$_p: {
         readonly 'value serializers': _i_vs._T_Value_Serializers
     },
@@ -76,44 +83,55 @@ export type _T_Type_Node = (
     },
 ) => _i_out._T_Value
 
-export type _T_Types = (
-    $$_: _i_in._T_Types,
-    $$_p: {
-        readonly 'value serializers': _i_vs._T_Value_Serializers
-    },
-) => _i_out._T_Value
-
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
-
-export type Dictionary = _T_Dictionary
-
-export type Globals = _T_Globals
-
-export type Group = _T_Group
-
-export type Imports = _T_Imports
-
-export type Schema = _T_Schema
-
-export type Schema_Tree = _T_Schema_Tree
 
 export type Schemas = _T_Schemas
 
 export type Text_Type = _T_Text_Type
 
-export type Type = _T_Type
+export type Globals = _T_Globals
 
-export type Type_Node = _T_Type_Node
+export type Type = _T_Type
 
 export type Types = _T_Types
 
+export type Schema = _T_Schema
+
+export type Schema_Tree = _T_Schema_Tree
+
+export type Imports = _T_Imports
+
+export type Dictionary = _T_Dictionary
+
+export type Group = _T_Group
+
+export type Type_Node = _T_Type_Node
+
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
-export namespace _T_Dictionary {
+export namespace _T_Schemas {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Dictionary
+    export type CONTEXT = _i_in._T_Schemas
+    
+    export namespace PARAMS {
+        
+        export namespace value_serializers {
+        }
+        export type value_serializers = _i_vs._T_Value_Serializers
+    }
+    
+    export namespace RESULT {
+    }
+    export type RESULT = _i_out._T_Value
+}
+
+export namespace _T_Text_Type {
+    
+    export namespace CONTEXT {
+    }
+    export type CONTEXT = _i_in._T_Text_Type
     
     export namespace PARAMS {
         
@@ -145,11 +163,11 @@ export namespace _T_Globals {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Group {
+export namespace _T_Type {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Group
+    export type CONTEXT = _i_in._T_Type
     
     export namespace PARAMS {
         
@@ -163,11 +181,11 @@ export namespace _T_Group {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Imports {
+export namespace _T_Types {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Imports
+    export type CONTEXT = _i_in._T_Types
     
     export namespace PARAMS {
         
@@ -217,11 +235,11 @@ export namespace _T_Schema_Tree {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Schemas {
+export namespace _T_Imports {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Schemas
+    export type CONTEXT = _i_in._T_Imports
     
     export namespace PARAMS {
         
@@ -235,11 +253,11 @@ export namespace _T_Schemas {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Text_Type {
+export namespace _T_Dictionary {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Text_Type
+    export type CONTEXT = _i_in._T_Dictionary
     
     export namespace PARAMS {
         
@@ -253,11 +271,11 @@ export namespace _T_Text_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Type {
+export namespace _T_Group {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Type
+    export type CONTEXT = _i_in._T_Group
     
     export namespace PARAMS {
         
@@ -289,11 +307,13 @@ export namespace _T_Type_Node {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace _T_Types {
+// *** ALIASES FOR NESTED TYPES
+
+export namespace Schemas {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Types
+    export type CONTEXT = _i_in._T_Schemas
     
     export namespace PARAMS {
         
@@ -307,13 +327,11 @@ export namespace _T_Types {
     export type RESULT = _i_out._T_Value
 }
 
-// *** ALIASES FOR NESTED TYPES
-
-export namespace Dictionary {
+export namespace Text_Type {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Dictionary
+    export type CONTEXT = _i_in._T_Text_Type
     
     export namespace PARAMS {
         
@@ -345,11 +363,11 @@ export namespace Globals {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace Group {
+export namespace Type {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Group
+    export type CONTEXT = _i_in._T_Type
     
     export namespace PARAMS {
         
@@ -363,11 +381,11 @@ export namespace Group {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace Imports {
+export namespace Types {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Imports
+    export type CONTEXT = _i_in._T_Types
     
     export namespace PARAMS {
         
@@ -417,11 +435,11 @@ export namespace Schema_Tree {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace Schemas {
+export namespace Imports {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Schemas
+    export type CONTEXT = _i_in._T_Imports
     
     export namespace PARAMS {
         
@@ -435,11 +453,11 @@ export namespace Schemas {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace Text_Type {
+export namespace Dictionary {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Text_Type
+    export type CONTEXT = _i_in._T_Dictionary
     
     export namespace PARAMS {
         
@@ -453,11 +471,11 @@ export namespace Text_Type {
     export type RESULT = _i_out._T_Value
 }
 
-export namespace Type {
+export namespace Group {
     
     export namespace CONTEXT {
     }
-    export type CONTEXT = _i_in._T_Type
+    export type CONTEXT = _i_in._T_Group
     
     export namespace PARAMS {
         
@@ -476,24 +494,6 @@ export namespace Type_Node {
     export namespace CONTEXT {
     }
     export type CONTEXT = _i_in._T_Type_Node
-    
-    export namespace PARAMS {
-        
-        export namespace value_serializers {
-        }
-        export type value_serializers = _i_vs._T_Value_Serializers
-    }
-    
-    export namespace RESULT {
-    }
-    export type RESULT = _i_out._T_Value
-}
-
-export namespace Types {
-    
-    export namespace CONTEXT {
-    }
-    export type CONTEXT = _i_in._T_Types
     
     export namespace PARAMS {
         

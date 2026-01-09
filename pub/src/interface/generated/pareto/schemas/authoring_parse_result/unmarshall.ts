@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core-interface'
 
-import * as _i_in from "../../core/astn_source"
 import * as _i_out from "./data_types/target"
+import * as _i_in from "../../core/astn_source"
 import * as _i_vd from "./value_deserializers"
 
 // **** TYPES
