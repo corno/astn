@@ -2,6 +2,7 @@ import * as _p from 'pareto-core-refiner'
 import * as _pi from 'pareto-core-interface'
 import * as _pdev from 'pareto-core-dev'
 import * as _p_temp_deserializer from 'pareto-core-deserializer'
+import * as _pi_new from '../../authoring_parse_tree/productions/new_interface_signatures'
 
 import * as d_out from "../../../../../interface/generated/pareto/schemas/token/data_types/target"
 
@@ -15,9 +16,16 @@ import { $$ as ds_hexadecimal } from "pareto-standard-operations/dist/implementa
 
 import * as sh from "../../../../../shorthands/parse_result"
 
+type Temp_Choice = null
 
-const temp_get_current_character_or_null = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => {
-    const next = iterator.look()
+type Temp_Iterator <Element> = {
+    'old': _pi.Iterator<Element>,
+    'new': _pi_new.Iterator<Element, Temp_Choice>,
+}
+
+
+const temp_get_current_character_or_null = (iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>): d_annotated_characters.Annotated_Character | null => {
+    const next = iterator.old.look()
     if (next === null) {
         return null
     } else {
@@ -38,11 +46,11 @@ export const is_control_character = ($: d_annotated_characters.Annotated_Charact
     && $.code !== WhitespaceChars.line_feed
     && $.code !== WhitespaceChars.carriage_return
 
-const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => {
-    const next = iterator.look()
+const temp_get_current_location = (iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>): d_out.Location => {
+    const next = iterator.old.look()
     if (next === null) {
         return {
-            'absolute': iterator['get position'](),
+            'absolute': iterator.old['get position'](),
             'relative': {
                 'line': -1,
                 'column': -1,
@@ -50,7 +58,7 @@ const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters
         }
     } else {
         return {
-            'absolute': iterator['get position'](),
+            'absolute': iterator.old['get position'](),
             'relative': {
                 'line': next[0].location.line,
                 'column': next[0].location.column,
@@ -61,7 +69,7 @@ const temp_get_current_location = (iterator: _pi.Iterator<d_annotated_characters
 
 
 export const Whitespace = (
-    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Whitespace => {
     const start_location = temp_get_current_location(iterator)
@@ -85,23 +93,23 @@ export const Whitespace = (
                     }
                     switch ($.code) {
                         case 0x09: // \t
-                            iterator.discard(() => null)
+                            iterator.old.discard(() => null)
                             $i['add character']($.code)
                             break
                         case 0x0A: // \n
-                            iterator.discard(() => null)
+                            iterator.old.discard(() => null)
                             $i['add character']($.code)
                             break
                         case 0x0D: // \r
-                            iterator.discard(() => null)
+                            iterator.old.discard(() => null)
                             $i['add character']($.code)
                             break
                         case 0x20: // space
-                            iterator.discard(() => null)
+                            iterator.old.discard(() => null)
                             $i['add character']($.code)
                             break
                         case 0x2C: // ,
-                            iterator.discard(() => null)
+                            iterator.old.discard(() => null)
                             $i['add character']($.code)
                             break
                         default:
@@ -119,7 +127,7 @@ export const Whitespace = (
 }
 
 export const Trivia = (
-    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Trivia => ({
     'leading whitespace': Whitespace(iterator, abort),
@@ -132,10 +140,10 @@ export const Trivia = (
             switch ($.code) {
                 case 0x2F: // /
                     const start = temp_get_current_location(iterator)
-                    const next_char = iterator['look ahead'](1)
+                    const next_char = iterator.old['look ahead'](1)
                     if (next_char === null) {
                         const start = temp_get_current_location(iterator)
-                        iterator.discard(() => null)
+                        iterator.old.discard(() => null)
                         const end = temp_get_current_location(iterator)
                         return abort(sh.lexer_error(
                             ['dangling slash', null],
@@ -147,8 +155,8 @@ export const Trivia = (
                     }
                     switch (next_char[0].code) {
                         case 0x2F: // /
-                            iterator.discard(() => null) // consume the first /
-                            iterator.discard(() => null) // consume the second /
+                            iterator.old.discard(() => null) // consume the first /
+                            iterator.old.discard(() => null) // consume the second /
                             const Character = {
                                 line_feed: 0x0A,            // \n
                                 carriage_return: 0x0D,      // \r
@@ -166,7 +174,7 @@ export const Trivia = (
                                             case Character.line_feed: return
                                             case Character.carriage_return: return
                                             default:
-                                                iterator.discard(() => null)
+                                                iterator.old.discard(() => null)
                                                 $i['add character']($.code)
                                         }
                                     }
@@ -179,8 +187,8 @@ export const Trivia = (
                             })
                             break
                         case 0x2A: {// *
-                            iterator.discard(() => null) // consume the first /
-                            iterator.discard(() => null) // consume the asterisk
+                            iterator.old.discard(() => null) // consume the first /
+                            iterator.old.discard(() => null) // consume the asterisk
                             $i['add element']({
                                 'type': ['block', null],
                                 'content': _p_temp_deserializer.text.deprecated_build(($i) => {
@@ -201,7 +209,7 @@ export const Trivia = (
                                             ))
                                         }
                                         if ($.code === Character.solidus && found_asterisk) {
-                                            iterator.discard(() => null) // consume the solidus
+                                            iterator.old.discard(() => null) // consume the solidus
                                             //found asterisk before solidus, so this is the end of the comment
                                             return
                                         }
@@ -214,7 +222,7 @@ export const Trivia = (
                                         } else {
                                             $i['add character']($.code)
                                         }
-                                        iterator.discard(() => null)
+                                        iterator.old.discard(() => null)
                                     }
                                 }),
                                 'range': {
@@ -243,7 +251,7 @@ export const Trivia = (
 })
 
 export const Annotated_Token = (
-    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Annotated_Token => {
     const WhitespaceChars = {
@@ -298,68 +306,68 @@ export const Annotated_Token = (
             }
             switch ($.code) {
                 case Character.open_brace:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['{', null]
                 case Character.open_bracket:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['[', null]
                 case Character.open_angle_bracket:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['<', null]
                 case Character.open_paren:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['(', null]
 
 
                 case Character.close_brace:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['}', null]
                 case Character.close_bracket:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return [']', null]
                 case Character.close_angle_bracket:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['>', null]
                 case Character.close_paren:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return [')', null]
 
                 //individuals
                 case Character.hash:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['#', null] // missing data token
                 case Character.pipe:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['|', null] // state value token
                 case Character.tilde:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['~', null] // unset value token
                 case Character.asterisk:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['*', null] // set value token
                 case Character.at:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['@', null] // include token
                 case Character.bang:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['!', null] // header token
                 case Character.colon:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return [':', null]
                 case Character.quotation_mark:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['string', {
                         'value': Delimited_String(($) => $ === Character.quotation_mark, true, iterator, abort),
                         'type': ['quoted', null],
                     }]
                 case Character.backtick:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['string', {
                         'value': Delimited_String(($) => $ === Character.backtick, false, iterator, abort),
                         'type': ['backticked', null],
                     }]
                 case Character.apostrophe:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     return ['string', {
                         'value': Delimited_String(($) => $ === Character.apostrophe, false, iterator, abort),
                         'type': ['apostrophed', null],
@@ -412,7 +420,7 @@ export const Annotated_Token = (
                                 ) {
                                     return
                                 }
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character']($.code)
                             }
                         }),
@@ -427,7 +435,7 @@ export const Annotated_Token = (
 export const Delimited_String = (
     is_end_character: (character: number) => boolean,
     allow_newlines: boolean,
-    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Delimited_String => {
 
@@ -478,7 +486,7 @@ export const Delimited_String = (
 
             }
             if (is_end_character($.code)) {
-                iterator.discard(() => null) // consume the end character
+                iterator.old.discard(() => null) // consume the end character
                 return
             }
             switch ($.code) {
@@ -493,11 +501,11 @@ export const Delimited_String = (
                             }
                         ))
                     }
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     $i['add character']($.code)
                     break
                 case Character.reverse_solidus: // \ (escape)
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     {
                         const $ = temp_get_current_character_or_null(iterator)
                         if ($ === null) {
@@ -511,47 +519,47 @@ export const Delimited_String = (
                         }
                         switch ($.code) {
                             case Character.quotation_mark:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.quotation_mark)
                                 break
                             case Character.apostrophe:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.apostrophe)
                                 break
                             case Character.backtick:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.backtick)
                                 break
                             case Character.reverse_solidus:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.reverse_solidus)
                                 break
                             case Character.solidus:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.solidus)
                                 break
                             case Character.b:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.backspace)
                                 break
                             case Character.f:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.form_feed)
                                 break
                             case Character.n:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.line_feed)
                                 break
                             case Character.r:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.carriage_return)
                                 break
                             case Character.t:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](Character.tab)
                                 break
                             case Character.u:
-                                iterator.discard(() => null)
+                                iterator.old.discard(() => null)
                                 $i['add character'](ds_hexadecimal(
                                     _p_temp_deserializer.text.deprecated_build(($i) => {
                                         const get_char = () => {
@@ -574,7 +582,7 @@ export const Delimited_String = (
                                                     }
                                                 ))
                                             }
-                                            iterator.discard(() => null)
+                                            iterator.old.discard(() => null)
                                             return char.code
                                         }
                                         $i['add character'](get_char())
@@ -597,7 +605,7 @@ export const Delimited_String = (
                     }
                     break
                 default:
-                    iterator.discard(() => null)
+                    iterator.old.discard(() => null)
                     $i['add character']($.code)
             }
         }
@@ -606,7 +614,7 @@ export const Delimited_String = (
 }
 
 export const Tokenizer_Result = (
-    iterator: _pi.Iterator<d_annotated_characters.Annotated_Character>,
+    iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
     abort: _pi.Abort<_parse_result.Parse_Error>,
 ): d_out.Tokenizer_Result => {
     return _pdev.log_wrapping_debug_messages(

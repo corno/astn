@@ -1,4 +1,4 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 import * as _i_core from "../../../core/unconstrained"
 import * as _i_imports_token from "../../token/data_types/target"
@@ -54,7 +54,7 @@ export type _T_Concrete_Value = _i_core._T_State_Group<null,
 
 export type _T_Document = {
     readonly 'content': _T_Value
-    readonly 'header': _et.Optional_Value<{
+    readonly 'header': _pi.Optional_Value<{
         readonly '!': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -65,9 +65,9 @@ export type _T_Elements = _i_core._T_List<null, {
 }>
 
 export type _T_Key_Value_Pairs = _i_core._T_List<null, {
-    readonly ',': _et.Optional_Value<_T_Structural_Token>
+    readonly ',': _pi.Optional_Value<_T_Structural_Token>
     readonly 'key': _T_String
-    readonly 'value': _et.Optional_Value<{
+    readonly 'value': _pi.Optional_Value<{
         readonly ':': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -424,7 +424,7 @@ export namespace _T_Document {
             readonly 'value': _T_Value
         }
     }
-    export type header = _et.Optional_Value<{
+    export type header = _pi.Optional_Value<{
         readonly '!': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -453,7 +453,7 @@ export namespace _T_Key_Value_Pairs {
             }
             export type O = _T_Structural_Token
         }
-        export type $cm_ = _et.Optional_Value<_T_Structural_Token>
+        export type $cm_ = _pi.Optional_Value<_T_Structural_Token>
         
         export namespace key {
         }
@@ -476,15 +476,15 @@ export namespace _T_Key_Value_Pairs {
                 readonly 'value': _T_Value
             }
         }
-        export type value = _et.Optional_Value<{
+        export type value = _pi.Optional_Value<{
             readonly ':': _T_Structural_Token
             readonly 'value': _T_Value
         }>
     }
     export type L = {
-        readonly ',': _et.Optional_Value<_T_Structural_Token>
+        readonly ',': _pi.Optional_Value<_T_Structural_Token>
         readonly 'key': _T_String
-        readonly 'value': _et.Optional_Value<{
+        readonly 'value': _pi.Optional_Value<{
             readonly ':': _T_Structural_Token
             readonly 'value': _T_Value
         }>
@@ -885,7 +885,7 @@ export namespace Document {
             readonly 'value': _T_Value
         }
     }
-    export type header = _et.Optional_Value<{
+    export type header = _pi.Optional_Value<{
         readonly '!': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -914,7 +914,7 @@ export namespace Key_Value_Pairs {
             }
             export type O = _T_Structural_Token
         }
-        export type $cm_ = _et.Optional_Value<_T_Structural_Token>
+        export type $cm_ = _pi.Optional_Value<_T_Structural_Token>
         
         export namespace key {
         }
@@ -937,15 +937,15 @@ export namespace Key_Value_Pairs {
                 readonly 'value': _T_Value
             }
         }
-        export type value = _et.Optional_Value<{
+        export type value = _pi.Optional_Value<{
             readonly ':': _T_Structural_Token
             readonly 'value': _T_Value
         }>
     }
     export type L = {
-        readonly ',': _et.Optional_Value<_T_Structural_Token>
+        readonly ',': _pi.Optional_Value<_T_Structural_Token>
         readonly 'key': _T_String
-        readonly 'value': _et.Optional_Value<{
+        readonly 'value': _pi.Optional_Value<{
             readonly ':': _T_Structural_Token
             readonly 'value': _T_Value
         }>

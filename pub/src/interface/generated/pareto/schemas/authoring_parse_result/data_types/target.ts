@@ -1,4 +1,4 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 import * as _i_core from "../../../core/unconstrained"
 import * as _i_imports_parse_tree from "../../authoring_parse_tree/data_types/target"

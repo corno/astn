@@ -1,4 +1,4 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 import * as _i_imports_token from "./token"
 import * as _i_imports_ast from "./astn_source"
@@ -36,7 +36,7 @@ export type Parser_Error = {
         readonly 'found': _i_imports_token._T_Token_Type
     }]
 
-    readonly 'expected': _et.List<Expected
+    readonly 'expected': _pi.List<Expected
     >
 }
 
