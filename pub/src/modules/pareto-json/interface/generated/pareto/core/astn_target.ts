@@ -1,12 +1,12 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 // **** TYPES
 
 export type _T_Document = _T_Value
 
 export type _T_Value = 
-    | readonly ['dictionary', _et.Dictionary<_T_Value>]
-    | readonly ['list', _et.List<_T_Value>]
+    | readonly ['dictionary', _pi.Dictionary<_T_Value>]
+    | readonly ['list', _pi.List<_T_Value>]
     | readonly ['nothing', null]
     | readonly ['optional', 
         | readonly ['not set', null]
@@ -24,7 +24,7 @@ export type _T_Value =
         
         readonly 'value': string
     }]
-    | readonly ['verbose group', _et.Dictionary<_T_Value>]
+    | readonly ['verbose group', _pi.Dictionary<_T_Value>]
 
 
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
@@ -48,7 +48,7 @@ export namespace _T_Value {
             }
             export type L = _T_Value
         }
-        export type concise_group = _et.List<_T_Value>
+        export type concise_group = _pi.List<_T_Value>
         
         export namespace dictionary {
             
@@ -56,7 +56,7 @@ export namespace _T_Value {
             }
             export type D = _T_Value
         }
-        export type dictionary = _et.Dictionary<_T_Value>
+        export type dictionary = _pi.Dictionary<_T_Value>
         
         export namespace list {
             
@@ -64,7 +64,7 @@ export namespace _T_Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.List<_T_Value>
+        export type list = _pi.List<_T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -133,12 +133,12 @@ export namespace _T_Value {
             }
             export type D = _T_Value
         }
-        export type verbose_group = _et.Dictionary<_T_Value>
+        export type verbose_group = _pi.Dictionary<_T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.List<_T_Value>]
-        | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.List<_T_Value>]
+        | readonly ['concise group', _pi.List<_T_Value>]
+        | readonly ['dictionary', _pi.Dictionary<_T_Value>]
+        | readonly ['list', _pi.List<_T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', 
             | readonly ['not set', null]
@@ -155,7 +155,7 @@ export namespace _T_Value {
                 | readonly ['quote', null]
             readonly 'value': string
         }]
-        | readonly ['verbose group', _et.Dictionary<_T_Value>]
+        | readonly ['verbose group', _pi.Dictionary<_T_Value>]
 }
 
 // *** ALIASES FOR NESTED TYPES
@@ -173,7 +173,7 @@ export namespace Value {
             }
             export type L = _T_Value
         }
-        export type concise_group = _et.List<_T_Value>
+        export type concise_group = _pi.List<_T_Value>
         
         export namespace dictionary {
             
@@ -181,7 +181,7 @@ export namespace Value {
             }
             export type D = _T_Value
         }
-        export type dictionary = _et.Dictionary<_T_Value>
+        export type dictionary = _pi.Dictionary<_T_Value>
         
         export namespace list {
             
@@ -189,7 +189,7 @@ export namespace Value {
             }
             export type L = _T_Value
         }
-        export type list = _et.List<_T_Value>
+        export type list = _pi.List<_T_Value>
         export type nothing = null
         
         export namespace optional {
@@ -255,12 +255,12 @@ export namespace Value {
             }
             export type D = _T_Value
         }
-        export type verbose_group = _et.Dictionary<_T_Value>
+        export type verbose_group = _pi.Dictionary<_T_Value>
     }
     export type SG = 
-        | readonly ['concise group', _et.List<_T_Value>]
-        | readonly ['dictionary', _et.Dictionary<_T_Value>]
-        | readonly ['list', _et.List<_T_Value>]
+        | readonly ['concise group', _pi.List<_T_Value>]
+        | readonly ['dictionary', _pi.Dictionary<_T_Value>]
+        | readonly ['list', _pi.List<_T_Value>]
         | readonly ['nothing', null]
         | readonly ['optional', 
             | readonly ['not set', null]
@@ -277,5 +277,5 @@ export namespace Value {
                 | readonly ['quote', null]
             readonly 'value': string
         }]
-        | readonly ['verbose group', _et.Dictionary<_T_Value>]
+        | readonly ['verbose group', _pi.Dictionary<_T_Value>]
 }

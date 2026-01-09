@@ -1,4 +1,4 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 
 export type _T_Value =
@@ -43,13 +43,13 @@ export type _T_Value =
 
 export type _T_Document = {
     readonly 'content': _T_Value
-    readonly 'header': _et.Optional_Value<{
+    readonly 'header': _pi.Optional_Value<{
         readonly '!': _T_Structural_Token
         readonly 'value': _T_Value
     }>
 }
 
-export type _T_Elements = _et.List<{
+export type _T_Elements = _pi.List<{
     readonly 'value': _T_Value
 }>
 
@@ -59,10 +59,10 @@ export namespace _T_Elements {
     }
 }
 
-export type _T_Key_Value_Pairs = _et.List<{
-    readonly ',': _et.Optional_Value<_T_Structural_Token>
+export type _T_Key_Value_Pairs = _pi.List<{
+    readonly ',': _pi.Optional_Value<_T_Structural_Token>
     readonly 'key': _T_String
-    readonly 'value': _et.Optional_Value<{ //this one should not be optional
+    readonly 'value': _pi.Optional_Value<{ //this one should not be optional
         readonly ':': _T_Structural_Token
         readonly 'value': _T_Value
     }>
@@ -70,9 +70,9 @@ export type _T_Key_Value_Pairs = _et.List<{
 
 export namespace _T_Key_Value_Pairs {
     export type L = {
-        readonly ',': _et.Optional_Value<_T_Structural_Token>
+        readonly ',': _pi.Optional_Value<_T_Structural_Token>
         readonly 'key': _T_String
-        readonly 'value': _et.Optional_Value<{//this one should not be optional
+        readonly 'value': _pi.Optional_Value<{//this one should not be optional
             readonly ':': _T_Structural_Token
             readonly 'value': _T_Value
         }>
@@ -110,7 +110,7 @@ export type _T_Relative_Location = {
 }
 
 export type _T_Trivia = {
-    readonly 'comments': _et.List<{
+    readonly 'comments': _pi.List<{
         readonly 'content': string
         readonly 'range': _T_Range
         readonly 'trailing whitespace': _T_Whitespace

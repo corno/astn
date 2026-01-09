@@ -1,4 +1,4 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 export type _T_Annotated_Token = {
     readonly 'end': _T_Location
@@ -56,15 +56,15 @@ export type _T_Token_Type =
 export type _T_Tokenizer_Result = {
     readonly 'end': _T_Location
     readonly 'leading trivia': _T_Trivia
-    readonly 'tokens': _et.List<_T_Annotated_Token>
+    readonly 'tokens': _pi.List<_T_Annotated_Token>
 }
 
 export namespace _T_Tokenizer_Result {
-    export type tokens = _et.List<_T_Annotated_Token>
+    export type tokens = _pi.List<_T_Annotated_Token>
 }
 
 export type _T_Trivia = {
-    readonly 'comments': _et.List<{
+    readonly 'comments': _pi.List<{
         readonly 'content': string
         readonly 'range': _T_Range
         readonly 'trailing whitespace': _T_Whitespace

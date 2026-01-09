@@ -1,11 +1,11 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 
 // **** TYPES
 
-export type _T_Dictionary<M_Source, T_D> = _et.Dictionary<T_D>
+export type _T_Dictionary<M_Source, T_D> = _pi.Dictionary<T_D>
 
-export type _T_List<M_Source, T_L> = _et.List<T_L>
+export type _T_List<M_Source, T_L> = _pi.List<T_L>
 
 export type _T_State_Group<M_Source, T_SG> = T_SG
 

@@ -9,6 +9,7 @@ import * as t_ast_2_json from "../schemas/authoring_parse_tree/transformers/json
 import * as s_json from "../../../modules/pareto-json/implementation/manual/schemas/json/serializers"
 
 export const $$: _pi.Text_Deserializer<string> = ($, abort) => {
+
     const x1 = _pdev.log_wrapping_debug_messages("deserialization", () => ds_authoring_parse_tree.Document(
         $,
         ($) => abort(s_parse_result.Error($, { 'position info': ['one based', null] })),
@@ -28,5 +29,6 @@ export const $$: _pi.Text_Deserializer<string> = ($, abort) => {
             'newline': '\n'
         }
     ))
+    
     return x3
 }

@@ -1,24 +1,24 @@
-import * as _et from 'pareto-core-interface'
+import * as _pi from 'pareto-core-interface'
 
 
 // **** TYPES
 
 export type _T_Derived_Reference<M_Source, T_Type> = T_Type
 
-export type _T_Dictionary<M_Source, T_D> = _et.Dictionary<T_D>
+export type _T_Dictionary<M_Source, T_D> = _pi.Dictionary<T_D>
 
-export type _T_List<M_Source, T_L> = _et.List<T_L>
+export type _T_List<M_Source, T_L> = _pi.List<T_L>
 
 export type _T_Ordered_Dictionary<M_Source, T_D> = {
-    readonly 'dictionary': _et.Dictionary<T_D>
-    readonly 'ordered list': _et.List<{
+    readonly 'dictionary': _pi.Dictionary<T_D>
+    readonly 'ordered list': _pi.List<{
         readonly 'key': string
         readonly 'value': T_D
     }>
 }
 
 export type _T_Reference_To_Circular_Dependent_Sibling<M_Source, T_Dictionary_Entry> = {
-    readonly 'entry': _et.Circular_Dependency<T_Dictionary_Entry>
+    readonly 'entry': _pi.Circular_Dependency<T_Dictionary_Entry>
     readonly 'key': string
 }
 
@@ -68,7 +68,7 @@ export namespace _T_Ordered_Dictionary {
     export namespace dictionary {
         export type D<M_Source, T_D> = T_D
     }
-    export type dictionary<M_Source, T_D> = _et.Dictionary<T_D>
+    export type dictionary<M_Source, T_D> = _pi.Dictionary<T_D>
     
     export namespace ordered_list {
         
@@ -81,7 +81,7 @@ export namespace _T_Ordered_Dictionary {
             readonly 'value': T_D
         }
     }
-    export type ordered_list<M_Source, T_D> = _et.List<{
+    export type ordered_list<M_Source, T_D> = _pi.List<{
         readonly 'key': string
         readonly 'value': T_D
     }>
@@ -92,7 +92,7 @@ export namespace _T_Reference_To_Circular_Dependent_Sibling {
     export namespace entry {
         export type C<M_Source, T_Dictionary_Entry> = T_Dictionary_Entry
     }
-    export type entry<M_Source, T_Dictionary_Entry> = _et.Circular_Dependency<T_Dictionary_Entry>
+    export type entry<M_Source, T_Dictionary_Entry> = _pi.Circular_Dependency<T_Dictionary_Entry>
     export type key<M_Source, T_Dictionary_Entry> = string
 }
 
@@ -122,7 +122,7 @@ export namespace Ordered_Dictionary {
     export namespace dictionary {
         export type D<M_Source, T_D> = T_D
     }
-    export type dictionary<M_Source, T_D> = _et.Dictionary<T_D>
+    export type dictionary<M_Source, T_D> = _pi.Dictionary<T_D>
     
     export namespace ordered_list {
         
@@ -135,7 +135,7 @@ export namespace Ordered_Dictionary {
             readonly 'value': T_D
         }
     }
-    export type ordered_list<M_Source, T_D> = _et.List<{
+    export type ordered_list<M_Source, T_D> = _pi.List<{
         readonly 'key': string
         readonly 'value': T_D
     }>
@@ -146,7 +146,7 @@ export namespace Reference_To_Circular_Dependent_Sibling {
     export namespace entry {
         export type C<M_Source, T_Dictionary_Entry> = T_Dictionary_Entry
     }
-    export type entry<M_Source, T_Dictionary_Entry> = _et.Circular_Dependency<T_Dictionary_Entry>
+    export type entry<M_Source, T_Dictionary_Entry> = _pi.Circular_Dependency<T_Dictionary_Entry>
     export type key<M_Source, T_Dictionary_Entry> = string
 }
 
