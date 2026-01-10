@@ -71,18 +71,25 @@ export const map_with_state = <T, New_Type, State>(
     })
 }
 
-/**
- * Creates a string iterator that allows iterating over characters in a string,
- * while keeping track of line numbers, columns, and line indentation.
- */
-export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => map_with_state<number, d_annotated_characters.Annotated_Character, {
+type My_State = {
+    'absolute': number
     'line': number
     'column': number
     'line indentation': number | null
     'found carriage return before': boolean
-}>(
-    _p.list.from_text($, ($) => $),
+}
+
+/**
+ * Creates a string iterator that allows iterating over characters in a string,
+ * while keeping track of line numbers, columns, and line indentation.
+ */
+export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => map_with_state<number, d_annotated_characters.Annotated_Character, My_State>(
+    _p.list.from_text(
+        $,
+        ($) => $
+    ),
     {
+        'absolute': 0,
         'line': 0,
         'column': 0,
         'line indentation': null,
@@ -91,8 +98,11 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
     (value, state) => ({
         'code': value,
         'location': {
-            'line': state.line,
-            'column': state.column,
+            'absolute': state.absolute,
+            'relative': {
+                'line': state.line,
+                'column': state.column,
+            }
         },
         'line indentation': state['line indentation'] !== null
             ? state['line indentation']
@@ -101,6 +111,7 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
     (value, state) => {
         return value === 0x0A /* line feed */
             ? {
+                'absolute': state.absolute + 1,
                 'line': state.line + 1,
                 'column': 0,
                 'line indentation': null,
@@ -108,12 +119,14 @@ export const Annotated_Characters: signatures.Annotated_Characters = ($, $p) => 
             }
             : state['found carriage return before']
                 ? {
+                    'absolute': state.absolute + 1,
                     'line': state.line + 1,
                     'column': 0,
                     'line indentation': null,
                     'found carriage return before': false,
                 }
                 : {
+                    'absolute': state.absolute + 1,
                     'line': state.line,
                     'column': state.column + (value === 0x09 /* tab */
                         ? $p['tab size']

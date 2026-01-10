@@ -51,26 +51,17 @@ export const Document: signatures.Document = ($, abort, $p,) => _p.iterate( //fi
                                 'found': element.type,
                             }],
                         }],
-                        'range': {
+                        'range': _p.optional.set({
                             'start': element.start,
                             'end': element.end,
-                        }
+                        }),
                     }),
                     (expected) => abort({
                         'type': ['parser', {
                             'expected': expected,
                             'cause': ['missing token', null],
                         }],
-                        'range': {
-                            'start': {
-                                'absolute': iter['get position'](),
-                                'relative': _p.optional.not_set()
-                            },
-                            'end': {
-                                'absolute': iter['get position'](),
-                                'relative': _p.optional.not_set()
-                            },
-                        }
+                        'range': _p.optional.not_set(),
                     }),
                     () => _p.unreachable_code_path(),
                 ))

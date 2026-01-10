@@ -51,16 +51,13 @@ const temp_get_current_location = (iterator: Temp_Iterator<d_annotated_character
     if (next === null) {
         return {
             'absolute': iterator.old['get position'](),
-            'relative': _p.optional.not_set()
+            'relative': {
+                'line': -1,
+                'column': -1,
+            }
         }
     } else {
-        return {
-            'absolute': iterator.old['get position'](),
-            'relative': _p.optional.set({
-                'line': next[0].location.line,
-                'column': next[0].location.column,
-            })
-        }
+        return next[0].location
     }
 }
 
@@ -83,7 +80,7 @@ export const Whitespace = (
                             ['unexpected control character', $.code],
                             {
                                 'start': start_location,
-                                'end': temp_get_current_location(iterator),
+                                'end': $.location,
                             }
                         ))
 
@@ -136,7 +133,7 @@ export const Trivia = (
             }
             switch ($.code) {
                 case 0x2F: // /
-                    const start = temp_get_current_location(iterator)
+                    const start = $.location
                     const next_char = iterator.old['look ahead'](1)
                     if (next_char === null) {
                         const start = temp_get_current_location(iterator)

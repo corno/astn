@@ -1,5 +1,5 @@
+import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
-import * as _pt from 'pareto-core-transformer'
 
 import * as d_target from "../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
 import * as d_target_token from "../interface/generated/pareto/schemas/token/data_types/source"
@@ -10,10 +10,10 @@ export const parse_error = (
     range: d_target_token.Range
 ): d_target.Parse_Error => ({
     'type': type,
-    'range': {
+    'range': _p.optional.set({
         'start': range.start,
         'end': range.end,
-    }
+    })
 })
 
 // export const unexpected_token = (
@@ -37,8 +37,8 @@ export const lexer_error = (
     range: d_target_token.Range
 ): d_target.Parse_Error => ({
     'type': ['lexer', type],
-    'range': {
+    'range': _p.optional.set({
         'start': range.start,
         'end': range.end,
-    }
+    })
 })

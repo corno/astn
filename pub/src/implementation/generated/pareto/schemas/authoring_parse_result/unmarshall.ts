@@ -187,10 +187,15 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => _i_generic.p
                 {
                     'key': "range",
                 }
-            ), ($) => _i_r_token.Range(
+            ), ($) => _i_generic.process_optional(
                 $,
                 {
-                    'value deserializers': $p['value deserializers'],
+                    'value': ($) => _i_r_token.Range(
+                        $,
+                        {
+                            'value deserializers': $p['value deserializers'],
+                        }
+                    ),
                 }
             )),
         }),

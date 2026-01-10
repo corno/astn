@@ -43,7 +43,7 @@ export type _T_Parse_Error = {
             >
         }]
     >
-    readonly 'range': _i_imports_token._T_Range
+    readonly 'range': _pi.Optional_Value<_i_imports_token._T_Range>
 }
 
 export type _T_Parse_Result = _i_core._T_State_Group<null, 
@@ -291,8 +291,12 @@ export namespace _T_Parse_Error {
     >
     
     export namespace range {
+        
+        export namespace O {
+        }
+        export type O = _i_imports_token._T_Range
     }
-    export type range = _i_imports_token._T_Range
+    export type range = _pi.Optional_Value<_i_imports_token._T_Range>
 }
 
 export namespace _T_Parse_Result {
@@ -546,8 +550,12 @@ export namespace Parse_Error {
     >
     
     export namespace range {
+        
+        export namespace O {
+        }
+        export type O = _i_imports_token._T_Range
     }
-    export type range = _i_imports_token._T_Range
+    export type range = _pi.Optional_Value<_i_imports_token._T_Range>
 }
 
 export namespace Parse_Result {

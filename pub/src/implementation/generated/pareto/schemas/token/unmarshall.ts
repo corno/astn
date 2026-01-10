@@ -45,15 +45,10 @@ export const Location: _i_signatures._T_Location = ($, $p) => _i_generic.process
                 {
                     'key': "relative",
                 }
-            ), ($) => _i_generic.process_optional(
+            ), ($) => Relative_Location(
                 $,
                 {
-                    'value': ($) => Relative_Location(
-                        $,
-                        {
-                            'value deserializers': $p['value deserializers'],
-                        }
-                    ),
+                    'value deserializers': $p['value deserializers'],
                 }
             )),
             'absolute': _p.deprecated_cc(_i_generic.get_entry(

@@ -151,12 +151,15 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
             default: return _p.au($[0])
         }
     })]),
-    'range': _p.deprecated_cc($['range'], ($) => _i_r_token.Range(
-        $,
-        {
-            'value serializers': $p['value serializers'],
-        }
-    )),
+    'range': _p.deprecated_cc($['range'], ($) => ['optional', $.transform(
+        ($): _i_out._T_Value.SG.optional => ['set', _i_r_token.Range(
+            $,
+            {
+                'value serializers': $p['value serializers'],
+            }
+        )],
+        () => ['not set', null]
+    )]),
 })]
 export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {

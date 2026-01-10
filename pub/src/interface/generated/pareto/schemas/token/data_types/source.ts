@@ -10,7 +10,7 @@ export type _T_Relative_Location = {
 }
 
 export type _T_Location = {
-    readonly 'relative': _pi.Optional_Value<_T_Relative_Location>
+    readonly 'relative': _T_Relative_Location
     readonly 'absolute': number
 }
 
@@ -113,12 +113,8 @@ export namespace _T_Relative_Location {
 export namespace _T_Location {
     
     export namespace relative {
-        
-        export namespace O {
-        }
-        export type O = _T_Relative_Location
     }
-    export type relative = _pi.Optional_Value<_T_Relative_Location>
+    export type relative = _T_Relative_Location
     export type absolute = number
 }
 
@@ -315,12 +311,8 @@ export namespace Relative_Location {
 export namespace Location {
     
     export namespace relative {
-        
-        export namespace O {
-        }
-        export type O = _T_Relative_Location
     }
-    export type relative = _pi.Optional_Value<_T_Relative_Location>
+    export type relative = _T_Relative_Location
     export type absolute = number
 }
 

@@ -3,8 +3,11 @@ import * as _pi from 'pareto-core-interface'
 export type Annotated_Character = {
     'code': number
     'location': {
-        'line': number
-        'column': number
+        absolute: number
+        relative: {
+            'line': number
+            'column': number
+        }
     }
     'line indentation': number
 }

@@ -22,15 +22,12 @@ export const Relative_Location: _i_signatures._T_Relative_Location = ($, $p) => 
     })]),
 })]
 export const Location: _i_signatures._T_Location = ($, $p) => ['verbose group', _p.dictionary.literal({
-    'relative': _p.deprecated_cc($['relative'], ($) => ['optional', $.transform(
-        ($): _i_out._T_Value.SG.optional => ['set', Relative_Location(
-            $,
-            {
-                'value serializers': $p['value serializers'],
-            }
-        )],
-        () => ['not set', null]
-    )]),
+    'relative': _p.deprecated_cc($['relative'], ($) => Relative_Location(
+        $,
+        {
+            'value serializers': $p['value serializers'],
+        }
+    )),
     'absolute': _p.deprecated_cc($['absolute'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $p['value serializers']['default number'](
