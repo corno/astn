@@ -44,6 +44,6 @@
     "pareto-host-nodejs": "^0.1.5",
     "pareto-json": "^0.3.9",
     "pareto-resources": "^0.1.9",
-    "pareto-standard-operations": "^0.3.38"
+    "pareto-standard-operations": "^0.3.39"
   }
 }
