@@ -7,7 +7,7 @@ export const Document: signatures.Document = ($) => Value($.content)
 
 export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.map(($) => ({
     'key': $.key.value,
-    'value': $.value.transform(
+    'value': $.value.__decide(
         ($) => Value($.value),
         () => ['null', null]
     ),

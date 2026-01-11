@@ -176,7 +176,7 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _p.deprecated_
                 return _p.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.component => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => ['external', _p.deprecated_block(() => {
-                            const c_import = params['values']['imports'].transform(
+                            const c_import = params['values']['imports'].__decide(
                                 ($) => $,
                                 () => _p.fixme_abort('ABORT SELECTION')
                             )
@@ -323,7 +323,7 @@ export const r_Type_Node: _i_signatures._T_Type_Node = ($, $p) => _p.deprecated_
                 return _p.deprecated_cc($['state group'], ($): _i_out._T_Type_Node.SG.text => {
                     switch ($[0]) {
                         case 'global': return _p.ss($, ($) => ['global', _p.deprecated_block(() => {
-                            const c_globals = params['values']['globals'].transform(
+                            const c_globals = params['values']['globals'].__decide(
                                 ($) => $,
                                 () => _p.fixme_abort('ABORT SELECTION')
                             )

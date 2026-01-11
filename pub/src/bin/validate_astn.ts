@@ -4,7 +4,7 @@ import * as _pn from 'pareto-host-nodejs'
 
 import { $$ as procedure } from "../implementation/manual/commands/validate_astn"
 
-_pn.run_main_procedure(
+_pn.run_main_command(
     ($r) => procedure(
         {
             'write to stdout': $r.commands['write to stdout'],

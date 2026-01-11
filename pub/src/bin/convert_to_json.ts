@@ -4,7 +4,7 @@ import * as _pn from 'pareto-host-nodejs'
 
 import { $$ as procedure } from "../implementation/manual/commands/convert_to_json"
 
-_pn.run_main_procedure(
+_pn.run_main_command(
     ($r) => procedure(
         {
             'write file': $r.commands['write file'],

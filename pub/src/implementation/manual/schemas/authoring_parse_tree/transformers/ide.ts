@@ -41,7 +41,7 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => _p.list.fl
     $,
     ($) => _p.list.nested_literal([
         String($.key, $p),
-        $.value.transform(
+        $.value.__decide(
             ($) => _p.list.nested_literal([
                 Structural_Token($[':'], $p),
                 Value($.value, $p),
@@ -122,7 +122,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
 
 export const Document: signatures.Document = ($, $p) => _p.list.nested_literal([
 
-    $.header.transform(
+    $.header.__decide(
         ($) => _p.list.nested_literal([
             Structural_Token($['!'], $p),
             Value($.value, $p)

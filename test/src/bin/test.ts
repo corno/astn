@@ -7,7 +7,7 @@ import * as d_read_directory from "pareto-resources/dist/interface/generated/par
 
 
 
-// _eb.run_main_procedure(
+// _eb.run_main_command(
 //     ($r) => {
 //         return {
 //             'queries': {

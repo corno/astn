@@ -51,7 +51,7 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
             'value serializers': $p['value serializers'],
         }
     )),
-    'value': _p.deprecated_cc($['value'], ($) => ['optional', $.transform(
+    'value': _p.deprecated_cc($['value'], ($) => ['optional', $.__decide(
         ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _p.dictionary.literal({
             ':': _p.deprecated_cc($[':'], ($) => Structural_Token(
                 $,
@@ -322,7 +322,7 @@ export const Content: _i_signatures._T_Content = ($, $p) => Value(
     }
 )
 export const Document: _i_signatures._T_Document = ($, $p) => ['verbose group', _p.dictionary.literal({
-    'header': _p.deprecated_cc($['header'], ($) => ['optional', $.transform(
+    'header': _p.deprecated_cc($['header'], ($) => ['optional', $.__decide(
         ($): _i_out._T_Value.SG.optional => ['set', ['verbose group', _p.dictionary.literal({
             '!': _p.deprecated_cc($['!'], ($) => Structural_Token(
                 $,

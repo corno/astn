@@ -18,7 +18,7 @@ export const process_unconstrained_state_group = <Mapped_Value>(
                 const data = $.value
                 return $p.states.__get_possible_entry(
                     $.state.value
-                ).transform(
+                ).__decide(
                     ($) => $(data),
                     () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
                 )
@@ -43,7 +43,7 @@ export const process_unresolved_state_group = <Mapped_Value>(
                     'location': $["|"].range,
                     'state group': $p.states.__get_possible_entry(
                         $.state.value
-                    ).transform(
+                    ).__decide(
                         ($) => $(data),
                         () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
                     )
@@ -68,7 +68,7 @@ export const process_group = <Mapped_Value>(
                     case 'verbose group': return _ea.ss($, ($) => {
                         return $p.properties(_ea.deprecated_build_dictionary(($i) => {
                             $.entries.__for_each(($) => {
-                                $i['add entry']($.key.value, $.value.transform(
+                                $i['add entry']($.key.value, $.value.__decide(
                                     ($) => $.value,
                                     () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
                                 ))
@@ -90,7 +90,7 @@ export const get_entry = (
     }
 
 ): t._T_Value => {
-    return $.__get_possible_entry($p.key).transform(
+    return $.__get_possible_entry($p.key).__decide(
         ($) => $,
         () => _ea.fixme_abort(`no such entry: ${$p.key}`)
     )
@@ -115,7 +115,7 @@ export const process_unresolved_dictionary = <Mapped_Value>(
                             'dictionary': _ea.deprecated_build_dictionary(($i) => {
                                 $.entries.__for_each(($) => {
                                     const key_location = $.key.range
-                                    $i['add entry']($.key.value, $.value.transform(
+                                    $i['add entry']($.key.value, $.value.__decide(
                                         ($) => ({
                                             'location': key_location,
                                             'entry': $p.value($.value),
@@ -147,7 +147,7 @@ export const process_unconstrained_dictionary = <Mapped_Value>(
                     case 'dictionary': return _ea.ss($, ($) => {
                         return _ea.deprecated_build_dictionary(($i) => {
                             $.entries.__for_each(($) => {
-                                $i['add entry']($.key.value, $.value.transform(
+                                $i['add entry']($.key.value, $.value.__decide(
                                     ($) => $p.value($.value),
                                     () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
                                 ))
