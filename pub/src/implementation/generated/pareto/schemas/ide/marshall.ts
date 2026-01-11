@@ -66,7 +66,7 @@ export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.__l
         default: return _p.au($[0])
     }
 })])]
-export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_Be_Sorted = ($, $p) => ['dictionary', $.map(($) => ['text', ({
+export const Key_Value_Pairs_To_Be_Sorted: _i_signatures._T_Key_Value_Pairs_To_Be_Sorted = ($, $p) => ['dictionary', $.__d_map(($) => ['text', ({
     'delimiter': ['quote', null],
     'value': $,
 })])]

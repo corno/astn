@@ -5,7 +5,7 @@ import * as _i_signatures from "../../../../../interface/generated/pareto/schema
 import * as _i_out from "../../../../../interface/generated/pareto/core/astn_target"
 
 
-export const Schemas: _i_signatures._T_Schemas = ($, $p) => ['dictionary', $['dictionary'].map(($) => Schema_Tree(
+export const Schemas: _i_signatures._T_Schemas = ($, $p) => ['dictionary', $['dictionary'].__d_map(($) => Schema_Tree(
     $,
     {
         'value serializers': $p['value serializers'],
@@ -27,7 +27,7 @@ export const Text_Type: _i_signatures._T_Text_Type = ($, $p) => ['verbose group'
     })]),
 })]
 export const Globals: _i_signatures._T_Globals = ($, $p) => ['verbose group', _p.dictionary.literal({
-    'text types': _p.deprecated_cc($['text types'], ($) => ['dictionary', $.map(($) => Text_Type(
+    'text types': _p.deprecated_cc($['text types'], ($) => ['dictionary', $.__d_map(($) => Text_Type(
         $,
         {
             'value serializers': $p['value serializers'],
@@ -42,7 +42,7 @@ export const Type: _i_signatures._T_Type = ($, $p) => ['verbose group', _p.dicti
         }
     )),
 })]
-export const Types: _i_signatures._T_Types = ($, $p) => ['dictionary', $['dictionary'].map(($) => Type(
+export const Types: _i_signatures._T_Types = ($, $p) => ['dictionary', $['dictionary'].__d_map(($) => Type(
     $,
     {
         'value serializers': $p['value serializers'],
@@ -91,7 +91,7 @@ export const Schema_Tree: _i_signatures._T_Schema_Tree = ($, $p) => ['state', _p
         default: return _p.au($[0])
     }
 })]
-export const Imports: _i_signatures._T_Imports = ($, $p) => ['dictionary', $.map(($) => ['verbose group', _p.dictionary.literal({
+export const Imports: _i_signatures._T_Imports = ($, $p) => ['dictionary', $.__d_map(($) => ['verbose group', _p.dictionary.literal({
     'schema set child': _p.deprecated_cc($['schema set child'], ($) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $['key'],
@@ -113,7 +113,7 @@ export const Dictionary: _i_signatures._T_Dictionary = ($, $p) => ['verbose grou
         ),
     })]),
 })]
-export const Group: _i_signatures._T_Group = ($, $p) => ['dictionary', $.map(($) => Type_Node(
+export const Group: _i_signatures._T_Group = ($, $p) => ['dictionary', $.__d_map(($) => Type_Node(
     $,
     {
         'value serializers': $p['value serializers'],
@@ -200,7 +200,7 @@ export const Type_Node: _i_signatures._T_Type_Node = ($, $p) => ['state', _p.dep
         }))
         case 'state group': return _p.ss($, ($) => ({
             'state': "state group",
-            'value': ['dictionary', $.map(($) => Type_Node(
+            'value': ['dictionary', $.__d_map(($) => Type_Node(
                 $,
                 {
                     'value serializers': $p['value serializers'],

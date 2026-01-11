@@ -23,7 +23,7 @@ export const Value = (
         switch ($[0]) {
             case 'dictionary': return _ea.ss($, ($) => {
                 $i['add snippet'](`{`)
-                $.map(($, key) => {
+                $.__d_map(($, key) => {
                     $i['add snippet'](`\n${indent}${indentation}\`${key}\`: `) //FIXME escape key
                     Value($, indent + indentation, $i)
                 })
@@ -31,7 +31,7 @@ export const Value = (
             })
             case 'verbose group': return _ea.ss($, ($) => {
                 $i['add snippet'](`(`)
-                $.map(($, key) => {
+                $.__d_map(($, key) => {
                     $i['add snippet'](`\n${indent}${indentation}'${key}': `) //FIXME escape key
                     Value($, indent + indentation, $i)
                 })
