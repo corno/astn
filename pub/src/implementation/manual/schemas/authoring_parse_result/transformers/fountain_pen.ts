@@ -12,7 +12,7 @@ export type Parameters = {
 }
 
 export namespace signatures {
-    export type Parse_Error = _pi.Transformer_With_Parameters<d_in.Parse_Error, d_out.Block_Part, Parameters>
+    export type Error = _pi.Transformer_With_Parameters<d_in.Error, d_out.Block_Part, Parameters>
 }
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
@@ -21,7 +21,7 @@ import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist
 
 // import * as t_parse_result_to_fountain_pen from "astn/dist/implementation/manual/schemas/parse_result/serializers"
 
-export const Error: signatures.Parse_Error = ($, $p) => {
+export const Error: signatures.Error = ($, $p) => {
     const extra: number = _p.sg($p['position info'], ($) => {
         switch ($[0]) {
             case 'zero based': return 0
@@ -29,7 +29,7 @@ export const Error: signatures.Parse_Error = ($, $p) => {
             default: return _p.au($[0])
         }
     })
-    const Parse_Error_Type = ($: d_in.Parse_Error._type): string => _p.sg($, ($) => {
+    const Parse_Error_Type = ($: d_in.Error._type): string => _p.sg($, ($) => {
         switch ($[0]) {
             case 'lexer': return _p.ss($, ($) => _p.sg($, ($) => {
                 switch ($[0]) {

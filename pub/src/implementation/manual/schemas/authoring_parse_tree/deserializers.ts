@@ -19,7 +19,7 @@ import * as tokenize from "../token/productions/annotated_character"
 
 export namespace signatures {
 
-    export type Document = _pi.Deserializer_With_Parameters<d_authoring_parse_tree.Document, d_authoring_parse_result.Parse_Error, { 'tab size': number }>
+    export type Document = _pi.Deserializer_With_Parameters<d_authoring_parse_tree.Document, d_authoring_parse_result.Error, { 'tab size': number }>
 
 }
 

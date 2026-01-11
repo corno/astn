@@ -6,7 +6,7 @@ import * as _i_imports_token from "../../token/data_types/target"
 
 // **** TYPES
 
-export type _T_Parse_Error = {
+export type _T_Error = {
     readonly 'type': _i_core._T_State_Group<null, 
         | readonly ['lexer', _i_core._T_State_Group<null, 
             | readonly ['unexpected control character', number]
@@ -46,20 +46,13 @@ export type _T_Parse_Error = {
     readonly 'range': _pi.Optional_Value<_i_imports_token._T_Range>
 }
 
-export type _T_Parse_Result = _i_core._T_State_Group<null, 
-    | readonly ['failure', _T_Parse_Error]
-    | readonly ['success', _i_imports_parse_tree._T_Document]
->
-
 // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
 
-export type Parse_Error = _T_Parse_Error
-
-export type Parse_Result = _T_Parse_Result
+export type Error = _T_Error
 
 // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
 
-export namespace _T_Parse_Error {
+export namespace _T_Error {
     
     export namespace _type {
         
@@ -297,28 +290,11 @@ export namespace _T_Parse_Error {
         export type O = _i_imports_token._T_Range
     }
     export type range = _pi.Optional_Value<_i_imports_token._T_Range>
-}
-
-export namespace _T_Parse_Result {
-    
-    export namespace SG {
-        
-        export namespace failure {
-        }
-        export type failure = _T_Parse_Error
-        
-        export namespace success {
-        }
-        export type success = _i_imports_parse_tree._T_Document
-    }
-    export type SG = 
-        | readonly ['failure', _T_Parse_Error]
-        | readonly ['success', _i_imports_parse_tree._T_Document]
 }
 
 // *** ALIASES FOR NESTED TYPES
 
-export namespace Parse_Error {
+export namespace Error {
     
     export namespace _type {
         
@@ -556,21 +532,4 @@ export namespace Parse_Error {
         export type O = _i_imports_token._T_Range
     }
     export type range = _pi.Optional_Value<_i_imports_token._T_Range>
-}
-
-export namespace Parse_Result {
-    
-    export namespace SG {
-        
-        export namespace failure {
-        }
-        export type failure = _T_Parse_Error
-        
-        export namespace success {
-        }
-        export type success = _i_imports_parse_tree._T_Document
-    }
-    export type SG = 
-        | readonly ['failure', _T_Parse_Error]
-        | readonly ['success', _i_imports_parse_tree._T_Document]
 }

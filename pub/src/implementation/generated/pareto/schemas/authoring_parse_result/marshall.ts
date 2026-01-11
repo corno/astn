@@ -7,7 +7,7 @@ import * as _i_r_parse_tree from "../authoring_parse_tree/marshall"
 import * as _i_r_token from "../token/marshall"
 
 
-export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose group', _p.dictionary.literal({
+export const Error: _i_signatures._T_Error = ($, $p) => ['verbose group', _p.dictionary.literal({
     'type': _p.deprecated_cc($['type'], ($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
         switch ($[0]) {
             case 'lexer': return _p.ss($, ($) => ({
@@ -160,27 +160,4 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
         )],
         () => ['not set', null]
     )]),
-})]
-export const Parse_Result: _i_signatures._T_Parse_Result = ($, $p) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
-    switch ($[0]) {
-        case 'failure': return _p.ss($, ($) => ({
-            'state': "failure",
-            'value': Parse_Error(
-                $,
-                {
-                    'value serializers': $p['value serializers'],
-                }
-            ),
-        }))
-        case 'success': return _p.ss($, ($) => ({
-            'state': "success",
-            'value': _i_r_parse_tree.Document(
-                $,
-                {
-                    'value serializers': $p['value serializers'],
-                }
-            ),
-        }))
-        default: return _p.au($[0])
-    }
 })]

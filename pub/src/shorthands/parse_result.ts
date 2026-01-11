@@ -6,9 +6,9 @@ import * as d_target_token from "../interface/generated/pareto/schemas/token/dat
 
 
 export const parse_error = (
-    type: d_target.Parse_Error._type,
+    type: d_target.Error._type,
     range: d_target_token.Range
-): d_target.Parse_Error => ({
+): d_target.Error => ({
     'type': type,
     'range': _p.optional.set({
         'start': range.start,
@@ -18,8 +18,8 @@ export const parse_error = (
 
 // export const unexpected_token = (
 //     found: d_target_token.Annotated_Token,
-//     expected: _pi.List<d_target.Parse_Error._type.SG.parser.expected.L>,
-// ): d_target.Parse_Error => parse_error(
+//     expected: _pi.List<d_target.Error._type.SG.parser.expected.L>,
+// ): d_target.Error => parse_error(
 //     ['parser', {
 //         'expected': expected,
 //         'cause': ['unexpected token', {
@@ -33,9 +33,9 @@ export const parse_error = (
 // )
 
 export const lexer_error = (
-    type: d_target.Parse_Error._type.SG.lexer,
+    type: d_target.Error._type.SG.lexer,
     range: d_target_token.Range
-): d_target.Parse_Error => ({
+): d_target.Error => ({
     'type': ['lexer', type],
     'range': _p.optional.set({
         'start': range.start,

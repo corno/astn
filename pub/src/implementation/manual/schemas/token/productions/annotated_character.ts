@@ -64,7 +64,7 @@ const temp_get_current_location = (iterator: Temp_Iterator<d_annotated_character
 
 export const Whitespace = (
     iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
-    abort: _pi.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Error>,
 ): d_out.Whitespace => {
     const start_location = temp_get_current_location(iterator)
     return {
@@ -122,7 +122,7 @@ export const Whitespace = (
 
 export const Trivia = (
     iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
-    abort: _pi.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Error>,
 ): d_out.Trivia => ({
     'leading whitespace': Whitespace(iterator, abort),
     'comments': _p.list.deprecated_build(($i) => {
@@ -246,7 +246,7 @@ export const Trivia = (
 
 export const Annotated_Token = (
     iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
-    abort: _pi.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Error>,
 ): d_out.Annotated_Token => {
     const WhitespaceChars = {
         tab: 0x09,                  // \t
@@ -430,7 +430,7 @@ export const Delimited_String = (
     is_end_character: (character: number) => boolean,
     allow_newlines: boolean,
     iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
-    abort: _pi.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Error>,
 ): d_out.Delimited_String => {
 
     const Character = {
@@ -609,7 +609,7 @@ export const Delimited_String = (
 
 export const Tokenizer_Result = (
     iterator: Temp_Iterator<d_annotated_characters.Annotated_Character>,
-    abort: _pi.Abort<_parse_result.Parse_Error>,
+    abort: _pi.Abort<_parse_result.Error>,
 ): d_out.Tokenizer_Result => {
     return _pdev.log_wrapping_debug_messages(
         "tokenization",
