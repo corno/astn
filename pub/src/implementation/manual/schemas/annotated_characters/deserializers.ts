@@ -64,7 +64,7 @@ export const map_with_state = <T, New_Type, State>(
     ) => State
 ): _pi.List<New_Type> => {
     let current_state = initial_state
-    return $.map(($) => {
+    return $.__l_map(($) => {
         const result = handle_value($, current_state)
         current_state = update_state($, current_state)
         return result

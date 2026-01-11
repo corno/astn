@@ -20,13 +20,13 @@ export const Value = ($: d_in.Value): d_out.Block_Part => _p.sg($, ($) => {
             sh.b.indent([
                 _p.sg($, ($): d_out.Group_Part => {
                     switch ($[0]) {
-                        case 'dictionary': return _p.ss($, ($) => sh.g.list(op_enrich_list_elements_with_position_information(_p.list.from_dictionary($, ($, key) => ({ 'key': key, 'value': $ }))).map(($) => sh.g.nested_block([
+                        case 'dictionary': return _p.ss($, ($) => sh.g.list(op_enrich_list_elements_with_position_information(_p.list.from_dictionary($, ($, key) => ({ 'key': key, 'value': $ }))).__l_map(($) => sh.g.nested_block([
                             String($.value.key),
                             sh.b.snippet(": "),
                             Value($.value.value),
                             $['is last'] ? sh.b.nothing() : sh.b.snippet(","),
                         ]))))
-                        case 'key value array': return _p.ss($, ($) => sh.g.list(op_enrich_list_elements_with_position_information($).map(($) => sh.g.nested_block([
+                        case 'key value array': return _p.ss($, ($) => sh.g.list(op_enrich_list_elements_with_position_information($).__l_map(($) => sh.g.nested_block([
                             String($.value.key),
                             sh.b.snippet(": "),
                             Value($.value.value),
@@ -40,7 +40,7 @@ export const Value = ($: d_in.Value): d_out.Block_Part => _p.sg($, ($) => {
         ]))
         case 'array': return _p.ss($, ($) => sh.b.sub([
             sh.b.snippet("["),
-            sh.b.list(op_enrich_list_elements_with_position_information($).map(($) => sh.b.sub([
+            sh.b.list(op_enrich_list_elements_with_position_information($).__l_map(($) => sh.b.sub([
                 Value($.value),
                 $['is last'] ? sh.b.nothing() : sh.b.snippet(", "),
             ]))),

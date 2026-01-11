@@ -9,7 +9,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _p.deprecated_
     switch ($[0]) {
         case 'list': return _p.ss($, ($) => ({
             'state': "list",
-            'value': ['list', $.map(($) => Value(
+            'value': ['list', $.__l_map(($) => Value(
                 $,
                 {
                     'value serializers': $p['value serializers'],
@@ -18,7 +18,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _p.deprecated_
         }))
         case 'dictionary': return _p.ss($, ($) => ({
             'state': "dictionary",
-            'value': ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+            'value': ['list', $.__l_map(($) => ['verbose group', _p.dictionary.literal({
                 'key': _p.deprecated_cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,
@@ -33,7 +33,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _p.deprecated_
         }))
         case 'verbose group': return _p.ss($, ($) => ({
             'state': "verbose group",
-            'value': ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+            'value': ['list', $.__l_map(($) => ['verbose group', _p.dictionary.literal({
                 'key': _p.deprecated_cc($['key'], ($) => ['text', ({
                     'delimiter': ['quote', null],
                     'value': $,

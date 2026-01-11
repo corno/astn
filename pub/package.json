@@ -40,10 +40,10 @@
   },
   "dependencies": {
     "pareto-core-refiner": "^0.1.17",
-    "pareto-fountain-pen": "^0.3.30",
+    "pareto-fountain-pen": "^0.3.31",
     "pareto-host-nodejs": "^0.1.7",
     "pareto-json": "^0.3.10",
-    "pareto-resources": "^0.1.11",
+    "pareto-resources": "^0.1.12",
     "pareto-standard-operations": "^0.3.39"
   }
 }

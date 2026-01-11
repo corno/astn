@@ -220,7 +220,7 @@ export const process_unresolved_list = <Mapped_Value>(
                         const temp = $["["]
                         return {
                             'location': $["["].range,
-                            'list': $["elements"].map(($) => ({
+                            'list': $["elements"].__l_map(($) => ({
                                 'location': temp.range,
                                 'element': $p.value($.value)
                             }))
@@ -246,7 +246,7 @@ export const process_unconstrained_list = <Mapped_Value>(
             case 'ordered collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
                 switch ($[0]) {
                     case 'list': return _ea.ss($, ($) => {
-                        return $["elements"].map(($) => $p.value($.value))
+                        return $["elements"].__l_map(($) => $p.value($.value))
                     })
                     default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
                 }

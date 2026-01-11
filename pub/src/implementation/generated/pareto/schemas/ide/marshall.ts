@@ -20,7 +20,7 @@ export const Relative_Range: _i_signatures._T_Relative_Range = ($, $p) => ['verb
         }
     )),
 })]
-export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.map(($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+export const Text_Edits: _i_signatures._T_Text_Edits = ($, $p) => ['list', $.__l_map(($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
     switch ($[0]) {
         case 'insert': return _p.ss($, ($) => ({
             'state': "insert",

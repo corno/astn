@@ -48,7 +48,7 @@ export const Error: signatures.Parse_Error = ($, $p) => {
                 }
             }))
             case 'parser': return _p.ss($, ($) => `expected ${s_list_of_separated_texts(
-                $.expected.map(($) => _p.sg($, ($) => {
+                $.expected.__l_map(($) => _p.sg($, ($) => {
                     switch ($[0]) {
                         case '!': return "'!'"
                         case ')': return "')'"

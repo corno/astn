@@ -5,7 +5,7 @@ import * as signatures from "../../../../../interface/signatures/transformers/au
 export const Document: signatures.Document = ($) => Value($.content)
 
 
-export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.map(($) => ({
+export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.__l_map(($) => ({
     'key': $.key.value,
     'value': $.value.__decide(
         ($) => Value($.value),
@@ -13,7 +13,7 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.map(($) => (
     ),
 }))
 
-export const Elements: signatures.Elements = ($) => $.map(($) => Value($.value))
+export const Elements: signatures.Elements = ($) => $.__l_map(($) => Value($.value))
 
 export const Value: signatures.Value = ($) => _p.sg($.type, ($) => {
     switch ($[0]) {

@@ -39,7 +39,7 @@ export const Value = (
             })
             case 'list': return _ea.ss($, ($) => {
                 $i['add snippet'](`[`)
-                $.map(($) => {
+                $.__l_map(($) => {
                     $i['add snippet'](` `)
                     Value($, indent + indentation, $i)
                 })

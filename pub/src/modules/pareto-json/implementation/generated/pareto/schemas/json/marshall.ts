@@ -9,7 +9,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated
     switch ($[0]) {
         case 'array': return _pa.ss($, ($) => ({
             'state': "array",
-            'value': ['list', $.map(($) => Value(
+            'value': ['list', $.__l_map(($) => Value(
                 $,
                 {
                     'value serializers': $p['value serializers'],
@@ -22,7 +22,7 @@ export const Value: _i_signatures._T_Value = ($, $p) => ['state', _pa.deprecated
                 switch ($[0]) {
                     case 'key value array': return _pa.ss($, ($) => ({
                         'state': "key value array",
-                        'value': ['list', $.map(($) => ['verbose group', _pa.dictionary.literal({
+                        'value': ['list', $.__l_map(($) => ['verbose group', _pa.dictionary.literal({
                             'key': _pa.deprecated_cc($['key'], ($) => ['text', ({
                                 'delimiter': ['quote', null],
                                 'value': $,

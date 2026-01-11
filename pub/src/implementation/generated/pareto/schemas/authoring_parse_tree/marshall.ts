@@ -44,7 +44,7 @@ export const String: _i_signatures._T_String = ($, $p) => ['verbose group', _p.d
         }
     )),
 })]
-export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['list', $.__l_map(($) => ['verbose group', _p.dictionary.literal({
     'key': _p.deprecated_cc($['key'], ($) => String(
         $,
         {
@@ -69,7 +69,7 @@ export const Key_Value_Pairs: _i_signatures._T_Key_Value_Pairs = ($, $p) => ['li
         () => ['not set', null]
     )]),
 })])]
-export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+export const Elements: _i_signatures._T_Elements = ($, $p) => ['list', $.__l_map(($) => ['verbose group', _p.dictionary.literal({
     'value': _p.deprecated_cc($['value'], ($) => Value(
         $,
         {

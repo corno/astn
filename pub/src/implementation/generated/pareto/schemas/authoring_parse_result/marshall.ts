@@ -77,7 +77,7 @@ export const Parse_Error: _i_signatures._T_Parse_Error = ($, $p) => ['verbose gr
             case 'parser': return _p.ss($, ($) => ({
                 'state': "parser",
                 'value': ['verbose group', _p.dictionary.literal({
-                    'expected': _p.deprecated_cc($['expected'], ($) => ['list', $.map(($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
+                    'expected': _p.deprecated_cc($['expected'], ($) => ['list', $.__l_map(($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
                         switch ($[0]) {
                             case 'a string': return _p.ss($, ($) => ({
                                 'state': "a string",

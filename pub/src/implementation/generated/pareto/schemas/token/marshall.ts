@@ -69,7 +69,7 @@ export const Trivia: _i_signatures._T_Trivia = ($, $p) => ['verbose group', _p.d
             'value serializers': $p['value serializers'],
         }
     )),
-    'comments': _p.deprecated_cc($['comments'], ($) => ['list', $.map(($) => ['verbose group', _p.dictionary.literal({
+    'comments': _p.deprecated_cc($['comments'], ($) => ['list', $.__l_map(($) => ['verbose group', _p.dictionary.literal({
         'type': _p.deprecated_cc($['type'], ($) => ['state', _p.deprecated_cc($, ($): _i_out._T_Value.SG.state => {
             switch ($[0]) {
                 case 'line': return _p.ss($, ($) => ({
@@ -241,7 +241,7 @@ export const Tokenizer_Result: _i_signatures._T_Tokenizer_Result = ($, $p) => ['
             'value serializers': $p['value serializers'],
         }
     )),
-    'tokens': _p.deprecated_cc($['tokens'], ($) => ['list', $.map(($) => Annotated_Token(
+    'tokens': _p.deprecated_cc($['tokens'], ($) => ['list', $.__l_map(($) => Annotated_Token(
         $,
         {
             'value serializers': $p['value serializers'],

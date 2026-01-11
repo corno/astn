@@ -35,7 +35,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                 $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
                 sh.b.indent([
-                    sh.g.sub($.map(($) => sh.g.nested_block([
+                    sh.g.sub($.__l_map(($) => sh.g.nested_block([
                         sh.b.snippet(s_backticked($.key, {
                             'add delimiters': true,
                         })),
@@ -52,7 +52,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                 sh.b.sub([
                     $p['write delimiters'] ? sh.b.snippet("(") : sh.b.snippet(""), //we always want a newline here
                     sh.b.indent([
-                        sh.g.sub($.map(($) => sh.g.nested_block([
+                        sh.g.sub($.__l_map(($) => sh.g.nested_block([
                             sh.b.snippet(s_apostrophed($.key, {
                                 'add delimiters': true,
                             })),
@@ -68,7 +68,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             ]))
             case 'list': return _p.ss($, ($) => sh.b.sub([
                 $p['write delimiters'] ? sh.b.snippet("[") : sh.b.nothing(),
-                sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => sh.b.sub([
+                sh.b.sub(op_enrich_list_elements_with_position_information($).__l_map(($) => sh.b.sub([
                     sh.b.snippet(" "),
                     Value($.value, {
                         'in concise group': false,
@@ -79,7 +79,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             ]))
             case 'concise group': return _p.ss($, ($) => sh.b.sub([
                 $p['write delimiters'] ? sh.b.snippet("<") : sh.b.nothing(),
-                sh.b.sub(op_enrich_list_elements_with_position_information($).map(($) => Value($.value, {
+                sh.b.sub(op_enrich_list_elements_with_position_information($).__l_map(($) => Value($.value, {
                     'in concise group': true,
                     'write delimiters': true,
                 }))),

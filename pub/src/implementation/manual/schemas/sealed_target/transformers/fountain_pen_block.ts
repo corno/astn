@@ -20,7 +20,7 @@ export const Value = (
             case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                 sh.b.snippet("{"),
                 sh.b.indent([
-                    sh.g.sub($.map(($) => sh.g.nested_block([
+                    sh.g.sub($.__l_map(($) => sh.g.nested_block([
                         sh.b.snippet(s_backticked($.key, {
                             'add delimiters': true
                         })),
@@ -34,7 +34,7 @@ export const Value = (
                 sh.b.sub([
                     sh.b.snippet("("),
                     sh.b.indent([
-                        sh.g.sub($.map(($) => sh.g.nested_block([
+                        sh.g.sub($.__l_map(($) => sh.g.nested_block([
                             sh.b.snippet(s_apostrophed($.key, {
                                 'add delimiters': true
                             })),
@@ -47,7 +47,7 @@ export const Value = (
             ]))
             case 'list': return _p.ss($, ($) => sh.b.sub([
                 sh.b.snippet("["),
-                sh.b.sub($.map(($) => sh.b.sub([
+                sh.b.sub($.__l_map(($) => sh.b.sub([
                     sh.b.snippet(" "),
                     Value($),
                 ]))),
