@@ -10,10 +10,7 @@ import * as _pi from "pareto-core-interface"
             readonly 'key': string
             readonly 'value': _T_Value
         }>]
-        | readonly ['verbose group', _i_core._T_List<null, {
-            readonly 'key': string
-            readonly 'value': _T_Value
-        }>]
+        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
         | readonly ['text', {
             readonly 'value': string
             readonly 'delimiter': _i_core._T_State_Group<null, 
@@ -76,22 +73,11 @@ import * as _pi from "pareto-core-interface"
             
             export namespace verbose_group {
                 
-                export namespace L {
-                    export type key = string
-                    
-                    export namespace value {
-                    }
-                    export type value = _T_Value
+                export namespace D {
                 }
-                export type L = {
-                    readonly 'key': string
-                    readonly 'value': _T_Value
-                }
+                export type D = _T_Value
             }
-            export type verbose_group = _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>
+            export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
             
             export namespace text {
                 export type value = string
@@ -160,10 +146,7 @@ import * as _pi from "pareto-core-interface"
                 readonly 'key': string
                 readonly 'value': _T_Value
             }>]
-            | readonly ['verbose group', _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>]
+            | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
             | readonly ['text', {
                 readonly 'value': string
                 readonly 'delimiter': _i_core._T_State_Group<null, 
@@ -221,22 +204,11 @@ import * as _pi from "pareto-core-interface"
             
             export namespace verbose_group {
                 
-                export namespace L {
-                    export type key = string
-                    
-                    export namespace value {
-                    }
-                    export type value = _T_Value
+                export namespace D {
                 }
-                export type L = {
-                    readonly 'key': string
-                    readonly 'value': _T_Value
-                }
+                export type D = _T_Value
             }
-            export type verbose_group = _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>
+            export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
             
             export namespace text {
                 export type value = string
@@ -305,10 +277,7 @@ import * as _pi from "pareto-core-interface"
                 readonly 'key': string
                 readonly 'value': _T_Value
             }>]
-            | readonly ['verbose group', _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>]
+            | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
             | readonly ['text', {
                 readonly 'value': string
                 readonly 'delimiter': _i_core._T_State_Group<null, 

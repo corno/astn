@@ -34,7 +34,7 @@ export const Value = (
                 sh.b.sub([
                     sh.b.snippet("("),
                     sh.b.indent([
-                        sh.g.sub($.__l_map(($) => sh.g.nested_block([
+                        sh.g.sub($.__to_list(($, key) => ({ 'key': key, 'value': $ })).__l_map(($) => sh.g.nested_block([
                             sh.b.snippet(s_apostrophed($.key, {
                                 'add delimiters': true
                             })),
