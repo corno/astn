@@ -1,301 +1,101 @@
+
 import * as _pi from "pareto-core-interface"
+
+import * as i_location__ from "../../../core/location"
+
+export namespace Value_ {
     
-    import * as _i_core from "../../../core/resolved"
-    
-    // **** TYPES
-    
-    export type _T_Value = _i_core._T_State_Group<null, 
-        | readonly ['list', _i_core._T_List<null, _T_Value>]
-        | readonly ['dictionary', _i_core._T_List<null, {
-            readonly 'key': string
-            readonly 'value': _T_Value
-        }>]
-        | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
-        | readonly ['text', {
-            readonly 'value': string
-            readonly 'delimiter': _i_core._T_State_Group<null, 
-                | readonly ['none', null]
-                | readonly ['quote', null]
-                | readonly ['backtick', null]
-            >
-        }]
-        | readonly ['nothing', null]
-        | readonly ['optional', _i_core._T_State_Group<null, 
-            | readonly ['not set', null]
-            | readonly ['set', _T_Value]
-        >]
-        | readonly ['state', {
-            readonly 'state': string
-            readonly 'value': _T_Value
-        }]
-    >
-    
-    export type _T_Document = _T_Value
-    
-    // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
-    
-    export type Value = _T_Value
-    
-    export type Document = _T_Document
-    
-    // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
-    
-    export namespace _T_Value {
+    export namespace list {
         
-        export namespace SG {
-            
-            export namespace list {
-                
-                export namespace L {
-                }
-                export type L = _T_Value
-            }
-            export type list = _i_core._T_List<null, _T_Value>
-            
-            export namespace dictionary {
-                
-                export namespace L {
-                    export type key = string
-                    
-                    export namespace value {
-                    }
-                    export type value = _T_Value
-                }
-                export type L = {
-                    readonly 'key': string
-                    readonly 'value': _T_Value
-                }
-            }
-            export type dictionary = _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>
-            
-            export namespace verbose_group {
-                
-                export namespace D {
-                }
-                export type D = _T_Value
-            }
-            export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
-            
-            export namespace text {
-                export type value = string
-                
-                export namespace delimiter {
-                    
-                    export namespace SG {
-                        export type none = null
-                        export type quote = null
-                        export type backtick = null
-                    }
-                    export type SG = 
-                        | readonly ['none', null]
-                        | readonly ['quote', null]
-                        | readonly ['backtick', null]
-                }
-                export type delimiter = _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }
-            export type text = {
-                readonly 'value': string
-                readonly 'delimiter': _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }
-            export type nothing = null
-            
-            export namespace optional {
-                
-                export namespace SG {
-                    export type not_set = null
-                    
-                    export namespace _set {
-                    }
-                    export type _set = _T_Value
-                }
-                export type SG = 
-                    | readonly ['not set', null]
-                    | readonly ['set', _T_Value]
-            }
-            export type optional = _i_core._T_State_Group<null, 
-                | readonly ['not set', null]
-                | readonly ['set', _T_Value]
-            >
-            
-            export namespace state {
-                export type state = string
-                
-                export namespace value {
-                }
-                export type value = _T_Value
-            }
-            export type state = {
-                readonly 'state': string
-                readonly 'value': _T_Value
-            }
-        }
-        export type SG = 
-            | readonly ['list', _i_core._T_List<null, _T_Value>]
-            | readonly ['dictionary', _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>]
-            | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
-            | readonly ['text', {
-                readonly 'value': string
-                readonly 'delimiter': _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _i_core._T_State_Group<null, 
-                | readonly ['not set', null]
-                | readonly ['set', _T_Value]
-            >]
-            | readonly ['state', {
-                readonly 'state': string
-                readonly 'value': _T_Value
-            }]
-    }
-    
-    export namespace _T_Document {
-    }
-    
-    // *** ALIASES FOR NESTED TYPES
-    
-    export namespace Value {
+        export type L = Value_
         
-        export namespace SG {
-            
-            export namespace list {
-                
-                export namespace L {
-                }
-                export type L = _T_Value
-            }
-            export type list = _i_core._T_List<null, _T_Value>
-            
-            export namespace dictionary {
-                
-                export namespace L {
-                    export type key = string
-                    
-                    export namespace value {
-                    }
-                    export type value = _T_Value
-                }
-                export type L = {
-                    readonly 'key': string
-                    readonly 'value': _T_Value
-                }
-            }
-            export type dictionary = _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>
-            
-            export namespace verbose_group {
-                
-                export namespace D {
-                }
-                export type D = _T_Value
-            }
-            export type verbose_group = _i_core._T_Dictionary<null, _T_Value>
-            
-            export namespace text {
-                export type value = string
-                
-                export namespace delimiter {
-                    
-                    export namespace SG {
-                        export type none = null
-                        export type quote = null
-                        export type backtick = null
-                    }
-                    export type SG = 
-                        | readonly ['none', null]
-                        | readonly ['quote', null]
-                        | readonly ['backtick', null]
-                }
-                export type delimiter = _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }
-            export type text = {
-                readonly 'value': string
-                readonly 'delimiter': _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }
-            export type nothing = null
-            
-            export namespace optional {
-                
-                export namespace SG {
-                    export type not_set = null
-                    
-                    export namespace _set {
-                    }
-                    export type _set = _T_Value
-                }
-                export type SG = 
-                    | readonly ['not set', null]
-                    | readonly ['set', _T_Value]
-            }
-            export type optional = _i_core._T_State_Group<null, 
-                | readonly ['not set', null]
-                | readonly ['set', _T_Value]
-            >
-            
-            export namespace state {
-                export type state = string
-                
-                export namespace value {
-                }
-                export type value = _T_Value
-            }
-            export type state = {
-                readonly 'state': string
-                readonly 'value': _T_Value
-            }
-        }
-        export type SG = 
-            | readonly ['list', _i_core._T_List<null, _T_Value>]
-            | readonly ['dictionary', _i_core._T_List<null, {
-                readonly 'key': string
-                readonly 'value': _T_Value
-            }>]
-            | readonly ['verbose group', _i_core._T_Dictionary<null, _T_Value>]
-            | readonly ['text', {
-                readonly 'value': string
-                readonly 'delimiter': _i_core._T_State_Group<null, 
-                    | readonly ['none', null]
-                    | readonly ['quote', null]
-                    | readonly ['backtick', null]
-                >
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _i_core._T_State_Group<null, 
-                | readonly ['not set', null]
-                | readonly ['set', _T_Value]
-            >]
-            | readonly ['state', {
-                readonly 'state': string
-                readonly 'value': _T_Value
-            }]
     }
     
-    export namespace Document {
+    export type list = _pi.List<list.L>
+    
+    export namespace dictionary {
+        
+        export type D = Value_
+        
     }
+    
+    export type dictionary = _pi.Dictionary<dictionary.D>
+    
+    export namespace verbose_group {
+        
+        export type D = Value_
+        
+    }
+    
+    export type verbose_group = _pi.Dictionary<verbose_group.D>
+    
+    export namespace text {
+        
+        export type value = string
+        
+        export namespace delimiter {
+            
+            export type none = null
+            
+            export type quote = null
+            
+            export type backtick = null
+            
+        }
+        
+        export type delimiter = 
+            | readonly ['none', delimiter.none]
+            | readonly ['quote', delimiter.quote]
+            | readonly ['backtick', delimiter.backtick]
+        
+    }
+    
+    export type text = {
+        readonly 'value': text.value
+        readonly 'delimiter': text.delimiter
+    }
+    
+    export type nothing = null
+    
+    export namespace optional {
+        
+        export type not_set = null
+        
+        export type _set = Value_
+        
+    }
+    
+    export type optional = 
+        | readonly ['not set', optional.not_set]
+        | readonly ['set', optional._set]
+    
+    export namespace state {
+        
+        export type state = string
+        
+        export type value = Value_
+        
+    }
+    
+    export type state = {
+        readonly 'state': state.state
+        readonly 'value': state.value
+    }
+    
+}
+
+export type Value_ = 
+    | readonly ['list', Value_.list]
+    | readonly ['dictionary', Value_.dictionary]
+    | readonly ['verbose group', Value_.verbose_group]
+    | readonly ['text', Value_.text]
+    | readonly ['nothing', Value_.nothing]
+    | readonly ['optional', Value_.optional]
+    | readonly ['state', Value_.state]
+
+export type Document_ = Value_
+
+export { 
+    Value_ as Value, 
+    Document_ as Document, 
+}

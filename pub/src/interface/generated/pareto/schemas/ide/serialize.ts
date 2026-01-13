@@ -1,15 +1,13 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_out from "./data_types/target"
-
 import * as i_in from "./data_types/source"
 
 export namespace Relative_Range_ {
     
     export type I = i_in.Relative_Range
     
-    export type O = i_out.Relative_Range
+    export type O = string
     
     export namespace P {
         
@@ -25,7 +23,7 @@ export namespace Text_Edits_ {
     
     export type I = i_in.Text_Edits
     
-    export type O = i_out.Text_Edits
+    export type O = string
     
     export namespace P {
         
@@ -41,7 +39,7 @@ export namespace Key_Value_Pairs_To_Be_Sorted_ {
     
     export type I = i_in.Key_Value_Pairs_To_Be_Sorted
     
-    export type O = i_out.Key_Value_Pairs_To_Be_Sorted
+    export type O = string
     
     export namespace P {
         

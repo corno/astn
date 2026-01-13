@@ -1,1453 +1,407 @@
+
 import * as _pi from "pareto-core-interface"
+
+import * as i_resolve from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
+
+import * as i_resolved from "./source"
+
+import * as i_unresolved from "./target"
+
+export namespace Text_Type_ {
     
-    import * as _i_resolve from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
-    import * as _i_resolved from "./source"
-    import * as _i_unresolved from "./target"
+    export type I = i_unresolved.Text_Type
     
-    // **** TYPES
+    export type O = i_resolved.Text_Type
     
-    export type _T_Text_Type = <F_Source>(
-        $$_: _i_unresolved._T_Text_Type<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Text_Type
-    
-    export type _T_Globals = <F_Source>(
-        $$_: _i_unresolved._T_Globals<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Globals
-    
-    export type _T_Group = <F_Source>(
-        $$_: _i_unresolved._T_Group<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Group
-    
-    export type _T_Dictionary = <F_Source>(
-        $$_: _i_unresolved._T_Dictionary<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Dictionary
-    
-    export type _T_Type_Node = <F_Source>(
-        $$_: _i_unresolved._T_Type_Node<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Type_Node
-    
-    export type _T_Type = <F_Source>(
-        $$_: _i_unresolved._T_Type<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Type
-    
-    export type _T_Schemas = <F_Source>(
-        $$_: _i_unresolved._T_Schemas<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Schemas
-    
-    export type _T_Schema_Tree = <F_Source>(
-        $$_: _i_unresolved._T_Schema_Tree<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Schema_Tree
-    
-    export type _T_Schema = <F_Source>(
-        $$_: _i_unresolved._T_Schema<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Schema
-    
-    export type _T_Imports = <F_Source>(
-        $$_: _i_unresolved._T_Imports<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Imports
-    
-    export type _T_Types = <F_Source>(
-        $$_: _i_unresolved._T_Types<F_Source>,
-        $$_p: {
-            readonly 'parameters': {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': null
-            }
-            readonly 'location 2 string': _i_resolve._T_Location_2_String<F_Source>
-        },
-    ) => _i_resolved._T_Types
-    
-    // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
-    
-    export type Text_Type = _T_Text_Type
-    
-    export type Globals = _T_Globals
-    
-    export type Group = _T_Group
-    
-    export type Dictionary = _T_Dictionary
-    
-    export type Type_Node = _T_Type_Node
-    
-    export type Type = _T_Type
-    
-    export type Schemas = _T_Schemas
-    
-    export type Schema_Tree = _T_Schema_Tree
-    
-    export type Schema = _T_Schema
-    
-    export type Imports = _T_Imports
-    
-    export type Types = _T_Types
-    
-    // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
-    
-    export namespace _T_Text_Type {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Text_Type<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Text_Type
     }
     
-    export namespace _T_Globals {
+}
+
+export type Text_Type_ = (
+    $$_: Text_Type_.I,
+    $$_lookups: null,
+    $$_p: null,
+) => Text_Type_.O
+
+export namespace Globals_ {
+    
+    export type I = i_unresolved.Globals
+    
+    export type O = i_resolved.Globals
+    
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Globals<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Globals
     }
     
-    export namespace _T_Group {
+}
+
+export type Globals_ = (
+    $$_: Globals_.I,
+    $$_lookups: null,
+    $$_p: null,
+) => Globals_.O
+
+export namespace Group_ {
+    
+    export type I = i_unresolved.Group
+    
+    export type O = i_resolved.Group
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Group<F_Source>
+        export type noncircular_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Group
     }
     
-    export namespace _T_Dictionary {
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Dictionary<F_Source>
+        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Dictionary
     }
     
-    export namespace _T_Type_Node {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Type_Node<F_Source>
-        
-        export namespace PARAMS {
+        export namespace globals {
             
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
+            export type O = i_resolved.Globals_
             
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
         }
         
-        export namespace RESULT {
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
         }
-        export type RESULT<F_Source> = _i_resolved._T_Type_Node
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
     }
     
-    export namespace _T_Type {
+}
+
+export type Group_ = (
+    $$_: Group_.I,
+    $$_lookups: {
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
+    },
+    $$_p: {
+        readonly 'globals': Group_.P.globals
+        readonly 'imports': Group_.P.imports
+    },
+) => Group_.O
+
+export namespace Dictionary_ {
+    
+    export type I = i_unresolved.Dictionary
+    
+    export type O = i_resolved.Dictionary
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Type<F_Source>
+        export type noncircular_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Type
     }
     
-    export namespace _T_Schemas {
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schemas<F_Source>
+        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Schemas
     }
     
-    export namespace _T_Schema_Tree {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schema_Tree<F_Source>
-        
-        export namespace PARAMS {
+        export namespace globals {
             
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
+            export type O = i_resolved.Globals_
             
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
         }
         
-        export namespace RESULT {
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
         }
-        export type RESULT<F_Source> = _i_resolved._T_Schema_Tree
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
     }
     
-    export namespace _T_Schema {
+}
+
+export type Dictionary_ = (
+    $$_: Dictionary_.I,
+    $$_lookups: {
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
+    },
+    $$_p: {
+        readonly 'globals': Dictionary_.P.globals
+        readonly 'imports': Dictionary_.P.imports
+    },
+) => Dictionary_.O
+
+export namespace Type_Node_ {
+    
+    export type I = i_unresolved.Type_Node
+    
+    export type O = i_resolved.Type_Node
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schema<F_Source>
+        export type noncircular_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Schema
     }
     
-    export namespace _T_Imports {
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Imports<F_Source>
+        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Imports
     }
     
-    export namespace _T_Types {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Types<F_Source>
-        
-        export namespace PARAMS {
+        export namespace globals {
             
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': null
-            }
+            export type O = i_resolved.Globals_
             
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
         }
         
-        export namespace RESULT {
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
         }
-        export type RESULT<F_Source> = _i_resolved._T_Types
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
     }
     
-    // *** ALIASES FOR NESTED TYPES
+}
+
+export type Type_Node_ = (
+    $$_: Type_Node_.I,
+    $$_lookups: {
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
+    },
+    $$_p: {
+        readonly 'globals': Type_Node_.P.globals
+        readonly 'imports': Type_Node_.P.imports
+    },
+) => Type_Node_.O
+
+export namespace Type_ {
     
-    export namespace Text_Type {
+    export type I = i_unresolved.Type
+    
+    export type O = i_resolved.Type
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Text_Type<F_Source>
+        export type noncircular_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Text_Type
     }
     
-    export namespace Globals {
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Globals<F_Source>
+        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': null
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Globals
     }
     
-    export namespace Group {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Group<F_Source>
-        
-        export namespace PARAMS {
+        export namespace globals {
             
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
+            export type O = i_resolved.Globals_
             
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
         }
         
-        export namespace RESULT {
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
         }
-        export type RESULT<F_Source> = _i_resolved._T_Group
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
     }
     
-    export namespace Dictionary {
+}
+
+export type Type_ = (
+    $$_: Type_.I,
+    $$_lookups: {
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
+    },
+    $$_p: {
+        readonly 'globals': Type_.P.globals
+        readonly 'imports': Type_.P.imports
+    },
+) => Type_.O
+
+export namespace Schemas_ {
+    
+    export type I = i_unresolved.Schemas
+    
+    export type O = i_resolved.Schemas
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Dictionary<F_Source>
+        export type sibling_schemas = i_resolved.Schemas_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Dictionary
     }
     
-    export namespace Type_Node {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Type_Node<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Type_Node
     }
     
-    export namespace Type {
+}
+
+export type Schemas_ = (
+    $$_: Schemas_.I,
+    $$_lookups: {
+        readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
+    },
+    $$_p: null,
+) => Schemas_.O
+
+export namespace Schema_Tree_ {
+    
+    export type I = i_unresolved.Schema_Tree
+    
+    export type O = i_resolved.Schema_Tree
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Type<F_Source>
+        export type sibling_schemas = i_resolved.Schemas_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                    
-                    export namespace noncircular_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type noncircular_sibling_types<F_Source> = _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    
-                    export namespace possibly_circular_dependent_sibling_types {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Types.D
-                    }
-                    export type possibly_circular_dependent_sibling_types<F_Source> = _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': {
-                    readonly 'noncircular sibling types': _i_resolve._T_Acyclic_Lookup<_i_resolved._T_Types.D>
-                    readonly 'possibly circular dependent sibling types': _i_resolve._T_Cyclic_Lookup<_i_resolved._T_Types.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Type
     }
     
-    export namespace Schemas {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schemas<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Schemas
     }
     
-    export namespace Schema_Tree {
+}
+
+export type Schema_Tree_ = (
+    $$_: Schema_Tree_.I,
+    $$_lookups: {
+        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
+    },
+    $$_p: null,
+) => Schema_Tree_.O
+
+export namespace Schema_ {
+    
+    export type I = i_unresolved.Schema
+    
+    export type O = i_resolved.Schema
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schema_Tree<F_Source>
+        export type sibling_schemas = i_resolved.Schemas_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Schema_Tree
     }
     
-    export namespace Schema {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Schema<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Schema
     }
     
-    export namespace Imports {
+}
+
+export type Schema_ = (
+    $$_: Schema_.I,
+    $$_lookups: {
+        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
+    },
+    $$_p: null,
+) => Schema_.O
+
+export namespace Imports_ {
+    
+    export type I = i_unresolved.Imports
+    
+    export type O = i_resolved.Imports
+    
+    export namespace L {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Imports<F_Source>
+        export type sibling_schemas = i_resolved.Schemas_.D
         
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                }
-                export type values<F_Source> = null
-                
-                export namespace lookups {
-                    
-                    export namespace sibling_schemas {
-                        
-                        export namespace T {
-                        }
-                        export type T<F_Source> = _i_resolved._T_Schemas.D
-                    }
-                    export type sibling_schemas<F_Source> = _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-                export type lookups<F_Source> = {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': null
-                readonly 'lookups': {
-                    readonly 'sibling schemas': _i_resolve._T_Lookup_Stack<_i_resolved._T_Schemas.D>
-                }
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Imports
     }
     
-    export namespace Types {
+    export namespace P {
         
-        export namespace CONTEXT {
-            export type Source<F_Source> = F_Source
-        }
-        export type CONTEXT<F_Source> = _i_unresolved._T_Types<F_Source>
-        
-        export namespace PARAMS {
-            
-            export namespace parameters {
-                
-                export namespace values {
-                    
-                    export namespace globals {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Globals
-                    }
-                    export type globals<F_Source> = _pi.Optional_Value<_i_resolved._T_Globals>
-                    
-                    export namespace imports {
-                        
-                        export namespace O {
-                        }
-                        export type O<F_Source> = _i_resolved._T_Imports
-                    }
-                    export type imports<F_Source> = _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                export type values<F_Source> = {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                
-                export namespace lookups {
-                }
-                export type lookups<F_Source> = null
-            }
-            export type parameters<F_Source> = {
-                readonly 'values': {
-                    readonly 'globals': _pi.Optional_Value<_i_resolved._T_Globals>
-                    readonly 'imports': _pi.Optional_Value<_i_resolved._T_Imports>
-                }
-                readonly 'lookups': null
-            }
-            
-            export namespace location_2_string {
-                export type Source<F_Source> = F_Source
-            }
-            export type location_2_string<F_Source> = _i_resolve._T_Location_2_String<F_Source>
-        }
-        
-        export namespace RESULT {
-        }
-        export type RESULT<F_Source> = _i_resolved._T_Types
     }
+    
+}
+
+export type Imports_ = (
+    $$_: Imports_.I,
+    $$_lookups: {
+        readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
+    },
+    $$_p: null,
+) => Imports_.O
+
+export namespace Types_ {
+    
+    export type I = i_unresolved.Types
+    
+    export type O = i_resolved.Types
+    
+    export namespace P {
+        
+        export namespace globals {
+            
+            export type O = i_resolved.Globals_
+            
+        }
+        
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
+        }
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
+    }
+    
+}
+
+export type Types_ = (
+    $$_: Types_.I,
+    $$_lookups: null,
+    $$_p: {
+        readonly 'globals': Types_.P.globals
+        readonly 'imports': Types_.P.imports
+    },
+) => Types_.O
+
+export { 
+    Text_Type_ as Text_Type, 
+    Globals_ as Globals, 
+    Group_ as Group, 
+    Dictionary_ as Dictionary, 
+    Type_Node_ as Type_Node, 
+    Type_ as Type, 
+    Schemas_ as Schemas, 
+    Schema_Tree_ as Schema_Tree, 
+    Schema_ as Schema, 
+    Imports_ as Imports, 
+    Types_ as Types, 
+}

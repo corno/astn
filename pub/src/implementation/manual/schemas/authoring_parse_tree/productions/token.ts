@@ -11,53 +11,53 @@ export namespace signatures {
     export type Document = new_pi.Production_Without_Parameters<
         d_target.Document,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L
+        d_parse_result.Error._type.parser.expected.L
     >
 
     export type Value = new_pi.Production_Without_Parameters<
         d_target.Value,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L
+        d_parse_result.Error._type.parser.expected.L
     >
 
     export type Structural_Token = new_pi.Production_Without_Parameters<d_target.Structural_Token,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L
+        d_parse_result.Error._type.parser.expected.L
     >
 
     export type String = new_pi.Production<
         d_target.String,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L,
+        d_parse_result.Error._type.parser.expected.L,
         {
-            'string': d_source.Token_Type.SG._string
+            'string': d_source.Token_Type._string
         }
     >
 
     export type Elements = new_pi.Production<
         d_target.Elements,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L,
+        d_parse_result.Error._type.parser.expected.L,
         {
-            'end token': d_parse_result.Error._type.SG.parser.expected.L
+            'end token': d_parse_result.Error._type.parser.expected.L
         }
     >
 
     export type Element = new_pi.Production<
         d_target.Elements,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L,
+        d_parse_result.Error._type.parser.expected.L,
         {
-            'end token': d_parse_result.Error._type.SG.parser.expected.L
+            'end token': d_parse_result.Error._type.parser.expected.L
         }
     >
 
     export type Key_Value_Pairs = new_pi.Production<
         d_target.Key_Value_Pairs,
         d_source.Annotated_Token,
-        d_parse_result.Error._type.SG.parser.expected.L,
+        d_parse_result.Error._type.parser.expected.L,
         {
-            'end token': d_parse_result.Error._type.SG.parser.expected.L
+            'end token': d_parse_result.Error._type.parser.expected.L
         }
     >
 
@@ -139,7 +139,7 @@ export const Value: signatures.Value = (iterator) => iterator.expect(
                             ['a value', null],
                             ['#', null]
                         ],
-                        (token, abort) => _p.sg(token.type, ($): d_target.Concrete_Value.SG.state.status => {
+                        (token, abort) => _p.sg(token.type, ($): d_target.Concrete_Value.state.status => {
                             switch ($[0]) {
                                 case 'string': return _p.ss($, ($) => ['set', {
                                     'state': String(iterator, { 'string': $ }),

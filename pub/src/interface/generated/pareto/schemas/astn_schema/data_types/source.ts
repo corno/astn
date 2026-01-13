@@ -1,630 +1,292 @@
+
 import * as _pi from "pareto-core-interface"
+
+import * as i_location__ from "../../../core/location"
+
+export namespace Schemas_ {
     
-    import * as _i_core from "../../../core/resolved"
+    export type D = Schema_Tree_
     
-    // **** TYPES
+}
+
+export type Schemas_ = _pi.Dictionary<Schemas_.D>
+
+export namespace Text_Type_ {
     
-    export type _T_Schemas = _i_core._T_Ordered_Dictionary<null, _T_Schema_Tree>
-    
-    export type _T_Text_Type = {
-        readonly 'type': _i_core._T_State_Group<null, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
-    }
-    
-    export type _T_Globals = {
-        readonly 'text types': _i_core._T_Dictionary<null, _T_Text_Type>
-    }
-    
-    export type _T_Type = {
-        readonly 'node': _T_Type_Node
-    }
-    
-    export type _T_Types = _i_core._T_Ordered_Dictionary<null, _T_Type>
-    
-    export type _T_Schema = {
-        readonly 'imports': _T_Imports
-        readonly 'globals': _T_Globals
-        readonly 'types': _T_Types
-    }
-    
-    export type _T_Schema_Tree = _i_core._T_State_Group<null, 
-        | readonly ['set', _T_Schemas]
-        | readonly ['schema', _T_Schema]
-    >
-    
-    export type _T_Imports = _i_core._T_Dictionary<null, {
-        readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<null, _T_Schemas.D>
-        readonly 'schema': _i_core._T_Derived_Reference<null, _T_Schema>
-    }>
-    
-    export type _T_Dictionary = {
-        readonly 'node': _T_Type_Node
-        readonly 'ordered': boolean
-    }
-    
-    export type _T_Group = _i_core._T_Dictionary<null, _T_Type_Node>
-    
-    export type _T_Type_Node = _i_core._T_State_Group<null, 
-        | readonly ['component', _i_core._T_State_Group<null, 
-            | readonly ['external', {
-                readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-            }]
-            | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-            | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-        >]
-        | readonly ['dictionary', _T_Dictionary]
-        | readonly ['group', _T_Group]
-        | readonly ['list', {
-            readonly 'node': _T_Type_Node
-        }]
-        | readonly ['nothing', null]
-        | readonly ['optional', _T_Type_Node]
-        | readonly ['state group', _i_core._T_Dictionary<null, _T_Type_Node>]
-        | readonly ['text', _i_core._T_State_Group<null, 
-            | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-            | readonly ['local', _T_Text_Type]
-        >]
-    >
-    
-    // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
-    
-    export type Schemas = _T_Schemas
-    
-    export type Text_Type = _T_Text_Type
-    
-    export type Globals = _T_Globals
-    
-    export type Type = _T_Type
-    
-    export type Types = _T_Types
-    
-    export type Schema = _T_Schema
-    
-    export type Schema_Tree = _T_Schema_Tree
-    
-    export type Imports = _T_Imports
-    
-    export type Dictionary = _T_Dictionary
-    
-    export type Group = _T_Group
-    
-    export type Type_Node = _T_Type_Node
-    
-    // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
-    
-    export namespace _T_Schemas {
+    export namespace _type {
         
-        export namespace D {
-        }
-        export type D = _T_Schema_Tree
+        export type multi_line = null
+        
+        export type single_line = null
+        
     }
     
-    export namespace _T_Text_Type {
+    export type _type = 
+        | readonly ['multi line', _type.multi_line]
+        | readonly ['single line', _type.single_line]
+    
+}
+
+export type Text_Type_ = {
+    readonly 'type': Text_Type_._type
+}
+
+export namespace Globals_ {
+    
+    export namespace text_types {
         
-        export namespace _type {
+        export type D = Text_Type_
+        
+    }
+    
+    export type text_types = _pi.Dictionary<text_types.D>
+    
+}
+
+export type Globals_ = {
+    readonly 'text types': Globals_.text_types
+}
+
+export namespace Type_ {
+    
+    export type node = Type_Node_
+    
+}
+
+export type Type_ = {
+    readonly 'node': Type_.node
+}
+
+export namespace Types_ {
+    
+    export type D = Type_
+    
+}
+
+export type Types_ = _pi.Dictionary<Types_.D>
+
+export namespace Schema_ {
+    
+    export type imports = Imports_
+    
+    export type globals = Globals_
+    
+    export type types = Types_
+    
+}
+
+export type Schema_ = {
+    readonly 'imports': Schema_.imports
+    readonly 'globals': Schema_.globals
+    readonly 'types': Schema_.types
+}
+
+export namespace Schema_Tree_ {
+    
+    export type _set = Schemas_
+    
+    export type schema = Schema_
+    
+}
+
+export type Schema_Tree_ = 
+    | readonly ['set', Schema_Tree_._set]
+    | readonly ['schema', Schema_Tree_.schema]
+
+export namespace Imports_ {
+    
+    export namespace D {
+        
+        export namespace schema_set_child {
             
-            export namespace SG {
-                export type multi_line = null
-                export type single_line = null
-            }
-            export type SG = 
-                | readonly ['multi line', null]
-                | readonly ['single line', null]
-        }
-        export type _type = _i_core._T_State_Group<null, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
-    }
-    
-    export namespace _T_Globals {
-        
-        export namespace text_types {
+            export type entry = Schemas_.D
             
-            export namespace D {
-            }
-            export type D = _T_Text_Type
-        }
-        export type text_types = _i_core._T_Dictionary<null, _T_Text_Type>
-    }
-    
-    export namespace _T_Type {
-        
-        export namespace node {
-        }
-        export type node = _T_Type_Node
-    }
-    
-    export namespace _T_Types {
-        
-        export namespace D {
-        }
-        export type D = _T_Type
-    }
-    
-    export namespace _T_Schema {
-        
-        export namespace imports {
-        }
-        export type imports = _T_Imports
-        
-        export namespace globals {
-        }
-        export type globals = _T_Globals
-        
-        export namespace types {
-        }
-        export type types = _T_Types
-    }
-    
-    export namespace _T_Schema_Tree {
-        
-        export namespace SG {
+            export type key = string
             
-            export namespace _set {
-            }
-            export type _set = _T_Schemas
-            
-            export namespace schema {
-            }
-            export type schema = _T_Schema
         }
-        export type SG = 
-            | readonly ['set', _T_Schemas]
-            | readonly ['schema', _T_Schema]
+        
+        export type schema_set_child = {
+            readonly 'entry': schema_set_child.entry
+            readonly 'key': schema_set_child.key
+        }
+        
+        export type schema = Schema_
+        
     }
     
-    export namespace _T_Imports {
+    export type D = {
+        readonly 'schema set child': D.schema_set_child
+        readonly 'schema': D.schema
+    }
+    
+}
+
+export type Imports_ = _pi.Dictionary<Imports_.D>
+
+export namespace Dictionary_ {
+    
+    export type node = Type_Node_
+    
+    export type ordered = boolean
+    
+}
+
+export type Dictionary_ = {
+    readonly 'node': Dictionary_.node
+    readonly 'ordered': Dictionary_.ordered
+}
+
+export namespace Group_ {
+    
+    export type D = Type_Node_
+    
+}
+
+export type Group_ = _pi.Dictionary<Group_.D>
+
+export namespace Type_Node_ {
+    
+    export namespace component {
         
-        export namespace D {
+        export namespace external {
             
-            export namespace schema_set_child {
+            export namespace _import {
                 
-                export namespace Dictionary_Entry {
-                }
-                export type Dictionary_Entry = _T_Schemas.D
-            }
-            export type schema_set_child = _i_core._T_Reference_To_Stacked_Dictionary_Entry<null, _T_Schemas.D>
-            
-            export namespace schema {
+                export type entry = Imports_.D
                 
-                export namespace Type {
-                }
-                export type Type = _T_Schema
-            }
-            export type schema = _i_core._T_Derived_Reference<null, _T_Schema>
-        }
-        export type D = {
-            readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<null, _T_Schemas.D>
-            readonly 'schema': _i_core._T_Derived_Reference<null, _T_Schema>
-        }
-    }
-    
-    export namespace _T_Dictionary {
-        
-        export namespace node {
-        }
-        export type node = _T_Type_Node
-        export type ordered = boolean
-    }
-    
-    export namespace _T_Group {
-        
-        export namespace D {
-        }
-        export type D = _T_Type_Node
-    }
-    
-    export namespace _T_Type_Node {
-        
-        export namespace SG {
-            
-            export namespace component {
+                export type key = string
                 
-                export namespace SG {
-                    
-                    export namespace external {
-                        
-                        export namespace _import {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry = _T_Imports.D
-                        }
-                        export type _import = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        
-                        export namespace _type {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry = _T_Types.D
-                        }
-                        export type _type = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }
-                    export type external = {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }
-                    
-                    export namespace internal {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Types.D
-                    }
-                    export type internal = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    
-                    export namespace internal_cyclic {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Types.D
-                    }
-                    export type internal_cyclic = _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>
-                }
-                export type SG = 
-                    | readonly ['external', {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }]
-                    | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                    | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
             }
-            export type component = _i_core._T_State_Group<null, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-            >
             
-            export namespace dictionary {
+            export type _import = {
+                readonly 'entry': _import.entry
+                readonly 'key': _import.key
             }
-            export type dictionary = _T_Dictionary
             
-            export namespace group {
-            }
-            export type group = _T_Group
-            
-            export namespace list {
+            export namespace _type {
                 
-                export namespace node {
-                }
-                export type node = _T_Type_Node
-            }
-            export type list = {
-                readonly 'node': _T_Type_Node
-            }
-            export type nothing = null
-            
-            export namespace optional {
-            }
-            export type optional = _T_Type_Node
-            
-            export namespace state_group {
+                export type entry = Types_.D
                 
-                export namespace D {
-                }
-                export type D = _T_Type_Node
-            }
-            export type state_group = _i_core._T_Dictionary<null, _T_Type_Node>
-            
-            export namespace text {
+                export type key = string
                 
-                export namespace SG {
-                    
-                    export namespace global {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Globals.text_types.D
-                    }
-                    export type global = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>
-                    
-                    export namespace local {
-                    }
-                    export type local = _T_Text_Type
-                }
-                export type SG = 
-                    | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                    | readonly ['local', _T_Text_Type]
             }
-            export type text = _i_core._T_State_Group<null, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                | readonly ['local', _T_Text_Type]
-            >
+            
+            export type _type = {
+                readonly 'entry': _type.entry
+                readonly 'key': _type.key
+            }
+            
         }
-        export type SG = 
-            | readonly ['component', _i_core._T_State_Group<null, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-            >]
-            | readonly ['dictionary', _T_Dictionary]
-            | readonly ['group', _T_Group]
-            | readonly ['list', {
-                readonly 'node': _T_Type_Node
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _T_Type_Node]
-            | readonly ['state group', _i_core._T_Dictionary<null, _T_Type_Node>]
-            | readonly ['text', _i_core._T_State_Group<null, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                | readonly ['local', _T_Text_Type]
-            >]
+        
+        export type external = {
+            readonly 'import': external._import
+            readonly 'type': external._type
+        }
+        
+        export namespace internal {
+            
+            export type entry = Types_.D
+            
+            export type key = string
+            
+        }
+        
+        export type internal = {
+            readonly 'entry': internal.entry
+            readonly 'key': internal.key
+        }
+        
+        export namespace internal_cyclic {
+            
+            export type entry = Types_.D
+            
+            export type key = string
+            
+        }
+        
+        export type internal_cyclic = {
+            readonly 'entry': internal_cyclic.entry
+            readonly 'key': internal_cyclic.key
+        }
+        
     }
     
-    // *** ALIASES FOR NESTED TYPES
+    export type component = 
+        | readonly ['external', component.external]
+        | readonly ['internal', component.internal]
+        | readonly ['internal cyclic', component.internal_cyclic]
     
-    export namespace Schemas {
+    export type dictionary = Dictionary_
+    
+    export type group = Group_
+    
+    export namespace list {
         
-        export namespace D {
-        }
-        export type D = _T_Schema_Tree
+        export type node = Type_Node_
+        
     }
     
-    export namespace Text_Type {
-        
-        export namespace _type {
-            
-            export namespace SG {
-                export type multi_line = null
-                export type single_line = null
-            }
-            export type SG = 
-                | readonly ['multi line', null]
-                | readonly ['single line', null]
-        }
-        export type _type = _i_core._T_State_Group<null, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
+    export type list = {
+        readonly 'node': list.node
     }
     
-    export namespace Globals {
+    export type nothing = null
+    
+    export type optional = Type_Node_
+    
+    export namespace state_group {
         
-        export namespace text_types {
-            
-            export namespace D {
-            }
-            export type D = _T_Text_Type
-        }
-        export type text_types = _i_core._T_Dictionary<null, _T_Text_Type>
+        export type D = Type_Node_
+        
     }
     
-    export namespace Type {
+    export type state_group = _pi.Dictionary<state_group.D>
+    
+    export namespace text {
         
-        export namespace node {
+        export namespace global {
+            
+            export type entry = Globals_.text_types.D
+            
+            export type key = string
+            
         }
-        export type node = _T_Type_Node
+        
+        export type global = {
+            readonly 'entry': global.entry
+            readonly 'key': global.key
+        }
+        
+        export type local = Text_Type_
+        
     }
     
-    export namespace Types {
-        
-        export namespace D {
-        }
-        export type D = _T_Type
-    }
+    export type text = 
+        | readonly ['global', text.global]
+        | readonly ['local', text.local]
     
-    export namespace Schema {
-        
-        export namespace imports {
-        }
-        export type imports = _T_Imports
-        
-        export namespace globals {
-        }
-        export type globals = _T_Globals
-        
-        export namespace types {
-        }
-        export type types = _T_Types
-    }
-    
-    export namespace Schema_Tree {
-        
-        export namespace SG {
-            
-            export namespace _set {
-            }
-            export type _set = _T_Schemas
-            
-            export namespace schema {
-            }
-            export type schema = _T_Schema
-        }
-        export type SG = 
-            | readonly ['set', _T_Schemas]
-            | readonly ['schema', _T_Schema]
-    }
-    
-    export namespace Imports {
-        
-        export namespace D {
-            
-            export namespace schema_set_child {
-                
-                export namespace Dictionary_Entry {
-                }
-                export type Dictionary_Entry = _T_Schemas.D
-            }
-            export type schema_set_child = _i_core._T_Reference_To_Stacked_Dictionary_Entry<null, _T_Schemas.D>
-            
-            export namespace schema {
-                
-                export namespace Type {
-                }
-                export type Type = _T_Schema
-            }
-            export type schema = _i_core._T_Derived_Reference<null, _T_Schema>
-        }
-        export type D = {
-            readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<null, _T_Schemas.D>
-            readonly 'schema': _i_core._T_Derived_Reference<null, _T_Schema>
-        }
-    }
-    
-    export namespace Dictionary {
-        
-        export namespace node {
-        }
-        export type node = _T_Type_Node
-        export type ordered = boolean
-    }
-    
-    export namespace Group {
-        
-        export namespace D {
-        }
-        export type D = _T_Type_Node
-    }
-    
-    export namespace Type_Node {
-        
-        export namespace SG {
-            
-            export namespace component {
-                
-                export namespace SG {
-                    
-                    export namespace external {
-                        
-                        export namespace _import {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry = _T_Imports.D
-                        }
-                        export type _import = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        
-                        export namespace _type {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry = _T_Types.D
-                        }
-                        export type _type = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }
-                    export type external = {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }
-                    
-                    export namespace internal {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Types.D
-                    }
-                    export type internal = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    
-                    export namespace internal_cyclic {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Types.D
-                    }
-                    export type internal_cyclic = _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>
-                }
-                export type SG = 
-                    | readonly ['external', {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                    }]
-                    | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                    | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-            }
-            export type component = _i_core._T_State_Group<null, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-            >
-            
-            export namespace dictionary {
-            }
-            export type dictionary = _T_Dictionary
-            
-            export namespace group {
-            }
-            export type group = _T_Group
-            
-            export namespace list {
-                
-                export namespace node {
-                }
-                export type node = _T_Type_Node
-            }
-            export type list = {
-                readonly 'node': _T_Type_Node
-            }
-            export type nothing = null
-            
-            export namespace optional {
-            }
-            export type optional = _T_Type_Node
-            
-            export namespace state_group {
-                
-                export namespace D {
-                }
-                export type D = _T_Type_Node
-            }
-            export type state_group = _i_core._T_Dictionary<null, _T_Type_Node>
-            
-            export namespace text {
-                
-                export namespace SG {
-                    
-                    export namespace global {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry = _T_Globals.text_types.D
-                    }
-                    export type global = _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>
-                    
-                    export namespace local {
-                    }
-                    export type local = _T_Text_Type
-                }
-                export type SG = 
-                    | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                    | readonly ['local', _T_Text_Type]
-            }
-            export type text = _i_core._T_State_Group<null, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                | readonly ['local', _T_Text_Type]
-            >
-        }
-        export type SG = 
-            | readonly ['component', _i_core._T_State_Group<null, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Imports.D>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Types.D>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<null, _T_Types.D>]
-            >]
-            | readonly ['dictionary', _T_Dictionary]
-            | readonly ['group', _T_Group]
-            | readonly ['list', {
-                readonly 'node': _T_Type_Node
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _T_Type_Node]
-            | readonly ['state group', _i_core._T_Dictionary<null, _T_Type_Node>]
-            | readonly ['text', _i_core._T_State_Group<null, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<null, _T_Globals.text_types.D>]
-                | readonly ['local', _T_Text_Type]
-            >]
-    }
+}
+
+export type Type_Node_ = 
+    | readonly ['component', Type_Node_.component]
+    | readonly ['dictionary', Type_Node_.dictionary]
+    | readonly ['group', Type_Node_.group]
+    | readonly ['list', Type_Node_.list]
+    | readonly ['nothing', Type_Node_.nothing]
+    | readonly ['optional', Type_Node_.optional]
+    | readonly ['state group', Type_Node_.state_group]
+    | readonly ['text', Type_Node_.text]
+
+export { 
+    Schemas_ as Schemas, 
+    Text_Type_ as Text_Type, 
+    Globals_ as Globals, 
+    Type_ as Type, 
+    Types_ as Types, 
+    Schema_ as Schema, 
+    Schema_Tree_ as Schema_Tree, 
+    Imports_ as Imports, 
+    Dictionary_ as Dictionary, 
+    Group_ as Group, 
+    Type_Node_ as Type_Node, 
+}

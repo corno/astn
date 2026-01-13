@@ -33,7 +33,7 @@ export const parse_error = (
 // )
 
 export const lexer_error = (
-    type: d_target.Error._type.SG.lexer,
+    type: d_target.Error._type.lexer,
     range: d_target_token.Range
 ): d_target.Error => ({
     'type': ['lexer', type],

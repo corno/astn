@@ -3,11 +3,9 @@ import * as _pi from "pareto-core-interface"
 
 import * as i_out from "./data_types/target"
 
-import * as i_in from "./data_types/source"
-
 export namespace Relative_Location_ {
     
-    export type I = i_in.Relative_Location
+    export type I = string
     
     export type O = i_out.Relative_Location
     
@@ -23,7 +21,7 @@ export type Relative_Location_ = (
 
 export namespace Location_ {
     
-    export type I = i_in.Location
+    export type I = string
     
     export type O = i_out.Location
     
@@ -39,7 +37,7 @@ export type Location_ = (
 
 export namespace Range_ {
     
-    export type I = i_in.Range
+    export type I = string
     
     export type O = i_out.Range
     
@@ -55,7 +53,7 @@ export type Range_ = (
 
 export namespace Whitespace_ {
     
-    export type I = i_in.Whitespace
+    export type I = string
     
     export type O = i_out.Whitespace
     
@@ -71,7 +69,7 @@ export type Whitespace_ = (
 
 export namespace Trivia_ {
     
-    export type I = i_in.Trivia
+    export type I = string
     
     export type O = i_out.Trivia
     
@@ -87,7 +85,7 @@ export type Trivia_ = (
 
 export namespace Delimited_String_ {
     
-    export type I = i_in.Delimited_String
+    export type I = string
     
     export type O = i_out.Delimited_String
     
@@ -103,7 +101,7 @@ export type Delimited_String_ = (
 
 export namespace String_Type_ {
     
-    export type I = i_in.String_Type
+    export type I = string
     
     export type O = i_out.String_Type
     
@@ -119,7 +117,7 @@ export type String_Type_ = (
 
 export namespace Token_Type_ {
     
-    export type I = i_in.Token_Type
+    export type I = string
     
     export type O = i_out.Token_Type
     
@@ -135,7 +133,7 @@ export type Token_Type_ = (
 
 export namespace Annotated_Token_ {
     
-    export type I = i_in.Annotated_Token
+    export type I = string
     
     export type O = i_out.Annotated_Token
     
@@ -151,7 +149,7 @@ export type Annotated_Token_ = (
 
 export namespace Tokenizer_Result_ {
     
-    export type I = i_in.Tokenizer_Result
+    export type I = string
     
     export type O = i_out.Tokenizer_Result
     

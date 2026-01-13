@@ -1,15 +1,13 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_out from "./data_types/target"
-
 import * as i_in from "./data_types/source"
 
 export namespace Relative_Location_ {
     
     export type I = i_in.Relative_Location
     
-    export type O = i_out.Relative_Location
+    export type O = string
     
     export namespace P {
         
@@ -25,7 +23,7 @@ export namespace Location_ {
     
     export type I = i_in.Location
     
-    export type O = i_out.Location
+    export type O = string
     
     export namespace P {
         
@@ -41,7 +39,7 @@ export namespace Range_ {
     
     export type I = i_in.Range
     
-    export type O = i_out.Range
+    export type O = string
     
     export namespace P {
         
@@ -57,7 +55,7 @@ export namespace Whitespace_ {
     
     export type I = i_in.Whitespace
     
-    export type O = i_out.Whitespace
+    export type O = string
     
     export namespace P {
         
@@ -73,7 +71,7 @@ export namespace Trivia_ {
     
     export type I = i_in.Trivia
     
-    export type O = i_out.Trivia
+    export type O = string
     
     export namespace P {
         
@@ -89,7 +87,7 @@ export namespace Delimited_String_ {
     
     export type I = i_in.Delimited_String
     
-    export type O = i_out.Delimited_String
+    export type O = string
     
     export namespace P {
         
@@ -105,7 +103,7 @@ export namespace String_Type_ {
     
     export type I = i_in.String_Type
     
-    export type O = i_out.String_Type
+    export type O = string
     
     export namespace P {
         
@@ -121,7 +119,7 @@ export namespace Token_Type_ {
     
     export type I = i_in.Token_Type
     
-    export type O = i_out.Token_Type
+    export type O = string
     
     export namespace P {
         
@@ -137,7 +135,7 @@ export namespace Annotated_Token_ {
     
     export type I = i_in.Annotated_Token
     
-    export type O = i_out.Annotated_Token
+    export type O = string
     
     export namespace P {
         
@@ -153,7 +151,7 @@ export namespace Tokenizer_Result_ {
     
     export type I = i_in.Tokenizer_Result
     
-    export type O = i_out.Tokenizer_Result
+    export type O = string
     
     export namespace P {
         

@@ -1,15 +1,13 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_out from "./data_types/source"
-
 import * as i_in from "./data_types/source"
 
 export namespace Value_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Value
+    export type O = string
     
     export namespace P {
         
@@ -25,7 +23,7 @@ export namespace Document_ {
     
     export type I = i_in.Document
     
-    export type O = i_out.Document
+    export type O = string
     
     export namespace P {
         

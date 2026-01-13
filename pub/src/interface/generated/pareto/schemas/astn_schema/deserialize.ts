@@ -3,11 +3,9 @@ import * as _pi from "pareto-core-interface"
 
 import * as i_out from "./data_types/target"
 
-import * as i_in from "./data_types/source"
-
 export namespace Schemas_ {
     
-    export type I = i_in.Schemas
+    export type I = string
     
     export type O = i_out.Schemas
     
@@ -23,7 +21,7 @@ export type Schemas_ = (
 
 export namespace Text_Type_ {
     
-    export type I = i_in.Text_Type
+    export type I = string
     
     export type O = i_out.Text_Type
     
@@ -39,7 +37,7 @@ export type Text_Type_ = (
 
 export namespace Globals_ {
     
-    export type I = i_in.Globals
+    export type I = string
     
     export type O = i_out.Globals
     
@@ -55,7 +53,7 @@ export type Globals_ = (
 
 export namespace Type_ {
     
-    export type I = i_in.Type
+    export type I = string
     
     export type O = i_out.Type
     
@@ -71,7 +69,7 @@ export type Type_ = (
 
 export namespace Types_ {
     
-    export type I = i_in.Types
+    export type I = string
     
     export type O = i_out.Types
     
@@ -87,7 +85,7 @@ export type Types_ = (
 
 export namespace Schema_ {
     
-    export type I = i_in.Schema
+    export type I = string
     
     export type O = i_out.Schema
     
@@ -103,7 +101,7 @@ export type Schema_ = (
 
 export namespace Schema_Tree_ {
     
-    export type I = i_in.Schema_Tree
+    export type I = string
     
     export type O = i_out.Schema_Tree
     
@@ -119,7 +117,7 @@ export type Schema_Tree_ = (
 
 export namespace Imports_ {
     
-    export type I = i_in.Imports
+    export type I = string
     
     export type O = i_out.Imports
     
@@ -135,7 +133,7 @@ export type Imports_ = (
 
 export namespace Dictionary_ {
     
-    export type I = i_in.Dictionary
+    export type I = string
     
     export type O = i_out.Dictionary
     
@@ -151,7 +149,7 @@ export type Dictionary_ = (
 
 export namespace Group_ {
     
-    export type I = i_in.Group
+    export type I = string
     
     export type O = i_out.Group
     
@@ -167,7 +165,7 @@ export type Group_ = (
 
 export namespace Type_Node_ {
     
-    export type I = i_in.Type_Node
+    export type I = string
     
     export type O = i_out.Type_Node
     

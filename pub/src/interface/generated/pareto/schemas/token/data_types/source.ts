@@ -1,500 +1,241 @@
+
 import * as _pi from "pareto-core-interface"
+
+import * as i_location__ from "../../../core/location"
+
+export namespace Relative_Location_ {
     
-    import * as _i_core from "../../../core/resolved"
+    export type line = number
     
-    // **** TYPES
+    export type column = number
     
-    export type _T_Relative_Location = {
-        readonly 'line': number
-        readonly 'column': number
-    }
+}
+
+export type Relative_Location_ = {
+    readonly 'line': Relative_Location_.line
+    readonly 'column': Relative_Location_.column
+}
+
+export namespace Location_ {
     
-    export type _T_Location = {
-        readonly 'relative': _T_Relative_Location
-        readonly 'absolute': number
-    }
+    export type relative = Relative_Location_
     
-    export type _T_Range = {
-        readonly 'start': _T_Location
-        readonly 'end': _T_Location
-    }
+    export type absolute = number
     
-    export type _T_Whitespace = {
-        readonly 'range': _T_Range
-        readonly 'value': string
-    }
+}
+
+export type Location_ = {
+    readonly 'relative': Location_.relative
+    readonly 'absolute': Location_.absolute
+}
+
+export namespace Range_ {
     
-    export type _T_Trivia = {
-        readonly 'leading whitespace': _T_Whitespace
-        readonly 'comments': _i_core._T_List<null, {
-            readonly 'type': _i_core._T_State_Group<null, 
-                | readonly ['line', null]
-                | readonly ['block', null]
-            >
-            readonly 'content': string
-            readonly 'range': _T_Range
-            readonly 'trailing whitespace': _T_Whitespace
-        }>
-    }
+    export type start = Location_
     
-    export type _T_Delimited_String = string
+    export type end = Location_
     
-    export type _T_String_Type = _i_core._T_State_Group<null, 
-        | readonly ['quoted', null]
-        | readonly ['apostrophed', null]
-        | readonly ['undelimited', null]
-        | readonly ['backticked', null]
-    >
+}
+
+export type Range_ = {
+    readonly 'start': Range_.start
+    readonly 'end': Range_.end
+}
+
+export namespace Whitespace_ {
     
-    export type _T_Token_Type = _i_core._T_State_Group<null, 
-        | readonly ['{', null]
-        | readonly ['}', null]
-        | readonly ['[', null]
-        | readonly [']', null]
-        | readonly ['(', null]
-        | readonly [')', null]
-        | readonly ['<', null]
-        | readonly ['>', null]
-        | readonly ['!', null]
-        | readonly ['@', null]
-        | readonly ['~', null]
-        | readonly ['*', null]
-        | readonly [':', null]
-        | readonly ['|', null]
-        | readonly ['#', null]
-        | readonly ['string', {
-            readonly 'value': _T_Delimited_String
-            readonly 'type': _T_String_Type
-        }]
-    >
+    export type range = Range_
     
-    export type _T_Annotated_Token = {
-        readonly 'start': _T_Location
-        readonly 'type': _T_Token_Type
-        readonly 'end': _T_Location
-        readonly 'trailing trivia': _T_Trivia
-    }
+    export type value = string
     
-    export type _T_Tokenizer_Result = {
-        readonly 'leading trivia': _T_Trivia
-        readonly 'tokens': _i_core._T_List<null, _T_Annotated_Token>
-        readonly 'end': _T_Location
-    }
+}
+
+export type Whitespace_ = {
+    readonly 'range': Whitespace_.range
+    readonly 'value': Whitespace_.value
+}
+
+export namespace Trivia_ {
     
-    // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
+    export type leading_whitespace = Whitespace_
     
-    export type Relative_Location = _T_Relative_Location
-    
-    export type Location = _T_Location
-    
-    export type Range = _T_Range
-    
-    export type Whitespace = _T_Whitespace
-    
-    export type Trivia = _T_Trivia
-    
-    export type Delimited_String = _T_Delimited_String
-    
-    export type String_Type = _T_String_Type
-    
-    export type Token_Type = _T_Token_Type
-    
-    export type Annotated_Token = _T_Annotated_Token
-    
-    export type Tokenizer_Result = _T_Tokenizer_Result
-    
-    // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
-    
-    export namespace _T_Relative_Location {
-        export type line = number
-        export type column = number
-    }
-    
-    export namespace _T_Location {
+    export namespace comments {
         
-        export namespace relative {
-        }
-        export type relative = _T_Relative_Location
-        export type absolute = number
-    }
-    
-    export namespace _T_Range {
-        
-        export namespace start {
-        }
-        export type start = _T_Location
-        
-        export namespace end {
-        }
-        export type end = _T_Location
-    }
-    
-    export namespace _T_Whitespace {
-        
-        export namespace range {
-        }
-        export type range = _T_Range
-        export type value = string
-    }
-    
-    export namespace _T_Trivia {
-        
-        export namespace leading_whitespace {
-        }
-        export type leading_whitespace = _T_Whitespace
-        
-        export namespace comments {
+        export namespace L {
             
-            export namespace L {
+            export namespace _type {
                 
-                export namespace _type {
-                    
-                    export namespace SG {
-                        export type line = null
-                        export type block = null
-                    }
-                    export type SG = 
-                        | readonly ['line', null]
-                        | readonly ['block', null]
-                }
-                export type _type = _i_core._T_State_Group<null, 
-                    | readonly ['line', null]
-                    | readonly ['block', null]
-                >
-                export type content = string
+                export type line = null
                 
-                export namespace range {
-                }
-                export type range = _T_Range
+                export type block = null
                 
-                export namespace trailing_whitespace {
-                }
-                export type trailing_whitespace = _T_Whitespace
             }
-            export type L = {
-                readonly 'type': _i_core._T_State_Group<null, 
-                    | readonly ['line', null]
-                    | readonly ['block', null]
-                >
-                readonly 'content': string
-                readonly 'range': _T_Range
-                readonly 'trailing whitespace': _T_Whitespace
-            }
-        }
-        export type comments = _i_core._T_List<null, {
-            readonly 'type': _i_core._T_State_Group<null, 
-                | readonly ['line', null]
-                | readonly ['block', null]
-            >
-            readonly 'content': string
-            readonly 'range': _T_Range
-            readonly 'trailing whitespace': _T_Whitespace
-        }>
-    }
-    
-    export namespace _T_String_Type {
-        
-        export namespace SG {
-            export type quoted = null
-            export type apostrophed = null
-            export type undelimited = null
-            export type backticked = null
-        }
-        export type SG = 
-            | readonly ['quoted', null]
-            | readonly ['apostrophed', null]
-            | readonly ['undelimited', null]
-            | readonly ['backticked', null]
-    }
-    
-    export namespace _T_Token_Type {
-        
-        export namespace SG {
-            export type $co_ = null
-            export type $cc_ = null
-            export type $bo_ = null
-            export type $bc_ = null
-            export type $po_ = null
-            export type $pc_ = null
-            export type $st_ = null
-            export type $gt_ = null
-            export type $ex_ = null
-            export type $at_ = null
-            export type $ti_ = null
-            export type $sr_ = null
-            export type $cl_ = null
-            export type $vb_ = null
-            export type $ha_ = null
             
-            export namespace _string {
-                
-                export namespace value {
-                }
-                export type value = _T_Delimited_String
-                
-                export namespace _type {
-                }
-                export type _type = _T_String_Type
-            }
-            export type _string = {
-                readonly 'value': _T_Delimited_String
-                readonly 'type': _T_String_Type
-            }
-        }
-        export type SG = 
-            | readonly ['{', null]
-            | readonly ['}', null]
-            | readonly ['[', null]
-            | readonly [']', null]
-            | readonly ['(', null]
-            | readonly [')', null]
-            | readonly ['<', null]
-            | readonly ['>', null]
-            | readonly ['!', null]
-            | readonly ['@', null]
-            | readonly ['~', null]
-            | readonly ['*', null]
-            | readonly [':', null]
-            | readonly ['|', null]
-            | readonly ['#', null]
-            | readonly ['string', {
-                readonly 'value': _T_Delimited_String
-                readonly 'type': _T_String_Type
-            }]
-    }
-    
-    export namespace _T_Annotated_Token {
-        
-        export namespace start {
-        }
-        export type start = _T_Location
-        
-        export namespace _type {
-        }
-        export type _type = _T_Token_Type
-        
-        export namespace end {
-        }
-        export type end = _T_Location
-        
-        export namespace trailing_trivia {
-        }
-        export type trailing_trivia = _T_Trivia
-    }
-    
-    export namespace _T_Tokenizer_Result {
-        
-        export namespace leading_trivia {
-        }
-        export type leading_trivia = _T_Trivia
-        
-        export namespace tokens {
+            export type _type = 
+                | readonly ['line', _type.line]
+                | readonly ['block', _type.block]
             
-            export namespace L {
-            }
-            export type L = _T_Annotated_Token
-        }
-        export type tokens = _i_core._T_List<null, _T_Annotated_Token>
-        
-        export namespace end {
-        }
-        export type end = _T_Location
-    }
-    
-    // *** ALIASES FOR NESTED TYPES
-    
-    export namespace Relative_Location {
-        export type line = number
-        export type column = number
-    }
-    
-    export namespace Location {
-        
-        export namespace relative {
-        }
-        export type relative = _T_Relative_Location
-        export type absolute = number
-    }
-    
-    export namespace Range {
-        
-        export namespace start {
-        }
-        export type start = _T_Location
-        
-        export namespace end {
-        }
-        export type end = _T_Location
-    }
-    
-    export namespace Whitespace {
-        
-        export namespace range {
-        }
-        export type range = _T_Range
-        export type value = string
-    }
-    
-    export namespace Trivia {
-        
-        export namespace leading_whitespace {
-        }
-        export type leading_whitespace = _T_Whitespace
-        
-        export namespace comments {
+            export type content = string
             
-            export namespace L {
-                
-                export namespace _type {
-                    
-                    export namespace SG {
-                        export type line = null
-                        export type block = null
-                    }
-                    export type SG = 
-                        | readonly ['line', null]
-                        | readonly ['block', null]
-                }
-                export type _type = _i_core._T_State_Group<null, 
-                    | readonly ['line', null]
-                    | readonly ['block', null]
-                >
-                export type content = string
-                
-                export namespace range {
-                }
-                export type range = _T_Range
-                
-                export namespace trailing_whitespace {
-                }
-                export type trailing_whitespace = _T_Whitespace
-            }
-            export type L = {
-                readonly 'type': _i_core._T_State_Group<null, 
-                    | readonly ['line', null]
-                    | readonly ['block', null]
-                >
-                readonly 'content': string
-                readonly 'range': _T_Range
-                readonly 'trailing whitespace': _T_Whitespace
-            }
-        }
-        export type comments = _i_core._T_List<null, {
-            readonly 'type': _i_core._T_State_Group<null, 
-                | readonly ['line', null]
-                | readonly ['block', null]
-            >
-            readonly 'content': string
-            readonly 'range': _T_Range
-            readonly 'trailing whitespace': _T_Whitespace
-        }>
-    }
-    
-    export namespace String_Type {
-        
-        export namespace SG {
-            export type quoted = null
-            export type apostrophed = null
-            export type undelimited = null
-            export type backticked = null
-        }
-        export type SG = 
-            | readonly ['quoted', null]
-            | readonly ['apostrophed', null]
-            | readonly ['undelimited', null]
-            | readonly ['backticked', null]
-    }
-    
-    export namespace Token_Type {
-        
-        export namespace SG {
-            export type $co_ = null
-            export type $cc_ = null
-            export type $bo_ = null
-            export type $bc_ = null
-            export type $po_ = null
-            export type $pc_ = null
-            export type $st_ = null
-            export type $gt_ = null
-            export type $ex_ = null
-            export type $at_ = null
-            export type $ti_ = null
-            export type $sr_ = null
-            export type $cl_ = null
-            export type $vb_ = null
-            export type $ha_ = null
+            export type range = Range_
             
-            export namespace _string {
-                
-                export namespace value {
-                }
-                export type value = _T_Delimited_String
-                
-                export namespace _type {
-                }
-                export type _type = _T_String_Type
-            }
-            export type _string = {
-                readonly 'value': _T_Delimited_String
-                readonly 'type': _T_String_Type
-            }
-        }
-        export type SG = 
-            | readonly ['{', null]
-            | readonly ['}', null]
-            | readonly ['[', null]
-            | readonly [']', null]
-            | readonly ['(', null]
-            | readonly [')', null]
-            | readonly ['<', null]
-            | readonly ['>', null]
-            | readonly ['!', null]
-            | readonly ['@', null]
-            | readonly ['~', null]
-            | readonly ['*', null]
-            | readonly [':', null]
-            | readonly ['|', null]
-            | readonly ['#', null]
-            | readonly ['string', {
-                readonly 'value': _T_Delimited_String
-                readonly 'type': _T_String_Type
-            }]
-    }
-    
-    export namespace Annotated_Token {
-        
-        export namespace start {
-        }
-        export type start = _T_Location
-        
-        export namespace _type {
-        }
-        export type _type = _T_Token_Type
-        
-        export namespace end {
-        }
-        export type end = _T_Location
-        
-        export namespace trailing_trivia {
-        }
-        export type trailing_trivia = _T_Trivia
-    }
-    
-    export namespace Tokenizer_Result {
-        
-        export namespace leading_trivia {
-        }
-        export type leading_trivia = _T_Trivia
-        
-        export namespace tokens {
+            export type trailing_whitespace = Whitespace_
             
-            export namespace L {
-            }
-            export type L = _T_Annotated_Token
         }
-        export type tokens = _i_core._T_List<null, _T_Annotated_Token>
         
-        export namespace end {
+        export type L = {
+            readonly 'type': L._type
+            readonly 'content': L.content
+            readonly 'range': L.range
+            readonly 'trailing whitespace': L.trailing_whitespace
         }
-        export type end = _T_Location
+        
     }
+    
+    export type comments = _pi.List<comments.L>
+    
+}
+
+export type Trivia_ = {
+    readonly 'leading whitespace': Trivia_.leading_whitespace
+    readonly 'comments': Trivia_.comments
+}
+
+export type Delimited_String_ = string
+
+export namespace String_Type_ {
+    
+    export type quoted = null
+    
+    export type apostrophed = null
+    
+    export type undelimited = null
+    
+    export type backticked = null
+    
+}
+
+export type String_Type_ = 
+    | readonly ['quoted', String_Type_.quoted]
+    | readonly ['apostrophed', String_Type_.apostrophed]
+    | readonly ['undelimited', String_Type_.undelimited]
+    | readonly ['backticked', String_Type_.backticked]
+
+export namespace Token_Type_ {
+    
+    export type $co_ = null
+    
+    export type $cc_ = null
+    
+    export type $bo_ = null
+    
+    export type $bc_ = null
+    
+    export type $po_ = null
+    
+    export type $pc_ = null
+    
+    export type $st_ = null
+    
+    export type $gt_ = null
+    
+    export type $ex_ = null
+    
+    export type $at_ = null
+    
+    export type $ti_ = null
+    
+    export type $sr_ = null
+    
+    export type $cl_ = null
+    
+    export type $vb_ = null
+    
+    export type $ha_ = null
+    
+    export namespace _string {
+        
+        export type value = Delimited_String_
+        
+        export type _type = String_Type_
+        
+    }
+    
+    export type _string = {
+        readonly 'value': _string.value
+        readonly 'type': _string._type
+    }
+    
+}
+
+export type Token_Type_ = 
+    | readonly ['{', Token_Type_.$co_]
+    | readonly ['}', Token_Type_.$cc_]
+    | readonly ['[', Token_Type_.$bo_]
+    | readonly [']', Token_Type_.$bc_]
+    | readonly ['(', Token_Type_.$po_]
+    | readonly [')', Token_Type_.$pc_]
+    | readonly ['<', Token_Type_.$st_]
+    | readonly ['>', Token_Type_.$gt_]
+    | readonly ['!', Token_Type_.$ex_]
+    | readonly ['@', Token_Type_.$at_]
+    | readonly ['~', Token_Type_.$ti_]
+    | readonly ['*', Token_Type_.$sr_]
+    | readonly [':', Token_Type_.$cl_]
+    | readonly ['|', Token_Type_.$vb_]
+    | readonly ['#', Token_Type_.$ha_]
+    | readonly ['string', Token_Type_._string]
+
+export namespace Annotated_Token_ {
+    
+    export type start = Location_
+    
+    export type _type = Token_Type_
+    
+    export type end = Location_
+    
+    export type trailing_trivia = Trivia_
+    
+}
+
+export type Annotated_Token_ = {
+    readonly 'start': Annotated_Token_.start
+    readonly 'type': Annotated_Token_._type
+    readonly 'end': Annotated_Token_.end
+    readonly 'trailing trivia': Annotated_Token_.trailing_trivia
+}
+
+export namespace Tokenizer_Result_ {
+    
+    export type leading_trivia = Trivia_
+    
+    export namespace tokens {
+        
+        export type L = Annotated_Token_
+        
+    }
+    
+    export type tokens = _pi.List<tokens.L>
+    
+    export type end = Location_
+    
+}
+
+export type Tokenizer_Result_ = {
+    readonly 'leading trivia': Tokenizer_Result_.leading_trivia
+    readonly 'tokens': Tokenizer_Result_.tokens
+    readonly 'end': Tokenizer_Result_.end
+}
+
+export { 
+    Relative_Location_ as Relative_Location, 
+    Location_ as Location, 
+    Range_ as Range, 
+    Whitespace_ as Whitespace, 
+    Trivia_ as Trivia, 
+    Delimited_String_ as Delimited_String, 
+    String_Type_ as String_Type, 
+    Token_Type_ as Token_Type, 
+    Annotated_Token_ as Annotated_Token, 
+    Tokenizer_Result_ as Tokenizer_Result, 
+}

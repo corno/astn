@@ -20,12 +20,12 @@ export const Value = (
             case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                 sh.b.snippet("{"),
                 sh.b.indent([
-                    sh.g.sub($.__l_map(($) => sh.g.nested_block([
-                        sh.b.snippet(s_backticked($.key, {
+                    sh.g.sub(_p.list.from_dictionary($, ($, key) => sh.g.nested_block([
+                        sh.b.snippet(s_backticked(key, {
                             'add delimiters': true
                         })),
                         sh.b.snippet(": "),
-                        Value($.value),
+                        Value($),
                     ]))),
                 ]),
                 sh.b.snippet("}"),
@@ -94,9 +94,7 @@ export const Value = (
 ])
 
 export const Document = (
-    $: d_in.Document,
-    $p: {
-    }
+    $: d_in.Document
 
 ): d_out.Group => {
     _pdev.log_debug_message("Serializing sealed target document...", () => { })

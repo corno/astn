@@ -1,630 +1,479 @@
+
 import * as _pi from "pareto-core-interface"
+
+import * as i_location__ from "../../../core/location"
+
+export namespace Schemas_ {
     
-    import * as _i_core from "../../../core/unresolved"
+    export type location = i_location__.Location
     
-    // **** TYPES
-    
-    export type _T_Schemas<M_Source> = _i_core._T_Ordered_Dictionary<M_Source, _T_Schema_Tree<M_Source>>
-    
-    export type _T_Text_Type<M_Source> = {
-        readonly 'type': _i_core._T_State_Group<M_Source, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
-    }
-    
-    export type _T_Globals<M_Source> = {
-        readonly 'text types': _i_core._T_Dictionary<M_Source, _T_Text_Type<M_Source>>
-    }
-    
-    export type _T_Type<M_Source> = {
-        readonly 'node': _T_Type_Node<M_Source>
-    }
-    
-    export type _T_Types<M_Source> = _i_core._T_Ordered_Dictionary<M_Source, _T_Type<M_Source>>
-    
-    export type _T_Schema<M_Source> = {
-        readonly 'imports': _T_Imports<M_Source>
-        readonly 'globals': _T_Globals<M_Source>
-        readonly 'types': _T_Types<M_Source>
-    }
-    
-    export type _T_Schema_Tree<M_Source> = _i_core._T_State_Group<M_Source, 
-        | readonly ['set', _T_Schemas<M_Source>]
-        | readonly ['schema', _T_Schema<M_Source>]
-    >
-    
-    export type _T_Imports<M_Source> = _i_core._T_Dictionary<M_Source, {
-        readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<M_Source, _T_Schemas.D<M_Source>>
-        readonly 'schema': _i_core._T_Derived_Reference<M_Source, _T_Schema<M_Source>>
-    }>
-    
-    export type _T_Dictionary<M_Source> = {
-        readonly 'node': _T_Type_Node<M_Source>
-        readonly 'ordered': boolean
-    }
-    
-    export type _T_Group<M_Source> = _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>
-    
-    export type _T_Type_Node<M_Source> = _i_core._T_State_Group<M_Source, 
-        | readonly ['component', _i_core._T_State_Group<M_Source, 
-            | readonly ['external', {
-                readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-            }]
-            | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-            | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-        >]
-        | readonly ['dictionary', _T_Dictionary<M_Source>]
-        | readonly ['group', _T_Group<M_Source>]
-        | readonly ['list', {
-            readonly 'node': _T_Type_Node<M_Source>
-        }]
-        | readonly ['nothing', null]
-        | readonly ['optional', _T_Type_Node<M_Source>]
-        | readonly ['state group', _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>]
-        | readonly ['text', _i_core._T_State_Group<M_Source, 
-            | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-            | readonly ['local', _T_Text_Type<M_Source>]
-        >]
-    >
-    
-    // **** FRIENDLY NAMES FOR THE GLOBAL TYPES
-    
-    export type Schemas<M_Source> = _T_Schemas<M_Source>
-    
-    export type Text_Type<M_Source> = _T_Text_Type<M_Source>
-    
-    export type Globals<M_Source> = _T_Globals<M_Source>
-    
-    export type Type<M_Source> = _T_Type<M_Source>
-    
-    export type Types<M_Source> = _T_Types<M_Source>
-    
-    export type Schema<M_Source> = _T_Schema<M_Source>
-    
-    export type Schema_Tree<M_Source> = _T_Schema_Tree<M_Source>
-    
-    export type Imports<M_Source> = _T_Imports<M_Source>
-    
-    export type Dictionary<M_Source> = _T_Dictionary<M_Source>
-    
-    export type Group<M_Source> = _T_Group<M_Source>
-    
-    export type Type_Node<M_Source> = _T_Type_Node<M_Source>
-    
-    // **** ALIASES FOR NESTED TYPE WITH PREFIXED ROOT NAMES
-    
-    export namespace _T_Schemas {
+    export namespace dictionary {
         
         export namespace D {
-        }
-        export type D<M_Source> = _T_Schema_Tree<M_Source>
-    }
-    
-    export namespace _T_Text_Type {
-        
-        export namespace _type {
             
-            export namespace SG {
-                export type multi_line<M_Source> = null
-                export type single_line<M_Source> = null
-            }
-            export type SG<M_Source> = 
-                | readonly ['multi line', null]
-                | readonly ['single line', null]
+            export type location = i_location__.Location
+            
+            export type entry = Schema_Tree_
+            
         }
-        export type _type<M_Source> = _i_core._T_State_Group<M_Source, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
+        
+        export type D = {
+            readonly 'location': D.location
+            readonly 'entry': D.entry
+        }
+        
     }
     
-    export namespace _T_Globals {
+    export type dictionary = _pi.Dictionary<dictionary.D>
+    
+}
+
+export type Schemas_ = {
+    readonly 'location': Schemas_.location
+    readonly 'dictionary': Schemas_.dictionary
+}
+
+export namespace Text_Type_ {
+    
+    export namespace _type {
         
-        export namespace text_types {
+        export type location = i_location__.Location
+        
+        export namespace state_group {
+            
+            export type multi_line = null
+            
+            export type single_line = null
+            
+        }
+        
+        export type state_group = 
+            | readonly ['multi line', state_group.multi_line]
+            | readonly ['single line', state_group.single_line]
+        
+    }
+    
+    export type _type = {
+        readonly 'location': _type.location
+        readonly 'state group': _type.state_group
+    }
+    
+}
+
+export type Text_Type_ = {
+    readonly 'type': Text_Type_._type
+}
+
+export namespace Globals_ {
+    
+    export namespace text_types {
+        
+        export type location = i_location__.Location
+        
+        export namespace dictionary {
             
             export namespace D {
+                
+                export type location = i_location__.Location
+                
+                export type entry = Text_Type_
+                
             }
-            export type D<M_Source> = _T_Text_Type<M_Source>
-        }
-        export type text_types<M_Source> = _i_core._T_Dictionary<M_Source, _T_Text_Type<M_Source>>
-    }
-    
-    export namespace _T_Type {
-        
-        export namespace node {
-        }
-        export type node<M_Source> = _T_Type_Node<M_Source>
-    }
-    
-    export namespace _T_Types {
-        
-        export namespace D {
-        }
-        export type D<M_Source> = _T_Type<M_Source>
-    }
-    
-    export namespace _T_Schema {
-        
-        export namespace imports {
-        }
-        export type imports<M_Source> = _T_Imports<M_Source>
-        
-        export namespace globals {
-        }
-        export type globals<M_Source> = _T_Globals<M_Source>
-        
-        export namespace types {
-        }
-        export type types<M_Source> = _T_Types<M_Source>
-    }
-    
-    export namespace _T_Schema_Tree {
-        
-        export namespace SG {
             
-            export namespace _set {
+            export type D = {
+                readonly 'location': D.location
+                readonly 'entry': D.entry
             }
-            export type _set<M_Source> = _T_Schemas<M_Source>
             
-            export namespace schema {
-            }
-            export type schema<M_Source> = _T_Schema<M_Source>
         }
-        export type SG<M_Source> = 
-            | readonly ['set', _T_Schemas<M_Source>]
-            | readonly ['schema', _T_Schema<M_Source>]
+        
+        export type dictionary = _pi.Dictionary<dictionary.D>
+        
     }
     
-    export namespace _T_Imports {
+    export type text_types = {
+        readonly 'location': text_types.location
+        readonly 'dictionary': text_types.dictionary
+    }
+    
+}
+
+export type Globals_ = {
+    readonly 'text types': Globals_.text_types
+}
+
+export namespace Type_ {
+    
+    export type node = Type_Node_
+    
+}
+
+export type Type_ = {
+    readonly 'node': Type_.node
+}
+
+export namespace Types_ {
+    
+    export type location = i_location__.Location
+    
+    export namespace dictionary {
         
         export namespace D {
             
-            export namespace schema_set_child {
-                
-                export namespace Dictionary_Entry {
-                }
-                export type Dictionary_Entry<M_Source> = _T_Schemas.D<M_Source>
-            }
-            export type schema_set_child<M_Source> = _i_core._T_Reference_To_Stacked_Dictionary_Entry<M_Source, _T_Schemas.D<M_Source>>
+            export type location = i_location__.Location
             
-            export namespace schema {
-                
-                export namespace Type {
-                }
-                export type Type<M_Source> = _T_Schema<M_Source>
-            }
-            export type schema<M_Source> = _i_core._T_Derived_Reference<M_Source, _T_Schema<M_Source>>
+            export type entry = Type_
+            
         }
-        export type D<M_Source> = {
-            readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<M_Source, _T_Schemas.D<M_Source>>
-            readonly 'schema': _i_core._T_Derived_Reference<M_Source, _T_Schema<M_Source>>
-        }
-    }
-    
-    export namespace _T_Dictionary {
         
-        export namespace node {
+        export type D = {
+            readonly 'location': D.location
+            readonly 'entry': D.entry
         }
-        export type node<M_Source> = _T_Type_Node<M_Source>
-        export type ordered<M_Source> = boolean
+        
     }
     
-    export namespace _T_Group {
+    export type dictionary = _pi.Dictionary<dictionary.D>
+    
+}
+
+export type Types_ = {
+    readonly 'location': Types_.location
+    readonly 'dictionary': Types_.dictionary
+}
+
+export namespace Schema_ {
+    
+    export type imports = Imports_
+    
+    export type globals = Globals_
+    
+    export type types = Types_
+    
+}
+
+export type Schema_ = {
+    readonly 'imports': Schema_.imports
+    readonly 'globals': Schema_.globals
+    readonly 'types': Schema_.types
+}
+
+export namespace Schema_Tree_ {
+    
+    export type location = i_location__.Location
+    
+    export namespace state_group {
+        
+        export type _set = Schemas_
+        
+        export type schema = Schema_
+        
+    }
+    
+    export type state_group = 
+        | readonly ['set', state_group._set]
+        | readonly ['schema', state_group.schema]
+    
+}
+
+export type Schema_Tree_ = {
+    readonly 'location': Schema_Tree_.location
+    readonly 'state group': Schema_Tree_.state_group
+}
+
+export namespace Imports_ {
+    
+    export type location = i_location__.Location
+    
+    export namespace dictionary {
         
         export namespace D {
+            
+            export type location = i_location__.Location
+            
+            export namespace entry {
+                
+                export namespace schema_set_child {
+                    
+                    export type location = i_location__.Location
+                    
+                    export type key = string
+                    
+                }
+                
+                export type schema_set_child = {
+                    readonly 'location': schema_set_child.location
+                    readonly 'key': schema_set_child.key
+                }
+                
+                export type schema = null
+                
+            }
+            
+            export type entry = {
+                readonly 'schema set child': entry.schema_set_child
+                readonly 'schema': entry.schema
+            }
+            
         }
-        export type D<M_Source> = _T_Type_Node<M_Source>
+        
+        export type D = {
+            readonly 'location': D.location
+            readonly 'entry': D.entry
+        }
+        
     }
     
-    export namespace _T_Type_Node {
+    export type dictionary = _pi.Dictionary<dictionary.D>
+    
+}
+
+export type Imports_ = {
+    readonly 'location': Imports_.location
+    readonly 'dictionary': Imports_.dictionary
+}
+
+export namespace Dictionary_ {
+    
+    export type node = Type_Node_
+    
+    export type ordered = boolean
+    
+}
+
+export type Dictionary_ = {
+    readonly 'node': Dictionary_.node
+    readonly 'ordered': Dictionary_.ordered
+}
+
+export namespace Group_ {
+    
+    export type location = i_location__.Location
+    
+    export namespace dictionary {
         
-        export namespace SG {
+        export namespace D {
             
-            export namespace component {
-                
-                export namespace SG {
-                    
-                    export namespace external {
-                        
-                        export namespace _import {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry<M_Source> = _T_Imports.D<M_Source>
-                        }
-                        export type _import<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        
-                        export namespace _type {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                        }
-                        export type _type<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }
-                    export type external<M_Source> = {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }
-                    
-                    export namespace internal {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                    }
-                    export type internal<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    
-                    export namespace internal_cyclic {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                    }
-                    export type internal_cyclic<M_Source> = _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>
-                }
-                export type SG<M_Source> = 
-                    | readonly ['external', {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }]
-                    | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                    | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-            }
-            export type component<M_Source> = _i_core._T_State_Group<M_Source, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-            >
+            export type location = i_location__.Location
             
-            export namespace dictionary {
-            }
-            export type dictionary<M_Source> = _T_Dictionary<M_Source>
+            export type entry = Type_Node_
             
-            export namespace group {
-            }
-            export type group<M_Source> = _T_Group<M_Source>
+        }
+        
+        export type D = {
+            readonly 'location': D.location
+            readonly 'entry': D.entry
+        }
+        
+    }
+    
+    export type dictionary = _pi.Dictionary<dictionary.D>
+    
+}
+
+export type Group_ = {
+    readonly 'location': Group_.location
+    readonly 'dictionary': Group_.dictionary
+}
+
+export namespace Type_Node_ {
+    
+    export type location = i_location__.Location
+    
+    export namespace state_group {
+        
+        export namespace component {
             
-            export namespace list {
-                
-                export namespace node {
-                }
-                export type node<M_Source> = _T_Type_Node<M_Source>
-            }
-            export type list<M_Source> = {
-                readonly 'node': _T_Type_Node<M_Source>
-            }
-            export type nothing<M_Source> = null
-            
-            export namespace optional {
-            }
-            export type optional<M_Source> = _T_Type_Node<M_Source>
+            export type location = i_location__.Location
             
             export namespace state_group {
                 
-                export namespace D {
+                export namespace external {
+                    
+                    export namespace _import {
+                        
+                        export type location = i_location__.Location
+                        
+                        export type key = string
+                        
+                    }
+                    
+                    export type _import = {
+                        readonly 'location': _import.location
+                        readonly 'key': _import.key
+                    }
+                    
+                    export namespace _type {
+                        
+                        export type location = i_location__.Location
+                        
+                        export type key = string
+                        
+                    }
+                    
+                    export type _type = {
+                        readonly 'location': _type.location
+                        readonly 'key': _type.key
+                    }
+                    
                 }
-                export type D<M_Source> = _T_Type_Node<M_Source>
-            }
-            export type state_group<M_Source> = _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>
-            
-            export namespace text {
                 
-                export namespace SG {
-                    
-                    export namespace global {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Globals.text_types.D<M_Source>
-                    }
-                    export type global<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>
-                    
-                    export namespace local {
-                    }
-                    export type local<M_Source> = _T_Text_Type<M_Source>
+                export type external = {
+                    readonly 'import': external._import
+                    readonly 'type': external._type
                 }
-                export type SG<M_Source> = 
-                    | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                    | readonly ['local', _T_Text_Type<M_Source>]
-            }
-            export type text<M_Source> = _i_core._T_State_Group<M_Source, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                | readonly ['local', _T_Text_Type<M_Source>]
-            >
-        }
-        export type SG<M_Source> = 
-            | readonly ['component', _i_core._T_State_Group<M_Source, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-            >]
-            | readonly ['dictionary', _T_Dictionary<M_Source>]
-            | readonly ['group', _T_Group<M_Source>]
-            | readonly ['list', {
-                readonly 'node': _T_Type_Node<M_Source>
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _T_Type_Node<M_Source>]
-            | readonly ['state group', _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>]
-            | readonly ['text', _i_core._T_State_Group<M_Source, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                | readonly ['local', _T_Text_Type<M_Source>]
-            >]
-    }
-    
-    // *** ALIASES FOR NESTED TYPES
-    
-    export namespace Schemas {
-        
-        export namespace D {
-        }
-        export type D<M_Source> = _T_Schema_Tree<M_Source>
-    }
-    
-    export namespace Text_Type {
-        
-        export namespace _type {
-            
-            export namespace SG {
-                export type multi_line<M_Source> = null
-                export type single_line<M_Source> = null
-            }
-            export type SG<M_Source> = 
-                | readonly ['multi line', null]
-                | readonly ['single line', null]
-        }
-        export type _type<M_Source> = _i_core._T_State_Group<M_Source, 
-            | readonly ['multi line', null]
-            | readonly ['single line', null]
-        >
-    }
-    
-    export namespace Globals {
-        
-        export namespace text_types {
-            
-            export namespace D {
-            }
-            export type D<M_Source> = _T_Text_Type<M_Source>
-        }
-        export type text_types<M_Source> = _i_core._T_Dictionary<M_Source, _T_Text_Type<M_Source>>
-    }
-    
-    export namespace Type {
-        
-        export namespace node {
-        }
-        export type node<M_Source> = _T_Type_Node<M_Source>
-    }
-    
-    export namespace Types {
-        
-        export namespace D {
-        }
-        export type D<M_Source> = _T_Type<M_Source>
-    }
-    
-    export namespace Schema {
-        
-        export namespace imports {
-        }
-        export type imports<M_Source> = _T_Imports<M_Source>
-        
-        export namespace globals {
-        }
-        export type globals<M_Source> = _T_Globals<M_Source>
-        
-        export namespace types {
-        }
-        export type types<M_Source> = _T_Types<M_Source>
-    }
-    
-    export namespace Schema_Tree {
-        
-        export namespace SG {
-            
-            export namespace _set {
-            }
-            export type _set<M_Source> = _T_Schemas<M_Source>
-            
-            export namespace schema {
-            }
-            export type schema<M_Source> = _T_Schema<M_Source>
-        }
-        export type SG<M_Source> = 
-            | readonly ['set', _T_Schemas<M_Source>]
-            | readonly ['schema', _T_Schema<M_Source>]
-    }
-    
-    export namespace Imports {
-        
-        export namespace D {
-            
-            export namespace schema_set_child {
                 
-                export namespace Dictionary_Entry {
+                export namespace internal {
+                    
+                    export type location = i_location__.Location
+                    
+                    export type key = string
+                    
                 }
-                export type Dictionary_Entry<M_Source> = _T_Schemas.D<M_Source>
-            }
-            export type schema_set_child<M_Source> = _i_core._T_Reference_To_Stacked_Dictionary_Entry<M_Source, _T_Schemas.D<M_Source>>
-            
-            export namespace schema {
                 
-                export namespace Type {
+                export type internal = {
+                    readonly 'location': internal.location
+                    readonly 'key': internal.key
                 }
-                export type Type<M_Source> = _T_Schema<M_Source>
-            }
-            export type schema<M_Source> = _i_core._T_Derived_Reference<M_Source, _T_Schema<M_Source>>
-        }
-        export type D<M_Source> = {
-            readonly 'schema set child': _i_core._T_Reference_To_Stacked_Dictionary_Entry<M_Source, _T_Schemas.D<M_Source>>
-            readonly 'schema': _i_core._T_Derived_Reference<M_Source, _T_Schema<M_Source>>
-        }
-    }
-    
-    export namespace Dictionary {
-        
-        export namespace node {
-        }
-        export type node<M_Source> = _T_Type_Node<M_Source>
-        export type ordered<M_Source> = boolean
-    }
-    
-    export namespace Group {
-        
-        export namespace D {
-        }
-        export type D<M_Source> = _T_Type_Node<M_Source>
-    }
-    
-    export namespace Type_Node {
-        
-        export namespace SG {
-            
-            export namespace component {
                 
-                export namespace SG {
+                export namespace internal_cyclic {
                     
-                    export namespace external {
-                        
-                        export namespace _import {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry<M_Source> = _T_Imports.D<M_Source>
-                        }
-                        export type _import<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        
-                        export namespace _type {
-                            
-                            export namespace Dictionary_Entry {
-                            }
-                            export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                        }
-                        export type _type<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }
-                    export type external<M_Source> = {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }
+                    export type location = i_location__.Location
                     
-                    export namespace internal {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                    }
-                    export type internal<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
+                    export type key = string
                     
-                    export namespace internal_cyclic {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Types.D<M_Source>
-                    }
-                    export type internal_cyclic<M_Source> = _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>
                 }
-                export type SG<M_Source> = 
-                    | readonly ['external', {
-                        readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                        readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                    }]
-                    | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                    | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
+                
+                export type internal_cyclic = {
+                    readonly 'location': internal_cyclic.location
+                    readonly 'key': internal_cyclic.key
+                }
+                
             }
-            export type component<M_Source> = _i_core._T_State_Group<M_Source, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-            >
+            
+            export type state_group = 
+                | readonly ['external', state_group.external]
+                | readonly ['internal', state_group.internal]
+                | readonly ['internal cyclic', state_group.internal_cyclic]
+            
+        }
+        
+        export type component = {
+            readonly 'location': component.location
+            readonly 'state group': component.state_group
+        }
+        
+        export type dictionary = Dictionary_
+        
+        export type group = Group_
+        
+        export namespace list {
+            
+            export type node = Type_Node_
+            
+        }
+        
+        export type list = {
+            readonly 'node': list.node
+        }
+        
+        export type nothing = null
+        
+        export type optional = Type_Node_
+        
+        export namespace state_group {
+            
+            export type location = i_location__.Location
             
             export namespace dictionary {
-            }
-            export type dictionary<M_Source> = _T_Dictionary<M_Source>
-            
-            export namespace group {
-            }
-            export type group<M_Source> = _T_Group<M_Source>
-            
-            export namespace list {
                 
-                export namespace node {
+                export namespace D {
+                    
+                    export type location = i_location__.Location
+                    
+                    export type entry = Type_Node_
+                    
                 }
-                export type node<M_Source> = _T_Type_Node<M_Source>
+                
+                export type D = {
+                    readonly 'location': D.location
+                    readonly 'entry': D.entry
+                }
+                
             }
-            export type list<M_Source> = {
-                readonly 'node': _T_Type_Node<M_Source>
-            }
-            export type nothing<M_Source> = null
             
-            export namespace optional {
-            }
-            export type optional<M_Source> = _T_Type_Node<M_Source>
+            export type dictionary = _pi.Dictionary<dictionary.D>
+            
+        }
+        
+        export type state_group = {
+            readonly 'location': state_group.location
+            readonly 'dictionary': state_group.dictionary
+        }
+        
+        export namespace text {
+            
+            export type location = i_location__.Location
             
             export namespace state_group {
                 
-                export namespace D {
+                export namespace global {
+                    
+                    export type location = i_location__.Location
+                    
+                    export type key = string
+                    
                 }
-                export type D<M_Source> = _T_Type_Node<M_Source>
-            }
-            export type state_group<M_Source> = _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>
-            
-            export namespace text {
                 
-                export namespace SG {
-                    
-                    export namespace global {
-                        
-                        export namespace Dictionary_Entry {
-                        }
-                        export type Dictionary_Entry<M_Source> = _T_Globals.text_types.D<M_Source>
-                    }
-                    export type global<M_Source> = _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>
-                    
-                    export namespace local {
-                    }
-                    export type local<M_Source> = _T_Text_Type<M_Source>
+                export type global = {
+                    readonly 'location': global.location
+                    readonly 'key': global.key
                 }
-                export type SG<M_Source> = 
-                    | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                    | readonly ['local', _T_Text_Type<M_Source>]
+                
+                export type local = Text_Type_
+                
             }
-            export type text<M_Source> = _i_core._T_State_Group<M_Source, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                | readonly ['local', _T_Text_Type<M_Source>]
-            >
+            
+            export type state_group = 
+                | readonly ['global', state_group.global]
+                | readonly ['local', state_group.local]
+            
         }
-        export type SG<M_Source> = 
-            | readonly ['component', _i_core._T_State_Group<M_Source, 
-                | readonly ['external', {
-                    readonly 'import': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Imports.D<M_Source>>
-                    readonly 'type': _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>
-                }]
-                | readonly ['internal', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Types.D<M_Source>>]
-                | readonly ['internal cyclic', _i_core._T_Reference_To_Circular_Dependent_Sibling<M_Source, _T_Types.D<M_Source>>]
-            >]
-            | readonly ['dictionary', _T_Dictionary<M_Source>]
-            | readonly ['group', _T_Group<M_Source>]
-            | readonly ['list', {
-                readonly 'node': _T_Type_Node<M_Source>
-            }]
-            | readonly ['nothing', null]
-            | readonly ['optional', _T_Type_Node<M_Source>]
-            | readonly ['state group', _i_core._T_Dictionary<M_Source, _T_Type_Node<M_Source>>]
-            | readonly ['text', _i_core._T_State_Group<M_Source, 
-                | readonly ['global', _i_core._T_Reference_To_Normal_Dictionary_Entry<M_Source, _T_Globals.text_types.D<M_Source>>]
-                | readonly ['local', _T_Text_Type<M_Source>]
-            >]
+        
+        export type text = {
+            readonly 'location': text.location
+            readonly 'state group': text.state_group
+        }
+        
     }
+    
+    export type state_group = 
+        | readonly ['component', state_group.component]
+        | readonly ['dictionary', state_group.dictionary]
+        | readonly ['group', state_group.group]
+        | readonly ['list', state_group.list]
+        | readonly ['nothing', state_group.nothing]
+        | readonly ['optional', state_group.optional]
+        | readonly ['state group', state_group.state_group]
+        | readonly ['text', state_group.text]
+    
+}
+
+export type Type_Node_ = {
+    readonly 'location': Type_Node_.location
+    readonly 'state group': Type_Node_.state_group
+}
+
+export { 
+    Schemas_ as Schemas, 
+    Text_Type_ as Text_Type, 
+    Globals_ as Globals, 
+    Type_ as Type, 
+    Types_ as Types, 
+    Schema_ as Schema, 
+    Schema_Tree_ as Schema_Tree, 
+    Imports_ as Imports, 
+    Dictionary_ as Dictionary, 
+    Group_ as Group, 
+    Type_Node_ as Type_Node, 
+}

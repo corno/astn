@@ -1,15 +1,13 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_out from "./data_types/target"
-
 import * as i_in from "./data_types/source"
 
 export namespace Structural_Token_ {
     
     export type I = i_in.Structural_Token
     
-    export type O = i_out.Structural_Token
+    export type O = string
     
     export namespace P {
         
@@ -25,7 +23,7 @@ export namespace String_ {
     
     export type I = i_in.String
     
-    export type O = i_out.String
+    export type O = string
     
     export namespace P {
         
@@ -41,7 +39,7 @@ export namespace Key_Value_Pairs_ {
     
     export type I = i_in.Key_Value_Pairs
     
-    export type O = i_out.Key_Value_Pairs
+    export type O = string
     
     export namespace P {
         
@@ -57,7 +55,7 @@ export namespace Elements_ {
     
     export type I = i_in.Elements
     
-    export type O = i_out.Elements
+    export type O = string
     
     export namespace P {
         
@@ -73,7 +71,7 @@ export namespace Concrete_Value_ {
     
     export type I = i_in.Concrete_Value
     
-    export type O = i_out.Concrete_Value
+    export type O = string
     
     export namespace P {
         
@@ -89,7 +87,7 @@ export namespace Value_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Value
+    export type O = string
     
     export namespace P {
         
@@ -105,7 +103,7 @@ export namespace Content_ {
     
     export type I = i_in.Content
     
-    export type O = i_out.Content
+    export type O = string
     
     export namespace P {
         
@@ -121,7 +119,7 @@ export namespace Document_ {
     
     export type I = i_in.Document
     
-    export type O = i_out.Document
+    export type O = string
     
     export namespace P {
         
