@@ -3,8 +3,8 @@ import * as _pi from 'pareto-core-interface'
 
 import * as new_pi from "./new_interface_signatures"
 
-import * as d_target from "../../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
-import * as d_parse_result from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as d_target from "../../../../../interface/generated/pareto/schemas/parse_tree/data_types/target"
+import * as d_parse_result from "../../../../../interface/generated/pareto/schemas/deserialize_parse_tree/data_types/target"
 import * as d_source from "../../../../../interface/generated/pareto/schemas/token/data_types/source"
 export namespace signatures {
 

@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core-interface'
 
-import * as d_in from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/source"
+import * as d_in from "../../../generated/pareto/schemas/parse_tree/data_types/source"
 import * as d_in_token from "../../../../interface/generated/pareto/schemas/token/data_types/source"
 import * as d_out from "../../../../interface/generated/pareto/schemas/ide/data_types/target"
 

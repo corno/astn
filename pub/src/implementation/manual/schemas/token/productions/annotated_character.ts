@@ -6,7 +6,7 @@ import * as _pi_new from '../../authoring_parse_tree/productions/new_interface_s
 
 import * as d_out from "../../../../../interface/generated/pareto/schemas/token/data_types/target"
 
-import * as _parse_result from "../../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as _parse_result from "../../../../../interface/generated/pareto/schemas/deserialize_parse_tree/data_types/target"
 
 import * as d_annotated_characters from "../../../../../interface/to_be_generated/annotated_characters"
 

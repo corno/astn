@@ -1,7 +1,7 @@
 import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
-import * as d_in from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/source"
+import * as d_in from "../../../../interface/generated/pareto/schemas/deserialize_parse_tree/data_types/source"
 import * as d_to_fountain_pen from "./transformers/fountain_pen"
 
 export type Error = _pi.Serializer_With_Parameters<d_in.Error, d_to_fountain_pen.Parameters>

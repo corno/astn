@@ -1,7 +1,7 @@
 import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
-import * as d_target from "../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
+import * as d_target from "../interface/generated/pareto/schemas/deserialize_parse_tree/data_types/target"
 import * as d_target_token from "../interface/generated/pareto/schemas/token/data_types/source"
 
 

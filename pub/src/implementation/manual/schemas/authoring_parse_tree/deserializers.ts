@@ -7,8 +7,8 @@ import * as _pds_new from "../authoring_parse_tree/productions/temp"
 
 
 
-import * as d_authoring_parse_result from "../../../../interface/generated/pareto/schemas/authoring_parse_result/data_types/target"
-import * as d_authoring_parse_tree from "../../../../interface/generated/pareto/schemas/authoring_parse_tree/data_types/target"
+import * as d_authoring_parse_result from "../../../../interface/generated/pareto/schemas/deserialize_parse_tree/data_types/target"
+import * as d_authoring_parse_tree from "../../../../interface/generated/pareto/schemas/parse_tree/data_types/target"
 import * as d_token from "../../../../interface/generated/pareto/schemas/token/data_types/target"
 
 

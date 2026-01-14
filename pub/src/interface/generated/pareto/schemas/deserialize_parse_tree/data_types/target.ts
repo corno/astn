@@ -3,7 +3,7 @@ import * as _pi from "pareto-core-interface"
 
 import * as i_location__ from "../../../core/location"
 
-import * as i_imports_parse_tree from "../../authoring_parse_tree/data_types/source"
+import * as i_imports_parse_tree from "../../parse_tree/data_types/source"
 
 import * as i_imports_token from "../../token/data_types/source"
 
