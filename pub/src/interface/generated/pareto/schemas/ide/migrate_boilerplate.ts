@@ -1,9 +1,25 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_out from "./data_types/target"
+import * as i_out from "./data"
 
-import * as i_in from "./data_types/source"
+import * as i_in from "./data"
+
+export namespace Relative_Location_ {
+    
+    export type I = i_in.Relative_Location
+    
+    export type O = i_out.Relative_Location
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Relative_Location_ = (
+    $$_: Relative_Location_.I,
+) => Relative_Location_.O
 
 export namespace Relative_Range_ {
     
@@ -54,6 +70,7 @@ export type Key_Value_Pairs_To_Be_Sorted_ = (
 ) => Key_Value_Pairs_To_Be_Sorted_.O
 
 export { 
+    Relative_Location_ as Relative_Location, 
     Relative_Range_ as Relative_Range, 
     Text_Edits_ as Text_Edits, 
     Key_Value_Pairs_To_Be_Sorted_ as Key_Value_Pairs_To_Be_Sorted, 

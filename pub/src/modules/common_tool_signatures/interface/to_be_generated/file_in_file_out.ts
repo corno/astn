@@ -1,8 +1,8 @@
 
-import * as d_path from "pareto-resources/dist/interface/generated/pareto/schemas/path/data_types/target"
+import * as d_path from "pareto-resources/dist/interface/generated/pareto/schemas/path/data"
 
-import * as d_read_file from "pareto-resources/dist/interface/generated/pareto/schemas/read_file/data_types/source"
-import * as d_write_file from "pareto-resources/dist/interface/generated/pareto/schemas/write_file/data_types/target"
+import * as d_read_file from "pareto-resources/dist/interface/generated/pareto/schemas/read_file/data"
+import * as d_write_file from "pareto-resources/dist/interface/generated/pareto/schemas/write_file/data"
 
 export type Path_Error =
     | ['missing', null]

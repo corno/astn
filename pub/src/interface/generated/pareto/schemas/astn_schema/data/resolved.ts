@@ -1,0 +1,292 @@
+
+import * as _pi from "pareto-core-interface"
+
+import * as i__location from "../../../core/location"
+
+export namespace Schemas_ {
+    
+    export type D = Schema_Tree_
+    
+}
+
+export type Schemas_ = _pi.Dictionary<Schemas_.D>
+
+export namespace Text_Type_ {
+    
+    export namespace _type {
+        
+        export type multi_line = null
+        
+        export type single_line = null
+        
+    }
+    
+    export type _type = 
+        | readonly ['multi line', _type.multi_line]
+        | readonly ['single line', _type.single_line]
+    
+}
+
+export type Text_Type_ = {
+    readonly 'type': Text_Type_._type
+}
+
+export namespace Globals_ {
+    
+    export namespace text_types {
+        
+        export type D = Text_Type_
+        
+    }
+    
+    export type text_types = _pi.Dictionary<text_types.D>
+    
+}
+
+export type Globals_ = {
+    readonly 'text types': Globals_.text_types
+}
+
+export namespace Type_ {
+    
+    export type node = Type_Node_
+    
+}
+
+export type Type_ = {
+    readonly 'node': Type_.node
+}
+
+export namespace Types_ {
+    
+    export type D = Type_
+    
+}
+
+export type Types_ = _pi.Dictionary<Types_.D>
+
+export namespace Schema_ {
+    
+    export type imports = Imports_
+    
+    export type globals = Globals_
+    
+    export type types = Types_
+    
+}
+
+export type Schema_ = {
+    readonly 'imports': Schema_.imports
+    readonly 'globals': Schema_.globals
+    readonly 'types': Schema_.types
+}
+
+export namespace Schema_Tree_ {
+    
+    export type _set = Schemas_
+    
+    export type schema = Schema_
+    
+}
+
+export type Schema_Tree_ = 
+    | readonly ['set', Schema_Tree_._set]
+    | readonly ['schema', Schema_Tree_.schema]
+
+export namespace Imports_ {
+    
+    export namespace D {
+        
+        export namespace schema_set_child {
+            
+            export type entry = Schemas_.D
+            
+            export type key = string
+            
+        }
+        
+        export type schema_set_child = {
+            readonly 'entry': schema_set_child.entry
+            readonly 'key': schema_set_child.key
+        }
+        
+        export type schema = Schema_
+        
+    }
+    
+    export type D = {
+        readonly 'schema set child': D.schema_set_child
+        readonly 'schema': D.schema
+    }
+    
+}
+
+export type Imports_ = _pi.Dictionary<Imports_.D>
+
+export namespace Dictionary_ {
+    
+    export type node = Type_Node_
+    
+    export type ordered = boolean
+    
+}
+
+export type Dictionary_ = {
+    readonly 'node': Dictionary_.node
+    readonly 'ordered': Dictionary_.ordered
+}
+
+export namespace Group_ {
+    
+    export type D = Type_Node_
+    
+}
+
+export type Group_ = _pi.Dictionary<Group_.D>
+
+export namespace Type_Node_ {
+    
+    export namespace component {
+        
+        export namespace external {
+            
+            export namespace _import {
+                
+                export type entry = Imports_.D
+                
+                export type key = string
+                
+            }
+            
+            export type _import = {
+                readonly 'entry': _import.entry
+                readonly 'key': _import.key
+            }
+            
+            export namespace _type {
+                
+                export type entry = Types_.D
+                
+                export type key = string
+                
+            }
+            
+            export type _type = {
+                readonly 'entry': _type.entry
+                readonly 'key': _type.key
+            }
+            
+        }
+        
+        export type external = {
+            readonly 'import': external._import
+            readonly 'type': external._type
+        }
+        
+        export namespace internal {
+            
+            export type entry = Types_.D
+            
+            export type key = string
+            
+        }
+        
+        export type internal = {
+            readonly 'entry': internal.entry
+            readonly 'key': internal.key
+        }
+        
+        export namespace internal_cyclic {
+            
+            export type entry = Types_.D
+            
+            export type key = string
+            
+        }
+        
+        export type internal_cyclic = {
+            readonly 'entry': internal_cyclic.entry
+            readonly 'key': internal_cyclic.key
+        }
+        
+    }
+    
+    export type component = 
+        | readonly ['external', component.external]
+        | readonly ['internal', component.internal]
+        | readonly ['internal cyclic', component.internal_cyclic]
+    
+    export type dictionary = Dictionary_
+    
+    export type group = Group_
+    
+    export namespace list {
+        
+        export type node = Type_Node_
+        
+    }
+    
+    export type list = {
+        readonly 'node': list.node
+    }
+    
+    export type nothing = null
+    
+    export type optional = Type_Node_
+    
+    export namespace state_group {
+        
+        export type D = Type_Node_
+        
+    }
+    
+    export type state_group = _pi.Dictionary<state_group.D>
+    
+    export namespace text {
+        
+        export namespace global {
+            
+            export type entry = Globals_.text_types.D
+            
+            export type key = string
+            
+        }
+        
+        export type global = {
+            readonly 'entry': global.entry
+            readonly 'key': global.key
+        }
+        
+        export type local = Text_Type_
+        
+    }
+    
+    export type text = 
+        | readonly ['global', text.global]
+        | readonly ['local', text.local]
+    
+}
+
+export type Type_Node_ = 
+    | readonly ['component', Type_Node_.component]
+    | readonly ['dictionary', Type_Node_.dictionary]
+    | readonly ['group', Type_Node_.group]
+    | readonly ['list', Type_Node_.list]
+    | readonly ['nothing', Type_Node_.nothing]
+    | readonly ['optional', Type_Node_.optional]
+    | readonly ['state group', Type_Node_.state_group]
+    | readonly ['text', Type_Node_.text]
+
+export { 
+    Schemas_ as Schemas, 
+    Text_Type_ as Text_Type, 
+    Globals_ as Globals, 
+    Type_ as Type, 
+    Types_ as Types, 
+    Schema_ as Schema, 
+    Schema_Tree_ as Schema_Tree, 
+    Imports_ as Imports, 
+    Dictionary_ as Dictionary, 
+    Group_ as Group, 
+    Type_Node_ as Type_Node, 
+}
