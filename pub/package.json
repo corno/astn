@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "astn-core": "^0.1.1",
+    "pareto-core-dev": "^0.11.5",
     "pareto-core-refiner": "^0.1.17",
     "pareto-fountain-pen": "^0.3.34",
     "pareto-host-nodejs": "^0.1.11",
