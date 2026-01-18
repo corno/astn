@@ -43,7 +43,7 @@
     "pareto-core-dev": "^0.12.0",
     "pareto-core-refiner": "^0.2.0",
     "pareto-fountain-pen": "^0.4.1",
-    "pareto-host-nodejs": "^0.2.3",
+    "pareto-host-nodejs": "^0.2.4",
     "pareto-json": "^0.3.14",
     "pareto-resources": "^0.2.8"
   }
