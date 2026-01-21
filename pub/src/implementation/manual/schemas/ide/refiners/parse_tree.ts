@@ -8,11 +8,11 @@ export const Whitespace: signatures.Whitespace = ($, $p) => _p.list.literal([
     //FIXME
 ])
 
-export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal([
+export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal_old([
     Whitespace($['leading whitespace'], $p),
     _p.list.flatten(
         $['comments'],
-        ($) => _p.list.nested_literal([
+        ($) => _p.list.nested_literal_old([
             //FIXME
             // _p.sg($['type'], ($) => {
             //     switch ($[0]) {
@@ -32,21 +32,21 @@ export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal([
 
 export const Structural_Token: signatures.Structural_Token = ($, $p) => Trivia($['trailing trivia'], $p)
 
-export const String: signatures.Text = ($, $p) => _p.list.nested_literal([
+export const String: signatures.Text = ($, $p) => _p.list.nested_literal_old([
     Trivia($['trailing trivia'], $p),
     //FIX right type
 ])
 
 export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => _p.list.flatten(
     $,
-    ($) => _p.list.nested_literal([
+    ($) => _p.list.nested_literal_old([
         String($.key, $p),
         $.value.__decide(
-            ($) => _p.list.nested_literal([
+            ($) => _p.list.nested_literal_old([
                 Structural_Token($[':'], $p),
                 Value($.value, $p),
             ]),
-            () => _p.list.nested_literal([])
+            () => _p.list.nested_literal_old([])
         ),
     ])
 )
@@ -58,19 +58,19 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => _p.list.nested_literal([
+                case 'dictionary': return _p.ss($, ($) => _p.list.nested_literal_old([
                     Structural_Token($['{'], $p),
                     Key_Value_Pairs($['entries'], $p),
                     Structural_Token($['}'], $p),
                 ]))
                 case 'group': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
-                        case 'concise': return _p.ss($, ($) => _p.list.nested_literal([
+                        case 'concise': return _p.ss($, ($) => _p.list.nested_literal_old([
                             Structural_Token($['<'], $p),
                             Elements($['elements'], $p),
                             Structural_Token($['>'], $p),
                         ]))
-                        case 'verbose': return _p.ss($, ($) => _p.list.nested_literal([
+                        case 'verbose': return _p.ss($, ($) => _p.list.nested_literal_old([
                             Structural_Token($['('], $p),
                             Key_Value_Pairs($['entries'], $p),
                             Structural_Token($[')'], $p),
@@ -78,7 +78,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 }))
-                case 'list': return _p.ss($, ($) => _p.list.nested_literal([
+                case 'list': return _p.ss($, ($) => _p.list.nested_literal_old([
                     Structural_Token($['['], $p),
                     Elements($.elements, $p),
                     Structural_Token($[']'], $p),
@@ -86,19 +86,19 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                 case 'nothing': return _p.ss($, ($) => Structural_Token($['~'], $p))
                 case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
                     switch ($[0]) {
-                        case 'set': return _p.ss($, ($) => _p.list.nested_literal([
+                        case 'set': return _p.ss($, ($) => _p.list.nested_literal_old([
                             Structural_Token($['*'], $p),
                             Value($['value'], $p),
                         ]))
                         default: return _p.au($[0])
                     }
                 }))
-                case 'state group': return _p.ss($, ($) => _p.list.nested_literal<d_out.Text_Edits.L>([
+                case 'state group': return _p.ss($, ($) => _p.list.nested_literal_old<d_out.Text_Edits.L>([
                     Structural_Token($['|'], $p),
                     _p.sg($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
-                            case 'set': return _p.ss($, ($) => _p.list.nested_literal([
+                            case 'set': return _p.ss($, ($) => _p.list.nested_literal_old([
                                 String($['state'], $p),
                                 Value($['value'], $p),
                             ]))
@@ -111,7 +111,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                 default: return _p.au($[0])
             }
         }))
-        case 'include': return _p.ss($, ($) => _p.list.nested_literal([
+        case 'include': return _p.ss($, ($) => _p.list.nested_literal_old([
             Structural_Token($['@'], $p),
             String($['path'], $p),
         ]))
@@ -120,14 +120,14 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
     }
 })
 
-export const Document: signatures.Document = ($, $p) => _p.list.nested_literal([
+export const Document: signatures.Document = ($, $p) => _p.list.nested_literal_old([
 
     $.header.__decide(
-        ($) => _p.list.nested_literal([
+        ($) => _p.list.nested_literal_old([
             Structural_Token($['!'], $p),
             Value($.value, $p)
         ]),
-        () => _p.list.nested_literal([])
+        () => _p.list.nested_literal_old([])
     ),
     Value($.content, $p),
 ])

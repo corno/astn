@@ -1,10 +1,10 @@
-import * as _p from 'pareto-core-serializer'
+import * as _p from 'pareto-core-transformer'
 
 import * as d_transform_file from "../../../../interface/to_be_generated/transform_file"
 
 import * as s_file_in_file_out from "../file_in_file_out/serializers"
 
-export const My_Error = ($: d_transform_file.Error): string => {
+export const Error = ($: d_transform_file.Error): string => {
     return _p.sg($, ($): string => {
         switch ($[0]) {
             case 'processing': return _p.ss($, ($) => `error processing: ` + $)

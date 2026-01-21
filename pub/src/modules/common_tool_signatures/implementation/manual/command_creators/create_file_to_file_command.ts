@@ -67,7 +67,7 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
         ($) => [
             $cr['log error'].execute(
                 {
-                    'lines': _p.list.literal([s_transform_file.My_Error($)])
+                    'lines': _p.list.literal([s_transform_file.Error($)])
                 },
                 ($) => ({
                     'exit code': 2
