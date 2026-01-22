@@ -13,7 +13,7 @@ export type Schemas_ = _pi.Dictionary<Schemas_.D>
 
 export namespace Text_Type_ {
     
-    export namespace _type {
+    export namespace type_ {
         
         export type multi_line = null
         
@@ -21,14 +21,14 @@ export namespace Text_Type_ {
         
     }
     
-    export type _type = 
-        | readonly ['multi line', _type.multi_line]
-        | readonly ['single line', _type.single_line]
+    export type type_ = 
+        | readonly ['multi line', type_.multi_line]
+        | readonly ['single line', type_.single_line]
     
 }
 
 export type Text_Type_ = {
-    readonly 'type': Text_Type_._type
+    readonly 'type': Text_Type_.type_
 }
 
 export namespace Globals_ {
@@ -83,14 +83,14 @@ export type Schema_ = {
 
 export namespace Schema_Tree_ {
     
-    export type _set = Schemas_
+    export type set_ = Schemas_
     
     export type schema = Schema_
     
 }
 
 export type Schema_Tree_ = 
-    | readonly ['set', Schema_Tree_._set]
+    | readonly ['set', Schema_Tree_.set_]
     | readonly ['schema', Schema_Tree_.schema]
 
 export namespace Imports_ {
@@ -150,7 +150,7 @@ export namespace Type_Node_ {
         
         export namespace external {
             
-            export namespace _import {
+            export namespace import_ {
                 
                 export type entry = Imports_.D
                 
@@ -158,12 +158,12 @@ export namespace Type_Node_ {
                 
             }
             
-            export type _import = {
-                readonly 'entry': _import.entry
-                readonly 'key': _import.key
+            export type import_ = {
+                readonly 'entry': import_.entry
+                readonly 'key': import_.key
             }
             
-            export namespace _type {
+            export namespace type_ {
                 
                 export type entry = Types_.D
                 
@@ -171,16 +171,16 @@ export namespace Type_Node_ {
                 
             }
             
-            export type _type = {
-                readonly 'entry': _type.entry
-                readonly 'key': _type.key
+            export type type_ = {
+                readonly 'entry': type_.entry
+                readonly 'key': type_.key
             }
             
         }
         
         export type external = {
-            readonly 'import': external._import
-            readonly 'type': external._type
+            readonly 'import': external.import_
+            readonly 'type': external.type_
         }
         
         export namespace internal {

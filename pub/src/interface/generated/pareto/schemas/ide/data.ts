@@ -59,14 +59,14 @@ export namespace Text_Edits_ {
             readonly 'text': replace.text
         }
         
-        export namespace _delete {
+        export namespace delete_ {
             
             export type range = Relative_Range_
             
         }
         
-        export type _delete = {
-            readonly 'range': _delete.range
+        export type delete_ = {
+            readonly 'range': delete_.range
         }
         
     }
@@ -74,7 +74,7 @@ export namespace Text_Edits_ {
     export type L = 
         | readonly ['insert', L.insert]
         | readonly ['replace', L.replace]
-        | readonly ['delete', L._delete]
+        | readonly ['delete', L.delete_]
     
 }
 

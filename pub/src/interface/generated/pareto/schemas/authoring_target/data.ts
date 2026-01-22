@@ -37,7 +37,7 @@ export namespace Value_ {
         
         export namespace concrete {
             
-            export namespace _type {
+            export namespace type_ {
                 
                 export namespace dictionary {
                     
@@ -97,19 +97,19 @@ export namespace Value_ {
                     
                     export type not_set = null
                     
-                    export type _set = Value_
+                    export type set_ = Value_
                     
                 }
                 
                 export type optional = 
                     | readonly ['not set', optional.not_set]
-                    | readonly ['set', optional._set]
+                    | readonly ['set', optional.set_]
                 
                 export namespace state_group {
                     
                     export type missing_data = null
                     
-                    export namespace _set {
+                    export namespace set_ {
                         
                         export type state = string
                         
@@ -117,16 +117,16 @@ export namespace Value_ {
                         
                     }
                     
-                    export type _set = {
-                        readonly 'state': _set.state
-                        readonly 'value': _set.value
+                    export type set_ = {
+                        readonly 'state': set_.state
+                        readonly 'value': set_.value
                     }
                     
                 }
                 
                 export type state_group = 
                     | readonly ['missing data', state_group.missing_data]
-                    | readonly ['set', state_group._set]
+                    | readonly ['set', state_group.set_]
                 
                 export namespace text {
                     
@@ -156,19 +156,19 @@ export namespace Value_ {
                 
             }
             
-            export type _type = 
-                | readonly ['dictionary', _type.dictionary]
-                | readonly ['group', _type.group]
-                | readonly ['list', _type.list]
-                | readonly ['nothing', _type.nothing]
-                | readonly ['optional', _type.optional]
-                | readonly ['state group', _type.state_group]
-                | readonly ['text', _type.text]
+            export type type_ = 
+                | readonly ['dictionary', type_.dictionary]
+                | readonly ['group', type_.group]
+                | readonly ['list', type_.list]
+                | readonly ['nothing', type_.nothing]
+                | readonly ['optional', type_.optional]
+                | readonly ['state group', type_.state_group]
+                | readonly ['text', type_.text]
             
         }
         
         export type concrete = {
-            readonly 'type': concrete._type
+            readonly 'type': concrete.type_
         }
         
     }

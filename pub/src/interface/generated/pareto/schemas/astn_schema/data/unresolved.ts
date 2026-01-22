@@ -35,7 +35,7 @@ export type Schemas_ = {
 
 export namespace Text_Type_ {
     
-    export namespace _type {
+    export namespace type_ {
         
         export type location = i__location.Location
         
@@ -53,15 +53,15 @@ export namespace Text_Type_ {
         
     }
     
-    export type _type = {
-        readonly 'location': _type.location
-        readonly 'state group': _type.state_group
+    export type type_ = {
+        readonly 'location': type_.location
+        readonly 'state group': type_.state_group
     }
     
 }
 
 export type Text_Type_ = {
-    readonly 'type': Text_Type_._type
+    readonly 'type': Text_Type_.type_
 }
 
 export namespace Globals_ {
@@ -164,14 +164,14 @@ export namespace Schema_Tree_ {
     
     export namespace state_group {
         
-        export type _set = Schemas_
+        export type set_ = Schemas_
         
         export type schema = Schema_
         
     }
     
     export type state_group = 
-        | readonly ['set', state_group._set]
+        | readonly ['set', state_group.set_]
         | readonly ['schema', state_group.schema]
     
 }
@@ -290,7 +290,7 @@ export namespace Type_Node_ {
                 
                 export namespace external {
                     
-                    export namespace _import {
+                    export namespace import_ {
                         
                         export type location = i__location.Location
                         
@@ -298,12 +298,12 @@ export namespace Type_Node_ {
                         
                     }
                     
-                    export type _import = {
-                        readonly 'location': _import.location
-                        readonly 'key': _import.key
+                    export type import_ = {
+                        readonly 'location': import_.location
+                        readonly 'key': import_.key
                     }
                     
-                    export namespace _type {
+                    export namespace type_ {
                         
                         export type location = i__location.Location
                         
@@ -311,16 +311,16 @@ export namespace Type_Node_ {
                         
                     }
                     
-                    export type _type = {
-                        readonly 'location': _type.location
-                        readonly 'key': _type.key
+                    export type type_ = {
+                        readonly 'location': type_.location
+                        readonly 'key': type_.key
                     }
                     
                 }
                 
                 export type external = {
-                    readonly 'import': external._import
-                    readonly 'type': external._type
+                    readonly 'import': external.import_
+                    readonly 'type': external.type_
                 }
                 
                 export namespace internal {

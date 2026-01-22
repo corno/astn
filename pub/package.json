@@ -42,8 +42,8 @@
     "astn-core": "^0.5.4",
     "pareto-core-dev": "^0.12.3",
     "pareto-fountain-pen": "^0.4.4",
-    "pareto-host-nodejs": "^0.2.7",
+    "pareto-host-nodejs": "^0.2.8",
     "pareto-json": "^0.3.16",
-    "pareto-resources": "^0.2.11"
+    "pareto-resources": "^0.2.12"
   }
 }
