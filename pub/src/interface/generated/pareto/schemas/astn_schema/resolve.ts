@@ -1,7 +1,7 @@
 
-import * as _pi from "pareto-core-interface"
+import * as _pi from "pareto-core/dist/interface"
 
-// import * as i_resolve from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
+// import * as i_resolve from "pareto-core/dist/algorithm_types/refiner/resolve"
 
 import * as i_resolved from "./data/resolved"
 

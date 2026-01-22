@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import * as resources_exupery from "pareto-resources/dist/interface/resources"
 

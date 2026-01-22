@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-deserializer'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/deserializer'
+import * as _pi from 'pareto-core/dist/interface'
 
 //dependencies
 import * as ds_authoring_parse_tree from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"

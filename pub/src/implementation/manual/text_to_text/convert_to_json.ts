@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-deserializer'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/deserializer'
+import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
 //dependencies

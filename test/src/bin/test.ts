@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as _pt from 'pareto-core-transformer'
+import * as _pt from 'pareto-core/dist/transformer'
 
 import * as d_read_directory from "pareto-resources/dist/interface/generated/pareto/schemas/read_directory/data"
 

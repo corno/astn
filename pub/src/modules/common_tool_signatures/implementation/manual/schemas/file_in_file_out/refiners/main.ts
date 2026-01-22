@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-refiner'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/refiner'
+import * as _pi from 'pareto-core/dist/interface'
 
 //data types
 import * as d_file_in_file_out from "../../../../../interface/to_be_generated/file_in_file_out"

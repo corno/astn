@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core-transformer'
+import * as _p from 'pareto-core/dist/transformer'
 
 import * as d_transform_file from "../../../../interface/to_be_generated/transform_file"
 

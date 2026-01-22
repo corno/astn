@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core-transformer'
+import * as _p from 'pareto-core/dist/transformer'
 
 import * as signatures from "../../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
 

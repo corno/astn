@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
 import * as d_in_token from "astn-core/dist/interface/generated/pareto/schemas/token/data"
