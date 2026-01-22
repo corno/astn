@@ -1,6 +1,6 @@
 import * as _p from 'pareto-core/dist/transformer'
 
-import * as d_out from "../../../../../interface/generated/pareto/schemas/ide/data"
+import * as d_out from "../../../../../interface/generated/liana/schemas/ide/data"
 
 import * as signatures from "../../../../../interface/signatures/refiners/ide/parse_tree"
 

@@ -2,7 +2,7 @@
 
 import * as _pt from 'pareto-core/dist/transformer'
 
-import * as d_read_directory from "pareto-resources/dist/interface/generated/pareto/schemas/read_directory/data"
+import * as d_read_directory from "pareto-resources/dist/interface/generated/liana/schemas/read_directory/data"
 
 
 

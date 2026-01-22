@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_in from "../../../generated/pareto/schemas/authoring_target/data"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data"
+import * as d_in from "../../../generated/liana/schemas/authoring_target/data"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 export type Parameters = {
     'write delimiters': boolean
