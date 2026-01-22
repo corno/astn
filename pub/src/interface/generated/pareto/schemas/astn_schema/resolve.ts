@@ -1,6 +1,8 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
+import * as i_generic from "../../generic/resolve"
+
 import * as i_resolved from "./data/resolved"
 
 import * as i_unresolved from "./data/unresolved"
@@ -11,6 +13,8 @@ export namespace Text_Type_ {
     
     export type O = i_resolved.Text_Type
     
+    export type E = i_generic.Error
+    
     export namespace P {
         
     }
@@ -19,8 +23,9 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     $$_: Text_Type_.I,
-    $$_lookups: null,
-    $$_p: null,
+    abort: _pi.Abort<Text_Type_.E>,
+    lookups: null,
+    p: null,
 ) => Text_Type_.O
 
 export namespace Globals_ {
@@ -28,6 +33,8 @@ export namespace Globals_ {
     export type I = i_unresolved.Globals
     
     export type O = i_resolved.Globals
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -37,8 +44,9 @@ export namespace Globals_ {
 
 export type Globals_ = (
     $$_: Globals_.I,
-    $$_lookups: null,
-    $$_p: null,
+    abort: _pi.Abort<Globals_.E>,
+    lookups: null,
+    p: null,
 ) => Globals_.O
 
 export namespace Group_ {
@@ -46,6 +54,8 @@ export namespace Group_ {
     export type I = i_unresolved.Group
     
     export type O = i_resolved.Group
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -83,11 +93,12 @@ export namespace Group_ {
 
 export type Group_ = (
     $$_: Group_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Group_.E>,
+    lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
     },
-    $$_p: {
+    p: {
         readonly 'globals': Group_.P.globals
         readonly 'imports': Group_.P.imports
     },
@@ -98,6 +109,8 @@ export namespace Dictionary_ {
     export type I = i_unresolved.Dictionary
     
     export type O = i_resolved.Dictionary
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -135,11 +148,12 @@ export namespace Dictionary_ {
 
 export type Dictionary_ = (
     $$_: Dictionary_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Dictionary_.E>,
+    lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
     },
-    $$_p: {
+    p: {
         readonly 'globals': Dictionary_.P.globals
         readonly 'imports': Dictionary_.P.imports
     },
@@ -150,6 +164,8 @@ export namespace Type_Node_ {
     export type I = i_unresolved.Type_Node
     
     export type O = i_resolved.Type_Node
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -187,11 +203,12 @@ export namespace Type_Node_ {
 
 export type Type_Node_ = (
     $$_: Type_Node_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Type_Node_.E>,
+    lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
     },
-    $$_p: {
+    p: {
         readonly 'globals': Type_Node_.P.globals
         readonly 'imports': Type_Node_.P.imports
     },
@@ -202,6 +219,8 @@ export namespace Type_ {
     export type I = i_unresolved.Type
     
     export type O = i_resolved.Type
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -239,11 +258,12 @@ export namespace Type_ {
 
 export type Type_ = (
     $$_: Type_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Type_.E>,
+    lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
     },
-    $$_p: {
+    p: {
         readonly 'globals': Type_.P.globals
         readonly 'imports': Type_.P.imports
     },
@@ -254,6 +274,8 @@ export namespace Schemas_ {
     export type I = i_unresolved.Schemas
     
     export type O = i_resolved.Schemas
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -269,10 +291,11 @@ export namespace Schemas_ {
 
 export type Schemas_ = (
     $$_: Schemas_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Schemas_.E>,
+    lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
     },
-    $$_p: null,
+    p: null,
 ) => Schemas_.O
 
 export namespace Schema_Tree_ {
@@ -280,6 +303,8 @@ export namespace Schema_Tree_ {
     export type I = i_unresolved.Schema_Tree
     
     export type O = i_resolved.Schema_Tree
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -295,10 +320,11 @@ export namespace Schema_Tree_ {
 
 export type Schema_Tree_ = (
     $$_: Schema_Tree_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Schema_Tree_.E>,
+    lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
     },
-    $$_p: null,
+    p: null,
 ) => Schema_Tree_.O
 
 export namespace Schema_ {
@@ -306,6 +332,8 @@ export namespace Schema_ {
     export type I = i_unresolved.Schema
     
     export type O = i_resolved.Schema
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -321,10 +349,11 @@ export namespace Schema_ {
 
 export type Schema_ = (
     $$_: Schema_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Schema_.E>,
+    lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
     },
-    $$_p: null,
+    p: null,
 ) => Schema_.O
 
 export namespace Imports_ {
@@ -332,6 +361,8 @@ export namespace Imports_ {
     export type I = i_unresolved.Imports
     
     export type O = i_resolved.Imports
+    
+    export type E = i_generic.Error
     
     export namespace L {
         
@@ -347,10 +378,11 @@ export namespace Imports_ {
 
 export type Imports_ = (
     $$_: Imports_.I,
-    $$_lookups: {
+    abort: _pi.Abort<Imports_.E>,
+    lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
     },
-    $$_p: null,
+    p: null,
 ) => Imports_.O
 
 export namespace Types_ {
@@ -358,6 +390,8 @@ export namespace Types_ {
     export type I = i_unresolved.Types
     
     export type O = i_resolved.Types
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -383,8 +417,9 @@ export namespace Types_ {
 
 export type Types_ = (
     $$_: Types_.I,
-    $$_lookups: null,
-    $$_p: {
+    abort: _pi.Abort<Types_.E>,
+    lookups: null,
+    p: {
         readonly 'globals': Types_.P.globals
         readonly 'imports': Types_.P.imports
     },
