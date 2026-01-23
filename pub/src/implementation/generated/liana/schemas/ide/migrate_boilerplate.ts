@@ -1,8 +1,6 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
-import * as _pdev from "pareto-core-dev"
-
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/ide/migrate_boilerplate"
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/ide/data"
