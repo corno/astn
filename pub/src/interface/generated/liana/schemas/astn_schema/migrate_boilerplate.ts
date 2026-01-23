@@ -18,7 +18,7 @@ export namespace Schemas_ {
 }
 
 export type Schemas_ = (
-    $$_: Schemas_.I,
+    context: Schemas_.I,
 ) => Schemas_.O
 
 export namespace Text_Type_ {
@@ -34,7 +34,7 @@ export namespace Text_Type_ {
 }
 
 export type Text_Type_ = (
-    $$_: Text_Type_.I,
+    context: Text_Type_.I,
 ) => Text_Type_.O
 
 export namespace Globals_ {
@@ -50,7 +50,7 @@ export namespace Globals_ {
 }
 
 export type Globals_ = (
-    $$_: Globals_.I,
+    context: Globals_.I,
 ) => Globals_.O
 
 export namespace Type_ {
@@ -66,7 +66,7 @@ export namespace Type_ {
 }
 
 export type Type_ = (
-    $$_: Type_.I,
+    context: Type_.I,
 ) => Type_.O
 
 export namespace Types_ {
@@ -82,7 +82,7 @@ export namespace Types_ {
 }
 
 export type Types_ = (
-    $$_: Types_.I,
+    context: Types_.I,
 ) => Types_.O
 
 export namespace Schema_ {
@@ -98,7 +98,7 @@ export namespace Schema_ {
 }
 
 export type Schema_ = (
-    $$_: Schema_.I,
+    context: Schema_.I,
 ) => Schema_.O
 
 export namespace Schema_Tree_ {
@@ -114,7 +114,7 @@ export namespace Schema_Tree_ {
 }
 
 export type Schema_Tree_ = (
-    $$_: Schema_Tree_.I,
+    context: Schema_Tree_.I,
 ) => Schema_Tree_.O
 
 export namespace Imports_ {
@@ -130,7 +130,7 @@ export namespace Imports_ {
 }
 
 export type Imports_ = (
-    $$_: Imports_.I,
+    context: Imports_.I,
 ) => Imports_.O
 
 export namespace Dictionary_ {
@@ -146,7 +146,7 @@ export namespace Dictionary_ {
 }
 
 export type Dictionary_ = (
-    $$_: Dictionary_.I,
+    context: Dictionary_.I,
 ) => Dictionary_.O
 
 export namespace Group_ {
@@ -162,7 +162,7 @@ export namespace Group_ {
 }
 
 export type Group_ = (
-    $$_: Group_.I,
+    context: Group_.I,
 ) => Group_.O
 
 export namespace Type_Node_ {
@@ -178,7 +178,7 @@ export namespace Type_Node_ {
 }
 
 export type Type_Node_ = (
-    $$_: Type_Node_.I,
+    context: Type_Node_.I,
 ) => Type_Node_.O
 
 export { 

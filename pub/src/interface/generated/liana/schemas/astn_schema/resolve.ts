@@ -22,10 +22,10 @@ export namespace Text_Type_ {
 }
 
 export type Text_Type_ = (
-    $$_: Text_Type_.I,
+    context: Text_Type_.I,
     abort: _pi.Abort<Text_Type_.E>,
     lookups: null,
-    p: null,
+    parameters: null,
 ) => Text_Type_.O
 
 export namespace Globals_ {
@@ -43,10 +43,10 @@ export namespace Globals_ {
 }
 
 export type Globals_ = (
-    $$_: Globals_.I,
+    context: Globals_.I,
     abort: _pi.Abort<Globals_.E>,
     lookups: null,
-    p: null,
+    parameters: null,
 ) => Globals_.O
 
 export namespace Group_ {
@@ -92,13 +92,13 @@ export namespace Group_ {
 }
 
 export type Group_ = (
-    $$_: Group_.I,
+    context: Group_.I,
     abort: _pi.Abort<Group_.E>,
     lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
     },
-    p: {
+    parameters: {
         readonly 'globals': Group_.P.globals
         readonly 'imports': Group_.P.imports
     },
@@ -147,13 +147,13 @@ export namespace Dictionary_ {
 }
 
 export type Dictionary_ = (
-    $$_: Dictionary_.I,
+    context: Dictionary_.I,
     abort: _pi.Abort<Dictionary_.E>,
     lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
     },
-    p: {
+    parameters: {
         readonly 'globals': Dictionary_.P.globals
         readonly 'imports': Dictionary_.P.imports
     },
@@ -202,13 +202,13 @@ export namespace Type_Node_ {
 }
 
 export type Type_Node_ = (
-    $$_: Type_Node_.I,
+    context: Type_Node_.I,
     abort: _pi.Abort<Type_Node_.E>,
     lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
     },
-    p: {
+    parameters: {
         readonly 'globals': Type_Node_.P.globals
         readonly 'imports': Type_Node_.P.imports
     },
@@ -257,13 +257,13 @@ export namespace Type_ {
 }
 
 export type Type_ = (
-    $$_: Type_.I,
+    context: Type_.I,
     abort: _pi.Abort<Type_.E>,
     lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
     },
-    p: {
+    parameters: {
         readonly 'globals': Type_.P.globals
         readonly 'imports': Type_.P.imports
     },
@@ -290,12 +290,12 @@ export namespace Schemas_ {
 }
 
 export type Schemas_ = (
-    $$_: Schemas_.I,
+    context: Schemas_.I,
     abort: _pi.Abort<Schemas_.E>,
     lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
     },
-    p: null,
+    parameters: null,
 ) => Schemas_.O
 
 export namespace Schema_Tree_ {
@@ -319,12 +319,12 @@ export namespace Schema_Tree_ {
 }
 
 export type Schema_Tree_ = (
-    $$_: Schema_Tree_.I,
+    context: Schema_Tree_.I,
     abort: _pi.Abort<Schema_Tree_.E>,
     lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
     },
-    p: null,
+    parameters: null,
 ) => Schema_Tree_.O
 
 export namespace Schema_ {
@@ -348,12 +348,12 @@ export namespace Schema_ {
 }
 
 export type Schema_ = (
-    $$_: Schema_.I,
+    context: Schema_.I,
     abort: _pi.Abort<Schema_.E>,
     lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
     },
-    p: null,
+    parameters: null,
 ) => Schema_.O
 
 export namespace Imports_ {
@@ -377,12 +377,12 @@ export namespace Imports_ {
 }
 
 export type Imports_ = (
-    $$_: Imports_.I,
+    context: Imports_.I,
     abort: _pi.Abort<Imports_.E>,
     lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
     },
-    p: null,
+    parameters: null,
 ) => Imports_.O
 
 export namespace Types_ {
@@ -416,10 +416,10 @@ export namespace Types_ {
 }
 
 export type Types_ = (
-    $$_: Types_.I,
+    context: Types_.I,
     abort: _pi.Abort<Types_.E>,
     lookups: null,
-    p: {
+    parameters: {
         readonly 'globals': Types_.P.globals
         readonly 'imports': Types_.P.imports
     },

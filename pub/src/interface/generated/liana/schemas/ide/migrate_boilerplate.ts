@@ -18,7 +18,7 @@ export namespace Relative_Location_ {
 }
 
 export type Relative_Location_ = (
-    $$_: Relative_Location_.I,
+    context: Relative_Location_.I,
 ) => Relative_Location_.O
 
 export namespace Relative_Range_ {
@@ -34,7 +34,7 @@ export namespace Relative_Range_ {
 }
 
 export type Relative_Range_ = (
-    $$_: Relative_Range_.I,
+    context: Relative_Range_.I,
 ) => Relative_Range_.O
 
 export namespace Text_Edits_ {
@@ -50,7 +50,7 @@ export namespace Text_Edits_ {
 }
 
 export type Text_Edits_ = (
-    $$_: Text_Edits_.I,
+    context: Text_Edits_.I,
 ) => Text_Edits_.O
 
 export namespace Key_Value_Pairs_To_Be_Sorted_ {
@@ -66,7 +66,7 @@ export namespace Key_Value_Pairs_To_Be_Sorted_ {
 }
 
 export type Key_Value_Pairs_To_Be_Sorted_ = (
-    $$_: Key_Value_Pairs_To_Be_Sorted_.I,
+    context: Key_Value_Pairs_To_Be_Sorted_.I,
 ) => Key_Value_Pairs_To_Be_Sorted_.O
 
 export { 

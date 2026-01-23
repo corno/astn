@@ -18,7 +18,7 @@ export namespace Value_ {
 }
 
 export type Value_ = (
-    $$_: Value_.I,
+    context: Value_.I,
 ) => Value_.O
 
 export namespace Document_ {
@@ -34,7 +34,7 @@ export namespace Document_ {
 }
 
 export type Document_ = (
-    $$_: Document_.I,
+    context: Document_.I,
 ) => Document_.O
 
 export { 
