@@ -14,7 +14,7 @@ export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal_old([
         $['comments'],
         ($) => _p.list.nested_literal_old([
             //FIXME
-            // _p.sg($['type'], ($) => {
+            // _p.decide.state($['type'], ($) => {
             //     switch ($[0]) {
             //         case 'line': return _p.ss($, ($) => _p.list.literal([]))
             //         case 'block': return _p.ss($, ($) => _p.list.literal([]))
@@ -54,16 +54,16 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($, $p) => _p.list.fl
 
 export const Elements: signatures.Elements = ($, $p) => _p.list.flatten($, ($) => Value($.value, $p))
 
-export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
+export const Value: signatures.Value = ($, $p) => _p.decide.state($.type, ($) => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
+        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _p.ss($, ($) => _p.list.nested_literal_old([
                     Structural_Token($['{'], $p),
                     Key_Value_Pairs($['entries'], $p),
                     Structural_Token($['}'], $p),
                 ]))
-                case 'group': return _p.ss($, ($) => _p.sg($, ($) => {
+                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'concise': return _p.ss($, ($) => _p.list.nested_literal_old([
                             Structural_Token($['<'], $p),
@@ -84,7 +84,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                     Structural_Token($[']'], $p),
                 ]))
                 case 'nothing': return _p.ss($, ($) => Structural_Token($['~'], $p))
-                case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
+                case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'set': return _p.ss($, ($) => _p.list.nested_literal_old([
                             Structural_Token($['*'], $p),
@@ -95,7 +95,7 @@ export const Value: signatures.Value = ($, $p) => _p.sg($.type, ($) => {
                 }))
                 case 'state group': return _p.ss($, ($) => _p.list.nested_literal_old<d_out.Text_Edits.L>([
                     Structural_Token($['|'], $p),
-                    _p.sg($.status, ($) => {
+                    _p.decide.state($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
                             case 'set': return _p.ss($, ($) => _p.list.nested_literal_old([

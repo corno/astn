@@ -14,12 +14,12 @@ import { $$ as s_backticked } from "astn-core/dist/implementation/manual/primiti
 export const Value: signatures.Value = ($, $p) => sh.b.sub([
     // does it need a leading space
     $p['in concise group']
-        ? _p.sg($.data, ($) => {
+        ? _p.decide.state($.data, ($) => {
             switch ($[0]) {
-                case 'concrete': return _p.ss($, ($) => _p.sg($.type, ($) => {
+                case 'concrete': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => true)
-                        case 'group': return _p.ss($, ($) => _p.sg($, ($) => {
+                        case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                             switch ($[0]) {
                                 case 'verbose': return _p.ss($, ($) => true)
                                 case 'concise': return _p.ss($, ($) => false)
@@ -43,7 +43,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
             ? sh.b.snippet(" ")
             : sh.b.nothing()
         : sh.b.nothing(),
-    _p.sg($.data, ($) => {
+    _p.decide.state($.data, ($) => {
         switch ($[0]) {
             case 'include': return _p.ss($, ($) => sh.b.sub([
                 sh.b.snippet("@ "),
@@ -52,7 +52,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                 })),
             ]))
             case 'missing': return _p.ss($, ($) => sh.b.snippet("#"))
-            case 'concrete': return _p.ss($, ($) => _p.sg($.type, ($) => _p.sg($, ($) => {
+            case 'concrete': return _p.ss($, ($) => _p.decide.state($.type, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => sh.b.sub([
                         $p['write delimiters'] ? sh.b.snippet("{") : sh.b.snippet(""), //we always want a newline here
@@ -75,7 +75,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         ]),
                         $p['write delimiters'] ? sh.b.snippet("}") : sh.b.nothing(),
                     ]))
-                    case 'group': return _p.ss($, ($) => _p.sg($, ($) => {
+                    case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'concise': return _p.ss($, ($) => sh.b.sub([
                                 $p['write delimiters'] ? sh.b.snippet("<") : sh.b.nothing(),
@@ -123,7 +123,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         ]))),
                         $p['write delimiters'] ? sh.b.snippet("]") : sh.b.nothing(),
                     ]))
-                    case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
+                    case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'not set': return _p.ss($, ($) => sh.b.snippet("~"))
                             case 'set': return _p.ss($, ($) => sh.b.sub([
@@ -138,7 +138,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         }
                     }))
                     case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
-                    case 'state group': return _p.ss($, ($) => _p.sg($, ($) => {
+                    case 'state group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => sh.b.snippet("| #"))
                             case 'set': return _p.ss($, ($) => sh.b.sub([
@@ -161,7 +161,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                     }))
                     case 'text': return _p.ss($, ($) => {
                         const value = $.value // fixme: move value to the inside of the delimiter states
-                        return _p.sg($.delimiter, ($) => {
+                        return _p.decide.state($.delimiter, ($) => {
                             switch ($[0]) {
                                 case 'backtick': return _p.ss($, ($) => sh.b.snippet(s_backticked(value, {
                                     'add delimiters': $p['write delimiters'],

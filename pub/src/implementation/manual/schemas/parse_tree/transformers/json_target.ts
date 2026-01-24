@@ -18,12 +18,12 @@ export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.__l_map(($) 
 
 export const Elements: signatures.Elements = ($) => $.__l_map(($) => Value($.value))
 
-export const Value: signatures.Value = ($) => _p.sg($.type, ($): d_out.Value => {
+export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out.Value => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.sg($, ($) => {
+        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _p.ss($, ($) => ['object', ['key value array', Key_Value_Pairs($.entries)]])
-                case 'group': return _p.ss($, ($) => _p.sg($, ($) => {
+                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'concise': return _p.ss($, ($) => ['array', Elements($.elements)])
                         case 'verbose': return _p.ss($, ($) => ['object', ['key value array', Key_Value_Pairs($.entries)]])
@@ -31,7 +31,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($): d_out.Value => 
                     }
                 }))
                 case 'list': return _p.ss($, ($) => ['array', Elements($.elements)])
-                case 'state group': return _p.ss($, ($) => _p.sg($.status, ($) => {
+                case 'state group': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
@@ -42,7 +42,7 @@ export const Value: signatures.Value = ($) => _p.sg($.type, ($): d_out.Value => 
                     }
                 }))
                 case 'nothing': return _p.ss($, ($) => ['null', null])
-                case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
+                case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
                             Value($.value),

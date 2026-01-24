@@ -39,7 +39,7 @@ export const $$ = (func: _pi.Text_Deserializer<string>): signatures.commands.str
                 ($) => [
                     $cr['log error'].execute(
                         {
-                            'lines': _p.list.literal([_p.sg($, ($) => {
+                            'lines': _p.list.literal([_p.decide.state($, ($) => {
                                 switch ($[0]) {
                                     case 'could not read instream': return _p.ss($, ($) => `could not read instream`)
                                     case 'deserialization failed': return _p.ss($, ($) => $)
