@@ -201,7 +201,7 @@ export namespace Type_Node_ {
         
         export namespace internal_cyclic {
             
-            export type entry = Types_.D
+            export type entry = _pi.Circular_Dependency<Types_.D>
             
             export type key = string
             
