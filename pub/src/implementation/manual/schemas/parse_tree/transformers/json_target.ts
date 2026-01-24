@@ -31,11 +31,11 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                     }
                 }))
                 case 'list': return _p.ss($, ($) => ['array', Elements($.elements)])
-                case 'state group': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
+                case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
-                            ['string', $.state.value],
+                            ['string', $.option.value],
                             Value($.value),
                         ])])
                         default: return _p.au($[0])

@@ -93,13 +93,13 @@ export const Value: signatures.Value = ($, $p) => _p.decide.state($.type, ($) =>
                         default: return _p.au($[0])
                     }
                 }))
-                case 'state group': return _p.ss($, ($) => _p.list.nested_literal_old<d_out.Text_Edits.L>([
+                case 'state': return _p.ss($, ($) => _p.list.nested_literal_old<d_out.Text_Edits.L>([
                     Structural_Token($['|'], $p),
                     _p.decide.state($.status, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => Structural_Token($['#'], $p))
                             case 'set': return _p.ss($, ($) => _p.list.nested_literal_old([
-                                String($['state'], $p),
+                                String($['option'], $p),
                                 Value($['value'], $p),
                             ]))
                             default: return _p.au($[0])

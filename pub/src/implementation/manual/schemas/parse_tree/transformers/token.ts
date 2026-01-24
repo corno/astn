@@ -39,7 +39,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($) => {
                         default: return _p.au($[0])
                     }
                 }))
-                case 'state group': return _p.ss($, ($) => ({
+                case 'state': return _p.ss($, ($) => ({
                     'start': $['|'].range.start,
                     'end': _p.decide.state($.status, ($) => {
                         switch ($[0]) {
