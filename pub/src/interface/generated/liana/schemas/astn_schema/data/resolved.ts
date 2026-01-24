@@ -103,11 +103,14 @@ export namespace Imports_ {
             
             export type key = string
             
+            export type up_steps = number
+            
         }
         
         export type schema_set_child = {
             readonly 'entry': schema_set_child.entry
             readonly 'key': schema_set_child.key
+            readonly 'up steps': schema_set_child.up_steps
         }
         
         export type schema = Schema_
