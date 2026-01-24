@@ -237,13 +237,13 @@ export namespace Type_Node_ {
     
     export type optional = Type_Node_
     
-    export namespace state_group {
+    export namespace state {
         
         export type D = Type_Node_
         
     }
     
-    export type state_group = _pi.Dictionary<state_group.D>
+    export type state = _pi.Dictionary<state.D>
     
     export namespace text {
         
@@ -277,7 +277,7 @@ export type Type_Node_ =
     | readonly ['list', Type_Node_.list]
     | readonly ['nothing', Type_Node_.nothing]
     | readonly ['optional', Type_Node_.optional]
-    | readonly ['state group', Type_Node_.state_group]
+    | readonly ['state', Type_Node_.state]
     | readonly ['text', Type_Node_.text]
 
 export { 

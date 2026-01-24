@@ -44,11 +44,11 @@ export const Value: t_signatures.Value = ($) => ({
                                 default: return _p.au($[0])
                             }
                         })])
-                        case 'state group': return _p.ss($, ($) => ['state group', _p.deprecated_cc($, ($): t_out.Value.data.concrete.type_.state_group => {
+                        case 'state': return _p.ss($, ($) => ['state', _p.deprecated_cc($, ($): t_out.Value.data.concrete.type_.state => {
                             switch ($[0]) {
                                 case 'missing data': return _p.ss($, ($) => ['missing data', null])
                                 case 'set': return _p.ss($, ($) => ['set', ({
-                                    'state': _p.deprecated_cc($['state'], ($) => $),
+                                    'option': _p.deprecated_cc($['option'], ($) => $),
                                     'value': _p.deprecated_cc($['value'], ($) => Value(
                                         $
                                     )),

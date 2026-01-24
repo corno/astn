@@ -39,7 +39,7 @@ export namespace Text_Type_ {
         
         export type location = i__location.Location
         
-        export namespace state_group {
+        export namespace state {
             
             export type multi_line = null
             
@@ -47,15 +47,15 @@ export namespace Text_Type_ {
             
         }
         
-        export type state_group = 
-            | readonly ['multi line', state_group.multi_line]
-            | readonly ['single line', state_group.single_line]
+        export type state = 
+            | readonly ['multi line', state.multi_line]
+            | readonly ['single line', state.single_line]
         
     }
     
     export type type_ = {
         readonly 'location': type_.location
-        readonly 'state group': type_.state_group
+        readonly 'state': type_.state
     }
     
 }
@@ -162,7 +162,7 @@ export namespace Schema_Tree_ {
     
     export type location = i__location.Location
     
-    export namespace state_group {
+    export namespace state {
         
         export type set_ = Schemas_
         
@@ -170,15 +170,15 @@ export namespace Schema_Tree_ {
         
     }
     
-    export type state_group = 
-        | readonly ['set', state_group.set_]
-        | readonly ['schema', state_group.schema]
+    export type state = 
+        | readonly ['set', state.set_]
+        | readonly ['schema', state.schema]
     
 }
 
 export type Schema_Tree_ = {
     readonly 'location': Schema_Tree_.location
-    readonly 'state group': Schema_Tree_.state_group
+    readonly 'state': Schema_Tree_.state
 }
 
 export namespace Imports_ {
@@ -280,13 +280,13 @@ export namespace Type_Node_ {
     
     export type location = i__location.Location
     
-    export namespace state_group {
+    export namespace state {
         
         export namespace component {
             
             export type location = i__location.Location
             
-            export namespace state_group {
+            export namespace state {
                 
                 export namespace external {
                     
@@ -351,16 +351,16 @@ export namespace Type_Node_ {
                 
             }
             
-            export type state_group = 
-                | readonly ['external', state_group.external]
-                | readonly ['internal', state_group.internal]
-                | readonly ['internal cyclic', state_group.internal_cyclic]
+            export type state = 
+                | readonly ['external', state.external]
+                | readonly ['internal', state.internal]
+                | readonly ['internal cyclic', state.internal_cyclic]
             
         }
         
         export type component = {
             readonly 'location': component.location
-            readonly 'state group': component.state_group
+            readonly 'state': component.state
         }
         
         export type dictionary = Dictionary_
@@ -381,7 +381,7 @@ export namespace Type_Node_ {
         
         export type optional = Type_Node_
         
-        export namespace state_group {
+        export namespace state {
             
             export type location = i__location.Location
             
@@ -406,16 +406,16 @@ export namespace Type_Node_ {
             
         }
         
-        export type state_group = {
-            readonly 'location': state_group.location
-            readonly 'dictionary': state_group.dictionary
+        export type state = {
+            readonly 'location': state.location
+            readonly 'dictionary': state.dictionary
         }
         
         export namespace text {
             
             export type location = i__location.Location
             
-            export namespace state_group {
+            export namespace state {
                 
                 export namespace global {
                     
@@ -434,34 +434,34 @@ export namespace Type_Node_ {
                 
             }
             
-            export type state_group = 
-                | readonly ['global', state_group.global]
-                | readonly ['local', state_group.local]
+            export type state = 
+                | readonly ['global', state.global]
+                | readonly ['local', state.local]
             
         }
         
         export type text = {
             readonly 'location': text.location
-            readonly 'state group': text.state_group
+            readonly 'state': text.state
         }
         
     }
     
-    export type state_group = 
-        | readonly ['component', state_group.component]
-        | readonly ['dictionary', state_group.dictionary]
-        | readonly ['group', state_group.group]
-        | readonly ['list', state_group.list]
-        | readonly ['nothing', state_group.nothing]
-        | readonly ['optional', state_group.optional]
-        | readonly ['state group', state_group.state_group]
-        | readonly ['text', state_group.text]
+    export type state = 
+        | readonly ['component', state.component]
+        | readonly ['dictionary', state.dictionary]
+        | readonly ['group', state.group]
+        | readonly ['list', state.list]
+        | readonly ['nothing', state.nothing]
+        | readonly ['optional', state.optional]
+        | readonly ['state', state.state]
+        | readonly ['text', state.text]
     
 }
 
 export type Type_Node_ = {
     readonly 'location': Type_Node_.location
-    readonly 'state group': Type_Node_.state_group
+    readonly 'state': Type_Node_.state
 }
 
 export { 

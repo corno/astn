@@ -105,28 +105,28 @@ export namespace Value_ {
                     | readonly ['not set', optional.not_set]
                     | readonly ['set', optional.set_]
                 
-                export namespace state_group {
+                export namespace state {
                     
                     export type missing_data = null
                     
                     export namespace set_ {
                         
-                        export type state = string
+                        export type option = string
                         
                         export type value = Value_
                         
                     }
                     
                     export type set_ = {
-                        readonly 'state': set_.state
+                        readonly 'option': set_.option
                         readonly 'value': set_.value
                     }
                     
                 }
                 
-                export type state_group = 
-                    | readonly ['missing data', state_group.missing_data]
-                    | readonly ['set', state_group.set_]
+                export type state = 
+                    | readonly ['missing data', state.missing_data]
+                    | readonly ['set', state.set_]
                 
                 export namespace text {
                     
@@ -162,7 +162,7 @@ export namespace Value_ {
                 | readonly ['list', type_.list]
                 | readonly ['nothing', type_.nothing]
                 | readonly ['optional', type_.optional]
-                | readonly ['state group', type_.state_group]
+                | readonly ['state', type_.state]
                 | readonly ['text', type_.text]
             
         }

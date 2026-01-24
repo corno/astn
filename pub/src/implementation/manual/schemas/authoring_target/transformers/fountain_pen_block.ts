@@ -29,7 +29,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         case 'list': return _p.ss($, ($) => true)
                         case 'nothing': return _p.ss($, ($) => true)
                         case 'optional': return _p.ss($, ($) => true)
-                        case 'state group': return _p.ss($, ($) => true)
+                        case 'state': return _p.ss($, ($) => true)
                         case 'text': return _p.ss($, ($) => true)
                         default: return _p.au($[0])
                     }
@@ -138,14 +138,14 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         }
                     }))
                     case 'nothing': return _p.ss($, ($) => sh.b.snippet("~"))
-                    case 'state group': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                    case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'missing data': return _p.ss($, ($) => sh.b.snippet("| #"))
                             case 'set': return _p.ss($, ($) => sh.b.sub([
                                 $p['in concise group']
                                     ? sh.b.nothing()
                                     : $p['write delimiters'] ? sh.b.snippet("| ") : sh.b.nothing(),
-                                sh.b.snippet(s_apostrophed($.state, {
+                                sh.b.snippet(s_apostrophed($.option, {
                                     'add delimiters': $p['write delimiters'],
                                 })),
                                 $p['in concise group']
