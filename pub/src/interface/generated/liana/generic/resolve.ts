@@ -9,7 +9,7 @@ export namespace Error_ {
         
         export namespace constraint {
             
-            export namespace state_group {
+            export namespace state {
                 
                 export type expected = string
                 
@@ -17,9 +17,9 @@ export namespace Error_ {
                 
             }
             
-            export type state_group = {
-                readonly 'expected': state_group.expected
-                readonly 'found': state_group.found
+            export type state = {
+                readonly 'expected': state.expected
+                readonly 'found': state.found
             }
             
             export namespace optional_value {
@@ -36,7 +36,7 @@ export namespace Error_ {
         }
         
         export type constraint = 
-            | readonly ['state group', constraint.state_group]
+            | readonly ['state', constraint.state]
             | readonly ['optional value', constraint.optional_value]
             | readonly ['same node', constraint.same_node]
         
