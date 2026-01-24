@@ -7,41 +7,68 @@ export namespace Error_ {
     
     export namespace type_ {
         
-        export type cyclic_lookup_in_acyclic_context = string
-        
-        export type missing_required_entry = string
-        
-        export type no_context_lookup = null
-        
-        export type no_such_entry = string
-        
-        export type not_the_same_node = string
-        
-        export namespace wrong_state {
+        export namespace constraint {
             
-            export type expected = string
+            export namespace state_group {
+                
+                export type expected = string
+                
+                export type found = string
+                
+            }
             
-            export type found = string
+            export type state_group = {
+                readonly 'expected': state_group.expected
+                readonly 'found': state_group.found
+            }
+            
+            export namespace optional_value {
+                
+                export type set_ = string
+                
+            }
+            
+            export type optional_value = 
+                | readonly ['set', optional_value.set_]
+            
+            export type same_node = string
             
         }
         
-        export type wrong_state = {
-            readonly 'expected': wrong_state.expected
-            readonly 'found': wrong_state.found
+        export type constraint = 
+            | readonly ['state group', constraint.state_group]
+            | readonly ['optional value', constraint.optional_value]
+            | readonly ['same node', constraint.same_node]
+        
+        export namespace lookup {
+            
+            export type cyclic_lookup_in_acyclic_context = string
+            
+            export type optional_lookup_not_set = null
+            
+            export type no_such_entry = string
+            
         }
         
-        export type tbd = string
+        export type lookup = 
+            | readonly ['cyclic lookup in acyclic context', lookup.cyclic_lookup_in_acyclic_context]
+            | readonly ['optional lookup not set', lookup.optional_lookup_not_set]
+            | readonly ['no such entry', lookup.no_such_entry]
+        
+        export namespace missing_required_entries {
+            
+            export type D = null
+            
+        }
+        
+        export type missing_required_entries = _pi.Dictionary<missing_required_entries.D>
         
     }
     
     export type type_ = 
-        | readonly ['cyclic lookup in acyclic context', type_.cyclic_lookup_in_acyclic_context]
-        | readonly ['missing required entry', type_.missing_required_entry]
-        | readonly ['no context lookup', type_.no_context_lookup]
-        | readonly ['no such entry', type_.no_such_entry]
-        | readonly ['not the same node', type_.not_the_same_node]
-        | readonly ['wrong state', type_.wrong_state]
-        | readonly ['tbd', type_.tbd]
+        | readonly ['constraint', type_.constraint]
+        | readonly ['lookup', type_.lookup]
+        | readonly ['missing required entries', type_.missing_required_entries]
     
     export type location = i_location.Location
     
