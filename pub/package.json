@@ -39,11 +39,11 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "astn-core": "^0.5.6",
+    "astn-core": "^0.5.7",
     "pareto-core-dev": "^0.12.3",
     "pareto-fountain-pen": "^0.4.7",
     "pareto-host-nodejs": "^0.2.11",
-    "pareto-json": "^0.3.17",
-    "pareto-resources": "^0.2.14"
+    "pareto-json": "^0.3.18",
+    "pareto-resources": "^0.2.15"
   }
 }
