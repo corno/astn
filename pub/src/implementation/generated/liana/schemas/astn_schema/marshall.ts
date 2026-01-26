@@ -14,12 +14,12 @@ export const Text_Type: t_signatures.Text_Type = ($,) => ['group', ['verbose', _
         switch ($[0]) {
             case 'multi line':
                 return _p.ss($, ($,) => ({
-                    'option': "multi line",
+                    'option': 'multi line',
                     'value': ['nothing', null],
                 }))
             case 'single line':
                 return _p.ss($, ($,) => ({
-                    'option': "single line",
+                    'option': 'single line',
                     'value': ['nothing', null],
                 }))
             default:
@@ -43,12 +43,12 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($,) => ['state', _p.decide
     switch ($[0]) {
         case 'set':
             return _p.ss($, ($,) => ({
-                'option': "set",
+                'option': 'set',
                 'value': Schemas($),
             }))
         case 'schema':
             return _p.ss($, ($,) => ({
-                'option': "schema",
+                'option': 'schema',
                 'value': Schema($),
             }))
         default:
@@ -65,7 +65,7 @@ export const Imports: t_signatures.Imports = ($,) => ['dictionary', $.__d_map(($
 export const Dictionary: t_signatures.Dictionary = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'node': _p.deprecated_cc($['node'], ($,) => Type_Node($)),
     'ordered': _p.deprecated_cc($['ordered'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_boolean.serialize($),
     })]),
 }))]]
@@ -74,12 +74,12 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
     switch ($[0]) {
         case 'component':
             return _p.ss($, ($,) => ({
-                'option': "component",
+                'option': 'component',
                 'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                     switch ($[0]) {
                         case 'external':
                             return _p.ss($, ($,) => ({
-                                'option': "external",
+                                'option': 'external',
                                 'value': ['group', ['verbose', _p.dictionary.literal(({
                                     'import': _p.deprecated_cc($['import'], ($,) => ['text', ({
                                         'delimiter': ['backtick', null],
@@ -93,7 +93,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                             }))
                         case 'internal':
                             return _p.ss($, ($,) => ({
-                                'option': "internal",
+                                'option': 'internal',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
                                     'value': $['key'],
@@ -101,7 +101,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                             }))
                         case 'internal cyclic':
                             return _p.ss($, ($,) => ({
-                                'option': "internal cyclic",
+                                'option': 'internal cyclic',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
                                     'value': $['key'],
@@ -114,44 +114,44 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
             }))
         case 'dictionary':
             return _p.ss($, ($,) => ({
-                'option': "dictionary",
+                'option': 'dictionary',
                 'value': Dictionary($),
             }))
         case 'group':
             return _p.ss($, ($,) => ({
-                'option': "group",
+                'option': 'group',
                 'value': Group($),
             }))
         case 'list':
             return _p.ss($, ($,) => ({
-                'option': "list",
+                'option': 'list',
                 'value': ['group', ['verbose', _p.dictionary.literal(({
                     'node': _p.deprecated_cc($['node'], ($,) => Type_Node($)),
                 }))]],
             }))
         case 'nothing':
             return _p.ss($, ($,) => ({
-                'option': "nothing",
+                'option': 'nothing',
                 'value': ['nothing', null],
             }))
         case 'optional':
             return _p.ss($, ($,) => ({
-                'option': "optional",
+                'option': 'optional',
                 'value': Type_Node($),
             }))
         case 'state':
             return _p.ss($, ($,) => ({
-                'option': "state",
+                'option': 'state',
                 'value': ['dictionary', $.__d_map(($,key,) => Type_Node($))],
             }))
         case 'text':
             return _p.ss($, ($,) => ({
-                'option': "text",
+                'option': 'text',
                 'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                     switch ($[0]) {
                         case 'global':
                             return _p.ss($, ($,) => ({
-                                'option': "global",
+                                'option': 'global',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
                                     'value': $['key'],
@@ -159,7 +159,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                             }))
                         case 'local':
                             return _p.ss($, ($,) => ({
-                                'option': "local",
+                                'option': 'local',
                                 'value': Text_Type($),
                             }))
                         default:
