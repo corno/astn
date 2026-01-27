@@ -64,11 +64,11 @@ export type Text_Edits_ = (
     abort: _pi.Abort<Text_Edits_.E>,
 ) => Text_Edits_.O
 
-export namespace Key_Value_Pairs_To_Be_Sorted_ {
+export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Key_Value_Pairs_To_Be_Sorted
+    export type O = i_out.ID_Value_Pairs_To_Be_Sorted
     
     export type E = i_generic.Error
     
@@ -78,14 +78,14 @@ export namespace Key_Value_Pairs_To_Be_Sorted_ {
     
 }
 
-export type Key_Value_Pairs_To_Be_Sorted_ = (
-    context: Key_Value_Pairs_To_Be_Sorted_.I,
-    abort: _pi.Abort<Key_Value_Pairs_To_Be_Sorted_.E>,
-) => Key_Value_Pairs_To_Be_Sorted_.O
+export type ID_Value_Pairs_To_Be_Sorted_ = (
+    context: ID_Value_Pairs_To_Be_Sorted_.I,
+    abort: _pi.Abort<ID_Value_Pairs_To_Be_Sorted_.E>,
+) => ID_Value_Pairs_To_Be_Sorted_.O
 
 export { 
     Relative_Location_ as Relative_Location, 
     Relative_Range_ as Relative_Range, 
     Text_Edits_ as Text_Edits, 
-    Key_Value_Pairs_To_Be_Sorted_ as Key_Value_Pairs_To_Be_Sorted, 
+    ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 
 }

@@ -80,17 +80,17 @@ export namespace Text_Edits_ {
 
 export type Text_Edits_ = _pi.List<Text_Edits_.L>
 
-export namespace Key_Value_Pairs_To_Be_Sorted_ {
+export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
     export type D = string
     
 }
 
-export type Key_Value_Pairs_To_Be_Sorted_ = _pi.Dictionary<Key_Value_Pairs_To_Be_Sorted_.D>
+export type ID_Value_Pairs_To_Be_Sorted_ = _pi.Dictionary<ID_Value_Pairs_To_Be_Sorted_.D>
 
 export { 
     Relative_Location_ as Relative_Location, 
     Relative_Range_ as Relative_Range, 
     Text_Edits_ as Text_Edits, 
-    Key_Value_Pairs_To_Be_Sorted_ as Key_Value_Pairs_To_Be_Sorted, 
+    ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 
 }

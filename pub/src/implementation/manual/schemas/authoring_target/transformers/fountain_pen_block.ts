@@ -6,7 +6,7 @@ import * as signatures from "../../../../../interface/signatures/transformers/au
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
-import { $$ as op_enrich_list_elements_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
+import { $$ as op_enrich_list_items_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
 import { $$ as s_apostrophed } from "astn-core/dist/implementation/manual/primitives/text/serializers/apostrophed"
 import { $$ as s_quoted } from "astn-core/dist/implementation/manual/primitives/text/serializers/quoted"
 import { $$ as s_backticked } from "astn-core/dist/implementation/manual/primitives/text/serializers/backticked"
@@ -79,7 +79,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         switch ($[0]) {
                             case 'concise': return _p.ss($, ($) => sh.b.sub([
                                 $p['write delimiters'] ? sh.b.snippet("<") : sh.b.nothing(),
-                                sh.b.sub(op_enrich_list_elements_with_position_information($).__l_map(($) => Value($.value, {
+                                sh.b.sub(op_enrich_list_items_with_position_information($).__l_map(($) => Value($.value, {
                                     'in concise group': true,
                                     'write delimiters': true,
                                 }))),
@@ -114,7 +114,7 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                     }))
                     case 'list': return _p.ss($, ($) => sh.b.sub([
                         $p['write delimiters'] ? sh.b.snippet("[") : sh.b.nothing(),
-                        sh.b.sub(op_enrich_list_elements_with_position_information($).__l_map(($) => sh.b.sub([
+                        sh.b.sub(op_enrich_list_items_with_position_information($).__l_map(($) => sh.b.sub([
                             sh.b.snippet(" "),
                             Value($.value, {
                                 'in concise group': false,

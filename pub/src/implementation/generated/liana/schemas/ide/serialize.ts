@@ -9,4 +9,4 @@ import * as v_marshall from "./marshall"
 export const Relative_Location: t_signatures.Relative_Location = ($,) => v_serialize.Document(v_marshall.Relative_Location($))
 export const Relative_Range: t_signatures.Relative_Range = ($,) => v_serialize.Document(v_marshall.Relative_Range($))
 export const Text_Edits: t_signatures.Text_Edits = ($,) => v_serialize.Document(v_marshall.Text_Edits($))
-export const Key_Value_Pairs_To_Be_Sorted: t_signatures.Key_Value_Pairs_To_Be_Sorted = ($,) => v_serialize.Document(v_marshall.Key_Value_Pairs_To_Be_Sorted($))
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($,) => v_serialize.Document(v_marshall.ID_Value_Pairs_To_Be_Sorted($))

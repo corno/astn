@@ -51,9 +51,9 @@ export type Text_Edits_ = (
     context: Text_Edits_.I,
 ) => Text_Edits_.O
 
-export namespace Key_Value_Pairs_To_Be_Sorted_ {
+export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
-    export type I = i_in.Key_Value_Pairs_To_Be_Sorted
+    export type I = i_in.ID_Value_Pairs_To_Be_Sorted
     
     export type O = string
     
@@ -63,13 +63,13 @@ export namespace Key_Value_Pairs_To_Be_Sorted_ {
     
 }
 
-export type Key_Value_Pairs_To_Be_Sorted_ = (
-    context: Key_Value_Pairs_To_Be_Sorted_.I,
-) => Key_Value_Pairs_To_Be_Sorted_.O
+export type ID_Value_Pairs_To_Be_Sorted_ = (
+    context: ID_Value_Pairs_To_Be_Sorted_.I,
+) => ID_Value_Pairs_To_Be_Sorted_.O
 
 export { 
     Relative_Location_ as Relative_Location, 
     Relative_Range_ as Relative_Range, 
     Text_Edits_ as Text_Edits, 
-    Key_Value_Pairs_To_Be_Sorted_ as Key_Value_Pairs_To_Be_Sorted, 
+    ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 
 }
