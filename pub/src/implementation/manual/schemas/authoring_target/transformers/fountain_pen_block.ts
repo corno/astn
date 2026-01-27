@@ -59,8 +59,8 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         sh.b.indent([
                             sh.g.sub(_p.list.from_dictionary(
                                 $,
-                                ($, key) => sh.g.nested_block([
-                                    sh.b.snippet(s_backticked(key, {
+                                ($, id) => sh.g.nested_block([
+                                    sh.b.snippet(s_backticked(id, {
                                         'add delimiters': true,
                                     })),
                                     sh.b.snippet(": "),
@@ -91,8 +91,8 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                                     sh.b.indent([
                                         sh.g.sub(_p.list.from_dictionary(
                                             $,
-                                            ($, key) => sh.g.nested_block([
-                                                sh.b.snippet(s_apostrophed(key, {
+                                            ($, id) => sh.g.nested_block([
+                                                sh.b.snippet(s_apostrophed(id, {
                                                     'add delimiters': true,
                                                 })),
                                                 sh.b.snippet(": "),
