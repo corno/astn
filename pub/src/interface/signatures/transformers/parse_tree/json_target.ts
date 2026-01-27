@@ -4,7 +4,7 @@ import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tr
 import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json/data"
 
 export type Value = _pi.Transformer<d_in.Value, d_out.Value>
-export type Key_Value_Pairs = _pi.Transformer<d_in.Key_Value_Pairs, d_out.Value.object_.key_value_array>
-export type Elements = _pi.Transformer<d_in.Elements, d_out.Value.array>
+export type ID_Value_Pairs = _pi.Transformer<d_in.ID_Value_Pairs, d_out.Value.object_.key_value_array>
+export type Items = _pi.Transformer<d_in.Items, d_out.Value.array>
 export type Document = _pi.Transformer<d_in.Document, d_out.Document>
 

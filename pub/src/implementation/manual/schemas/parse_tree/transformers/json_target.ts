@@ -8,29 +8,29 @@ import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json/
 export const Document: signatures.Document = ($) => Value($.content)
 
 
-export const Key_Value_Pairs: signatures.Key_Value_Pairs = ($) => $.__l_map(($) => ({
-    'key': $.key.value,
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($) => ({
+    'key': $.id.value,
     'value': $.value.__decide(
         ($) => Value($.value),
         () => ['null', null]
     ),
 }))
 
-export const Elements: signatures.Elements = ($) => $.__l_map(($) => Value($.value))
+export const Items: signatures.Items = ($) => $.__l_map(($) => Value($.value))
 
 export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out.Value => {
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => ['object', ['key value array', Key_Value_Pairs($.entries)]])
+                case 'dictionary': return _p.ss($, ($) => ['object', ['key value array', ID_Value_Pairs($.entries)]])
                 case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'concise': return _p.ss($, ($) => ['array', Elements($.elements)])
-                        case 'verbose': return _p.ss($, ($) => ['object', ['key value array', Key_Value_Pairs($.entries)]])
+                        case 'concise': return _p.ss($, ($) => ['array', Items($.items)])
+                        case 'verbose': return _p.ss($, ($) => ['object', ['key value array', ID_Value_Pairs($.entries)]])
                         default: return _p.au($[0])
                     }
                 }))
-                case 'list': return _p.ss($, ($) => ['array', Elements($.elements)])
+                case 'list': return _p.ss($, ($) => ['array', Items($.items)])
                 case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
                     switch ($[0]) {
                         case 'missing data': return _p.ss($, ($) => ['null', null])

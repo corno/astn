@@ -18,9 +18,9 @@ export type Structural_Token = _pi.Transformer_With_Parameters<d_in.Structural_T
 
 export type Text = _pi.Transformer_With_Parameters<d_in.Text, d_out.Text_Edits, Parameters>
 
-export type Key_Value_Pairs = _pi.Transformer_With_Parameters<d_in.Key_Value_Pairs, d_out.Text_Edits, Parameters>
+export type ID_Value_Pairs = _pi.Transformer_With_Parameters<d_in.ID_Value_Pairs, d_out.Text_Edits, Parameters>
 
-export type Elements = _pi.Transformer_With_Parameters<d_in.Elements, d_out.Text_Edits, Parameters>
+export type Items = _pi.Transformer_With_Parameters<d_in.Items, d_out.Text_Edits, Parameters>
 
 export type Value = _pi.Transformer_With_Parameters<d_in.Value, d_out.Text_Edits, Parameters>
 
