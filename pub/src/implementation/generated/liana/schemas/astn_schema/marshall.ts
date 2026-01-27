@@ -8,7 +8,7 @@ import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_
 import * as v_serialize_number from "liana-core/dist/implementation/manual/primitives/integer/serializers/decimal"
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
-export const Schemas: t_signatures.Schemas = ($,) => ['dictionary', $.__d_map(($,key,) => Schema_Tree($))]
+export const Schemas: t_signatures.Schemas = ($,) => ['dictionary', $.__d_map(($,id,) => Schema_Tree($))]
 export const Text_Type: t_signatures.Text_Type = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'type': _p.deprecated_cc($['type'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
         switch ($[0]) {
@@ -28,12 +28,12 @@ export const Text_Type: t_signatures.Text_Type = ($,) => ['group', ['verbose', _
     })]),
 }))]]
 export const Globals: t_signatures.Globals = ($,) => ['group', ['verbose', _p.dictionary.literal(({
-    'text types': _p.deprecated_cc($['text types'], ($,) => ['dictionary', $.__d_map(($,key,) => Text_Type($))]),
+    'text types': _p.deprecated_cc($['text types'], ($,) => ['dictionary', $.__d_map(($,id,) => Text_Type($))]),
 }))]]
 export const Type: t_signatures.Type = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'node': _p.deprecated_cc($['node'], ($,) => Type_Node($)),
 }))]]
-export const Types: t_signatures.Types = ($,) => ['dictionary', $.__d_map(($,key,) => Type($))]
+export const Types: t_signatures.Types = ($,) => ['dictionary', $.__d_map(($,id,) => Type($))]
 export const Schema: t_signatures.Schema = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'imports': _p.deprecated_cc($['imports'], ($,) => Imports($)),
     'globals': _p.deprecated_cc($['globals'], ($,) => Globals($)),
@@ -55,7 +55,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($,) => ['state', _p.decide
             return _p.au($[0])
     }
 })]
-export const Imports: t_signatures.Imports = ($,) => ['dictionary', $.__d_map(($,key,) => ['group', ['verbose', _p.dictionary.literal(({
+export const Imports: t_signatures.Imports = ($,) => ['dictionary', $.__d_map(($,id,) => ['group', ['verbose', _p.dictionary.literal(({
     'schema set child': _p.deprecated_cc($['schema set child'], ($,) => ['text', ({
         'delimiter': ['backtick', null],
         'value': $['id'],
@@ -69,7 +69,7 @@ export const Dictionary: t_signatures.Dictionary = ($,) => ['group', ['verbose',
         'value': v_serialize_boolean.serialize($),
     })]),
 }))]]
-export const Group: t_signatures.Group = ($,) => ['dictionary', $.__d_map(($,key,) => Type_Node($))]
+export const Group: t_signatures.Group = ($,) => ['dictionary', $.__d_map(($,id,) => Type_Node($))]
 export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
     switch ($[0]) {
         case 'component':
@@ -142,7 +142,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
         case 'state':
             return _p.ss($, ($,) => ({
                 'option': 'state',
-                'value': ['dictionary', $.__d_map(($,key,) => Type_Node($))],
+                'value': ['dictionary', $.__d_map(($,id,) => Type_Node($))],
             }))
         case 'text':
             return _p.ss($, ($,) => ({

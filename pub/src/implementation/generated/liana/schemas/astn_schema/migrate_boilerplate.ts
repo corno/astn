@@ -10,7 +10,7 @@ export const Schemas: t_signatures.Schemas = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Schema_Tree($),
         'location': ({
             'file': "implement me",
@@ -45,7 +45,7 @@ export const Globals: t_signatures.Globals = ($,) => ({
             'line': 42,
             'column': 42,
         }),
-        'dictionary': $.__d_map(($,key,) => ({
+        'dictionary': $.__d_map(($,id,) => ({
             'entry': Text_Type($),
             'location': ({
                 'file': "implement me",
@@ -64,7 +64,7 @@ export const Types: t_signatures.Types = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Type($),
         'location': ({
             'file': "implement me",
@@ -101,7 +101,7 @@ export const Imports: t_signatures.Imports = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'schema set child': _p.deprecated_cc($['schema set child'], ($,) => ({
                 'location': ({
@@ -130,7 +130,7 @@ export const Group: t_signatures.Group = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Type_Node($),
         'location': ({
             'file': "implement me",
@@ -217,7 +217,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                         'line': 42,
                         'column': 42,
                     }),
-                    'dictionary': $.__d_map(($,key,) => ({
+                    'dictionary': $.__d_map(($,id,) => ({
                         'entry': Type_Node($),
                         'location': ({
                             'file': "implement me",

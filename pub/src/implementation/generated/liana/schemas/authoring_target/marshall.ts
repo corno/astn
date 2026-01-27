@@ -41,7 +41,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 case 'dictionary':
                                     return _p.ss($, ($,) => ({
                                         'option': 'dictionary',
-                                        'value': ['dictionary', $.__d_map(($,key,) => ['optional', $.__decide(($,): t_out.Value.optional => ['set', Value($)], () => ['not set', null])])],
+                                        'value': ['dictionary', $.__d_map(($,id,) => ['optional', $.__decide(($,): t_out.Value.optional => ['set', Value($)], () => ['not set', null])])],
                                     }))
                                 case 'group':
                                     return _p.ss($, ($,) => ({
@@ -56,7 +56,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                                 case 'verbose':
                                                     return _p.ss($, ($,) => ({
                                                         'option': 'verbose',
-                                                        'value': ['dictionary', $.__d_map(($,key,) => ['optional', $.__decide(($,): t_out.Value.optional => ['set', Value($)], () => ['not set', null])])],
+                                                        'value': ['dictionary', $.__d_map(($,id,) => ['optional', $.__decide(($,): t_out.Value.optional => ['set', Value($)], () => ['not set', null])])],
                                                     }))
                                                 default:
                                                     return _p.au($[0])

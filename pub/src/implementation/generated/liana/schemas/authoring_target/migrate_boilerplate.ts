@@ -21,14 +21,14 @@ export const Value: t_signatures.Value = ($,) => ({
                     'type': _p.deprecated_cc($['type'], ($,) => _p.decide.state($, ($,): t_out.Value.data.concrete.type_ => {
                         switch ($[0]) {
                             case 'dictionary':
-                                return _p.ss($, ($,) => ['dictionary', $.__d_map(($,key,) => $.__o_map(($,) => Value($)))])
+                                return _p.ss($, ($,) => ['dictionary', $.__d_map(($,id,) => $.__o_map(($,) => Value($)))])
                             case 'group':
                                 return _p.ss($, ($,) => ['group', _p.decide.state($, ($,): t_out.Value.data.concrete.type_.group => {
                                     switch ($[0]) {
                                         case 'concise':
                                             return _p.ss($, ($,) => ['concise', $.__l_map(($,) => Value($))])
                                         case 'verbose':
-                                            return _p.ss($, ($,) => ['verbose', $.__d_map(($,key,) => $.__o_map(($,) => Value($)))])
+                                            return _p.ss($, ($,) => ['verbose', $.__d_map(($,id,) => $.__o_map(($,) => Value($)))])
                                         default:
                                             return _p.au($[0])
                                     }
