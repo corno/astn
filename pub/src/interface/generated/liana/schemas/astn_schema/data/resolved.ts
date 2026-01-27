@@ -101,7 +101,7 @@ export namespace Imports_ {
             
             export type entry = Schemas_.D
             
-            export type key = string
+            export type id = string
             
             export type up_steps = number
             
@@ -109,7 +109,7 @@ export namespace Imports_ {
         
         export type schema_set_child = {
             readonly 'entry': schema_set_child.entry
-            readonly 'key': schema_set_child.key
+            readonly 'id': schema_set_child.id
             readonly 'up steps': schema_set_child.up_steps
         }
         
@@ -157,26 +157,26 @@ export namespace Type_Node_ {
                 
                 export type entry = Imports_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type import_ = {
                 readonly 'entry': import_.entry
-                readonly 'key': import_.key
+                readonly 'id': import_.id
             }
             
             export namespace type_ {
                 
                 export type entry = Types_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type type_ = {
                 readonly 'entry': type_.entry
-                readonly 'key': type_.key
+                readonly 'id': type_.id
             }
             
         }
@@ -190,26 +190,26 @@ export namespace Type_Node_ {
             
             export type entry = Types_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type internal = {
             readonly 'entry': internal.entry
-            readonly 'key': internal.key
+            readonly 'id': internal.id
         }
         
         export namespace internal_cyclic {
             
             export type entry = _pi.Circular_Dependency<Types_.D>
             
-            export type key = string
+            export type id = string
             
         }
         
         export type internal_cyclic = {
             readonly 'entry': internal_cyclic.entry
-            readonly 'key': internal_cyclic.key
+            readonly 'id': internal_cyclic.id
         }
         
     }
@@ -251,13 +251,13 @@ export namespace Type_Node_ {
             
             export type entry = Globals_.text_types.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type global = {
             readonly 'entry': global.entry
-            readonly 'key': global.key
+            readonly 'id': global.id
         }
         
         export type local = Text_Type_

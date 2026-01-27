@@ -197,13 +197,13 @@ export namespace Imports_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type schema_set_child = {
                     readonly 'location': schema_set_child.location
-                    readonly 'key': schema_set_child.key
+                    readonly 'id': schema_set_child.id
                 }
                 
                 export type schema = null
@@ -294,26 +294,26 @@ export namespace Type_Node_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type import_ = {
                         readonly 'location': import_.location
-                        readonly 'key': import_.key
+                        readonly 'id': import_.id
                     }
                     
                     export namespace type_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type type_ = {
                         readonly 'location': type_.location
-                        readonly 'key': type_.key
+                        readonly 'id': type_.id
                     }
                     
                 }
@@ -327,26 +327,26 @@ export namespace Type_Node_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type internal = {
                     readonly 'location': internal.location
-                    readonly 'key': internal.key
+                    readonly 'id': internal.id
                 }
                 
                 export namespace internal_cyclic {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type internal_cyclic = {
                     readonly 'location': internal_cyclic.location
-                    readonly 'key': internal_cyclic.key
+                    readonly 'id': internal_cyclic.id
                 }
                 
             }
@@ -421,13 +421,13 @@ export namespace Type_Node_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type global = {
                     readonly 'location': global.location
-                    readonly 'key': global.key
+                    readonly 'id': global.id
                 }
                 
                 export type local = Text_Type_

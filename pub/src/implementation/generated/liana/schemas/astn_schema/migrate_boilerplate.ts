@@ -109,7 +109,7 @@ export const Imports: t_signatures.Imports = ($,) => ({
                     'line': 42,
                     'column': 42,
                 }),
-                'key': $['key'],
+                'id': $['id'],
             })),
             'schema': _p.deprecated_cc($['schema'], ($,) => null),
         }),
@@ -164,7 +164,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                     'type': _p.deprecated_cc($['type'], ($,) => ({
                                         'location': ({
@@ -172,7 +172,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                 })])
                             case 'internal':
@@ -182,7 +182,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             case 'internal cyclic':
                                 return _p.ss($, ($,) => ['internal cyclic', ({
@@ -191,7 +191,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             default:
                                 return _p.au($[0])
@@ -242,7 +242,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             case 'local':
                                 return _p.ss($, ($,) => ['local', Text_Type($)])
