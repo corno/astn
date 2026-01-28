@@ -17,7 +17,7 @@ export const $$ = (func: _pi.Text_Deserializer<string>): signatures.commands.str
     return _p.command_procedure(
         ($p, $cr, $qr) => [
 
-            _p.create_error_handling_context<d_main.Error, My_Error>(
+            _p.handle_error<d_main.Error, My_Error>(
                 [
                     _p.query(
                         $qr['get instream data'](

@@ -27,7 +27,7 @@ export type Creator = (
 
 export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr) => [
 
-    _p.create_error_handling_context<d_main.Error, d_transform_file.Error>(
+    _p.handle_error<d_main.Error, d_transform_file.Error>(
         [
 
             _p.refine_without_error_transformation(
