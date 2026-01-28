@@ -19,7 +19,7 @@ export type Creator = (
         string,
         string,
         {
-            'uri': string
+            'document resource identifier': string
         }
     >,
 ) => signatures.commands.file_in_to_file_out
@@ -47,7 +47,7 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
                                 $,
                                 ($) => abort(['processing', $]),
                                 {
-                                    'uri': s_path.Node_Path($r.in),
+                                    'document resource identifier': s_path.Node_Path($r.in),
                                 },
                             ),
                         }),

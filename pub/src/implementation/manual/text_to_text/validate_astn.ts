@@ -11,7 +11,7 @@ export const $$: _pi.Text_Deserializer<string> = ($, abort) => {
         ($) => abort(s_parse_result.Error($, { 'position info': ['one based', null] })),
         {
             'tab size': 4,
-            'uri': `stream input`,
+            'document resource identifier': `stream input`,
         },
     )
     return "Document is valid ASTN"
