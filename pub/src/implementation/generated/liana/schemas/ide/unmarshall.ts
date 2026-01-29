@@ -11,6 +11,8 @@ import {
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/ide/unmarshall"
 
+import * as t_out from "../../../../../interface/generated/liana/schemas/ide/data"
+
 import * as v_deserialize_number from "liana-core/dist/implementation/manual/primitives/integer/deserializers/decimal"
 
 import * as v_deserialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/deserializers/true_false"
@@ -113,7 +115,136 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => v_unmarshalled_
         ['expected a list', null]
     )
 ).__l_map(
-    ($) => _p_unreachable_code_path(
+    ($) => _p_cc(
+        v_unmarshalled_from_parse_tree.State(
+            $,
+            ($) => abort(
+                ['expected a state', null]
+            )
+        ),
+        ($) => _p.decide.text(
+            $['option']['value'],
+            ($t): t_out.Text_Edits.L => {
+                switch ($t) {
+                    case 'insert':
+                        return _p_cc(
+                            $['value'],
+                            ($) => ['insert', _p_cc(
+                                v_unmarshalled_from_parse_tree.Group(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a group', null]
+                                    )
+                                ),
+                                ($) => ({
+                                    'location': _p_cc(
+                                        $.__get_entry(
+                                            'location',
+                                            ($) => abort(
+                                                ['no such entry', "location"]
+                                            )
+                                        ),
+                                        ($) => Relative_Location(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        )
+                                    ),
+                                    'text': _p_cc(
+                                        $.__get_entry(
+                                            'text',
+                                            ($) => abort(
+                                                ['no such entry', "text"]
+                                            )
+                                        ),
+                                        ($) => v_unmarshalled_from_parse_tree.Text(
+                                            $,
+                                            ($) => abort(
+                                                ['expected a text', null]
+                                            )
+                                        )
+                                    ),
+                                })
+                            )]
+                        )
+                    case 'replace':
+                        return _p_cc(
+                            $['value'],
+                            ($) => ['replace', _p_cc(
+                                v_unmarshalled_from_parse_tree.Group(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a group', null]
+                                    )
+                                ),
+                                ($) => ({
+                                    'range': _p_cc(
+                                        $.__get_entry(
+                                            'range',
+                                            ($) => abort(
+                                                ['no such entry', "range"]
+                                            )
+                                        ),
+                                        ($) => Relative_Range(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        )
+                                    ),
+                                    'text': _p_cc(
+                                        $.__get_entry(
+                                            'text',
+                                            ($) => abort(
+                                                ['no such entry', "text"]
+                                            )
+                                        ),
+                                        ($) => v_unmarshalled_from_parse_tree.Text(
+                                            $,
+                                            ($) => abort(
+                                                ['expected a text', null]
+                                            )
+                                        )
+                                    ),
+                                })
+                            )]
+                        )
+                    case 'delete':
+                        return _p_cc(
+                            $['value'],
+                            ($) => ['delete', _p_cc(
+                                v_unmarshalled_from_parse_tree.Group(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a group', null]
+                                    )
+                                ),
+                                ($) => ({
+                                    'range': _p_cc(
+                                        $.__get_entry(
+                                            'range',
+                                            ($) => abort(
+                                                ['no such entry', "range"]
+                                            )
+                                        ),
+                                        ($) => Relative_Range(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        )
+                                    ),
+                                })
+                            )]
+                        )
+                    default:
+                        return abort(
+                            ['unknown option', $['option']['value']]
+                        )
+                }
+            }
+        )
     )
 )
 

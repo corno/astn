@@ -5,10 +5,6 @@ import {
     _p_unreachable_code_path,
 } from "pareto-core/dist/unreachable_code_path"
 
-import {
-    _p_cc,
-} from "pareto-core/dist/change_context"
-
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/deserialize"
 
 import * as v_deserialize from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"

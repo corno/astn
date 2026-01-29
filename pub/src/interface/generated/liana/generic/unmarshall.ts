@@ -23,6 +23,8 @@ export namespace Error_ {
     
     export type no_such_entry = string
     
+    export type unknown_option = string
+    
 }
 
 export type Error_ = 
@@ -36,6 +38,7 @@ export type Error_ =
     | readonly ['not a valid number', Error_.not_a_valid_number]
     | readonly ['not a valid boolean', Error_.not_a_valid_boolean]
     | readonly ['no such entry', Error_.no_such_entry]
+    | readonly ['unknown option', Error_.unknown_option]
 
 export { 
     Error_ as Error, 
