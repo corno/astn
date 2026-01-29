@@ -17,7 +17,7 @@ export namespace Value_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -28,7 +28,7 @@ export type Value_ = (
     abort: _pi.Abort<Value_.E>,
     parameters: {
         readonly 'document resource identifier': Value_.P.document_resource_identifier
-        readonly 'indentation': Value_.P.indentation
+        readonly 'tab size': Value_.P.tab_size
     },
 ) => Value_.O
 
@@ -44,7 +44,7 @@ export namespace Document_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -55,7 +55,7 @@ export type Document_ = (
     abort: _pi.Abort<Document_.E>,
     parameters: {
         readonly 'document resource identifier': Document_.P.document_resource_identifier
-        readonly 'indentation': Document_.P.indentation
+        readonly 'tab size': Document_.P.tab_size
     },
 ) => Document_.O
 

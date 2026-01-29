@@ -1,14 +1,22 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
+import { 
+    _p_unreachable_code_path, 
+} from "pareto-core/dist/unreachable_code_path"
+
+import { 
+    _p_cc, 
+} from "pareto-core/dist/change_context"
+
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/authoring_target/migrate_boilerplate"
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/authoring_target/data"
 export const Value: t_signatures.Value = ($) => ({
-    'metadata': _p.deprecated_cc(
+    'metadata': _p_cc(
         $['metadata'], 
         ($) => ({
-            'comments': _p.deprecated_cc(
+            'comments': _p_cc(
                 $['comments'], 
                 ($) => $.__l_map(
                     ($) => $
@@ -16,7 +24,7 @@ export const Value: t_signatures.Value = ($) => ({
             ),
         })
     ),
-    'data': _p.deprecated_cc(
+    'data': _p_cc(
         $['data'], 
         ($) => _p.decide.state(
             $, 
@@ -31,7 +39,7 @@ export const Value: t_signatures.Value = ($) => ({
                         return _p.ss(
                             $, 
                             ($) => ['include', ({
-                                'path': _p.deprecated_cc(
+                                'path': _p_cc(
                                     $['path'], 
                                     ($) => $
                                 ),
@@ -41,7 +49,7 @@ export const Value: t_signatures.Value = ($) => ({
                         return _p.ss(
                             $, 
                             ($) => ['concrete', ({
-                                'type': _p.deprecated_cc(
+                                'type': _p_cc(
                                     $['type'], 
                                     ($) => _p.decide.state(
                                         $, 
@@ -150,11 +158,11 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         return _p.ss(
                                                                             $, 
                                                                             ($) => ['set', ({
-                                                                                'option': _p.deprecated_cc(
+                                                                                'option': _p_cc(
                                                                                     $['option'], 
                                                                                     ($) => $
                                                                                 ),
-                                                                                'value': _p.deprecated_cc(
+                                                                                'value': _p_cc(
                                                                                     $['value'], 
                                                                                     ($) => Value(
                                                                                         $
@@ -174,11 +182,11 @@ export const Value: t_signatures.Value = ($) => ({
                                                     return _p.ss(
                                                         $, 
                                                         ($) => ['text', ({
-                                                            'value': _p.deprecated_cc(
+                                                            'value': _p_cc(
                                                                 $['value'], 
                                                                 ($) => $
                                                             ),
-                                                            'delimiter': _p.deprecated_cc(
+                                                            'delimiter': _p_cc(
                                                                 $['delimiter'], 
                                                                 ($) => _p.decide.state(
                                                                     $, 
@@ -229,7 +237,7 @@ export const Value: t_signatures.Value = ($) => ({
     ),
 })
 export const Document: t_signatures.Document = ($) => ({
-    'header': _p.deprecated_cc(
+    'header': _p_cc(
         $['header'], 
         ($) => $.__o_map(
             ($) => Value(
@@ -237,7 +245,7 @@ export const Document: t_signatures.Document = ($) => ({
             )
         )
     ),
-    'content': _p.deprecated_cc(
+    'content': _p_cc(
         $['content'], 
         ($) => Value(
             $

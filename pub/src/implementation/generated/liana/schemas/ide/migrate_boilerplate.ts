@@ -1,27 +1,35 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
+import { 
+    _p_unreachable_code_path, 
+} from "pareto-core/dist/unreachable_code_path"
+
+import { 
+    _p_cc, 
+} from "pareto-core/dist/change_context"
+
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/ide/migrate_boilerplate"
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/ide/data"
 export const Relative_Location: t_signatures.Relative_Location = ($) => ({
-    'line': _p.deprecated_cc(
+    'line': _p_cc(
         $['line'], 
         ($) => $
     ),
-    'column': _p.deprecated_cc(
+    'column': _p_cc(
         $['column'], 
         ($) => $
     ),
 })
 export const Relative_Range: t_signatures.Relative_Range = ($) => ({
-    'start': _p.deprecated_cc(
+    'start': _p_cc(
         $['start'], 
         ($) => Relative_Location(
             $
         )
     ),
-    'end': _p.deprecated_cc(
+    'end': _p_cc(
         $['end'], 
         ($) => Relative_Location(
             $
@@ -37,13 +45,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                     return _p.ss(
                         $, 
                         ($) => ['insert', ({
-                            'location': _p.deprecated_cc(
+                            'location': _p_cc(
                                 $['location'], 
                                 ($) => Relative_Location(
                                     $
                                 )
                             ),
-                            'text': _p.deprecated_cc(
+                            'text': _p_cc(
                                 $['text'], 
                                 ($) => $
                             ),
@@ -53,13 +61,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                     return _p.ss(
                         $, 
                         ($) => ['replace', ({
-                            'range': _p.deprecated_cc(
+                            'range': _p_cc(
                                 $['range'], 
                                 ($) => Relative_Range(
                                     $
                                 )
                             ),
-                            'text': _p.deprecated_cc(
+                            'text': _p_cc(
                                 $['text'], 
                                 ($) => $
                             ),
@@ -69,7 +77,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                     return _p.ss(
                         $, 
                         ($) => ['delete', ({
-                            'range': _p.deprecated_cc(
+                            'range': _p_cc(
                                 $['range'], 
                                 ($) => Relative_Range(
                                     $

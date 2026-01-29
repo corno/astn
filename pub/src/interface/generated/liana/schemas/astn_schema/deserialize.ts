@@ -17,7 +17,7 @@ export namespace Schemas_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -28,7 +28,7 @@ export type Schemas_ = (
     abort: _pi.Abort<Schemas_.E>,
     parameters: {
         readonly 'document resource identifier': Schemas_.P.document_resource_identifier
-        readonly 'indentation': Schemas_.P.indentation
+        readonly 'tab size': Schemas_.P.tab_size
     },
 ) => Schemas_.O
 
@@ -44,7 +44,7 @@ export namespace Text_Type_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -55,7 +55,7 @@ export type Text_Type_ = (
     abort: _pi.Abort<Text_Type_.E>,
     parameters: {
         readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
-        readonly 'indentation': Text_Type_.P.indentation
+        readonly 'tab size': Text_Type_.P.tab_size
     },
 ) => Text_Type_.O
 
@@ -71,7 +71,7 @@ export namespace Globals_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -82,7 +82,7 @@ export type Globals_ = (
     abort: _pi.Abort<Globals_.E>,
     parameters: {
         readonly 'document resource identifier': Globals_.P.document_resource_identifier
-        readonly 'indentation': Globals_.P.indentation
+        readonly 'tab size': Globals_.P.tab_size
     },
 ) => Globals_.O
 
@@ -98,7 +98,7 @@ export namespace Type_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -109,7 +109,7 @@ export type Type_ = (
     abort: _pi.Abort<Type_.E>,
     parameters: {
         readonly 'document resource identifier': Type_.P.document_resource_identifier
-        readonly 'indentation': Type_.P.indentation
+        readonly 'tab size': Type_.P.tab_size
     },
 ) => Type_.O
 
@@ -125,7 +125,7 @@ export namespace Types_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -136,7 +136,7 @@ export type Types_ = (
     abort: _pi.Abort<Types_.E>,
     parameters: {
         readonly 'document resource identifier': Types_.P.document_resource_identifier
-        readonly 'indentation': Types_.P.indentation
+        readonly 'tab size': Types_.P.tab_size
     },
 ) => Types_.O
 
@@ -152,7 +152,7 @@ export namespace Schema_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -163,7 +163,7 @@ export type Schema_ = (
     abort: _pi.Abort<Schema_.E>,
     parameters: {
         readonly 'document resource identifier': Schema_.P.document_resource_identifier
-        readonly 'indentation': Schema_.P.indentation
+        readonly 'tab size': Schema_.P.tab_size
     },
 ) => Schema_.O
 
@@ -179,7 +179,7 @@ export namespace Schema_Tree_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -190,7 +190,7 @@ export type Schema_Tree_ = (
     abort: _pi.Abort<Schema_Tree_.E>,
     parameters: {
         readonly 'document resource identifier': Schema_Tree_.P.document_resource_identifier
-        readonly 'indentation': Schema_Tree_.P.indentation
+        readonly 'tab size': Schema_Tree_.P.tab_size
     },
 ) => Schema_Tree_.O
 
@@ -206,7 +206,7 @@ export namespace Imports_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -217,7 +217,7 @@ export type Imports_ = (
     abort: _pi.Abort<Imports_.E>,
     parameters: {
         readonly 'document resource identifier': Imports_.P.document_resource_identifier
-        readonly 'indentation': Imports_.P.indentation
+        readonly 'tab size': Imports_.P.tab_size
     },
 ) => Imports_.O
 
@@ -233,7 +233,7 @@ export namespace Dictionary_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -244,7 +244,7 @@ export type Dictionary_ = (
     abort: _pi.Abort<Dictionary_.E>,
     parameters: {
         readonly 'document resource identifier': Dictionary_.P.document_resource_identifier
-        readonly 'indentation': Dictionary_.P.indentation
+        readonly 'tab size': Dictionary_.P.tab_size
     },
 ) => Dictionary_.O
 
@@ -260,7 +260,7 @@ export namespace Group_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -271,7 +271,7 @@ export type Group_ = (
     abort: _pi.Abort<Group_.E>,
     parameters: {
         readonly 'document resource identifier': Group_.P.document_resource_identifier
-        readonly 'indentation': Group_.P.indentation
+        readonly 'tab size': Group_.P.tab_size
     },
 ) => Group_.O
 
@@ -287,7 +287,7 @@ export namespace Type_Node_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -298,7 +298,7 @@ export type Type_Node_ = (
     abort: _pi.Abort<Type_Node_.E>,
     parameters: {
         readonly 'document resource identifier': Type_Node_.P.document_resource_identifier
-        readonly 'indentation': Type_Node_.P.indentation
+        readonly 'tab size': Type_Node_.P.tab_size
     },
 ) => Type_Node_.O
 

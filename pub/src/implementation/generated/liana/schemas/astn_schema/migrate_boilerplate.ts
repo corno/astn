@@ -1,6 +1,14 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
+import { 
+    _p_unreachable_code_path, 
+} from "pareto-core/dist/unreachable_code_path"
+
+import { 
+    _p_cc, 
+} from "pareto-core/dist/change_context"
+
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/migrate_boilerplate"
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
@@ -24,7 +32,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
     ),
 })
 export const Text_Type: t_signatures.Text_Type = ($) => ({
-    'type': _p.deprecated_cc(
+    'type': _p_cc(
         $['type'], 
         ($) => ({
             'location': ({
@@ -57,7 +65,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
     ),
 })
 export const Globals: t_signatures.Globals = ($) => ({
-    'text types': _p.deprecated_cc(
+    'text types': _p_cc(
         $['text types'], 
         ($) => ({
             'location': ({
@@ -81,7 +89,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     ),
 })
 export const Type: t_signatures.Type = ($) => ({
-    'node': _p.deprecated_cc(
+    'node': _p_cc(
         $['node'], 
         ($) => Type_Node(
             $
@@ -108,19 +116,19 @@ export const Types: t_signatures.Types = ($) => ({
     ),
 })
 export const Schema: t_signatures.Schema = ($) => ({
-    'imports': _p.deprecated_cc(
+    'imports': _p_cc(
         $['imports'], 
         ($) => Imports(
             $
         )
     ),
-    'globals': _p.deprecated_cc(
+    'globals': _p_cc(
         $['globals'], 
         ($) => Globals(
             $
         )
     ),
-    'types': _p.deprecated_cc(
+    'types': _p_cc(
         $['types'], 
         ($) => Types(
             $
@@ -168,7 +176,7 @@ export const Imports: t_signatures.Imports = ($) => ({
     'dictionary': $.__d_map(
         ($,id) => ({
             'entry': ({
-                'schema set child': _p.deprecated_cc(
+                'schema set child': _p_cc(
                     $['schema set child'], 
                     ($) => ({
                         'location': ({
@@ -179,7 +187,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                         'id': $['id'],
                     })
                 ),
-                'schema': _p.deprecated_cc(
+                'schema': _p_cc(
                     $['schema'], 
                     ($) => null
                 ),
@@ -193,13 +201,13 @@ export const Imports: t_signatures.Imports = ($) => ({
     ),
 })
 export const Dictionary: t_signatures.Dictionary = ($) => ({
-    'node': _p.deprecated_cc(
+    'node': _p_cc(
         $['node'], 
         ($) => Type_Node(
             $
         )
     ),
-    'ordered': _p.deprecated_cc(
+    'ordered': _p_cc(
         $['ordered'], 
         ($) => $
     ),
@@ -250,7 +258,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                             return _p.ss(
                                                 $, 
                                                 ($) => ['external', ({
-                                                    'import': _p.deprecated_cc(
+                                                    'import': _p_cc(
                                                         $['import'], 
                                                         ($) => ({
                                                             'location': ({
@@ -261,7 +269,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                             'id': $['id'],
                                                         })
                                                     ),
-                                                    'type': _p.deprecated_cc(
+                                                    'type': _p_cc(
                                                         $['type'], 
                                                         ($) => ({
                                                             'location': ({
@@ -325,7 +333,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                     return _p.ss(
                         $, 
                         ($) => ['list', ({
-                            'node': _p.deprecated_cc(
+                            'node': _p_cc(
                                 $['node'], 
                                 ($) => Type_Node(
                                     $

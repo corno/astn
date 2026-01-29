@@ -1,6 +1,14 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
+import { 
+    _p_unreachable_code_path, 
+} from "pareto-core/dist/unreachable_code_path"
+
+import { 
+    _p_cc, 
+} from "pareto-core/dist/change_context"
+
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/marshall"
 
 import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
@@ -15,7 +23,7 @@ export const Schemas: t_signatures.Schemas = ($) => ['dictionary', $.__d_map(
 )]
 export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'type': _p.deprecated_cc(
+        'type': _p_cc(
             $['type'], 
             ($) => ['state', _p.decide.state(
                 $, 
@@ -49,7 +57,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p
 )]]
 export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'text types': _p.deprecated_cc(
+        'text types': _p_cc(
             $['text types'], 
             ($) => ['dictionary', $.__d_map(
                 ($,id) => Text_Type(
@@ -61,7 +69,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
 )]]
 export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'node': _p.deprecated_cc(
+        'node': _p_cc(
             $['node'], 
             ($) => Type_Node(
                 $
@@ -76,19 +84,19 @@ export const Types: t_signatures.Types = ($) => ['dictionary', $.__d_map(
 )]
 export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'imports': _p.deprecated_cc(
+        'imports': _p_cc(
             $['imports'], 
             ($) => Imports(
                 $
             )
         ),
-        'globals': _p.deprecated_cc(
+        'globals': _p_cc(
             $['globals'], 
             ($) => Globals(
                 $
             )
         ),
-        'types': _p.deprecated_cc(
+        'types': _p_cc(
             $['types'], 
             ($) => Types(
                 $
@@ -130,14 +138,14 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
 export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
     ($,id) => ['group', ['verbose', _p.dictionary.literal(
         ({
-            'schema set child': _p.deprecated_cc(
+            'schema set child': _p_cc(
                 $['schema set child'], 
                 ($) => ['text', ({
                     'delimiter': ['backtick', null],
                     'value': $['id'],
                 })]
             ),
-            'schema': _p.deprecated_cc(
+            'schema': _p_cc(
                 $['schema'], 
                 ($) => ['nothing', null]
             ),
@@ -146,13 +154,13 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
 )]
 export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'node': _p.deprecated_cc(
+        'node': _p_cc(
             $['node'], 
             ($) => Type_Node(
                 $
             )
         ),
-        'ordered': _p.deprecated_cc(
+        'ordered': _p_cc(
             $['ordered'], 
             ($) => ['text', ({
                 'delimiter': ['none', null],
@@ -188,14 +196,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'external',
                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                     ({
-                                                        'import': _p.deprecated_cc(
+                                                        'import': _p_cc(
                                                             $['import'], 
                                                             ($) => ['text', ({
                                                                 'delimiter': ['backtick', null],
                                                                 'value': $['id'],
                                                             })]
                                                         ),
-                                                        'type': _p.deprecated_cc(
+                                                        'type': _p_cc(
                                                             $['type'], 
                                                             ($) => ['text', ({
                                                                 'delimiter': ['backtick', null],
@@ -264,7 +272,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                         'option': 'list',
                         'value': ['group', ['verbose', _p.dictionary.literal(
                             ({
-                                'node': _p.deprecated_cc(
+                                'node': _p_cc(
                                     $['node'], 
                                     ($) => Type_Node(
                                         $

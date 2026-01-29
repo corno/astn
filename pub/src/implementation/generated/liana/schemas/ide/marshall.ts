@@ -1,6 +1,14 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
+import { 
+    _p_unreachable_code_path, 
+} from "pareto-core/dist/unreachable_code_path"
+
+import { 
+    _p_cc, 
+} from "pareto-core/dist/change_context"
+
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/ide/marshall"
 
 import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
@@ -10,7 +18,7 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'line': _p.deprecated_cc(
+        'line': _p_cc(
             $['line'], 
             ($) => ['text', ({
                 'delimiter': ['none', null],
@@ -19,7 +27,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($) => ['group'
                 ),
             })]
         ),
-        'column': _p.deprecated_cc(
+        'column': _p_cc(
             $['column'], 
             ($) => ['text', ({
                 'delimiter': ['none', null],
@@ -32,13 +40,13 @@ export const Relative_Location: t_signatures.Relative_Location = ($) => ['group'
 )]]
 export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
-        'start': _p.deprecated_cc(
+        'start': _p_cc(
             $['start'], 
             ($) => Relative_Location(
                 $
             )
         ),
-        'end': _p.deprecated_cc(
+        'end': _p_cc(
             $['end'], 
             ($) => Relative_Location(
                 $
@@ -58,13 +66,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                             'option': 'insert',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 ({
-                                    'location': _p.deprecated_cc(
+                                    'location': _p_cc(
                                         $['location'], 
                                         ($) => Relative_Location(
                                             $
                                         )
                                     ),
-                                    'text': _p.deprecated_cc(
+                                    'text': _p_cc(
                                         $['text'], 
                                         ($) => ['text', ({
                                             'delimiter': ['quote', null],
@@ -82,13 +90,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                             'option': 'replace',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 ({
-                                    'range': _p.deprecated_cc(
+                                    'range': _p_cc(
                                         $['range'], 
                                         ($) => Relative_Range(
                                             $
                                         )
                                     ),
-                                    'text': _p.deprecated_cc(
+                                    'text': _p_cc(
                                         $['text'], 
                                         ($) => ['text', ({
                                             'delimiter': ['quote', null],
@@ -106,7 +114,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                             'option': 'delete',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 ({
-                                    'range': _p.deprecated_cc(
+                                    'range': _p_cc(
                                         $['range'], 
                                         ($) => Relative_Range(
                                             $
