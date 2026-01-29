@@ -14,30 +14,30 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
 export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'line': _p_cc(
             $['line'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_number.serialize(
                     $
                 ),
-            })]
+            }]
         ),
         'column': _p_cc(
             $['column'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_number.serialize(
                     $
                 ),
-            })]
+            }]
         ),
-    })
+    }
 )]]
 
 export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'start': _p_cc(
             $['start'],
             ($) => Relative_Location(
@@ -50,7 +50,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['ve
                 $
             )
         ),
-    })
+    }
 )]]
 
 export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
@@ -64,7 +64,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                         ($) => ({
                             'option': 'insert',
                             'value': ['group', ['verbose', _p.dictionary.literal(
-                                ({
+                                {
                                     'location': _p_cc(
                                         $['location'],
                                         ($) => Relative_Location(
@@ -73,12 +73,12 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                                     ),
                                     'text': _p_cc(
                                         $['text'],
-                                        ($) => ['text', ({
+                                        ($) => ['text', {
                                             'delimiter': ['quote', null],
                                             'value': $,
-                                        })]
+                                        }]
                                     ),
-                                })
+                                }
                             )]],
                         })
                     )
@@ -88,7 +88,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                         ($) => ({
                             'option': 'replace',
                             'value': ['group', ['verbose', _p.dictionary.literal(
-                                ({
+                                {
                                     'range': _p_cc(
                                         $['range'],
                                         ($) => Relative_Range(
@@ -97,12 +97,12 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                                     ),
                                     'text': _p_cc(
                                         $['text'],
-                                        ($) => ['text', ({
+                                        ($) => ['text', {
                                             'delimiter': ['quote', null],
                                             'value': $,
-                                        })]
+                                        }]
                                     ),
-                                })
+                                }
                             )]],
                         })
                     )
@@ -112,14 +112,14 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
                         ($) => ({
                             'option': 'delete',
                             'value': ['group', ['verbose', _p.dictionary.literal(
-                                ({
+                                {
                                     'range': _p_cc(
                                         $['range'],
                                         ($) => Relative_Range(
                                             $
                                         )
                                     ),
-                                })
+                                }
                             )]],
                         })
                     )
@@ -133,8 +133,8 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
 )]
 
 export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', $.__d_map(
-    ($, id) => ['text', ({
+    ($, id) => ['text', {
         'delimiter': ['quote', null],
         'value': $,
-    })]
+    }]
 )]

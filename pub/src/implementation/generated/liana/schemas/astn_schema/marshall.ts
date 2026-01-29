@@ -20,7 +20,7 @@ export const Schemas: t_signatures.Schemas = ($) => ['dictionary', $.__d_map(
 )]
 
 export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'type': _p_cc(
             $['type'],
             ($) => ['state', _p.decide.state(
@@ -51,11 +51,11 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p
                 }
             )]
         ),
-    })
+    }
 )]]
 
 export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'text types': _p_cc(
             $['text types'],
             ($) => ['dictionary', $.__d_map(
@@ -64,18 +64,18 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
                 )
             )]
         ),
-    })
+    }
 )]]
 
 export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'node': _p_cc(
             $['node'],
             ($) => Type_Node(
                 $
             )
         ),
-    })
+    }
 )]]
 
 export const Types: t_signatures.Types = ($) => ['dictionary', $.__d_map(
@@ -85,7 +85,7 @@ export const Types: t_signatures.Types = ($) => ['dictionary', $.__d_map(
 )]
 
 export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'imports': _p_cc(
             $['imports'],
             ($) => Imports(
@@ -104,7 +104,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
                 $
             )
         ),
-    })
+    }
 )]]
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.state(
@@ -141,24 +141,24 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
 
 export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
-        ({
+        {
             'schema set child': _p_cc(
                 $['schema set child'],
-                ($) => ['text', ({
+                ($) => ['text', {
                     'delimiter': ['backtick', null],
                     'value': $['id'],
-                })]
+                }]
             ),
             'schema': _p_cc(
                 $['schema'],
                 ($) => ['nothing', null]
             ),
-        })
+        }
     )]]
 )]
 
 export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'node': _p_cc(
             $['node'],
             ($) => Type_Node(
@@ -167,14 +167,14 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
         ),
         'ordered': _p_cc(
             $['ordered'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_boolean.serialize(
                     $
                 ),
-            })]
+            }]
         ),
-    })
+    }
 )]]
 
 export const Group: t_signatures.Group = ($) => ['dictionary', $.__d_map(
@@ -202,22 +202,22 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                             ($) => ({
                                                 'option': 'external',
                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                    ({
+                                                    {
                                                         'import': _p_cc(
                                                             $['import'],
-                                                            ($) => ['text', ({
+                                                            ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
                                                                 'value': $['id'],
-                                                            })]
+                                                            }]
                                                         ),
                                                         'type': _p_cc(
                                                             $['type'],
-                                                            ($) => ['text', ({
+                                                            ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
                                                                 'value': $['id'],
-                                                            })]
+                                                            }]
                                                         ),
-                                                    })
+                                                    }
                                                 )]],
                                             })
                                         )
@@ -226,10 +226,10 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                             $,
                                             ($) => ({
                                                 'option': 'internal',
-                                                'value': ['text', ({
+                                                'value': ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['id'],
-                                                })],
+                                                }],
                                             })
                                         )
                                     case 'internal cyclic':
@@ -237,10 +237,10 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                             $,
                                             ($) => ({
                                                 'option': 'internal cyclic',
-                                                'value': ['text', ({
+                                                'value': ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['id'],
-                                                })],
+                                                }],
                                             })
                                         )
                                     default:
@@ -278,14 +278,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                     ($) => ({
                         'option': 'list',
                         'value': ['group', ['verbose', _p.dictionary.literal(
-                            ({
+                            {
                                 'node': _p_cc(
                                     $['node'],
                                     ($) => Type_Node(
                                         $
                                     )
                                 ),
-                            })
+                            }
                         )]],
                     })
                 )
@@ -333,10 +333,10 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                             $,
                                             ($) => ({
                                                 'option': 'global',
-                                                'value': ['text', ({
+                                                'value': ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['id'],
-                                                })],
+                                                }],
                                             })
                                         )
                                     case 'local':

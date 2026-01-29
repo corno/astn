@@ -43,7 +43,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                 case 'insert':
                     return _p.ss(
                         $,
-                        ($) => ['insert', ({
+                        ($) => ['insert', {
                             'location': _p_cc(
                                 $['location'],
                                 ($) => Relative_Location(
@@ -54,12 +54,12 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                                 $['text'],
                                 ($) => $
                             ),
-                        })]
+                        }]
                     )
                 case 'replace':
                     return _p.ss(
                         $,
-                        ($) => ['replace', ({
+                        ($) => ['replace', {
                             'range': _p_cc(
                                 $['range'],
                                 ($) => Relative_Range(
@@ -70,19 +70,19 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => $.__l_map(
                                 $['text'],
                                 ($) => $
                             ),
-                        })]
+                        }]
                     )
                 case 'delete':
                     return _p.ss(
                         $,
-                        ($) => ['delete', ({
+                        ($) => ['delete', {
                             'range': _p_cc(
                                 $['range'],
                                 ($) => Relative_Range(
                                     $
                                 )
                             ),
-                        })]
+                        }]
                     )
                 default:
                     return _p.au(

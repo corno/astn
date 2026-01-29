@@ -14,21 +14,21 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
 export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'metadata': _p_cc(
             $['metadata'],
             ($) => ['group', ['verbose', _p.dictionary.literal(
-                ({
+                {
                     'comments': _p_cc(
                         $['comments'],
                         ($) => ['list', $.__l_map(
-                            ($) => ['text', ({
+                            ($) => ['text', {
                                 'delimiter': ['quote', null],
                                 'value': $,
-                            })]
+                            }]
                         )]
                     ),
-                })
+                }
             )]]
         ),
         'data': _p_cc(
@@ -51,15 +51,15 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                 ($) => ({
                                     'option': 'include',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
-                                        ({
+                                        {
                                             'path': _p_cc(
                                                 $['path'],
-                                                ($) => ['text', ({
+                                                ($) => ['text', {
                                                     'delimiter': ['quote', null],
                                                     'value': $,
-                                                })]
+                                                }]
                                             ),
-                                        })
+                                        }
                                     )]],
                                 })
                             )
@@ -69,7 +69,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                 ($) => ({
                                     'option': 'concrete',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
-                                        ({
+                                        {
                                             'type': _p_cc(
                                                 $['type'],
                                                 ($) => ['state', _p.decide.state(
@@ -215,13 +215,13 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                             ($) => ({
                                                                                                 'option': 'set',
                                                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                                                    ({
+                                                                                                    {
                                                                                                         'option': _p_cc(
                                                                                                             $['option'],
-                                                                                                            ($) => ['text', ({
+                                                                                                            ($) => ['text', {
                                                                                                                 'delimiter': ['quote', null],
                                                                                                                 'value': $,
-                                                                                                            })]
+                                                                                                            }]
                                                                                                         ),
                                                                                                         'value': _p_cc(
                                                                                                             $['value'],
@@ -229,7 +229,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                                                 $
                                                                                                             )
                                                                                                         ),
-                                                                                                    })
+                                                                                                    }
                                                                                                 )]],
                                                                                             })
                                                                                         )
@@ -248,13 +248,13 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                     ($) => ({
                                                                         'option': 'text',
                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                            ({
+                                                                            {
                                                                                 'value': _p_cc(
                                                                                     $['value'],
-                                                                                    ($) => ['text', ({
+                                                                                    ($) => ['text', {
                                                                                         'delimiter': ['quote', null],
                                                                                         'value': $,
-                                                                                    })]
+                                                                                    }]
                                                                                 ),
                                                                                 'delimiter': _p_cc(
                                                                                     $['delimiter'],
@@ -294,7 +294,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                         }
                                                                                     )]
                                                                                 ),
-                                                                            })
+                                                                            }
                                                                         )]],
                                                                     })
                                                                 )
@@ -306,7 +306,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                     }
                                                 )]
                                             ),
-                                        })
+                                        }
                                     )]],
                                 })
                             )
@@ -318,11 +318,11 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                 }
             )]
         ),
-    })
+    }
 )]]
 
 export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'header': _p_cc(
             $['header'],
             ($) => ['optional', $.__decide(
@@ -338,5 +338,5 @@ export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.d
                 $
             )
         ),
-    })
+    }
 )]]

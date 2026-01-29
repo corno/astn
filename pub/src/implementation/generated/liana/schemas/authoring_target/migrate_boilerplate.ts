@@ -35,17 +35,17 @@ export const Value: t_signatures.Value = ($) => ({
                     case 'include':
                         return _p.ss(
                             $,
-                            ($) => ['include', ({
+                            ($) => ['include', {
                                 'path': _p_cc(
                                     $['path'],
                                     ($) => $
                                 ),
-                            })]
+                            }]
                         )
                     case 'concrete':
                         return _p.ss(
                             $,
-                            ($) => ['concrete', ({
+                            ($) => ['concrete', {
                                 'type': _p_cc(
                                     $['type'],
                                     ($) => _p.decide.state(
@@ -154,7 +154,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     case 'set':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['set', ({
+                                                                            ($) => ['set', {
                                                                                 'option': _p_cc(
                                                                                     $['option'],
                                                                                     ($) => $
@@ -165,7 +165,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                         $
                                                                                     )
                                                                                 ),
-                                                                            })]
+                                                                            }]
                                                                         )
                                                                     default:
                                                                         return _p.au(
@@ -178,7 +178,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'text':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['text', ({
+                                                        ($) => ['text', {
                                                             'value': _p_cc(
                                                                 $['value'],
                                                                 ($) => $
@@ -212,7 +212,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     }
                                                                 )
                                                             ),
-                                                        })]
+                                                        }]
                                                     )
                                                 default:
                                                     return _p.au(
@@ -222,7 +222,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         }
                                     )
                                 ),
-                            })]
+                            }]
                         )
                     default:
                         return _p.au(

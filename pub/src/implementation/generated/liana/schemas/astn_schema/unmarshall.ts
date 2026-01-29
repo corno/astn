@@ -525,7 +525,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal', ({
+                                                        'state': ['internal', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -535,7 +535,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             case 'internal cyclic':
@@ -545,7 +545,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal cyclic', ({
+                                                        'state': ['internal cyclic', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -555,7 +555,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             default:
@@ -668,7 +668,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                             'location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['state', ({
+                            'state': ['state', {
                                 'location': v_parse_tree_to_location.Value(
                                     $
                                 )['start']['relative'],
@@ -690,7 +690,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                         ),
                                     })
                                 ),
-                            })],
+                            }],
                         })
                     )
                 case 'text':
@@ -718,7 +718,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['global', ({
+                                                        'state': ['global', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -728,7 +728,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             case 'local':
