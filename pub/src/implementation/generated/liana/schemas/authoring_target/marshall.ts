@@ -1,12 +1,12 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
-import { 
-    _p_unreachable_code_path, 
+import {
+    _p_unreachable_code_path,
 } from "pareto-core/dist/unreachable_code_path"
 
-import { 
-    _p_cc, 
+import {
+    _p_cc,
 } from "pareto-core/dist/change_context"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/authoring_target/marshall"
@@ -16,14 +16,15 @@ import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_
 import * as v_serialize_number from "liana-core/dist/implementation/manual/primitives/integer/serializers/decimal"
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
+
 export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
         'metadata': _p_cc(
-            $['metadata'], 
+            $['metadata'],
             ($) => ['group', ['verbose', _p.dictionary.literal(
                 ({
                     'comments': _p_cc(
-                        $['comments'], 
+                        $['comments'],
                         ($) => ['list', $.__l_map(
                             ($) => ['text', ({
                                 'delimiter': ['quote', null],
@@ -35,14 +36,14 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
             )]]
         ),
         'data': _p_cc(
-            $['data'], 
+            $['data'],
             ($) => ['state', _p.decide.state(
-                $, 
+                $,
                 ($): t_out.Value.state => {
                     switch ($[0]) {
                         case 'missing':
                             return _p.ss(
-                                $, 
+                                $,
                                 ($) => ({
                                     'option': 'missing',
                                     'value': ['nothing', null],
@@ -50,13 +51,13 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                             )
                         case 'include':
                             return _p.ss(
-                                $, 
+                                $,
                                 ($) => ({
                                     'option': 'include',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                         ({
                                             'path': _p_cc(
-                                                $['path'], 
+                                                $['path'],
                                                 ($) => ['text', ({
                                                     'delimiter': ['quote', null],
                                                     'value': $,
@@ -68,27 +69,27 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                             )
                         case 'concrete':
                             return _p.ss(
-                                $, 
+                                $,
                                 ($) => ({
                                     'option': 'concrete',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                         ({
                                             'type': _p_cc(
-                                                $['type'], 
+                                                $['type'],
                                                 ($) => ['state', _p.decide.state(
-                                                    $, 
+                                                    $,
                                                     ($): t_out.Value.state => {
                                                         switch ($[0]) {
                                                             case 'dictionary':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'dictionary',
                                                                         'value': ['dictionary', $.__d_map(
-                                                                            ($,id) => ['optional', $.__decide(
+                                                                            ($, id) => ['optional', $.__decide(
                                                                                 ($): t_out.Value.optional => ['set', Value(
                                                                                     $
-                                                                                )], 
+                                                                                )],
                                                                                 () => ['not set', null]
                                                                             )]
                                                                         )],
@@ -96,16 +97,16 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'group':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'group',
                                                                         'value': ['state', _p.decide.state(
-                                                                            $, 
+                                                                            $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
                                                                                     case 'concise':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'concise',
                                                                                                 'value': ['list', $.__l_map(
@@ -117,14 +118,14 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                         )
                                                                                     case 'verbose':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'verbose',
                                                                                                 'value': ['dictionary', $.__d_map(
-                                                                                                    ($,id) => ['optional', $.__decide(
+                                                                                                    ($, id) => ['optional', $.__decide(
                                                                                                         ($): t_out.Value.optional => ['set', Value(
                                                                                                             $
-                                                                                                        )], 
+                                                                                                        )],
                                                                                                         () => ['not set', null]
                                                                                                     )]
                                                                                                 )],
@@ -141,7 +142,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'list':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'list',
                                                                         'value': ['list', $.__l_map(
@@ -153,7 +154,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'nothing':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'nothing',
                                                                         'value': ['nothing', null],
@@ -161,16 +162,16 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'optional':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'optional',
                                                                         'value': ['state', _p.decide.state(
-                                                                            $, 
+                                                                            $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
                                                                                     case 'not set':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'not set',
                                                                                                 'value': ['nothing', null],
@@ -178,7 +179,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                         )
                                                                                     case 'set':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'set',
                                                                                                 'value': Value(
@@ -197,16 +198,16 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'state':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'state',
                                                                         'value': ['state', _p.decide.state(
-                                                                            $, 
+                                                                            $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
                                                                                     case 'missing data':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'missing data',
                                                                                                 'value': ['nothing', null],
@@ -214,20 +215,20 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                         )
                                                                                     case 'set':
                                                                                         return _p.ss(
-                                                                                            $, 
+                                                                                            $,
                                                                                             ($) => ({
                                                                                                 'option': 'set',
                                                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                                     ({
                                                                                                         'option': _p_cc(
-                                                                                                            $['option'], 
+                                                                                                            $['option'],
                                                                                                             ($) => ['text', ({
                                                                                                                 'delimiter': ['quote', null],
                                                                                                                 'value': $,
                                                                                                             })]
                                                                                                         ),
                                                                                                         'value': _p_cc(
-                                                                                                            $['value'], 
+                                                                                                            $['value'],
                                                                                                             ($) => Value(
                                                                                                                 $
                                                                                                             )
@@ -247,27 +248,27 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                 )
                                                             case 'text':
                                                                 return _p.ss(
-                                                                    $, 
+                                                                    $,
                                                                     ($) => ({
                                                                         'option': 'text',
                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                                                             ({
                                                                                 'value': _p_cc(
-                                                                                    $['value'], 
+                                                                                    $['value'],
                                                                                     ($) => ['text', ({
                                                                                         'delimiter': ['quote', null],
                                                                                         'value': $,
                                                                                     })]
                                                                                 ),
                                                                                 'delimiter': _p_cc(
-                                                                                    $['delimiter'], 
+                                                                                    $['delimiter'],
                                                                                     ($) => ['state', _p.decide.state(
-                                                                                        $, 
+                                                                                        $,
                                                                                         ($): t_out.Value.state => {
                                                                                             switch ($[0]) {
                                                                                                 case 'none':
                                                                                                     return _p.ss(
-                                                                                                        $, 
+                                                                                                        $,
                                                                                                         ($) => ({
                                                                                                             'option': 'none',
                                                                                                             'value': ['nothing', null],
@@ -275,7 +276,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                                     )
                                                                                                 case 'quote':
                                                                                                     return _p.ss(
-                                                                                                        $, 
+                                                                                                        $,
                                                                                                         ($) => ({
                                                                                                             'option': 'quote',
                                                                                                             'value': ['nothing', null],
@@ -283,7 +284,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                                     )
                                                                                                 case 'backtick':
                                                                                                     return _p.ss(
-                                                                                                        $, 
+                                                                                                        $,
                                                                                                         ($) => ({
                                                                                                             'option': 'backtick',
                                                                                                             'value': ['nothing', null],
@@ -323,19 +324,20 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
         ),
     })
 )]]
+
 export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
     ({
         'header': _p_cc(
-            $['header'], 
+            $['header'],
             ($) => ['optional', $.__decide(
                 ($): t_out.Value.optional => ['set', Value(
                     $
-                )], 
+                )],
                 () => ['not set', null]
             )]
         ),
         'content': _p_cc(
-            $['content'], 
+            $['content'],
             ($) => Value(
                 $
             )

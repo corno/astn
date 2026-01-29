@@ -39,7 +39,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "astn-core": "^0.5.13",
+    "astn-core": "^0.5.14",
     "liana-core": "^0.0.3",
     "pareto-core-dev": "^0.12.4",
     "pareto-fountain-pen": "^0.4.9",

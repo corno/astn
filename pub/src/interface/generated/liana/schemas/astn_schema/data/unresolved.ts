@@ -1,17 +1,17 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-import * as i__location from "../../../generic/location"
+import * as i__location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 
 export namespace Schemas_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace dictionary {
         
         export namespace D {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export type entry = Schema_Tree_
             
@@ -37,7 +37,7 @@ export namespace Text_Type_ {
     
     export namespace type_ {
         
-        export type location = i__location.Location
+        export type location = i__location.Relative_Location
         
         export namespace state {
             
@@ -68,13 +68,13 @@ export namespace Globals_ {
     
     export namespace text_types {
         
-        export type location = i__location.Location
+        export type location = i__location.Relative_Location
         
         export namespace dictionary {
             
             export namespace D {
                 
-                export type location = i__location.Location
+                export type location = i__location.Relative_Location
                 
                 export type entry = Text_Type_
                 
@@ -114,13 +114,13 @@ export type Type_ = {
 
 export namespace Types_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace dictionary {
         
         export namespace D {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export type entry = Type_
             
@@ -160,7 +160,7 @@ export type Schema_ = {
 
 export namespace Schema_Tree_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace state {
         
@@ -183,19 +183,19 @@ export type Schema_Tree_ = {
 
 export namespace Imports_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace dictionary {
         
         export namespace D {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export namespace entry {
                 
                 export namespace schema_set_child {
                     
-                    export type location = i__location.Location
+                    export type location = i__location.Relative_Location
                     
                     export type id = string
                     
@@ -248,13 +248,13 @@ export type Dictionary_ = {
 
 export namespace Group_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace dictionary {
         
         export namespace D {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export type entry = Type_Node_
             
@@ -278,13 +278,13 @@ export type Group_ = {
 
 export namespace Type_Node_ {
     
-    export type location = i__location.Location
+    export type location = i__location.Relative_Location
     
     export namespace state {
         
         export namespace component {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export namespace state {
                 
@@ -292,7 +292,7 @@ export namespace Type_Node_ {
                     
                     export namespace import_ {
                         
-                        export type location = i__location.Location
+                        export type location = i__location.Relative_Location
                         
                         export type id = string
                         
@@ -305,7 +305,7 @@ export namespace Type_Node_ {
                     
                     export namespace type_ {
                         
-                        export type location = i__location.Location
+                        export type location = i__location.Relative_Location
                         
                         export type id = string
                         
@@ -325,7 +325,7 @@ export namespace Type_Node_ {
                 
                 export namespace internal {
                     
-                    export type location = i__location.Location
+                    export type location = i__location.Relative_Location
                     
                     export type id = string
                     
@@ -338,7 +338,7 @@ export namespace Type_Node_ {
                 
                 export namespace internal_cyclic {
                     
-                    export type location = i__location.Location
+                    export type location = i__location.Relative_Location
                     
                     export type id = string
                     
@@ -383,13 +383,13 @@ export namespace Type_Node_ {
         
         export namespace state {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export namespace dictionary {
                 
                 export namespace D {
                     
-                    export type location = i__location.Location
+                    export type location = i__location.Relative_Location
                     
                     export type entry = Type_Node_
                     
@@ -413,13 +413,13 @@ export namespace Type_Node_ {
         
         export namespace text {
             
-            export type location = i__location.Location
+            export type location = i__location.Relative_Location
             
             export namespace state {
                 
                 export namespace global {
                     
-                    export type location = i__location.Location
+                    export type location = i__location.Relative_Location
                     
                     export type id = string
                     

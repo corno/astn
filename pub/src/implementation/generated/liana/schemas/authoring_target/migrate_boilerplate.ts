@@ -1,23 +1,24 @@
 
 import * as _p from "pareto-core/dist/transformer"
 
-import { 
-    _p_unreachable_code_path, 
+import {
+    _p_unreachable_code_path,
 } from "pareto-core/dist/unreachable_code_path"
 
-import { 
-    _p_cc, 
+import {
+    _p_cc,
 } from "pareto-core/dist/change_context"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/authoring_target/migrate_boilerplate"
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/authoring_target/data"
+
 export const Value: t_signatures.Value = ($) => ({
     'metadata': _p_cc(
-        $['metadata'], 
+        $['metadata'],
         ($) => ({
             'comments': _p_cc(
-                $['comments'], 
+                $['comments'],
                 ($) => $.__l_map(
                     ($) => $
                 )
@@ -25,41 +26,41 @@ export const Value: t_signatures.Value = ($) => ({
         })
     ),
     'data': _p_cc(
-        $['data'], 
+        $['data'],
         ($) => _p.decide.state(
-            $, 
+            $,
             ($): t_out.Value.data => {
                 switch ($[0]) {
                     case 'missing':
                         return _p.ss(
-                            $, 
+                            $,
                             ($) => ['missing', null]
                         )
                     case 'include':
                         return _p.ss(
-                            $, 
+                            $,
                             ($) => ['include', ({
                                 'path': _p_cc(
-                                    $['path'], 
+                                    $['path'],
                                     ($) => $
                                 ),
                             })]
                         )
                     case 'concrete':
                         return _p.ss(
-                            $, 
+                            $,
                             ($) => ['concrete', ({
                                 'type': _p_cc(
-                                    $['type'], 
+                                    $['type'],
                                     ($) => _p.decide.state(
-                                        $, 
+                                        $,
                                         ($): t_out.Value.data.concrete.type_ => {
                                             switch ($[0]) {
                                                 case 'dictionary':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['dictionary', $.__d_map(
-                                                            ($,id) => $.__o_map(
+                                                            ($, id) => $.__o_map(
                                                                 ($) => Value(
                                                                     $
                                                                 )
@@ -68,14 +69,14 @@ export const Value: t_signatures.Value = ($) => ({
                                                     )
                                                 case 'group':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['group', _p.decide.state(
-                                                            $, 
+                                                            $,
                                                             ($): t_out.Value.data.concrete.type_.group => {
                                                                 switch ($[0]) {
                                                                     case 'concise':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['concise', $.__l_map(
                                                                                 ($) => Value(
                                                                                     $
@@ -84,9 +85,9 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         )
                                                                     case 'verbose':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['verbose', $.__d_map(
-                                                                                ($,id) => $.__o_map(
+                                                                                ($, id) => $.__o_map(
                                                                                     ($) => Value(
                                                                                         $
                                                                                     )
@@ -103,7 +104,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     )
                                                 case 'list':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['list', $.__l_map(
                                                             ($) => Value(
                                                                 $
@@ -112,24 +113,24 @@ export const Value: t_signatures.Value = ($) => ({
                                                     )
                                                 case 'nothing':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['nothing', null]
                                                     )
                                                 case 'optional':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['optional', _p.decide.state(
-                                                            $, 
+                                                            $,
                                                             ($): t_out.Value.data.concrete.type_.optional => {
                                                                 switch ($[0]) {
                                                                     case 'not set':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['not set', null]
                                                                         )
                                                                     case 'set':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['set', Value(
                                                                                 $
                                                                             )]
@@ -144,26 +145,26 @@ export const Value: t_signatures.Value = ($) => ({
                                                     )
                                                 case 'state':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['state', _p.decide.state(
-                                                            $, 
+                                                            $,
                                                             ($): t_out.Value.data.concrete.type_.state => {
                                                                 switch ($[0]) {
                                                                     case 'missing data':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['missing data', null]
                                                                         )
                                                                     case 'set':
                                                                         return _p.ss(
-                                                                            $, 
+                                                                            $,
                                                                             ($) => ['set', ({
                                                                                 'option': _p_cc(
-                                                                                    $['option'], 
+                                                                                    $['option'],
                                                                                     ($) => $
                                                                                 ),
                                                                                 'value': _p_cc(
-                                                                                    $['value'], 
+                                                                                    $['value'],
                                                                                     ($) => Value(
                                                                                         $
                                                                                     )
@@ -180,31 +181,31 @@ export const Value: t_signatures.Value = ($) => ({
                                                     )
                                                 case 'text':
                                                     return _p.ss(
-                                                        $, 
+                                                        $,
                                                         ($) => ['text', ({
                                                             'value': _p_cc(
-                                                                $['value'], 
+                                                                $['value'],
                                                                 ($) => $
                                                             ),
                                                             'delimiter': _p_cc(
-                                                                $['delimiter'], 
+                                                                $['delimiter'],
                                                                 ($) => _p.decide.state(
-                                                                    $, 
+                                                                    $,
                                                                     ($): t_out.Value.data.concrete.type_.text.delimiter => {
                                                                         switch ($[0]) {
                                                                             case 'none':
                                                                                 return _p.ss(
-                                                                                    $, 
+                                                                                    $,
                                                                                     ($) => ['none', null]
                                                                                 )
                                                                             case 'quote':
                                                                                 return _p.ss(
-                                                                                    $, 
+                                                                                    $,
                                                                                     ($) => ['quote', null]
                                                                                 )
                                                                             case 'backtick':
                                                                                 return _p.ss(
-                                                                                    $, 
+                                                                                    $,
                                                                                     ($) => ['backtick', null]
                                                                                 )
                                                                             default:
@@ -236,9 +237,10 @@ export const Value: t_signatures.Value = ($) => ({
         )
     ),
 })
+
 export const Document: t_signatures.Document = ($) => ({
     'header': _p_cc(
-        $['header'], 
+        $['header'],
         ($) => $.__o_map(
             ($) => Value(
                 $
@@ -246,7 +248,7 @@ export const Document: t_signatures.Document = ($) => ({
         )
     ),
     'content': _p_cc(
-        $['content'], 
+        $['content'],
         ($) => Value(
             $
         )

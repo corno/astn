@@ -3,7 +3,7 @@ import * as _pi from "pareto-core/dist/interface"
 
 export namespace Location_ {
     
-    export type file = string
+    export type document_resource_identifier = string
     
     export type line = number
     
@@ -12,7 +12,7 @@ export namespace Location_ {
 }
 
 export type Location_ = {
-    readonly 'file': Location_.file
+    readonly 'document resource identifier': Location_.document_resource_identifier
     readonly 'line': Location_.line
     readonly 'column': Location_.column
 }
