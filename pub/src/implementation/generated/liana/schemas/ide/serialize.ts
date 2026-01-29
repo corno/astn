@@ -1,10 +1,6 @@
 
 import * as _p from "pareto-core/dist/serializer"
 
-import {
-    _p_unreachable_code_path,
-} from "pareto-core/dist/unreachable_code_path"
-
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/ide/serialize"
 
 import * as v_serialize from "astn-core/dist/implementation/manual/schemas/sealed_target/serializers"

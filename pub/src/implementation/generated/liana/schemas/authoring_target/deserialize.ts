@@ -1,10 +1,6 @@
 
 import * as _p from "pareto-core/dist/deserializer"
 
-import {
-    _p_unreachable_code_path,
-} from "pareto-core/dist/unreachable_code_path"
-
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/authoring_target/deserialize"
 
 import * as v_deserialize from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"
