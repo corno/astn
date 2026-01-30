@@ -90,7 +90,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     ),
 })
 
-export const Type: t_signatures.Type = ($) => ({
+export const Module: t_signatures.Module = ($) => ({
     'node': _p_cc(
         $['node'],
         ($) => Value(
@@ -99,7 +99,7 @@ export const Type: t_signatures.Type = ($) => ({
     ),
 })
 
-export const Types: t_signatures.Types = ($) => ({
+export const Modules: t_signatures.Modules = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -108,7 +108,7 @@ export const Types: t_signatures.Types = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Type(
+            'l entry': Module(
                 $
             ),
             'l location': {
@@ -135,7 +135,7 @@ export const Schema: t_signatures.Schema = ($) => ({
     ),
     'types': _p_cc(
         $['types'],
-        ($) => Types(
+        ($) => Modules(
             $
         )
     ),

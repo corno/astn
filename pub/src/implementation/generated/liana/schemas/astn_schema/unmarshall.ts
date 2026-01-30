@@ -153,7 +153,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
     })
 )
 
-export const Type: t_signatures.Type = ($, abort) => _p_cc(
+export const Module: t_signatures.Module = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -178,7 +178,7 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
     })
 )
 
-export const Types: t_signatures.Types = ($, abort) => ({
+export const Modules: t_signatures.Modules = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -193,7 +193,7 @@ export const Types: t_signatures.Types = ($, abort) => ({
             'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'l entry': Type(
+            'l entry': Module(
                 $,
                 ($) => abort(
                     $
@@ -246,7 +246,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_cc(
                     ['no such entry', "types"]
                 )
             ),
-            ($) => Types(
+            ($) => Modules(
                 $,
                 ($) => abort(
                     $

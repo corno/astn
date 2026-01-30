@@ -25,14 +25,14 @@ export const Globals: t_signatures.Globals = ($) => v_serialize.Document(
     )
 )
 
-export const Type: t_signatures.Type = ($) => v_serialize.Document(
-    v_marshall.Type(
+export const Module: t_signatures.Module = ($) => v_serialize.Document(
+    v_marshall.Module(
         $
     )
 )
 
-export const Types: t_signatures.Types = ($) => v_serialize.Document(
-    v_marshall.Types(
+export const Modules: t_signatures.Modules = ($) => v_serialize.Document(
+    v_marshall.Modules(
         $
     )
 )

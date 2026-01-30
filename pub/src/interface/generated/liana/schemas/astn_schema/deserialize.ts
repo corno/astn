@@ -86,11 +86,11 @@ export type Globals_ = (
     },
 ) => Globals_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
     export type I = string
     
-    export type O = i_out.Type
+    export type O = i_out.Module
     
     export type E = i_generic.Error
     
@@ -104,20 +104,20 @@ export namespace Type_ {
     
 }
 
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
     parameters: {
-        readonly 'document resource identifier': Type_.P.document_resource_identifier
-        readonly 'tab size': Type_.P.tab_size
+        readonly 'document resource identifier': Module_.P.document_resource_identifier
+        readonly 'tab size': Module_.P.tab_size
     },
-) => Type_.O
+) => Module_.O
 
-export namespace Types_ {
+export namespace Modules_ {
     
     export type I = string
     
-    export type O = i_out.Types
+    export type O = i_out.Modules
     
     export type E = i_generic.Error
     
@@ -131,14 +131,14 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-    abort: _pi.Abort<Types_.E>,
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
     parameters: {
-        readonly 'document resource identifier': Types_.P.document_resource_identifier
-        readonly 'tab size': Types_.P.tab_size
+        readonly 'document resource identifier': Modules_.P.document_resource_identifier
+        readonly 'tab size': Modules_.P.tab_size
     },
-) => Types_.O
+) => Modules_.O
 
 export namespace Schema_ {
     
@@ -306,8 +306,8 @@ export {
     Schemas_ as Schemas, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
     Imports_ as Imports, 

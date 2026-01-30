@@ -102,17 +102,17 @@ export type Globals_ = {
     readonly 'text types': Globals_.text_types
 }
 
-export namespace Type_ {
+export namespace Module_ {
     
     export type node = Value_
     
 }
 
-export type Type_ = {
-    readonly 'node': Type_.node
+export type Module_ = {
+    readonly 'node': Module_.node
 }
 
-export namespace Types_ {
+export namespace Modules_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -122,7 +122,7 @@ export namespace Types_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Type_
+            export type l_entry = Module_
             
         }
         
@@ -137,9 +137,9 @@ export namespace Types_ {
     
 }
 
-export type Types_ = {
-    readonly 'l location': Types_.l_location
-    readonly 'l dictionary': Types_.l_dictionary
+export type Modules_ = {
+    readonly 'l location': Modules_.l_location
+    readonly 'l dictionary': Modules_.l_dictionary
 }
 
 export namespace Schema_ {
@@ -148,7 +148,7 @@ export namespace Schema_ {
     
     export type globals = Globals_
     
-    export type types = Types_
+    export type types = Modules_
     
 }
 
@@ -468,8 +468,8 @@ export {
     Schemas_ as Schemas, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
     Imports_ as Imports, 

@@ -45,23 +45,23 @@ export type Globals_ = {
     readonly 'text types': Globals_.text_types
 }
 
-export namespace Type_ {
+export namespace Module_ {
     
     export type node = Value_
     
 }
 
-export type Type_ = {
-    readonly 'node': Type_.node
+export type Module_ = {
+    readonly 'node': Module_.node
 }
 
-export namespace Types_ {
+export namespace Modules_ {
     
-    export type D = Type_
+    export type D = Module_
     
 }
 
-export type Types_ = _pi.Dictionary<Types_.D>
+export type Modules_ = _pi.Dictionary<Modules_.D>
 
 export namespace Schema_ {
     
@@ -69,7 +69,7 @@ export namespace Schema_ {
     
     export type globals = Globals_
     
-    export type types = Types_
+    export type types = Modules_
     
 }
 
@@ -166,7 +166,7 @@ export namespace Value_ {
             
             export namespace type_ {
                 
-                export type l_entry = Types_.D
+                export type l_entry = Modules_.D
                 
                 export type l_id = string
                 
@@ -186,7 +186,7 @@ export namespace Value_ {
         
         export namespace internal {
             
-            export type l_entry = Types_.D
+            export type l_entry = Modules_.D
             
             export type l_id = string
             
@@ -199,7 +199,7 @@ export namespace Value_ {
         
         export namespace internal_cyclic {
             
-            export type l_entry = _pi.Circular_Dependency<Types_.D>
+            export type l_entry = _pi.Circular_Dependency<Modules_.D>
             
             export type l_id = string
             
@@ -282,8 +282,8 @@ export {
     Schemas_ as Schemas, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
     Imports_ as Imports, 

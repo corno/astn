@@ -51,25 +51,9 @@ export type Globals_ = (
     context: Globals_.I,
 ) => Globals_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
-    export type I = i_in.Type
-    
-    export type O = string
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Type_ = (
-    context: Type_.I,
-) => Type_.O
-
-export namespace Types_ {
-    
-    export type I = i_in.Types
+    export type I = i_in.Module
     
     export type O = string
     
@@ -79,9 +63,25 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-) => Types_.O
+export type Module_ = (
+    context: Module_.I,
+) => Module_.O
+
+export namespace Modules_ {
+    
+    export type I = i_in.Modules
+    
+    export type O = string
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Modules_ = (
+    context: Modules_.I,
+) => Modules_.O
 
 export namespace Schema_ {
     
@@ -183,8 +183,8 @@ export {
     Schemas_ as Schemas, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
     Imports_ as Imports, 

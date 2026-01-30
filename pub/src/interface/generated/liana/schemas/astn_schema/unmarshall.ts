@@ -64,11 +64,11 @@ export type Globals_ = (
     abort: _pi.Abort<Globals_.E>,
 ) => Globals_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Type
+    export type O = i_out.Module
     
     export type E = i_generic.Error
     
@@ -78,16 +78,16 @@ export namespace Type_ {
     
 }
 
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
-) => Type_.O
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
+) => Module_.O
 
-export namespace Types_ {
+export namespace Modules_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Types
+    export type O = i_out.Modules
     
     export type E = i_generic.Error
     
@@ -97,10 +97,10 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-    abort: _pi.Abort<Types_.E>,
-) => Types_.O
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
+) => Modules_.O
 
 export namespace Schema_ {
     
@@ -220,8 +220,8 @@ export {
     Schemas_ as Schemas, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
     Imports_ as Imports, 

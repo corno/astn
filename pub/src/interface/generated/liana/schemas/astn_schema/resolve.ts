@@ -59,13 +59,13 @@ export namespace Group_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -114,13 +114,13 @@ export namespace Dictionary_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -169,13 +169,13 @@ export namespace Value_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -214,23 +214,23 @@ export type Value_ = (
     },
 ) => Value_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
-    export type I = i_unresolved.Type
+    export type I = i_unresolved.Module
     
-    export type O = i_resolved.Type
+    export type O = i_resolved.Module
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -256,18 +256,18 @@ export namespace Type_ {
     
 }
 
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_types>
     },
     parameters: {
-        readonly 'globals': Type_.P.globals
-        readonly 'imports': Type_.P.imports
+        readonly 'globals': Module_.P.globals
+        readonly 'imports': Module_.P.imports
     },
-) => Type_.O
+) => Module_.O
 
 export namespace Schemas_ {
     
@@ -385,11 +385,11 @@ export type Imports_ = (
     parameters: null,
 ) => Imports_.O
 
-export namespace Types_ {
+export namespace Modules_ {
     
-    export type I = i_unresolved.Types
+    export type I = i_unresolved.Modules
     
-    export type O = i_resolved.Types
+    export type O = i_resolved.Modules
     
     export type E = i_generic.Error
     
@@ -415,15 +415,15 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-    abort: _pi.Abort<Types_.E>,
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
     lookups: null,
     parameters: {
-        readonly 'globals': Types_.P.globals
-        readonly 'imports': Types_.P.imports
+        readonly 'globals': Modules_.P.globals
+        readonly 'imports': Modules_.P.imports
     },
-) => Types_.O
+) => Modules_.O
 
 export { 
     Text_Type_ as Text_Type, 
@@ -431,10 +431,10 @@ export {
     Group_ as Group, 
     Dictionary_ as Dictionary, 
     Value_ as Value, 
-    Type_ as Type, 
+    Module_ as Module, 
     Schemas_ as Schemas, 
     Schema_Tree_ as Schema_Tree, 
     Schema_ as Schema, 
     Imports_ as Imports, 
-    Types_ as Types, 
+    Modules_ as Modules, 
 }

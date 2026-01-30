@@ -69,7 +69,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
     }
 )]]
 
-export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'node': _p_cc(
             $['node'],
@@ -80,9 +80,9 @@ export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionar
     }
 )]]
 
-export const Types: t_signatures.Types = ($) => ['dictionary', _p.dictionary.map(
+export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
     $,
-    ($, id) => Type(
+    ($, id) => Module(
         $
     )
 )]
@@ -103,7 +103,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
         ),
         'types': _p_cc(
             $['types'],
-            ($) => Types(
+            ($) => Modules(
                 $
             )
         ),

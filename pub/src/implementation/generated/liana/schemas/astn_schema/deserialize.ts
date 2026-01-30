@@ -55,7 +55,7 @@ export const Globals: t_signatures.Globals = ($, abort, $p) => v_unmarshall.Glob
     )
 )
 
-export const Type: t_signatures.Type = ($, abort, $p) => v_unmarshall.Type(
+export const Module: t_signatures.Module = ($, abort, $p) => v_unmarshall.Module(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -71,7 +71,7 @@ export const Type: t_signatures.Type = ($, abort, $p) => v_unmarshall.Type(
     )
 )
 
-export const Types: t_signatures.Types = ($, abort, $p) => v_unmarshall.Types(
+export const Modules: t_signatures.Modules = ($, abort, $p) => v_unmarshall.Modules(
     v_deserialize.Document(
         $,
         ($) => abort(

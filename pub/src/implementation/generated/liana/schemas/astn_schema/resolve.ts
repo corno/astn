@@ -11,7 +11,7 @@ import * as t_out from "../../../../../interface/generated/liana/schemas/astn_sc
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/resolve"
 
-export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
+export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_node = _p_cc(
@@ -41,11 +41,11 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
     }
 )
 
-export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Types.D => _p_cc(
+    ($, id, $a, $c): t_out.Modules.D => _p_cc(
         $['l entry'],
-        ($) => Type(
+        ($) => Module(
             $,
             ($) => abort(
                 $
@@ -500,7 +500,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
         
         const prop_types = _p_cc(
             $['types'],
-            ($) => Types(
+            ($) => Modules(
                 $,
                 ($) => abort(
                     $
