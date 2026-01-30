@@ -9,6 +9,8 @@ import {
     _p_cc,
 } from "pareto-core/dist/change_context"
 
+import * as _pdev from "pareto-core-dev"
+
 import * as t_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/resolve"
@@ -18,7 +20,27 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Node(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'noncircular sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                    'possibly circular dependent sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                {
+                    'globals': _pdev.implement_me(
+                        "parameter"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "parameter"
+                    ),
+                }
             )
         )
         return {
@@ -66,7 +88,27 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Node(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'noncircular sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                    'possibly circular dependent sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                {
+                    'globals': _pdev.implement_me(
+                        "parameter"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "parameter"
+                    ),
+                }
             )
         )
         
@@ -95,19 +137,48 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
         
         const prop_imports = _p_cc(
             $['imports'],
-            ($) => _p_unreachable_code_path(
+            ($) => Imports(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'sibling schemas': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                null
             )
         )
         
         const prop_globals = _p_cc(
             $['globals'],
-            ($) => _p_unreachable_code_path(
+            ($) => Globals(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                null
             )
         )
         
         const prop_types = _p_cc(
             $['types'],
-            ($) => _p_unreachable_code_path(
+            ($) => Types(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'globals': _pdev.implement_me(
+                        "optional"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "optional"
+                    ),
+                }
             )
         )
         return {
