@@ -209,14 +209,26 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                 
                                                 const prop_import = _p_cc(
                                                     $['import'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 
                                                 const prop_type = _p_cc(
                                                     $['type'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 return {
                                                     'import': prop_import,
@@ -228,14 +240,26 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 case 'internal':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['internal', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 case 'internal cyclic':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal cyclic', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['internal cyclic', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 default:
                                     return _p.au(
@@ -357,8 +381,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 case 'global':
                                     return _p.ss(
                                         $,
-                                        ($) => ['global', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['global', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 case 'local':
                                     return _p.ss(
@@ -517,13 +547,23 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                 
                 const prop_schema_set_child = _p_cc(
                     $['schema set child'],
-                    ($) => _p_unreachable_code_path(
-                    )
+                    ($) => ({
+                        'l entry': _pdev.implement_me(
+                            "sss"
+                        ),
+                        'l id': _pdev.implement_me(
+                            "sss"
+                        ),
+                        'l up steps': _pdev.implement_me(
+                            "sss"
+                        ),
+                    })
                 )
                 
                 const prop_schema = _p_cc(
                     $['schema'],
-                    ($) => _p_unreachable_code_path(
+                    ($) => _pdev.implement_me(
+                        "SDFS"
                     )
                 )
                 return {
