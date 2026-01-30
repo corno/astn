@@ -42,7 +42,7 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
 )
 
 export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.resolve(
-    $['l dictionary'],
+    $['l value'],
     ($, id, $a, $c): t_out.Types.D => _p_cc(
         $['l entry'],
         ($) => Type(
@@ -72,7 +72,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.reso
         const prop_text_types = _p_cc(
             $['text types'],
             ($) => _p.dictionary.resolve(
-                $['l dictionary'],
+                $['l value'],
                 ($, id, $a, $c): t_out.Globals.text_types.D => _p_cc(
                     $['l entry'],
                     ($) => Text_Type(
@@ -98,7 +98,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.
         const prop_type = _p_cc(
             $['type'],
             ($) => _p.decide.state(
-                $['l state'],
+                $['l value'],
                 ($): t_out.Text_Type.type_ => {
                     switch ($[0]) {
                         case 'multi line':
@@ -126,7 +126,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.
 )
 
 export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.resolve(
-    $['l dictionary'],
+    $['l value'],
     ($, id, $a, $c): t_out.Group.D => _p_cc(
         $['l entry'],
         ($) => Type_Node(
@@ -187,14 +187,14 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
 )
 
 export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide.state(
-    $['l state'],
+    $['l value'],
     ($): t_out.Type_Node => {
         switch ($[0]) {
             case 'component':
                 return _p.ss(
                     $,
                     ($) => ['component', _p.decide.state(
-                        $['l state'],
+                        $['l value'],
                         ($): t_out.Type_Node.component => {
                             switch ($[0]) {
                                 case 'external':
@@ -209,7 +209,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                         'l entry': _pdev.implement_me(
                                                             "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': $['l id'],
+                                                        'l id': $['l value'],
                                                     })
                                                 )
                                                 
@@ -219,7 +219,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                         'l entry': _pdev.implement_me(
                                                             "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': $['l id'],
+                                                        'l id': $['l value'],
                                                     })
                                                 )
                                                 return {
@@ -236,7 +236,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                             'l entry': _pdev.implement_me(
                                                 "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': $['l id'],
+                                            'l id': $['l value'],
                                         }]
                                     )
                                 case 'internal cyclic':
@@ -246,7 +246,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                             'l entry': _pdev.implement_me(
                                                 "IM: FIXME CYCLIC ENTRY"
                                             ),
-                                            'l id': $['l id'],
+                                            'l id': $['l value'],
                                         }]
                                     )
                                 default:
@@ -345,7 +345,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                 return _p.ss(
                     $,
                     ($) => ['state', _p.dictionary.resolve(
-                        $['l dictionary'],
+                        $['l value'],
                         ($, id, $a, $c): t_out.Type_Node.state.D => _p_cc(
                             $['l entry'],
                             ($) => Type_Node(
@@ -363,7 +363,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                 return _p.ss(
                     $,
                     ($) => ['text', _p.decide.state(
-                        $['l state'],
+                        $['l value'],
                         ($): t_out.Type_Node.text => {
                             switch ($[0]) {
                                 case 'global':
@@ -373,7 +373,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                             'l entry': _pdev.implement_me(
                                                 "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': $['l id'],
+                                            'l id': $['l value'],
                                         }]
                                     )
                                 case 'local':
@@ -405,7 +405,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
 )
 
 export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.resolve(
-    $['l dictionary'],
+    $['l value'],
     ($, id, $a, $c): t_out.Schemas.D => _p_cc(
         $['l entry'],
         ($) => Schema_Tree(
@@ -424,7 +424,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
 )
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.decide.state(
-    $['l state'],
+    $['l value'],
     ($): t_out.Schema_Tree => {
         switch ($[0]) {
             case 'schema':
@@ -525,7 +525,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
 )
 
 export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.resolve(
-    $['l dictionary'],
+    $['l value'],
     ($, id, $a, $c): t_out.Imports.D => _p_cc(
         $['l entry'],
         ($) => _p.group.resolve(
@@ -537,7 +537,7 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                         'l entry': _pdev.implement_me(
                             "IM: FIXME ENTRY FROM STACK"
                         ),
-                        'l id': $['l id'],
+                        'l id': $['l value'],
                         'l up steps': _pdev.implement_me(
                             "IM: FIXME UPSTEPS"
                         ),
