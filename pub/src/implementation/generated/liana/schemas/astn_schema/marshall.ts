@@ -146,7 +146,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
                 $['schema set child'],
                 ($) => ['text', {
                     'delimiter': ['backtick', null],
-                    'value': $['id'],
+                    'value': $['l id'],
                 }]
             ),
             'schema': _p_cc(
@@ -207,14 +207,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                             $['import'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                         'type': _p_cc(
                                                             $['type'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                     }
@@ -228,7 +228,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'internal',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -239,7 +239,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'internal cyclic',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -335,7 +335,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'global',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )

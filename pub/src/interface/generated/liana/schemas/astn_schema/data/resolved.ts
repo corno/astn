@@ -97,18 +97,18 @@ export namespace Imports_ {
         
         export namespace schema_set_child {
             
-            export type entry = Schemas_.D
+            export type l_entry = Schemas_.D
             
-            export type id = string
+            export type l_id = string
             
-            export type up_steps = number
+            export type l_up_steps = number
             
         }
         
         export type schema_set_child = {
-            readonly 'entry': schema_set_child.entry
-            readonly 'id': schema_set_child.id
-            readonly 'up steps': schema_set_child.up_steps
+            readonly 'l entry': schema_set_child.l_entry
+            readonly 'l id': schema_set_child.l_id
+            readonly 'l up steps': schema_set_child.l_up_steps
         }
         
         export type schema = Schema_
@@ -153,28 +153,28 @@ export namespace Type_Node_ {
             
             export namespace import_ {
                 
-                export type entry = Imports_.D
+                export type l_entry = Imports_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type import_ = {
-                readonly 'entry': import_.entry
-                readonly 'id': import_.id
+                readonly 'l entry': import_.l_entry
+                readonly 'l id': import_.l_id
             }
             
             export namespace type_ {
                 
-                export type entry = Types_.D
+                export type l_entry = Types_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type type_ = {
-                readonly 'entry': type_.entry
-                readonly 'id': type_.id
+                readonly 'l entry': type_.l_entry
+                readonly 'l id': type_.l_id
             }
             
         }
@@ -186,28 +186,28 @@ export namespace Type_Node_ {
         
         export namespace internal {
             
-            export type entry = Types_.D
+            export type l_entry = Types_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type internal = {
-            readonly 'entry': internal.entry
-            readonly 'id': internal.id
+            readonly 'l entry': internal.l_entry
+            readonly 'l id': internal.l_id
         }
         
         export namespace internal_cyclic {
             
-            export type entry = _pi.Circular_Dependency<Types_.D>
+            export type l_entry = _pi.Circular_Dependency<Types_.D>
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type internal_cyclic = {
-            readonly 'entry': internal_cyclic.entry
-            readonly 'id': internal_cyclic.id
+            readonly 'l entry': internal_cyclic.l_entry
+            readonly 'l id': internal_cyclic.l_id
         }
         
     }
@@ -247,15 +247,15 @@ export namespace Type_Node_ {
         
         export namespace global {
             
-            export type entry = Globals_.text_types.D
+            export type l_entry = Globals_.text_types.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type global = {
-            readonly 'entry': global.entry
-            readonly 'id': global.id
+            readonly 'l entry': global.l_entry
+            readonly 'l id': global.l_id
         }
         
         export type local = Text_Type_

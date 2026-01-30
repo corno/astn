@@ -10,17 +10,17 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 import * as t_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
 export const Schemas: t_signatures.Schemas = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'dictionary': $.__d_map(
+    'l dictionary': $.__d_map(
         ($, id) => ({
-            'entry': Schema_Tree(
+            'l entry': Schema_Tree(
                 $
             ),
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
@@ -33,14 +33,14 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
     'type': _p_cc(
         $['type'],
         ($) => ({
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
             },
-            'state': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Text_Type.type_.state => {
+                ($): t_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
                             return _p.ss(
@@ -67,17 +67,17 @@ export const Globals: t_signatures.Globals = ($) => ({
     'text types': _p_cc(
         $['text types'],
         ($) => ({
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
             },
-            'dictionary': $.__d_map(
+            'l dictionary': $.__d_map(
                 ($, id) => ({
-                    'entry': Text_Type(
+                    'l entry': Text_Type(
                         $
                     ),
-                    'location': {
+                    'l location': {
                         'document resource identifier': "implement me",
                         'line': 42,
                         'column': 42,
@@ -98,17 +98,17 @@ export const Type: t_signatures.Type = ($) => ({
 })
 
 export const Types: t_signatures.Types = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'dictionary': $.__d_map(
+    'l dictionary': $.__d_map(
         ($, id) => ({
-            'entry': Type(
+            'l entry': Type(
                 $
             ),
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
@@ -139,14 +139,14 @@ export const Schema: t_signatures.Schema = ($) => ({
 })
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'state': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Schema_Tree.state => {
+        ($): t_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set':
                     return _p.ss(
@@ -172,23 +172,23 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
 })
 
 export const Imports: t_signatures.Imports = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'dictionary': $.__d_map(
+    'l dictionary': $.__d_map(
         ($, id) => ({
-            'entry': {
+            'l entry': {
                 'schema set child': _p_cc(
                     $['schema set child'],
                     ($) => ({
-                        'location': {
+                        'l location': {
                             'document resource identifier': "implement me",
                             'line': 42,
                             'column': 42,
                         },
-                        'id': $['id'],
+                        'l id': $['l id'],
                     })
                 ),
                 'schema': _p_cc(
@@ -196,7 +196,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                     ($) => null
                 ),
             },
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
@@ -219,17 +219,17 @@ export const Dictionary: t_signatures.Dictionary = ($) => ({
 })
 
 export const Group: t_signatures.Group = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'dictionary': $.__d_map(
+    'l dictionary': $.__d_map(
         ($, id) => ({
-            'entry': Type_Node(
+            'l entry': Type_Node(
                 $
             ),
-            'location': {
+            'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
@@ -239,27 +239,27 @@ export const Group: t_signatures.Group = ($) => ({
 })
 
 export const Type_Node: t_signatures.Type_Node = ($) => ({
-    'location': {
+    'l location': {
         'document resource identifier': "implement me",
         'line': 42,
         'column': 42,
     },
-    'state': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Type_Node.state => {
+        ($): t_out.Type_Node.l_state => {
             switch ($[0]) {
                 case 'component':
                     return _p.ss(
                         $,
                         ($) => ['component', {
-                            'location': {
+                            'l location': {
                                 'document resource identifier': "implement me",
                                 'line': 42,
                                 'column': 42,
                             },
-                            'state': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.state.component.state => {
+                                ($): t_out.Type_Node.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
                                             return _p.ss(
@@ -268,23 +268,23 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                     'import': _p_cc(
                                                         $['import'],
                                                         ($) => ({
-                                                            'location': {
+                                                            'l location': {
                                                                 'document resource identifier': "implement me",
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'id': $['id'],
+                                                            'l id': $['l id'],
                                                         })
                                                     ),
                                                     'type': _p_cc(
                                                         $['type'],
                                                         ($) => ({
-                                                            'location': {
+                                                            'l location': {
                                                                 'document resource identifier': "implement me",
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'id': $['id'],
+                                                            'l id': $['l id'],
                                                         })
                                                     ),
                                                 }]
@@ -293,24 +293,24 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                             return _p.ss(
                                                 $,
                                                 ($) => ['internal', {
-                                                    'location': {
+                                                    'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'id': $['id'],
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         case 'internal cyclic':
                                             return _p.ss(
                                                 $,
                                                 ($) => ['internal cyclic', {
-                                                    'location': {
+                                                    'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'id': $['id'],
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         default:
@@ -364,17 +364,17 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['state', {
-                            'location': {
+                            'l location': {
                                 'document resource identifier': "implement me",
                                 'line': 42,
                                 'column': 42,
                             },
-                            'dictionary': $.__d_map(
+                            'l dictionary': $.__d_map(
                                 ($, id) => ({
-                                    'entry': Type_Node(
+                                    'l entry': Type_Node(
                                         $
                                     ),
-                                    'location': {
+                                    'l location': {
                                         'document resource identifier': "implement me",
                                         'line': 42,
                                         'column': 42,
@@ -387,25 +387,25 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['text', {
-                            'location': {
+                            'l location': {
                                 'document resource identifier': "implement me",
                                 'line': 42,
                                 'column': 42,
                             },
-                            'state': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.state.text.state => {
+                                ($): t_out.Type_Node.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
                                                 $,
                                                 ($) => ['global', {
-                                                    'location': {
+                                                    'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'id': $['id'],
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         case 'local':
