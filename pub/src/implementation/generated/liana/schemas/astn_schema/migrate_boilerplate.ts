@@ -15,7 +15,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Schema_Tree(
@@ -39,9 +39,9 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Text_Type.type_.l_value => {
+                ($): t_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
                             return _p.ss(
@@ -73,7 +73,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.dictionary.map(
+            'l dictionary': _p.dictionary.map(
                 $,
                 ($, id) => ({
                     'l entry': Text_Type(
@@ -105,7 +105,7 @@ export const Types: t_signatures.Types = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Type(
@@ -147,9 +147,9 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Schema_Tree.l_value => {
+        ($): t_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set':
                     return _p.ss(
@@ -180,7 +180,7 @@ export const Imports: t_signatures.Imports = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -192,7 +192,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                             'line': 42,
                             'column': 42,
                         },
-                        'l value': $['l id'],
+                        'l reference': $['l id'],
                     })
                 ),
                 'schema': _p_cc(
@@ -228,7 +228,7 @@ export const Group: t_signatures.Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Type_Node(
@@ -249,9 +249,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Type_Node.l_value => {
+        ($): t_out.Type_Node.l_state => {
             switch ($[0]) {
                 case 'component':
                     return _p.ss(
@@ -262,9 +262,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_value.component.l_value => {
+                                ($): t_out.Type_Node.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
                                             return _p.ss(
@@ -278,7 +278,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                     'type': _p_cc(
@@ -289,7 +289,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                 }]
@@ -303,7 +303,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'internal cyclic':
@@ -315,7 +315,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         default:
@@ -374,7 +374,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.dictionary.map(
+                            'l dictionary': _p.dictionary.map(
                                 $,
                                 ($, id) => ({
                                     'l entry': Type_Node(
@@ -398,9 +398,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_value.text.l_value => {
+                                ($): t_out.Type_Node.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -411,7 +411,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'local':
