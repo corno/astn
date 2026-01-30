@@ -23,10 +23,10 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
                 ),
                 {
                     'noncircular sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                     'possibly circular dependent sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 {
@@ -52,10 +52,10 @@ export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.res
             ),
             {
                 'noncircular sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
                 'possibly circular dependent sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
             },
             {
@@ -136,10 +136,10 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
             ),
             {
                 'noncircular sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
                 'possibly circular dependent sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
             },
             {
@@ -162,10 +162,10 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                 ),
                 {
                     'noncircular sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                     'possibly circular dependent sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 {
@@ -207,11 +207,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                     $['import'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 
@@ -219,11 +217,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                     $['type'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 return {
@@ -238,11 +234,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['internal', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 case 'internal cyclic':
@@ -250,11 +244,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['internal cyclic', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME CYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 default:
@@ -275,10 +267,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                         ),
                         {
                             'noncircular sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'possibly circular dependent sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
@@ -297,10 +289,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                         ),
                         {
                             'noncircular sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'possibly circular dependent sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
@@ -379,11 +371,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['global', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 case 'local':
@@ -425,7 +415,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
             ),
             {
                 'sibling schemas': _pdev.implement_me(
-                    'stack'
+                    "IM: stack"
                 ),
             },
             null
@@ -447,7 +437,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                         ),
                         {
                             'sibling schemas': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         null
@@ -463,7 +453,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                         ),
                         {
                             'sibling schemas': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         null
@@ -489,7 +479,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                 ),
                 {
                     'sibling schemas': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 null
@@ -545,13 +535,11 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                     $['schema set child'],
                     ($) => ({
                         'l entry': _pdev.implement_me(
-                            "sss"
+                            "IM: FIXME ENTRY FROM STACK"
                         ),
-                        'l id': _pdev.implement_me(
-                            "sss"
-                        ),
+                        'l id': $['l id'],
                         'l up steps': _pdev.implement_me(
-                            "sss"
+                            "IM: FIXME UPSTEPS"
                         ),
                     })
                 )
@@ -559,7 +547,7 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                 const prop_schema = _p_cc(
                     $['schema'],
                     ($) => _pdev.implement_me(
-                        "SDFS"
+                        "IM: REFERENCE"
                     )
                 )
                 return {
