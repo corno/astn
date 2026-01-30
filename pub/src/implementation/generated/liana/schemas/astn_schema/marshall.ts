@@ -73,7 +73,7 @@ export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionar
     {
         'node': _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $
             )
         ),
@@ -165,7 +165,7 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
     {
         'node': _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $
             )
         ),
@@ -183,12 +183,12 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
 
 export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map(
     $,
-    ($, id) => Type_Node(
+    ($, id) => Value(
         $
     )
 )]
 
-export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.state(
+export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
@@ -286,7 +286,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                             {
                                 'node': _p_cc(
                                     $['node'],
-                                    ($) => Type_Node(
+                                    ($) => Value(
                                         $
                                     )
                                 ),
@@ -307,7 +307,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                     $,
                     ($) => ({
                         'option': 'optional',
-                        'value': Type_Node(
+                        'value': Value(
                             $
                         ),
                     })
@@ -319,7 +319,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                         'option': 'state',
                         'value': ['dictionary', _p.dictionary.map(
                             $,
-                            ($, id) => Type_Node(
+                            ($, id) => Value(
                                 $
                             )
                         )],

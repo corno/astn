@@ -163,9 +163,9 @@ export type Group_ = (
     context: Group_.I,
 ) => Group_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
-    export type I = i_in.Type_Node
+    export type I = i_in.Value
     
     export type O = string
     
@@ -175,9 +175,9 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-) => Type_Node_.O
+export type Value_ = (
+    context: Value_.I,
+) => Value_.O
 
 export { 
     Schemas_ as Schemas, 
@@ -190,5 +190,5 @@ export {
     Imports_ as Imports, 
     Dictionary_ as Dictionary, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
 }

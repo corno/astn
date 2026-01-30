@@ -47,7 +47,7 @@ export type Globals_ = {
 
 export namespace Type_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -126,7 +126,7 @@ export type Imports_ = _pi.Dictionary<Imports_.D>
 
 export namespace Dictionary_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
     export type ordered = boolean
     
@@ -139,13 +139,13 @@ export type Dictionary_ = {
 
 export namespace Group_ {
     
-    export type D = Type_Node_
+    export type D = Value_
     
 }
 
 export type Group_ = _pi.Dictionary<Group_.D>
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export namespace component {
         
@@ -223,7 +223,7 @@ export namespace Type_Node_ {
     
     export namespace list {
         
-        export type node = Type_Node_
+        export type node = Value_
         
     }
     
@@ -233,11 +233,11 @@ export namespace Type_Node_ {
     
     export type nothing = null
     
-    export type optional = Type_Node_
+    export type optional = Value_
     
     export namespace state {
         
-        export type D = Type_Node_
+        export type D = Value_
         
     }
     
@@ -268,15 +268,15 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = 
-    | readonly ['component', Type_Node_.component]
-    | readonly ['dictionary', Type_Node_.dictionary]
-    | readonly ['group', Type_Node_.group]
-    | readonly ['list', Type_Node_.list]
-    | readonly ['nothing', Type_Node_.nothing]
-    | readonly ['optional', Type_Node_.optional]
-    | readonly ['state', Type_Node_.state]
-    | readonly ['text', Type_Node_.text]
+export type Value_ = 
+    | readonly ['component', Value_.component]
+    | readonly ['dictionary', Value_.dictionary]
+    | readonly ['group', Value_.group]
+    | readonly ['list', Value_.list]
+    | readonly ['nothing', Value_.nothing]
+    | readonly ['optional', Value_.optional]
+    | readonly ['state', Value_.state]
+    | readonly ['text', Value_.text]
 
 export { 
     Schemas_ as Schemas, 
@@ -289,5 +289,5 @@ export {
     Imports_ as Imports, 
     Dictionary_ as Dictionary, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
 }

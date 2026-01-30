@@ -16,7 +16,7 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -129,7 +129,7 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
     $['l dictionary'],
     ($, id, $a, $c): t_out.Group.D => _p_cc(
         $['l entry'],
-        ($) => Type_Node(
+        ($) => Value(
             $,
             ($) => abort(
                 $
@@ -155,7 +155,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -186,16 +186,16 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
     }
 )
 
-export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide.state(
+export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
     $['l state'],
-    ($): t_out.Type_Node => {
+    ($): t_out.Value => {
         switch ($[0]) {
             case 'component':
                 return _p.ss(
                     $,
                     ($) => ['component', _p.decide.state(
                         $['l state'],
-                        ($): t_out.Type_Node.component => {
+                        ($): t_out.Value.component => {
                             switch ($[0]) {
                                 case 'external':
                                     return _p.ss(
@@ -309,7 +309,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                             
                             const prop_node = _p_cc(
                                 $['node'],
-                                ($) => Type_Node(
+                                ($) => Value(
                                     $,
                                     ($) => abort(
                                         $
@@ -332,7 +332,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
             case 'optional':
                 return _p.ss(
                     $,
-                    ($) => ['optional', Type_Node(
+                    ($) => ['optional', Value(
                         $,
                         ($) => abort(
                             $
@@ -346,9 +346,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                     $,
                     ($) => ['state', _p.dictionary.resolve(
                         $['l dictionary'],
-                        ($, id, $a, $c): t_out.Type_Node.state.D => _p_cc(
+                        ($, id, $a, $c): t_out.Value.state.D => _p_cc(
                             $['l entry'],
-                            ($) => Type_Node(
+                            ($) => Value(
                                 $,
                                 ($) => abort(
                                     $
@@ -364,7 +364,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                     $,
                     ($) => ['text', _p.decide.state(
                         $['l state'],
-                        ($): t_out.Type_Node.text => {
+                        ($): t_out.Value.text => {
                             switch ($[0]) {
                                 case 'global':
                                     return _p.ss(

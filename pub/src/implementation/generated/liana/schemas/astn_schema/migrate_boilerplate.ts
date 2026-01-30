@@ -93,7 +93,7 @@ export const Globals: t_signatures.Globals = ($) => ({
 export const Type: t_signatures.Type = ($) => ({
     'node': _p_cc(
         $['node'],
-        ($) => Type_Node(
+        ($) => Value(
             $
         )
     ),
@@ -212,7 +212,7 @@ export const Imports: t_signatures.Imports = ($) => ({
 export const Dictionary: t_signatures.Dictionary = ($) => ({
     'node': _p_cc(
         $['node'],
-        ($) => Type_Node(
+        ($) => Value(
             $
         )
     ),
@@ -231,7 +231,7 @@ export const Group: t_signatures.Group = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Type_Node(
+            'l entry': Value(
                 $
             ),
             'l location': {
@@ -243,7 +243,7 @@ export const Group: t_signatures.Group = ($) => ({
     ),
 })
 
-export const Type_Node: t_signatures.Type_Node = ($) => ({
+export const Value: t_signatures.Value = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -251,7 +251,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
     },
     'l state': _p.decide.state(
         $,
-        ($): t_out.Type_Node.l_state => {
+        ($): t_out.Value.l_state => {
             switch ($[0]) {
                 case 'component':
                     return _p.ss(
@@ -264,7 +264,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             },
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_state.component.l_state => {
+                                ($): t_out.Value.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
                                             return _p.ss(
@@ -347,7 +347,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                         ($) => ['list', {
                             'node': _p_cc(
                                 $['node'],
-                                ($) => Type_Node(
+                                ($) => Value(
                                     $
                                 )
                             ),
@@ -361,7 +361,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                 case 'optional':
                     return _p.ss(
                         $,
-                        ($) => ['optional', Type_Node(
+                        ($) => ['optional', Value(
                             $
                         )]
                     )
@@ -377,7 +377,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             'l dictionary': _p.dictionary.map(
                                 $,
                                 ($, id) => ({
-                                    'l entry': Type_Node(
+                                    'l entry': Value(
                                         $
                                     ),
                                     'l location': {
@@ -400,7 +400,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             },
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_state.text.l_state => {
+                                ($): t_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(

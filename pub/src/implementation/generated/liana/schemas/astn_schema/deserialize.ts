@@ -167,7 +167,7 @@ export const Group: t_signatures.Group = ($, abort, $p) => v_unmarshall.Group(
     )
 )
 
-export const Type_Node: t_signatures.Type_Node = ($, abort, $p) => v_unmarshall.Type_Node(
+export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
         ($) => abort(

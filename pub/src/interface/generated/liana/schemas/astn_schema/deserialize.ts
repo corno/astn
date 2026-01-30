@@ -275,11 +275,11 @@ export type Group_ = (
     },
 ) => Group_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export type I = string
     
-    export type O = i_out.Type_Node
+    export type O = i_out.Value
     
     export type E = i_generic.Error
     
@@ -293,14 +293,14 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-    abort: _pi.Abort<Type_Node_.E>,
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
     parameters: {
-        readonly 'document resource identifier': Type_Node_.P.document_resource_identifier
-        readonly 'tab size': Type_Node_.P.tab_size
+        readonly 'document resource identifier': Value_.P.document_resource_identifier
+        readonly 'tab size': Value_.P.tab_size
     },
-) => Type_Node_.O
+) => Value_.O
 
 export { 
     Schemas_ as Schemas, 
@@ -313,5 +313,5 @@ export {
     Imports_ as Imports, 
     Dictionary_ as Dictionary, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
 }

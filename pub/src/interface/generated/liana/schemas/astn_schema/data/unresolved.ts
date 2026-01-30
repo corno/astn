@@ -104,7 +104,7 @@ export type Globals_ = {
 
 export namespace Type_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -235,7 +235,7 @@ export type Imports_ = {
 
 export namespace Dictionary_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
     export type ordered = boolean
     
@@ -256,7 +256,7 @@ export namespace Group_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Type_Node_
+            export type l_entry = Value_
             
         }
         
@@ -276,7 +276,7 @@ export type Group_ = {
     readonly 'l dictionary': Group_.l_dictionary
 }
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -369,7 +369,7 @@ export namespace Type_Node_ {
         
         export namespace list {
             
-            export type node = Type_Node_
+            export type node = Value_
             
         }
         
@@ -379,7 +379,7 @@ export namespace Type_Node_ {
         
         export type nothing = null
         
-        export type optional = Type_Node_
+        export type optional = Value_
         
         export namespace state {
             
@@ -391,7 +391,7 @@ export namespace Type_Node_ {
                     
                     export type l_location = i__location.Relative_Location
                     
-                    export type l_entry = Type_Node_
+                    export type l_entry = Value_
                     
                 }
                 
@@ -459,9 +459,9 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = {
-    readonly 'l location': Type_Node_.l_location
-    readonly 'l state': Type_Node_.l_state
+export type Value_ = {
+    readonly 'l location': Value_.l_location
+    readonly 'l state': Value_.l_state
 }
 
 export { 
@@ -475,5 +475,5 @@ export {
     Imports_ as Imports, 
     Dictionary_ as Dictionary, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
 }

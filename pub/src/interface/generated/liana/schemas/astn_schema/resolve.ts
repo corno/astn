@@ -159,11 +159,11 @@ export type Dictionary_ = (
     },
 ) => Dictionary_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
-    export type I = i_unresolved.Type_Node
+    export type I = i_unresolved.Value
     
-    export type O = i_resolved.Type_Node
+    export type O = i_resolved.Value
     
     export type E = i_generic.Error
     
@@ -201,18 +201,18 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-    abort: _pi.Abort<Type_Node_.E>,
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_types>
     },
     parameters: {
-        readonly 'globals': Type_Node_.P.globals
-        readonly 'imports': Type_Node_.P.imports
+        readonly 'globals': Value_.P.globals
+        readonly 'imports': Value_.P.imports
     },
-) => Type_Node_.O
+) => Value_.O
 
 export namespace Type_ {
     
@@ -430,7 +430,7 @@ export {
     Globals_ as Globals, 
     Group_ as Group, 
     Dictionary_ as Dictionary, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Type_ as Type, 
     Schemas_ as Schemas, 
     Schema_Tree_ as Schema_Tree, 

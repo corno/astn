@@ -168,7 +168,7 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
                     ['no such entry', "node"]
                 )
             ),
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -383,7 +383,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_cc(
                     ['no such entry', "node"]
                 )
             ),
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -427,7 +427,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
             'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'l entry': Type_Node(
+            'l entry': Value(
                 $,
                 ($) => abort(
                     $
@@ -437,7 +437,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
     ),
 })
 
-export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
+export const Value: t_signatures.Value = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -446,7 +446,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
     ),
     ($) => _p.decide.text(
         $['option']['value'],
-        ($t): t_out.Type_Node => {
+        ($t): t_out.Value => {
             switch ($t) {
                 case 'component':
                     return _p_cc(
@@ -464,7 +464,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.l_state.component => {
+                                    ($t): t_out.Value.l_state.component => {
                                         switch ($t) {
                                             case 'external':
                                                 return _p_cc(
@@ -625,7 +625,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 ['no such entry', "node"]
                                             )
                                         ),
-                                        ($) => Type_Node(
+                                        ($) => Value(
                                             $,
                                             ($) => abort(
                                                 $
@@ -658,7 +658,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['optional', Type_Node(
+                            'l state': ['optional', Value(
                                 $,
                                 ($) => abort(
                                     $
@@ -688,7 +688,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                         'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'l entry': Type_Node(
+                                        'l entry': Value(
                                             $,
                                             ($) => abort(
                                                 $
@@ -715,7 +715,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.l_state.text => {
+                                    ($t): t_out.Value.l_state.text => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_cc(

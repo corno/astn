@@ -67,8 +67,8 @@ export const Group: t_signatures.Group = ($) => v_serialize.Document(
     )
 )
 
-export const Type_Node: t_signatures.Type_Node = ($) => v_serialize.Document(
-    v_marshall.Type_Node(
+export const Value: t_signatures.Value = ($) => v_serialize.Document(
+    v_marshall.Value(
         $
     )
 )
