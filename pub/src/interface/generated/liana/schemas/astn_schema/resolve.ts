@@ -59,13 +59,13 @@ export namespace Group_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -95,8 +95,8 @@ export type Group_ = (
     context: Group_.I,
     abort: _pi.Abort<Group_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Group_.P.globals
@@ -114,13 +114,13 @@ export namespace Dictionary_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -150,8 +150,8 @@ export type Dictionary_ = (
     context: Dictionary_.I,
     abort: _pi.Abort<Dictionary_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Dictionary_.P.globals
@@ -169,13 +169,13 @@ export namespace Value_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -205,8 +205,8 @@ export type Value_ = (
     context: Value_.I,
     abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -224,13 +224,13 @@ export namespace Module_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -260,8 +260,8 @@ export type Module_ = (
     context: Module_.I,
     abort: _pi.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Module_.P.globals

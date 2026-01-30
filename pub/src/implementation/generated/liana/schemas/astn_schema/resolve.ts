@@ -22,10 +22,10 @@ export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolv
                     $
                 ),
                 {
-                    'noncircular sibling types': _pdev.implement_me(
+                    'noncircular sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
-                    'possibly circular dependent sibling types': _pdev.implement_me(
+                    'possibly circular dependent sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
                 },
@@ -51,10 +51,10 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
                 $
             ),
             {
-                'noncircular sibling types': _pdev.implement_me(
+                'noncircular sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
-                'possibly circular dependent sibling types': _pdev.implement_me(
+                'possibly circular dependent sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
             },
@@ -135,10 +135,10 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                 $
             ),
             {
-                'noncircular sibling types': _pdev.implement_me(
+                'noncircular sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
-                'possibly circular dependent sibling types': _pdev.implement_me(
+                'possibly circular dependent sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
             },
@@ -161,10 +161,10 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                     $
                 ),
                 {
-                    'noncircular sibling types': _pdev.implement_me(
+                    'noncircular sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
-                    'possibly circular dependent sibling types': _pdev.implement_me(
+                    'possibly circular dependent sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
                 },
@@ -266,10 +266,10 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling types': _pdev.implement_me(
+                            'noncircular sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
-                            'possibly circular dependent sibling types': _pdev.implement_me(
+                            'possibly circular dependent sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
                         },
@@ -288,10 +288,10 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling types': _pdev.implement_me(
+                            'noncircular sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
-                            'possibly circular dependent sibling types': _pdev.implement_me(
+                            'possibly circular dependent sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
                         },
