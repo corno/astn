@@ -47,12 +47,13 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                 ['no such entry', "comments"]
                             )
                         ),
-                        ($) => v_unmarshalled_from_parse_tree.List(
-                            $,
-                            ($) => abort(
-                                ['expected a list', null]
-                            )
-                        ).__l_map(
+                        ($) => _p.list.map(
+                            v_unmarshalled_from_parse_tree.List(
+                                $,
+                                ($) => abort(
+                                    ['expected a list', null]
+                                )
+                            ),
                             ($) => v_unmarshalled_from_parse_tree.Text(
                                 $,
                                 ($) => abort(
@@ -152,18 +153,20 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                                 case 'dictionary':
                                                                     return _p_cc(
                                                                         $['value'],
-                                                                        ($) => ['dictionary', v_unmarshalled_from_parse_tree.Dictionary(
-                                                                            $,
-                                                                            ($) => abort(
-                                                                                ['expected a dictionary', null]
-                                                                            )
-                                                                        ).__d_map(
-                                                                            ($, id) => v_unmarshalled_from_parse_tree.Optional(
+                                                                        ($) => ['dictionary', _p.dictionary.map(
+                                                                            v_unmarshalled_from_parse_tree.Dictionary(
                                                                                 $,
                                                                                 ($) => abort(
-                                                                                    ['expected an optional', null]
+                                                                                    ['expected a dictionary', null]
                                                                                 )
-                                                                            ).__o_map(
+                                                                            ),
+                                                                            ($, id) => _p.optional.map(
+                                                                                v_unmarshalled_from_parse_tree.Optional(
+                                                                                    $,
+                                                                                    ($) => abort(
+                                                                                        ['expected an optional', null]
+                                                                                    )
+                                                                                ),
                                                                                 ($) => Value(
                                                                                     $,
                                                                                     ($) => abort(
@@ -190,12 +193,13 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                                                         case 'concise':
                                                                                             return _p_cc(
                                                                                                 $['value'],
-                                                                                                ($) => ['concise', v_unmarshalled_from_parse_tree.List(
-                                                                                                    $,
-                                                                                                    ($) => abort(
-                                                                                                        ['expected a list', null]
-                                                                                                    )
-                                                                                                ).__l_map(
+                                                                                                ($) => ['concise', _p.list.map(
+                                                                                                    v_unmarshalled_from_parse_tree.List(
+                                                                                                        $,
+                                                                                                        ($) => abort(
+                                                                                                            ['expected a list', null]
+                                                                                                        )
+                                                                                                    ),
                                                                                                     ($) => Value(
                                                                                                         $,
                                                                                                         ($) => abort(
@@ -207,18 +211,20 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                                                         case 'verbose':
                                                                                             return _p_cc(
                                                                                                 $['value'],
-                                                                                                ($) => ['verbose', v_unmarshalled_from_parse_tree.Dictionary(
-                                                                                                    $,
-                                                                                                    ($) => abort(
-                                                                                                        ['expected a dictionary', null]
-                                                                                                    )
-                                                                                                ).__d_map(
-                                                                                                    ($, id) => v_unmarshalled_from_parse_tree.Optional(
+                                                                                                ($) => ['verbose', _p.dictionary.map(
+                                                                                                    v_unmarshalled_from_parse_tree.Dictionary(
                                                                                                         $,
                                                                                                         ($) => abort(
-                                                                                                            ['expected an optional', null]
+                                                                                                            ['expected a dictionary', null]
                                                                                                         )
-                                                                                                    ).__o_map(
+                                                                                                    ),
+                                                                                                    ($, id) => _p.optional.map(
+                                                                                                        v_unmarshalled_from_parse_tree.Optional(
+                                                                                                            $,
+                                                                                                            ($) => abort(
+                                                                                                                ['expected an optional', null]
+                                                                                                            )
+                                                                                                        ),
                                                                                                         ($) => Value(
                                                                                                             $,
                                                                                                             ($) => abort(
@@ -240,12 +246,13 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                                 case 'list':
                                                                     return _p_cc(
                                                                         $['value'],
-                                                                        ($) => ['list', v_unmarshalled_from_parse_tree.List(
-                                                                            $,
-                                                                            ($) => abort(
-                                                                                ['expected a list', null]
-                                                                            )
-                                                                        ).__l_map(
+                                                                        ($) => ['list', _p.list.map(
+                                                                            v_unmarshalled_from_parse_tree.List(
+                                                                                $,
+                                                                                ($) => abort(
+                                                                                    ['expected a list', null]
+                                                                                )
+                                                                            ),
                                                                             ($) => Value(
                                                                                 $,
                                                                                 ($) => abort(
@@ -506,12 +513,13 @@ export const Document: t_signatures.Document = ($, abort) => _p_cc(
                     ['no such entry', "header"]
                 )
             ),
-            ($) => v_unmarshalled_from_parse_tree.Optional(
-                $,
-                ($) => abort(
-                    ['expected an optional', null]
-                )
-            ).__o_map(
+            ($) => _p.optional.map(
+                v_unmarshalled_from_parse_tree.Optional(
+                    $,
+                    ($) => abort(
+                        ['expected an optional', null]
+                    )
+                ),
                 ($) => Value(
                     $,
                     ($) => abort(

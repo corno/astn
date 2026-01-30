@@ -105,12 +105,13 @@ export const Relative_Range: t_signatures.Relative_Range = ($, abort) => _p_cc(
     })
 )
 
-export const Text_Edits: t_signatures.Text_Edits = ($, abort) => v_unmarshalled_from_parse_tree.List(
-    $,
-    ($) => abort(
-        ['expected a list', null]
-    )
-).__l_map(
+export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
     ($) => _p_cc(
         v_unmarshalled_from_parse_tree.State(
             $,
@@ -244,12 +245,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => v_unmarshalled_
     )
 )
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($, abort) => v_unmarshalled_from_parse_tree.Dictionary(
-    $,
-    ($) => abort(
-        ['expected a dictionary', null]
-    )
-).__d_map(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($, abort) => _p.dictionary.map(
+    v_unmarshalled_from_parse_tree.Dictionary(
+        $,
+        ($) => abort(
+            ['expected a dictionary', null]
+        )
+    ),
     ($, id) => v_unmarshalled_from_parse_tree.Text(
         $,
         ($) => abort(

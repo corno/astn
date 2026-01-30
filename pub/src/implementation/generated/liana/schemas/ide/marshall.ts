@@ -53,7 +53,8 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['ve
     }
 )]]
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
+export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.map(
+    $,
     ($) => ['state', _p.decide.state(
         $,
         ($): t_out.Value.state => {
@@ -132,7 +133,8 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', $.__l_map(
     )]
 )]
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', $.__d_map(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['text', {
         'delimiter': ['quote', null],
         'value': $,

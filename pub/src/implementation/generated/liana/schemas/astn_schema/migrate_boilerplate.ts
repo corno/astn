@@ -15,7 +15,8 @@ export const Schemas: t_signatures.Schemas = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Schema_Tree(
                 $
@@ -72,7 +73,8 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': $.__d_map(
+            'l dictionary': _p.dictionary.map(
+                $,
                 ($, id) => ({
                     'l entry': Text_Type(
                         $
@@ -103,7 +105,8 @@ export const Types: t_signatures.Types = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Type(
                 $
@@ -177,7 +180,8 @@ export const Imports: t_signatures.Imports = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'schema set child': _p_cc(
@@ -224,7 +228,8 @@ export const Group: t_signatures.Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Type_Node(
                 $
@@ -369,7 +374,8 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l dictionary': $.__d_map(
+                            'l dictionary': _p.dictionary.map(
+                                $,
                                 ($, id) => ({
                                     'l entry': Type_Node(
                                         $

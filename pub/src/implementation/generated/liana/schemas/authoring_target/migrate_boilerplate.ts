@@ -15,7 +15,8 @@ export const Value: t_signatures.Value = ($) => ({
         ($) => ({
             'comments': _p_cc(
                 $['comments'],
-                ($) => $.__l_map(
+                ($) => _p.list.map(
+                    $,
                     ($) => $
                 )
             ),
@@ -55,8 +56,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'dictionary':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['dictionary', $.__d_map(
-                                                            ($, id) => $.__o_map(
+                                                        ($) => ['dictionary', _p.dictionary.map(
+                                                            $,
+                                                            ($, id) => _p.optional.map(
+                                                                $,
                                                                 ($) => Value(
                                                                     $
                                                                 )
@@ -73,7 +76,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     case 'concise':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['concise', $.__l_map(
+                                                                            ($) => ['concise', _p.list.map(
+                                                                                $,
                                                                                 ($) => Value(
                                                                                     $
                                                                                 )
@@ -82,8 +86,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     case 'verbose':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['verbose', $.__d_map(
-                                                                                ($, id) => $.__o_map(
+                                                                            ($) => ['verbose', _p.dictionary.map(
+                                                                                $,
+                                                                                ($, id) => _p.optional.map(
+                                                                                    $,
                                                                                     ($) => Value(
                                                                                         $
                                                                                     )
@@ -101,7 +107,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'list':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['list', $.__l_map(
+                                                        ($) => ['list', _p.list.map(
+                                                            $,
                                                             ($) => Value(
                                                                 $
                                                             )
@@ -237,7 +244,8 @@ export const Value: t_signatures.Value = ($) => ({
 export const Document: t_signatures.Document = ($) => ({
     'header': _p_cc(
         $['header'],
-        ($) => $.__o_map(
+        ($) => _p.optional.map(
+            $,
             ($) => Value(
                 $
             )

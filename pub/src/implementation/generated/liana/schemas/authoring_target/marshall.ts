@@ -21,7 +21,8 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                 {
                     'comments': _p_cc(
                         $['comments'],
-                        ($) => ['list', $.__l_map(
+                        ($) => ['list', _p.list.map(
+                            $,
                             ($) => ['text', {
                                 'delimiter': ['quote', null],
                                 'value': $,
@@ -81,8 +82,10 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'dictionary',
-                                                                        'value': ['dictionary', $.__d_map(
-                                                                            ($, id) => ['optional', $.__decide(
+                                                                        'value': ['dictionary', _p.dictionary.map(
+                                                                            $,
+                                                                            ($, id) => ['optional', _p.decide.optional(
+                                                                                $,
                                                                                 ($): t_out.Value.optional => ['set', Value(
                                                                                     $
                                                                                 )],
@@ -105,7 +108,8 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'concise',
-                                                                                                'value': ['list', $.__l_map(
+                                                                                                'value': ['list', _p.list.map(
+                                                                                                    $,
                                                                                                     ($) => Value(
                                                                                                         $
                                                                                                     )
@@ -117,8 +121,10 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'verbose',
-                                                                                                'value': ['dictionary', $.__d_map(
-                                                                                                    ($, id) => ['optional', $.__decide(
+                                                                                                'value': ['dictionary', _p.dictionary.map(
+                                                                                                    $,
+                                                                                                    ($, id) => ['optional', _p.decide.optional(
+                                                                                                        $,
                                                                                                         ($): t_out.Value.optional => ['set', Value(
                                                                                                             $
                                                                                                         )],
@@ -141,7 +147,8 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'list',
-                                                                        'value': ['list', $.__l_map(
+                                                                        'value': ['list', _p.list.map(
+                                                                            $,
                                                                             ($) => Value(
                                                                                 $
                                                                             )
@@ -325,7 +332,8 @@ export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.d
     {
         'header': _p_cc(
             $['header'],
-            ($) => ['optional', $.__decide(
+            ($) => ['optional', _p.decide.optional(
+                $,
                 ($): t_out.Value.optional => ['set', Value(
                     $
                 )],
