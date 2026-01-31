@@ -42,17 +42,17 @@ export namespace Error_ {
         
         export namespace lookup {
             
-            export type cyclic_lookup_in_acyclic_context = string
+            export type cycle_detected = null
             
-            export type optional_lookup_not_set = null
+            export type no_context_lookup = null
             
             export type no_such_entry = string
             
         }
         
         export type lookup = 
-            | readonly ['cyclic lookup in acyclic context', lookup.cyclic_lookup_in_acyclic_context]
-            | readonly ['optional lookup not set', lookup.optional_lookup_not_set]
+            | readonly ['cycle detected', lookup.cycle_detected]
+            | readonly ['no context lookup', lookup.no_context_lookup]
             | readonly ['no such entry', lookup.no_such_entry]
         
         export namespace missing_required_entries {
