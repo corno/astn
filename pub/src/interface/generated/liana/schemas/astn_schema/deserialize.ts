@@ -167,33 +167,6 @@ export type Modules_ = (
     },
 ) => Modules_.O
 
-export namespace Module_ {
-    
-    export type I = string
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
-    parameters: {
-        readonly 'document resource identifier': Module_.P.document_resource_identifier
-        readonly 'tab size': Module_.P.tab_size
-    },
-) => Module_.O
-
 export namespace Value_ {
     
     export type I = string
@@ -248,60 +221,6 @@ export type Text_Type_ = (
     },
 ) => Text_Type_.O
 
-export namespace Group_ {
-    
-    export type I = string
-    
-    export type O = i_out.Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Group_ = (
-    context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
-    parameters: {
-        readonly 'document resource identifier': Group_.P.document_resource_identifier
-        readonly 'tab size': Group_.P.tab_size
-    },
-) => Group_.O
-
-export namespace Dictionary_ {
-    
-    export type I = string
-    
-    export type O = i_out.Dictionary
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
-    parameters: {
-        readonly 'document resource identifier': Dictionary_.P.document_resource_identifier
-        readonly 'tab size': Dictionary_.P.tab_size
-    },
-) => Dictionary_.O
-
 export { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
@@ -309,9 +228,6 @@ export {
     Imports_ as Imports, 
     Globals_ as Globals, 
     Modules_ as Modules, 
-    Module_ as Module, 
     Value_ as Value, 
     Text_Type_ as Text_Type, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
 }

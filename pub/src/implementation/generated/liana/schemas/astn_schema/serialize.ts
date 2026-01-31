@@ -43,12 +43,6 @@ export const Modules: t_signatures.Modules = ($) => v_serialize.Document(
     )
 )
 
-export const Module: t_signatures.Module = ($) => v_serialize.Document(
-    v_marshall.Module(
-        $
-    )
-)
-
 export const Value: t_signatures.Value = ($) => v_serialize.Document(
     v_marshall.Value(
         $
@@ -57,18 +51,6 @@ export const Value: t_signatures.Value = ($) => v_serialize.Document(
 
 export const Text_Type: t_signatures.Text_Type = ($) => v_serialize.Document(
     v_marshall.Text_Type(
-        $
-    )
-)
-
-export const Group: t_signatures.Group = ($) => v_serialize.Document(
-    v_marshall.Group(
-        $
-    )
-)
-
-export const Dictionary: t_signatures.Dictionary = ($) => v_serialize.Document(
-    v_marshall.Dictionary(
         $
     )
 )

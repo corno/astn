@@ -265,40 +265,33 @@ export const Modules: t_signatures.Modules = ($, abort) => ({
             'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'l entry': Module(
-                $,
-                ($) => abort(
-                    $
-                )
+            'l entry': _p_cc(
+                v_unmarshalled_from_parse_tree.Group(
+                    $,
+                    ($) => abort(
+                        ['expected a group', null]
+                    )
+                ),
+                ($) => ({
+                    'root value': _p_cc(
+                        $.__get_entry(
+                            'root value',
+                            ($) => abort(
+                                ['no such entry', "root value"]
+                            )
+                        ),
+                        ($) => Value(
+                            $,
+                            ($) => abort(
+                                $
+                            )
+                        )
+                    ),
+                })
             ),
         })
     ),
 })
-
-export const Module: t_signatures.Module = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.Group(
-        $,
-        ($) => abort(
-            ['expected a group', null]
-        )
-    ),
-    ($) => ({
-        'node': _p_cc(
-            $.__get_entry(
-                'node',
-                ($) => abort(
-                    ['no such entry', "node"]
-                )
-            ),
-            ($) => Value(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-    })
-)
 
 export const Value: t_signatures.Value = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.State(
@@ -386,14 +379,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                         )],
                                                     })
                                                 )
-                                            case 'internal':
+                                            case 'internal acyclic':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'l state': ['internal', {
+                                                        'l state': ['internal acyclic', {
                                                             'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -406,14 +399,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                         }],
                                                     })
                                                 )
-                                            case 'internal cyclic':
+                                            case 'internal':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'l state': ['internal cyclic', {
+                                                        'l state': ['internal', {
                                                             'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -443,11 +436,48 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['dictionary', Dictionary(
-                                $,
-                                ($) => abort(
-                                    $
-                                )
+                            'l state': ['dictionary', _p_cc(
+                                v_unmarshalled_from_parse_tree.Group(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a group', null]
+                                    )
+                                ),
+                                ($) => ({
+                                    'value': _p_cc(
+                                        $.__get_entry(
+                                            'value',
+                                            ($) => abort(
+                                                ['no such entry', "value"]
+                                            )
+                                        ),
+                                        ($) => Value(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        )
+                                    ),
+                                    'ordered': _p_cc(
+                                        $.__get_entry(
+                                            'ordered',
+                                            ($) => abort(
+                                                ['no such entry', "ordered"]
+                                            )
+                                        ),
+                                        ($) => v_deserialize_boolean.deserialize(
+                                            v_unmarshalled_from_parse_tree.Text(
+                                                $,
+                                                ($) => abort(
+                                                    ['expected a text', null]
+                                                )
+                                            ),
+                                            ($) => abort(
+                                                ['not a valid boolean', null]
+                                            )
+                                        )
+                                    ),
+                                })
                             )],
                         })
                     )
@@ -458,12 +488,30 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['group', Group(
-                                $,
-                                ($) => abort(
+                            'l state': ['group', {
+                                'l location': v_parse_tree_to_location.Value(
                                     $
-                                )
-                            )],
+                                )['start']['relative'],
+                                'l dictionary': _p.dictionary.map(
+                                    v_unmarshalled_from_parse_tree.Dictionary(
+                                        $,
+                                        ($) => abort(
+                                            ['expected a dictionary', null]
+                                        )
+                                    ),
+                                    ($, id) => ({
+                                        'l location': v_parse_tree_to_location.Value(
+                                            $
+                                        )['start']['relative'],
+                                        'l entry': Value(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        ),
+                                    })
+                                ),
+                            }],
                         })
                     )
                 case 'list':
@@ -481,11 +529,11 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                     )
                                 ),
                                 ($) => ({
-                                    'node': _p_cc(
+                                    'value': _p_cc(
                                         $.__get_entry(
-                                            'node',
+                                            'value',
                                             ($) => abort(
-                                                ['no such entry', "node"]
+                                                ['no such entry', "value"]
                                             )
                                         ),
                                         ($) => Value(
@@ -696,75 +744,6 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
                                 )
                         }
                     }
-                )
-            )
-        ),
-    })
-)
-
-export const Group: t_signatures.Group = ($, abort) => ({
-    'l location': v_parse_tree_to_location.Value(
-        $
-    )['start']['relative'],
-    'l dictionary': _p.dictionary.map(
-        v_unmarshalled_from_parse_tree.Dictionary(
-            $,
-            ($) => abort(
-                ['expected a dictionary', null]
-            )
-        ),
-        ($, id) => ({
-            'l location': v_parse_tree_to_location.Value(
-                $
-            )['start']['relative'],
-            'l entry': Value(
-                $,
-                ($) => abort(
-                    $
-                )
-            ),
-        })
-    ),
-})
-
-export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.Group(
-        $,
-        ($) => abort(
-            ['expected a group', null]
-        )
-    ),
-    ($) => ({
-        'node': _p_cc(
-            $.__get_entry(
-                'node',
-                ($) => abort(
-                    ['no such entry', "node"]
-                )
-            ),
-            ($) => Value(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'ordered': _p_cc(
-            $.__get_entry(
-                'ordered',
-                ($) => abort(
-                    ['no such entry', "ordered"]
-                )
-            ),
-            ($) => v_deserialize_boolean.deserialize(
-                v_unmarshalled_from_parse_tree.Text(
-                    $,
-                    ($) => abort(
-                        ['expected a text', null]
-                    )
-                ),
-                ($) => abort(
-                    ['not a valid boolean', null]
                 )
             )
         ),

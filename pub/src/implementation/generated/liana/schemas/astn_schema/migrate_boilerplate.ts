@@ -154,24 +154,20 @@ export const Modules: t_signatures.Modules = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Module(
-                $
-            ),
+            'l entry': {
+                'root value': _p_cc(
+                    $['root value'],
+                    ($) => Value(
+                        $
+                    )
+                ),
+            },
             'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
             },
         })
-    ),
-})
-
-export const Module: t_signatures.Module = ($) => ({
-    'node': _p_cc(
-        $['node'],
-        ($) => Value(
-            $
-        )
     ),
 })
 
@@ -226,10 +222,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                     ),
                                                 }]
                                             )
-                                        case 'internal':
+                                        case 'internal acyclic':
                                             return _p.ss(
                                                 $,
-                                                ($) => ['internal', {
+                                                ($) => ['internal acyclic', {
                                                     'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
@@ -238,10 +234,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                     'l reference': $['l id'],
                                                 }]
                                             )
-                                        case 'internal cyclic':
+                                        case 'internal':
                                             return _p.ss(
                                                 $,
-                                                ($) => ['internal cyclic', {
+                                                ($) => ['internal', {
                                                     'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
@@ -262,23 +258,49 @@ export const Value: t_signatures.Value = ($) => ({
                 case 'dictionary':
                     return _p.ss(
                         $,
-                        ($) => ['dictionary', Dictionary(
-                            $
-                        )]
+                        ($) => ['dictionary', {
+                            'value': _p_cc(
+                                $['value'],
+                                ($) => Value(
+                                    $
+                                )
+                            ),
+                            'ordered': _p_cc(
+                                $['ordered'],
+                                ($) => $
+                            ),
+                        }]
                     )
                 case 'group':
                     return _p.ss(
                         $,
-                        ($) => ['group', Group(
-                            $
-                        )]
+                        ($) => ['group', {
+                            'l location': {
+                                'document resource identifier': "implement me",
+                                'line': 42,
+                                'column': 42,
+                            },
+                            'l dictionary': _p.dictionary.map(
+                                $,
+                                ($, id) => ({
+                                    'l entry': Value(
+                                        $
+                                    ),
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                })
+                            ),
+                        }]
                     )
                 case 'list':
                     return _p.ss(
                         $,
                         ($) => ['list', {
-                            'node': _p_cc(
-                                $['node'],
+                            'value': _p_cc(
+                                $['value'],
                                 ($) => Value(
                                     $
                                 )
@@ -402,39 +424,5 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 }
             ),
         })
-    ),
-})
-
-export const Group: t_signatures.Group = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': Value(
-                $
-            ),
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
-export const Dictionary: t_signatures.Dictionary = ($) => ({
-    'node': _p_cc(
-        $['node'],
-        ($) => Value(
-            $
-        )
-    ),
-    'ordered': _p_cc(
-        $['ordered'],
-        ($) => $
     ),
 })

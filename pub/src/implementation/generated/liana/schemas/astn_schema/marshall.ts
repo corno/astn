@@ -110,21 +110,17 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
 
 export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
     $,
-    ($, id) => Module(
-        $
-    )
+    ($, id) => ['group', ['verbose', _p.dictionary.literal(
+        {
+            'root value': _p_cc(
+                $['root value'],
+                ($) => Value(
+                    $
+                )
+            ),
+        }
+    )]]
 )]
-
-export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'node': _p_cc(
-            $['node'],
-            ($) => Value(
-                $
-            )
-        ),
-    }
-)]]
 
 export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
@@ -164,22 +160,22 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                 )]],
                                             })
                                         )
-                                    case 'internal':
+                                    case 'internal acyclic':
                                         return _p.ss(
                                             $,
                                             ($) => ({
-                                                'option': 'internal',
+                                                'option': 'internal acyclic',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['l id'],
                                                 }],
                                             })
                                         )
-                                    case 'internal cyclic':
+                                    case 'internal':
                                         return _p.ss(
                                             $,
                                             ($) => ({
-                                                'option': 'internal cyclic',
+                                                'option': 'internal',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['l id'],
@@ -200,9 +196,25 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                     $,
                     ($) => ({
                         'option': 'dictionary',
-                        'value': Dictionary(
-                            $
-                        ),
+                        'value': ['group', ['verbose', _p.dictionary.literal(
+                            {
+                                'value': _p_cc(
+                                    $['value'],
+                                    ($) => Value(
+                                        $
+                                    )
+                                ),
+                                'ordered': _p_cc(
+                                    $['ordered'],
+                                    ($) => ['text', {
+                                        'delimiter': ['none', null],
+                                        'value': v_serialize_boolean.serialize(
+                                            $
+                                        ),
+                                    }]
+                                ),
+                            }
+                        )]],
                     })
                 )
             case 'group':
@@ -210,9 +222,12 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                     $,
                     ($) => ({
                         'option': 'group',
-                        'value': Group(
-                            $
-                        ),
+                        'value': ['dictionary', _p.dictionary.map(
+                            $,
+                            ($, id) => Value(
+                                $
+                            )
+                        )],
                     })
                 )
             case 'list':
@@ -222,8 +237,8 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                         'option': 'list',
                         'value': ['group', ['verbose', _p.dictionary.literal(
                             {
-                                'node': _p_cc(
-                                    $['node'],
+                                'value': _p_cc(
+                                    $['value'],
                                     ($) => Value(
                                         $
                                     )
@@ -341,33 +356,6 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p
                     }
                 }
             )]
-        ),
-    }
-)]]
-
-export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => Value(
-        $
-    )
-)]
-
-export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'node': _p_cc(
-            $['node'],
-            ($) => Value(
-                $
-            )
-        ),
-        'ordered': _p_cc(
-            $['ordered'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_serialize_boolean.serialize(
-                    $
-                ),
-            }]
         ),
     }
 )]]

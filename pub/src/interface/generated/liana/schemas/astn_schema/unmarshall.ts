@@ -121,25 +121,6 @@ export type Modules_ = (
     abort: _pi.Abort<Modules_.E>,
 ) => Modules_.O
 
-export namespace Module_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
-) => Module_.O
-
 export namespace Value_ {
     
     export type I = i_in.Value
@@ -178,44 +159,6 @@ export type Text_Type_ = (
     abort: _pi.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
-export namespace Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Group_ = (
-    context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
-) => Group_.O
-
-export namespace Dictionary_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Dictionary
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
-) => Dictionary_.O
-
 export { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
@@ -223,9 +166,6 @@ export {
     Imports_ as Imports, 
     Globals_ as Globals, 
     Modules_ as Modules, 
-    Module_ as Module, 
     Value_ as Value, 
     Text_Type_ as Text_Type, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
 }

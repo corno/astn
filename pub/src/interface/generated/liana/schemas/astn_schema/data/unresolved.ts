@@ -172,7 +172,15 @@ export namespace Modules_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Module_
+            export namespace l_entry {
+                
+                export type root_value = Value_
+                
+            }
+            
+            export type l_entry = {
+                readonly 'root value': l_entry.root_value
+            }
             
         }
         
@@ -190,16 +198,6 @@ export namespace Modules_ {
 export type Modules_ = {
     readonly 'l location': Modules_.l_location
     readonly 'l dictionary': Modules_.l_dictionary
-}
-
-export namespace Module_ {
-    
-    export type node = Value_
-    
-}
-
-export type Module_ = {
-    readonly 'node': Module_.node
 }
 
 export namespace Value_ {
@@ -249,6 +247,19 @@ export namespace Value_ {
                     readonly 'type': external.type_
                 }
                 
+                export namespace internal_acyclic {
+                    
+                    export type l_location = i__location.Relative_Location
+                    
+                    export type l_reference = string
+                    
+                }
+                
+                export type internal_acyclic = {
+                    readonly 'l location': internal_acyclic.l_location
+                    readonly 'l reference': internal_acyclic.l_reference
+                }
+                
                 export namespace internal {
                     
                     export type l_location = i__location.Relative_Location
@@ -262,25 +273,12 @@ export namespace Value_ {
                     readonly 'l reference': internal.l_reference
                 }
                 
-                export namespace internal_cyclic {
-                    
-                    export type l_location = i__location.Relative_Location
-                    
-                    export type l_reference = string
-                    
-                }
-                
-                export type internal_cyclic = {
-                    readonly 'l location': internal_cyclic.l_location
-                    readonly 'l reference': internal_cyclic.l_reference
-                }
-                
             }
             
             export type l_state = 
                 | readonly ['external', l_state.external]
+                | readonly ['internal acyclic', l_state.internal_acyclic]
                 | readonly ['internal', l_state.internal]
-                | readonly ['internal cyclic', l_state.internal_cyclic]
             
         }
         
@@ -289,18 +287,57 @@ export namespace Value_ {
             readonly 'l state': component.l_state
         }
         
-        export type dictionary = Dictionary_
+        export namespace dictionary {
+            
+            export type value = Value_
+            
+            export type ordered = boolean
+            
+        }
         
-        export type group = Group_
+        export type dictionary = {
+            readonly 'value': dictionary.value
+            readonly 'ordered': dictionary.ordered
+        }
+        
+        export namespace group {
+            
+            export type l_location = i__location.Relative_Location
+            
+            export namespace l_dictionary {
+                
+                export namespace D {
+                    
+                    export type l_location = i__location.Relative_Location
+                    
+                    export type l_entry = Value_
+                    
+                }
+                
+                export type D = {
+                    readonly 'l location': D.l_location
+                    readonly 'l entry': D.l_entry
+                }
+                
+            }
+            
+            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+            
+        }
+        
+        export type group = {
+            readonly 'l location': group.l_location
+            readonly 'l dictionary': group.l_dictionary
+        }
         
         export namespace list {
             
-            export type node = Value_
+            export type value = Value_
             
         }
         
         export type list = {
-            readonly 'node': list.node
+            readonly 'value': list.value
         }
         
         export type nothing = null
@@ -421,49 +458,6 @@ export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
 }
 
-export namespace Group_ {
-    
-    export type l_location = i__location.Relative_Location
-    
-    export namespace l_dictionary {
-        
-        export namespace D {
-            
-            export type l_location = i__location.Relative_Location
-            
-            export type l_entry = Value_
-            
-        }
-        
-        export type D = {
-            readonly 'l location': D.l_location
-            readonly 'l entry': D.l_entry
-        }
-        
-    }
-    
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
-    
-}
-
-export type Group_ = {
-    readonly 'l location': Group_.l_location
-    readonly 'l dictionary': Group_.l_dictionary
-}
-
-export namespace Dictionary_ {
-    
-    export type node = Value_
-    
-    export type ordered = boolean
-    
-}
-
-export type Dictionary_ = {
-    readonly 'node': Dictionary_.node
-    readonly 'ordered': Dictionary_.ordered
-}
-
 export { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
@@ -471,9 +465,6 @@ export {
     Imports_ as Imports, 
     Globals_ as Globals, 
     Modules_ as Modules, 
-    Module_ as Module, 
     Value_ as Value, 
     Text_Type_ as Text_Type, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
 }

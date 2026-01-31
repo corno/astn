@@ -103,22 +103,6 @@ export const Modules: t_signatures.Modules = ($, abort, $p) => v_unmarshall.Modu
     )
 )
 
-export const Module: t_signatures.Module = ($, abort, $p) => v_unmarshall.Module(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['tbd', null]
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        }
-    )['content'],
-    ($) => abort(
-        ['tbd', null]
-    )
-)
-
 export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
@@ -136,38 +120,6 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
 )
 
 export const Text_Type: t_signatures.Text_Type = ($, abort, $p) => v_unmarshall.Text_Type(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['tbd', null]
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        }
-    )['content'],
-    ($) => abort(
-        ['tbd', null]
-    )
-)
-
-export const Group: t_signatures.Group = ($, abort, $p) => v_unmarshall.Group(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['tbd', null]
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        }
-    )['content'],
-    ($) => abort(
-        ['tbd', null]
-    )
-)
-
-export const Dictionary: t_signatures.Dictionary = ($, abort, $p) => v_unmarshall.Dictionary(
     v_deserialize.Document(
         $,
         ($) => abort(

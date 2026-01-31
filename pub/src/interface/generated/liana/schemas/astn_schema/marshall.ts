@@ -101,22 +101,6 @@ export type Modules_ = (
     context: Modules_.I,
 ) => Modules_.O
 
-export namespace Module_ {
-    
-    export type I = i_in.Module
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-) => Module_.O
-
 export namespace Value_ {
     
     export type I = i_in.Value
@@ -149,38 +133,6 @@ export type Text_Type_ = (
     context: Text_Type_.I,
 ) => Text_Type_.O
 
-export namespace Group_ {
-    
-    export type I = i_in.Group
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Group_ = (
-    context: Group_.I,
-) => Group_.O
-
-export namespace Dictionary_ {
-    
-    export type I = i_in.Dictionary
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Dictionary_ = (
-    context: Dictionary_.I,
-) => Dictionary_.O
-
 export { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
@@ -188,9 +140,6 @@ export {
     Imports_ as Imports, 
     Globals_ as Globals, 
     Modules_ as Modules, 
-    Module_ as Module, 
     Value_ as Value, 
     Text_Type_ as Text_Type, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
 }

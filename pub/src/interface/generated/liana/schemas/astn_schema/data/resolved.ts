@@ -88,21 +88,19 @@ export type Globals_ = {
 
 export namespace Modules_ {
     
-    export type D = Module_
+    export namespace D {
+        
+        export type root_value = Value_
+        
+    }
+    
+    export type D = {
+        readonly 'root value': D.root_value
+    }
     
 }
 
 export type Modules_ = _pi.Dictionary<Modules_.D>
-
-export namespace Module_ {
-    
-    export type node = Value_
-    
-}
-
-export type Module_ = {
-    readonly 'node': Module_.node
-}
 
 export namespace Value_ {
     
@@ -143,9 +141,22 @@ export namespace Value_ {
             readonly 'type': external.type_
         }
         
-        export namespace internal {
+        export namespace internal_acyclic {
             
             export type l_entry = Modules_.D
+            
+            export type l_id = string
+            
+        }
+        
+        export type internal_acyclic = {
+            readonly 'l entry': internal_acyclic.l_entry
+            readonly 'l id': internal_acyclic.l_id
+        }
+        
+        export namespace internal {
+            
+            export type l_entry = _pi.Circular_Dependency<Modules_.D>
             
             export type l_id = string
             
@@ -156,38 +167,42 @@ export namespace Value_ {
             readonly 'l id': internal.l_id
         }
         
-        export namespace internal_cyclic {
-            
-            export type l_entry = _pi.Circular_Dependency<Modules_.D>
-            
-            export type l_id = string
-            
-        }
-        
-        export type internal_cyclic = {
-            readonly 'l entry': internal_cyclic.l_entry
-            readonly 'l id': internal_cyclic.l_id
-        }
-        
     }
     
     export type component = 
         | readonly ['external', component.external]
+        | readonly ['internal acyclic', component.internal_acyclic]
         | readonly ['internal', component.internal]
-        | readonly ['internal cyclic', component.internal_cyclic]
     
-    export type dictionary = Dictionary_
+    export namespace dictionary {
+        
+        export type value = Value_
+        
+        export type ordered = boolean
+        
+    }
     
-    export type group = Group_
+    export type dictionary = {
+        readonly 'value': dictionary.value
+        readonly 'ordered': dictionary.ordered
+    }
+    
+    export namespace group {
+        
+        export type D = Value_
+        
+    }
+    
+    export type group = _pi.Dictionary<group.D>
     
     export namespace list {
         
-        export type node = Value_
+        export type value = Value_
         
     }
     
     export type list = {
-        readonly 'node': list.node
+        readonly 'value': list.value
     }
     
     export type nothing = null
@@ -257,27 +272,6 @@ export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
 }
 
-export namespace Group_ {
-    
-    export type D = Value_
-    
-}
-
-export type Group_ = _pi.Dictionary<Group_.D>
-
-export namespace Dictionary_ {
-    
-    export type node = Value_
-    
-    export type ordered = boolean
-    
-}
-
-export type Dictionary_ = {
-    readonly 'node': Dictionary_.node
-    readonly 'ordered': Dictionary_.ordered
-}
-
 export { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
@@ -285,9 +279,6 @@ export {
     Imports_ as Imports, 
     Globals_ as Globals, 
     Modules_ as Modules, 
-    Module_ as Module, 
     Value_ as Value, 
     Text_Type_ as Text_Type, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
 }

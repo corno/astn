@@ -13,48 +13,33 @@ import * as t_out from "../../../../../interface/generated/liana/schemas/astn_sc
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/resolve"
 
-export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolve(
-    () => {
-        
-        const prop_node = _p_cc(
-            $['node'],
-            ($) => Value(
-                $,
-                ($) => abort(
-                    $
-                ),
-                {
-                    'noncircular sibling modules': $l['noncircular sibling modules'],
-                    'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
-                },
-                {
-                    'globals': $p['globals'],
-                    'imports': $p['imports'],
-                }
-            )
-        )
-        return {
-            'node': prop_node,
-        }
-    }
-)
-
 export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
     ($, id, $a, $c): t_out.Modules.D => _p_cc(
         $['l entry'],
-        ($) => Module(
-            $,
-            ($) => abort(
-                $
-            ),
-            {
-                'noncircular sibling modules': $a,
-                'possibly circular dependent sibling modules': $c,
-            },
-            {
-                'globals': $p['globals'],
-                'imports': $p['imports'],
+        ($) => _p.group.resolve(
+            () => {
+                
+                const prop_root_value = _p_cc(
+                    $['root value'],
+                    ($) => Value(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        {
+                            'noncircular sibling modules': $a,
+                            'possibly circular dependent sibling modules': $c,
+                        },
+                        {
+                            'globals': $p['globals'],
+                            'imports': $p['imports'],
+                        }
+                    )
+                )
+                return {
+                    'root value': prop_root_value,
+                }
             }
         )
     )
@@ -119,59 +104,6 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.
     }
 )
 
-export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.resolve(
-    $['l dictionary'],
-    ($, id, $a, $c): t_out.Group.D => _p_cc(
-        $['l entry'],
-        ($) => Value(
-            $,
-            ($) => abort(
-                $
-            ),
-            {
-                'noncircular sibling modules': $l['noncircular sibling modules'],
-                'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
-            },
-            {
-                'globals': $p['globals'],
-                'imports': $p['imports'],
-            }
-        )
-    )
-)
-
-export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.group.resolve(
-    () => {
-        
-        const prop_node = _p_cc(
-            $['node'],
-            ($) => Value(
-                $,
-                ($) => abort(
-                    $
-                ),
-                {
-                    'noncircular sibling modules': $l['noncircular sibling modules'],
-                    'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
-                },
-                {
-                    'globals': $p['globals'],
-                    'imports': $p['imports'],
-                }
-            )
-        )
-        
-        const prop_ordered = _p_cc(
-            $['ordered'],
-            ($) => $
-        )
-        return {
-            'node': prop_node,
-            'ordered': prop_ordered,
-        }
-    }
-)
-
 export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
     $['l state'],
     ($): t_out.Value => {
@@ -215,20 +147,20 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                             }
                                         )]
                                     )
-                                case 'internal':
+                                case 'internal acyclic':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal', {
+                                        ($) => ['internal acyclic', {
                                             'l entry': _pdev.implement_me(
                                                 "IM: FIXME ACYCLIC ENTRY"
                                             ),
                                             'l id': $['l reference'],
                                         }]
                                     )
-                                case 'internal cyclic':
+                                case 'internal':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal cyclic', {
+                                        ($) => ['internal', {
                                             'l entry': _pdev.implement_me(
                                                 "IM: FIXME CYCLIC ENTRY"
                                             ),
@@ -246,37 +178,60 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
             case 'dictionary':
                 return _p.ss(
                     $,
-                    ($) => ['dictionary', Dictionary(
-                        $,
-                        ($) => abort(
-                            $
-                        ),
-                        {
-                            'noncircular sibling modules': $l['noncircular sibling modules'],
-                            'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
-                        },
-                        {
-                            'globals': $p['globals'],
-                            'imports': $p['imports'],
+                    ($) => ['dictionary', _p.group.resolve(
+                        () => {
+                            
+                            const prop_value = _p_cc(
+                                $['value'],
+                                ($) => Value(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    {
+                                        'noncircular sibling modules': $l['noncircular sibling modules'],
+                                        'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
+                                    },
+                                    {
+                                        'globals': $p['globals'],
+                                        'imports': $p['imports'],
+                                    }
+                                )
+                            )
+                            
+                            const prop_ordered = _p_cc(
+                                $['ordered'],
+                                ($) => $
+                            )
+                            return {
+                                'value': prop_value,
+                                'ordered': prop_ordered,
+                            }
                         }
                     )]
                 )
             case 'group':
                 return _p.ss(
                     $,
-                    ($) => ['group', Group(
-                        $,
-                        ($) => abort(
-                            $
-                        ),
-                        {
-                            'noncircular sibling modules': $l['noncircular sibling modules'],
-                            'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
-                        },
-                        {
-                            'globals': $p['globals'],
-                            'imports': $p['imports'],
-                        }
+                    ($) => ['group', _p.dictionary.resolve(
+                        $['l dictionary'],
+                        ($, id, $a, $c): t_out.Value.group.D => _p_cc(
+                            $['l entry'],
+                            ($) => Value(
+                                $,
+                                ($) => abort(
+                                    $
+                                ),
+                                {
+                                    'noncircular sibling modules': $l['noncircular sibling modules'],
+                                    'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
+                                },
+                                {
+                                    'globals': $p['globals'],
+                                    'imports': $p['imports'],
+                                }
+                            )
+                        )
                     )]
                 )
             case 'list':
@@ -285,8 +240,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                     ($) => ['list', _p.group.resolve(
                         () => {
                             
-                            const prop_node = _p_cc(
-                                $['node'],
+                            const prop_value = _p_cc(
+                                $['value'],
                                 ($) => Value(
                                     $,
                                     ($) => abort(
@@ -297,7 +252,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                 )
                             )
                             return {
-                                'node': prop_node,
+                                'value': prop_value,
                             }
                         }
                     )]
