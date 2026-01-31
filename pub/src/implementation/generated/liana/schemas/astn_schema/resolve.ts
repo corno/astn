@@ -7,6 +7,8 @@ import {
 
 import * as _pdev from "pareto-core-dev"
 
+import * as _p_ls from "pareto-core/dist/lookup_selection"
+
 import * as t_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/astn_schema/resolve"
@@ -22,12 +24,8 @@ export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolv
                     $
                 ),
                 {
-                    'noncircular sibling modules': _pdev.implement_me(
-                        "IM: selection"
-                    ),
-                    'possibly circular dependent sibling modules': _pdev.implement_me(
-                        "IM: selection"
-                    ),
+                    'noncircular sibling modules': $l['noncircular sibling modules'],
+                    'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
                 },
                 {
                     'globals': $p['globals'],
@@ -51,12 +49,8 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
                 $
             ),
             {
-                'noncircular sibling modules': _pdev.implement_me(
-                    "IM: selection"
-                ),
-                'possibly circular dependent sibling modules': _pdev.implement_me(
-                    "IM: selection"
-                ),
+                'noncircular sibling modules': $a,
+                'possibly circular dependent sibling modules': $c,
             },
             {
                 'globals': $p['globals'],
@@ -135,12 +129,8 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                 $
             ),
             {
-                'noncircular sibling modules': _pdev.implement_me(
-                    "IM: selection"
-                ),
-                'possibly circular dependent sibling modules': _pdev.implement_me(
-                    "IM: selection"
-                ),
+                'noncircular sibling modules': $l['noncircular sibling modules'],
+                'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
             },
             {
                 'globals': $p['globals'],
@@ -161,12 +151,8 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                     $
                 ),
                 {
-                    'noncircular sibling modules': _pdev.implement_me(
-                        "IM: selection"
-                    ),
-                    'possibly circular dependent sibling modules': _pdev.implement_me(
-                        "IM: selection"
-                    ),
+                    'noncircular sibling modules': $l['noncircular sibling modules'],
+                    'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
                 },
                 {
                     'globals': $p['globals'],
@@ -266,12 +252,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling modules': _pdev.implement_me(
-                                "IM: selection"
-                            ),
-                            'possibly circular dependent sibling modules': _pdev.implement_me(
-                                "IM: selection"
-                            ),
+                            'noncircular sibling modules': $l['noncircular sibling modules'],
+                            'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
                         },
                         {
                             'globals': $p['globals'],
@@ -288,12 +270,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling modules': _pdev.implement_me(
-                                "IM: selection"
-                            ),
-                            'possibly circular dependent sibling modules': _pdev.implement_me(
-                                "IM: selection"
-                            ),
+                            'noncircular sibling modules': $l['noncircular sibling modules'],
+                            'possibly circular dependent sibling modules': $l['possibly circular dependent sibling modules'],
                         },
                         {
                             'globals': $p['globals'],
@@ -414,8 +392,9 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
                 $
             ),
             {
-                'sibling schemas': _pdev.implement_me(
-                    "IM: stack"
+                'sibling schemas': _p_ls.stack.push(
+                    $l['sibling schemas'],
+                    $a
                 ),
             },
             null
@@ -436,9 +415,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                             $
                         ),
                         {
-                            'sibling schemas': _pdev.implement_me(
-                                "IM: selection"
-                            ),
+                            'sibling schemas': $l['sibling schemas'],
                         },
                         null
                     )]
@@ -452,9 +429,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                             $
                         ),
                         {
-                            'sibling schemas': _pdev.implement_me(
-                                "IM: selection"
-                            ),
+                            'sibling schemas': $l['sibling schemas'],
                         },
                         null
                     )]
@@ -478,9 +453,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                     $
                 ),
                 {
-                    'sibling schemas': _pdev.implement_me(
-                        "IM: selection"
-                    ),
+                    'sibling schemas': $l['sibling schemas'],
                 },
                 null
             )
