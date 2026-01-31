@@ -7,25 +7,6 @@ import * as i_out from "./data"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
-export namespace Value_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_ = (
-    context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
-) => Value_.O
-
 export namespace Document_ {
     
     export type I = i_in.Value
@@ -45,7 +26,26 @@ export type Document_ = (
     abort: _pi.Abort<Document_.E>,
 ) => Document_.O
 
+export namespace Value_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
+) => Value_.O
+
 export { 
-    Value_ as Value, 
     Document_ as Document, 
+    Value_ as Value, 
 }

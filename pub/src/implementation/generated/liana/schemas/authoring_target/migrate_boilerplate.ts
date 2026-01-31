@@ -9,6 +9,24 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/authoring_target/data"
 
+export const Document: t_signatures.Document = ($) => ({
+    'header': _p_cc(
+        $['header'],
+        ($) => _p.optional.map(
+            $,
+            ($) => Value(
+                $
+            )
+        )
+    ),
+    'content': _p_cc(
+        $['content'],
+        ($) => Value(
+            $
+        )
+    ),
+})
+
 export const Value: t_signatures.Value = ($) => ({
     'metadata': _p_cc(
         $['metadata'],
@@ -237,24 +255,6 @@ export const Value: t_signatures.Value = ($) => ({
                         )
                 }
             }
-        )
-    ),
-})
-
-export const Document: t_signatures.Document = ($) => ({
-    'header': _p_cc(
-        $['header'],
-        ($) => _p.optional.map(
-            $,
-            ($) => Value(
-                $
-            )
-        )
-    ),
-    'content': _p_cc(
-        $['content'],
-        ($) => Value(
-            $
         )
     ),
 })

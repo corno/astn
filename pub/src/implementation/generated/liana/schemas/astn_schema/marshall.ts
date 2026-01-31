@@ -13,103 +13,6 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
-export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => Schema_Tree(
-        $
-    )
-)]
-
-export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'type': _p_cc(
-            $['type'],
-            ($) => ['state', _p.decide.state(
-                $,
-                ($): t_out.Value.state => {
-                    switch ($[0]) {
-                        case 'multi line':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'multi line',
-                                    'value': ['nothing', null],
-                                })
-                            )
-                        case 'single line':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'single line',
-                                    'value': ['nothing', null],
-                                })
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            )]
-        ),
-    }
-)]]
-
-export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'text types': _p_cc(
-            $['text types'],
-            ($) => ['dictionary', _p.dictionary.map(
-                $,
-                ($, id) => Text_Type(
-                    $
-                )
-            )]
-        ),
-    }
-)]]
-
-export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'node': _p_cc(
-            $['node'],
-            ($) => Value(
-                $
-            )
-        ),
-    }
-)]]
-
-export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => Module(
-        $
-    )
-)]
-
-export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'imports': _p_cc(
-            $['imports'],
-            ($) => Imports(
-                $
-            )
-        ),
-        'globals': _p_cc(
-            $['globals'],
-            ($) => Globals(
-                $
-            )
-        ),
-        'types': _p_cc(
-            $['types'],
-            ($) => Modules(
-                $
-            )
-        ),
-    }
-)]]
-
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
@@ -142,6 +45,36 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
     }
 )]
 
+export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => Schema_Tree(
+        $
+    )
+)]
+
+export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'imports': _p_cc(
+            $['imports'],
+            ($) => Imports(
+                $
+            )
+        ),
+        'globals': _p_cc(
+            $['globals'],
+            ($) => Globals(
+                $
+            )
+        ),
+        'types': _p_cc(
+            $['types'],
+            ($) => Modules(
+                $
+            )
+        ),
+    }
+)]]
+
 export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary.map(
     $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
@@ -161,7 +94,28 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary
     )]]
 )]
 
-export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'text types': _p_cc(
+            $['text types'],
+            ($) => ['dictionary', _p.dictionary.map(
+                $,
+                ($, id) => Text_Type(
+                    $
+                )
+            )]
+        ),
+    }
+)]]
+
+export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => Module(
+        $
+    )
+)]
+
+export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'node': _p_cc(
             $['node'],
@@ -169,24 +123,8 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
                 $
             )
         ),
-        'ordered': _p_cc(
-            $['ordered'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_serialize_boolean.serialize(
-                    $
-                ),
-            }]
-        ),
     }
 )]]
-
-export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => Value(
-        $
-    )
-)]
 
 export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
@@ -371,3 +309,65 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
         }
     }
 )]
+
+export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'type': _p_cc(
+            $['type'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'multi line':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'multi line',
+                                    'value': ['nothing', null],
+                                })
+                            )
+                        case 'single line':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'single line',
+                                    'value': ['nothing', null],
+                                })
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            )]
+        ),
+    }
+)]]
+
+export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => Value(
+        $
+    )
+)]
+
+export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'node': _p_cc(
+            $['node'],
+            ($) => Value(
+                $
+            )
+        ),
+        'ordered': _p_cc(
+            $['ordered'],
+            ($) => ['text', {
+                'delimiter': ['none', null],
+                'value': v_serialize_boolean.serialize(
+                    $
+                ),
+            }]
+        ),
+    }
+)]]

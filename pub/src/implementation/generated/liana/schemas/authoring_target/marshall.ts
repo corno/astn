@@ -13,6 +13,27 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
+export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'header': _p_cc(
+            $['header'],
+            ($) => ['optional', _p.decide.optional(
+                $,
+                ($): t_out.Value.optional => ['set', Value(
+                    $
+                )],
+                () => ['not set', null]
+            )]
+        ),
+        'content': _p_cc(
+            $['content'],
+            ($) => Value(
+                $
+            )
+        ),
+    }
+)]]
+
 export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'metadata': _p_cc(
@@ -324,27 +345,6 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                     }
                 }
             )]
-        ),
-    }
-)]]
-
-export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'header': _p_cc(
-            $['header'],
-            ($) => ['optional', _p.decide.optional(
-                $,
-                ($): t_out.Value.optional => ['set', Value(
-                    $
-                )],
-                () => ['not set', null]
-            )]
-        ),
-        'content': _p_cc(
-            $['content'],
-            ($) => Value(
-                $
-            )
         ),
     }
 )]]

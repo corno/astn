@@ -1,6 +1,18 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
+export namespace Schema_Tree_ {
+    
+    export type set_ = Schemas_
+    
+    export type schema = Schema_
+    
+}
+
+export type Schema_Tree_ = 
+    | readonly ['set', Schema_Tree_.set_]
+    | readonly ['schema', Schema_Tree_.schema]
+
 export namespace Schemas_ {
     
     export type D = Schema_Tree_
@@ -8,60 +20,6 @@ export namespace Schemas_ {
 }
 
 export type Schemas_ = _pi.Dictionary<Schemas_.D>
-
-export namespace Text_Type_ {
-    
-    export namespace type_ {
-        
-        export type multi_line = null
-        
-        export type single_line = null
-        
-    }
-    
-    export type type_ = 
-        | readonly ['multi line', type_.multi_line]
-        | readonly ['single line', type_.single_line]
-    
-}
-
-export type Text_Type_ = {
-    readonly 'type': Text_Type_.type_
-}
-
-export namespace Globals_ {
-    
-    export namespace text_types {
-        
-        export type D = Text_Type_
-        
-    }
-    
-    export type text_types = _pi.Dictionary<text_types.D>
-    
-}
-
-export type Globals_ = {
-    readonly 'text types': Globals_.text_types
-}
-
-export namespace Module_ {
-    
-    export type node = Value_
-    
-}
-
-export type Module_ = {
-    readonly 'node': Module_.node
-}
-
-export namespace Modules_ {
-    
-    export type D = Module_
-    
-}
-
-export type Modules_ = _pi.Dictionary<Modules_.D>
 
 export namespace Schema_ {
     
@@ -78,18 +36,6 @@ export type Schema_ = {
     readonly 'globals': Schema_.globals
     readonly 'types': Schema_.types
 }
-
-export namespace Schema_Tree_ {
-    
-    export type set_ = Schemas_
-    
-    export type schema = Schema_
-    
-}
-
-export type Schema_Tree_ = 
-    | readonly ['set', Schema_Tree_.set_]
-    | readonly ['schema', Schema_Tree_.schema]
 
 export namespace Imports_ {
     
@@ -124,26 +70,39 @@ export namespace Imports_ {
 
 export type Imports_ = _pi.Dictionary<Imports_.D>
 
-export namespace Dictionary_ {
+export namespace Globals_ {
+    
+    export namespace text_types {
+        
+        export type D = Text_Type_
+        
+    }
+    
+    export type text_types = _pi.Dictionary<text_types.D>
+    
+}
+
+export type Globals_ = {
+    readonly 'text types': Globals_.text_types
+}
+
+export namespace Modules_ {
+    
+    export type D = Module_
+    
+}
+
+export type Modules_ = _pi.Dictionary<Modules_.D>
+
+export namespace Module_ {
     
     export type node = Value_
     
-    export type ordered = boolean
-    
 }
 
-export type Dictionary_ = {
-    readonly 'node': Dictionary_.node
-    readonly 'ordered': Dictionary_.ordered
+export type Module_ = {
+    readonly 'node': Module_.node
 }
-
-export namespace Group_ {
-    
-    export type D = Value_
-    
-}
-
-export type Group_ = _pi.Dictionary<Group_.D>
 
 export namespace Value_ {
     
@@ -278,16 +237,57 @@ export type Value_ =
     | readonly ['state', Value_.state]
     | readonly ['text', Value_.text]
 
+export namespace Text_Type_ {
+    
+    export namespace type_ {
+        
+        export type multi_line = null
+        
+        export type single_line = null
+        
+    }
+    
+    export type type_ = 
+        | readonly ['multi line', type_.multi_line]
+        | readonly ['single line', type_.single_line]
+    
+}
+
+export type Text_Type_ = {
+    readonly 'type': Text_Type_.type_
+}
+
+export namespace Group_ {
+    
+    export type D = Value_
+    
+}
+
+export type Group_ = _pi.Dictionary<Group_.D>
+
+export namespace Dictionary_ {
+    
+    export type node = Value_
+    
+    export type ordered = boolean
+    
+}
+
+export type Dictionary_ = {
+    readonly 'node': Dictionary_.node
+    readonly 'ordered': Dictionary_.ordered
+}
+
 export { 
-    Schemas_ as Schemas, 
-    Text_Type_ as Text_Type, 
-    Globals_ as Globals, 
-    Module_ as Module, 
-    Modules_ as Modules, 
-    Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
+    Schemas_ as Schemas, 
+    Schema_ as Schema, 
     Imports_ as Imports, 
-    Dictionary_ as Dictionary, 
-    Group_ as Group, 
+    Globals_ as Globals, 
+    Modules_ as Modules, 
+    Module_ as Module, 
     Value_ as Value, 
+    Text_Type_ as Text_Type, 
+    Group_ as Group, 
+    Dictionary_ as Dictionary, 
 }

@@ -17,6 +17,53 @@ import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/m
 
 import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
 
+export const Document: t_signatures.Document = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null]
+        )
+    ),
+    ($) => ({
+        'header': _p_cc(
+            $.__get_entry(
+                'header',
+                ($) => abort(
+                    ['no such entry', "header"]
+                )
+            ),
+            ($) => _p.optional.map(
+                v_unmarshalled_from_parse_tree.Optional(
+                    $,
+                    ($) => abort(
+                        ['expected an optional', null]
+                    )
+                ),
+                ($) => Value(
+                    $,
+                    ($) => abort(
+                        $
+                    )
+                )
+            )
+        ),
+        'content': _p_cc(
+            $.__get_entry(
+                'content',
+                ($) => abort(
+                    ['no such entry', "content"]
+                )
+            ),
+            ($) => Value(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+    })
+)
+
 export const Value: t_signatures.Value = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
@@ -492,53 +539,6 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                 )
                         }
                     }
-                )
-            )
-        ),
-    })
-)
-
-export const Document: t_signatures.Document = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.Group(
-        $,
-        ($) => abort(
-            ['expected a group', null]
-        )
-    ),
-    ($) => ({
-        'header': _p_cc(
-            $.__get_entry(
-                'header',
-                ($) => abort(
-                    ['no such entry', "header"]
-                )
-            ),
-            ($) => _p.optional.map(
-                v_unmarshalled_from_parse_tree.Optional(
-                    $,
-                    ($) => abort(
-                        ['expected an optional', null]
-                    )
-                ),
-                ($) => Value(
-                    $,
-                    ($) => abort(
-                        $
-                    )
-                )
-            )
-        ),
-        'content': _p_cc(
-            $.__get_entry(
-                'content',
-                ($) => abort(
-                    ['no such entry', "content"]
-                )
-            ),
-            ($) => Value(
-                $,
-                ($) => abort(
-                    $
                 )
             )
         ),

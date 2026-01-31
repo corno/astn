@@ -7,32 +7,14 @@ import * as v_serialize from "astn-core/dist/implementation/manual/schemas/seale
 
 import * as v_marshall from "./marshall"
 
+export const Schema_Tree: t_signatures.Schema_Tree = ($) => v_serialize.Document(
+    v_marshall.Schema_Tree(
+        $
+    )
+)
+
 export const Schemas: t_signatures.Schemas = ($) => v_serialize.Document(
     v_marshall.Schemas(
-        $
-    )
-)
-
-export const Text_Type: t_signatures.Text_Type = ($) => v_serialize.Document(
-    v_marshall.Text_Type(
-        $
-    )
-)
-
-export const Globals: t_signatures.Globals = ($) => v_serialize.Document(
-    v_marshall.Globals(
-        $
-    )
-)
-
-export const Module: t_signatures.Module = ($) => v_serialize.Document(
-    v_marshall.Module(
-        $
-    )
-)
-
-export const Modules: t_signatures.Modules = ($) => v_serialize.Document(
-    v_marshall.Modules(
         $
     )
 )
@@ -43,20 +25,38 @@ export const Schema: t_signatures.Schema = ($) => v_serialize.Document(
     )
 )
 
-export const Schema_Tree: t_signatures.Schema_Tree = ($) => v_serialize.Document(
-    v_marshall.Schema_Tree(
-        $
-    )
-)
-
 export const Imports: t_signatures.Imports = ($) => v_serialize.Document(
     v_marshall.Imports(
         $
     )
 )
 
-export const Dictionary: t_signatures.Dictionary = ($) => v_serialize.Document(
-    v_marshall.Dictionary(
+export const Globals: t_signatures.Globals = ($) => v_serialize.Document(
+    v_marshall.Globals(
+        $
+    )
+)
+
+export const Modules: t_signatures.Modules = ($) => v_serialize.Document(
+    v_marshall.Modules(
+        $
+    )
+)
+
+export const Module: t_signatures.Module = ($) => v_serialize.Document(
+    v_marshall.Module(
+        $
+    )
+)
+
+export const Value: t_signatures.Value = ($) => v_serialize.Document(
+    v_marshall.Value(
+        $
+    )
+)
+
+export const Text_Type: t_signatures.Text_Type = ($) => v_serialize.Document(
+    v_marshall.Text_Type(
         $
     )
 )
@@ -67,8 +67,8 @@ export const Group: t_signatures.Group = ($) => v_serialize.Document(
     )
 )
 
-export const Value: t_signatures.Value = ($) => v_serialize.Document(
-    v_marshall.Value(
+export const Dictionary: t_signatures.Dictionary = ($) => v_serialize.Document(
+    v_marshall.Dictionary(
         $
     )
 )

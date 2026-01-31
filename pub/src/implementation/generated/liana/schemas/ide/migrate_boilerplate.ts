@@ -9,32 +9,6 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/ide/data"
 
-export const Relative_Location: t_signatures.Relative_Location = ($) => ({
-    'line': _p_cc(
-        $['line'],
-        ($) => $
-    ),
-    'column': _p_cc(
-        $['column'],
-        ($) => $
-    ),
-})
-
-export const Relative_Range: t_signatures.Relative_Range = ($) => ({
-    'start': _p_cc(
-        $['start'],
-        ($) => Relative_Location(
-            $
-        )
-    ),
-    'end': _p_cc(
-        $['end'],
-        ($) => Relative_Location(
-            $
-        )
-    ),
-})
-
 export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.map(
     $,
     ($) => _p.decide.state(
@@ -94,7 +68,33 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.map(
     )
 )
 
+export const Relative_Range: t_signatures.Relative_Range = ($) => ({
+    'start': _p_cc(
+        $['start'],
+        ($) => Relative_Location(
+            $
+        )
+    ),
+    'end': _p_cc(
+        $['end'],
+        ($) => Relative_Location(
+            $
+        )
+    ),
+})
+
 export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => _p.dictionary.map(
     $,
     ($, id) => $
 )
+
+export const Relative_Location: t_signatures.Relative_Location = ($) => ({
+    'line': _p_cc(
+        $['line'],
+        ($) => $
+    ),
+    'column': _p_cc(
+        $['column'],
+        ($) => $
+    ),
+})

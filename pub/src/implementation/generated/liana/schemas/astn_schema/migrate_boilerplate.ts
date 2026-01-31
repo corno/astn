@@ -9,138 +9,6 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
-export const Schemas: t_signatures.Schemas = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': Schema_Tree(
-                $
-            ),
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
-export const Text_Type: t_signatures.Text_Type = ($) => ({
-    'type': _p_cc(
-        $['type'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l state': _p.decide.state(
-                $,
-                ($): t_out.Text_Type.type_.l_state => {
-                    switch ($[0]) {
-                        case 'multi line':
-                            return _p.ss(
-                                $,
-                                ($) => ['multi line', null]
-                            )
-                        case 'single line':
-                            return _p.ss(
-                                $,
-                                ($) => ['single line', null]
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            ),
-        })
-    ),
-})
-
-export const Globals: t_signatures.Globals = ($) => ({
-    'text types': _p_cc(
-        $['text types'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l dictionary': _p.dictionary.map(
-                $,
-                ($, id) => ({
-                    'l entry': Text_Type(
-                        $
-                    ),
-                    'l location': {
-                        'document resource identifier': "implement me",
-                        'line': 42,
-                        'column': 42,
-                    },
-                })
-            ),
-        })
-    ),
-})
-
-export const Module: t_signatures.Module = ($) => ({
-    'node': _p_cc(
-        $['node'],
-        ($) => Value(
-            $
-        )
-    ),
-})
-
-export const Modules: t_signatures.Modules = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': Module(
-                $
-            ),
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
-export const Schema: t_signatures.Schema = ($) => ({
-    'imports': _p_cc(
-        $['imports'],
-        ($) => Imports(
-            $
-        )
-    ),
-    'globals': _p_cc(
-        $['globals'],
-        ($) => Globals(
-            $
-        )
-    ),
-    'types': _p_cc(
-        $['types'],
-        ($) => Modules(
-            $
-        )
-    ),
-})
-
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
@@ -171,6 +39,48 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
                     )
             }
         }
+    ),
+})
+
+export const Schemas: t_signatures.Schemas = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l dictionary': _p.dictionary.map(
+        $,
+        ($, id) => ({
+            'l entry': Schema_Tree(
+                $
+            ),
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        })
+    ),
+})
+
+export const Schema: t_signatures.Schema = ($) => ({
+    'imports': _p_cc(
+        $['imports'],
+        ($) => Imports(
+            $
+        )
+    ),
+    'globals': _p_cc(
+        $['globals'],
+        ($) => Globals(
+            $
+        )
+    ),
+    'types': _p_cc(
+        $['types'],
+        ($) => Modules(
+            $
+        )
     ),
 })
 
@@ -209,20 +119,33 @@ export const Imports: t_signatures.Imports = ($) => ({
     ),
 })
 
-export const Dictionary: t_signatures.Dictionary = ($) => ({
-    'node': _p_cc(
-        $['node'],
-        ($) => Value(
-            $
-        )
-    ),
-    'ordered': _p_cc(
-        $['ordered'],
-        ($) => $
+export const Globals: t_signatures.Globals = ($) => ({
+    'text types': _p_cc(
+        $['text types'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l dictionary': _p.dictionary.map(
+                $,
+                ($, id) => ({
+                    'l entry': Text_Type(
+                        $
+                    ),
+                    'l location': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                })
+            ),
+        })
     ),
 })
 
-export const Group: t_signatures.Group = ($) => ({
+export const Modules: t_signatures.Modules = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -231,7 +154,7 @@ export const Group: t_signatures.Group = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Value(
+            'l entry': Module(
                 $
             ),
             'l location': {
@@ -240,6 +163,15 @@ export const Group: t_signatures.Group = ($) => ({
                 'column': 42,
             },
         })
+    ),
+})
+
+export const Module: t_signatures.Module = ($) => ({
+    'node': _p_cc(
+        $['node'],
+        ($) => Value(
+            $
+        )
     ),
 })
 
@@ -436,5 +368,73 @@ export const Value: t_signatures.Value = ($) => ({
                     )
             }
         }
+    ),
+})
+
+export const Text_Type: t_signatures.Text_Type = ($) => ({
+    'type': _p_cc(
+        $['type'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Text_Type.type_.l_state => {
+                    switch ($[0]) {
+                        case 'multi line':
+                            return _p.ss(
+                                $,
+                                ($) => ['multi line', null]
+                            )
+                        case 'single line':
+                            return _p.ss(
+                                $,
+                                ($) => ['single line', null]
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            ),
+        })
+    ),
+})
+
+export const Group: t_signatures.Group = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l dictionary': _p.dictionary.map(
+        $,
+        ($, id) => ({
+            'l entry': Value(
+                $
+            ),
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        })
+    ),
+})
+
+export const Dictionary: t_signatures.Dictionary = ($) => ({
+    'node': _p_cc(
+        $['node'],
+        ($) => Value(
+            $
+        )
+    ),
+    'ordered': _p_cc(
+        $['ordered'],
+        ($) => $
     ),
 })

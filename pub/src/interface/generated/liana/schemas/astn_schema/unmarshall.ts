@@ -7,6 +7,25 @@ import * as i_out from "./data/unresolved"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
+export namespace Schema_Tree_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Schema_Tree
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Schema_Tree_ = (
+    context: Schema_Tree_.I,
+    abort: _pi.Abort<Schema_Tree_.E>,
+) => Schema_Tree_.O
+
 export namespace Schemas_ {
     
     export type I = i_in.Value
@@ -25,82 +44,6 @@ export type Schemas_ = (
     context: Schemas_.I,
     abort: _pi.Abort<Schemas_.E>,
 ) => Schemas_.O
-
-export namespace Text_Type_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Text_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Text_Type_ = (
-    context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
-) => Text_Type_.O
-
-export namespace Globals_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Globals
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Globals_ = (
-    context: Globals_.I,
-    abort: _pi.Abort<Globals_.E>,
-) => Globals_.O
-
-export namespace Module_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
-) => Module_.O
-
-export namespace Modules_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Modules
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Modules_ = (
-    context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
-) => Modules_.O
 
 export namespace Schema_ {
     
@@ -121,25 +64,6 @@ export type Schema_ = (
     abort: _pi.Abort<Schema_.E>,
 ) => Schema_.O
 
-export namespace Schema_Tree_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schema_Tree
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Schema_Tree_ = (
-    context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
-) => Schema_Tree_.O
-
 export namespace Imports_ {
     
     export type I = i_in.Value
@@ -159,11 +83,11 @@ export type Imports_ = (
     abort: _pi.Abort<Imports_.E>,
 ) => Imports_.O
 
-export namespace Dictionary_ {
+export namespace Globals_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Dictionary
+    export type O = i_out.Globals
     
     export type E = i_generic.Error
     
@@ -173,16 +97,16 @@ export namespace Dictionary_ {
     
 }
 
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
-) => Dictionary_.O
+export type Globals_ = (
+    context: Globals_.I,
+    abort: _pi.Abort<Globals_.E>,
+) => Globals_.O
 
-export namespace Group_ {
+export namespace Modules_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Group
+    export type O = i_out.Modules
     
     export type E = i_generic.Error
     
@@ -192,10 +116,29 @@ export namespace Group_ {
     
 }
 
-export type Group_ = (
-    context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
-) => Group_.O
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
+) => Modules_.O
+
+export namespace Module_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Module
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
+) => Module_.O
 
 export namespace Value_ {
     
@@ -216,16 +159,73 @@ export type Value_ = (
     abort: _pi.Abort<Value_.E>,
 ) => Value_.O
 
+export namespace Text_Type_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Text_Type
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Text_Type_ = (
+    context: Text_Type_.I,
+    abort: _pi.Abort<Text_Type_.E>,
+) => Text_Type_.O
+
+export namespace Group_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Group
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Group_ = (
+    context: Group_.I,
+    abort: _pi.Abort<Group_.E>,
+) => Group_.O
+
+export namespace Dictionary_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Dictionary
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Dictionary_ = (
+    context: Dictionary_.I,
+    abort: _pi.Abort<Dictionary_.E>,
+) => Dictionary_.O
+
 export { 
-    Schemas_ as Schemas, 
-    Text_Type_ as Text_Type, 
-    Globals_ as Globals, 
-    Module_ as Module, 
-    Modules_ as Modules, 
-    Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
+    Schemas_ as Schemas, 
+    Schema_ as Schema, 
     Imports_ as Imports, 
-    Dictionary_ as Dictionary, 
-    Group_ as Group, 
+    Globals_ as Globals, 
+    Modules_ as Modules, 
+    Module_ as Module, 
     Value_ as Value, 
+    Text_Type_ as Text_Type, 
+    Group_ as Group, 
+    Dictionary_ as Dictionary, 
 }

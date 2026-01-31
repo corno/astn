@@ -13,46 +13,6 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
-export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'line': _p_cc(
-            $['line'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_serialize_number.serialize(
-                    $
-                ),
-            }]
-        ),
-        'column': _p_cc(
-            $['column'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_serialize_number.serialize(
-                    $
-                ),
-            }]
-        ),
-    }
-)]]
-
-export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'start': _p_cc(
-            $['start'],
-            ($) => Relative_Location(
-                $
-            )
-        ),
-        'end': _p_cc(
-            $['end'],
-            ($) => Relative_Location(
-                $
-            )
-        ),
-    }
-)]]
-
 export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.map(
     $,
     ($) => ['state', _p.decide.state(
@@ -133,6 +93,23 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.map(
     )]
 )]
 
+export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'start': _p_cc(
+            $['start'],
+            ($) => Relative_Location(
+                $
+            )
+        ),
+        'end': _p_cc(
+            $['end'],
+            ($) => Relative_Location(
+                $
+            )
+        ),
+    }
+)]]
+
 export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', _p.dictionary.map(
     $,
     ($, id) => ['text', {
@@ -140,3 +117,26 @@ export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sort
         'value': $,
     }]
 )]
+
+export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'line': _p_cc(
+            $['line'],
+            ($) => ['text', {
+                'delimiter': ['none', null],
+                'value': v_serialize_number.serialize(
+                    $
+                ),
+            }]
+        ),
+        'column': _p_cc(
+            $['column'],
+            ($) => ['text', {
+                'delimiter': ['none', null],
+                'value': v_serialize_number.serialize(
+                    $
+                ),
+            }]
+        ),
+    }
+)]]

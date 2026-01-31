@@ -5,6 +5,33 @@ import * as i_generic from "../../generic/deserialize"
 
 import * as i_out from "./data/unresolved"
 
+export namespace Schema_Tree_ {
+    
+    export type I = string
+    
+    export type O = i_out.Schema_Tree
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Schema_Tree_ = (
+    context: Schema_Tree_.I,
+    abort: _pi.Abort<Schema_Tree_.E>,
+    parameters: {
+        readonly 'document resource identifier': Schema_Tree_.P.document_resource_identifier
+        readonly 'tab size': Schema_Tree_.P.tab_size
+    },
+) => Schema_Tree_.O
+
 export namespace Schemas_ {
     
     export type I = string
@@ -31,114 +58,6 @@ export type Schemas_ = (
         readonly 'tab size': Schemas_.P.tab_size
     },
 ) => Schemas_.O
-
-export namespace Text_Type_ {
-    
-    export type I = string
-    
-    export type O = i_out.Text_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Text_Type_ = (
-    context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
-    parameters: {
-        readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
-        readonly 'tab size': Text_Type_.P.tab_size
-    },
-) => Text_Type_.O
-
-export namespace Globals_ {
-    
-    export type I = string
-    
-    export type O = i_out.Globals
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Globals_ = (
-    context: Globals_.I,
-    abort: _pi.Abort<Globals_.E>,
-    parameters: {
-        readonly 'document resource identifier': Globals_.P.document_resource_identifier
-        readonly 'tab size': Globals_.P.tab_size
-    },
-) => Globals_.O
-
-export namespace Module_ {
-    
-    export type I = string
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
-    parameters: {
-        readonly 'document resource identifier': Module_.P.document_resource_identifier
-        readonly 'tab size': Module_.P.tab_size
-    },
-) => Module_.O
-
-export namespace Modules_ {
-    
-    export type I = string
-    
-    export type O = i_out.Modules
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Modules_ = (
-    context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
-    parameters: {
-        readonly 'document resource identifier': Modules_.P.document_resource_identifier
-        readonly 'tab size': Modules_.P.tab_size
-    },
-) => Modules_.O
 
 export namespace Schema_ {
     
@@ -167,33 +86,6 @@ export type Schema_ = (
     },
 ) => Schema_.O
 
-export namespace Schema_Tree_ {
-    
-    export type I = string
-    
-    export type O = i_out.Schema_Tree
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Schema_Tree_ = (
-    context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
-    parameters: {
-        readonly 'document resource identifier': Schema_Tree_.P.document_resource_identifier
-        readonly 'tab size': Schema_Tree_.P.tab_size
-    },
-) => Schema_Tree_.O
-
 export namespace Imports_ {
     
     export type I = string
@@ -221,11 +113,11 @@ export type Imports_ = (
     },
 ) => Imports_.O
 
-export namespace Dictionary_ {
+export namespace Globals_ {
     
     export type I = string
     
-    export type O = i_out.Dictionary
+    export type O = i_out.Globals
     
     export type E = i_generic.Error
     
@@ -239,20 +131,20 @@ export namespace Dictionary_ {
     
 }
 
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
+export type Globals_ = (
+    context: Globals_.I,
+    abort: _pi.Abort<Globals_.E>,
     parameters: {
-        readonly 'document resource identifier': Dictionary_.P.document_resource_identifier
-        readonly 'tab size': Dictionary_.P.tab_size
+        readonly 'document resource identifier': Globals_.P.document_resource_identifier
+        readonly 'tab size': Globals_.P.tab_size
     },
-) => Dictionary_.O
+) => Globals_.O
 
-export namespace Group_ {
+export namespace Modules_ {
     
     export type I = string
     
-    export type O = i_out.Group
+    export type O = i_out.Modules
     
     export type E = i_generic.Error
     
@@ -266,14 +158,41 @@ export namespace Group_ {
     
 }
 
-export type Group_ = (
-    context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
     parameters: {
-        readonly 'document resource identifier': Group_.P.document_resource_identifier
-        readonly 'tab size': Group_.P.tab_size
+        readonly 'document resource identifier': Modules_.P.document_resource_identifier
+        readonly 'tab size': Modules_.P.tab_size
     },
-) => Group_.O
+) => Modules_.O
+
+export namespace Module_ {
+    
+    export type I = string
+    
+    export type O = i_out.Module
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
+    parameters: {
+        readonly 'document resource identifier': Module_.P.document_resource_identifier
+        readonly 'tab size': Module_.P.tab_size
+    },
+) => Module_.O
 
 export namespace Value_ {
     
@@ -302,16 +221,97 @@ export type Value_ = (
     },
 ) => Value_.O
 
+export namespace Text_Type_ {
+    
+    export type I = string
+    
+    export type O = i_out.Text_Type
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Text_Type_ = (
+    context: Text_Type_.I,
+    abort: _pi.Abort<Text_Type_.E>,
+    parameters: {
+        readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
+        readonly 'tab size': Text_Type_.P.tab_size
+    },
+) => Text_Type_.O
+
+export namespace Group_ {
+    
+    export type I = string
+    
+    export type O = i_out.Group
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Group_ = (
+    context: Group_.I,
+    abort: _pi.Abort<Group_.E>,
+    parameters: {
+        readonly 'document resource identifier': Group_.P.document_resource_identifier
+        readonly 'tab size': Group_.P.tab_size
+    },
+) => Group_.O
+
+export namespace Dictionary_ {
+    
+    export type I = string
+    
+    export type O = i_out.Dictionary
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Dictionary_ = (
+    context: Dictionary_.I,
+    abort: _pi.Abort<Dictionary_.E>,
+    parameters: {
+        readonly 'document resource identifier': Dictionary_.P.document_resource_identifier
+        readonly 'tab size': Dictionary_.P.tab_size
+    },
+) => Dictionary_.O
+
 export { 
-    Schemas_ as Schemas, 
-    Text_Type_ as Text_Type, 
-    Globals_ as Globals, 
-    Module_ as Module, 
-    Modules_ as Modules, 
-    Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
+    Schemas_ as Schemas, 
+    Schema_ as Schema, 
     Imports_ as Imports, 
-    Dictionary_ as Dictionary, 
-    Group_ as Group, 
+    Globals_ as Globals, 
+    Modules_ as Modules, 
+    Module_ as Module, 
     Value_ as Value, 
+    Text_Type_ as Text_Type, 
+    Group_ as Group, 
+    Dictionary_ as Dictionary, 
 }

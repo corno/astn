@@ -7,7 +7,7 @@ import * as v_deserialize from "astn-core/dist/implementation/manual/schemas/par
 
 import * as v_unmarshall from "./unmarshall"
 
-export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
+export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Document(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -23,7 +23,7 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     )
 )
 
-export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Document(
+export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
         ($) => abort(

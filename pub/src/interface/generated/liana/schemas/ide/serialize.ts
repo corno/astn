@@ -3,9 +3,9 @@ import * as _pi from "pareto-core/dist/interface"
 
 import * as i_in from "./data"
 
-export namespace Relative_Location_ {
+export namespace Text_Edits_ {
     
-    export type I = i_in.Relative_Location
+    export type I = i_in.Text_Edits
     
     export type O = string
     
@@ -15,9 +15,9 @@ export namespace Relative_Location_ {
     
 }
 
-export type Relative_Location_ = (
-    context: Relative_Location_.I,
-) => Relative_Location_.O
+export type Text_Edits_ = (
+    context: Text_Edits_.I,
+) => Text_Edits_.O
 
 export namespace Relative_Range_ {
     
@@ -35,22 +35,6 @@ export type Relative_Range_ = (
     context: Relative_Range_.I,
 ) => Relative_Range_.O
 
-export namespace Text_Edits_ {
-    
-    export type I = i_in.Text_Edits
-    
-    export type O = string
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Text_Edits_ = (
-    context: Text_Edits_.I,
-) => Text_Edits_.O
-
 export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
     export type I = i_in.ID_Value_Pairs_To_Be_Sorted
@@ -67,9 +51,25 @@ export type ID_Value_Pairs_To_Be_Sorted_ = (
     context: ID_Value_Pairs_To_Be_Sorted_.I,
 ) => ID_Value_Pairs_To_Be_Sorted_.O
 
+export namespace Relative_Location_ {
+    
+    export type I = i_in.Relative_Location
+    
+    export type O = string
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Relative_Location_ = (
+    context: Relative_Location_.I,
+) => Relative_Location_.O
+
 export { 
-    Relative_Location_ as Relative_Location, 
-    Relative_Range_ as Relative_Range, 
     Text_Edits_ as Text_Edits, 
+    Relative_Range_ as Relative_Range, 
     ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 
+    Relative_Location_ as Relative_Location, 
 }

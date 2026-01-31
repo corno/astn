@@ -1,6 +1,25 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
+export namespace Document_ {
+    
+    export namespace header {
+        
+        export type O = Value_
+        
+    }
+    
+    export type header = _pi.Optional_Value<header.O>
+    
+    export type content = Value_
+    
+}
+
+export type Document_ = {
+    readonly 'header': Document_.header
+    readonly 'content': Document_.content
+}
+
 export namespace Value_ {
     
     export namespace metadata {
@@ -183,26 +202,7 @@ export type Value_ = {
     readonly 'data': Value_.data
 }
 
-export namespace Document_ {
-    
-    export namespace header {
-        
-        export type O = Value_
-        
-    }
-    
-    export type header = _pi.Optional_Value<header.O>
-    
-    export type content = Value_
-    
-}
-
-export type Document_ = {
-    readonly 'header': Document_.header
-    readonly 'content': Document_.content
-}
-
 export { 
-    Value_ as Value, 
     Document_ as Document, 
+    Value_ as Value, 
 }

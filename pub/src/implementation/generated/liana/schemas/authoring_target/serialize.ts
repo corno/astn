@@ -7,14 +7,14 @@ import * as v_serialize from "astn-core/dist/implementation/manual/schemas/seale
 
 import * as v_marshall from "./marshall"
 
-export const Value: t_signatures.Value = ($) => v_serialize.Document(
-    v_marshall.Value(
+export const Document: t_signatures.Document = ($) => v_serialize.Document(
+    v_marshall.Document(
         $
     )
 )
 
-export const Document: t_signatures.Document = ($) => v_serialize.Document(
-    v_marshall.Document(
+export const Value: t_signatures.Value = ($) => v_serialize.Document(
+    v_marshall.Value(
         $
     )
 )

@@ -3,6 +3,29 @@ import * as _pi from "pareto-core/dist/interface"
 
 import * as i__location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 
+export namespace Schema_Tree_ {
+    
+    export type l_location = i__location.Relative_Location
+    
+    export namespace l_state {
+        
+        export type set_ = Schemas_
+        
+        export type schema = Schema_
+        
+    }
+    
+    export type l_state = 
+        | readonly ['set', l_state.set_]
+        | readonly ['schema', l_state.schema]
+    
+}
+
+export type Schema_Tree_ = {
+    readonly 'l location': Schema_Tree_.l_location
+    readonly 'l state': Schema_Tree_.l_state
+}
+
 export namespace Schemas_ {
     
     export type l_location = i__location.Relative_Location
@@ -33,115 +56,6 @@ export type Schemas_ = {
     readonly 'l dictionary': Schemas_.l_dictionary
 }
 
-export namespace Text_Type_ {
-    
-    export namespace type_ {
-        
-        export type l_location = i__location.Relative_Location
-        
-        export namespace l_state {
-            
-            export type multi_line = null
-            
-            export type single_line = null
-            
-        }
-        
-        export type l_state = 
-            | readonly ['multi line', l_state.multi_line]
-            | readonly ['single line', l_state.single_line]
-        
-    }
-    
-    export type type_ = {
-        readonly 'l location': type_.l_location
-        readonly 'l state': type_.l_state
-    }
-    
-}
-
-export type Text_Type_ = {
-    readonly 'type': Text_Type_.type_
-}
-
-export namespace Globals_ {
-    
-    export namespace text_types {
-        
-        export type l_location = i__location.Relative_Location
-        
-        export namespace l_dictionary {
-            
-            export namespace D {
-                
-                export type l_location = i__location.Relative_Location
-                
-                export type l_entry = Text_Type_
-                
-            }
-            
-            export type D = {
-                readonly 'l location': D.l_location
-                readonly 'l entry': D.l_entry
-            }
-            
-        }
-        
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
-        
-    }
-    
-    export type text_types = {
-        readonly 'l location': text_types.l_location
-        readonly 'l dictionary': text_types.l_dictionary
-    }
-    
-}
-
-export type Globals_ = {
-    readonly 'text types': Globals_.text_types
-}
-
-export namespace Module_ {
-    
-    export type node = Value_
-    
-}
-
-export type Module_ = {
-    readonly 'node': Module_.node
-}
-
-export namespace Modules_ {
-    
-    export type l_location = i__location.Relative_Location
-    
-    export namespace l_dictionary {
-        
-        export namespace D {
-            
-            export type l_location = i__location.Relative_Location
-            
-            export type l_entry = Module_
-            
-        }
-        
-        export type D = {
-            readonly 'l location': D.l_location
-            readonly 'l entry': D.l_entry
-        }
-        
-    }
-    
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
-    
-}
-
-export type Modules_ = {
-    readonly 'l location': Modules_.l_location
-    readonly 'l dictionary': Modules_.l_dictionary
-}
-
 export namespace Schema_ {
     
     export type imports = Imports_
@@ -156,29 +70,6 @@ export type Schema_ = {
     readonly 'imports': Schema_.imports
     readonly 'globals': Schema_.globals
     readonly 'types': Schema_.types
-}
-
-export namespace Schema_Tree_ {
-    
-    export type l_location = i__location.Relative_Location
-    
-    export namespace l_state {
-        
-        export type set_ = Schemas_
-        
-        export type schema = Schema_
-        
-    }
-    
-    export type l_state = 
-        | readonly ['set', l_state.set_]
-        | readonly ['schema', l_state.schema]
-    
-}
-
-export type Schema_Tree_ = {
-    readonly 'l location': Schema_Tree_.l_location
-    readonly 'l state': Schema_Tree_.l_state
 }
 
 export namespace Imports_ {
@@ -233,20 +124,45 @@ export type Imports_ = {
     readonly 'l dictionary': Imports_.l_dictionary
 }
 
-export namespace Dictionary_ {
+export namespace Globals_ {
     
-    export type node = Value_
+    export namespace text_types {
+        
+        export type l_location = i__location.Relative_Location
+        
+        export namespace l_dictionary {
+            
+            export namespace D {
+                
+                export type l_location = i__location.Relative_Location
+                
+                export type l_entry = Text_Type_
+                
+            }
+            
+            export type D = {
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
+            }
+            
+        }
+        
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        
+    }
     
-    export type ordered = boolean
+    export type text_types = {
+        readonly 'l location': text_types.l_location
+        readonly 'l dictionary': text_types.l_dictionary
+    }
     
 }
 
-export type Dictionary_ = {
-    readonly 'node': Dictionary_.node
-    readonly 'ordered': Dictionary_.ordered
+export type Globals_ = {
+    readonly 'text types': Globals_.text_types
 }
 
-export namespace Group_ {
+export namespace Modules_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -256,7 +172,7 @@ export namespace Group_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Value_
+            export type l_entry = Module_
             
         }
         
@@ -271,9 +187,19 @@ export namespace Group_ {
     
 }
 
-export type Group_ = {
-    readonly 'l location': Group_.l_location
-    readonly 'l dictionary': Group_.l_dictionary
+export type Modules_ = {
+    readonly 'l location': Modules_.l_location
+    readonly 'l dictionary': Modules_.l_dictionary
+}
+
+export namespace Module_ {
+    
+    export type node = Value_
+    
+}
+
+export type Module_ = {
+    readonly 'node': Module_.node
 }
 
 export namespace Value_ {
@@ -464,16 +390,90 @@ export type Value_ = {
     readonly 'l state': Value_.l_state
 }
 
+export namespace Text_Type_ {
+    
+    export namespace type_ {
+        
+        export type l_location = i__location.Relative_Location
+        
+        export namespace l_state {
+            
+            export type multi_line = null
+            
+            export type single_line = null
+            
+        }
+        
+        export type l_state = 
+            | readonly ['multi line', l_state.multi_line]
+            | readonly ['single line', l_state.single_line]
+        
+    }
+    
+    export type type_ = {
+        readonly 'l location': type_.l_location
+        readonly 'l state': type_.l_state
+    }
+    
+}
+
+export type Text_Type_ = {
+    readonly 'type': Text_Type_.type_
+}
+
+export namespace Group_ {
+    
+    export type l_location = i__location.Relative_Location
+    
+    export namespace l_dictionary {
+        
+        export namespace D {
+            
+            export type l_location = i__location.Relative_Location
+            
+            export type l_entry = Value_
+            
+        }
+        
+        export type D = {
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
+        }
+        
+    }
+    
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    
+}
+
+export type Group_ = {
+    readonly 'l location': Group_.l_location
+    readonly 'l dictionary': Group_.l_dictionary
+}
+
+export namespace Dictionary_ {
+    
+    export type node = Value_
+    
+    export type ordered = boolean
+    
+}
+
+export type Dictionary_ = {
+    readonly 'node': Dictionary_.node
+    readonly 'ordered': Dictionary_.ordered
+}
+
 export { 
-    Schemas_ as Schemas, 
-    Text_Type_ as Text_Type, 
-    Globals_ as Globals, 
-    Module_ as Module, 
-    Modules_ as Modules, 
-    Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
+    Schemas_ as Schemas, 
+    Schema_ as Schema, 
     Imports_ as Imports, 
-    Dictionary_ as Dictionary, 
-    Group_ as Group, 
+    Globals_ as Globals, 
+    Modules_ as Modules, 
+    Module_ as Module, 
     Value_ as Value, 
+    Text_Type_ as Text_Type, 
+    Group_ as Group, 
+    Dictionary_ as Dictionary, 
 }
