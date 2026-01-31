@@ -22,14 +22,7 @@ export namespace Error_ {
                 readonly 'found': state.found
             }
             
-            export namespace optional_value {
-                
-                export type set_ = string
-                
-            }
-            
-            export type optional_value = 
-                | readonly ['set', optional_value.set_]
+            export type optional_value_is_not_set = null
             
             export type same_node = string
             
@@ -37,7 +30,7 @@ export namespace Error_ {
         
         export type constraint = 
             | readonly ['state', constraint.state]
-            | readonly ['optional value', constraint.optional_value]
+            | readonly ['optional value is not set', constraint.optional_value_is_not_set]
             | readonly ['same node', constraint.same_node]
         
         export namespace lookup {
