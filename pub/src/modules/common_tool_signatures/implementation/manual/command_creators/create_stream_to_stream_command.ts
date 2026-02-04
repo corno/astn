@@ -13,7 +13,7 @@ type My_Error =
     | ['could not write to stdout', null]
 
 
-export const $$ = (func: _pi.Text_Deserializer<string>): signatures.commands.stream_in_to_stream_out => {
+export const $$ = (func: _pi.Refiner<string, string, string>): signatures.commands.stream_in_to_stream_out => {
     return _p.command_procedure(
         ($p, $cr, $qr) => [
 

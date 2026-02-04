@@ -1,6 +1,7 @@
 import * as _p from 'pareto-core/dist/command'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
+import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -10,12 +11,14 @@ import * as d_transform_file from "../../../interface/to_be_generated/transform_
 
 //dependencies
 import * as r_file_in_file_out_from_main from "../schemas/file_in_file_out/refiners/main"
-import * as s_path from "pareto-resources/dist/implementation/manual/schemas/path/serializers"
-import * as s_transform_file from "../schemas/transform_file/serializers"
+import * as t_path_to_text from "pareto-resources/dist/implementation/manual/schemas/path/transformers/text"
+import * as t_transform_file_to_fountain_pen from "../schemas/transform_file/transformers/fountain_pen"
+import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/text"
 
 
 export type Creator = (
-    deserializer: _pi.Deserializer_With_Parameters<
+    deserializer: _pi.Refiner_With_Parameters<
+        string,
         string,
         string,
         {
@@ -47,7 +50,10 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
                                 $,
                                 ($) => abort(['processing', $]),
                                 {
-                                    'document resource identifier': s_path.Node_Path($r.in),
+                                    'document resource identifier': _p_text_from_list(
+                                        t_path_to_text.Node_Path($r.in),
+                                        ($) => $,
+                                    ),
                                 },
                             ),
                         }),
@@ -67,7 +73,15 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
         ($) => [
             $cr['log error'].execute(
                 {
-                    'lines': _p.list.literal([s_transform_file.Error($)])
+                    'lines': _p.list.literal([
+                        _p_text_from_list(
+                            t_fp_to_text.Block_Part(
+                                t_transform_file_to_fountain_pen.Error($),
+                                { 'indentation': `    `, 'newline': `\n` }
+                            ),
+                            ($) => $,
+                        )
+                    ])
                 },
                 ($) => ({
                     'exit code': 2

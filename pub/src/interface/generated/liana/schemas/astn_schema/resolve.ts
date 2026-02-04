@@ -95,8 +95,8 @@ export type Value_ = (
     context: Value_.I,
     abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': _pi.lookup.Acyclic<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -128,7 +128,7 @@ export type Schemas_ = (
     context: Schemas_.I,
     abort: _pi.Abort<Schemas_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schemas_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schemas_.O
@@ -157,7 +157,7 @@ export type Schema_Tree_ = (
     context: Schema_Tree_.I,
     abort: _pi.Abort<Schema_Tree_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schema_Tree_.O
@@ -186,7 +186,7 @@ export type Schema_ = (
     context: Schema_.I,
     abort: _pi.Abort<Schema_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schema_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schema_.O
@@ -215,7 +215,7 @@ export type Imports_ = (
     context: Imports_.I,
     abort: _pi.Abort<Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Imports_.L.sibling_schemas>
     },
     parameters: null,
 ) => Imports_.O

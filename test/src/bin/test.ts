@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as _pt from 'pareto-core/dist/transformer'
+import * as _pt from 'pareto-core/dist/expression'
 
 import * as d_read_directory from "pareto-resources/dist/interface/generated/liana/schemas/read_directory/data"
 
