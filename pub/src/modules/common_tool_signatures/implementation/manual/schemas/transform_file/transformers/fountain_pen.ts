@@ -10,12 +10,12 @@ import * as s_file_in_file_out from "../../file_in_file_out/transformers/fountai
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-export const Error = ($: d_in.Error): d_out.Block_Part => {
-    return _p.decide.state($, ($): d_out.Block_Part => {
+export const Error = ($: d_in.Error): d_out.Phrase => {
+    return _p.decide.state($, ($): d_out.Phrase => {
         switch ($[0]) {
-            case 'processing': return _p.ss($, ($) => sh.b.sub([
-                sh.b.literal("error processing: "),
-                sh.b.literal($)
+            case 'processing': return _p.ss($, ($) => sh.ph.composed([
+                sh.ph.literal("error processing: "),
+                $
             ]))
             case 'file in file out': return _p.ss($, ($) => s_file_in_file_out.Command_Error($))
             default: return _p.au($[0])

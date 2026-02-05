@@ -7,7 +7,7 @@ import { $$ as procedure } from "../implementation/manual/commands/validate_astn
 _pn.run_main_command(
     ($r) => procedure(
         {
-            'write to stdout': $r.commands['write to stdout'],
+            'log': $r.commands['log'],
             'log error': $r.commands['log error']
         },
         {

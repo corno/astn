@@ -12,7 +12,7 @@ export namespace commands {
         resources_pareto.commands.main,
         {
             'log error': resources_pareto.commands.log_error
-            'write to stdout': resources_pareto.commands.write_to_stdout
+            'log': resources_pareto.commands.log
         },
         {
             'get instream data': resources_pareto.queries.get_instream_data,

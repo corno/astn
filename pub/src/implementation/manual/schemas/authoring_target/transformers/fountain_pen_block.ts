@@ -4,7 +4,7 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import * as signatures from "../../../../../interface/signatures/transformers/authoring_target/fountain_pen_block"
 
 //data types
-import * as d_out from "pareto-fountain-pen/dist/interface/to_be_generated/text"
+import * as d_out from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
@@ -16,11 +16,11 @@ import { $$ as s_quoted } from "astn-core/dist/implementation/manual/primitives/
 import { $$ as s_backticked } from "astn-core/dist/implementation/manual/primitives/text/serializers/backticked"
 
 
-const s_undelimited = ($: string): d_out.Text => {
+const s_undelimited = ($: string): d_out.List_of_Characters => {
     return _p_list_from_text($, ($) => $)
 }
 
-export const Value: signatures.Value = ($, $p) => sh.b.sub([
+export const Value: signatures.Value = ($, $p) => sh.ph.composed([
     // does it need a leading space
     $p['in concise group']
         ? _p.decide.state($.data, ($) => {
@@ -49,94 +49,94 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                 default: return _p.au($[0])
             }
         })
-            ? sh.b.literal(" ")
-            : sh.b.nothing()
-        : sh.b.nothing(),
+            ? sh.ph.literal(" ")
+            : sh.ph.nothing()
+        : sh.ph.nothing(),
     _p.decide.state($.data, ($) => {
         switch ($[0]) {
-            case 'include': return _p.ss($, ($) => sh.b.sub([
-                sh.b.literal("@ "),
-                sh.b.text(s_quoted($.path, {
+            case 'include': return _p.ss($, ($) => sh.ph.composed([
+                sh.ph.literal("@ "),
+                sh.ph.serialize(s_quoted($.path, {
                     'add delimiters': true,
                 })),
             ]))
-            case 'missing': return _p.ss($, ($) => sh.b.literal("#"))
+            case 'missing': return _p.ss($, ($) => sh.ph.literal("#"))
             case 'concrete': return _p.ss($, ($) => _p.decide.state($.type, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return _p.ss($, ($) => sh.b.sub([
-                        $p['write delimiters'] ? sh.b.literal("{") : sh.b.literal(""), //we always want a newline here
-                        sh.b.indent([
-                            sh.g.sub(_p.list.from_dictionary(
+                    case 'dictionary': return _p.ss($, ($) => sh.ph.composed([
+                        $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.literal(""), //we always want a newline here
+                        sh.ph.indent(
+                            sh.pg.sentences(_p.list.from_dictionary(
                                 $,
-                                ($, id) => sh.g.nested_block([
-                                    sh.b.text(s_backticked(id, {
+                                ($, id) => sh.ph.composed([
+                                    sh.ph.serialize(s_backticked(id, {
                                         'add delimiters': true,
                                     })),
-                                    sh.b.literal(": "),
+                                    sh.ph.literal(": "),
                                     $.__decide(
                                         ($) => Value($, {
                                             'in concise group': false,
                                             'write delimiters': true,
                                         }),
-                                        () => sh.b.nothing()
+                                        () => sh.ph.nothing()
                                     ),
                                 ]))),
-                        ]),
-                        $p['write delimiters'] ? sh.b.literal("}") : sh.b.nothing(),
+                        ),
+                        $p['write delimiters'] ? sh.ph.literal("}") : sh.ph.nothing(),
                     ]))
                     case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'concise': return _p.ss($, ($) => sh.b.sub([
-                                $p['write delimiters'] ? sh.b.literal("<") : sh.b.nothing(),
-                                sh.b.sub(op_enrich_list_items_with_position_information($).__l_map(($) => Value($.value, {
+                            case 'concise': return _p.ss($, ($) => sh.ph.composed([
+                                $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
+                                sh.ph.composed(op_enrich_list_items_with_position_information($).__l_map(($) => Value($.value, {
                                     'in concise group': true,
                                     'write delimiters': true,
                                 }))),
-                                $p['write delimiters'] ? sh.b.literal(">") : sh.b.nothing(),
+                                $p['write delimiters'] ? sh.ph.literal(">") : sh.ph.nothing(),
                             ]))
-                            case 'verbose': return _p.ss($, ($) => sh.b.sub([
-                                sh.b.sub([
-                                    $p['write delimiters'] ? sh.b.literal("(") : sh.b.literal(""), //we always want a newline here
-                                    sh.b.indent([
-                                        sh.g.sub(_p.list.from_dictionary(
+                            case 'verbose': return _p.ss($, ($) => sh.ph.composed([
+                                sh.ph.composed([
+                                    $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.literal(""), //we always want a newline here
+                                    sh.ph.indent(
+                                        sh.pg.sentences(_p.list.from_dictionary(
                                             $,
-                                            ($, id) => sh.g.nested_block([
-                                                sh.b.text(s_apostrophed(id, {
+                                            ($, id) => sh.ph.composed([
+                                                sh.ph.serialize(s_apostrophed(id, {
                                                     'add delimiters': true,
                                                 })),
-                                                sh.b.literal(": "),
+                                                sh.ph.literal(": "),
                                                 $.__decide(
                                                     ($) => Value($, {
                                                         'in concise group': false,
                                                         'write delimiters': true,
                                                     }),
-                                                    () => sh.b.nothing(),
+                                                    () => sh.ph.nothing(),
                                                 ),
                                             ])
                                         )),
-                                    ]),
-                                    $p['write delimiters'] ? sh.b.literal(")") : sh.b.nothing(),
+                                    ),
+                                    $p['write delimiters'] ? sh.ph.literal(")") : sh.ph.nothing(),
                                 ])
                             ]))
                             default: return _p.au($[0])
                         }
                     }))
-                    case 'list': return _p.ss($, ($) => sh.b.sub([
-                        $p['write delimiters'] ? sh.b.literal("[") : sh.b.nothing(),
-                        sh.b.sub(op_enrich_list_items_with_position_information($).__l_map(($) => sh.b.sub([
-                            sh.b.literal(" "),
+                    case 'list': return _p.ss($, ($) => sh.ph.composed([
+                        $p['write delimiters'] ? sh.ph.literal("[") : sh.ph.nothing(),
+                        sh.ph.composed(op_enrich_list_items_with_position_information($).__l_map(($) => sh.ph.composed([
+                            sh.ph.literal(" "),
                             Value($.value, {
                                 'in concise group': false,
                                 'write delimiters': true,
                             }),
                         ]))),
-                        $p['write delimiters'] ? sh.b.literal("]") : sh.b.nothing(),
+                        $p['write delimiters'] ? sh.ph.literal("]") : sh.ph.nothing(),
                     ]))
                     case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'not set': return _p.ss($, ($) => sh.b.literal("~"))
-                            case 'set': return _p.ss($, ($) => sh.b.sub([
-                                sh.b.literal("* "),
+                            case 'not set': return _p.ss($, ($) => sh.ph.literal("~"))
+                            case 'set': return _p.ss($, ($) => sh.ph.composed([
+                                sh.ph.literal("* "),
                                 Value($, {
                                     'in concise group': $p['in concise group'],
                                     'write delimiters': true,
@@ -146,20 +146,20 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                             default: return _p.au($[0])
                         }
                     }))
-                    case 'nothing': return _p.ss($, ($) => sh.b.literal("~"))
+                    case 'nothing': return _p.ss($, ($) => sh.ph.literal("~"))
                     case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'missing data': return _p.ss($, ($) => sh.b.literal("| #"))
-                            case 'set': return _p.ss($, ($) => sh.b.sub([
+                            case 'missing data': return _p.ss($, ($) => sh.ph.literal("| #"))
+                            case 'set': return _p.ss($, ($) => sh.ph.composed([
                                 $p['in concise group']
-                                    ? sh.b.nothing()
-                                    : $p['write delimiters'] ? sh.b.literal("| ") : sh.b.nothing(),
-                                sh.b.text(s_apostrophed($.option, {
+                                    ? sh.ph.nothing()
+                                    : $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
+                                sh.ph.serialize(s_apostrophed($.option, {
                                     'add delimiters': $p['write delimiters'],
                                 })),
                                 $p['in concise group']
-                                    ? sh.b.nothing()
-                                    : sh.b.literal(" "),
+                                    ? sh.ph.nothing()
+                                    : sh.ph.literal(" "),
                                 Value($.value, {
                                     'in concise group': $p['in concise group'],
                                     'write delimiters': true
@@ -172,13 +172,13 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
                         const value = $.value // fixme: move value to the inside of the delimiter states
                         return _p.decide.state($.delimiter, ($) => {
                             switch ($[0]) {
-                                case 'backtick': return _p.ss($, ($) => sh.b.text(s_backticked(value, {
+                                case 'backtick': return _p.ss($, ($) => sh.ph.serialize(s_backticked(value, {
                                     'add delimiters': $p['write delimiters'],
                                 })))
-                                case 'quote': return _p.ss($, ($) => sh.b.text(s_quoted(value, {
+                                case 'quote': return _p.ss($, ($) => sh.ph.serialize(s_quoted(value, {
                                     'add delimiters': $p['write delimiters'],
                                 })))
-                                case 'none': return _p.ss($, ($) => sh.b.text(s_undelimited(value)))
+                                case 'none': return _p.ss($, ($) => sh.ph.serialize(s_undelimited(value)))
                                 default: return _p.au($[0])
                             }
                         })
@@ -192,16 +192,16 @@ export const Value: signatures.Value = ($, $p) => sh.b.sub([
     })
 ])
 
-export const Document: signatures.Document = ($, $p) => sh.group([sh.g.nested_block([
+export const Document: signatures.Document = ($, $p) => sh.pg.sentences([
     $.header.__decide(
         ($) => Value($, {
             'in concise group': false,
             'write delimiters': true,
         }),
-        () => sh.b.nothing()
+        () => sh.ph.nothing()
     ),
     Value($.content, {
         'in concise group': false,
         'write delimiters': true,
     }),
-])])
+])

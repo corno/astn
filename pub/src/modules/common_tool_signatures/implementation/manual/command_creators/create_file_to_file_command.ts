@@ -8,19 +8,23 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_transform_file from "../../../interface/to_be_generated/transform_file"
+import * as d_loc from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 //dependencies
 import * as r_file_in_file_out_from_main from "../schemas/file_in_file_out/refiners/main"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/schemas/path/transformers/text"
 import * as t_transform_file_to_fountain_pen from "../schemas/transform_file/transformers/fountain_pen"
-import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/text"
+import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/list_of_characters"
 
+//shorthands
+import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 export type Creator = (
     deserializer: _pi.Refiner_With_Parameters<
-        string,
-        string,
-        string,
+        d_loc.List_of_Characters,
+        d_fp.Phrase,
+        d_loc.List_of_Characters,
         {
             'document resource identifier': string
         }
@@ -73,15 +77,9 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
         ($) => [
             $cr['log error'].execute(
                 {
-                    'lines': _p.list.literal([
-                        _p_text_from_list(
-                            t_fp_to_text.Block_Part(
-                                t_transform_file_to_fountain_pen.Error($),
-                                { 'indentation': `    `, 'newline': `\n` }
-                            ),
-                            ($) => $,
-                        )
-                    ])
+                    'message': sh.pg.sentences([
+                        t_transform_file_to_fountain_pen.Error($)
+                    ]),
                 },
                 ($) => ({
                     'exit code': 2

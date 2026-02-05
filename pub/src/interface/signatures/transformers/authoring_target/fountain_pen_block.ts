@@ -8,5 +8,5 @@ export type Parameters = {
     'in concise group': boolean
 }
 
-export type Value = _pi.Transformer_With_Parameters<d_in.Value, d_out.Block_Part, Parameters>
-export type Document = _pi.Transformer_With_Parameters<d_in.Document, d_out.Group, {}>
+export type Value = _pi.Transformer_With_Parameters<d_in.Value, d_out.Phrase, Parameters>
+export type Document = _pi.Transformer_With_Parameters<d_in.Document, d_out.Paragraph, {}>
