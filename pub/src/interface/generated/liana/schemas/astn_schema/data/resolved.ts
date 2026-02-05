@@ -1,127 +1,147 @@
-
-import * as _pi from "pareto-core/dist/interface"
-
-export namespace Schema_Tree_ {
     
-    export type set_ = Schemas_
+    import * as _pi from "pareto-core/dist/interface"
     
-    export type schema = Schema_
-    
-}
-
-export type Schema_Tree_ = 
-    | readonly ['set', Schema_Tree_.set_]
-    | readonly ['schema', Schema_Tree_.schema]
-
-export namespace Schemas_ {
-    
-    export type D = Schema_Tree_
-    
-}
-
-export type Schemas_ = _pi.Dictionary<Schemas_.D>
-
-export namespace Schema_ {
-    
-    export type imports = Imports_
-    
-    export type globals = Globals_
-    
-    export type types = Modules_
-    
-}
-
-export type Schema_ = {
-    readonly 'imports': Schema_.imports
-    readonly 'globals': Schema_.globals
-    readonly 'types': Schema_.types
-}
-
-export namespace Imports_ {
-    
-    export namespace D {
+    export namespace Schema_Tree_ {
         
-        export namespace schema_set_child {
-            
-            export type l_entry = Schemas_.D
-            
-            export type l_id = string
-            
-            export type l_up_steps = number
-            
-        }
-        
-        export type schema_set_child = {
-            readonly 'l entry': schema_set_child.l_entry
-            readonly 'l id': schema_set_child.l_id
-            readonly 'l up steps': schema_set_child.l_up_steps
-        }
+        export type set_ = Schemas_
         
         export type schema = Schema_
         
     }
     
-    export type D = {
-        readonly 'schema set child': D.schema_set_child
-        readonly 'schema': D.schema
-    }
+    export type Schema_Tree_ = 
+        | readonly ['set', Schema_Tree_.set_]
+        | readonly ['schema', Schema_Tree_.schema]
     
-}
-
-export type Imports_ = _pi.Dictionary<Imports_.D>
-
-export namespace Globals_ {
-    
-    export namespace text_types {
+    export namespace Schemas_ {
         
-        export type D = Text_Type_
+        export type D = Schema_Tree_
         
     }
     
-    export type text_types = _pi.Dictionary<text_types.D>
+    export type Schemas_ = _pi.Dictionary<Schemas_.D>
     
-}
-
-export type Globals_ = {
-    readonly 'text types': Globals_.text_types
-}
-
-export namespace Modules_ {
-    
-    export namespace D {
+    export namespace Schema_ {
         
-        export type root_value = Value_
+        export type imports = Imports_
+        
+        export type globals = Globals_
+        
+        export type types = Modules_
         
     }
     
-    export type D = {
-        readonly 'root value': D.root_value
+    export type Schema_ = {
+        readonly 'imports': Schema_.imports
+        readonly 'globals': Schema_.globals
+        readonly 'types': Schema_.types
     }
     
-}
-
-export type Modules_ = _pi.Dictionary<Modules_.D>
-
-export namespace Value_ {
-    
-    export namespace component {
+    export namespace Imports_ {
         
-        export namespace external {
+        export namespace D {
             
-            export namespace import_ {
+            export namespace schema_set_child {
                 
-                export type l_entry = Imports_.D
+                export type l_entry = Schemas_.D
                 
                 export type l_id = string
                 
+                export type l_up_steps = number
+                
             }
             
-            export type import_ = {
-                readonly 'l entry': import_.l_entry
-                readonly 'l id': import_.l_id
+            export type schema_set_child = {
+                readonly 'l entry': schema_set_child.l_entry
+                readonly 'l id': schema_set_child.l_id
+                readonly 'l up steps': schema_set_child.l_up_steps
             }
             
-            export namespace type_ {
+            export type schema = Schema_
+            
+        }
+        
+        export type D = {
+            readonly 'schema set child': D.schema_set_child
+            readonly 'schema': D.schema
+        }
+        
+    }
+    
+    export type Imports_ = _pi.Dictionary<Imports_.D>
+    
+    export namespace Globals_ {
+        
+        export namespace text_types {
+            
+            export type D = Text_Type_
+            
+        }
+        
+        export type text_types = _pi.Dictionary<text_types.D>
+        
+    }
+    
+    export type Globals_ = {
+        readonly 'text types': Globals_.text_types
+    }
+    
+    export namespace Modules_ {
+        
+        export namespace D {
+            
+            export type root_value = Value_
+            
+        }
+        
+        export type D = {
+            readonly 'root value': D.root_value
+        }
+        
+    }
+    
+    export type Modules_ = _pi.Dictionary<Modules_.D>
+    
+    export namespace Value_ {
+        
+        export namespace component {
+            
+            export namespace external {
+                
+                export namespace import_ {
+                    
+                    export type l_entry = Imports_.D
+                    
+                    export type l_id = string
+                    
+                }
+                
+                export type import_ = {
+                    readonly 'l entry': import_.l_entry
+                    readonly 'l id': import_.l_id
+                }
+                
+                export namespace type_ {
+                    
+                    export type l_entry = Modules_.D
+                    
+                    export type l_id = string
+                    
+                }
+                
+                export type type_ = {
+                    readonly 'l entry': type_.l_entry
+                    readonly 'l id': type_.l_id
+                }
+                
+            }
+            
+            export type external = {
+                readonly 'import': external.import_
+                readonly 'type': external.type_
+            }
+            
+            export namespace internal_acyclic {
                 
                 export type l_entry = Modules_.D
                 
@@ -129,156 +149,136 @@ export namespace Value_ {
                 
             }
             
-            export type type_ = {
-                readonly 'l entry': type_.l_entry
-                readonly 'l id': type_.l_id
+            export type internal_acyclic = {
+                readonly 'l entry': internal_acyclic.l_entry
+                readonly 'l id': internal_acyclic.l_id
+            }
+            
+            export namespace internal {
+                
+                export type l_entry = _pi.Circular_Dependency<Modules_.D>
+                
+                export type l_id = string
+                
+            }
+            
+            export type internal = {
+                readonly 'l entry': internal.l_entry
+                readonly 'l id': internal.l_id
             }
             
         }
         
-        export type external = {
-            readonly 'import': external.import_
-            readonly 'type': external.type_
-        }
+        export type component = 
+            | readonly ['external', component.external]
+            | readonly ['internal acyclic', component.internal_acyclic]
+            | readonly ['internal', component.internal]
         
-        export namespace internal_acyclic {
+        export namespace dictionary {
             
-            export type l_entry = Modules_.D
+            export type value = Value_
             
-            export type l_id = string
-            
-        }
-        
-        export type internal_acyclic = {
-            readonly 'l entry': internal_acyclic.l_entry
-            readonly 'l id': internal_acyclic.l_id
-        }
-        
-        export namespace internal {
-            
-            export type l_entry = _pi.Circular_Dependency<Modules_.D>
-            
-            export type l_id = string
+            export type ordered = boolean
             
         }
         
-        export type internal = {
-            readonly 'l entry': internal.l_entry
-            readonly 'l id': internal.l_id
+        export type dictionary = {
+            readonly 'value': dictionary.value
+            readonly 'ordered': dictionary.ordered
         }
         
-    }
-    
-    export type component = 
-        | readonly ['external', component.external]
-        | readonly ['internal acyclic', component.internal_acyclic]
-        | readonly ['internal', component.internal]
-    
-    export namespace dictionary {
-        
-        export type value = Value_
-        
-        export type ordered = boolean
-        
-    }
-    
-    export type dictionary = {
-        readonly 'value': dictionary.value
-        readonly 'ordered': dictionary.ordered
-    }
-    
-    export namespace group {
-        
-        export type D = Value_
-        
-    }
-    
-    export type group = _pi.Dictionary<group.D>
-    
-    export namespace list {
-        
-        export type value = Value_
-        
-    }
-    
-    export type list = {
-        readonly 'value': list.value
-    }
-    
-    export type nothing = null
-    
-    export type optional = Value_
-    
-    export namespace state {
-        
-        export type D = Value_
-        
-    }
-    
-    export type state = _pi.Dictionary<state.D>
-    
-    export namespace text {
-        
-        export namespace global {
+        export namespace group {
             
-            export type l_entry = Globals_.text_types.D
-            
-            export type l_id = string
+            export type D = Value_
             
         }
         
-        export type global = {
-            readonly 'l entry': global.l_entry
-            readonly 'l id': global.l_id
+        export type group = _pi.Dictionary<group.D>
+        
+        export namespace list {
+            
+            export type value = Value_
+            
         }
         
-        export type local = Text_Type_
+        export type list = {
+            readonly 'value': list.value
+        }
+        
+        export type nothing = null
+        
+        export type optional = Value_
+        
+        export namespace state {
+            
+            export type D = Value_
+            
+        }
+        
+        export type state = _pi.Dictionary<state.D>
+        
+        export namespace text {
+            
+            export namespace global {
+                
+                export type l_entry = Globals_.text_types.D
+                
+                export type l_id = string
+                
+            }
+            
+            export type global = {
+                readonly 'l entry': global.l_entry
+                readonly 'l id': global.l_id
+            }
+            
+            export type local = Text_Type_
+            
+        }
+        
+        export type text = 
+            | readonly ['global', text.global]
+            | readonly ['local', text.local]
         
     }
     
-    export type text = 
-        | readonly ['global', text.global]
-        | readonly ['local', text.local]
+    export type Value_ = 
+        | readonly ['component', Value_.component]
+        | readonly ['dictionary', Value_.dictionary]
+        | readonly ['group', Value_.group]
+        | readonly ['list', Value_.list]
+        | readonly ['nothing', Value_.nothing]
+        | readonly ['optional', Value_.optional]
+        | readonly ['state', Value_.state]
+        | readonly ['text', Value_.text]
     
-}
-
-export type Value_ = 
-    | readonly ['component', Value_.component]
-    | readonly ['dictionary', Value_.dictionary]
-    | readonly ['group', Value_.group]
-    | readonly ['list', Value_.list]
-    | readonly ['nothing', Value_.nothing]
-    | readonly ['optional', Value_.optional]
-    | readonly ['state', Value_.state]
-    | readonly ['text', Value_.text]
-
-export namespace Text_Type_ {
-    
-    export namespace type_ {
+    export namespace Text_Type_ {
         
-        export type multi_line = null
+        export namespace type_ {
+            
+            export type multi_line = null
+            
+            export type single_line = null
+            
+        }
         
-        export type single_line = null
+        export type type_ = 
+            | readonly ['multi line', type_.multi_line]
+            | readonly ['single line', type_.single_line]
         
     }
     
-    export type type_ = 
-        | readonly ['multi line', type_.multi_line]
-        | readonly ['single line', type_.single_line]
+    export type Text_Type_ = {
+        readonly 'type': Text_Type_.type_
+    }
     
-}
-
-export type Text_Type_ = {
-    readonly 'type': Text_Type_.type_
-}
-
-export { 
-    Schema_Tree_ as Schema_Tree, 
-    Schemas_ as Schemas, 
-    Schema_ as Schema, 
-    Imports_ as Imports, 
-    Globals_ as Globals, 
-    Modules_ as Modules, 
-    Value_ as Value, 
-    Text_Type_ as Text_Type, 
-}
+    export { 
+        Schema_Tree_ as Schema_Tree, 
+        Schemas_ as Schemas, 
+        Schema_ as Schema, 
+        Imports_ as Imports, 
+        Globals_ as Globals, 
+        Modules_ as Modules, 
+        Value_ as Value, 
+        Text_Type_ as Text_Type, 
+    }
