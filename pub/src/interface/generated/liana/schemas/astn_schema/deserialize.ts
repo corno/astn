@@ -3,11 +3,13 @@
     
     import * as i_generic from "astn-core/dist/interface/to_be_generated/deserialize"
     
+    import * as i_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+    
     import * as i_out from "./data/unresolved"
     
     export namespace Schema_Tree_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schema_Tree
         
@@ -34,7 +36,7 @@
     
     export namespace Schemas_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schemas
         
@@ -61,7 +63,7 @@
     
     export namespace Schema_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schema
         
@@ -88,7 +90,7 @@
     
     export namespace Imports_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Imports
         
@@ -115,7 +117,7 @@
     
     export namespace Globals_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Globals
         
@@ -142,7 +144,7 @@
     
     export namespace Modules_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Modules
         
@@ -169,7 +171,7 @@
     
     export namespace Value_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value
         
@@ -196,7 +198,7 @@
     
     export namespace Text_Type_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Text_Type
         
