@@ -9,7 +9,7 @@ import * as d_loc from "pareto-fountain-pen/dist/interface/to_be_generated/list_
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 //dependencies
-import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/schemas/parse_tree/refiners/text"
+import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/schemas/parse_tree/refiners/list_of_characters"
 import * as t_deserialize_parse_tree_to_fp from "astn-core/dist/implementation/manual/schemas/deserialize_parse_tree/transformers/fountain_pen"
 import * as t_ast_2_json from "../schemas/parse_tree/transformers/json_target"
 import * as t_json_to_fp from "pareto-json/dist/implementation/manual/schemas/json/transformers/fountain_pen_block"
