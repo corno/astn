@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../interface/generated/liana/schemas/ide/marshall"
     
@@ -26,13 +26,13 @@
                                 'option': 'insert',
                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                     {
-                                        'location': _p_change_context(
+                                        "location": _p_change_context(
                                             $['location'],
                                             ($) => Relative_Location(
                                                 $,
                                             ),
                                         ),
-                                        'text': _p_change_context(
+                                        "text": _p_change_context(
                                             $['text'],
                                             ($) => ['text', {
                                                 'delimiter': ['quote', null],
@@ -50,13 +50,13 @@
                                 'option': 'replace',
                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                     {
-                                        'range': _p_change_context(
+                                        "range": _p_change_context(
                                             $['range'],
                                             ($) => Relative_Range(
                                                 $,
                                             ),
                                         ),
-                                        'text': _p_change_context(
+                                        "text": _p_change_context(
                                             $['text'],
                                             ($) => ['text', {
                                                 'delimiter': ['quote', null],
@@ -74,7 +74,7 @@
                                 'option': 'delete',
                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                     {
-                                        'range': _p_change_context(
+                                        "range": _p_change_context(
                                             $['range'],
                                             ($) => Relative_Range(
                                                 $,
@@ -95,13 +95,13 @@
     
     export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'start': _p_change_context(
+            "start": _p_change_context(
                 $['start'],
                 ($) => Relative_Location(
                     $,
                 ),
             ),
-            'end': _p_change_context(
+            "end": _p_change_context(
                 $['end'],
                 ($) => Relative_Location(
                     $,
@@ -120,7 +120,7 @@
     
     export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'line': _p_change_context(
+            "line": _p_change_context(
                 $['line'],
                 ($) => ['text', {
                     'delimiter': ['none', null],
@@ -132,7 +132,7 @@
                     ),
                 }],
             ),
-            'column': _p_change_context(
+            "column": _p_change_context(
                 $['column'],
                 ($) => ['text', {
                     'delimiter': ['none', null],

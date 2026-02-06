@@ -1,5 +1,5 @@
     
-    import * as _pi from "pareto-core/dist/interface"
+    import * as _pi from 'pareto-core/dist/interface'
     
     export namespace Schema_Tree_ {
         

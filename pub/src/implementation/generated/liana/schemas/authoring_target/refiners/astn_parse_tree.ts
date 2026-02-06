@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_list_from_text from "pareto-core/dist/_p_list_from_text"
+    import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
     
     import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/unmarshall"
     

@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/marshall"
     
@@ -54,19 +54,19 @@
     
     export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'imports': _p_change_context(
+            "imports": _p_change_context(
                 $['imports'],
                 ($) => Imports(
                     $,
                 ),
             ),
-            'globals': _p_change_context(
+            "globals": _p_change_context(
                 $['globals'],
                 ($) => Globals(
                     $,
                 ),
             ),
-            'types': _p_change_context(
+            "types": _p_change_context(
                 $['types'],
                 ($) => Modules(
                     $,
@@ -79,14 +79,14 @@
         $,
         ($, id) => ['group', ['verbose', _p.dictionary.literal(
             {
-                'schema set child': _p_change_context(
+                "schema set child": _p_change_context(
                     $['schema set child'],
                     ($) => ['text', {
                         'delimiter': ['backtick', null],
                         'value': $['l id'],
                     }],
                 ),
-                'schema': _p_change_context(
+                "schema": _p_change_context(
                     $['schema'],
                     ($) => ['nothing', null],
                 ),
@@ -96,7 +96,7 @@
     
     export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'text types': _p_change_context(
+            "text types": _p_change_context(
                 $['text types'],
                 ($) => ['dictionary', _p.dictionary.map(
                     $,
@@ -112,7 +112,7 @@
         $,
         ($, id) => ['group', ['verbose', _p.dictionary.literal(
             {
-                'root value': _p_change_context(
+                "root value": _p_change_context(
                     $['root value'],
                     ($) => Value(
                         $,
@@ -142,14 +142,14 @@
                                                     'option': 'external',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                                         {
-                                                            'import': _p_change_context(
+                                                            "import": _p_change_context(
                                                                 $['import'],
                                                                 ($) => ['text', {
                                                                     'delimiter': ['backtick', null],
                                                                     'value': $['l id'],
                                                                 }],
                                                             ),
-                                                            'type': _p_change_context(
+                                                            "type": _p_change_context(
                                                                 $['type'],
                                                                 ($) => ['text', {
                                                                     'delimiter': ['backtick', null],
@@ -198,13 +198,13 @@
                             'option': 'dictionary',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 {
-                                    'value': _p_change_context(
+                                    "value": _p_change_context(
                                         $['value'],
                                         ($) => Value(
                                             $,
                                         ),
                                     ),
-                                    'ordered': _p_change_context(
+                                    "ordered": _p_change_context(
                                         $['ordered'],
                                         ($) => ['text', {
                                             'delimiter': ['none', null],
@@ -240,7 +240,7 @@
                             'option': 'list',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 {
-                                    'value': _p_change_context(
+                                    "value": _p_change_context(
                                         $['value'],
                                         ($) => Value(
                                             $,
@@ -330,7 +330,7 @@
     
     export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'type': _p_change_context(
+            "type": _p_change_context(
                 $['type'],
                 ($) => ['state', _p.decide.state(
                     $,

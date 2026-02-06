@@ -10,7 +10,6 @@ import * as d_out from "pareto-fountain-pen/dist/interface/to_be_generated/list_
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
-import { $$ as op_enrich_list_items_with_position_information } from "pareto-fountain-pen/dist/implementation/temp/enrich_with_position_information"
 import { $$ as s_apostrophed } from "astn-core/dist/implementation/manual/primitives/text/serializers/apostrophed"
 import { $$ as s_quoted } from "astn-core/dist/implementation/manual/primitives/text/serializers/quoted"
 import { $$ as s_backticked } from "astn-core/dist/implementation/manual/primitives/text/serializers/backticked"
@@ -88,7 +87,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                         switch ($[0]) {
                             case 'concise': return _p.ss($, ($) => sh.ph.composed([
                                 $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
-                                sh.ph.composed(op_enrich_list_items_with_position_information($).__l_map(($) => Value($.value, {
+                                sh.ph.composed($.__l_map(($) => Value($, {
                                     'in concise group': true,
                                     'write delimiters': true,
                                 }))),
@@ -123,9 +122,9 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                     }))
                     case 'list': return _p.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("[") : sh.ph.nothing(),
-                        sh.ph.composed(op_enrich_list_items_with_position_information($).__l_map(($) => sh.ph.composed([
+                        sh.ph.composed($.__l_map(($) => sh.ph.composed([
                             sh.ph.literal(" "),
-                            Value($.value, {
+                            Value($, {
                                 'in concise group': false,
                                 'write delimiters': true,
                             }),
