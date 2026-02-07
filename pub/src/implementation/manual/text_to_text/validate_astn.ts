@@ -1,6 +1,5 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
-import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 //data types
