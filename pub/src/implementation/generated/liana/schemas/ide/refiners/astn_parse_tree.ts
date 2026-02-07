@@ -47,7 +47,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
                                 ),
                                 ($) => ({
                                     'location': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'location',
                                             ($) => abort(
                                                 ['no such entry', "location"],
@@ -61,7 +61,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
                                         ),
                                     ),
                                     'text': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'text',
                                             ($) => abort(
                                                 ['no such entry', "text"],
@@ -89,7 +89,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
                                 ),
                                 ($) => ({
                                     'range': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'range',
                                             ($) => abort(
                                                 ['no such entry', "range"],
@@ -103,7 +103,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
                                         ),
                                     ),
                                     'text': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'text',
                                             ($) => abort(
                                                 ['no such entry', "text"],
@@ -131,7 +131,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
                                 ),
                                 ($) => ({
                                     'range': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'range',
                                             ($) => abort(
                                                 ['no such entry', "range"],
@@ -166,7 +166,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($, abort) => _p_chan
     ),
     ($) => ({
         'start': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'start',
                 ($) => abort(
                     ['no such entry', "start"],
@@ -180,7 +180,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($, abort) => _p_chan
             ),
         ),
         'end': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'end',
                 ($) => abort(
                     ['no such entry', "end"],
@@ -220,7 +220,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
     ),
     ($) => ({
         'line': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'line',
                 ($) => abort(
                     ['no such entry', "line"],
@@ -242,7 +242,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
             ),
         ),
         'column': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'column',
                 ($) => abort(
                     ['no such entry', "column"],

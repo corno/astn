@@ -26,7 +26,7 @@ export const Document: t_signatures.Document = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'header': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'header',
                 ($) => abort(
                     ['no such entry', "header"],
@@ -48,7 +48,7 @@ export const Document: t_signatures.Document = ($, abort) => _p_change_context(
             ),
         ),
         'content': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'content',
                 ($) => abort(
                     ['no such entry', "content"],
@@ -73,7 +73,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'metadata': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'metadata',
                 ($) => abort(
                     ['no such entry', "metadata"],
@@ -88,7 +88,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                 ),
                 ($) => ({
                     'comments': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'comments',
                             ($) => abort(
                                 ['no such entry', "comments"],
@@ -113,7 +113,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
             ),
         ),
         'data': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'data',
                 ($) => abort(
                     ['no such entry', "data"],
@@ -152,7 +152,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                         ($) => ({
                                             'path': _p_change_context(
-                                                $.__get_entry(
+                                                $.__get_entry_deprecated(
                                                     'path',
                                                     ($) => abort(
                                                         ['no such entry', "path"],
@@ -180,7 +180,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                         ($) => ({
                                             'type': _p_change_context(
-                                                $.__get_entry(
+                                                $.__get_entry_deprecated(
                                                     'type',
                                                     ($) => abort(
                                                         ['no such entry', "type"],
@@ -397,7 +397,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                     ),
                                                                                                     ($) => ({
                                                                                                         'option': _p_change_context(
-                                                                                                            $.__get_entry(
+                                                                                                            $.__get_entry_deprecated(
                                                                                                                 'option',
                                                                                                                 ($) => abort(
                                                                                                                     ['no such entry', "option"],
@@ -411,7 +411,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                             ),
                                                                                                         ),
                                                                                                         'value': _p_change_context(
-                                                                                                            $.__get_entry(
+                                                                                                            $.__get_entry_deprecated(
                                                                                                                 'value',
                                                                                                                 ($) => abort(
                                                                                                                     ['no such entry', "value"],
@@ -448,7 +448,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                             ),
                                                                             ($) => ({
                                                                                 'value': _p_change_context(
-                                                                                    $.__get_entry(
+                                                                                    $.__get_entry_deprecated(
                                                                                         'value',
                                                                                         ($) => abort(
                                                                                             ['no such entry', "value"],
@@ -462,7 +462,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                     ),
                                                                                 ),
                                                                                 'delimiter': _p_change_context(
-                                                                                    $.__get_entry(
+                                                                                    $.__get_entry_deprecated(
                                                                                         'delimiter',
                                                                                         ($) => abort(
                                                                                             ['no such entry', "delimiter"],

@@ -101,7 +101,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'imports': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'imports',
                 ($) => abort(
                     ['no such entry', "imports"],
@@ -115,7 +115,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
             ),
         ),
         'globals': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'globals',
                 ($) => abort(
                     ['no such entry', "globals"],
@@ -129,7 +129,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
             ),
         ),
         'types': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'types',
                 ($) => abort(
                     ['no such entry', "types"],
@@ -169,7 +169,7 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
                 ),
                 ($) => ({
                     'schema set child': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'schema set child',
                             ($) => abort(
                                 ['no such entry', "schema set child"],
@@ -188,7 +188,7 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
                         }),
                     ),
                     'schema': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'schema',
                             ($) => abort(
                                 ['no such entry', "schema"],
@@ -216,7 +216,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'text types': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'text types',
                 ($) => abort(
                     ['no such entry', "text types"],
@@ -274,7 +274,7 @@ export const Modules: t_signatures.Modules = ($, abort) => ({
                 ),
                 ($) => ({
                     'root value': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'root value',
                             ($) => abort(
                                 ['no such entry', "root value"],
@@ -338,7 +338,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                             ),
                                                             ($) => ({
                                                                 'import': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'import',
                                                                         ($) => abort(
                                                                             ['no such entry', "import"],
@@ -357,7 +357,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                     }),
                                                                 ),
                                                                 'type': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'type',
                                                                         ($) => abort(
                                                                             ['no such entry', "type"],
@@ -445,7 +445,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'value': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'value',
                                             ($) => abort(
                                                 ['no such entry', "value"],
@@ -459,7 +459,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                     ),
                                     'ordered': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'ordered',
                                             ($) => abort(
                                                 ['no such entry', "ordered"],
@@ -533,7 +533,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'value': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'value',
                                             ($) => abort(
                                                 ['no such entry', "value"],
@@ -694,7 +694,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
     ),
     ($) => ({
         'type': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'type',
                 ($) => abort(
                     ['no such entry', "type"],

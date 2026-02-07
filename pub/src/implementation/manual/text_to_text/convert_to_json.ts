@@ -15,7 +15,7 @@ import * as t_ast_2_json from "../schemas/parse_tree/transformers/json_target"
 import * as t_json_to_fp from "pareto-json/dist/implementation/manual/schemas/json/transformers/fountain_pen"
 import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/list_of_characters"
 
-export const $$: _pi.Refiner_With_Parameters<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) =>
+export const $$: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) =>
     t_fp_to_text.Paragraph(
         t_json_to_fp.Document(
             t_ast_2_json.Document(
