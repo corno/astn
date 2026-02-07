@@ -44,7 +44,9 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                             $cr['log'].execute(
                                 {
                                     'message': sh.pg.sentences([
-                                        sh.ph.serialize($v),
+                                        sh.sentence([
+                                            sh.ph.serialize($v),
+                                        ])
                                     ]),
                                 },
                                 ($): My_Error => ['could not write to stdout', null],
@@ -56,14 +58,16 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                     $cr['log error'].execute(
                         {
                             'message': sh.pg.sentences([
-                                _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'could not read instream': return _p.ss($, ($) => sh.ph.literal("could not read instream"))
-                                        case 'deserialization failed': return _p.ss($, ($) => $)
-                                        case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal("could not write to stdout"))
-                                        default: return _p.au($[0])
-                                    }
-                                })
+                                sh.sentence([
+                                    _p.decide.state($, ($) => {
+                                        switch ($[0]) {
+                                            case 'could not read instream': return _p.ss($, ($) => sh.ph.literal("could not read instream"))
+                                            case 'deserialization failed': return _p.ss($, ($) => $)
+                                            case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal("could not write to stdout"))
+                                            default: return _p.au($[0])
+                                        }
+                                    })
+                                ])
                             ]),
                         },
                         ($): d_main.Error => ({

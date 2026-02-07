@@ -78,7 +78,9 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
             $cr['log error'].execute(
                 {
                     'message': sh.pg.sentences([
-                        t_transform_file_to_fountain_pen.Error($)
+                        sh.sentence([
+                            t_transform_file_to_fountain_pen.Error($)
+                        ])
                     ]),
                 },
                 ($) => ({

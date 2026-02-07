@@ -63,12 +63,12 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
             case 'concrete': return _p.ss($, ($) => _p.decide.state($.type, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => sh.ph.composed([
-                        $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.literal(""), //we always want a newline here
+                        $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.nothing(), //we always want a newline here
                         sh.ph.indent(
                             sh.pg.sentences(_p.list.from.dictionary(
                                 $,
                             ).convert(
-                                ($, id) => sh.ph.composed([
+                                ($, id) => sh.sentence([
                                     sh.ph.serialize(s_backticked(id, {
                                         'add delimiters': true,
                                     })),
@@ -96,12 +96,12 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                             ]))
                             case 'verbose': return _p.ss($, ($) => sh.ph.composed([
                                 sh.ph.composed([
-                                    $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.literal(""), //we always want a newline here
+                                    $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.nothing(), //we always want a newline here
                                     sh.ph.indent(
                                         sh.pg.sentences(_p.list.from.dictionary(
                                             $,
                                         ).convert(
-                                            ($, id) => sh.ph.composed([
+                                            ($, id) => sh.sentence([
                                                 sh.ph.serialize(s_apostrophed(id, {
                                                     'add delimiters': true,
                                                 })),
@@ -194,15 +194,19 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
 ])
 
 export const Document: signatures.Document = ($, $p) => sh.pg.sentences([
-    $.header.__decide(
-        ($) => Value($, {
+    sh.sentence([
+        $.header.__decide(
+            ($) => Value($, {
+                'in concise group': false,
+                'write delimiters': true,
+            }),
+            () => sh.ph.nothing()
+        ),
+    ]),
+    sh.sentence([
+        Value($.content, {
             'in concise group': false,
             'write delimiters': true,
         }),
-        () => sh.ph.nothing()
-    ),
-    Value($.content, {
-        'in concise group': false,
-        'write delimiters': true,
-    }),
+    ])
 ])
