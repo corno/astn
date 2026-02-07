@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import * as t_signatures from "../../../../../../interface/generated/liana/schemas/ide/serialize"
 

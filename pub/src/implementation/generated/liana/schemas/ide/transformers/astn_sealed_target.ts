@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -13,8 +13,9 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.map(
+export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.list(
     $,
+).map(
     ($) => ['state', _p.decide.state(
         $,
         ($): t_out.Value.state => {
@@ -110,8 +111,9 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['ve
     },
 )]]
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', _p.dictionary.map(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
+).map(
     ($, id) => ['text', {
         'delimiter': ['quote', null],
         'value': $,

@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -71,13 +71,14 @@ export const Schemas: t_signatures.Schemas = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,
     )['start']['relative'],
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         v_unmarshalled_from_parse_tree.Dictionary(
             $,
             ($) => abort(
                 ['expected a dictionary', null],
             ),
         ),
+    ).map(
         ($, id) => ({
             'l location': v_parse_tree_to_location.Value(
                 $,
@@ -149,13 +150,14 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,
     )['start']['relative'],
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         v_unmarshalled_from_parse_tree.Dictionary(
             $,
             ($) => abort(
                 ['expected a dictionary', null],
             ),
         ),
+    ).map(
         ($, id) => ({
             'l location': v_parse_tree_to_location.Value(
                 $,
@@ -226,13 +228,14 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
                 'l location': v_parse_tree_to_location.Value(
                     $,
                 )['start']['relative'],
-                'l dictionary': _p.dictionary.map(
+                'l dictionary': _p.dictionary.from.dictionary(
                     v_unmarshalled_from_parse_tree.Dictionary(
                         $,
                         ($) => abort(
                             ['expected a dictionary', null],
                         ),
                     ),
+                ).map(
                     ($, id) => ({
                         'l location': v_parse_tree_to_location.Value(
                             $,
@@ -254,13 +257,14 @@ export const Modules: t_signatures.Modules = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,
     )['start']['relative'],
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         v_unmarshalled_from_parse_tree.Dictionary(
             $,
             ($) => abort(
                 ['expected a dictionary', null],
             ),
         ),
+    ).map(
         ($, id) => ({
             'l location': v_parse_tree_to_location.Value(
                 $,
@@ -495,13 +499,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 'l location': v_parse_tree_to_location.Value(
                                     $,
                                 )['start']['relative'],
-                                'l dictionary': _p.dictionary.map(
+                                'l dictionary': _p.dictionary.from.dictionary(
                                     v_unmarshalled_from_parse_tree.Dictionary(
                                         $,
                                         ($) => abort(
                                             ['expected a dictionary', null],
                                         ),
                                     ),
+                                ).map(
                                     ($, id) => ({
                                         'l location': v_parse_tree_to_location.Value(
                                             $,
@@ -591,13 +596,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 'l location': v_parse_tree_to_location.Value(
                                     $,
                                 )['start']['relative'],
-                                'l dictionary': _p.dictionary.map(
+                                'l dictionary': _p.dictionary.from.dictionary(
                                     v_unmarshalled_from_parse_tree.Dictionary(
                                         $,
                                         ($) => abort(
                                             ['expected a dictionary', null],
                                         ),
                                     ),
+                                ).map(
                                     ($, id) => ({
                                         'l location': v_parse_tree_to_location.Value(
                                             $,

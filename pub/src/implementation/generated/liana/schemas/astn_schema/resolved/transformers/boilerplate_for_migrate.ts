@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -46,8 +46,9 @@ export const Schemas: t_signatures.Schemas = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         $,
+    ).map(
         ($, id) => ({
             'l entry': Schema_Tree(
                 $,
@@ -88,8 +89,9 @@ export const Imports: t_signatures.Imports = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         $,
+    ).map(
         ($, id) => ({
             'l entry': {
                 'schema set child': _p_change_context(
@@ -126,8 +128,9 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': _p.dictionary.map(
+            'l dictionary': _p.dictionary.from.dictionary(
                 $,
+            ).map(
                 ($, id) => ({
                     'l entry': Text_Type(
                         $,
@@ -149,8 +152,9 @@ export const Modules: t_signatures.Modules = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': _p.dictionary.map(
+    'l dictionary': _p.dictionary.from.dictionary(
         $,
+    ).map(
         ($, id) => ({
             'l entry': {
                 'root value': _p_change_context(
@@ -278,8 +282,9 @@ export const Value: t_signatures.Value = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l dictionary': _p.dictionary.map(
+                            'l dictionary': _p.dictionary.from.dictionary(
                                 $,
+                            ).map(
                                 ($, id) => ({
                                     'l entry': Value(
                                         $,
@@ -326,8 +331,9 @@ export const Value: t_signatures.Value = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l dictionary': _p.dictionary.map(
+                            'l dictionary': _p.dictionary.from.dictionary(
                                 $,
+                            ).map(
                                 ($, id) => ({
                                     'l entry': Value(
                                         $,

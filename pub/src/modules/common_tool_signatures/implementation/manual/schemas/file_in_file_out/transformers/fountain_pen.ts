@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 //data types
 import * as d_in from "../../../../../interface/to_be_generated/file_in_file_out"

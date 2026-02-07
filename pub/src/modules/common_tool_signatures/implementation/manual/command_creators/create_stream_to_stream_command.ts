@@ -37,7 +37,7 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                             ),
                             ($) => abort(['deserialization failed', $]),
                             {
-                                'document resource identifier': `stream input`,
+                                'document resource identifier': "stream input",
                             }
                         ),
                         ($v) => [
@@ -58,9 +58,9 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                             'message': sh.pg.sentences([
                                 _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'could not read instream': return _p.ss($, ($) => sh.ph.literal(`could not read instream`))
+                                        case 'could not read instream': return _p.ss($, ($) => sh.ph.literal("could not read instream"))
                                         case 'deserialization failed': return _p.ss($, ($) => $)
-                                        case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal(`could not write to stdout`))
+                                        case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal("could not write to stdout"))
                                         default: return _p.au($[0])
                                     }
                                 })

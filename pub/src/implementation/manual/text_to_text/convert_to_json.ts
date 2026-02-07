@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
@@ -35,7 +35,7 @@ export const $$: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phras
             ),
         ),
         {
-            'indentation': `    `,
-            'newline': `\n`,
+            'indentation': "    ",
+            'newline': "\n",
         }
     )

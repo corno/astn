@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -7,8 +7,9 @@ import * as t_signatures from "../../../../../../interface/generated/liana/schem
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/ide/data"
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.map(
+export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.from.list(
     $,
+).map(
     ($) => _p.decide.state(
         $,
         ($): t_out.Text_Edits.L => {
@@ -81,8 +82,9 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ({
     ),
 })
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => _p.dictionary.map(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => _p.dictionary.from.dictionary(
     $,
+).map(
     ($, id) => $,
 )
 

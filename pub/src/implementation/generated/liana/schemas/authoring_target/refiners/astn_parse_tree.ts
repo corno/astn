@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -32,13 +32,14 @@ export const Document: t_signatures.Document = ($, abort) => _p_change_context(
                     ['no such entry', "header"],
                 ),
             ),
-            ($) => _p.optional.map(
+            ($) => _p.optional.from.optional(
                 v_unmarshalled_from_parse_tree.Optional(
                     $,
                     ($) => abort(
                         ['expected an optional', null],
                     ),
                 ),
+            ).map(
                 ($) => Value(
                     $,
                     ($) => abort(
@@ -94,13 +95,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ['no such entry', "comments"],
                             ),
                         ),
-                        ($) => _p.list.map(
+                        ($) => _p.list.from.list(
                             v_unmarshalled_from_parse_tree.List(
                                 $,
                                 ($) => abort(
                                     ['expected a list', null],
                                 ),
                             ),
+                        ).map(
                             ($) => v_unmarshalled_from_parse_tree.Text(
                                 $,
                                 ($) => abort(
@@ -200,20 +202,22 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                 case 'dictionary':
                                                                     return _p_change_context(
                                                                         $['value'],
-                                                                        ($) => ['dictionary', _p.dictionary.map(
+                                                                        ($) => ['dictionary', _p.dictionary.from.dictionary(
                                                                             v_unmarshalled_from_parse_tree.Dictionary(
                                                                                 $,
                                                                                 ($) => abort(
                                                                                     ['expected a dictionary', null],
                                                                                 ),
                                                                             ),
-                                                                            ($, id) => _p.optional.map(
+                                                                        ).map(
+                                                                            ($, id) => _p.optional.from.optional(
                                                                                 v_unmarshalled_from_parse_tree.Optional(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         ['expected an optional', null],
                                                                                     ),
                                                                                 ),
+                                                                            ).map(
                                                                                 ($) => Value(
                                                                                     $,
                                                                                     ($) => abort(
@@ -240,13 +244,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                         case 'concise':
                                                                                             return _p_change_context(
                                                                                                 $['value'],
-                                                                                                ($) => ['concise', _p.list.map(
+                                                                                                ($) => ['concise', _p.list.from.list(
                                                                                                     v_unmarshalled_from_parse_tree.List(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             ['expected a list', null],
                                                                                                         ),
                                                                                                     ),
+                                                                                                ).map(
                                                                                                     ($) => Value(
                                                                                                         $,
                                                                                                         ($) => abort(
@@ -258,20 +263,22 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                         case 'verbose':
                                                                                             return _p_change_context(
                                                                                                 $['value'],
-                                                                                                ($) => ['verbose', _p.dictionary.map(
+                                                                                                ($) => ['verbose', _p.dictionary.from.dictionary(
                                                                                                     v_unmarshalled_from_parse_tree.Dictionary(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             ['expected a dictionary', null],
                                                                                                         ),
                                                                                                     ),
-                                                                                                    ($, id) => _p.optional.map(
+                                                                                                ).map(
+                                                                                                    ($, id) => _p.optional.from.optional(
                                                                                                         v_unmarshalled_from_parse_tree.Optional(
                                                                                                             $,
                                                                                                             ($) => abort(
                                                                                                                 ['expected an optional', null],
                                                                                                             ),
                                                                                                         ),
+                                                                                                    ).map(
                                                                                                         ($) => Value(
                                                                                                             $,
                                                                                                             ($) => abort(
@@ -293,13 +300,14 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                 case 'list':
                                                                     return _p_change_context(
                                                                         $['value'],
-                                                                        ($) => ['list', _p.list.map(
+                                                                        ($) => ['list', _p.list.from.list(
                                                                             v_unmarshalled_from_parse_tree.List(
                                                                                 $,
                                                                                 ($) => abort(
                                                                                     ['expected a list', null],
                                                                                 ),
                                                                             ),
+                                                                        ).map(
                                                                             ($) => Value(
                                                                                 $,
                                                                                 ($) => abort(

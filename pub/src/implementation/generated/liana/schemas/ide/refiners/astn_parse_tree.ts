@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -17,13 +17,14 @@ import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/m
 
 import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
 
-export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.map(
+export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.from.list(
     v_unmarshalled_from_parse_tree.List(
         $,
         ($) => abort(
             ['expected a list', null],
         ),
     ),
+).map(
     ($) => _p_change_context(
         v_unmarshalled_from_parse_tree.State(
             $,
@@ -196,13 +197,14 @@ export const Relative_Range: t_signatures.Relative_Range = ($, abort) => _p_chan
     }),
 )
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($, abort) => _p.dictionary.map(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($, abort) => _p.dictionary.from.dictionary(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null],
         ),
     ),
+).map(
     ($, id) => v_unmarshalled_from_parse_tree.Text(
         $,
         ($) => abort(

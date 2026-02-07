@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import * as d_out from "../../../../../interface/generated/liana/schemas/ide/data"
 
@@ -10,8 +10,9 @@ export const Whitespace: signatures.Whitespace = ($, $p) => _p.list.literal([
 
 export const Trivia: signatures.Trivia = ($, $p) => _p.list.nested_literal_old([
     Whitespace($['leading whitespace'], $p),
-    _p.list.flatten(
+    _p.list.from.list(
         $['comments'],
+    ).flatten(
         ($) => _p.list.nested_literal_old([
             //FIXME
             // _p.decide.state($['type'], ($) => {
@@ -37,8 +38,9 @@ export const String: signatures.Text = ($, $p) => _p.list.nested_literal_old([
     //FIX right type
 ])
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => _p.list.flatten(
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => _p.list.from.list(
     $,
+).flatten(
     ($) => _p.list.nested_literal_old([
         String($.id, $p),
         $.value.__decide(
@@ -52,7 +54,11 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => _p.list.flat
 )
 
 
-export const Items: signatures.Items = ($, $p) => _p.list.flatten($, ($) => Value($.value, $p))
+export const Items: signatures.Items = ($, $p) => _p.list.from.list(
+    $,
+).flatten(
+    ($) => Value($.value, $p)
+)
 
 export const Value: signatures.Value = ($, $p) => _p.decide.state($.type, ($) => {
     switch ($[0]) {

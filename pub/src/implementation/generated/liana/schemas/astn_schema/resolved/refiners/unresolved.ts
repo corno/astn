@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -13,11 +13,12 @@ import * as t_out from "../../../../../../../interface/generated/liana/schemas/a
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/resolve"
 
-export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
     $['l dictionary'],
+).resolve(
     ($, id, $a, $c): t_out.Modules.D => _p_change_context(
         $['l entry'],
-        ($) => _p.group.resolve(
+        ($) => _p.group.literal.resolve(
             () => {
                 
                 const prop_root_value = _p_change_context(
@@ -45,13 +46,14 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
     ),
 )
 
-export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.resolve(
+export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
         
         const prop_text_types = _p_change_context(
             $['text types'],
-            ($) => _p.dictionary.resolve(
+            ($) => _p.dictionary.from.dictionary(
                 $['l dictionary'],
+            ).resolve(
                 ($, id, $a, $c): t_out.Globals.text_types.D => _p_change_context(
                     $['l entry'],
                     ($) => Text_Type(
@@ -71,7 +73,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.reso
     },
 )
 
-export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.resolve(
+export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
         
         const prop_type = _p_change_context(
@@ -145,7 +147,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                                         },
                                                                     ),
                                                                 )
-                                                                return _p.group.resolve(
+                                                                return _p.group.literal.resolve(
                                                                     () => {
                                                                         
                                                                         const prop_import = _p_change_context(
@@ -273,7 +275,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                     case 'dictionary':
                         return _p.ss(
                             $,
-                            ($) => ['dictionary', _p.group.resolve(
+                            ($) => ['dictionary', _p.group.literal.resolve(
                                 () => {
                                     
                                     const prop_value = _p_change_context(
@@ -308,8 +310,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                     case 'group':
                         return _p.ss(
                             $,
-                            ($) => ['group', _p.dictionary.resolve(
+                            ($) => ['group', _p.dictionary.from.dictionary(
                                 $['l dictionary'],
+                            ).resolve(
                                 ($, id, $a, $c): t_out.Value.group.D => _p_change_context(
                                     $['l entry'],
                                     ($) => Value(
@@ -332,7 +335,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                     case 'list':
                         return _p.ss(
                             $,
-                            ($) => ['list', _p.group.resolve(
+                            ($) => ['list', _p.group.literal.resolve(
                                 () => {
                                     
                                     const prop_value = _p_change_context(
@@ -372,8 +375,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                     case 'state':
                         return _p.ss(
                             $,
-                            ($) => ['state', _p.dictionary.resolve(
+                            ($) => ['state', _p.dictionary.from.dictionary(
                                 $['l dictionary'],
+                            ).resolve(
                                 ($, id, $a, $c): t_out.Value.state.D => _p_change_context(
                                     $['l entry'],
                                     ($) => Value(
@@ -477,8 +481,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
     },
 )
 
-export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
     $['l dictionary'],
+).resolve(
     ($, id, $a, $c): t_out.Schemas.D => _p_change_context(
         $['l entry'],
         ($) => Schema_Tree(
@@ -543,7 +548,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
     },
 )
 
-export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolve(
+export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
         
         const prop_imports = _p_change_context(
@@ -581,10 +586,10 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                 ),
                 null,
                 {
-                    'globals': _p.optional.set(
+                    'globals': _p.optional.literal.set(
                         prop_globals,
                     ),
-                    'imports': _p.optional.set(
+                    'imports': _p.optional.literal.set(
                         prop_imports,
                     ),
                 },
@@ -598,11 +603,12 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
     },
 )
 
-export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
     $['l dictionary'],
+).resolve(
     ($, id, $a, $c): t_out.Imports.D => _p_change_context(
         $['l entry'],
-        ($) => _p.group.resolve(
+        ($) => _p.group.literal.resolve(
             () => {
                 
                 const prop_schema_set_child = _p_change_context(

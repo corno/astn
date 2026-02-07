@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import * as signatures from "../../../../../interface/signatures/transformers/parse_tree/json_target"
 

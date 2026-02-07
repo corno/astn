@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -45,8 +45,9 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
     },
 )]
 
-export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.map(
+export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
+).map(
     ($, id) => Schema_Tree(
         $,
     ),
@@ -75,8 +76,9 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
     },
 )]]
 
-export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary.map(
+export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
+).map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             "schema set child": _p_change_context(
@@ -98,8 +100,9 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
     {
         "text types": _p_change_context(
             $['text types'],
-            ($) => ['dictionary', _p.dictionary.map(
+            ($) => ['dictionary', _p.dictionary.from.dictionary(
                 $,
+            ).map(
                 ($, id) => Text_Type(
                     $,
                 ),
@@ -108,8 +111,9 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
     },
 )]]
 
-export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
+export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
+).map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             "root value": _p_change_context(
@@ -225,8 +229,9 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                     $,
                     ($) => ({
                         'option': 'group',
-                        'value': ['dictionary', _p.dictionary.map(
+                        'value': ['dictionary', _p.dictionary.from.dictionary(
                             $,
+                        ).map(
                             ($, id) => Value(
                                 $,
                             ),
@@ -273,8 +278,9 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                     $,
                     ($) => ({
                         'option': 'state',
-                        'value': ['dictionary', _p.dictionary.map(
+                        'value': ['dictionary', _p.dictionary.from.dictionary(
                             $,
+                        ).map(
                             ($, id) => Value(
                                 $,
                             ),

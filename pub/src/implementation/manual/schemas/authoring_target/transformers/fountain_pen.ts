@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 import * as signatures from "../../../../../interface/signatures/transformers/authoring_target/fountain_pen"
@@ -65,8 +65,9 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                     case 'dictionary': return _p.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.literal(""), //we always want a newline here
                         sh.ph.indent(
-                            sh.pg.sentences(_p.list.from_dictionary(
+                            sh.pg.sentences(_p.list.from.dictionary(
                                 $,
+                            ).convert(
                                 ($, id) => sh.ph.composed([
                                     sh.ph.serialize(s_backticked(id, {
                                         'add delimiters': true,
@@ -97,8 +98,9 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                 sh.ph.composed([
                                     $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.literal(""), //we always want a newline here
                                     sh.ph.indent(
-                                        sh.pg.sentences(_p.list.from_dictionary(
+                                        sh.pg.sentences(_p.list.from.dictionary(
                                             $,
+                                        ).convert(
                                             ($, id) => sh.ph.composed([
                                                 sh.ph.serialize(s_apostrophed(id, {
                                                     'add delimiters': true,
