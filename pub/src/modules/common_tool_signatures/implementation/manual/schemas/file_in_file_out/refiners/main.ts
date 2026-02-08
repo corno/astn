@@ -21,7 +21,9 @@ export const Parameters: _pi.Refiner<
                 'in': p_file_in_file_out.Path(iter, ($) => abort(['in path', $])),
                 'out': p_file_in_file_out.Path(iter, ($) => abort(['out path', $])),
             }),
-            ($) => abort(['too many arguments', null]),
+            {
+                not_finished: ($) => abort(['too many arguments', null]),
+            }
 
         ),
     )
