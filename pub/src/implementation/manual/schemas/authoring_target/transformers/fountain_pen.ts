@@ -7,7 +7,7 @@ import * as signatures from "../../../../../interface/signatures/transformers/au
 import * as d_out from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 //dependencies
 import { $$ as s_apostrophed } from "astn-core/dist/implementation/manual/primitives/text/serializers/apostrophed"

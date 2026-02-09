@@ -2,14 +2,14 @@ import * as _p from 'pareto-core/dist/assign'
 
 //data types
 import * as d_in from "../../../../../interface/to_be_generated/file_in_file_out"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //dependencies
 import * as t_read_file from "pareto-resources/dist/implementation/manual/schemas/read_file/transformers/fountain_pen"
 import * as t_file_in_file_out_to_fountain_pen from "./fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const Path_Error = ($: d_in.Path_Error): d_out.Phrase => _p.decide.state($, ($) => {
     switch ($[0]) {
