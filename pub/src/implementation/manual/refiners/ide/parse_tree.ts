@@ -1,8 +1,8 @@
 import * as _p from 'pareto-core/dist/assign'
 
-import * as d_out from "../../../../../interface/generated/liana/schemas/ide/data"
+import * as d_out from "../../../../interface/generated/liana/schemas/ide/data"
 
-import * as signatures from "../../../../../interface/signatures/refiners/ide/parse_tree"
+import * as signatures from "../../../../interface/signatures/refiners/ide/parse_tree"
 
 export const Whitespace: signatures.Whitespace = ($, $p) => _p.list.literal([
     //FIXME

@@ -13,9 +13,9 @@ import * as v_deserialize_number from "liana-core/dist/implementation/manual/pri
 
 import * as v_deserialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/deserializers/true_false"
 
-import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/manual/schemas/unmarshalled/refiners/parse_tree"
+import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/manual/refiners/unmarshalled/parse_tree"
 
-import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
+import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.State(

@@ -7,9 +7,9 @@ import * as d_loc from "pareto-fountain-pen/dist/interface/to_be_generated/list_
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //dependencies
-import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/schemas/parse_tree/refiners/list_of_characters"
-import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/schemas/deserialize_parse_tree/transformers/fountain_pen"
-import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/prose/transformers/list_of_characters"
+import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
+import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
+import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 
 export const $$: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
     r_parse_tree_from_text.Document(
