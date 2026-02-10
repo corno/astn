@@ -13,7 +13,7 @@ import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schema
 
 //dependencies
 import * as r_file_in_file_out_from_main from "../schemas/file_in_file_out/refiners/main"
-import * as t_path_to_text from "pareto-resources/dist/implementation/manual/schemas/path/transformers/text"
+import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
 import * as t_transform_file_to_fountain_pen from "../schemas/transform_file/transformers/fountain_pen"
 import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 

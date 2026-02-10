@@ -5,7 +5,7 @@ import * as d_in from "../../../../../interface/to_be_generated/file_in_file_out
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //dependencies
-import * as t_read_file from "pareto-resources/dist/implementation/manual/schemas/read_file/transformers/fountain_pen"
+import * as t_read_file from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
 import * as t_file_in_file_out_to_fountain_pen from "./fountain_pen"
 
 //shorthands
