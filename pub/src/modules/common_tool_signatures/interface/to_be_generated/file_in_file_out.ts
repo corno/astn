@@ -21,8 +21,6 @@ export type Command_Error =
     | ['writing file', d_write_file.Error]
 
 export type Parameters = {
-    'in': Path,
-    'out': Path,
+    'in': d_path.Node_Path,
+    'out': d_path.Node_Path,
 }
-
-export type Path = d_path.Node_Path
