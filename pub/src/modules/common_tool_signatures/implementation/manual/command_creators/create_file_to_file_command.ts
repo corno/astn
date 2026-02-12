@@ -8,7 +8,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_transform_file from "../../../interface/to_be_generated/transform_file"
-import * as d_loc from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+import * as d_loc from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //dependencies

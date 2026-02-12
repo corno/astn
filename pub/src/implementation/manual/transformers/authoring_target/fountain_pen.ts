@@ -4,7 +4,7 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import * as signatures from "../../../../interface/signatures/transformers/authoring_target/fountain_pen"
 
 //data types
-import * as d_out from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
