@@ -75,7 +75,7 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                         }),
                     )
                 ],
-                ({
+                () => ({
                     'exit code': 1,
                 })
             ),

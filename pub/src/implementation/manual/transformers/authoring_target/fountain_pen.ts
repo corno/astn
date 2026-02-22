@@ -10,14 +10,7 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schem
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 //dependencies
-import { $$ as s_apostrophed } from "astn-core/dist/implementation/manual/primitives/text/serializers/apostrophed"
-import { $$ as s_quoted } from "astn-core/dist/implementation/manual/primitives/text/serializers/quoted"
-import { $$ as s_backticked } from "astn-core/dist/implementation/manual/primitives/text/serializers/backticked"
-
-
-const s_undelimited = ($: string): d_out.List_of_Characters => {
-    return _p_list_from_text($, ($) => $)
-}
+import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"
 
 export const Value: signatures.Value = ($, $p) => sh.ph.composed([
     // does it need a leading space
@@ -55,7 +48,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
         switch ($[0]) {
             case 'include': return _p.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("@ "),
-                sh.ph.serialize(s_quoted($.path, {
+                sh.ph.serialize(t_primitives_to_text.Quoted($.path, {
                     'add delimiters': true,
                 })),
             ]))
@@ -69,7 +62,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                 $,
                             ).convert(
                                 ($, id) => sh.sentence([
-                                    sh.ph.serialize(s_backticked(id, {
+                                    sh.ph.serialize(t_primitives_to_text.Backticked(id, {
                                         'add delimiters': true,
                                     })),
                                     sh.ph.literal(": "),
@@ -102,7 +95,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                             $,
                                         ).convert(
                                             ($, id) => sh.sentence([
-                                                sh.ph.serialize(s_apostrophed(id, {
+                                                sh.ph.serialize(t_primitives_to_text.Apostrophed(id, {
                                                     'add delimiters': true,
                                                 })),
                                                 sh.ph.literal(": "),
@@ -155,7 +148,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                 $p['in concise group']
                                     ? sh.ph.nothing()
                                     : $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
-                                sh.ph.serialize(s_apostrophed($.option, {
+                                sh.ph.serialize(t_primitives_to_text.Apostrophed($.option, {
                                     'add delimiters': $p['write delimiters'],
                                 })),
                                 $p['in concise group']
@@ -173,13 +166,13 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                         const value = $.value // fixme: move value to the inside of the delimiter states
                         return _p.decide.state($.delimiter, ($) => {
                             switch ($[0]) {
-                                case 'backtick': return _p.ss($, ($) => sh.ph.serialize(s_backticked(value, {
+                                case 'backtick': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Backticked(value, {
                                     'add delimiters': $p['write delimiters'],
                                 })))
-                                case 'quote': return _p.ss($, ($) => sh.ph.serialize(s_quoted(value, {
+                                case 'quote': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
                                     'add delimiters': $p['write delimiters'],
                                 })))
-                                case 'none': return _p.ss($, ($) => sh.ph.serialize(s_undelimited(value)))
+                                case 'none': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
                                 default: return _p.au($[0])
                             }
                         })
