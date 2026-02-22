@@ -9,9 +9,7 @@ import * as t_signatures from "../../../../../../interface/generated/liana/schem
 
 import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
-import * as v_serialize_number from "liana-core/dist/implementation/manual/primitives/integer/serializers/decimal"
-
-import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
+import * as v_primitives_to_text from "liana-core/dist/implementation/manual/transformers/primitives/text"
 
 export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.list(
     $,
@@ -126,11 +124,8 @@ export const Relative_Location: t_signatures.Relative_Location = ($) => ['group'
             $['line'],
             ($) => ['text', {
                 'delimiter': ['none', null],
-                'value': _p_text_from_list(
-                    v_serialize_number.serialize(
-                        $,
-                    ),
-                    ($) => $,
+                'value': v_primitives_to_text.decimal(
+                    $,
                 ),
             }],
         ),
@@ -138,11 +133,8 @@ export const Relative_Location: t_signatures.Relative_Location = ($) => ['group'
             $['column'],
             ($) => ['text', {
                 'delimiter': ['none', null],
-                'value': _p_text_from_list(
-                    v_serialize_number.serialize(
-                        $,
-                    ),
-                    ($) => $,
+                'value': v_primitives_to_text.decimal(
+                    $,
                 ),
             }],
         ),
