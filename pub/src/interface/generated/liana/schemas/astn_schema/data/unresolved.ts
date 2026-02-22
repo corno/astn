@@ -5,7 +5,7 @@ import * as i__location from "astn-core/dist/interface/generated/liana/schemas/l
 
 export namespace Schema_Tree_ {
     
-    export type l_location = i__location.Relative_Location
+    export type l_location = i__location.Range
     
     export namespace l_state {
         
@@ -28,13 +28,13 @@ export type Schema_Tree_ = {
 
 export namespace Schemas_ {
     
-    export type l_location = i__location.Relative_Location
+    export type l_location = i__location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export type l_entry = Schema_Tree_
             
@@ -74,19 +74,19 @@ export type Schema_ = {
 
 export namespace Imports_ {
     
-    export type l_location = i__location.Relative_Location
+    export type l_location = i__location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_entry {
                 
                 export namespace schema_set_child {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_reference = string
                     
@@ -128,13 +128,13 @@ export namespace Globals_ {
     
     export namespace text_types {
         
-        export type l_location = i__location.Relative_Location
+        export type l_location = i__location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Relative_Location
+                export type l_location = i__location.Range
                 
                 export type l_entry = Text_Type_
                 
@@ -164,13 +164,13 @@ export type Globals_ = {
 
 export namespace Modules_ {
     
-    export type l_location = i__location.Relative_Location
+    export type l_location = i__location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_entry {
                 
@@ -202,13 +202,13 @@ export type Modules_ = {
 
 export namespace Value_ {
     
-    export type l_location = i__location.Relative_Location
+    export type l_location = i__location.Range
     
     export namespace l_state {
         
         export namespace component {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_state {
                 
@@ -216,7 +216,7 @@ export namespace Value_ {
                     
                     export namespace import_ {
                         
-                        export type l_location = i__location.Relative_Location
+                        export type l_location = i__location.Range
                         
                         export type l_reference = string
                         
@@ -229,7 +229,7 @@ export namespace Value_ {
                     
                     export namespace type_ {
                         
-                        export type l_location = i__location.Relative_Location
+                        export type l_location = i__location.Range
                         
                         export type l_reference = string
                         
@@ -249,7 +249,7 @@ export namespace Value_ {
                 
                 export namespace internal_acyclic {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_reference = string
                     
@@ -262,7 +262,7 @@ export namespace Value_ {
                 
                 export namespace internal {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_reference = string
                     
@@ -302,13 +302,13 @@ export namespace Value_ {
         
         export namespace group {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_dictionary {
                 
                 export namespace D {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_entry = Value_
                     
@@ -346,13 +346,13 @@ export namespace Value_ {
         
         export namespace state {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_dictionary {
                 
                 export namespace D {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_entry = Value_
                     
@@ -376,13 +376,13 @@ export namespace Value_ {
         
         export namespace text {
             
-            export type l_location = i__location.Relative_Location
+            export type l_location = i__location.Range
             
             export namespace l_state {
                 
                 export namespace global {
                     
-                    export type l_location = i__location.Relative_Location
+                    export type l_location = i__location.Range
                     
                     export type l_reference = string
                     
@@ -431,7 +431,7 @@ export namespace Text_Type_ {
     
     export namespace type_ {
         
-        export type l_location = i__location.Relative_Location
+        export type l_location = i__location.Range
         
         export namespace l_state {
             

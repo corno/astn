@@ -9,9 +9,22 @@ import * as t_out from "../../../../../../../interface/generated/liana/schemas/a
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
     },
     'l state': _p.decide.state(
         $,
@@ -42,9 +55,22 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
 
 export const Schemas: t_signatures.Schemas = ($) => ({
     'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
     },
     'l dictionary': _p.dictionary.from.dictionary(
         $,
@@ -54,9 +80,22 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                 $,
             ),
             'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
             },
         }),
     ),
@@ -85,9 +124,22 @@ export const Schema: t_signatures.Schema = ($) => ({
 
 export const Imports: t_signatures.Imports = ($) => ({
     'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
     },
     'l dictionary': _p.dictionary.from.dictionary(
         $,
@@ -98,9 +150,22 @@ export const Imports: t_signatures.Imports = ($) => ({
                     $['schema set child'],
                     ($) => ({
                         'l location': {
-                            'document resource identifier': "implement me",
-                            'line': 42,
-                            'column': 42,
+                            'start': {
+                                'absolute': 42,
+                                'relative': {
+                                    'document resource identifier': "implement me",
+                                    'line': 42,
+                                    'column': 42,
+                                },
+                            },
+                            'end': {
+                                'absolute': 42,
+                                'relative': {
+                                    'document resource identifier': "implement me",
+                                    'line': 42,
+                                    'column': 42,
+                                },
+                            },
                         },
                         'l reference': $['l id'],
                     }),
@@ -111,9 +176,22 @@ export const Imports: t_signatures.Imports = ($) => ({
                 ),
             },
             'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
             },
         }),
     ),
@@ -124,9 +202,22 @@ export const Globals: t_signatures.Globals = ($) => ({
         $['text types'],
         ($) => ({
             'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
             },
             'l dictionary': _p.dictionary.from.dictionary(
                 $,
@@ -136,9 +227,22 @@ export const Globals: t_signatures.Globals = ($) => ({
                         $,
                     ),
                     'l location': {
-                        'document resource identifier': "implement me",
-                        'line': 42,
-                        'column': 42,
+                        'start': {
+                            'absolute': 42,
+                            'relative': {
+                                'document resource identifier': "implement me",
+                                'line': 42,
+                                'column': 42,
+                            },
+                        },
+                        'end': {
+                            'absolute': 42,
+                            'relative': {
+                                'document resource identifier': "implement me",
+                                'line': 42,
+                                'column': 42,
+                            },
+                        },
                     },
                 }),
             ),
@@ -148,9 +252,22 @@ export const Globals: t_signatures.Globals = ($) => ({
 
 export const Modules: t_signatures.Modules = ($) => ({
     'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
     },
     'l dictionary': _p.dictionary.from.dictionary(
         $,
@@ -165,9 +282,22 @@ export const Modules: t_signatures.Modules = ($) => ({
                 ),
             },
             'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
             },
         }),
     ),
@@ -175,9 +305,22 @@ export const Modules: t_signatures.Modules = ($) => ({
 
 export const Value: t_signatures.Value = ($) => ({
     'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
     },
     'l state': _p.decide.state(
         $,
@@ -188,9 +331,22 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['component', {
                             'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
+                                'start': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
+                                'end': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
                             },
                             'l state': _p.decide.state(
                                 $,
@@ -204,9 +360,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                         $['import'],
                                                         ($) => ({
                                                             'l location': {
-                                                                'document resource identifier': "implement me",
-                                                                'line': 42,
-                                                                'column': 42,
+                                                                'start': {
+                                                                    'absolute': 42,
+                                                                    'relative': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                },
+                                                                'end': {
+                                                                    'absolute': 42,
+                                                                    'relative': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                },
                                                             },
                                                             'l reference': $['l id'],
                                                         }),
@@ -215,9 +384,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                         $['type'],
                                                         ($) => ({
                                                             'l location': {
-                                                                'document resource identifier': "implement me",
-                                                                'line': 42,
-                                                                'column': 42,
+                                                                'start': {
+                                                                    'absolute': 42,
+                                                                    'relative': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                },
+                                                                'end': {
+                                                                    'absolute': 42,
+                                                                    'relative': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                },
                                                             },
                                                             'l reference': $['l id'],
                                                         }),
@@ -229,9 +411,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['internal acyclic', {
                                                     'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
+                                                        'start': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
+                                                        'end': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
                                                     },
                                                     'l reference': $['l id'],
                                                 }],
@@ -241,9 +436,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['internal', {
                                                     'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
+                                                        'start': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
+                                                        'end': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
                                                     },
                                                     'l reference': $['l id'],
                                                 }],
@@ -278,9 +486,22 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['group', {
                             'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
+                                'start': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
+                                'end': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
                             },
                             'l dictionary': _p.dictionary.from.dictionary(
                                 $,
@@ -290,9 +511,22 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                     ),
                                     'l location': {
-                                        'document resource identifier': "implement me",
-                                        'line': 42,
-                                        'column': 42,
+                                        'start': {
+                                            'absolute': 42,
+                                            'relative': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                        },
+                                        'end': {
+                                            'absolute': 42,
+                                            'relative': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                        },
                                     },
                                 }),
                             ),
@@ -327,9 +561,22 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['state', {
                             'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
+                                'start': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
+                                'end': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
                             },
                             'l dictionary': _p.dictionary.from.dictionary(
                                 $,
@@ -339,9 +586,22 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                     ),
                                     'l location': {
-                                        'document resource identifier': "implement me",
-                                        'line': 42,
-                                        'column': 42,
+                                        'start': {
+                                            'absolute': 42,
+                                            'relative': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                        },
+                                        'end': {
+                                            'absolute': 42,
+                                            'relative': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                        },
                                     },
                                 }),
                             ),
@@ -352,9 +612,22 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['text', {
                             'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
+                                'start': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
+                                'end': {
+                                    'absolute': 42,
+                                    'relative': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                },
                             },
                             'l state': _p.decide.state(
                                 $,
@@ -365,9 +638,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
+                                                        'start': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
+                                                        'end': {
+                                                            'absolute': 42,
+                                                            'relative': {
+                                                                'document resource identifier': "implement me",
+                                                                'line': 42,
+                                                                'column': 42,
+                                                            },
+                                                        },
                                                     },
                                                     'l reference': $['l id'],
                                                 }],
@@ -402,9 +688,22 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
         $['type'],
         ($) => ({
             'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
             },
             'l state': _p.decide.state(
                 $,
