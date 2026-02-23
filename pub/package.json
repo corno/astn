@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "astn-core": "^0.5.55",
-    "liana-core": "^0.0.33",
+    "liana-core": "^0.0.34",
     "pareto-fountain-pen": "^0.4.49",
     "pareto-host-nodejs": "^0.2.33",
     "pareto-json": "^0.3.31",

@@ -629,75 +629,98 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
         $['l entry'],
         ($) => _p.group.literal.resolve(
             () => {
-                const loc = $['schema set child']['l location']
+
                 const prop_schema_set_child = _p_change_context(
                     $['schema set child'],
-                    ($) => {
-                        const value = {
-                            'l entry': $l['sibling schemas'].get_entry(
-                                $['l reference'],
-                                {
-                                    no_such_entry: () => abort(
-                                        {
-                                            'type': ['lookup', ['no such entry', $['l reference']]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                    no_context_lookup: () => abort(
-                                        {
-                                            'type': ['lookup', ['no context lookup', null]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                    cycle_detected: () => abort(
-                                        {
-                                            'type': ['lookup', ['cycle detected', null]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                },
-                            ),
-                            'l id': $['l reference'],
-                            'l up steps': $l['sibling schemas'].get_entry_depth(
-                                $['l reference'],
-                                {
-                                    no_such_entry: () => abort(
-                                        {
-                                            'type': ['lookup', ['no such entry', $['l reference']]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                    no_context_lookup: () => abort(
-                                        {
-                                            'type': ['lookup', ['no context lookup', null]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                    cycle_detected: () => abort(
-                                        {
-                                            'type': ['lookup', ['cycle detected', null]],
-                                            'location': $['l location'],
-                                        },
-                                    ),
-                                },
-                            ),
-                        }
-                        return {
-                            'l value': value,
-                            'l results': {
-                                'schema': _p.decide.state(value['l entry'], ($): t_out.Schema => {
-                                    switch ($[0]) {
-                                        case 'set': return _p.ss($, ($) => abort({
-                                            'location': loc,
-                                            'type': ['constraint', ['optional value is not set', null]],
-                                        }))
-                                        case 'schema': return _p.ss($, ($) => $)
-                                        default: return _p.au($[0])
-                                    }
-                                })
+                    ($) => _p.group.literal.resolve(
+                        () => {
+
+                            const prop_l_value = {
+                                'l entry': $l['sibling schemas'].get_entry(
+                                    $['l reference'],
+                                    {
+                                        no_such_entry: () => abort(
+                                            {
+                                                'type': ['lookup', ['no such entry', $['l reference']]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                        no_context_lookup: () => abort(
+                                            {
+                                                'type': ['lookup', ['no context lookup', null]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                        cycle_detected: () => abort(
+                                            {
+                                                'type': ['lookup', ['cycle detected', null]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                    },
+                                ),
+                                'l id': $['l reference'],
+                                'l up steps': $l['sibling schemas'].get_entry_depth(
+                                    $['l reference'],
+                                    {
+                                        no_such_entry: () => abort(
+                                            {
+                                                'type': ['lookup', ['no such entry', $['l reference']]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                        no_context_lookup: () => abort(
+                                            {
+                                                'type': ['lookup', ['no context lookup', null]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                        cycle_detected: () => abort(
+                                            {
+                                                'type': ['lookup', ['cycle detected', null]],
+                                                'location': $['l location'],
+                                            },
+                                        ),
+                                    },
+                                ),
                             }
-                        }
-                    },
+
+                            const prop_l_results = _p_variables(
+                                () => {
+
+                                    const var_location = $['l location']
+                                    return {
+                                        'schema': _p.decide.state(
+                                            prop_l_value['l entry'],
+                                            ($) => {
+                                                switch ($[0]) {
+                                                    case 'schema':
+                                                        return _p.ss(
+                                                            $,
+                                                            ($) => $,
+                                                        )
+                                                    default:
+                                                        return abort(
+                                                            {
+                                                                'type': ['constraint', ['state', {
+                                                                    'expected': "schema",
+                                                                    'found': $[0],
+                                                                }]],
+                                                                'location': var_location,
+                                                            },
+                                                        )
+                                                }
+                                            },
+                                        ),
+                                    }
+                                },
+                            )
+                            return {
+                                'l value': prop_l_value,
+                                'l results': prop_l_results,
+                            }
+                        },
+                    ),
                 )
 
                 const prop_schema = _p_change_context(
