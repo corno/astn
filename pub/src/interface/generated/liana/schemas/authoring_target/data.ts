@@ -58,17 +58,28 @@ export namespace Value_ {
                 
                 export namespace dictionary {
                     
-                    export namespace D {
+                    export namespace L {
                         
-                        export type O = Value_
+                        export type id = string
+                        
+                        export namespace value {
+                            
+                            export type O = Value_
+                            
+                        }
+                        
+                        export type value = _pi.Optional_Value<value.O>
                         
                     }
                     
-                    export type D = _pi.Optional_Value<D.O>
+                    export type L = {
+                        readonly 'id': L.id
+                        readonly 'value': L.value
+                    }
                     
                 }
                 
-                export type dictionary = _pi.Dictionary<dictionary.D>
+                export type dictionary = _pi.List<dictionary.L>
                 
                 export namespace group {
                     
@@ -82,17 +93,28 @@ export namespace Value_ {
                     
                     export namespace verbose {
                         
-                        export namespace D {
+                        export namespace L {
                             
-                            export type O = Value_
+                            export type id = string
+                            
+                            export namespace value {
+                                
+                                export type O = Value_
+                                
+                            }
+                            
+                            export type value = _pi.Optional_Value<value.O>
                             
                         }
                         
-                        export type D = _pi.Optional_Value<D.O>
+                        export type L = {
+                            readonly 'id': L.id
+                            readonly 'value': L.value
+                        }
                         
                     }
                     
-                    export type verbose = _pi.Dictionary<verbose.D>
+                    export type verbose = _pi.List<verbose.L>
                     
                 }
                 

@@ -102,16 +102,30 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'dictionary',
-                                                                        'value': ['dictionary', _p.dictionary.from.dictionary(
+                                                                        'value': ['list', _p.list.from.list(
                                                                             $,
                                                                         ).map(
-                                                                            ($, id) => ['optional', _p.decide.optional(
-                                                                                $,
-                                                                                ($): t_out.Value.optional => ['set', Value(
-                                                                                    $,
-                                                                                )],
-                                                                                () => ['not set', null],
-                                                                            )],
+                                                                            ($) => ['group', ['verbose', _p.dictionary.literal(
+                                                                                {
+                                                                                    "id": _p_change_context(
+                                                                                        $['id'],
+                                                                                        ($) => ['text', {
+                                                                                            'delimiter': ['quote', null],
+                                                                                            'value': $,
+                                                                                        }],
+                                                                                    ),
+                                                                                    "value": _p_change_context(
+                                                                                        $['value'],
+                                                                                        ($) => ['optional', _p.decide.optional(
+                                                                                            $,
+                                                                                            ($): t_out.Value.optional => ['set', Value(
+                                                                                                $,
+                                                                                            )],
+                                                                                            () => ['not set', null],
+                                                                                        )],
+                                                                                    ),
+                                                                                },
+                                                                            )]],
                                                                         )],
                                                                     }),
                                                                 )
@@ -143,16 +157,30 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'verbose',
-                                                                                                'value': ['dictionary', _p.dictionary.from.dictionary(
+                                                                                                'value': ['list', _p.list.from.list(
                                                                                                     $,
                                                                                                 ).map(
-                                                                                                    ($, id) => ['optional', _p.decide.optional(
-                                                                                                        $,
-                                                                                                        ($): t_out.Value.optional => ['set', Value(
-                                                                                                            $,
-                                                                                                        )],
-                                                                                                        () => ['not set', null],
-                                                                                                    )],
+                                                                                                    ($) => ['group', ['verbose', _p.dictionary.literal(
+                                                                                                        {
+                                                                                                            "id": _p_change_context(
+                                                                                                                $['id'],
+                                                                                                                ($) => ['text', {
+                                                                                                                    'delimiter': ['quote', null],
+                                                                                                                    'value': $,
+                                                                                                                }],
+                                                                                                            ),
+                                                                                                            "value": _p_change_context(
+                                                                                                                $['value'],
+                                                                                                                ($) => ['optional', _p.decide.optional(
+                                                                                                                    $,
+                                                                                                                    ($): t_out.Value.optional => ['set', Value(
+                                                                                                                        $,
+                                                                                                                    )],
+                                                                                                                    () => ['not set', null],
+                                                                                                                )],
+                                                                                                            ),
+                                                                                                        },
+                                                                                                    )]],
                                                                                                 )],
                                                                                             }),
                                                                                         )

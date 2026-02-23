@@ -297,29 +297,83 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                 case 'dictionary':
                                                                                     return _p_change_context(
                                                                                         $['value'],
-                                                                                        ($) => ['dictionary', _p_change_context(
-                                                                                            v_unmarshalled_from_parse_tree.Dictionary(
+                                                                                        ($) => ['dictionary', _p.list.from.list(
+                                                                                            v_unmarshalled_from_parse_tree.List(
                                                                                                 $,
                                                                                                 ($) => abort(
                                                                                                     $,
                                                                                                 ),
-                                                                                            ),
-                                                                                            ($) => _p.dictionary.from.dictionary(
-                                                                                                $['entries'],
-                                                                                            ).map(
-                                                                                                ($, id) => _p.optional.from.optional(
-                                                                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                                                            )['items'],
+                                                                                        ).map(
+                                                                                            ($) => _p_change_context(
+                                                                                                $['value'],
+                                                                                                ($) => _p_change_context(
+                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $,
                                                                                                         ),
-                                                                                                    )['optional'],
-                                                                                                ).map(
-                                                                                                    ($) => Value(
-                                                                                                        $,
-                                                                                                        ($) => abort(
-                                                                                                            $,
-                                                                                                        ),
+                                                                                                        {
+                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                {
+                                                                                                                    "id": null,
+                                                                                                                    "value": null,
+                                                                                                                },
+                                                                                                            ),
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    ($) => _p_variables(
+                                                                                                        () => {
+                                                                                                            
+                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                $['value'],
+                                                                                                            )
+                                                                                                            return {
+                                                                                                                'id': _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'id': 'id',
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                                'value': _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'id': 'value',
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => _p.optional.from.optional(
+                                                                                                                        v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                            $,
+                                                                                                                            ($) => abort(
+                                                                                                                                $,
+                                                                                                                            ),
+                                                                                                                        )['optional'],
+                                                                                                                    ).map(
+                                                                                                                        ($) => Value(
+                                                                                                                            $,
+                                                                                                                            ($) => abort(
+                                                                                                                                $,
+                                                                                                                            ),
+                                                                                                                        ),
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                            }
+                                                                                                        },
                                                                                                     ),
                                                                                                 ),
                                                                                             ),
@@ -364,29 +418,83 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                         case 'verbose':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['verbose', _p_change_context(
-                                                                                                                    v_unmarshalled_from_parse_tree.Dictionary(
+                                                                                                                ($) => ['verbose', _p.list.from.list(
+                                                                                                                    v_unmarshalled_from_parse_tree.List(
                                                                                                                         $,
                                                                                                                         ($) => abort(
                                                                                                                             $,
                                                                                                                         ),
-                                                                                                                    ),
-                                                                                                                    ($) => _p.dictionary.from.dictionary(
-                                                                                                                        $['entries'],
-                                                                                                                    ).map(
-                                                                                                                        ($, id) => _p.optional.from.optional(
-                                                                                                                            v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                    )['items'],
+                                                                                                                ).map(
+                                                                                                                    ($) => _p_change_context(
+                                                                                                                        $['value'],
+                                                                                                                        ($) => _p_change_context(
+                                                                                                                            v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                                                 $,
                                                                                                                                 ($) => abort(
                                                                                                                                     $,
                                                                                                                                 ),
-                                                                                                                            )['optional'],
-                                                                                                                        ).map(
-                                                                                                                            ($) => Value(
-                                                                                                                                $,
-                                                                                                                                ($) => abort(
-                                                                                                                                    $,
-                                                                                                                                ),
+                                                                                                                                {
+                                                                                                                                    'expected properties': _p.dictionary.literal(
+                                                                                                                                        {
+                                                                                                                                            "id": null,
+                                                                                                                                            "value": null,
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                },
+                                                                                                                            ),
+                                                                                                                            ($) => _p_variables(
+                                                                                                                                () => {
+                                                                                                                                    
+                                                                                                                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                        $['value'],
+                                                                                                                                    )
+                                                                                                                                    return {
+                                                                                                                                        'id': _p_change_context(
+                                                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                                $,
+                                                                                                                                                ($) => abort(
+                                                                                                                                                    $,
+                                                                                                                                                ),
+                                                                                                                                                {
+                                                                                                                                                    'id': 'id',
+                                                                                                                                                },
+                                                                                                                                            ),
+                                                                                                                                            ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                                                                                                $,
+                                                                                                                                                ($) => abort(
+                                                                                                                                                    $,
+                                                                                                                                                ),
+                                                                                                                                            ),
+                                                                                                                                        ),
+                                                                                                                                        'value': _p_change_context(
+                                                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                                $,
+                                                                                                                                                ($) => abort(
+                                                                                                                                                    $,
+                                                                                                                                                ),
+                                                                                                                                                {
+                                                                                                                                                    'id': 'value',
+                                                                                                                                                },
+                                                                                                                                            ),
+                                                                                                                                            ($) => _p.optional.from.optional(
+                                                                                                                                                v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                                                    $,
+                                                                                                                                                    ($) => abort(
+                                                                                                                                                        $,
+                                                                                                                                                    ),
+                                                                                                                                                )['optional'],
+                                                                                                                                            ).map(
+                                                                                                                                                ($) => Value(
+                                                                                                                                                    $,
+                                                                                                                                                    ($) => abort(
+                                                                                                                                                        $,
+                                                                                                                                                    ),
+                                                                                                                                                ),
+                                                                                                                                            ),
+                                                                                                                                        ),
+                                                                                                                                    }
+                                                                                                                                },
                                                                                                                             ),
                                                                                                                         ),
                                                                                                                     ),

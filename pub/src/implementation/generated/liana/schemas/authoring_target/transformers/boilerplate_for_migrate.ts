@@ -74,16 +74,25 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'dictionary':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['dictionary', _p.dictionary.from.dictionary(
+                                                        ($) => ['dictionary', _p.list.from.list(
                                                             $,
                                                         ).map(
-                                                            ($, id) => _p.optional.from.optional(
-                                                                $,
-                                                            ).map(
-                                                                ($) => Value(
-                                                                    $,
+                                                            ($) => ({
+                                                                'id': _p_change_context(
+                                                                    $['id'],
+                                                                    ($) => $,
                                                                 ),
-                                                            ),
+                                                                'value': _p_change_context(
+                                                                    $['value'],
+                                                                    ($) => _p.optional.from.optional(
+                                                                        $,
+                                                                    ).map(
+                                                                        ($) => Value(
+                                                                            $,
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            }),
                                                         )],
                                                     )
                                                 case 'group':
@@ -107,16 +116,25 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     case 'verbose':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['verbose', _p.dictionary.from.dictionary(
+                                                                            ($) => ['verbose', _p.list.from.list(
                                                                                 $,
                                                                             ).map(
-                                                                                ($, id) => _p.optional.from.optional(
-                                                                                    $,
-                                                                                ).map(
-                                                                                    ($) => Value(
-                                                                                        $,
+                                                                                ($) => ({
+                                                                                    'id': _p_change_context(
+                                                                                        $['id'],
+                                                                                        ($) => $,
                                                                                     ),
-                                                                                ),
+                                                                                    'value': _p_change_context(
+                                                                                        $['value'],
+                                                                                        ($) => _p.optional.from.optional(
+                                                                                            $,
+                                                                                        ).map(
+                                                                                            ($) => Value(
+                                                                                                $,
+                                                                                            ),
+                                                                                        ),
+                                                                                    ),
+                                                                                }),
                                                                             )],
                                                                         )
                                                                     default:

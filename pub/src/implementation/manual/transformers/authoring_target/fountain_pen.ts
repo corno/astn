@@ -58,15 +58,15 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                     case 'dictionary': return _p.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.nothing(), //we always want a newline here
                         sh.ph.indent(
-                            sh.pg.sentences(_p.list.from.dictionary(
+                            sh.pg.sentences(_p.list.from.list(
                                 $,
-                            ).convert(
-                                ($, id) => sh.sentence([
-                                    sh.ph.serialize(t_primitives_to_text.Backticked(id, {
+                            ).map(
+                                ($) => sh.sentence([
+                                    sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
                                         'add delimiters': true,
                                     })),
                                     sh.ph.literal(": "),
-                                    $.__decide(
+                                    $.value.__decide(
                                         ($) => Value($, {
                                             'in concise group': false,
                                             'write delimiters': true,
@@ -91,15 +91,15 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                 sh.ph.composed([
                                     $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.nothing(), //we always want a newline here
                                     sh.ph.indent(
-                                        sh.pg.sentences(_p.list.from.dictionary(
+                                        sh.pg.sentences(_p.list.from.list(
                                             $,
-                                        ).convert(
-                                            ($, id) => sh.sentence([
-                                                sh.ph.serialize(t_primitives_to_text.Apostrophed(id, {
+                                        ).map(
+                                            ($) => sh.sentence([
+                                                sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
                                                     'add delimiters': true,
                                                 })),
                                                 sh.ph.literal(": "),
-                                                $.__decide(
+                                                $.value.__decide(
                                                     ($) => Value($, {
                                                         'in concise group': false,
                                                         'write delimiters': true,
