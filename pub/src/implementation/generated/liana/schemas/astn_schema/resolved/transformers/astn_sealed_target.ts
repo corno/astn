@@ -83,7 +83,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary
                 $['schema set child'],
                 ($) => ['text', {
                     'delimiter': ['backtick', null],
-                    'value': $['l id'],
+                    'value': $['l value']['l id'],
                 }],
             ),
             "schema": _p_change_context(

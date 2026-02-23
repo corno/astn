@@ -167,7 +167,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                                 },
                             },
                         },
-                        'l reference': $['l id'],
+                        'l reference': $['l value']['l id'],
                     }),
                 ),
                 'schema': _p_change_context(

@@ -6,8 +6,8 @@ import _p_change_context from 'pareto-core/dist/_p_change_context'
 import * as _p_sl from 'pareto-core/dist/select_lookup'
 
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
-import _p_variables from 'pareto-core/dist/_p_variables'
 
+import _p_variables from 'pareto-core/dist/_p_variables'
 
 import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
@@ -20,7 +20,7 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
         $['l entry'],
         ($) => _p.group.literal.resolve(
             () => {
-                
+
                 const prop_root_value = _p_change_context(
                     $['root value'],
                     ($) => Value(
@@ -48,7 +48,7 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
 
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
-        
+
         const prop_text_types = _p_change_context(
             $['text types'],
             ($) => _p.dictionary.from.dictionary(
@@ -75,12 +75,12 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.lite
 
 export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
-        
+
         const prop_type = _p_change_context(
             $['type'],
             ($) => _p_variables(
                 () => {
-                    
+
                     const var_location = $['l location']
                     return _p.decide.state(
                         $['l state'],
@@ -114,7 +114,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.
 
 export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
     () => {
-        
+
         const var_location = $['l location']
         return _p.decide.state(
             $['l state'],
@@ -125,7 +125,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                             $,
                             ($) => ['component', _p_variables(
                                 () => {
-                                    
+
                                     const var_location = $['l location']
                                     return _p.decide.state(
                                         $['l state'],
@@ -136,7 +136,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                         $,
                                                         ($) => ['external', _p_variables(
                                                             () => {
-                                                                
+
                                                                 const var_constraint_import = _p.decide.optional(
                                                                     $p['imports'],
                                                                     ($) => $,
@@ -149,7 +149,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                                 )
                                                                 return _p.group.literal.resolve(
                                                                     () => {
-                                                                        
+
                                                                         const prop_import = _p_change_context(
                                                                             $['import'],
                                                                             ($) => ({
@@ -181,7 +181,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                                                 'l id': $['l reference'],
                                                                             }),
                                                                         )
-                                                                        
+
                                                                         const prop_type = _p_change_context(
                                                                             $['type'],
                                                                             ($) => ({
@@ -296,7 +296,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                             $,
                             ($) => ['dictionary', _p.group.literal.resolve(
                                 () => {
-                                    
+
                                     const prop_value = _p_change_context(
                                         $['value'],
                                         ($) => Value(
@@ -314,7 +314,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                             },
                                         ),
                                     )
-                                    
+
                                     const prop_ordered = _p_change_context(
                                         $['ordered'],
                                         ($) => $,
@@ -356,7 +356,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                             $,
                             ($) => ['list', _p.group.literal.resolve(
                                 () => {
-                                    
+
                                     const prop_value = _p_change_context(
                                         $['value'],
                                         ($) => Value(
@@ -415,7 +415,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                             $,
                             ($) => ['text', _p_variables(
                                 () => {
-                                    
+
                                     const var_location = $['l location']
                                     return _p.decide.state(
                                         $['l state'],
@@ -426,7 +426,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                         $,
                                                         ($) => ['global', _p_variables(
                                                             () => {
-                                                                
+
                                                                 const var_constraint_globals = _p.decide.optional(
                                                                     $p['globals'],
                                                                     ($) => $,
@@ -523,7 +523,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_variables(
     () => {
-        
+
         const var_location = $['l location']
         return _p.decide.state(
             $['l state'],
@@ -569,7 +569,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
 
 export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.literal.resolve(
     () => {
-        
+
         const prop_imports = _p_change_context(
             $['imports'],
             ($) => Imports(
@@ -583,7 +583,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.litera
                 null,
             ),
         )
-        
+
         const prop_globals = _p_change_context(
             $['globals'],
             ($) => Globals(
@@ -595,7 +595,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.litera
                 null,
             ),
         )
-        
+
         const prop_types = _p_change_context(
             $['types'],
             ($) => Modules(
@@ -630,75 +630,79 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
         ($) => _p.group.literal.resolve(
             () => {
                 const loc = $['schema set child']['l location']
-                
                 const prop_schema_set_child = _p_change_context(
                     $['schema set child'],
-                    ($) => ({
-                        'l entry': $l['sibling schemas'].get_entry(
-                            $['l reference'],
-                            {
-                                no_such_entry: () => abort(
-                                    {
-                                        'type': ['lookup', ['no such entry', $['l reference']]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                                no_context_lookup: () => abort(
-                                    {
-                                        'type': ['lookup', ['no context lookup', null]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                                cycle_detected: () => abort(
-                                    {
-                                        'type': ['lookup', ['cycle detected', null]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                            },
-                        ),
-                        'l id': $['l reference'],
-                        'l up steps': $l['sibling schemas'].get_entry_depth(
-                            $['l reference'],
-                            {
-                                no_such_entry: () => abort(
-                                    {
-                                        'type': ['lookup', ['no such entry', $['l reference']]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                                no_context_lookup: () => abort(
-                                    {
-                                        'type': ['lookup', ['no context lookup', null]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                                cycle_detected: () => abort(
-                                    {
-                                        'type': ['lookup', ['cycle detected', null]],
-                                        'location': $['l location'],
-                                    },
-                                ),
-                            },
-                        ),
-                    }),
+                    ($) => {
+                        const value = {
+                            'l entry': $l['sibling schemas'].get_entry(
+                                $['l reference'],
+                                {
+                                    no_such_entry: () => abort(
+                                        {
+                                            'type': ['lookup', ['no such entry', $['l reference']]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                    no_context_lookup: () => abort(
+                                        {
+                                            'type': ['lookup', ['no context lookup', null]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                    cycle_detected: () => abort(
+                                        {
+                                            'type': ['lookup', ['cycle detected', null]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                },
+                            ),
+                            'l id': $['l reference'],
+                            'l up steps': $l['sibling schemas'].get_entry_depth(
+                                $['l reference'],
+                                {
+                                    no_such_entry: () => abort(
+                                        {
+                                            'type': ['lookup', ['no such entry', $['l reference']]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                    no_context_lookup: () => abort(
+                                        {
+                                            'type': ['lookup', ['no context lookup', null]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                    cycle_detected: () => abort(
+                                        {
+                                            'type': ['lookup', ['cycle detected', null]],
+                                            'location': $['l location'],
+                                        },
+                                    ),
+                                },
+                            ),
+                        }
+                        return {
+                            'l value': value,
+                            'l results': {
+                                'schema': _p.decide.state(value['l entry'], ($): t_out.Schema => {
+                                    switch ($[0]) {
+                                        case 'set': return _p.ss($, ($) => abort({
+                                            'location': loc,
+                                            'type': ['constraint', ['optional value is not set', null]],
+                                        }))
+                                        case 'schema': return _p.ss($, ($) => $)
+                                        default: return _p.au($[0])
+                                    }
+                                })
+                            }
+                        }
+                    },
                 )
-                
+
                 const prop_schema = _p_change_context(
                     $['schema'],
-                    ($) => _p.decide.state(prop_schema_set_child['l entry'], ($): t_out.Schema => {
-                        switch ($[0]) {
-                            case 'schema': return _p.ss($, ($) => $)
-                            case 'set': return _p.ss($, ($) => abort({
-                                'type': ['constraint', ['state', {
-                                    'expected': 'schema',
-                                    'found': 'set',
-                                }]],
-                                'location': loc
-                            }))
-                            default: return _p.au($[0])
-                        }
-                    }),
+                    ($) => prop_schema_set_child['l results']['schema'],
                 )
                 return {
                     'schema set child': prop_schema_set_child,

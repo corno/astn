@@ -43,18 +43,37 @@ export namespace Imports_ {
         
         export namespace schema_set_child {
             
-            export type l_entry = Schemas_.D
+            export namespace l_results {
+                
+                export type schema = Schema_
+                
+            }
             
-            export type l_id = string
+            export type l_results = {
+                readonly 'schema': l_results.schema
+            }
             
-            export type l_up_steps = number
+            export namespace l_value {
+                
+                export type l_entry = Schemas_.D
+                
+                export type l_id = string
+                
+                export type l_up_steps = number
+                
+            }
+            
+            export type l_value = {
+                readonly 'l entry': l_value.l_entry
+                readonly 'l id': l_value.l_id
+                readonly 'l up steps': l_value.l_up_steps
+            }
             
         }
         
         export type schema_set_child = {
-            readonly 'l entry': schema_set_child.l_entry
-            readonly 'l id': schema_set_child.l_id
-            readonly 'l up steps': schema_set_child.l_up_steps
+            readonly 'l results': schema_set_child.l_results
+            readonly 'l value': schema_set_child.l_value
         }
         
         export type schema = Schema_
