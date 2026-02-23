@@ -304,32 +304,24 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                     $,
                                                                                                 ),
                                                                                             ),
-                                                                                            ($) => _p_variables(
-                                                                                                () => {
-                                                                                                    
-                                                                                                    const var_dictionary_range = v_parse_tree_to_location.Value(
-                                                                                                        $['value'],
-                                                                                                    )
-                                                                                                    return _p.dictionary.from.dictionary(
-                                                                                                        $['entries'],
-                                                                                                    ).map(
-                                                                                                        ($, id) => _p.optional.from.optional(
-                                                                                                            v_unmarshalled_from_parse_tree.Optional(
-                                                                                                                $,
-                                                                                                                ($) => abort(
-                                                                                                                    $,
-                                                                                                                ),
-                                                                                                            )['optional'],
-                                                                                                        ).map(
-                                                                                                            ($) => Value(
-                                                                                                                $,
-                                                                                                                ($) => abort(
-                                                                                                                    $,
-                                                                                                                ),
-                                                                                                            ),
+                                                                                            ($) => _p.dictionary.from.dictionary(
+                                                                                                $['entries'],
+                                                                                            ).map(
+                                                                                                ($, id) => _p.optional.from.optional(
+                                                                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                                                                        $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
                                                                                                         ),
-                                                                                                    )
-                                                                                                },
+                                                                                                    )['optional'],
+                                                                                                ).map(
+                                                                                                    ($) => Value(
+                                                                                                        $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
+                                                                                                    ),
+                                                                                                ),
                                                                                             ),
                                                                                         )],
                                                                                     )
@@ -379,32 +371,24 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                                             $,
                                                                                                                         ),
                                                                                                                     ),
-                                                                                                                    ($) => _p_variables(
-                                                                                                                        () => {
-                                                                                                                            
-                                                                                                                            const var_dictionary_range = v_parse_tree_to_location.Value(
-                                                                                                                                $['value'],
-                                                                                                                            )
-                                                                                                                            return _p.dictionary.from.dictionary(
-                                                                                                                                $['entries'],
-                                                                                                                            ).map(
-                                                                                                                                ($, id) => _p.optional.from.optional(
-                                                                                                                                    v_unmarshalled_from_parse_tree.Optional(
-                                                                                                                                        $,
-                                                                                                                                        ($) => abort(
-                                                                                                                                            $,
-                                                                                                                                        ),
-                                                                                                                                    )['optional'],
-                                                                                                                                ).map(
-                                                                                                                                    ($) => Value(
-                                                                                                                                        $,
-                                                                                                                                        ($) => abort(
-                                                                                                                                            $,
-                                                                                                                                        ),
-                                                                                                                                    ),
+                                                                                                                    ($) => _p.dictionary.from.dictionary(
+                                                                                                                        $['entries'],
+                                                                                                                    ).map(
+                                                                                                                        ($, id) => _p.optional.from.optional(
+                                                                                                                            v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                                $,
+                                                                                                                                ($) => abort(
+                                                                                                                                    $,
                                                                                                                                 ),
-                                                                                                                            )
-                                                                                                                        },
+                                                                                                                            )['optional'],
+                                                                                                                        ).map(
+                                                                                                                            ($) => Value(
+                                                                                                                                $,
+                                                                                                                                ($) => abort(
+                                                                                                                                    $,
+                                                                                                                                ),
+                                                                                                                            ),
+                                                                                                                        ),
                                                                                                                     ),
                                                                                                                 )],
                                                                                                             )

@@ -294,23 +294,15 @@ export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sort
             $,
         ),
     ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_dictionary_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return _p.dictionary.from.dictionary(
-                $['entries'],
-            ).map(
-                ($, id) => v_unmarshalled_from_parse_tree.Text(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            )
-        },
+    ($) => _p.dictionary.from.dictionary(
+        $['entries'],
+    ).map(
+        ($, id) => v_unmarshalled_from_parse_tree.Text(
+            $,
+            ($) => abort(
+                $,
+            ),
+        ),
     ),
 )
 
