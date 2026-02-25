@@ -39,7 +39,7 @@ export const $$: _pi.Refiner_With_Parameter<
                         },
                     ),
                     {
-                        'style': ['as is', null],
+                        'style': ['concise', null],
                     }
                 ),
             ),
