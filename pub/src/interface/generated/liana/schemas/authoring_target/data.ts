@@ -56,65 +56,13 @@ export namespace Value_ {
             
             export namespace type_ {
                 
-                export namespace dictionary {
-                    
-                    export namespace L {
-                        
-                        export type id = string
-                        
-                        export namespace value {
-                            
-                            export type O = Value_
-                            
-                        }
-                        
-                        export type value = _pi.Optional_Value<value.O>
-                        
-                    }
-                    
-                    export type L = {
-                        readonly 'id': L.id
-                        readonly 'value': L.value
-                    }
-                    
-                }
-                
-                export type dictionary = _pi.List<dictionary.L>
+                export type dictionary = ID_Value_Pairs_
                 
                 export namespace group {
                     
-                    export namespace concise {
-                        
-                        export type L = Value_
-                        
-                    }
+                    export type concise = Items_
                     
-                    export type concise = _pi.List<concise.L>
-                    
-                    export namespace verbose {
-                        
-                        export namespace L {
-                            
-                            export type id = string
-                            
-                            export namespace value {
-                                
-                                export type O = Value_
-                                
-                            }
-                            
-                            export type value = _pi.Optional_Value<value.O>
-                            
-                        }
-                        
-                        export type L = {
-                            readonly 'id': L.id
-                            readonly 'value': L.value
-                        }
-                        
-                    }
-                    
-                    export type verbose = _pi.List<verbose.L>
+                    export type verbose = ID_Value_Pairs_
                     
                 }
                 
@@ -122,13 +70,7 @@ export namespace Value_ {
                     | readonly ['concise', group.concise]
                     | readonly ['verbose', group.verbose]
                 
-                export namespace list {
-                    
-                    export type L = Value_
-                    
-                }
-                
-                export type list = _pi.List<list.L>
+                export type list = Items_
                 
                 export type nothing = null
                 
@@ -224,7 +166,42 @@ export type Value_ = {
     readonly 'data': Value_.data
 }
 
+export namespace ID_Value_Pairs_ {
+    
+    export namespace L {
+        
+        export type id = string
+        
+        export namespace value {
+            
+            export type O = Value_
+            
+        }
+        
+        export type value = _pi.Optional_Value<value.O>
+        
+    }
+    
+    export type L = {
+        readonly 'id': L.id
+        readonly 'value': L.value
+    }
+    
+}
+
+export type ID_Value_Pairs_ = _pi.List<ID_Value_Pairs_.L>
+
+export namespace Items_ {
+    
+    export type L = Value_
+    
+}
+
+export type Items_ = _pi.List<Items_.L>
+
 export { 
     Document_ as Document, 
     Value_ as Value, 
+    ID_Value_Pairs_ as ID_Value_Pairs, 
+    Items_ as Items, 
 }

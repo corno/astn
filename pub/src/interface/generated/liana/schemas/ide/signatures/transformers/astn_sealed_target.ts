@@ -1,15 +1,15 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as i_out from "./data"
+import * as i_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
-import * as i_in from "./data"
+import * as i_in from "../../data"
 
 export namespace Text_Edits_ {
     
     export type I = i_in.Text_Edits
     
-    export type O = i_out.Text_Edits
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Relative_Range_ {
     
     export type I = i_in.Relative_Range
     
-    export type O = i_out.Relative_Range
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
     export type I = i_in.ID_Value_Pairs_To_Be_Sorted
     
-    export type O = i_out.ID_Value_Pairs_To_Be_Sorted
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Relative_Location_ {
     
     export type I = i_in.Relative_Location
     
-    export type O = i_out.Relative_Location
+    export type O = i_out.Value
     
     export namespace P {
         

@@ -5,7 +5,7 @@ import _p_change_context from 'pareto-core/dist/_p_change_context'
 
 import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/ide/marshall"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/ide/signatures/transformers/astn_sealed_target"
 
 import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 

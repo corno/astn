@@ -3,7 +3,7 @@ import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/boilerplate_for_migrate"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/boilerplate_for_migrate"
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/authoring_target/data"
 
@@ -74,25 +74,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'dictionary':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['dictionary', _p.list.from.list(
+                                                        ($) => ['dictionary', ID_Value_Pairs(
                                                             $,
-                                                        ).map(
-                                                            ($) => ({
-                                                                'id': _p_change_context(
-                                                                    $['id'],
-                                                                    ($) => $,
-                                                                ),
-                                                                'value': _p_change_context(
-                                                                    $['value'],
-                                                                    ($) => _p.optional.from.optional(
-                                                                        $,
-                                                                    ).map(
-                                                                        ($) => Value(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                ),
-                                                            }),
                                                         )],
                                                     )
                                                 case 'group':
@@ -105,36 +88,15 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     case 'concise':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['concise', _p.list.from.list(
+                                                                            ($) => ['concise', Items(
                                                                                 $,
-                                                                            ).map(
-                                                                                ($) => Value(
-                                                                                    $,
-                                                                                ),
                                                                             )],
                                                                         )
                                                                     case 'verbose':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['verbose', _p.list.from.list(
+                                                                            ($) => ['verbose', ID_Value_Pairs(
                                                                                 $,
-                                                                            ).map(
-                                                                                ($) => ({
-                                                                                    'id': _p_change_context(
-                                                                                        $['id'],
-                                                                                        ($) => $,
-                                                                                    ),
-                                                                                    'value': _p_change_context(
-                                                                                        $['value'],
-                                                                                        ($) => _p.optional.from.optional(
-                                                                                            $,
-                                                                                        ).map(
-                                                                                            ($) => Value(
-                                                                                                $,
-                                                                                            ),
-                                                                                        ),
-                                                                                    ),
-                                                                                }),
                                                                             )],
                                                                         )
                                                                     default:
@@ -148,12 +110,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                 case 'list':
                                                     return _p.ss(
                                                         $,
-                                                        ($) => ['list', _p.list.from.list(
+                                                        ($) => ['list', Items(
                                                             $,
-                                                        ).map(
-                                                            ($) => Value(
-                                                                $,
-                                                            ),
                                                         )],
                                                     )
                                                 case 'nothing':
@@ -282,3 +240,32 @@ export const Value: t_signatures.Value = ($) => ({
         ),
     ),
 })
+
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => _p.list.from.list(
+    $,
+).map(
+    ($) => ({
+        'id': _p_change_context(
+            $['id'],
+            ($) => $,
+        ),
+        'value': _p_change_context(
+            $['value'],
+            ($) => _p.optional.from.optional(
+                $,
+            ).map(
+                ($) => Value(
+                    $,
+                ),
+            ),
+        ),
+    }),
+)
+
+export const Items: t_signatures.Items = ($) => _p.list.from.list(
+    $,
+).map(
+    ($) => Value(
+        $,
+    ),
+)

@@ -1,15 +1,15 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as i_out from "./data/unresolved"
+import * as i_in from "../../../data/resolved"
 
-import * as i_in from "./data/resolved"
+import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 export namespace Schema_Tree_ {
     
     export type I = i_in.Schema_Tree
     
-    export type O = i_out.Schema_Tree
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Schemas_ {
     
     export type I = i_in.Schemas
     
-    export type O = i_out.Schemas
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Schema_ {
     
     export type I = i_in.Schema
     
-    export type O = i_out.Schema
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Imports_ {
     
     export type I = i_in.Imports
     
-    export type O = i_out.Imports
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -73,7 +73,7 @@ export namespace Globals_ {
     
     export type I = i_in.Globals
     
-    export type O = i_out.Globals
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -89,7 +89,7 @@ export namespace Modules_ {
     
     export type I = i_in.Modules
     
-    export type O = i_out.Modules
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -105,7 +105,7 @@ export namespace Value_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Value
+    export type O = i_out.Paragraph
     
     export namespace P {
         
@@ -121,7 +121,7 @@ export namespace Text_Type_ {
     
     export type I = i_in.Text_Type
     
-    export type O = i_out.Text_Type
+    export type O = i_out.Paragraph
     
     export namespace P {
         

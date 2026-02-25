@@ -1,7 +1,7 @@
 
 import * as _p from 'pareto-core/dist/assign'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/deserialize"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/refiners/list_of_characters"
 
 import * as v_deserialize from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
 
@@ -24,6 +24,38 @@ export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Do
 )
 
 export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort, $p) => v_unmarshall.ID_Value_Pairs(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const Items: t_signatures.Items = ($, abort, $p) => v_unmarshall.Items(
     v_deserialize.Document(
         $,
         ($) => abort(

@@ -9,4 +9,4 @@ export type Parameters = {
 }
 
 export type Value = _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters>
-export type Document = _pi.Transformer_With_Parameter<d_in.Document, d_out.Paragraph, {}>
+export type Document = _pi.Transformer<d_in.Document, d_out.Paragraph>

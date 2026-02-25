@@ -1,0 +1,1428 @@
+(
+    'omit (de)serializer': false
+    'schema tree': | 'set' {
+        `astn schema`: | 'schema' (
+            'schema imports': {}
+            'resolver imports': {}
+            'globals': (
+                'complexity': | 'constrained' ~
+                'text types': {}
+                'number types': {}
+            )
+            'modules': {
+                `Schema Tree`: (
+                    'root value': | 'state' (
+                        'options': {
+                            `set`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'component' (
+                                    'type': | 'internal' `Schemas`
+                                    'results': ~
+                                )
+                            )
+                            `schema`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'component' (
+                                    'type': | 'internal' `Schema`
+                                    'results': ~
+                                )
+                            )
+                        }
+                        'results': ~
+                    )
+                )
+                `Schemas`: (
+                    'root value': | 'dictionary' (
+                        'value': | 'component' (
+                            'type': | 'internal' `Schema Tree`
+                            'results': ~
+                        )
+                    )
+                )
+                `Schema`: (
+                    'root value': | 'group' {
+                        `imports`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Imports`
+                                'results': ~
+                            )
+                        )
+                        `globals`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Globals`
+                                'results': ~
+                            )
+                        )
+                        `types`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Modules`
+                                'results': ~
+                            )
+                        )
+                    }
+                )
+                `Imports`: (
+                    'root value': | 'dictionary' (
+                        'value': | 'group' {
+                            `schema set child`: (
+                                'description': ~
+                                'value': | 'reference' (
+                                    'referent': (
+                                        'module': (
+                                            'location': | 'internal' `Schemas`
+                                            'resulting module': ~
+                                        )
+                                        'path': (
+                                            'tail': [ ]
+                                            'resulting node': ~
+                                        )
+                                    )
+                                    'type': | 'selected' (
+                                        'dictionary': ~
+                                        'dependency': | 'stack' ~
+                                        'results': * {
+                                            `schema`: (
+                                                'module': (
+                                                    'location': | 'internal' `Schema`
+                                                    'resulting module': ~
+                                                )
+                                                'path': (
+                                                    'tail': [ ]
+                                                    'resulting node': ~
+                                                )
+                                            )
+                                        }
+                                    )
+                                )
+                            )
+                            `schema`: (
+                                'description': ~
+                                'value': | 'reference' (
+                                    'referent': (
+                                        'module': (
+                                            'location': | 'internal' `Schema`
+                                            'resulting module': ~
+                                        )
+                                        'path': (
+                                            'tail': [ ]
+                                            'resulting node': ~
+                                        )
+                                    )
+                                    'type': | 'derived' ~
+                                )
+                            )
+                        }
+                    )
+                )
+                `Globals`: (
+                    'root value': | 'group' {
+                        `text types`: (
+                            'description': ~
+                            'value': | 'dictionary' (
+                                'value': | 'component' (
+                                    'type': | 'internal' `Text Type`
+                                    'results': ~
+                                )
+                            )
+                        )
+                    }
+                )
+                `Modules`: (
+                    'root value': | 'dictionary' (
+                        'value': | 'group' {
+                            `root value`: (
+                                'description': ~
+                                'value': | 'component' (
+                                    'type': | 'internal' `Value`
+                                    'results': ~
+                                )
+                            )
+                        }
+                    )
+                )
+                `Value`: (
+                    'root value': | 'state' (
+                        'options': {
+                            `component`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'state' (
+                                    'options': {
+                                        `external`: (
+                                            'constraints': ~
+                                            'description': ~
+                                            'value': | 'group' {
+                                                `import`: (
+                                                    'description': ~
+                                                    'value': | 'reference' (
+                                                        'referent': (
+                                                            'module': (
+                                                                'location': | 'internal' `Imports`
+                                                                'resulting module': ~
+                                                            )
+                                                            'path': (
+                                                                'tail': [ ]
+                                                                'resulting node': ~
+                                                            )
+                                                        )
+                                                        'type': | 'selected' (
+                                                            'dictionary': ~
+                                                            'dependency': | 'acyclic' ~
+                                                            'results': ~
+                                                        )
+                                                    )
+                                                )
+                                                `type`: (
+                                                    'description': ~
+                                                    'value': | 'reference' (
+                                                        'referent': (
+                                                            'module': (
+                                                                'location': | 'internal' `Modules`
+                                                                'resulting module': ~
+                                                            )
+                                                            'path': (
+                                                                'tail': [ ]
+                                                                'resulting node': ~
+                                                            )
+                                                        )
+                                                        'type': | 'selected' (
+                                                            'dictionary': ~
+                                                            'dependency': | 'acyclic' ~
+                                                            'results': ~
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                        `internal acyclic`: (
+                                            'constraints': ~
+                                            'description': ~
+                                            'value': | 'reference' (
+                                                'referent': (
+                                                    'module': (
+                                                        'location': | 'internal' `Modules`
+                                                        'resulting module': ~
+                                                    )
+                                                    'path': (
+                                                        'tail': [ ]
+                                                        'resulting node': ~
+                                                    )
+                                                )
+                                                'type': | 'selected' (
+                                                    'dictionary': ~
+                                                    'dependency': | 'acyclic' ~
+                                                    'results': ~
+                                                )
+                                            )
+                                        )
+                                        `internal`: (
+                                            'constraints': ~
+                                            'description': ~
+                                            'value': | 'reference' (
+                                                'referent': (
+                                                    'module': (
+                                                        'location': | 'internal' `Modules`
+                                                        'resulting module': ~
+                                                    )
+                                                    'path': (
+                                                        'tail': [ ]
+                                                        'resulting node': ~
+                                                    )
+                                                )
+                                                'type': | 'selected' (
+                                                    'dictionary': ~
+                                                    'dependency': | 'cyclic' ~
+                                                    'results': ~
+                                                )
+                                            )
+                                        )
+                                    }
+                                    'results': ~
+                                )
+                            )
+                            `dictionary`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'group' {
+                                    `value`: (
+                                        'description': ~
+                                        'value': | 'component' (
+                                            'type': | 'internal' `Value`
+                                            'results': ~
+                                        )
+                                    )
+                                    `ordered`: (
+                                        'description': ~
+                                        'value': | 'boolean' ~
+                                    )
+                                }
+                            )
+                            `group`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'dictionary' (
+                                    'value': | 'component' (
+                                        'type': | 'internal' `Value`
+                                        'results': ~
+                                    )
+                                )
+                            )
+                            `list`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'group' {
+                                    `value`: (
+                                        'description': ~
+                                        'value': | 'component' (
+                                            'type': | 'internal' `Value`
+                                            'results': ~
+                                        )
+                                    )
+                                }
+                            )
+                            `nothing`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'nothing' ~
+                            )
+                            `optional`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'component' (
+                                    'type': | 'internal' `Value`
+                                    'results': ~
+                                )
+                            )
+                            `state`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'dictionary' (
+                                    'value': | 'component' (
+                                        'type': | 'internal' `Value`
+                                        'results': ~
+                                    )
+                                )
+                            )
+                            `text`: (
+                                'constraints': ~
+                                'description': ~
+                                'value': | 'state' (
+                                    'options': {
+                                        `global`: (
+                                            'constraints': ~
+                                            'description': ~
+                                            'value': | 'reference' (
+                                                'referent': (
+                                                    'module': (
+                                                        'location': | 'internal' `Globals`
+                                                        'resulting module': ~
+                                                    )
+                                                    'path': (
+                                                        'tail': [ | 'group' `text types` ]
+                                                        'resulting node': ~
+                                                    )
+                                                )
+                                                'type': | 'selected' (
+                                                    'dictionary': ~
+                                                    'dependency': | 'acyclic' ~
+                                                    'results': ~
+                                                )
+                                            )
+                                        )
+                                        `local`: (
+                                            'constraints': ~
+                                            'description': ~
+                                            'value': | 'component' (
+                                                'type': | 'internal' `Text Type`
+                                                'results': ~
+                                            )
+                                        )
+                                    }
+                                    'results': ~
+                                )
+                            )
+                        }
+                        'results': ~
+                    )
+                )
+                `Text Type`: (
+                    'root value': | 'group' {
+                        `type`: (
+                            'description': ~
+                            'value': | 'state' (
+                                'options': {
+                                    `multi line`: (
+                                        'constraints': ~
+                                        'description': ~
+                                        'value': | 'nothing' ~
+                                    )
+                                    `single line`: (
+                                        'constraints': ~
+                                        'description': ~
+                                        'value': | 'nothing' ~
+                                    )
+                                }
+                                'results': ~
+                            )
+                        )
+                    }
+                )
+            }
+            'complexity': | 'constrained' (
+                'signatures': (
+                    'signatures': {
+                        `Text Type`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {}
+                                'lookups': {}
+                            )
+                            'resolved parameters': ~
+                        )
+                        `Globals`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {}
+                                'lookups': {}
+                            )
+                            'resolved parameters': ~
+                        )
+                        `Value`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {
+                                    `globals`: (
+                                        'module': (
+                                            'location': | 'internal' `Globals`
+                                            'resulting module': ~
+                                        )
+                                        'presence': | 'optional' ~
+                                    )
+                                    `imports`: (
+                                        'module': (
+                                            'location': | 'internal' `Imports`
+                                            'resulting module': ~
+                                        )
+                                        'presence': | 'optional' ~
+                                    )
+                                }
+                                'lookups': {
+                                    `noncircular sibling modules`: (
+                                        'referent': (
+                                            'location': | 'internal' `Modules`
+                                            'resulting module': ~
+                                        )
+                                        'dictionary': ~
+                                        'type': | 'acyclic' ~
+                                        'presence': | 'required' ~
+                                    )
+                                    `possibly circular dependent sibling modules`: (
+                                        'referent': (
+                                            'location': | 'internal' `Modules`
+                                            'resulting module': ~
+                                        )
+                                        'dictionary': ~
+                                        'type': | 'cyclic' ~
+                                        'presence': | 'required' ~
+                                    )
+                                }
+                            )
+                            'resolved parameters': ~
+                        )
+                        `Schemas`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {}
+                                'lookups': {
+                                    `sibling schemas`: (
+                                        'referent': (
+                                            'location': | 'internal' `Schemas`
+                                            'resulting module': ~
+                                        )
+                                        'dictionary': ~
+                                        'type': | 'stack' ~
+                                        'presence': | 'required' ~
+                                    )
+                                }
+                            )
+                            'resolved parameters': ~
+                        )
+                        `Schema Tree`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {}
+                                'lookups': {
+                                    `sibling schemas`: (
+                                        'referent': (
+                                            'location': | 'internal' `Schemas`
+                                            'resulting module': ~
+                                        )
+                                        'dictionary': ~
+                                        'type': | 'stack' ~
+                                        'presence': | 'required' ~
+                                    )
+                                }
+                            )
+                            'resolved parameters': ~
+                        )
+                        `Schema`: (
+                            'module': ~
+                            'parameters': | 'same as' `Schemas`
+                            'resolved parameters': ~
+                        )
+                        `Imports`: (
+                            'module': ~
+                            'parameters': | 'same as' `Schemas`
+                            'resolved parameters': ~
+                        )
+                        `Modules`: (
+                            'module': ~
+                            'parameters': | 'local' (
+                                'modules': {
+                                    `globals`: (
+                                        'module': (
+                                            'location': | 'internal' `Globals`
+                                            'resulting module': ~
+                                        )
+                                        'presence': | 'optional' ~
+                                    )
+                                    `imports`: (
+                                        'module': (
+                                            'location': | 'internal' `Imports`
+                                            'resulting module': ~
+                                        )
+                                        'presence': | 'optional' ~
+                                    )
+                                }
+                                'lookups': {}
+                            )
+                            'resolved parameters': ~
+                        )
+                    }
+                )
+                'modules': {
+                    `Modules`: (
+                        'signature': ~
+                        'root value resolver': | 'dictionary' (
+                            'definition': ~
+                            'resolver': | 'group' {
+                                `root value`: (
+                                    'definition': ~
+                                    'resolver': | 'component' (
+                                        'definition': ~
+                                        'location': | 'internal' `Value`
+                                        'signature': ~
+                                        'arguments': * (
+                                            'modules': * {
+                                                `globals`: | 'parameter' `globals`
+                                                `imports`: | 'parameter' `imports`
+                                            }
+                                            'lookups': * {
+                                                `noncircular sibling modules`: | 'selection' (
+                                                    'type': | 'acyclic' | 'siblings' ~
+                                                    'resulting dictionary': ~
+                                                )
+                                                `possibly circular dependent sibling modules`: | 'selection' (
+                                                    'type': | 'cyclic' | 'siblings' ~
+                                                    'resulting dictionary': ~
+                                                )
+                                            }
+                                        )
+                                        'constraints': {}
+                                    )
+                                )
+                            }
+                            'benchmark': ~
+                        )
+                    )
+                    `Globals`: (
+                        'signature': ~
+                        'root value resolver': | 'group' {
+                            `text types`: (
+                                'definition': ~
+                                'resolver': | 'dictionary' (
+                                    'definition': ~
+                                    'resolver': | 'component' (
+                                        'definition': ~
+                                        'location': | 'internal' `Text Type`
+                                        'signature': ~
+                                        'arguments': * (
+                                            'modules': * {}
+                                            'lookups': * {}
+                                        )
+                                        'constraints': {}
+                                    )
+                                    'benchmark': ~
+                                )
+                            )
+                        }
+                    )
+                    `Text Type`: (
+                        'signature': ~
+                        'root value resolver': | 'group' {
+                            `type`: (
+                                'definition': ~
+                                'resolver': | 'state' (
+                                    'definition': ~
+                                    'states': {
+                                        `multi line`: (
+                                            'constraints': {}
+                                            'resolver': | 'nothing' ~
+                                        )
+                                        `single line`: (
+                                            'constraints': {}
+                                            'resolver': | 'nothing' ~
+                                        )
+                                    }
+                                )
+                            )
+                        }
+                    )
+                    `Value`: (
+                        'signature': ~
+                        'root value resolver': | 'state' (
+                            'definition': ~
+                            'states': {
+                                `component`: (
+                                    'constraints': {}
+                                    'resolver': | 'state' (
+                                        'definition': ~
+                                        'states': {
+                                            `external`: (
+                                                'constraints': {
+                                                    `import`: | 'assert is set' | 'parameter' `imports`
+                                                }
+                                                'resolver': | 'group' {
+                                                    `import`: (
+                                                        'definition': ~
+                                                        'resolver': | 'reference' (
+                                                            'definition': ~
+                                                            'type': | 'selected' (
+                                                                'definition': ~
+                                                                'lookup': (
+                                                                    'type': | 'acyclic' | 'resolved dictionary' (
+                                                                        'selection': (
+                                                                            'start': | 'option constraint' `import`
+                                                                            'tail': (
+                                                                                'path': [ ]
+                                                                                'resulting node': ~
+                                                                            )
+                                                                            'resulting node': ~
+                                                                        )
+                                                                        'selected dictionary': ~
+                                                                    )
+                                                                    'resulting dictionary': ~
+                                                                )
+                                                                'constraints': {}
+                                                            )
+                                                        )
+                                                    )
+                                                    `type`: (
+                                                        'definition': ~
+                                                        'resolver': | 'reference' (
+                                                            'definition': ~
+                                                            'type': | 'selected' (
+                                                                'definition': ~
+                                                                'lookup': (
+                                                                    'type': | 'acyclic' | 'resolved dictionary' (
+                                                                        'selection': (
+                                                                            'start': | 'sibling' `import`
+                                                                            'tail': (
+                                                                                'path': [ | 'reference' (
+                                                                                    'definition': ~
+                                                                                ) | 'group' `schema` | 'reference' (
+                                                                                    'definition': ~
+                                                                                ) | 'group' `types` | 'component' ~ ]
+                                                                                'resulting node': ~
+                                                                            )
+                                                                            'resulting node': ~
+                                                                        )
+                                                                        'selected dictionary': ~
+                                                                    )
+                                                                    'resulting dictionary': ~
+                                                                )
+                                                                'constraints': {}
+                                                            )
+                                                        )
+                                                    )
+                                                }
+                                            )
+                                            `internal acyclic`: (
+                                                'constraints': {}
+                                                'resolver': | 'reference' (
+                                                    'definition': ~
+                                                    'type': | 'selected' (
+                                                        'definition': ~
+                                                        'lookup': (
+                                                            'type': | 'parameter' `noncircular sibling modules`
+                                                            'resulting dictionary': ~
+                                                        )
+                                                        'constraints': {}
+                                                    )
+                                                )
+                                            )
+                                            `internal`: (
+                                                'constraints': {}
+                                                'resolver': | 'reference' (
+                                                    'definition': ~
+                                                    'type': | 'selected' (
+                                                        'definition': ~
+                                                        'lookup': (
+                                                            'type': | 'parameter' `possibly circular dependent sibling modules`
+                                                            'resulting dictionary': ~
+                                                        )
+                                                        'constraints': {}
+                                                    )
+                                                )
+                                            )
+                                        }
+                                    )
+                                )
+                                `dictionary`: (
+                                    'constraints': {}
+                                    'resolver': | 'group' {
+                                        `value`: (
+                                            'definition': ~
+                                            'resolver': | 'component' (
+                                                'definition': ~
+                                                'location': | 'internal' `Value`
+                                                'signature': ~
+                                                'arguments': * (
+                                                    'modules': * {
+                                                        `globals`: | 'parameter' `globals`
+                                                        `imports`: | 'parameter' `imports`
+                                                    }
+                                                    'lookups': * {
+                                                        `noncircular sibling modules`: | 'selection' (
+                                                            'type': | 'parameter' `noncircular sibling modules`
+                                                            'resulting dictionary': ~
+                                                        )
+                                                        `possibly circular dependent sibling modules`: | 'selection' (
+                                                            'type': | 'parameter' `possibly circular dependent sibling modules`
+                                                            'resulting dictionary': ~
+                                                        )
+                                                    }
+                                                )
+                                                'constraints': {}
+                                            )
+                                        )
+                                        `ordered`: (
+                                            'definition': ~
+                                            'resolver': | 'boolean' ~
+                                        )
+                                    }
+                                )
+                                `group`: (
+                                    'constraints': {}
+                                    'resolver': | 'dictionary' (
+                                        'definition': ~
+                                        'resolver': | 'component' (
+                                            'definition': ~
+                                            'location': | 'internal' `Value`
+                                            'signature': ~
+                                            'arguments': * (
+                                                'modules': * {
+                                                    `globals`: | 'parameter' `globals`
+                                                    `imports`: | 'parameter' `imports`
+                                                }
+                                                'lookups': * {
+                                                    `noncircular sibling modules`: | 'selection' (
+                                                        'type': | 'parameter' `noncircular sibling modules`
+                                                        'resulting dictionary': ~
+                                                    )
+                                                    `possibly circular dependent sibling modules`: | 'selection' (
+                                                        'type': | 'parameter' `possibly circular dependent sibling modules`
+                                                        'resulting dictionary': ~
+                                                    )
+                                                }
+                                            )
+                                            'constraints': {}
+                                        )
+                                        'benchmark': ~
+                                    )
+                                )
+                                `list`: (
+                                    'constraints': {}
+                                    'resolver': | 'group' {
+                                        `value`: (
+                                            'definition': ~
+                                            'resolver': | 'component' (
+                                                'definition': ~
+                                                'location': | 'internal' `Value`
+                                                'signature': ~
+                                                'arguments': * (
+                                                    'modules': ~
+                                                    'lookups': ~
+                                                )
+                                                'constraints': {}
+                                            )
+                                        )
+                                    }
+                                )
+                                `nothing`: (
+                                    'constraints': {}
+                                    'resolver': | 'nothing' ~
+                                )
+                                `optional`: (
+                                    'constraints': {}
+                                    'resolver': | 'component' (
+                                        'definition': ~
+                                        'location': | 'internal' `Value`
+                                        'signature': ~
+                                        'arguments': * (
+                                            'modules': ~
+                                            'lookups': ~
+                                        )
+                                        'constraints': {}
+                                    )
+                                )
+                                `state`: (
+                                    'constraints': {}
+                                    'resolver': | 'dictionary' (
+                                        'definition': ~
+                                        'resolver': | 'component' (
+                                            'definition': ~
+                                            'location': | 'internal' `Value`
+                                            'signature': ~
+                                            'arguments': * (
+                                                'modules': ~
+                                                'lookups': ~
+                                            )
+                                            'constraints': {}
+                                        )
+                                        'benchmark': ~
+                                    )
+                                )
+                                `text`: (
+                                    'constraints': {}
+                                    'resolver': | 'state' (
+                                        'definition': ~
+                                        'states': {
+                                            `global`: (
+                                                'constraints': {
+                                                    `globals`: | 'assert is set' | 'parameter' `globals`
+                                                }
+                                                'resolver': | 'reference' (
+                                                    'definition': ~
+                                                    'type': | 'selected' (
+                                                        'definition': ~
+                                                        'lookup': (
+                                                            'type': | 'acyclic' | 'resolved dictionary' (
+                                                                'selection': (
+                                                                    'start': | 'option constraint' `globals`
+                                                                    'tail': (
+                                                                        'path': [ | 'group' `text types` ]
+                                                                        'resulting node': ~
+                                                                    )
+                                                                    'resulting node': ~
+                                                                )
+                                                                'selected dictionary': ~
+                                                            )
+                                                            'resulting dictionary': ~
+                                                        )
+                                                        'constraints': {}
+                                                    )
+                                                )
+                                            )
+                                            `local`: (
+                                                'constraints': {}
+                                                'resolver': | 'component' (
+                                                    'definition': ~
+                                                    'location': | 'internal' `Text Type`
+                                                    'signature': ~
+                                                    'arguments': * (
+                                                        'modules': * {}
+                                                        'lookups': * {}
+                                                    )
+                                                    'constraints': {}
+                                                )
+                                            )
+                                        }
+                                    )
+                                )
+                            }
+                        )
+                    )
+                    `Schemas`: (
+                        'signature': ~
+                        'root value resolver': | 'dictionary' (
+                            'definition': ~
+                            'resolver': | 'component' (
+                                'definition': ~
+                                'location': | 'internal' `Schema Tree`
+                                'signature': ~
+                                'arguments': * (
+                                    'modules': * {}
+                                    'lookups': * {
+                                        `sibling schemas`: | 'stack' | 'push' (
+                                            'stack': (
+                                                'type': | 'parameter' `sibling schemas`
+                                                'resulting dictionary': ~
+                                            )
+                                            'item': (
+                                                'type': | 'acyclic' | 'siblings' ~
+                                                'resulting dictionary': ~
+                                            )
+                                        )
+                                    }
+                                )
+                                'constraints': {}
+                            )
+                            'benchmark': ~
+                        )
+                    )
+                    `Schema Tree`: (
+                        'signature': ~
+                        'root value resolver': | 'state' (
+                            'definition': ~
+                            'states': {
+                                `schema`: (
+                                    'constraints': {}
+                                    'resolver': | 'component' (
+                                        'definition': ~
+                                        'location': | 'internal' `Schema`
+                                        'signature': ~
+                                        'arguments': * (
+                                            'modules': * {}
+                                            'lookups': * {
+                                                `sibling schemas`: | 'selection' (
+                                                    'type': | 'parameter' `sibling schemas`
+                                                    'resulting dictionary': ~
+                                                )
+                                            }
+                                        )
+                                        'constraints': {}
+                                    )
+                                )
+                                `set`: (
+                                    'constraints': {}
+                                    'resolver': | 'component' (
+                                        'definition': ~
+                                        'location': | 'internal' `Schemas`
+                                        'signature': ~
+                                        'arguments': * (
+                                            'modules': * {}
+                                            'lookups': * {
+                                                `sibling schemas`: | 'selection' (
+                                                    'type': | 'parameter' `sibling schemas`
+                                                    'resulting dictionary': ~
+                                                )
+                                            }
+                                        )
+                                        'constraints': {}
+                                    )
+                                )
+                            }
+                        )
+                    )
+                    `Schema`: (
+                        'signature': ~
+                        'root value resolver': | 'group' {
+                            `imports`: (
+                                'definition': ~
+                                'resolver': | 'component' (
+                                    'definition': ~
+                                    'location': | 'internal' `Imports`
+                                    'signature': ~
+                                    'arguments': * (
+                                        'modules': * {}
+                                        'lookups': * {
+                                            `sibling schemas`: | 'selection' (
+                                                'type': | 'parameter' `sibling schemas`
+                                                'resulting dictionary': ~
+                                            )
+                                        }
+                                    )
+                                    'constraints': {}
+                                )
+                            )
+                            `globals`: (
+                                'definition': ~
+                                'resolver': | 'component' (
+                                    'definition': ~
+                                    'location': | 'internal' `Globals`
+                                    'signature': ~
+                                    'arguments': * (
+                                        'modules': * {}
+                                        'lookups': * {}
+                                    )
+                                    'constraints': {}
+                                )
+                            )
+                            `types`: (
+                                'definition': ~
+                                'resolver': | 'component' (
+                                    'definition': ~
+                                    'location': | 'internal' `Modules`
+                                    'signature': ~
+                                    'arguments': * (
+                                        'modules': * {
+                                            `globals`: | 'optional' | 'set' (
+                                                'start': | 'sibling' `globals`
+                                                'tail': (
+                                                    'path': [ ]
+                                                    'resulting node': ~
+                                                )
+                                                'resulting node': ~
+                                            )
+                                            `imports`: | 'optional' | 'set' (
+                                                'start': | 'sibling' `imports`
+                                                'tail': (
+                                                    'path': [ | 'component' ~ ]
+                                                    'resulting node': ~
+                                                )
+                                                'resulting node': ~
+                                            )
+                                        }
+                                        'lookups': * {}
+                                    )
+                                    'constraints': {}
+                                )
+                            )
+                        }
+                    )
+                    `Imports`: (
+                        'signature': ~
+                        'root value resolver': | 'dictionary' (
+                            'definition': ~
+                            'resolver': | 'group' {
+                                `schema set child`: (
+                                    'definition': ~
+                                    'resolver': | 'reference' (
+                                        'definition': ~
+                                        'type': | 'selected' (
+                                            'definition': ~
+                                            'lookup': (
+                                                'type': | 'parameter' `sibling schemas`
+                                                'resulting dictionary': ~
+                                            )
+                                            'constraints': {
+                                                `schema`: (
+                                                    'start': | 'value' ~
+                                                    'constraint': (
+                                                        'selection': (
+                                                            'path': [ | 'component' ~ ]
+                                                            'resulting node': ~
+                                                        )
+                                                        'type': | 'state' (
+                                                            'selected state': ~
+                                                            'option': `schema`
+                                                        )
+                                                    )
+                                                )
+                                            }
+                                        )
+                                    )
+                                )
+                                `schema`: (
+                                    'definition': ~
+                                    'resolver': | 'reference' (
+                                        'definition': ~
+                                        'type': | 'derived' (
+                                            'value': (
+                                                'start': | 'constraint' | 'reference' (
+                                                    'property': `schema set child`
+                                                    'constraint': `schema`
+                                                )
+                                                'tail': (
+                                                    'path': [ ]
+                                                    'resulting node': ~
+                                                )
+                                                'resulting node': ~
+                                            )
+                                        )
+                                    )
+                                )
+                            }
+                            'benchmark': ~
+                        )
+                    )
+                }
+            )
+        )
+        `authoring target`: | 'schema' (
+            'schema imports': {}
+            'resolver imports': {}
+            'globals': (
+                'complexity': | 'unconstrained' ~
+                'text types': {
+                    `Text Value`: (
+                        'type': | 'single line' ~
+                    )
+                }
+                'number types': {
+                    `Position`: (
+                        'precision': | 'exact' (
+                            'decimal separator offset': ~
+                            'type': | 'natural' ~
+                        )
+                    )
+                }
+            )
+            'modules': {
+                `Document`: (
+                    'root value': | 'group' {
+                        `header`: (
+                            'description': ~
+                            'value': | 'optional' | 'component' (
+                                'type': | 'internal' `Value`
+                                'results': ~
+                            )
+                        )
+                        `content`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Value`
+                                'results': ~
+                            )
+                        )
+                    }
+                )
+                `Value`: (
+                    'root value': | 'group' {
+                        `metadata`: (
+                            'description': ~
+                            'value': | 'group' {
+                                `comments`: (
+                                    'description': ~
+                                    'value': | 'list' (
+                                        'value': | 'text' | 'local' (
+                                            'type': | 'single line' ~
+                                        )
+                                        'results': ~
+                                    )
+                                )
+                            }
+                        )
+                        `data`: (
+                            'description': ~
+                            'value': | 'state' (
+                                'options': {
+                                    `missing`: (
+                                        'constraints': ~
+                                        'description': ~
+                                        'value': | 'nothing' ~
+                                    )
+                                    `include`: (
+                                        'constraints': ~
+                                        'description': ~
+                                        'value': | 'group' {
+                                            `path`: (
+                                                'description': ~
+                                                'value': | 'text' | 'local' (
+                                                    'type': | 'single line' ~
+                                                )
+                                            )
+                                        }
+                                    )
+                                    `concrete`: (
+                                        'constraints': ~
+                                        'description': ~
+                                        'value': | 'group' {
+                                            `type`: (
+                                                'description': ~
+                                                'value': | 'state' (
+                                                    'options': {
+                                                        `dictionary`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'component' (
+                                                                'type': | 'internal' `ID Value Pairs`
+                                                                'results': ~
+                                                            )
+                                                        )
+                                                        `group`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'state' (
+                                                                'options': {
+                                                                    `concise`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'component' (
+                                                                            'type': | 'internal' `Items`
+                                                                            'results': ~
+                                                                        )
+                                                                    )
+                                                                    `verbose`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'component' (
+                                                                            'type': | 'internal' `ID Value Pairs`
+                                                                            'results': ~
+                                                                        )
+                                                                    )
+                                                                }
+                                                                'results': ~
+                                                            )
+                                                        )
+                                                        `list`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'component' (
+                                                                'type': | 'internal' `Items`
+                                                                'results': ~
+                                                            )
+                                                        )
+                                                        `nothing`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'nothing' ~
+                                                        )
+                                                        `optional`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'state' (
+                                                                'options': {
+                                                                    `not set`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'nothing' ~
+                                                                    )
+                                                                    `set`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'component' (
+                                                                            'type': | 'internal' `Value`
+                                                                            'results': ~
+                                                                        )
+                                                                    )
+                                                                }
+                                                                'results': ~
+                                                            )
+                                                        )
+                                                        `state`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'state' (
+                                                                'options': {
+                                                                    `missing data`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'nothing' ~
+                                                                    )
+                                                                    `set`: (
+                                                                        'constraints': ~
+                                                                        'description': ~
+                                                                        'value': | 'group' {
+                                                                            `option`: (
+                                                                                'description': ~
+                                                                                'value': | 'text' | 'global' `Text Value`
+                                                                            )
+                                                                            `value`: (
+                                                                                'description': ~
+                                                                                'value': | 'component' (
+                                                                                    'type': | 'internal' `Value`
+                                                                                    'results': ~
+                                                                                )
+                                                                            )
+                                                                        }
+                                                                    )
+                                                                }
+                                                                'results': ~
+                                                            )
+                                                        )
+                                                        `text`: (
+                                                            'constraints': ~
+                                                            'description': ~
+                                                            'value': | 'group' {
+                                                                `value`: (
+                                                                    'description': ~
+                                                                    'value': | 'text' | 'global' `Text Value`
+                                                                )
+                                                                `delimiter`: (
+                                                                    'description': ~
+                                                                    'value': | 'state' (
+                                                                        'options': {
+                                                                            `none`: (
+                                                                                'constraints': ~
+                                                                                'description': ~
+                                                                                'value': | 'nothing' ~
+                                                                            )
+                                                                            `quote`: (
+                                                                                'constraints': ~
+                                                                                'description': ~
+                                                                                'value': | 'nothing' ~
+                                                                            )
+                                                                            `backtick`: (
+                                                                                'constraints': ~
+                                                                                'description': ~
+                                                                                'value': | 'nothing' ~
+                                                                            )
+                                                                        }
+                                                                        'results': ~
+                                                                    )
+                                                                )
+                                                            }
+                                                        )
+                                                    }
+                                                    'results': ~
+                                                )
+                                            )
+                                        }
+                                    )
+                                }
+                                'results': ~
+                            )
+                        )
+                    }
+                )
+                `ID Value Pairs`: (
+                    'root value': | 'list' (
+                        'value': | 'group' {
+                            `id`: (
+                                'description': ~
+                                'value': | 'text' | 'local' (
+                                    'type': | 'single line' ~
+                                )
+                            )
+                            `value`: (
+                                'description': ~
+                                'value': | 'optional' | 'component' (
+                                    'type': | 'internal' `Value`
+                                    'results': ~
+                                )
+                            )
+                        }
+                        'results': ~
+                    )
+                )
+                `Items`: (
+                    'root value': | 'list' (
+                        'value': | 'component' (
+                            'type': | 'internal' `Value`
+                            'results': ~
+                        )
+                        'results': ~
+                    )
+                )
+            }
+            'complexity': | 'unconstrained' ~
+        )
+        `ide`: | 'schema' (
+            'schema imports': {}
+            'resolver imports': {}
+            'globals': (
+                'complexity': | 'unconstrained' ~
+                'text types': {}
+                'number types': {}
+            )
+            'modules': {
+                `Text Edits`: (
+                    'root value': | 'list' (
+                        'value': | 'state' (
+                            'options': {
+                                `insert`: (
+                                    'constraints': ~
+                                    'description': ~
+                                    'value': | 'group' {
+                                        `location`: (
+                                            'description': ~
+                                            'value': | 'component' (
+                                                'type': | 'internal' `Relative Location`
+                                                'results': ~
+                                            )
+                                        )
+                                        `text`: (
+                                            'description': ~
+                                            'value': | 'text' | 'local' (
+                                                'type': | 'single line' ~
+                                            )
+                                        )
+                                    }
+                                )
+                                `replace`: (
+                                    'constraints': ~
+                                    'description': ~
+                                    'value': | 'group' {
+                                        `range`: (
+                                            'description': ~
+                                            'value': | 'component' (
+                                                'type': | 'internal' `Relative Range`
+                                                'results': ~
+                                            )
+                                        )
+                                        `text`: (
+                                            'description': ~
+                                            'value': | 'text' | 'local' (
+                                                'type': | 'single line' ~
+                                            )
+                                        )
+                                    }
+                                )
+                                `delete`: (
+                                    'constraints': ~
+                                    'description': ~
+                                    'value': | 'group' {
+                                        `range`: (
+                                            'description': ~
+                                            'value': | 'component' (
+                                                'type': | 'internal' `Relative Range`
+                                                'results': ~
+                                            )
+                                        )
+                                    }
+                                )
+                            }
+                            'results': ~
+                        )
+                        'results': ~
+                    )
+                )
+                `Relative Range`: (
+                    'root value': | 'group' {
+                        `start`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Relative Location`
+                                'results': ~
+                            )
+                        )
+                        `end`: (
+                            'description': ~
+                            'value': | 'component' (
+                                'type': | 'internal' `Relative Location`
+                                'results': ~
+                            )
+                        )
+                    }
+                )
+                `ID Value Pairs To Be Sorted`: (
+                    'root value': | 'dictionary' (
+                        'value': | 'text' | 'local' (
+                            'type': | 'single line' ~
+                        )
+                    )
+                )
+                `Relative Location`: (
+                    'root value': | 'group' {
+                        `line`: (
+                            'description': ~
+                            'value': | 'number' | 'local' (
+                                'precision': | 'exact' (
+                                    'decimal separator offset': ~
+                                    'type': | 'natural' ~
+                                )
+                            )
+                        )
+                        `column`: (
+                            'description': ~
+                            'value': | 'number' | 'local' (
+                                'precision': | 'exact' (
+                                    'decimal separator offset': ~
+                                    'type': | 'natural' ~
+                                )
+                            )
+                        )
+                    }
+                )
+            }
+            'complexity': | 'unconstrained' ~
+        )
+    }
+)

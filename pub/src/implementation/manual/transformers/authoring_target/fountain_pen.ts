@@ -186,7 +186,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
     })
 ])
 
-export const Document: signatures.Document = ($, $p) => sh.pg.sentences([
+export const Document: signatures.Document = ($) => sh.pg.sentences([
     sh.sentence([
         $.header.__decide(
             ($) => Value($, {
