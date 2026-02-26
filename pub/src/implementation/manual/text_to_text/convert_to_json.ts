@@ -14,27 +14,35 @@ import * as t_ast_2_json from "../transformers/parse_tree/json_target"
 import * as t_json_to_fp from "pareto-json/dist/implementation/manual/transformers/json/fountain_pen"
 import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 
-export const $$: _pi.Refiner_With_Parameter<d_out.List_of_Characters, d_function.Phrase, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) =>
-    t_fp_to_text.Paragraph(
-        t_json_to_fp.Document(
-            t_ast_2_json.Document(
-                r_parse_tree_from_text.Document(
-                    $,
-                    ($) => abort(t_deserialize_parse_tree_to_fp.Error(
+export const $$: _pi.Refiner_With_Parameter<
+    d_out.List_of_Characters,
+    d_function.Phrase,
+    d_in.List_of_Characters,
+    {
+        'document resource identifier': string
+
+    }
+> = ($, abort, $p) =>
+        t_fp_to_text.Paragraph(
+            t_json_to_fp.Document(
+                t_ast_2_json.Document(
+                    r_parse_tree_from_text.Document(
                         $,
+                        ($) => abort(t_deserialize_parse_tree_to_fp.Error(
+                            $,
+                            {
+                                'character location reporting': ['one based', null],
+                            }
+                        )),
                         {
-                            'position info': ['zero based', null],
-                        }
-                    )),
-                    {
-                        'tab size': 4,
-                        'document resource identifier': $p['document resource identifier'],
-                    },
-                )
+                            'tab size': 4,
+                            'document resource identifier': $p['document resource identifier'],
+                        },
+                    )
+                ),
             ),
-        ),
-        {
-            'indentation': "    ",
-            'newline': "\n",
-        }
-    )
+            {
+                'indentation': "    ",
+                'newline': "\n",
+            }
+        )

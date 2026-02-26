@@ -30,7 +30,7 @@ export const $$: _pi.Refiner_With_Parameter<
                         ($) => abort(t_deserialize_parse_tree_to_fp.Error(
                             $,
                             {
-                                'position info': ['zero based', null],
+                                'character location reporting': ['one based', null],
                             }
                         )),
                         {

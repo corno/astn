@@ -18,7 +18,7 @@ export const $$: _pi.Refiner_With_Parameter<d_out.List_of_Characters, d_function
         ($) => abort(t_deserialize_parse_tree_to_fountain_pen.Error(
             $,
             {
-                'position info': ['zero based', null],
+                'character location reporting': ['one based', null],
             }
         )),
         {
