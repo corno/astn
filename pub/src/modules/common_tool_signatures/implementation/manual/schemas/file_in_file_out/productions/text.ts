@@ -9,7 +9,7 @@ import * as d_function from "../../../../../interface/to_be_generated/file_in_fi
 export type Signature = _pi.Production<d_out.Node_Path, d_function.Path_Error, string>
 
 //dependencies
-import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/node_path/text"
+import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/node_path/list_of_characters"
 
 export const Path: Signature = (iterator, abort) => r_node_path_from_text.Node_Path(
     _list_from_text(
