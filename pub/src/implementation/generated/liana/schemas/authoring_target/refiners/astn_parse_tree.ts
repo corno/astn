@@ -13,7 +13,7 @@ import * as t_out from "../../../../../../interface/generated/liana/schemas/auth
 
 import * as v_unmarshalled_from_parse_tree from "liana-core/dist/implementation/manual/refiners/unmarshalled/astn_parse_tree"
 
-import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
+import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
 
 export const Document: t_signatures.Document = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
