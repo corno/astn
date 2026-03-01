@@ -43,7 +43,7 @@
     "liana-core": "^0.0.39",
     "pareto-fountain-pen": "^0.4.49",
     "pareto-host-nodejs": "^0.2.34",
-    "pareto-json": "^0.3.32",
-    "pareto-resources": "^0.2.55"
+    "pareto-json": "^0.3.33",
+    "pareto-resources": "^0.2.56"
   }
 }
