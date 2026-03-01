@@ -12,6 +12,29 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 //dependencies
 import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"
 
+export const Document: signatures.Document = ($) => sh.pg.composed([
+    $.header.__decide(
+        ($) => sh.pg.sentences([
+            sh.sentence([
+                Value($, {
+                    'in concise group': false,
+                    'write delimiters': true,
+                })
+            ]),
+        ]),
+        () => sh.pg.nothing()
+    ),
+    sh.pg.sentences([
+        sh.sentence([
+            Value($.content, {
+                'in concise group': false,
+                'write delimiters': true,
+            }),
+        ])
+    ])
+])
+
+
 export const Value: signatures.Value = ($, $p) => sh.ph.composed([
     // does it need a leading space
     $p['in concise group']
@@ -84,9 +107,9 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                     ? sh.ph.nothing()
                                     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
                                 sh.ph.composed($.__l_map(($) => Value($, {
-                                        'in concise group': true,
-                                        'write delimiters': true,
-                                    }))),
+                                    'in concise group': true,
+                                    'write delimiters': true,
+                                }))),
                                 $p['in concise group']
                                     ? sh.ph.nothing()
                                     : $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(),
@@ -188,22 +211,4 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
             default: return _p.au($[0])
         }
     })
-])
-
-export const Document: signatures.Document = ($) => sh.pg.sentences([
-    sh.sentence([
-        $.header.__decide(
-            ($) => Value($, {
-                'in concise group': false,
-                'write delimiters': true,
-            }),
-            () => sh.ph.nothing()
-        ),
-    ]),
-    sh.sentence([
-        Value($.content, {
-            'in concise group': false,
-            'write delimiters': true,
-        }),
-    ])
 ])

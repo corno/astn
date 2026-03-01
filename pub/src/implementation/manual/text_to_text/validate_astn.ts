@@ -9,18 +9,28 @@ import * as d_function from "pareto-fountain-pen/dist/interface/generated/liana/
 
 //dependencies
 import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
-import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
-import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
+import * as t_deserialize_parse_tree_to_fp from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
+import * as t_deserialize_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/location"
+import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+
+//shorthands
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const $$: _pi.Refiner_With_Parameter<d_out.List_of_Characters, d_function.Phrase, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
     r_parse_tree_from_text.Document(
         $,
-        ($) => abort(t_deserialize_parse_tree_to_fountain_pen.Error(
-            $,
-            {
-                'character location reporting': ['one based', null],
-            }
-        )),
+        ($) => abort(sh.ph.composed([
+            t_location_to_fountain_pen.Range(
+                t_deserialize_parse_tree_to_location.Error($),
+                {
+                    'character location reporting': ['one based', null],
+                }
+            ),
+            sh.ph.literal(": "),
+            t_deserialize_parse_tree_to_fp.Error(
+                $,
+            )
+        ])),
         {
             'tab size': 4,
             'document resource identifier': $p['document resource identifier'],
