@@ -153,10 +153,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                             $,
                                                             ($): t_out.Value.data.concrete.type_.state => {
                                                                 switch ($[0]) {
-                                                                    case 'missing data':
+                                                                    case 'missing':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['missing data', null],
+                                                                            ($) => ['missing', null],
                                                                         )
                                                                     case 'set':
                                                                         return _p.ss(

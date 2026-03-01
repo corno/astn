@@ -434,10 +434,10 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                 $['option']['value'],
                                                                                                 ($t): t_out.Value.data.concrete.type_.state => {
                                                                                                     switch ($t) {
-                                                                                                        case 'missing data':
+                                                                                                        case 'missing':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['missing data', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                                ($) => ['missing', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                                     $,
                                                                                                                     ($) => abort(
                                                                                                                         $,

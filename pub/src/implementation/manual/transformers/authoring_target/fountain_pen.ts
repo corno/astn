@@ -170,7 +170,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                     case 'nothing': return _p.ss($, ($) => sh.ph.literal("~"))
                     case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'missing data': return _p.ss($, ($) => sh.ph.literal("| #"))
+                            case 'missing': return _p.ss($, ($) => sh.ph.literal("| #"))
                             case 'set': return _p.ss($, ($) => sh.ph.composed([
                                 $p['in concise group']
                                     ? sh.ph.nothing()

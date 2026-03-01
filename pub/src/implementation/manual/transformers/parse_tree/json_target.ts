@@ -33,7 +33,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                 case 'list': return _p.ss($, ($) => ['array', Items($.items)])
                 case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
                     switch ($[0]) {
-                        case 'missing data': return _p.ss($, ($) => ['null', null])
+                        case 'missing': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
                             ['string', $.option.value],
                             Value($.value),
@@ -56,7 +56,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
         }))
 
         case 'include': return _p.ss($, ($) => ['string', "FIXME include not implemented yet"])
-        case 'missing data': return _p.ss($, ($) => ['null', null])
+        case 'missing': return _p.ss($, ($) => ['null', null])
         default: return _p.au($[0])
     }
 })

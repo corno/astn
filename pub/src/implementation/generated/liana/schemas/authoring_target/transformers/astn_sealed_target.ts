@@ -208,11 +208,11 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                             $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
-                                                                                    case 'missing data':
+                                                                                    case 'missing':
                                                                                         return _p.ss(
                                                                                             $,
                                                                                             ($) => ({
-                                                                                                'option': 'missing data',
+                                                                                                'option': 'missing',
                                                                                                 'value': ['nothing', null],
                                                                                             }),
                                                                                         )

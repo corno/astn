@@ -88,7 +88,7 @@ export namespace Value_ {
                 
                 export namespace state {
                     
-                    export type missing_data = null
+                    export type missing = null
                     
                     export namespace set_ {
                         
@@ -106,7 +106,7 @@ export namespace Value_ {
                 }
                 
                 export type state = 
-                    | readonly ['missing data', state.missing_data]
+                    | readonly ['missing', state.missing]
                     | readonly ['set', state.set_]
                 
                 export namespace text {

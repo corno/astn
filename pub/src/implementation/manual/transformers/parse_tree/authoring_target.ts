@@ -68,7 +68,7 @@ export const Value: signatures.Value = ($, $p) => {
                         case 'state': return _p.ss($, ($): d_out.Value.data.concrete => ({
                             'type': ['state', _p.decide.state($.status, ($): d_out.Value.data.concrete.type_.state => {
                                 switch ($[0]) {
-                                    case 'missing data': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['missing data', null])
+                                    case 'missing': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['missing', null])
                                     case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['set', {
                                         'option': $.option.value,
                                         'value': Value($.value, $p)
@@ -109,7 +109,7 @@ export const Value: signatures.Value = ($, $p) => {
                 case 'include': return _p.ss($, ($): d_out.Value.data => ['include', {
                     'path': $.path.value,
                 }])
-                case 'missing data': return _p.ss($, ($): d_out.Value.data => ['missing', null])
+                case 'missing': return _p.ss($, ($): d_out.Value.data => ['missing', null])
                 default: return _p.au($[0])
             }
         })
