@@ -172,11 +172,9 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                         switch ($[0]) {
                             case 'missing': return _p.ss($, ($) => sh.ph.literal("| #"))
                             case 'set': return _p.ss($, ($) => sh.ph.composed([
-                                $p['in concise group']
-                                    ? sh.ph.nothing()
-                                    : $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
+                                $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
                                 sh.ph.serialize(t_primitives_to_text.Apostrophed($.option, {
-                                    'add delimiters': $p['write delimiters'],
+                                    'add delimiters': true,
                                 })),
                                 $p['in concise group']
                                     ? sh.ph.nothing()
