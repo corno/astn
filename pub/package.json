@@ -39,7 +39,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "astn-core": "^0.5.67",
+    "astn-core": "^0.5.68",
     "liana-core": "^0.0.38",
     "pareto-fountain-pen": "^0.4.49",
     "pareto-host-nodejs": "^0.2.34",
