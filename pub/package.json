@@ -42,8 +42,8 @@
     "astn-core": "^0.5.74",
     "liana-core": "^0.1.1",
     "pareto-fountain-pen": "^0.4.50",
-    "pareto-host-nodejs": "^0.2.36",
+    "pareto-host-nodejs": "^0.2.37",
     "pareto-json": "^0.3.34",
-    "pareto-resources": "^0.2.57"
+    "pareto-resources": "^0.2.61"
   }
 }

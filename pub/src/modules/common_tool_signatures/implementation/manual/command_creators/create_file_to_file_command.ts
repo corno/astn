@@ -53,10 +53,7 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
                                 $,
                                 ($) => abort(['processing', $]),
                                 {
-                                    'document resource identifier': _p_text_from_list(
-                                        t_path_to_text.Node_Path($r.in),
-                                        ($) => $,
-                                    ),
+                                    'document resource identifier': t_path_to_text.Node_Path($r.in),
                                 },
                             ),
                         }),
