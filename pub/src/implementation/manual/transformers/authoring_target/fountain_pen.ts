@@ -103,16 +103,18 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                     case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'concise': return _p.ss($, ($) => sh.ph.composed([
-                                $p['in concise group']
-                                    ? sh.ph.nothing()
-                                    : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
+                                // $p['in concise group']
+                                //     ? sh.ph.nothing()
+                                //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
+                                $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                 sh.ph.composed($.__l_map(($) => Value($, {
                                     'in concise group': true,
                                     'write delimiters': true,
                                 }))),
-                                $p['in concise group']
-                                    ? sh.ph.nothing()
-                                    : $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(),
+                                // $p['in concise group']
+                                //     ? sh.ph.nothing()
+                                //     : $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(),
+                                $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(), //for now, always write the >, even in concise groups. Need to implement a proper parser first
                             ]))
                             case 'verbose': return _p.ss($, ($) => sh.ph.composed([
                                 sh.ph.composed([
