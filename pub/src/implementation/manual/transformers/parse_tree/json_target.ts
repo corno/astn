@@ -9,7 +9,7 @@ export const Document: signatures.Document = ($) => Value($.content)
 
 
 export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($) => ({
-    'key': $.id.value,
+    'key': $.id.token.value,
     'value': $.value.__decide(
         ($) => Value($.value),
         () => ['null', null]
@@ -35,7 +35,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                     switch ($[0]) {
                         case 'missing': return _p.ss($, ($) => ['null', null])
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
-                            ['string', $.option.value],
+                            ['string', $.option.token.value],
                             Value($.value),
                         ])])
                         default: return _p.au($[0])
@@ -50,7 +50,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                         default: return _p.au($[0])
                     }
                 }))
-                case 'text': return _p.ss($, ($) => ['string', $.value])
+                case 'text': return _p.ss($, ($) => ['string', $.token.value])
                 default: return _p.au($[0])
             }
         }))

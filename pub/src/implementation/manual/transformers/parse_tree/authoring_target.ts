@@ -16,7 +16,7 @@ export const Document: signatures.Document = ($, $p) => {
 
 
 export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => $.__l_map(($) => ({
-    'id': $.id.value,
+    'id': $.id.token.value,
     'value': _p.optional.from.optional($.value).map(($) => Value($.value, $p))
 }))
 
@@ -70,7 +70,7 @@ export const Value: signatures.Value = ($, $p) => {
                                 switch ($[0]) {
                                     case 'missing': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['missing', null])
                                     case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['set', {
-                                        'option': $.option.value,
+                                        'option': $.option.token.value,
                                         'value': Value($.value, $p)
                                     }])
                                     default: return _p.au($[0])
@@ -90,8 +90,8 @@ export const Value: signatures.Value = ($, $p) => {
                         }))
                         case 'text': return _p.ss($, ($) => ({
                             'type': ['text', {
-                                'value': $.value,
-                                'delimiter': _p.decide.state($.type, ($) => {
+                                'value': $.token.value,
+                                'delimiter': _p.decide.state($.token.type, ($) => {
                                     switch ($[0]) {
                                         case 'quoted': return _p.ss($, ($) => ['quote', null])
                                         case 'apostrophed': return _p.ss($, ($) => ['quote', null])
@@ -107,7 +107,7 @@ export const Value: signatures.Value = ($, $p) => {
                 })])
 
                 case 'include': return _p.ss($, ($): d_out.Value.data => ['include', {
-                    'path': $.path.value,
+                    'path': $.path.token.value,
                 }])
                 case 'missing': return _p.ss($, ($): d_out.Value.data => ['missing', null])
                 default: return _p.au($[0])

@@ -33,7 +33,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.from.li
                 ),
             ),
             ($) => _p.decide.text(
-                $['option']['value'],
+                $['option']['token']['value'],
                 ($t): t_out.Text_Edits.L => {
                     switch ($t) {
                         case 'insert':
@@ -213,7 +213,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($, abort) => _p.list.from.li
                         default:
                             return abort(
                                 ['liana', {
-                                    'type': ['state', ['unknown option', $['option']['value']]],
+                                    'type': ['state', ['unknown option', $['option']['token']['value']]],
                                     'range': v_parse_tree_to_location.Value(
                                         $['value'],
                                     ),

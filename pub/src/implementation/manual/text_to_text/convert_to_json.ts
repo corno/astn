@@ -34,9 +34,10 @@ export const $$: _pi.Refiner_With_Parameter<
                     r_parse_tree_from_text.Document(
                         $,
                         ($) => abort(sh.ph.composed([
-                            t_location_to_fountain_pen.Range(
+                            t_location_to_fountain_pen.Possible_Range(
                                 t_deserialize_parse_tree_to_location.Error($),
                                 {
+                                    'document resource identifier': $p['document resource identifier'],
                                     'character location reporting': ['one based', null],
                                 }
                             ),
