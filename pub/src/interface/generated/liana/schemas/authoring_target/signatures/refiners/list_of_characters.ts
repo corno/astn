@@ -17,8 +17,6 @@ export namespace Document_ {
     
     export namespace P {
         
-        export type document_resource_identifier = string
-        
         export type tab_size = number
         
     }
@@ -29,7 +27,6 @@ export type Document_ = (
     context: Document_.I,
     abort: _pi.Abort<Document_.E>,
     parameters: {
-        readonly 'document resource identifier': Document_.P.document_resource_identifier
         readonly 'tab size': Document_.P.tab_size
     },
 ) => Document_.O
@@ -44,8 +41,6 @@ export namespace Value_ {
     
     export namespace P {
         
-        export type document_resource_identifier = string
-        
         export type tab_size = number
         
     }
@@ -56,7 +51,6 @@ export type Value_ = (
     context: Value_.I,
     abort: _pi.Abort<Value_.E>,
     parameters: {
-        readonly 'document resource identifier': Value_.P.document_resource_identifier
         readonly 'tab size': Value_.P.tab_size
     },
 ) => Value_.O
@@ -71,8 +65,6 @@ export namespace ID_Value_Pairs_ {
     
     export namespace P {
         
-        export type document_resource_identifier = string
-        
         export type tab_size = number
         
     }
@@ -83,7 +75,6 @@ export type ID_Value_Pairs_ = (
     context: ID_Value_Pairs_.I,
     abort: _pi.Abort<ID_Value_Pairs_.E>,
     parameters: {
-        readonly 'document resource identifier': ID_Value_Pairs_.P.document_resource_identifier
         readonly 'tab size': ID_Value_Pairs_.P.tab_size
     },
 ) => ID_Value_Pairs_.O
@@ -98,8 +89,6 @@ export namespace Items_ {
     
     export namespace P {
         
-        export type document_resource_identifier = string
-        
         export type tab_size = number
         
     }
@@ -110,7 +99,6 @@ export type Items_ = (
     context: Items_.I,
     abort: _pi.Abort<Items_.E>,
     parameters: {
-        readonly 'document resource identifier': Items_.P.document_resource_identifier
         readonly 'tab size': Items_.P.tab_size
     },
 ) => Items_.O

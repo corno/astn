@@ -14,7 +14,6 @@ export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Do
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -30,7 +29,6 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -46,7 +44,6 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort, $p) => v_u
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -62,7 +59,6 @@ export const Items: t_signatures.Items = ($, abort, $p) => v_unmarshall.Items(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],

@@ -14,7 +14,6 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $p) => v_unmarsh
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -30,7 +29,6 @@ export const Schemas: t_signatures.Schemas = ($, abort, $p) => v_unmarshall.Sche
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -46,7 +44,6 @@ export const Schema: t_signatures.Schema = ($, abort, $p) => v_unmarshall.Schema
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -62,7 +59,6 @@ export const Imports: t_signatures.Imports = ($, abort, $p) => v_unmarshall.Impo
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -78,7 +74,6 @@ export const Globals: t_signatures.Globals = ($, abort, $p) => v_unmarshall.Glob
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -94,7 +89,6 @@ export const Modules: t_signatures.Modules = ($, abort, $p) => v_unmarshall.Modu
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -110,7 +104,6 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -126,7 +119,6 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $p) => v_unmarshall.
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],

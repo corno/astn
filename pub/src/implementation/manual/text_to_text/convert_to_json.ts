@@ -48,7 +48,6 @@ export const $$: _pi.Refiner_With_Parameter<
                         ])),
                         {
                             'tab size': 4,
-                            'document resource identifier': $p['document resource identifier'],
                         },
                     )
                 ),

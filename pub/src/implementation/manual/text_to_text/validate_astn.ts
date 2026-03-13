@@ -34,7 +34,6 @@ export const $$: _pi.Refiner_With_Parameter<d_out.List_of_Characters, d_function
         ])),
         {
             'tab size': 4,
-            'document resource identifier': $p['document resource identifier'],
         },
     )
     return _p_list_from_text(
