@@ -10,8 +10,11 @@ export const Document: signatures.Document = ($) => Value($.content)
 
 export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($) => ({
     'key': $.id.token.value,
-    'value': $.value.__decide(
-        ($) => Value($.value),
+    'value': $.assignment.__decide(
+        ($) => $.value.__decide(
+            ($) => Value($),
+            () => ['null', null]
+        ),
         () => ['null', null]
     ),
 }))

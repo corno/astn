@@ -17,7 +17,10 @@ export const Document: signatures.Document = ($, $p) => {
 
 export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => $.__l_map(($) => ({
     'id': $.id.token.value,
-    'value': _p.optional.from.optional($.value).map(($) => Value($.value, $p))
+    'value': $.assignment.__decide(
+        ($) => _p.optional.from.optional($.value).map(($) => Value($, $p)),
+        () => _p.optional.literal.not_set()
+    )
 }))
 
 export const Items: signatures.Items = ($, $p) => $.__l_map(($) => Value($.value, $p))
@@ -44,8 +47,16 @@ export const Value: signatures.Value = ($, $p) => {
                                         const entries = $.entries
                                         return _p.decide.state($p.style, ($) => {
                                             switch ($[0]) {
-                                                case 'concise': return _p.ss($, ($) => ['concise', entries.__l_map(($): d_out.Items.L => $.value.__decide(
-                                                    ($): d_out.Items.L => Value($.value, $p),
+                                                case 'concise': return _p.ss($, ($) => ['concise', entries.__l_map(($): d_out.Items.L => $.assignment.__decide(
+                                                    ($): d_out.Items.L => $.value.__decide(
+                                                        ($): d_out.Items.L => Value($, $p),
+                                                        (): d_out.Items.L => ({
+                                                            'metadata': {
+                                                                'comments': _p.list.literal([]),
+                                                            },
+                                                            'data': ['missing', null]
+                                                        })
+                                                    ),
                                                     (): d_out.Items.L => ({
                                                         'metadata': {
                                                             'comments': _p.list.literal([]),
