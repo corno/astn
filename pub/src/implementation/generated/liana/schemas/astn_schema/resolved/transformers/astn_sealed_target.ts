@@ -82,7 +82,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary
             "schema set child": _p_change_context(
                 $['schema set child'],
                 ($) => ['text', {
-                    'delimiter': ['backtick', null],
+                    'delimiter': ['apostrophe', null],
                     'value': $['l value']['l id'],
                 }],
             ),
@@ -147,14 +147,14 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                         "import": _p_change_context(
                                                             $['import'],
                                                             ($) => ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
                                                         "type": _p_change_context(
                                                             $['type'],
                                                             ($) => ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
@@ -168,7 +168,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             ($) => ({
                                                 'option': 'internal acyclic',
                                                 'value': ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -179,7 +179,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             ($) => ({
                                                 'option': 'internal',
                                                 'value': ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -297,7 +297,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             ($) => ({
                                                 'option': 'global',
                                                 'value': ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             }),

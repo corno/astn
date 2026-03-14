@@ -85,7 +85,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                 $,
                             ).map(
                                 ($) => sh.sentence([
-                                    sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
+                                    sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
                                         'add delimiters': true,
                                     })),
                                     sh.ph.literal(": "),
@@ -124,7 +124,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                             $,
                                         ).map(
                                             ($) => sh.sentence([
-                                                sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
+                                                sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
                                                     'add delimiters': true,
                                                 })),
                                                 sh.ph.literal(": "),
@@ -175,7 +175,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                             case 'missing': return _p.ss($, ($) => sh.ph.literal("| #"))
                             case 'set': return _p.ss($, ($) => sh.ph.composed([
                                 $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
-                                sh.ph.serialize(t_primitives_to_text.Apostrophed($.option, {
+                                sh.ph.serialize(t_primitives_to_text.Backticked($.option, {
                                     'add delimiters': true,
                                 })),
                                 $p['in concise group']
@@ -193,7 +193,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                         const value = $.value // fixme: move value to the inside of the delimiter states
                         return _p.decide.state($.delimiter, ($) => {
                             switch ($[0]) {
-                                case 'backtick': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Backticked(value, {
+                                case 'apostrophe': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
                                     'add delimiters': $p['write delimiters'],
                                 })))
                                 case 'quote': return _p.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {

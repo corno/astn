@@ -94,9 +94,9 @@ export const Value: signatures.Value = ($, $p) => {
                                 'delimiter': _p.decide.state($.token.type, ($) => {
                                     switch ($[0]) {
                                         case 'quoted': return _p.ss($, ($) => ['quote', null])
-                                        case 'apostrophed': return _p.ss($, ($) => ['quote', null])
+                                        case 'apostrophed': return _p.ss($, ($) => ['apostrophe', null])
                                         case 'undelimited': return _p.ss($, ($) => ['none', null])
-                                        case 'backticked': return _p.ss($, ($) => ['backtick', null])
+                                        case 'backticked': return _p.ss($, ($) => ['quote', null])
                                         default: return _p.au($[0])
                                     }
                                 })

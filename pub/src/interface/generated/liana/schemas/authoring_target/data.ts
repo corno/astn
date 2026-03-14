@@ -119,14 +119,14 @@ export namespace Value_ {
                         
                         export type quote = null
                         
-                        export type backtick = null
+                        export type apostrophe = null
                         
                     }
                     
                     export type delimiter = 
                         | readonly ['none', delimiter.none]
                         | readonly ['quote', delimiter.quote]
-                        | readonly ['backtick', delimiter.backtick]
+                        | readonly ['apostrophe', delimiter.apostrophe]
                     
                 }
                 

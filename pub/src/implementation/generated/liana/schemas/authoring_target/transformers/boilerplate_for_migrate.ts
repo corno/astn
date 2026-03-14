@@ -206,10 +206,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                     $,
                                                                                     ($) => ['quote', null],
                                                                                 )
-                                                                            case 'backtick':
+                                                                            case 'apostrophe':
                                                                                 return _p.ss(
                                                                                     $,
-                                                                                    ($) => ['backtick', null],
+                                                                                    ($) => ['apostrophe', null],
                                                                                 )
                                                                             default:
                                                                                 return _p.au(
