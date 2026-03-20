@@ -50,6 +50,7 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                         case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
                             Value($.value),
                         ])])
+                        case 'not set': return _p.ss($, ($) => ['null', null])
                         default: return _p.au($[0])
                     }
                 }))

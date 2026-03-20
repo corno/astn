@@ -95,6 +95,7 @@ export const Value: signatures.Value = ($, $p) => {
                             'type': ['optional', _p.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
                                 switch ($[0]) {
                                     case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', Value($.value, $p)])
+                                    case 'not set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['not set', null])
                                     default: return _p.au($[0])
                                 }
                             })]
