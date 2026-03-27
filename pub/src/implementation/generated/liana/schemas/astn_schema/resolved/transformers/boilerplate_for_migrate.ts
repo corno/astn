@@ -9,6 +9,7 @@ import * as t_out from "../../../../../../../interface/generated/liana/schemas/a
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     'l location': {
+        'document resource identifier': "dummy dri",
         'start': {
             'absolute': 42,
             'relative': {
@@ -53,6 +54,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
 
 export const Schemas: t_signatures.Schemas = ($) => ({
     'l location': {
+        'document resource identifier': "dummy dri",
         'start': {
             'absolute': 42,
             'relative': {
@@ -76,6 +78,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                 $,
             ),
             'l location': {
+                'document resource identifier': "dummy dri",
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -118,6 +121,7 @@ export const Schema: t_signatures.Schema = ($) => ({
 
 export const Imports: t_signatures.Imports = ($) => ({
     'l location': {
+        'document resource identifier': "dummy dri",
         'start': {
             'absolute': 42,
             'relative': {
@@ -142,6 +146,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                     $['schema set child'],
                     ($) => ({
                         'l location': {
+                            'document resource identifier': "dummy dri",
                             'start': {
                                 'absolute': 42,
                                 'relative': {
@@ -166,6 +171,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                 ),
             },
             'l location': {
+                'document resource identifier': "dummy dri",
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -190,6 +196,7 @@ export const Globals: t_signatures.Globals = ($) => ({
         $['text types'],
         ($) => ({
             'l location': {
+                'document resource identifier': "dummy dri",
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -213,6 +220,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                         $,
                     ),
                     'l location': {
+                        'document resource identifier': "dummy dri",
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -236,6 +244,7 @@ export const Globals: t_signatures.Globals = ($) => ({
 
 export const Modules: t_signatures.Modules = ($) => ({
     'l location': {
+        'document resource identifier': "dummy dri",
         'start': {
             'absolute': 42,
             'relative': {
@@ -264,6 +273,7 @@ export const Modules: t_signatures.Modules = ($) => ({
                 ),
             },
             'l location': {
+                'document resource identifier': "dummy dri",
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -285,6 +295,7 @@ export const Modules: t_signatures.Modules = ($) => ({
 
 export const Value: t_signatures.Value = ($) => ({
     'l location': {
+        'document resource identifier': "dummy dri",
         'start': {
             'absolute': 42,
             'relative': {
@@ -309,6 +320,7 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['component', {
                             'l location': {
+                                'document resource identifier': "dummy dri",
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -336,6 +348,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                         $['import'],
                                                         ($) => ({
                                                             'l location': {
+                                                                'document resource identifier': "dummy dri",
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -358,6 +371,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                         $['type'],
                                                         ($) => ({
                                                             'l location': {
+                                                                'document resource identifier': "dummy dri",
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -383,6 +397,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['internal acyclic', {
                                                     'l location': {
+                                                        'document resource identifier': "dummy dri",
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -406,6 +421,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['internal', {
                                                     'l location': {
+                                                        'document resource identifier': "dummy dri",
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -454,6 +470,7 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['group', {
                             'l location': {
+                                'document resource identifier': "dummy dri",
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -477,6 +494,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                     ),
                                     'l location': {
+                                        'document resource identifier': "dummy dri",
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -525,6 +543,7 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['state', {
                             'l location': {
+                                'document resource identifier': "dummy dri",
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -548,6 +567,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                     ),
                                     'l location': {
+                                        'document resource identifier': "dummy dri",
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -572,6 +592,7 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['text', {
                             'l location': {
+                                'document resource identifier': "dummy dri",
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -596,6 +617,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': {
+                                                        'document resource identifier': "dummy dri",
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -644,6 +666,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
         $['type'],
         ($) => ({
             'l location': {
+                'document resource identifier': "dummy dri",
                 'start': {
                     'absolute': 42,
                     'relative': {
