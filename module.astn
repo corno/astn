@@ -7,7 +7,7 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {}
             )
             `modules`: {
                 'Schema Tree': (
@@ -1055,7 +1055,7 @@
                         `type`: | `single line` ~
                     )
                 }
-                `number types`: {
+                `simple types`: {
                     'Position': (
                         `precision`: | `exact` (
                             `decimal separator offset`: _
@@ -1310,7 +1310,14 @@
             `globals`: (
                 `complexity`: | `unconstrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {
+                    'Natural': (
+                        `precision`: | `exact` (
+                            `decimal separator offset`: _
+                            `type`: | `natural` ~
+                        )
+                    )
+                }
             )
             `modules`: {
                 'Text Edits': (
@@ -1403,21 +1410,11 @@
                     `root value`: | `group` {
                         'line': (
                             `description`: _
-                            `value`: | `number` | `local` (
-                                `precision`: | `exact` (
-                                    `decimal separator offset`: _
-                                    `type`: | `natural` ~
-                                )
-                            )
+                            `value`: | `number` | `global` 'Natural'
                         )
                         'column': (
                             `description`: _
-                            `value`: | `number` | `local` (
-                                `precision`: | `exact` (
-                                    `decimal separator offset`: _
-                                    `type`: | `natural` ~
-                                )
-                            )
+                            `value`: | `number` | `global` 'Natural'
                         )
                     }
                 )
