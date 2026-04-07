@@ -7,7 +7,11 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `simple types`: {}
+                `simple types`: {
+                    'boolean': (
+                        `type`: | `boolean` ~
+                    )
+                }
             )
             `modules`: {
                 'Schema Tree': (
@@ -258,7 +262,7 @@
                                     )
                                     'ordered': (
                                         `description`: _
-                                        `value`: | `boolean` ~
+                                        `value`: | `simple` | `global` 'boolean'
                                     )
                                 }
                             )
@@ -713,7 +717,7 @@
                                         )
                                         'ordered': (
                                             `definition`: ~
-                                            `resolver`: | `boolean` ~
+                                            `resolver`: | `simple` ~
                                         )
                                     }
                                 )
@@ -1054,12 +1058,17 @@
                     'Text Value': (
                         `type`: | `single line` ~
                     )
+                    'text': (
+                        `type`: | `single line` ~
+                    )
                 }
                 `simple types`: {
                     'Position': (
-                        `precision`: | `exact` (
-                            `decimal separator offset`: _
-                            `type`: | `natural` ~
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
                         )
                     )
                 }
@@ -1091,9 +1100,7 @@
                                 'comments': (
                                     `description`: _
                                     `value`: | `list` (
-                                        `value`: | `text` | `local` (
-                                            `type`: | `single line` ~
-                                        )
+                                        `value`: | `text` | `global` 'text'
                                         `results`: _
                                     )
                                 )
@@ -1114,9 +1121,7 @@
                                         `value`: | `group` {
                                             'path': (
                                                 `description`: _
-                                                `value`: | `text` | `local` (
-                                                    `type`: | `single line` ~
-                                                )
+                                                `value`: | `text` | `global` 'text'
                                             )
                                         }
                                     )
@@ -1277,9 +1282,7 @@
                         `value`: | `group` {
                             'id': (
                                 `description`: _
-                                `value`: | `text` | `local` (
-                                    `type`: | `single line` ~
-                                )
+                                `value`: | `text` | `global` 'text'
                             )
                             'value': (
                                 `description`: _
@@ -1309,12 +1312,18 @@
             `resolver imports`: {}
             `globals`: (
                 `complexity`: | `unconstrained` ~
-                `text types`: {}
+                `text types`: {
+                    'text': (
+                        `type`: | `single line` ~
+                    )
+                }
                 `simple types`: {
                     'Natural': (
-                        `precision`: | `exact` (
-                            `decimal separator offset`: _
-                            `type`: | `natural` ~
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
                         )
                     )
                 }
@@ -1337,9 +1346,7 @@
                                         )
                                         'text': (
                                             `description`: _
-                                            `value`: | `text` | `local` (
-                                                `type`: | `single line` ~
-                                            )
+                                            `value`: | `text` | `global` 'text'
                                         )
                                     }
                                 )
@@ -1356,9 +1363,7 @@
                                         )
                                         'text': (
                                             `description`: _
-                                            `value`: | `text` | `local` (
-                                                `type`: | `single line` ~
-                                            )
+                                            `value`: | `text` | `global` 'text'
                                         )
                                     }
                                 )
@@ -1401,20 +1406,18 @@
                 )
                 'ID Value Pairs To Be Sorted': (
                     `root value`: | `dictionary` (
-                        `value`: | `text` | `local` (
-                            `type`: | `single line` ~
-                        )
+                        `value`: | `text` | `global` 'text'
                     )
                 )
                 'Relative Location': (
                     `root value`: | `group` {
                         'line': (
                             `description`: _
-                            `value`: | `number` | `global` 'Natural'
+                            `value`: | `simple` | `global` 'Natural'
                         )
                         'column': (
                             `description`: _
-                            `value`: | `number` | `global` 'Natural'
+                            `value`: | `simple` | `global` 'Natural'
                         )
                     }
                 )
