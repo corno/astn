@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "pareto-core-dev": "0.12.14",
-    "pareto-host-nodejs": "0.2.39",
+    "pareto-core-dev": "0.12.15",
+    "pareto-host-nodejs": "0.2.40",
     "pub": "file:../pub"
   }
 }
