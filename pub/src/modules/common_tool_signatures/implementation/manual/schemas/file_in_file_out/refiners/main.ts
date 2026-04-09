@@ -17,6 +17,7 @@ export const Parameters: _pi.Refiner<
 > = ($, abort) => {
     return _p_iterate(
         $.arguments,
+        null,
         (iter) => iter.assert_finished(
             () => ({
                 'in': p_file_in_file_out.Path(iter, ($) => abort(['in path', $])),
