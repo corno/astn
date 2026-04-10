@@ -25,6 +25,92 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => $.__l_map(($
 
 export const Items: signatures.Items = ($, $p) => $.__l_map(($) => Value($.value, $p))
 
+export const Concrete_Value: signatures.Concrete_Value = ($, $p) => _p.decide.state($, ($): d_out.Value.data.concrete => {
+    switch ($[0]) {
+        case 'dictionary': return _p.ss($, ($) => ({
+            'type': ['dictionary', ID_Value_Pairs($.entries, $p)]
+        }))
+        case 'group': return _p.ss($, ($) => ({
+            'type': ['group', _p.decide.state($, ($): d_out.Value.data.concrete.type_.group => {
+                switch ($[0]) {
+                    case 'concise': return _p.ss($, ($) => {
+                        return ['concise', Items($.items, $p)]
+                    })
+                    case 'verbose': return _p.ss($, ($) => {
+                        const entries = $.entries
+                        return _p.decide.state($p.style, ($) => {
+                            switch ($[0]) {
+                                case 'concise': return _p.ss($, ($) => ['concise', entries.__l_map(($): d_out.Items.L => $.assignment.__decide(
+                                    ($): d_out.Items.L => $.value.__decide(
+                                        ($): d_out.Items.L => Value($, $p),
+                                        (): d_out.Items.L => ({
+                                            'metadata': {
+                                                'comments': _p.list.literal([]),
+                                            },
+                                            'data': ['missing', null]
+                                        })
+                                    ),
+                                    (): d_out.Items.L => ({
+                                        'metadata': {
+                                            'comments': _p.list.literal([]),
+                                        },
+                                        'data': ['missing', null]
+                                    })
+                                ))])
+                                case 'as is': return _p.ss($, ($) => ['verbose', ID_Value_Pairs(entries, $p)])
+                                default: return _p.au($[0])
+                            }
+                        })
+                    })
+                    default: return _p.au($[0])
+                }
+            })]
+        }))
+        case 'list': return _p.ss($, ($): d_out.Value.data.concrete => ({
+            'type': ['list', Items($.items, $p)]
+        }))
+        case 'state': return _p.ss($, ($): d_out.Value.data.concrete => ({
+            'type': ['state', _p.decide.state($.status, ($): d_out.Value.data.concrete.type_.state => {
+                switch ($[0]) {
+                    case 'missing': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['missing', null])
+                    case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['set', {
+                        'option': $.option.token.value,
+                        'value': Value($.value, $p)
+                    }])
+                    default: return _p.au($[0])
+                }
+            })]
+        }))
+        case 'nothing': return _p.ss($, ($): d_out.Value.data.concrete => ({
+            'type': ['nothing', null]
+        }))
+        case 'optional': return _p.ss($, ($): d_out.Value.data.concrete => ({
+            'type': ['optional', _p.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
+                switch ($[0]) {
+                    case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', Value($.value, $p)])
+                    case 'not set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['not set', null])
+                    default: return _p.au($[0])
+                }
+            })]
+        }))
+        case 'text': return _p.ss($, ($) => ({
+            'type': ['text', {
+                'value': $.token.value,
+                'delimiter': _p.decide.state($.token.type, ($) => {
+                    switch ($[0]) {
+                        case 'quoted': return _p.ss($, ($) => ['quote', null])
+                        case 'apostrophed': return _p.ss($, ($) => ['apostrophe', null])
+                        case 'undelimited': return _p.ss($, ($) => ['none', null])
+                        case 'backticked': return _p.ss($, ($) => ['quote', null])
+                        default: return _p.au($[0])
+                    }
+                })
+            }]
+        }))
+        default: return _p.au($[0])
+    }
+})
+
 export const Value: signatures.Value = ($, $p) => {
     return {
         'metadata': {
@@ -32,91 +118,7 @@ export const Value: signatures.Value = ($, $p) => {
         },
         'data': _p.decide.state($.type, ($): d_out.Value.data => {
             switch ($[0]) {
-                case 'concrete': return _p.ss($, ($) => ['concrete', _p.decide.state($, ($): d_out.Value.data.concrete => {
-                    switch ($[0]) {
-                        case 'dictionary': return _p.ss($, ($) => ({
-                            'type': ['dictionary', ID_Value_Pairs($.entries, $p)]
-                        }))
-                        case 'group': return _p.ss($, ($) => ({
-                            'type': ['group', _p.decide.state($, ($): d_out.Value.data.concrete.type_.group => {
-                                switch ($[0]) {
-                                    case 'concise': return _p.ss($, ($) => {
-                                        return ['concise', Items($.items, $p)]
-                                    })
-                                    case 'verbose': return _p.ss($, ($) => {
-                                        const entries = $.entries
-                                        return _p.decide.state($p.style, ($) => {
-                                            switch ($[0]) {
-                                                case 'concise': return _p.ss($, ($) => ['concise', entries.__l_map(($): d_out.Items.L => $.assignment.__decide(
-                                                    ($): d_out.Items.L => $.value.__decide(
-                                                        ($): d_out.Items.L => Value($, $p),
-                                                        (): d_out.Items.L => ({
-                                                            'metadata': {
-                                                                'comments': _p.list.literal([]),
-                                                            },
-                                                            'data': ['missing', null]
-                                                        })
-                                                    ),
-                                                    (): d_out.Items.L => ({
-                                                        'metadata': {
-                                                            'comments': _p.list.literal([]),
-                                                        },
-                                                        'data': ['missing', null]
-                                                    })
-                                                ))])
-                                                case 'as is': return _p.ss($, ($) => ['verbose', ID_Value_Pairs(entries, $p)])
-                                                default: return _p.au($[0])
-                                            }
-                                        })
-                                    })
-                                    default: return _p.au($[0])
-                                }
-                            })]
-                        }))
-                        case 'list': return _p.ss($, ($): d_out.Value.data.concrete => ({
-                            'type': ['list', Items($.items, $p)]
-                        }))
-                        case 'state': return _p.ss($, ($): d_out.Value.data.concrete => ({
-                            'type': ['state', _p.decide.state($.status, ($): d_out.Value.data.concrete.type_.state => {
-                                switch ($[0]) {
-                                    case 'missing': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['missing', null])
-                                    case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.state => ['set', {
-                                        'option': $.option.token.value,
-                                        'value': Value($.value, $p)
-                                    }])
-                                    default: return _p.au($[0])
-                                }
-                            })]
-                        }))
-                        case 'nothing': return _p.ss($, ($): d_out.Value.data.concrete => ({
-                            'type': ['nothing', null]
-                        }))
-                        case 'optional': return _p.ss($, ($): d_out.Value.data.concrete => ({
-                            'type': ['optional', _p.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
-                                switch ($[0]) {
-                                    case 'set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', Value($.value, $p)])
-                                    case 'not set': return _p.ss($, ($): d_out.Value.data.concrete.type_.optional => ['not set', null])
-                                    default: return _p.au($[0])
-                                }
-                            })]
-                        }))
-                        case 'text': return _p.ss($, ($) => ({
-                            'type': ['text', {
-                                'value': $.token.value,
-                                'delimiter': _p.decide.state($.token.type, ($) => {
-                                    switch ($[0]) {
-                                        case 'quoted': return _p.ss($, ($) => ['quote', null])
-                                        case 'apostrophed': return _p.ss($, ($) => ['apostrophe', null])
-                                        case 'undelimited': return _p.ss($, ($) => ['none', null])
-                                        case 'backticked': return _p.ss($, ($) => ['quote', null])
-                                        default: return _p.au($[0])
-                                    }
-                                })
-                            }]
-                        }))
-                        default: return _p.au($[0])
-                    }
-                })])
+                case 'concrete': return _p.ss($, ($) => ['concrete', Concrete_Value($, $p)])
 
                 case 'include': return _p.ss($, ($): d_out.Value.data => ['include', {
                     'path': $.path.token.value,

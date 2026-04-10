@@ -10,6 +10,7 @@ export type Parameter = {
 }
 
 export type Value = _pi.Transformer_With_Parameter<d_in.Value, d_out.Value, Parameter>
+export type Concrete_Value = _pi.Transformer_With_Parameter<d_in.Value.type_.concrete, d_out.Value.data.concrete, Parameter>
 export type ID_Value_Pairs = _pi.Transformer_With_Parameter<d_in.ID_Value_Pairs, d_out.Value.data.concrete.type_.dictionary, Parameter>
 export type Items = _pi.Transformer_With_Parameter<d_in.Items, d_out.Value.data.concrete.type_.list, Parameter>
 export type Document = _pi.Transformer_With_Parameter<d_in.Document, d_out.Document, Parameter>
