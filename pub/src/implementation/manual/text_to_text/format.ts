@@ -19,14 +19,11 @@ import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: _pi.Refiner_With_Parameter<
+export const $$: _pi.Refiner<
     d_out.List_of_Characters,
     d_function.Phrase,
-    d_in.List_of_Characters,
-    {
-        'document resource identifier': string
-    }
-> = ($, abort, $p) =>
+    d_in.List_of_Characters
+> = ($, abort) =>
         t_fp_to_text.Paragraph(
             t_authoring_target_to_fp.Document(
                 t_parse_tree_2_authoring_target.Document(
@@ -47,10 +44,7 @@ export const $$: _pi.Refiner_With_Parameter<
                         {
                             'tab size': 4,
                         },
-                    ),
-                    {
-                        'style': ['as is', null],
-                    }
+                    )
                 ),
             ),
             {
