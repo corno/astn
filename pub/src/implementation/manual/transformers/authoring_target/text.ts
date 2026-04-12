@@ -14,7 +14,23 @@ export type Parameters = {
 
 }
 
+export type Doc_Parameters = { 
+    'indentation': string,
+    'newline': string
+}
+
 export type Value = _pi.Transformer_With_Parameter<d_in.Value, d_out.Text, Parameters>
+export type Document = _pi.Transformer_With_Parameter<d_in.Document, d_out.Text, Doc_Parameters>
+
+export const Document: Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
+    t_to_fountain_pen.Document(
+        $
+    ),
+    {
+        'indentation': $p.indentation,
+        'newline': $p.newline
+    }
+)
 
 export const Value: Value = ($, $p) => t_fountain_pen_to_text.Phrase(
     t_to_fountain_pen.Value(
