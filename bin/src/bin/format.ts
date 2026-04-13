@@ -2,7 +2,7 @@
 
 import * as _pn from 'pareto-host-nodejs'
 
-import { $$ as procedure } from "../implementation/manual/commands/convert_to_json"
+import { $$ as procedure } from "lib/dist/implementation/manual/commands/format"
 
 _pn.run_main_command(
     ($r) => procedure(
