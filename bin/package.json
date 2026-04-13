@@ -1,6 +1,6 @@
 {
-  "name": "astn",
-  "version": "0.113.69",
+  "name": "astn-bin",
+  "version": "0.0.1",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
@@ -39,7 +39,8 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "lib": "../pub",
+    "lib": "../lib/astn-0.113.69.tgz",
     "pareto-host-nodejs": "^0.2.0"
-  }
+  },
+  "bundleDependencies": true
 }
