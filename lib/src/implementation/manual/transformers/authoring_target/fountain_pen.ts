@@ -36,37 +36,7 @@ export const Document: signatures.Document = ($) => sh.pg.composed([
 
 
 export const Value: signatures.Value = ($, $p) => sh.ph.composed([
-    // does it need a leading space
-    $p['in concise group']
-        ? _p.decide.state($.data, ($) => {
-            switch ($[0]) {
-                case 'concrete': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
-                    switch ($[0]) {
-                        case 'dictionary': return _p.ss($, ($) => true)
-                        case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                            switch ($[0]) {
-                                case 'verbose': return _p.ss($, ($) => true)
-                                case 'concise': return _p.ss($, ($) => false)
-                                default: return _p.au($[0])
-                            }
-                        }))
-                        case 'list': return _p.ss($, ($) => true)
-                        case 'nothing': return _p.ss($, ($) => true)
-                        case 'optional': return _p.ss($, ($) => true)
-                        case 'state': return _p.ss($, ($) => true)
-                        case 'text': return _p.ss($, ($) => true)
-                        default: return _p.au($[0])
-                    }
-                }))
-                case 'missing': return _p.ss($, ($) => true)
-                case 'include': return _p.ss($, ($) => true)
-
-                default: return _p.au($[0])
-            }
-        })
-            ? sh.ph.literal(" ")
-            : sh.ph.nothing()
-        : sh.ph.nothing(),
+    sh.ph.literal(" "),
     _p.decide.state($.data, ($) => {
         switch ($[0]) {
             case 'include': return _p.ss($, ($) => sh.ph.composed([
