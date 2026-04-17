@@ -55,6 +55,30 @@ export type Value_ = (
     },
 ) => Value_.O
 
+export namespace Token_Trivia_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Token_Trivia
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Token_Trivia_ = (
+    context: Token_Trivia_.I,
+    abort: _pi.Abort<Token_Trivia_.E>,
+    parameters: {
+        readonly 'tab size': Token_Trivia_.P.tab_size
+    },
+) => Token_Trivia_.O
+
 export namespace ID_Value_Pairs_ {
     
     export type I = i_in.List_of_Characters
@@ -106,6 +130,7 @@ export type Items_ = (
 export { 
     Document_ as Document, 
     Value_ as Value, 
+    Token_Trivia_ as Token_Trivia, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
     Items_ as Items, 
 }

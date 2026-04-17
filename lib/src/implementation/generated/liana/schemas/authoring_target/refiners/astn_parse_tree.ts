@@ -100,7 +100,6 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
         {
             'expected properties': _p.dictionary.literal(
                 {
-                    "metadata": null,
                     "data": null,
                 },
             ),
@@ -117,80 +116,6 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                 },
             )
             return {
-                'metadata': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'metadata',
-                            'subdocument context': _p.optional.literal.not_set(),
-                        },
-                    ),
-                    ($) => _p_change_context(
-                        v_unmarshalled_from_parse_tree.Verbose_Group(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                            {
-                                'expected properties': _p.dictionary.literal(
-                                    {
-                                        "comments": null,
-                                    },
-                                ),
-                                'subdocument context': _p.optional.literal.not_set(),
-                            },
-                        ),
-                        ($) => _p_variables(
-                            () => {
-                                
-                                const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                    $['value'],
-                                    {
-                                        'subdocument context': _p.optional.literal.not_set(),
-                                    },
-                                )
-                                return {
-                                    'comments': _p_change_context(
-                                        v_unmarshalled_from_parse_tree.Property(
-                                            $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                            {
-                                                'id': 'comments',
-                                                'subdocument context': _p.optional.literal.not_set(),
-                                            },
-                                        ),
-                                        ($) => _p.list.from.list(
-                                            v_unmarshalled_from_parse_tree.List(
-                                                $,
-                                                ($) => abort(
-                                                    $,
-                                                ),
-                                                {
-                                                    'subdocument context': _p.optional.literal.not_set(),
-                                                },
-                                            )['items'],
-                                        ).map(
-                                            ($) => _p_change_context(
-                                                $['value'],
-                                                ($) => v_unmarshalled_from_parse_tree.Text(
-                                                    $,
-                                                    ($) => abort(
-                                                        $,
-                                                    ),
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                }
-                            },
-                        ),
-                    ),
-                ),
                 'data': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
@@ -216,10 +141,51 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                     case 'missing':
                                         return _p_change_context(
                                             $['value'],
-                                            ($) => ['missing', v_unmarshalled_from_parse_tree.Nothing(
-                                                $,
-                                                ($) => abort(
+                                            ($) => ['missing', _p_change_context(
+                                                v_unmarshalled_from_parse_tree.Verbose_Group(
                                                     $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                    {
+                                                        'expected properties': _p.dictionary.literal(
+                                                            {
+                                                                "#": null,
+                                                            },
+                                                        ),
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                ($) => _p_variables(
+                                                    () => {
+                                                        
+                                                        const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                            $['value'],
+                                                            {
+                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                            },
+                                                        )
+                                                        return {
+                                                            '#': _p_change_context(
+                                                                v_unmarshalled_from_parse_tree.Property(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $,
+                                                                    ),
+                                                                    {
+                                                                        'id': '#',
+                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                    },
+                                                                ),
+                                                                ($) => Token_Trivia(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $,
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        }
+                                                    },
                                                 ),
                                             )],
                                         )
@@ -235,6 +201,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                     {
                                                         'expected properties': _p.dictionary.literal(
                                                             {
+                                                                "@": null,
                                                                 "path": null,
                                                             },
                                                         ),
@@ -251,6 +218,24 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                             },
                                                         )
                                                         return {
+                                                            '@': _p_change_context(
+                                                                v_unmarshalled_from_parse_tree.Property(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $,
+                                                                    ),
+                                                                    {
+                                                                        'id': '@',
+                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                    },
+                                                                ),
+                                                                ($) => Token_Trivia(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $,
+                                                                    ),
+                                                                ),
+                                                            ),
                                                             'path': _p_change_context(
                                                                 v_unmarshalled_from_parse_tree.Property(
                                                                     $,
@@ -327,10 +312,89 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                 case 'dictionary':
                                                                                     return _p_change_context(
                                                                                         $['value'],
-                                                                                        ($) => ['dictionary', ID_Value_Pairs(
-                                                                                            $,
-                                                                                            ($) => abort(
+                                                                                        ($) => ['dictionary', _p_change_context(
+                                                                                            v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                 $,
+                                                                                                ($) => abort(
+                                                                                                    $,
+                                                                                                ),
+                                                                                                {
+                                                                                                    'expected properties': _p.dictionary.literal(
+                                                                                                        {
+                                                                                                            "{": null,
+                                                                                                            "entries": null,
+                                                                                                            "}": null,
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                },
+                                                                                            ),
+                                                                                            ($) => _p_variables(
+                                                                                                () => {
+                                                                                                    
+                                                                                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                        $['value'],
+                                                                                                        {
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
+                                                                                                    )
+                                                                                                    return {
+                                                                                                        '{': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': '{',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        'entries': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': 'entries',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => ID_Value_Pairs(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        '}': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': '}',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                    }
+                                                                                                },
                                                                                             ),
                                                                                         )],
                                                                                     )
@@ -351,20 +415,178 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                         case 'concise':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['concise', Items(
-                                                                                                                    $,
-                                                                                                                    ($) => abort(
+                                                                                                                ($) => ['concise', _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                                         $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                                {
+                                                                                                                                    "<": null,
+                                                                                                                                    "properties": null,
+                                                                                                                                    ">": null,
+                                                                                                                                },
+                                                                                                                            ),
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => _p_variables(
+                                                                                                                        () => {
+                                                                                                                            
+                                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                $['value'],
+                                                                                                                                {
+                                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                },
+                                                                                                                            )
+                                                                                                                            return {
+                                                                                                                                '<': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': '<',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Token_Trivia(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                                'properties': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': 'properties',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Items(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                                '>': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': '>',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Token_Trivia(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                            }
+                                                                                                                        },
                                                                                                                     ),
                                                                                                                 )],
                                                                                                             )
                                                                                                         case 'verbose':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['verbose', ID_Value_Pairs(
-                                                                                                                    $,
-                                                                                                                    ($) => abort(
+                                                                                                                ($) => ['verbose', _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                                         $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                                {
+                                                                                                                                    "(": null,
+                                                                                                                                    "properties": null,
+                                                                                                                                    ")": null,
+                                                                                                                                },
+                                                                                                                            ),
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => _p_variables(
+                                                                                                                        () => {
+                                                                                                                            
+                                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                $['value'],
+                                                                                                                                {
+                                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                },
+                                                                                                                            )
+                                                                                                                            return {
+                                                                                                                                '(': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': '(',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Token_Trivia(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                                'properties': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': 'properties',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => ID_Value_Pairs(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                                ')': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': ')',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Token_Trivia(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                            }
+                                                                                                                        },
                                                                                                                     ),
                                                                                                                 )],
                                                                                                             )
@@ -388,20 +610,140 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                 case 'list':
                                                                                     return _p_change_context(
                                                                                         $['value'],
-                                                                                        ($) => ['list', Items(
-                                                                                            $,
-                                                                                            ($) => abort(
+                                                                                        ($) => ['list', _p_change_context(
+                                                                                            v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                 $,
+                                                                                                ($) => abort(
+                                                                                                    $,
+                                                                                                ),
+                                                                                                {
+                                                                                                    'expected properties': _p.dictionary.literal(
+                                                                                                        {
+                                                                                                            "[": null,
+                                                                                                            "items": null,
+                                                                                                            "]": null,
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                },
+                                                                                            ),
+                                                                                            ($) => _p_variables(
+                                                                                                () => {
+                                                                                                    
+                                                                                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                        $['value'],
+                                                                                                        {
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
+                                                                                                    )
+                                                                                                    return {
+                                                                                                        '[': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': '[',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        'items': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': 'items',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Items(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        ']': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': ']',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                    }
+                                                                                                },
                                                                                             ),
                                                                                         )],
                                                                                     )
                                                                                 case 'nothing':
                                                                                     return _p_change_context(
                                                                                         $['value'],
-                                                                                        ($) => ['nothing', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                            $,
-                                                                                            ($) => abort(
+                                                                                        ($) => ['nothing', _p_change_context(
+                                                                                            v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                 $,
+                                                                                                ($) => abort(
+                                                                                                    $,
+                                                                                                ),
+                                                                                                {
+                                                                                                    'expected properties': _p.dictionary.literal(
+                                                                                                        {
+                                                                                                            "~": null,
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                },
+                                                                                            ),
+                                                                                            ($) => _p_variables(
+                                                                                                () => {
+                                                                                                    
+                                                                                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                        $['value'],
+                                                                                                        {
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
+                                                                                                    )
+                                                                                                    return {
+                                                                                                        '~': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': '~',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                    }
+                                                                                                },
                                                                                             ),
                                                                                         )],
                                                                                     )
@@ -422,61 +764,51 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                         case 'not set':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['not set', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                                    $,
-                                                                                                                    ($) => abort(
+                                                                                                                ($) => ['not set', _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                                         $,
-                                                                                                                    ),
-                                                                                                                )],
-                                                                                                            )
-                                                                                                        case 'set':
-                                                                                                            return _p_change_context(
-                                                                                                                $['value'],
-                                                                                                                ($) => ['set', Value(
-                                                                                                                    $,
-                                                                                                                    ($) => abort(
-                                                                                                                        $,
-                                                                                                                    ),
-                                                                                                                )],
-                                                                                                            )
-                                                                                                        default:
-                                                                                                            return abort(
-                                                                                                                ['liana', {
-                                                                                                                    'type': ['state', ['unknown option', $['option']['token']['value']]],
-                                                                                                                    'range': v_parse_tree_to_location.Value(
-                                                                                                                        $['value'],
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
                                                                                                                         {
+                                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                                {
+                                                                                                                                    "_": null,
+                                                                                                                                },
+                                                                                                                            ),
                                                                                                                             'subdocument context': _p.optional.literal.not_set(),
                                                                                                                         },
                                                                                                                     ),
-                                                                                                                }],
-                                                                                                            )
-                                                                                                    }
-                                                                                                },
-                                                                                            ),
-                                                                                        )],
-                                                                                    )
-                                                                                case 'state':
-                                                                                    return _p_change_context(
-                                                                                        $['value'],
-                                                                                        ($) => ['state', _p_change_context(
-                                                                                            v_unmarshalled_from_parse_tree.State(
-                                                                                                $,
-                                                                                                ($) => abort(
-                                                                                                    $,
-                                                                                                ),
-                                                                                            ),
-                                                                                            ($) => _p.decide.text(
-                                                                                                $['option']['token']['value'],
-                                                                                                ($t): t_out.Value.data.concrete.type_.state => {
-                                                                                                    switch ($t) {
-                                                                                                        case 'missing':
-                                                                                                            return _p_change_context(
-                                                                                                                $['value'],
-                                                                                                                ($) => ['missing', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                                    $,
-                                                                                                                    ($) => abort(
-                                                                                                                        $,
+                                                                                                                    ($) => _p_variables(
+                                                                                                                        () => {
+                                                                                                                            
+                                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                $['value'],
+                                                                                                                                {
+                                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                },
+                                                                                                                            )
+                                                                                                                            return {
+                                                                                                                                '_': _p_change_context(
+                                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                        {
+                                                                                                                                            'id': '_',
+                                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                        },
+                                                                                                                                    ),
+                                                                                                                                    ($) => Token_Trivia(
+                                                                                                                                        $,
+                                                                                                                                        ($) => abort(
+                                                                                                                                            $,
+                                                                                                                                        ),
+                                                                                                                                    ),
+                                                                                                                                ),
+                                                                                                                            }
+                                                                                                                        },
                                                                                                                     ),
                                                                                                                 )],
                                                                                                             )
@@ -492,7 +824,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                                         {
                                                                                                                             'expected properties': _p.dictionary.literal(
                                                                                                                                 {
-                                                                                                                                    "option": null,
+                                                                                                                                    "*": null,
                                                                                                                                     "value": null,
                                                                                                                                 },
                                                                                                                             ),
@@ -509,18 +841,18 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                                                 },
                                                                                                                             )
                                                                                                                             return {
-                                                                                                                                'option': _p_change_context(
+                                                                                                                                '*': _p_change_context(
                                                                                                                                     v_unmarshalled_from_parse_tree.Property(
                                                                                                                                         $,
                                                                                                                                         ($) => abort(
                                                                                                                                             $,
                                                                                                                                         ),
                                                                                                                                         {
-                                                                                                                                            'id': 'option',
+                                                                                                                                            'id': '*',
                                                                                                                                             'subdocument context': _p.optional.literal.not_set(),
                                                                                                                                         },
                                                                                                                                     ),
-                                                                                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                                                                                    ($) => Token_Trivia(
                                                                                                                                         $,
                                                                                                                                         ($) => abort(
                                                                                                                                             $,
@@ -567,6 +899,218 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                             ),
                                                                                         )],
                                                                                     )
+                                                                                case 'state':
+                                                                                    return _p_change_context(
+                                                                                        $['value'],
+                                                                                        ($) => ['state', _p_change_context(
+                                                                                            v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                                                                $,
+                                                                                                ($) => abort(
+                                                                                                    $,
+                                                                                                ),
+                                                                                                {
+                                                                                                    'expected properties': _p.dictionary.literal(
+                                                                                                        {
+                                                                                                            "|": null,
+                                                                                                            "status": null,
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                },
+                                                                                            ),
+                                                                                            ($) => _p_variables(
+                                                                                                () => {
+                                                                                                    
+                                                                                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                        $['value'],
+                                                                                                        {
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
+                                                                                                    )
+                                                                                                    return {
+                                                                                                        '|': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': '|',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        'status': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': 'status',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => _p_change_context(
+                                                                                                                v_unmarshalled_from_parse_tree.State(
+                                                                                                                    $,
+                                                                                                                    ($) => abort(
+                                                                                                                        $,
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                                ($) => _p.decide.text(
+                                                                                                                    $['option']['token']['value'],
+                                                                                                                    ($t): t_out.Value.data.concrete.type_.state.status => {
+                                                                                                                        switch ($t) {
+                                                                                                                            case 'missing':
+                                                                                                                                return _p_change_context(
+                                                                                                                                    $['value'],
+                                                                                                                                    ($) => ['missing', _p_change_context(
+                                                                                                                                        v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                                                                                                            $,
+                                                                                                                                            ($) => abort(
+                                                                                                                                                $,
+                                                                                                                                            ),
+                                                                                                                                            {
+                                                                                                                                                'expected properties': _p.dictionary.literal(
+                                                                                                                                                    {
+                                                                                                                                                        "#": null,
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                            },
+                                                                                                                                        ),
+                                                                                                                                        ($) => _p_variables(
+                                                                                                                                            () => {
+                                                                                                                                                
+                                                                                                                                                const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                                    $['value'],
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                )
+                                                                                                                                                return {
+                                                                                                                                                    '#': _p_change_context(
+                                                                                                                                                        v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                            {
+                                                                                                                                                                'id': '#',
+                                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                            },
+                                                                                                                                                        ),
+                                                                                                                                                        ($) => Token_Trivia(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                        ),
+                                                                                                                                                    ),
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                        ),
+                                                                                                                                    )],
+                                                                                                                                )
+                                                                                                                            case 'set':
+                                                                                                                                return _p_change_context(
+                                                                                                                                    $['value'],
+                                                                                                                                    ($) => ['set', _p_change_context(
+                                                                                                                                        v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                                                                                                            $,
+                                                                                                                                            ($) => abort(
+                                                                                                                                                $,
+                                                                                                                                            ),
+                                                                                                                                            {
+                                                                                                                                                'expected properties': _p.dictionary.literal(
+                                                                                                                                                    {
+                                                                                                                                                        "option": null,
+                                                                                                                                                        "value": null,
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                            },
+                                                                                                                                        ),
+                                                                                                                                        ($) => _p_variables(
+                                                                                                                                            () => {
+                                                                                                                                                
+                                                                                                                                                const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                                                    $['value'],
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                )
+                                                                                                                                                return {
+                                                                                                                                                    'option': _p_change_context(
+                                                                                                                                                        v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                            {
+                                                                                                                                                                'id': 'option',
+                                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                            },
+                                                                                                                                                        ),
+                                                                                                                                                        ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                        ),
+                                                                                                                                                    ),
+                                                                                                                                                    'value': _p_change_context(
+                                                                                                                                                        v_unmarshalled_from_parse_tree.Property(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                            {
+                                                                                                                                                                'id': 'value',
+                                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                            },
+                                                                                                                                                        ),
+                                                                                                                                                        ($) => Value(
+                                                                                                                                                            $,
+                                                                                                                                                            ($) => abort(
+                                                                                                                                                                $,
+                                                                                                                                                            ),
+                                                                                                                                                        ),
+                                                                                                                                                    ),
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                        ),
+                                                                                                                                    )],
+                                                                                                                                )
+                                                                                                                            default:
+                                                                                                                                return abort(
+                                                                                                                                    ['liana', {
+                                                                                                                                        'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                                                                                                        'range': v_parse_tree_to_location.Value(
+                                                                                                                                            $['value'],
+                                                                                                                                            {
+                                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                            },
+                                                                                                                                        ),
+                                                                                                                                    }],
+                                                                                                                                )
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                    }
+                                                                                                },
+                                                                                            ),
+                                                                                        )],
+                                                                                    )
                                                                                 case 'text':
                                                                                     return _p_change_context(
                                                                                         $['value'],
@@ -579,6 +1123,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                 {
                                                                                                     'expected properties': _p.dictionary.literal(
                                                                                                         {
+                                                                                                            "trivia": null,
                                                                                                             "value": null,
                                                                                                             "delimiter": null,
                                                                                                         },
@@ -596,6 +1141,24 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                         },
                                                                                                     )
                                                                                                     return {
+                                                                                                        'trivia': _p_change_context(
+                                                                                                            v_unmarshalled_from_parse_tree.Property(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                                {
+                                                                                                                    'id': 'trivia',
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            ($) => Token_Trivia(
+                                                                                                                $,
+                                                                                                                ($) => abort(
+                                                                                                                    $,
+                                                                                                                ),
+                                                                                                            ),
+                                                                                                        ),
                                                                                                         'value': _p_change_context(
                                                                                                             v_unmarshalled_from_parse_tree.Property(
                                                                                                                 $,
@@ -724,6 +1287,170 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         )
                                 }
                             },
+                        ),
+                    ),
+                ),
+            }
+        },
+    ),
+)
+
+export const Token_Trivia: t_signatures.Token_Trivia = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Verbose_Group(
+        $,
+        ($) => abort(
+            $,
+        ),
+        {
+            'expected properties': _p.dictionary.literal(
+                {
+                    "comments": null,
+                },
+            ),
+            'subdocument context': _p.optional.literal.not_set(),
+        },
+    ),
+    ($) => _p_variables(
+        () => {
+            
+            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                $['value'],
+                {
+                    'subdocument context': _p.optional.literal.not_set(),
+                },
+            )
+            return {
+                'comments': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'comments',
+                            'subdocument context': _p.optional.literal.not_set(),
+                        },
+                    ),
+                    ($) => _p.list.from.list(
+                        v_unmarshalled_from_parse_tree.List(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                            {
+                                'subdocument context': _p.optional.literal.not_set(),
+                            },
+                        )['items'],
+                    ).map(
+                        ($) => _p_change_context(
+                            $['value'],
+                            ($) => _p_change_context(
+                                v_unmarshalled_from_parse_tree.Verbose_Group(
+                                    $,
+                                    ($) => abort(
+                                        $,
+                                    ),
+                                    {
+                                        'expected properties': _p.dictionary.literal(
+                                            {
+                                                "content": null,
+                                                "type": null,
+                                            },
+                                        ),
+                                        'subdocument context': _p.optional.literal.not_set(),
+                                    },
+                                ),
+                                ($) => _p_variables(
+                                    () => {
+                                        
+                                        const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                            $['value'],
+                                            {
+                                                'subdocument context': _p.optional.literal.not_set(),
+                                            },
+                                        )
+                                        return {
+                                            'content': _p_change_context(
+                                                v_unmarshalled_from_parse_tree.Property(
+                                                    $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                    {
+                                                        'id': 'content',
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                ($) => v_unmarshalled_from_parse_tree.Text(
+                                                    $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                ),
+                                            ),
+                                            'type': _p_change_context(
+                                                v_unmarshalled_from_parse_tree.Property(
+                                                    $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                    {
+                                                        'id': 'type',
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                ($) => _p_change_context(
+                                                    v_unmarshalled_from_parse_tree.State(
+                                                        $,
+                                                        ($) => abort(
+                                                            $,
+                                                        ),
+                                                    ),
+                                                    ($) => _p.decide.text(
+                                                        $['option']['token']['value'],
+                                                        ($t): t_out.Token_Trivia.comments.L.type_ => {
+                                                            switch ($t) {
+                                                                case 'line':
+                                                                    return _p_change_context(
+                                                                        $['value'],
+                                                                        ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
+                                                                            $,
+                                                                            ($) => abort(
+                                                                                $,
+                                                                            ),
+                                                                        )],
+                                                                    )
+                                                                case 'block':
+                                                                    return _p_change_context(
+                                                                        $['value'],
+                                                                        ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
+                                                                            $,
+                                                                            ($) => abort(
+                                                                                $,
+                                                                            ),
+                                                                        )],
+                                                                    )
+                                                                default:
+                                                                    return abort(
+                                                                        ['liana', {
+                                                                            'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                                            'range': v_parse_tree_to_location.Value(
+                                                                                $['value'],
+                                                                                {
+                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                },
+                                                                            ),
+                                                                        }],
+                                                                    )
+                                                            }
+                                                        },
+                                                    ),
+                                                ),
+                                            ),
+                                        }
+                                    },
+                                ),
+                            ),
                         ),
                     ),
                 ),

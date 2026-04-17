@@ -21,8 +21,8 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Included_Files> = ($) => _
                 case 'dictionary': return _p.ss($, ($) => ID_Value_Pairs($.entries))
                 case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'concise': return _p.ss($, ($) => Items($.items))
-                        case 'verbose': return _p.ss($, ($) => ID_Value_Pairs($.entries))
+                        case 'concise': return _p.ss($, ($) => Items($.properties))
+                        case 'verbose': return _p.ss($, ($) => ID_Value_Pairs($.properties))
                         default: return _p.au($[0])
                     }
                 }))

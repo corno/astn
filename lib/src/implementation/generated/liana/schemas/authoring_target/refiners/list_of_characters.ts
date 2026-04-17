@@ -37,6 +37,21 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     ),
 )
 
+export const Token_Trivia: t_signatures.Token_Trivia = ($, abort, $p) => v_unmarshall.Token_Trivia(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort, $p) => v_unmarshall.ID_Value_Pairs(
     v_deserialize.Document(
         $,

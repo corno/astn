@@ -19,6 +19,12 @@ export const Value: t_signatures.Value = ($) => v_serialize.Document(
     ),
 )
 
+export const Token_Trivia: t_signatures.Token_Trivia = ($) => v_serialize.Document(
+    v_marshall.Token_Trivia(
+        $,
+    ),
+)
+
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => v_serialize.Document(
     v_marshall.ID_Value_Pairs(
         $,

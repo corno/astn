@@ -37,6 +37,22 @@ export type Value_ = (
     context: Value_.I,
 ) => Value_.O
 
+export namespace Token_Trivia_ {
+    
+    export type I = i_in.Token_Trivia
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Token_Trivia_ = (
+    context: Token_Trivia_.I,
+) => Token_Trivia_.O
+
 export namespace ID_Value_Pairs_ {
     
     export type I = i_in.ID_Value_Pairs
@@ -72,6 +88,7 @@ export type Items_ = (
 export { 
     Document_ as Document, 
     Value_ as Value, 
+    Token_Trivia_ as Token_Trivia, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
     Items_ as Items, 
 }

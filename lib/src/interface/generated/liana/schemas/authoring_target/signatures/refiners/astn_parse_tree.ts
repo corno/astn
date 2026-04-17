@@ -45,6 +45,25 @@ export type Value_ = (
     abort: _pi.Abort<Value_.E>,
 ) => Value_.O
 
+export namespace Token_Trivia_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Token_Trivia
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Token_Trivia_ = (
+    context: Token_Trivia_.I,
+    abort: _pi.Abort<Token_Trivia_.E>,
+) => Token_Trivia_.O
+
 export namespace ID_Value_Pairs_ {
     
     export type I = i_in.Value
@@ -86,6 +105,7 @@ export type Items_ = (
 export { 
     Document_ as Document, 
     Value_ as Value, 
+    Token_Trivia_ as Token_Trivia, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
     Items_ as Items, 
 }
