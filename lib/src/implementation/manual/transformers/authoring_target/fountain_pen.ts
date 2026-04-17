@@ -58,7 +58,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                     sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
                                         'add delimiters': true,
                                     })),
-                                    sh.ph.literal(": "),
+                                    sh.ph.literal(":"),
                                     $.value.__decide(
                                         ($) => Value($, {
                                             'in concise group': false,
@@ -97,7 +97,7 @@ export const Value: signatures.Value = ($, $p) => sh.ph.composed([
                                                 sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
                                                     'add delimiters': true,
                                                 })),
-                                                sh.ph.literal(": "),
+                                                sh.ph.literal(":"),
                                                 $.value.__decide(
                                                     ($) => Value($, {
                                                         'in concise group': false,
