@@ -39,7 +39,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "lib": "^5.1.0",
+    "lib": "../lib",
     "pareto-host-nodejs": "^0.2.0"
   },
   "bundleDependencies": true
