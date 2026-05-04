@@ -1,9 +1,9 @@
 {
-  "name": "astn-bin",
+  "name": "astn-app",
   "version": "0.0.1",
   "author": "Corno",
   "license": "Apache-2.0",
-  "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
+  "description": "The TypeScript app for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
   "keywords": [
     "astn",
     "parser",
