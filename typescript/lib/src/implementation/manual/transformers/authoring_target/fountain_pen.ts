@@ -8,7 +8,6 @@ import * as d_in from "../../../../interface/generated/liana/schemas/authoring_t
 
 export type Parameters = {
     'write delimiters': boolean
-    'in concise group': boolean
 }
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -21,7 +20,6 @@ export const Document: _pi.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
         ($) => sh.pg.sentences([
             sh.sentence([
                 Value($, {
-                    'in concise group': false,
                     'write delimiters': true,
                 })
             ]),
@@ -31,7 +29,6 @@ export const Document: _pi.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
     sh.pg.sentences([
         sh.sentence([
             Value($.content, {
-                'in concise group': false,
                 'write delimiters': true,
             }),
         ])
@@ -40,7 +37,6 @@ export const Document: _pi.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
 
 
 export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
-    sh.ph.literal(" "),
     _p.decide.state($.data, ($) => {
         switch ($[0]) {
             case 'include': return _p.ss($, ($) => sh.ph.composed([
@@ -67,10 +63,9 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                     sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
                                         'add delimiters': true,
                                     })),
-                                    sh.ph.literal(":"),
+                                    sh.ph.literal(": "),
                                     $.value.__decide(
                                         ($) => Value($, {
-                                            'in concise group': false,
                                             'write delimiters': true,
                                         }),
                                         () => sh.ph.nothing()
@@ -88,10 +83,13 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
                                 $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                 Token_Trivia($['<']),
-                                sh.ph.composed($.properties.__l_map(($) => Value($, {
-                                    'in concise group': true,
-                                    'write delimiters': true,
-                                }))),
+                                sh.ph.composed($.properties.__l_map(($) => sh.ph.composed([
+                                    sh.ph.literal(" "),
+                                    Value($, {
+                                        'write delimiters': true,
+                                    })
+                                ])
+                                )),
                                 // $p['in concise group']
                                 //     ? sh.ph.nothing()
                                 //     : $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(),
@@ -110,10 +108,9 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                                 sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
                                                     'add delimiters': true,
                                                 })),
-                                                sh.ph.literal(":"),
+                                                sh.ph.literal(": "),
                                                 $.value.__decide(
                                                     ($) => Value($, {
-                                                        'in concise group': false,
                                                         'write delimiters': true,
                                                     }),
                                                     () => sh.ph.nothing(),
@@ -134,7 +131,6 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                         sh.ph.composed($.items.__l_map(($) => sh.ph.composed([
                             sh.ph.literal(" "),
                             Value($, {
-                                'in concise group': false,
                                 'write delimiters': true,
                             }),
                         ]))),
@@ -151,7 +147,6 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 sh.ph.literal("* "),
                                 Token_Trivia($['*']),
                                 Value($.value, {
-                                    'in concise group': $p['in concise group'],
                                     'write delimiters': true,
                                 }),
                             ]))
@@ -176,12 +171,9 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                     sh.ph.serialize(t_primitives_to_text.Backticked($.option, {
                                         'add delimiters': true,
                                     })),
-                                    $p['in concise group']
-                                        ? sh.ph.nothing()
-                                        : sh.ph.literal(" "),
+                                    sh.ph.literal(" "),
                                     Value($.value, {
-                                        'in concise group': $p['in concise group'],
-                                        'write delimiters': true
+                                        'write delimiters': true,
                                     }),
                                 ]))
                                 default: return _p.au($[0])

@@ -36,7 +36,6 @@ export const Value: Value = ($, $p) => t_fountain_pen_to_text.Phrase(
     t_to_fountain_pen.Value(
         $,
         {
-            'in concise group': false,
             'write delimiters': $p['write delimiters']
         }
     ),
