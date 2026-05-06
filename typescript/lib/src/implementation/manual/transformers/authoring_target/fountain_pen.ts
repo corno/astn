@@ -134,7 +134,7 @@ export const Value: _pi.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 'write delimiters': true,
                             }),
                         ]))),
-                        $p['write delimiters'] ? sh.ph.literal("]") : sh.ph.nothing(),
+                        $p['write delimiters'] ? sh.ph.literal(" ]") : sh.ph.nothing(),
                         Token_Trivia($[']']),
                     ]))
                     case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {

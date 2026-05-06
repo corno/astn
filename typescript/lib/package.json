@@ -1,6 +1,6 @@
 {
   "name": "astn",
-  "version": "0.113.75",
+  "version": "0.113.76",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
@@ -26,9 +26,6 @@
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "bin": {
-    "astn-validate": "./dist/bin/validate_astn.js"
-  },
   "files": [
     "dist",
     "README.md",
