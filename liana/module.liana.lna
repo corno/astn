@@ -1094,18 +1094,6 @@
                 )
                 'Value': (
                     `root value`: | `group` {
-                        'metadata': (
-                            `description`: _
-                            `value`: | `group` {
-                                'comments': (
-                                    `description`: _
-                                    `value`: | `list` (
-                                        `value`: | `text` | `global` 'text'
-                                        `results`: _
-                                    )
-                                )
-                            }
-                        )
                         'data': (
                             `description`: _
                             `value`: | `state` (
@@ -1113,12 +1101,27 @@
                                     'missing': (
                                         `constraints`: _
                                         `description`: _
-                                        `value`: | `nothing` ~
+                                        `value`: | `group` {
+                                            '#': (
+                                                `description`: _
+                                                `value`: | `component` (
+                                                    `type`: | `internal` 'Token Trivia'
+                                                    `results`: _
+                                                )
+                                            )
+                                        }
                                     )
                                     'include': (
                                         `constraints`: _
                                         `description`: _
                                         `value`: | `group` {
+                                            '@': (
+                                                `description`: _
+                                                `value`: | `component` (
+                                                    `type`: | `internal` 'Token Trivia'
+                                                    `results`: _
+                                                )
+                                            )
                                             'path': (
                                                 `description`: _
                                                 `value`: | `text` | `global` 'text'
@@ -1136,10 +1139,29 @@
                                                         'dictionary': (
                                                             `constraints`: _
                                                             `description`: _
-                                                            `value`: | `component` (
-                                                                `type`: | `internal` 'ID Value Pairs'
-                                                                `results`: _
-                                                            )
+                                                            `value`: | `group` {
+                                                                '{': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                                'entries': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'ID Value Pairs'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                                '}': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                            }
                                                         )
                                                         'group': (
                                                             `constraints`: _
@@ -1149,18 +1171,56 @@
                                                                     'concise': (
                                                                         `constraints`: _
                                                                         `description`: _
-                                                                        `value`: | `component` (
-                                                                            `type`: | `internal` 'Items'
-                                                                            `results`: _
-                                                                        )
+                                                                        `value`: | `group` {
+                                                                            '<': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                            'properties': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Items'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                            '>': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                        }
                                                                     )
                                                                     'verbose': (
                                                                         `constraints`: _
                                                                         `description`: _
-                                                                        `value`: | `component` (
-                                                                            `type`: | `internal` 'ID Value Pairs'
-                                                                            `results`: _
-                                                                        )
+                                                                        `value`: | `group` {
+                                                                            '(': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                            'properties': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'ID Value Pairs'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                            ')': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                        }
                                                                     )
                                                                 }
                                                                 `results`: _
@@ -1169,15 +1229,42 @@
                                                         'list': (
                                                             `constraints`: _
                                                             `description`: _
-                                                            `value`: | `component` (
-                                                                `type`: | `internal` 'Items'
-                                                                `results`: _
-                                                            )
+                                                            `value`: | `group` {
+                                                                '[': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                                'items': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Items'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                                ']': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                            }
                                                         )
                                                         'nothing': (
                                                             `constraints`: _
                                                             `description`: _
-                                                            `value`: | `nothing` ~
+                                                            `value`: | `group` {
+                                                                '~': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                            }
                                                         )
                                                         'optional': (
                                                             `constraints`: _
@@ -1187,37 +1274,26 @@
                                                                     'not set': (
                                                                         `constraints`: _
                                                                         `description`: _
-                                                                        `value`: | `nothing` ~
-                                                                    )
-                                                                    'set': (
-                                                                        `constraints`: _
-                                                                        `description`: _
-                                                                        `value`: | `component` (
-                                                                            `type`: | `internal` 'Value'
-                                                                            `results`: _
-                                                                        )
-                                                                    )
-                                                                }
-                                                                `results`: _
-                                                            )
-                                                        )
-                                                        'state': (
-                                                            `constraints`: _
-                                                            `description`: _
-                                                            `value`: | `state` (
-                                                                `options`: {
-                                                                    'missing': (
-                                                                        `constraints`: _
-                                                                        `description`: _
-                                                                        `value`: | `nothing` ~
+                                                                        `value`: | `group` {
+                                                                            '_': (
+                                                                                `description`: _
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
+                                                                            )
+                                                                        }
                                                                     )
                                                                     'set': (
                                                                         `constraints`: _
                                                                         `description`: _
                                                                         `value`: | `group` {
-                                                                            'option': (
+                                                                            '*': (
                                                                                 `description`: _
-                                                                                `value`: | `text` | `global` 'Text Value'
+                                                                                `value`: | `component` (
+                                                                                    `type`: | `internal` 'Token Trivia'
+                                                                                    `results`: _
+                                                                                )
                                                                             )
                                                                             'value': (
                                                                                 `description`: _
@@ -1232,10 +1308,68 @@
                                                                 `results`: _
                                                             )
                                                         )
+                                                        'state': (
+                                                            `constraints`: _
+                                                            `description`: _
+                                                            `value`: | `group` {
+                                                                '|': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                                'status': (
+                                                                    `description`: _
+                                                                    `value`: | `state` (
+                                                                        `options`: {
+                                                                            'missing': (
+                                                                                `constraints`: _
+                                                                                `description`: _
+                                                                                `value`: | `group` {
+                                                                                    '#': (
+                                                                                        `description`: _
+                                                                                        `value`: | `component` (
+                                                                                            `type`: | `internal` 'Token Trivia'
+                                                                                            `results`: _
+                                                                                        )
+                                                                                    )
+                                                                                }
+                                                                            )
+                                                                            'set': (
+                                                                                `constraints`: _
+                                                                                `description`: _
+                                                                                `value`: | `group` {
+                                                                                    'option': (
+                                                                                        `description`: _
+                                                                                        `value`: | `text` | `global` 'Text Value'
+                                                                                    )
+                                                                                    'value': (
+                                                                                        `description`: _
+                                                                                        `value`: | `component` (
+                                                                                            `type`: | `internal` 'Value'
+                                                                                            `results`: _
+                                                                                        )
+                                                                                    )
+                                                                                }
+                                                                            )
+                                                                        }
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                            }
+                                                        )
                                                         'text': (
                                                             `constraints`: _
                                                             `description`: _
                                                             `value`: | `group` {
+                                                                'trivia': (
+                                                                    `description`: _
+                                                                    `value`: | `component` (
+                                                                        `type`: | `internal` 'Token Trivia'
+                                                                        `results`: _
+                                                                    )
+                                                                )
                                                                 'value': (
                                                                     `description`: _
                                                                     `value`: | `text` | `global` 'Text Value'
@@ -1270,6 +1404,40 @@
                                                 )
                                             )
                                         }
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
+                    }
+                )
+                'Token Trivia': (
+                    `root value`: | `group` {
+                        'comments': (
+                            `description`: _
+                            `value`: | `list` (
+                                `value`: | `group` {
+                                    'content': (
+                                        `description`: _
+                                        `value`: | `text` | `global` 'text'
+                                    )
+                                    'type': (
+                                        `description`: _
+                                        `value`: | `state` (
+                                            `options`: {
+                                                'line': (
+                                                    `constraints`: _
+                                                    `description`: _
+                                                    `value`: | `nothing` ~
+                                                )
+                                                'block': (
+                                                    `constraints`: _
+                                                    `description`: _
+                                                    `value`: | `nothing` ~
+                                                )
+                                            }
+                                            `results`: _
+                                        )
                                     )
                                 }
                                 `results`: _
