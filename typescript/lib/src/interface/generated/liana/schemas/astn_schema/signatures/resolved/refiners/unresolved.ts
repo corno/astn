@@ -24,8 +24,8 @@ export namespace Text_Type_ {
 export type Text_Type_ = (
     context: Text_Type_.I,
     abort: _pi.Abort<Text_Type_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Text_Type_.O
 
 export namespace Globals_ {
@@ -45,8 +45,8 @@ export namespace Globals_ {
 export type Globals_ = (
     context: Globals_.I,
     abort: _pi.Abort<Globals_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Globals_.O
 
 export namespace Value_ {
@@ -130,7 +130,7 @@ export type Schemas_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schemas_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schemas_.O
 
 export namespace Schema_Tree_ {
@@ -159,7 +159,7 @@ export type Schema_Tree_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schema_Tree_.O
 
 export namespace Schema_ {
@@ -188,7 +188,7 @@ export type Schema_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schema_.O
 
 export namespace Imports_ {
@@ -217,7 +217,7 @@ export type Imports_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Imports_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Imports_.O
 
 export namespace Modules_ {
@@ -253,7 +253,7 @@ export namespace Modules_ {
 export type Modules_ = (
     context: Modules_.I,
     abort: _pi.Abort<Modules_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'globals': Modules_.P.globals
         readonly 'imports': Modules_.P.imports
