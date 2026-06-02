@@ -25,11 +25,11 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
     switch ($[0]) {
         case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => ['object', ['key value array', ID_Value_Pairs($.entries)]])
+                case 'dictionary': return _p.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
                 case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'concise': return _p.ss($, ($) => ['array', Items($.properties)])
-                        case 'verbose': return _p.ss($, ($) => ['object', ['key value array', ID_Value_Pairs($.properties)]])
+                        case 'verbose': return _p.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
                         default: return _p.au($[0])
                     }
                 }))
