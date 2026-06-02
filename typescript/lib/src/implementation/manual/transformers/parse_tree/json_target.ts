@@ -23,7 +23,7 @@ export const Items: signatures.Items = ($) => $.__l_map(($) => Value($.value))
 
 export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out.Value => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
+        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($): d_out.Value => {
             switch ($[0]) {
                 case 'dictionary': return _p.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
                 case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
@@ -34,10 +34,10 @@ export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out
                     }
                 }))
                 case 'list': return _p.ss($, ($) => ['array', Items($.items)])
-                case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
+                case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($): d_out.Value => {
                     switch ($[0]) {
                         case 'missing': return _p.ss($, ($) => ['null', null])
-                        case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
+                        case 'set': return _p.ss($, ($): d_out.Value => ['array', _p.list.literal<d_out.Value>([
                             ['string', $.option.token.value],
                             Value($.value),
                         ])])
