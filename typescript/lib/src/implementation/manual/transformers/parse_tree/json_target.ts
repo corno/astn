@@ -2,7 +2,7 @@ import * as _p from 'pareto-core/dist/assign'
 
 import * as signatures from "../../../../interface/signatures/transformers/parse_tree/json_target"
 
-import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json/data"
+import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
 
 
 export const Document: signatures.Document = ($) => Value($.content)
