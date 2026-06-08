@@ -7,11 +7,11 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/validat
 _pn.run_main_command(
     ($r) => procedure(
         {
-            'log': $r.stream.commands['log'](null),
-            'log error': $r.stream.commands['log error'](null)
+            'log': $r.stream.commands['log'],
+            'log error': $r.stream.commands['log error']
         },
         {
-            'get instream data': $r.stream.queries['get instream data'](null)
+            'get instream data': $r.stream.queries['get instream data']
         },
     ),
 )
