@@ -3,13 +3,13 @@ import * as _pi from 'pareto-core/dist/interface'
 import _list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 //data types
-import * as d_out from "pareto-resources/dist/interface/generated/liana/schemas/path/data"
+import * as d_out from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_path/data"
 import * as d_function from "../../../../../interface/to_be_generated/file_in_file_out"
 
 export type Signature = _pi.Production<d_out.Node_Path, d_function.Path_Error, string, null>
 
 //dependencies
-import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path/list_of_characters"
+import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/list_of_characters"
 
 export const Path: Signature = (iterator, abort) => r_node_path_from_text.Node_Path(
     _list_from_text(
