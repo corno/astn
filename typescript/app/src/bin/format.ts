@@ -7,11 +7,11 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/format"
 _pn.run_main_command(
     ($r) => procedure(
         {
-            'write file': $r.commands['write file'],
-            'log error': $r.commands['log error'],
+            'write file': $r['filesystem unrestricted'].commands['write file'](null),
+            'log error': $r.stream.commands['log error'](null),
         },
         {
-            'read file': $r.queries['read file'],
+            'read file': $r['filesystem unrestricted'].queries['read file'](null),
         },
     ),
 )
