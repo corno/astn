@@ -13,5 +13,6 @@ _pn.run_main_command(
         {
             'get instream data': $r.stream.queries['get instream data']
         },
+        null,
     ),
 )
