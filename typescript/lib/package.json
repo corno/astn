@@ -40,6 +40,7 @@
     "liana-core": "^0.1.0",
     "pareto-fountain-pen": "^0.4.0",
     "pareto-json": "^0.3.0",
-    "pareto-resources": "^0.2.0"
+    "pareto-resources": "^0.2.0",
+    "pareto-stream": "^0.1.0"
   }
 }
