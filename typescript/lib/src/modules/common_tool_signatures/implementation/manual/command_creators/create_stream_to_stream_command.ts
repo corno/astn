@@ -20,12 +20,12 @@ type My_Error =
 
 export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }>): signatures.commands.stream_in_to_stream_out => {
     return _p.command_procedure(
-        ($p, $cr, $qr) => [
+        ($d, $s, $q, $c) => [
 
             _p.handle_error<d_main.Error, My_Error>(
                 [
                     _p.query(
-                        $qr['get instream data'](
+                        $q['get instream data'](
                             null,
                             ($): My_Error => ['could not read instream', null],
                         ),
@@ -40,7 +40,7 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                             }
                         ),
                         ($v) => [
-                            $cr['log'].execute(
+                            $c['log'].execute(
                                 {
                                     'message': sh.pg.sentences([
                                         sh.sentence([
@@ -54,7 +54,7 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                     )
                 ],
                 ($) => [
-                    $cr['log error'].execute(
+                    $c['log error'].execute(
                         {
                             'message': sh.pg.sentences([
                                 sh.sentence([

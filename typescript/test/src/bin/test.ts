@@ -17,7 +17,7 @@ import * as _pt from 'pareto-core/dist/assign'
 //             }
 //         }
 //     },
-//     ($p, $r) => {
+//     ($d, $s, $q) => {
 //         return temp_execute_procedure_with_asynchronous_data<d_read_directory.Result, _eb.Error>(
 //             $r.queries['read directory'](
 //                 {
