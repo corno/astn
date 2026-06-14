@@ -1,65 +1,65 @@
-import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
 
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 import * as d_out from "../../../../interface/to_be_generated/includes"
 
 
-export const Document: _pi.Transformer<d_in.Document, d_out.Included_Files> = ($) => _p.list.nested_literal_old([
+export const Document: pi.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.list.nested_literal_old([
     $.header.__decide(
         ($) => Value($.value),
-        () => _p.list.literal([])
+        () => pt.list.literal([])
     ),
     Value($.content),
 ])
 
-export const Value: _pi.Transformer<d_in.Value, d_out.Included_Files> = ($) => _p.decide.state($.type, ($) => {
+export const Value: pi.Transformer<d_in.Value, d_out.Included_Files> = ($) => pt.decide.state($.type, ($) => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($) => {
+        case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($) => {
             switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => ID_Value_Pairs($.entries))
-                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                case 'dictionary': return pt.ss($, ($) => ID_Value_Pairs($.entries))
+                case 'group': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'concise': return _p.ss($, ($) => Items($.properties))
-                        case 'verbose': return _p.ss($, ($) => ID_Value_Pairs($.properties))
-                        default: return _p.au($[0])
+                        case 'concise': return pt.ss($, ($) => Items($.properties))
+                        case 'verbose': return pt.ss($, ($) => ID_Value_Pairs($.properties))
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'list': return _p.ss($, ($) => Items($.items))
-                case 'nothing': return _p.ss($, ($) => _p.list.literal([]))
-                case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                case 'list': return pt.ss($, ($) => Items($.items))
+                case 'nothing': return pt.ss($, ($) => pt.list.literal([]))
+                case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'set': return _p.ss($, ($) => Value($.value))
-                        case 'not set': return _p.ss($, ($) => _p.list.literal([]))
-                        default: return _p.au($[0])
+                        case 'set': return pt.ss($, ($) => Value($.value))
+                        case 'not set': return pt.ss($, ($) => pt.list.literal([]))
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($) => {
+                case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($) => {
                     switch ($[0]) {
-                        case 'missing': return _p.ss($, ($) => _p.list.literal([]))
-                        case 'set':return _p.ss($, ($) => Value($.value))
-                        default: return _p.au($[0])
+                        case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+                        case 'set':return pt.ss($, ($) => Value($.value))
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'text': return _p.ss($, ($) => _p.list.literal([]))
-                default: return _p.au($[0])
+                case 'text': return pt.ss($, ($) => pt.list.literal([]))
+                default: return pt.au($[0])
             }
         }))
-        case 'include': return _p.ss($, ($) => _p.list.literal([
+        case 'include': return pt.ss($, ($) => pt.list.literal([
             $,
         ]))
-        case 'missing': return _p.ss($, ($) => _p.list.literal([]))
-        default: return _p.au($[0])
+        case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+        default: return pt.au($[0])
     }
 })
 
-export const Items: _pi.Transformer<d_in.Items, d_out.Included_Files> = ($) => _p.list.from.list($).flatten(($) => Value($.value))
+export const Items: pi.Transformer<d_in.Items, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
 
-export const ID_Value_Pairs: _pi.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => _p.list.from.list($).flatten(($ => $.assignment.__decide(
+export const ID_Value_Pairs: pi.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
     ($) => $.value.__decide(
         ($) => Value($),
-        () => _p.list.literal([])
+        () => pt.list.literal([])
     ),
-    () => _p.list.literal([])
+    () => pt.list.literal([])
 )))

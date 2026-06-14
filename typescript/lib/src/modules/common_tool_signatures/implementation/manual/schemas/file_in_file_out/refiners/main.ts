@@ -1,6 +1,6 @@
-import * as _p from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
-import _p_iterate from 'pareto-core/dist/_p_iterate'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
+import p_iterate from 'pareto-core/dist/_p_iterate'
 
 //data types
 import * as d_out from "../../../../../interface/to_be_generated/file_in_file_out"
@@ -10,12 +10,12 @@ import * as d_in from "pareto-resources/dist/interface/to_be_generated/temp_main
 //dependencies
 import * as p_file_in_file_out from "../productions/text"
 
-export const Parameters: _pi.Refiner<
+export const Parameters: pi.Refiner<
     d_out.Parameters,
     d_function.Error,
     d_in.Parameters
 > = ($, abort) => {
-    return _p_iterate(
+    return p_iterate(
         $.arguments,
         null,
         (iter) => iter.assert_finished(

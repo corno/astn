@@ -1,10 +1,10 @@
 #!/usr/bin/env -S node --enable-source-maps
 
-import * as _pn from 'pareto-host-nodejs'
+import * as ph from 'pareto-host-nodejs'
 
 import { $$ as procedure } from "lib/dist/implementation/manual/commands/format"
 
-_pn.run_main_command(
+ph.run_main_command(
     ($r) => procedure(
         null,
         {

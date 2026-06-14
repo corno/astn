@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/command'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as signatures from "../../../modules/common_tool_signatures/interface/signatures"
 

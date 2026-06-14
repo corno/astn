@@ -1,7 +1,7 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pt from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
-import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as pc from 'pareto-core/dist/command'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
+import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -19,19 +19,19 @@ type My_Error =
     | ['could not write to stdout', null]
 
 
-export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }>): signatures.commands.stream_in_to_stream_out => {
-    return _p.command_procedure(
+export const $$ = (func: pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_fp.Phrase, d_loc.List_of_Characters, { 'document resource identifier': string }>): signatures.commands.stream_in_to_stream_out => {
+    return pc.command_procedure(
         ($d, $s, $q, $c) => [
 
-            _p.handle_error<d_main.Error, My_Error>(
+            pc.handle_error<d_main.Error, My_Error>(
                 [
-                    _p.query(
+                    pc.query(
                         $q['get instream data'](
                             null,
                             ($): My_Error => ['could not read instream', null],
                         ),
                         ($, abort) => func(
-                            _p_list_from_text(
+                            p_list_from_text(
                                 $,
                                 ($) => $,
                             ),
@@ -59,12 +59,12 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                         {
                             'message': sh.pg.sentences([
                                 sh.sentence([
-                                    _pt.decide.state($, ($) => {
+                                    pt.decide.state($, ($) => {
                                         switch ($[0]) {
-                                            case 'could not read instream': return _pt.ss($, ($) => sh.ph.literal("could not read instream"))
-                                            case 'deserialization failed': return _pt.ss($, ($) => $)
-                                            case 'could not write to stdout': return _pt.ss($, ($) => sh.ph.literal("could not write to stdout"))
-                                            default: return _pt.au($[0])
+                                            case 'could not read instream': return pt.ss($, ($) => sh.ph.literal("could not read instream"))
+                                            case 'deserialization failed': return pt.ss($, ($) => $)
+                                            case 'could not write to stdout': return pt.ss($, ($) => sh.ph.literal("could not write to stdout"))
+                                            default: return pt.au($[0])
                                         }
                                     })
                                 ])

@@ -1,6 +1,6 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pi from 'pareto-core/dist/interface'
-import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
+import * as pt from 'pareto-core/dist/command'
+import * as pi from 'pareto-core/dist/interface'
+import p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -20,7 +20,7 @@ import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/tr
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export type Creator = (
-    deserializer: _pi.Refiner_With_Parameter<
+    deserializer: pi.Refiner_With_Parameter<
         d_loc.List_of_Characters,
         d_fp.Phrase,
         d_loc.List_of_Characters,
@@ -31,17 +31,17 @@ export type Creator = (
 ) => signatures.commands.file_in_to_file_out
 
 
-export const $$: Creator = (deserializer) => _p.command_procedure(
+export const $$: Creator = (deserializer) => pt.command_procedure(
     ($d, $s, $q, $c) => [
 
-        _p.handle_error<d_main.Error, d_transform_file.Error>(
+        pt.handle_error<d_main.Error, d_transform_file.Error>(
             [
 
-                _p.refine_without_error_transformation(
+                pt.refine_without_error_transformation(
                     (abort) => r_file_in_file_out_from_main.Parameters($d, ($) => abort(['file in file out', ['command line arguments', $]])),
                     ($r) => [
 
-                        _p.query(
+                        pt.query(
                             $q['read file'](
                                 $r.in,
                                 ($): d_transform_file.Error => {

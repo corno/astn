@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/assign'
+import * as pt from 'pareto-core/dist/assign'
 
 import * as signatures from "../../../../interface/signatures/transformers/parse_tree/json_target"
 
@@ -25,46 +25,46 @@ export const Items: signatures.Items = ($) => $.__l_map(
     ($) => Value($.value)
 )
 
-export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out.Value => {
+export const Value: signatures.Value = ($) => pt.decide.state($.type, ($): d_out.Value => {
     switch ($[0]) {
-        case 'concrete': return _p.ss($, ($) => _p.decide.state($, ($): d_out.Value => {
+        case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($): d_out.Value => {
             switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
-                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                case 'dictionary': return pt.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
+                case 'group': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'concise': return _p.ss($, ($) => ['array', Items($.properties)])
-                        case 'verbose': return _p.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
-                        default: return _p.au($[0])
+                        case 'concise': return pt.ss($, ($) => ['array', Items($.properties)])
+                        case 'verbose': return pt.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'list': return _p.ss($, ($) => ['array', Items($.items)])
-                case 'state': return _p.ss($, ($) => _p.decide.state($.status, ($): d_out.Value => {
+                case 'list': return pt.ss($, ($) => ['array', Items($.items)])
+                case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($): d_out.Value => {
                     switch ($[0]) {
-                        case 'missing': return _p.ss($, ($) => ['null', null])
-                        case 'set': return _p.ss($, ($): d_out.Value => ['array', _p.list.literal<d_out.Value>([
+                        case 'missing': return pt.ss($, ($) => ['null', null])
+                        case 'set': return pt.ss($, ($): d_out.Value => ['array', pt.list.literal<d_out.Value>([
                             ['string', $.option.token.value],
                             Value($.value),
                         ])])
-                        default: return _p.au($[0])
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'nothing': return _p.ss($, ($) => ['null', null])
-                case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                case 'nothing': return pt.ss($, ($) => ['null', null])
+                case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'set': return _p.ss($, ($) => ['array', _p.list.literal([
+                        case 'set': return pt.ss($, ($) => ['array', pt.list.literal([
                             Value($.value),
                         ])])
-                        case 'not set': return _p.ss($, ($) => ['null', null])
-                        default: return _p.au($[0])
+                        case 'not set': return pt.ss($, ($) => ['null', null])
+                        default: return pt.au($[0])
                     }
                 }))
-                case 'text': return _p.ss($, ($) => ['string', $.token.value])
-                default: return _p.au($[0])
+                case 'text': return pt.ss($, ($) => ['string', $.token.value])
+                default: return pt.au($[0])
             }
         }))
 
-        case 'include': return _p.ss($, ($) => ['string', "FIXME include not implemented yet"])
-        case 'missing': return _p.ss($, ($) => ['null', null])
-        default: return _p.au($[0])
+        case 'include': return pt.ss($, ($) => ['string', "FIXME include not implemented yet"])
+        case 'missing': return pt.ss($, ($) => ['null', null])
+        default: return pt.au($[0])
     }
 })
