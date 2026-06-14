@@ -1,4 +1,5 @@
 import * as _p from 'pareto-core/dist/command'
+import * as _pt from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
@@ -58,12 +59,12 @@ export const $$ = (func: _pi.Refiner_With_Parameter<d_loc.List_of_Characters, d_
                         {
                             'message': sh.pg.sentences([
                                 sh.sentence([
-                                    _p.decide.state($, ($) => {
+                                    _pt.decide.state($, ($) => {
                                         switch ($[0]) {
-                                            case 'could not read instream': return _p.ss($, ($) => sh.ph.literal("could not read instream"))
-                                            case 'deserialization failed': return _p.ss($, ($) => $)
-                                            case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal("could not write to stdout"))
-                                            default: return _p.au($[0])
+                                            case 'could not read instream': return _pt.ss($, ($) => sh.ph.literal("could not read instream"))
+                                            case 'deserialization failed': return _pt.ss($, ($) => $)
+                                            case 'could not write to stdout': return _pt.ss($, ($) => sh.ph.literal("could not write to stdout"))
+                                            default: return _pt.au($[0])
                                         }
                                     })
                                 ])

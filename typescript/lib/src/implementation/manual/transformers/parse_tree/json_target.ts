@@ -8,18 +8,22 @@ import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json_
 export const Document: signatures.Document = ($) => Value($.content)
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($) => ({
-    'key': $.id.token.value,
-    'value': $.assignment.__decide(
-        ($) => $.value.__decide(
-            ($) => Value($),
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(
+    ($) => ({
+        'key': $.id.token.value,
+        'value': $.assignment.__decide(
+            ($) => $.value.__decide(
+                ($) => Value($),
+                () => ['null', null]
+            ),
             () => ['null', null]
         ),
-        () => ['null', null]
-    ),
-}))
+    })
+)
 
-export const Items: signatures.Items = ($) => $.__l_map(($) => Value($.value))
+export const Items: signatures.Items = ($) => $.__l_map(
+    ($) => Value($.value)
+)
 
 export const Value: signatures.Value = ($) => _p.decide.state($.type, ($): d_out.Value => {
     switch ($[0]) {

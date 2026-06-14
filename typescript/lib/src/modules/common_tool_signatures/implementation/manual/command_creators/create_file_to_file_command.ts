@@ -31,61 +31,62 @@ export type Creator = (
 ) => signatures.commands.file_in_to_file_out
 
 
-export const $$: Creator = (deserializer) => _p.command_procedure(($d, $s, $q, $c) => [
+export const $$: Creator = (deserializer) => _p.command_procedure(
+    ($d, $s, $q, $c) => [
 
-    _p.handle_error<d_main.Error, d_transform_file.Error>(
-        [
+        _p.handle_error<d_main.Error, d_transform_file.Error>(
+            [
 
-            _p.refine_without_error_transformation(
-                (abort) => r_file_in_file_out_from_main.Parameters($d, ($) => abort(['file in file out', ['command line arguments', $]])),
-                ($r) => [
+                _p.refine_without_error_transformation(
+                    (abort) => r_file_in_file_out_from_main.Parameters($d, ($) => abort(['file in file out', ['command line arguments', $]])),
+                    ($r) => [
 
-                    _p.query(
-                        $q['read file'](
-                            $r.in,
-                            ($): d_transform_file.Error => {
-                                return ['file in file out', ['reading file', $]]
-                            }
-                        ),
-                        ($, abort) => ({
-                            'path': $r.out,
-                            'data': deserializer(
-                                $,
-                                ($) => abort(['processing', $]),
-                                {
-                                    'document resource identifier': t_path_to_text.Node_Path($r.in),
-                                },
+                        _p.query(
+                            $q['read file'](
+                                $r.in,
+                                ($): d_transform_file.Error => {
+                                    return ['file in file out', ['reading file', $]]
+                                }
                             ),
-                        }),
-                        ($v) => [
-                            $c['write file'].execute(
-                                $v,
-                                ($) => {
-                                    return ['file in file out', ['writing file', $]]
-                                },
+                            ($, abort) => ({
+                                'path': $r.out,
+                                'data': deserializer(
+                                    $,
+                                    ($) => abort(['processing', $]),
+                                    {
+                                        'document resource identifier': t_path_to_text.Node_Path($r.in),
+                                    },
+                                ),
+                            }),
+                            ($v) => [
+                                $c['write file'].execute(
+                                    $v,
+                                    ($) => {
+                                        return ['file in file out', ['writing file', $]]
+                                    },
 
-                            )
-                        ]
-                    )
-                ]
-            ),
-        ],
-        ($) => [
-            $c['log error'].execute(
-                {
-                    'message': sh.pg.sentences([
-                        sh.sentence([
-                            t_transform_file_to_fountain_pen.Error($)
-                        ])
-                    ]),
-                },
-                ($) => ({
-                    'exit code': 2
-                })
-            )
-        ],
-        () => ({
-            'exit code': 1
-        }),
-    ),
-])
+                                )
+                            ]
+                        )
+                    ]
+                ),
+            ],
+            ($) => [
+                $c['log error'].execute(
+                    {
+                        'message': sh.pg.sentences([
+                            sh.sentence([
+                                t_transform_file_to_fountain_pen.Error($)
+                            ])
+                        ]),
+                    },
+                    ($) => ({
+                        'exit code': 2
+                    })
+                )
+            ],
+            () => ({
+                'exit code': 1
+            }),
+        ),
+    ])

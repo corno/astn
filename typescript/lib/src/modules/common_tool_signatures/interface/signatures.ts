@@ -1,4 +1,6 @@
-import * as _pi from 'pareto-core/dist/interface'
+import * as _pqi from 'pareto-core/dist/query_interface'
+import * as _pci from 'pareto-core/dist/command_interface'
+
 
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
 import * as resources_pareto_stream from "pareto-stream/dist/interface/resources"
@@ -9,7 +11,7 @@ export namespace queries {
 
 export namespace commands {
 
-    export type stream_in_to_stream_out = _pi.Command_Procedure<
+    export type stream_in_to_stream_out = _pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         {
@@ -21,7 +23,7 @@ export namespace commands {
         }
     >
 
-    export type file_in_to_file_out = _pi.Command_Procedure<
+    export type file_in_to_file_out = _pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         {
