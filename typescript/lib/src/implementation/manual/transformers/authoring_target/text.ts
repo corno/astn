@@ -1,4 +1,5 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
+import * as p_ti from 'pareto-core/dist/transformer/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/authoring_target/data"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
@@ -19,8 +20,8 @@ export type Doc_Parameters = {
     'newline': string
 }
 
-export type Value = pi.Transformer_With_Parameter<d_in.Value, d_out.Text, Parameters>
-export type Document = pi.Transformer_With_Parameter<d_in.Document, d_out.Text, Doc_Parameters>
+export type Value = p_ti.Transformer_With_Parameter<d_in.Value, d_out.Text, Parameters>
+export type Document = p_ti.Transformer_With_Parameter<d_in.Document, d_out.Text, Doc_Parameters>
 
 export const Document: Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
     t_to_fountain_pen.Document(

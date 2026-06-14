@@ -1,5 +1,5 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
 
 import * as i_generic from "liana-core/dist/interface/to_be_generated/deserialize"
 
@@ -25,7 +25,7 @@ export namespace Document_ {
 
 export type Document_ = (
     context: Document_.I,
-    abort: _pi.Abort<Document_.E>,
+    abort: p_i.Abort<Document_.E>,
     parameters: {
         readonly 'tab size': Document_.P.tab_size
     },
@@ -49,7 +49,7 @@ export namespace Value_ {
 
 export type Value_ = (
     context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
+    abort: p_i.Abort<Value_.E>,
     parameters: {
         readonly 'tab size': Value_.P.tab_size
     },
@@ -73,7 +73,7 @@ export namespace Token_Trivia_ {
 
 export type Token_Trivia_ = (
     context: Token_Trivia_.I,
-    abort: _pi.Abort<Token_Trivia_.E>,
+    abort: p_i.Abort<Token_Trivia_.E>,
     parameters: {
         readonly 'tab size': Token_Trivia_.P.tab_size
     },
@@ -97,7 +97,7 @@ export namespace ID_Value_Pairs_ {
 
 export type ID_Value_Pairs_ = (
     context: ID_Value_Pairs_.I,
-    abort: _pi.Abort<ID_Value_Pairs_.E>,
+    abort: p_i.Abort<ID_Value_Pairs_.E>,
     parameters: {
         readonly 'tab size': ID_Value_Pairs_.P.tab_size
     },
@@ -121,7 +121,7 @@ export namespace Items_ {
 
 export type Items_ = (
     context: Items_.I,
-    abort: _pi.Abort<Items_.E>,
+    abort: p_i.Abort<Items_.E>,
     parameters: {
         readonly 'tab size': Items_.P.tab_size
     },

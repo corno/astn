@@ -1,5 +1,6 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 export namespace Text_Edits_ {
     
@@ -50,7 +51,7 @@ export namespace Text_Edits_ {
     
 }
 
-export type Text_Edits_ = _pi.List<Text_Edits_.L>
+export type Text_Edits_ = p_di.List<Text_Edits_.L>
 
 export namespace Relative_Range_ {
     
@@ -71,7 +72,7 @@ export namespace ID_Value_Pairs_To_Be_Sorted_ {
     
 }
 
-export type ID_Value_Pairs_To_Be_Sorted_ = _pi.Dictionary<ID_Value_Pairs_To_Be_Sorted_.D>
+export type ID_Value_Pairs_To_Be_Sorted_ = p_di.Dictionary<ID_Value_Pairs_To_Be_Sorted_.D>
 
 export namespace Relative_Location_ {
     

@@ -1,12 +1,13 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
+import * as p_ti from 'pareto-core/dist/transformer/interface'
 
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 import * as d_out from "../../../../interface/to_be_generated/includes"
 
 
-export const Document: pi.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.list.nested_literal_old([
+export const Document: p_ti.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.list.nested_literal_old([
     $.header.__decide(
         ($) => Value($.value),
         () => pt.list.literal([])
@@ -14,7 +15,7 @@ export const Document: pi.Transformer<d_in.Document, d_out.Included_Files> = ($)
     Value($.content),
 ])
 
-export const Value: pi.Transformer<d_in.Value, d_out.Included_Files> = ($) => pt.decide.state($.type, ($) => {
+export const Value: p_ti.Transformer<d_in.Value, d_out.Included_Files> = ($) => pt.decide.state($.type, ($) => {
     switch ($[0]) {
         case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($) => {
             switch ($[0]) {
@@ -54,9 +55,9 @@ export const Value: pi.Transformer<d_in.Value, d_out.Included_Files> = ($) => pt
     }
 })
 
-export const Items: pi.Transformer<d_in.Items, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
+export const Items: p_ti.Transformer<d_in.Items, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
 
-export const ID_Value_Pairs: pi.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
+export const ID_Value_Pairs: p_ti.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
     ($) => $.value.__decide(
         ($) => Value($),
         () => pt.list.literal([])

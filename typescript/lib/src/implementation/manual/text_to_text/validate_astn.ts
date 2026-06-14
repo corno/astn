@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
-import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as p_ri from 'pareto-core/dist/refiner/interface'
+import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
 
 //data types
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
@@ -16,7 +16,7 @@ import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: pi.Refiner_With_Parameter<d_out.List_of_Characters, d_function.Phrase, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
+export const $$: p_ri.Refiner_With_Parameter<d_out.List_of_Characters, d_function.Phrase, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
     r_parse_tree_from_text.Document(
         $,
         ($) => abort(sh.ph.composed([

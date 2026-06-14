@@ -1,5 +1,6 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as i_location from "liana-core/dist/interface/to_be_generated/document_and_location"
 
@@ -47,7 +48,7 @@ export namespace Schemas_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -115,7 +116,7 @@ export namespace Imports_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -147,7 +148,7 @@ export namespace Globals_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -191,7 +192,7 @@ export namespace Modules_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -321,7 +322,7 @@ export namespace Value_ {
                 
             }
             
-            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+            export type l_dictionary = p_di.Dictionary<l_dictionary.D>
             
         }
         
@@ -365,7 +366,7 @@ export namespace Value_ {
                 
             }
             
-            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+            export type l_dictionary = p_di.Dictionary<l_dictionary.D>
             
         }
         

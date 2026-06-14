@@ -1,4 +1,4 @@
-// import * as pi from 'pareto-core/dist/interface'
+// import * as p_di from 'pareto-core/dist/data/interface'
 // import * as pt from 'pareto-core/dist/assign'
 
 
@@ -10,10 +10,10 @@
 // | ['no such include', null]
 
 // export type Parameters = {
-//     'included files': pi.Dictionary<d_out.Value>
+//     'included files': p_di.Dictionary<d_out.Value>
 // }
 
-// export const Document: pi.Refiner_With_Parameter<d_in.Document, Error, d_out.Document, Parameters> = ($, abort, $p) => ({
+// export const Document: p_ri.Refiner_With_Parameter<d_in.Document, Error, d_out.Document, Parameters> = ($, abort, $p) => ({
 //     'header': pt.optional.from.optional($.header).map(($) => ({
 //         '!': $['!'],
 //         'value': Value($.value, abort, $p),
@@ -21,7 +21,7 @@
 //     'content': Value($.content, abort, $p),
 // })
 
-// export const Value: pi.Refiner_With_Parameter<d_in.Value, Error, d_out.Value, Parameters> = ($, abort, $p) => pt.decide.state($.type, ($): d_out.Value => {
+// export const Value: p_ri.Refiner_With_Parameter<d_in.Value, Error, d_out.Value, Parameters> = ($, abort, $p) => pt.decide.state($.type, ($): d_out.Value => {
 //     switch ($[0]) {
 //         case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($):d_out.Value => {
 //             switch ($[0]) {
@@ -61,9 +61,9 @@
 //     }
 // })
 
-// export const Items: pi.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
+// export const Items: p_ri.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
 
-// export const ID_Value_Pairs: pi.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
+// export const ID_Value_Pairs: p_ri.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
 //     ($) => $.value.__decide(
 //         ($) => Value($),
 //         () => pt.list.literal([])

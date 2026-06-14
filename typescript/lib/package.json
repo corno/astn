@@ -1,6 +1,6 @@
 {
   "name": "astn",
-  "version": "0.113.81",
+  "version": "0.113.82",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "The TypeScript library for parsing and formatting ASTN (Abstract Syntax Tree Notation) - a human-editable data format for structured content",
@@ -38,6 +38,7 @@
   "dependencies": {
     "astn-core": "^0.5.0",
     "liana-core": "^0.1.0",
+    "pareto-common": "^0.1.0",
     "pareto-fountain-pen": "^0.4.0",
     "pareto-json": "^0.3.0",
     "pareto-resources": "^0.2.0",

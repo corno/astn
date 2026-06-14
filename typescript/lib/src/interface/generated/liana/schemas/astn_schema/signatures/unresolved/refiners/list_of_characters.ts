@@ -1,5 +1,5 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
 
 import * as i_generic from "liana-core/dist/interface/to_be_generated/deserialize"
 
@@ -25,7 +25,7 @@ export namespace Schema_Tree_ {
 
 export type Schema_Tree_ = (
     context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
+    abort: p_i.Abort<Schema_Tree_.E>,
     parameters: {
         readonly 'tab size': Schema_Tree_.P.tab_size
     },
@@ -49,7 +49,7 @@ export namespace Schemas_ {
 
 export type Schemas_ = (
     context: Schemas_.I,
-    abort: _pi.Abort<Schemas_.E>,
+    abort: p_i.Abort<Schemas_.E>,
     parameters: {
         readonly 'tab size': Schemas_.P.tab_size
     },
@@ -73,7 +73,7 @@ export namespace Schema_ {
 
 export type Schema_ = (
     context: Schema_.I,
-    abort: _pi.Abort<Schema_.E>,
+    abort: p_i.Abort<Schema_.E>,
     parameters: {
         readonly 'tab size': Schema_.P.tab_size
     },
@@ -97,7 +97,7 @@ export namespace Imports_ {
 
 export type Imports_ = (
     context: Imports_.I,
-    abort: _pi.Abort<Imports_.E>,
+    abort: p_i.Abort<Imports_.E>,
     parameters: {
         readonly 'tab size': Imports_.P.tab_size
     },
@@ -121,7 +121,7 @@ export namespace Globals_ {
 
 export type Globals_ = (
     context: Globals_.I,
-    abort: _pi.Abort<Globals_.E>,
+    abort: p_i.Abort<Globals_.E>,
     parameters: {
         readonly 'tab size': Globals_.P.tab_size
     },
@@ -145,7 +145,7 @@ export namespace Modules_ {
 
 export type Modules_ = (
     context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
+    abort: p_i.Abort<Modules_.E>,
     parameters: {
         readonly 'tab size': Modules_.P.tab_size
     },
@@ -169,7 +169,7 @@ export namespace Value_ {
 
 export type Value_ = (
     context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
+    abort: p_i.Abort<Value_.E>,
     parameters: {
         readonly 'tab size': Value_.P.tab_size
     },
@@ -193,7 +193,7 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
+    abort: p_i.Abort<Text_Type_.E>,
     parameters: {
         readonly 'tab size': Text_Type_.P.tab_size
     },

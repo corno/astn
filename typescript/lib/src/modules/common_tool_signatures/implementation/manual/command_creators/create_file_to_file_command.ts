@@ -1,5 +1,5 @@
-import * as p_ from 'pareto-core/dist/command'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_ from 'pareto-core/dist/command/implementation'
+import * as p_ri from 'pareto-core/dist/refiner/interface'
 
 import * as signatures from "../../../interface/commands"
 
@@ -19,7 +19,7 @@ import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/tr
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export type Creator = (
-    deserializer: pi.Refiner_With_Parameter<
+    deserializer: p_ri.Refiner_With_Parameter<
         d_loc.List_of_Characters,
         d_fp.Phrase,
         d_loc.List_of_Characters,

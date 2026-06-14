@@ -1,5 +1,6 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 export namespace Schema_Tree_ {
     
@@ -19,7 +20,7 @@ export namespace Schemas_ {
     
 }
 
-export type Schemas_ = _pi.Dictionary<Schemas_.D>
+export type Schemas_ = p_di.Dictionary<Schemas_.D>
 
 export namespace Schema_ {
     
@@ -87,7 +88,7 @@ export namespace Imports_ {
     
 }
 
-export type Imports_ = _pi.Dictionary<Imports_.D>
+export type Imports_ = p_di.Dictionary<Imports_.D>
 
 export namespace Globals_ {
     
@@ -97,7 +98,7 @@ export namespace Globals_ {
         
     }
     
-    export type text_types = _pi.Dictionary<text_types.D>
+    export type text_types = p_di.Dictionary<text_types.D>
     
 }
 
@@ -119,7 +120,7 @@ export namespace Modules_ {
     
 }
 
-export type Modules_ = _pi.Dictionary<Modules_.D>
+export type Modules_ = p_di.Dictionary<Modules_.D>
 
 export namespace Value_ {
     
@@ -175,7 +176,7 @@ export namespace Value_ {
         
         export namespace internal {
             
-            export type l_entry = _pi.Circular_Dependency<Modules_.D>
+            export type l_entry = p_di.Circular_Dependency<Modules_.D>
             
             export type l_id = string
             
@@ -212,7 +213,7 @@ export namespace Value_ {
         
     }
     
-    export type group = _pi.Dictionary<group.D>
+    export type group = p_di.Dictionary<group.D>
     
     export namespace list {
         
@@ -234,7 +235,7 @@ export namespace Value_ {
         
     }
     
-    export type state = _pi.Dictionary<state.D>
+    export type state = p_di.Dictionary<state.D>
     
     export namespace text {
         
