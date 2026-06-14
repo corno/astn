@@ -1,25 +1,20 @@
-import * as pqi from 'pareto-core/dist/query_interface'
 import * as pci from 'pareto-core/dist/command_interface'
 
-
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
-import * as resources_pareto_stream from "pareto-stream/dist/interface/resources"
+import * as commands_pareto_stream from "pareto-stream/dist/interface/commands"
+import * as queries_pareto_stream from "pareto-stream/dist/interface/queries"
 
-export namespace queries {
-
-}
-
-export namespace commands {
+export namespace procedures {
 
     export type stream_in_to_stream_out = pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         {
-            'get instream data': resources_pareto_stream.queries.get_instream_data,
+            'get instream data': queries_pareto_stream.queries.get_instream_data,
         },
         {
-            'log error': resources_pareto_stream.commands.log_error
-            'log': resources_pareto_stream.commands.log
+            'log error': commands_pareto_stream.commands.log_error
+            'log': commands_pareto_stream.commands.log
         }
     >
 
@@ -30,7 +25,7 @@ export namespace commands {
             'read file': resources_pareto.filesystem_unrestricted.queries.read_file,
         },
         {
-            'log error': resources_pareto_stream.commands.log_error
+            'log error': commands_pareto_stream.commands.log_error
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
         }
     >

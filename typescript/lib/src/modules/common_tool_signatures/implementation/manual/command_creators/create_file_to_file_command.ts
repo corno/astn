@@ -2,7 +2,7 @@ import * as pt from 'pareto-core/dist/command'
 import * as pi from 'pareto-core/dist/interface'
 import p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
-import * as signatures from "../../../interface/signatures"
+import * as signatures from "../../../interface/commands"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
@@ -28,7 +28,7 @@ export type Creator = (
             'document resource identifier': string
         }
     >,
-) => signatures.commands.file_in_to_file_out
+) => signatures.procedures.file_in_to_file_out
 
 
 export const $$: Creator = (deserializer) => pt.command_procedure(

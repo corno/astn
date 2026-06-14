@@ -1,7 +1,7 @@
 import * as pt from 'pareto-core/dist/command'
 import * as pi from 'pareto-core/dist/interface'
 
-import * as signatures from "../../../modules/common_tool_signatures/interface/signatures"
+import * as signatures from "../../../modules/common_tool_signatures/interface/commands"
 
 //data types
 
@@ -10,6 +10,6 @@ import { $$ as create_stream_to_stream_command } from "../../../modules/common_t
 import { $$ as my_func } from "../text_to_text/validate_astn"
 
 
-export const $$: signatures.commands.stream_in_to_stream_out = create_stream_to_stream_command(
+export const $$: signatures.procedures.stream_in_to_stream_out = create_stream_to_stream_command(
     my_func
 )
