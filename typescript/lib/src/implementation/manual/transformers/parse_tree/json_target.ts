@@ -41,7 +41,7 @@ export const Value: signatures.Value = ($) => pt.decide.state($.type, ($): d_out
                 case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($): d_out.Value => {
                     switch ($[0]) {
                         case 'missing': return pt.ss($, ($) => ['null', null])
-                        case 'set': return pt.ss($, ($): d_out.Value => ['array', pt.list.literal<d_out.Value>([
+                        case 'set': return pt.ss($, ($): d_out.Value => ['array', pt.literal.list<d_out.Value>([
                             ['string', $.option.token.value],
                             Value($.value),
                         ])])
@@ -51,7 +51,7 @@ export const Value: signatures.Value = ($) => pt.decide.state($.type, ($): d_out
                 case 'nothing': return pt.ss($, ($) => ['null', null])
                 case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'set': return pt.ss($, ($) => ['array', pt.list.literal([
+                        case 'set': return pt.ss($, ($) => ['array', pt.literal.list([
                             Value($.value),
                         ])])
                         case 'not set': return pt.ss($, ($) => ['null', null])

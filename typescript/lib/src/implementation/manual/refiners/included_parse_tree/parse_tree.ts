@@ -1,4 +1,3 @@
-// import * as p_di from 'pareto-core/dist/data/interface'
 // import * as pt from 'pareto-core/dist/assign'
 
 
@@ -38,25 +37,25 @@
 //                 case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
 //                     switch ($[0]) {
 //                         case 'set': return pt.ss($, ($) => Value($.value, abort, $p))
-//                         case 'not set': return pt.ss($, ($) => pt.list.literal([]))
+//                         case 'not set': return pt.ss($, ($) => pt.literal.list([]))
 //                         default: return pt.au($[0])
 //                     }
 //                 }))
 //                 case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($) => {
 //                     switch ($[0]) {
-//                         case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+//                         case 'missing': return pt.ss($, ($) => pt.literal.list([]))
 //                         case 'set':return pt.ss($, ($) => Value($.value, abort, $p))
 //                         default: return pt.au($[0])
 //                     }
 //                 }))
-//                 case 'text': return pt.ss($, ($) => pt.list.literal([]))
+//                 case 'text': return pt.ss($, ($) => pt.literal.list([]))
 //                 default: return pt.au($[0])
 //             }
 //         }))
-//         case 'include': return pt.ss($, ($) => pt.list.literal([
+//         case 'include': return pt.ss($, ($) => pt.literal.list([
 //             $,
 //         ]))
-//         case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+//         case 'missing': return pt.ss($, ($) => pt.literal.list([]))
 //         default: return pt.au($[0])
 //     }
 // })
@@ -66,7 +65,7 @@
 // export const ID_Value_Pairs: p_ri.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
 //     ($) => $.value.__decide(
 //         ($) => Value($),
-//         () => pt.list.literal([])
+//         () => pt.literal.list([])
 //     ),
-//     () => pt.list.literal([])
+//     () => pt.literal.list([])
 // )))

@@ -23,7 +23,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.
                         $,
                         ($) => ({
                             'option': 'insert',
-                            'value': ['group', ['verbose', _p.dictionary.literal(
+                            'value': ['group', ['verbose', _p.literal.dictionary(
                                 {
                                     "location": _p_change_context(
                                         $['location'],
@@ -47,7 +47,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.
                         $,
                         ($) => ({
                             'option': 'replace',
-                            'value': ['group', ['verbose', _p.dictionary.literal(
+                            'value': ['group', ['verbose', _p.literal.dictionary(
                                 {
                                     "range": _p_change_context(
                                         $['range'],
@@ -71,7 +71,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.
                         $,
                         ($) => ({
                             'option': 'delete',
-                            'value': ['group', ['verbose', _p.dictionary.literal(
+                            'value': ['group', ['verbose', _p.literal.dictionary(
                                 {
                                     "range": _p_change_context(
                                         $['range'],
@@ -92,7 +92,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', _p.list.from.
     )],
 )]
 
-export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['verbose', _p.literal.dictionary(
     {
         "start": _p_change_context(
             $['start'],
@@ -118,7 +118,7 @@ export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sort
     }],
 )]
 
-export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.literal.dictionary(
     {
         "line": _p_change_context(
             $['line'],

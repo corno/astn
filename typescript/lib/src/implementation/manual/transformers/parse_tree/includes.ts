@@ -1,4 +1,3 @@
-import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/transformer/implementation'
 import * as p_ti from 'pareto-core/dist/transformer/interface'
 
@@ -7,10 +6,10 @@ import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tr
 import * as d_out from "../../../../interface/to_be_generated/includes"
 
 
-export const Document: p_ti.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.list.nested_literal_old([
+export const Document: p_ti.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.literal.nested_list([
     $.header.__decide(
         ($) => Value($.value),
-        () => pt.list.literal([])
+        () => pt.literal.list([])
     ),
     Value($.content),
 ])
@@ -28,29 +27,29 @@ export const Value: p_ti.Transformer<d_in.Value, d_out.Included_Files> = ($) => 
                     }
                 }))
                 case 'list': return pt.ss($, ($) => Items($.items))
-                case 'nothing': return pt.ss($, ($) => pt.list.literal([]))
+                case 'nothing': return pt.ss($, ($) => pt.literal.list([]))
                 case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'set': return pt.ss($, ($) => Value($.value))
-                        case 'not set': return pt.ss($, ($) => pt.list.literal([]))
+                        case 'not set': return pt.ss($, ($) => pt.literal.list([]))
                         default: return pt.au($[0])
                     }
                 }))
                 case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($) => {
                     switch ($[0]) {
-                        case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+                        case 'missing': return pt.ss($, ($) => pt.literal.list([]))
                         case 'set':return pt.ss($, ($) => Value($.value))
                         default: return pt.au($[0])
                     }
                 }))
-                case 'text': return pt.ss($, ($) => pt.list.literal([]))
+                case 'text': return pt.ss($, ($) => pt.literal.list([]))
                 default: return pt.au($[0])
             }
         }))
-        case 'include': return pt.ss($, ($) => pt.list.literal([
+        case 'include': return pt.ss($, ($) => pt.literal.list([
             $,
         ]))
-        case 'missing': return pt.ss($, ($) => pt.list.literal([]))
+        case 'missing': return pt.ss($, ($) => pt.literal.list([]))
         default: return pt.au($[0])
     }
 })
@@ -60,7 +59,7 @@ export const Items: p_ti.Transformer<d_in.Items, d_out.Included_Files> = ($) => 
 export const ID_Value_Pairs: p_ti.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
     ($) => $.value.__decide(
         ($) => Value($),
-        () => pt.list.literal([])
+        () => pt.literal.list([])
     ),
-    () => pt.list.literal([])
+    () => pt.literal.list([])
 )))

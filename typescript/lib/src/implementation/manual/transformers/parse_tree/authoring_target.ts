@@ -19,7 +19,7 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($): d
     'id': $.id.token.value,
     'value': $.assignment.__decide(
         ($) => pt.optional.from.optional($.value).map(($) => Value($)),
-        () => pt.optional.literal.not_set()
+        () => pt.literal.not_set()
     )
 }))
 
@@ -125,7 +125,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => pt.decide.state(
 export const Value: signatures.Value = ($) => {
     return {
         'metadata': {
-            'comments': pt.list.literal([]),
+            'comments': pt.literal.list([]),
         },
         'data': pt.decide.state($.type, ($): d_out.Value.data => {
             switch ($[0]) {
