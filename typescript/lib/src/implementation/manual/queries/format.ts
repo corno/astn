@@ -1,5 +1,5 @@
 import * as p_ from 'pareto-core/dist/implementation/query'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_super_query_result from 'pareto-core/dist/implementation/query/super_query_result'
 
 import * as signatures from "../../../interface/queries"
 
@@ -22,7 +22,7 @@ import * as t_authoring_target_to_fp from "../transformers/authoring_target/foun
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const $$: signatures.query_functions.process_file_data = p_.query_function(
-    ($d, $s, $q): p_.Query_Result<d_process_file_data.Result, d_process_file_data.Error> => p_.refine<d_parse_tree.Document, d_fp.Phrase>(
+    ($d, $s, $q): p_.Query_Result<d_process_file_data.Result, d_process_file_data.Error> => p_super_query_result(p_.refine<d_parse_tree.Document, d_fp.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
             ($) => abort(sh.ph.composed([
@@ -43,7 +43,7 @@ export const $$: signatures.query_functions.process_file_data = p_.query_functio
                 'tab size': 4,
             },
         )
-    ).transform(
+    )).transform(
         ($) => ({
             'data': t_fp_to_loc.Paragraph(
                 t_authoring_target_to_fp.Document(
