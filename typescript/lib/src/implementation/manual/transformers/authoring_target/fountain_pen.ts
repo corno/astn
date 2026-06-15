@@ -1,7 +1,5 @@
-import * as pt from 'pareto-core/dist/assign'
+import * as pt from 'pareto-core/dist/transformer/implementation'
 import * as p_ti from 'pareto-core/dist/transformer/interface'
-import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
-import * as p_di from 'pareto-core/dist/data/interface'
 
 //data types
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
