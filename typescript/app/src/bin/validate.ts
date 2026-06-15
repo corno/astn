@@ -6,12 +6,18 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/validat
 
 ph.run_main_command(
     ($r) => procedure(
-        null,
+        {
+            'serialization parameters': {
+                'indentation': "   ",
+                'newline': "\n",
+            },
+            'tab size': 4,
+        },
         {
             'get instream data': $r.stream.queries['get instream data']
         },
         {
-            'log': $r.stream.commands['log'],
+            'write to stdout': $r.stream.commands['write to stdout'],
             'log error': $r.stream.commands['log error']
         },
     ),

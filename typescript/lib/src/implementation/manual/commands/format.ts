@@ -1,13 +1,33 @@
+import * as p_ from 'pareto-core/dist/implementation/command'
 
-import * as signatures from "../../../modules/common_tool_signatures/interface/commands"
+import * as signatures from "../../../interface/commands"
 
 //data types
+import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 
 //dependencies
-import { $$ as create_file_to_file_command } from "../../../modules/common_tool_signatures/implementation/manual/command_creators/create_file_to_file_command"
-import { $$ as my_func } from "../text_to_text/format"
+import * as c_file_to_file from "pareto-common/dist/implementation/manual/commands/file_to_file"
+import * as q_genereer_jaarverslag from "../queries/format"
 
-
-export const $$: signatures.procedures.file_in_to_file_out = create_file_to_file_command(
-    my_func
-)
+export const $$: signatures.procedures.process_file_data = p_.command_procedure(
+    ($d, $s, $q, $c) => [
+        c_file_to_file.$$(
+            null,
+            {
+                'read file': $q['read file'],
+                'process data': q_genereer_jaarverslag.$$(
+                    $s,
+                    null,
+                )
+            },
+            {
+                'log error': $c['log error'],
+                'write file': $c['write file'],
+            },
+        ).execute(
+            {
+                'arguments': $d.arguments
+            },
+            ($): d_main.Error => $
+        ),
+    ])

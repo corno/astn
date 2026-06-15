@@ -3,7 +3,7 @@ import * as p_i from 'pareto-core/dist/interface/transformer'
 
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_out from "../../../../interface/to_be_generated/includes"
+import * as d_out from "../../../../interface/data/includes"
 
 
 export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($) => pt.literal.nested_list([

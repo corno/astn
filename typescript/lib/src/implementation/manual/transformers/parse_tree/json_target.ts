@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core/dist/implementation/transformer'
 
-import * as signatures from "../../../../interface/signatures/transformers/parse_tree/json_target"
+import * as signatures from "../../../../interface/transformers/parse_tree/json_target"
 
 import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
 

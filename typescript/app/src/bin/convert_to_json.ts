@@ -6,7 +6,13 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/convert
 
 ph.run_main_command(
     ($r) => procedure(
-        null,
+            {
+                'serialization parameters': {
+                    'indentation': "   ",
+                    'newline': "\n",
+                },
+                'tab size': 4,
+            },
         {
             'read file': $r['filesystem unrestricted'].queries['read file'],
         },

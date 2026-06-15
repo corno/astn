@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core/dist/implementation/transformer'
 
-import * as signatures from "../../../../interface/signatures/transformers/parse_tree/authoring_target"
+import * as signatures from "../../../../interface/transformers/parse_tree/authoring_target"
 
 import * as d_out from "../../../../interface/generated/liana/schemas/authoring_target/data"
 
