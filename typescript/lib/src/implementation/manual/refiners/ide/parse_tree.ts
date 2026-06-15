@@ -3,27 +3,27 @@
 
 // import * as signatures from "../../../../interface/signatures/refiners/ide/parse_tree"
 
-// export const Whitespace: signatures.Whitespace = ($, $p) => pt.literal.list([
+// export const Whitespace: signatures.Whitespace = ($, $p) => p_.literal.list([
 //     //FIXME
 // ])
 
-// export const Trivia: signatures.Trivia = ($, $p) => pt.literal.nested_list([
+// export const Trivia: signatures.Trivia = ($, $p) => p_.literal.nested_list([
 //     Whitespace($['leading whitespace'], $p),
-//     pt.list.from.list(
+//     p_.list.from.list(
 //         $['comments'],
 //     ).flatten(
-//         ($) => pt.literal.nested_list([
+//         ($) => p_.literal.nested_list([
 //             //FIXME
-//             // pt.decide.state($['type'], ($) => {
+//             // p_.decide.state($['type'], ($) => {
 //             //     switch ($[0]) {
-//             //         case 'line': return pt.ss($, ($) => pt.literal.list([]))
-//             //         case 'block': return pt.ss($, ($) => pt.literal.list([]))
-//             //         default: return pt.au($[0])        
+//             //         case 'line': return p_.ss($, ($) => p_.literal.list([]))
+//             //         case 'block': return p_.ss($, ($) => p_.literal.list([]))
+//             //         default: return p_.au($[0])        
 //             //     }
 //             // }),
-//             // pt.literal.list([$['content']]),
-//             // pt.literal.list([$['begin']]),
-//             // pt.literal.list([$['end']]),
+//             // p_.literal.list([$['content']]),
+//             // p_.literal.list([$['begin']]),
+//             // p_.literal.list([$['end']]),
 //             Whitespace($['trailing whitespace'], $p),
 //         ])
 //     ),
@@ -32,107 +32,107 @@
 
 // export const Structural_Token: signatures.Structural_Token = ($, $p) => Trivia($['trailing trivia'], $p)
 
-// export const String: signatures.Text = ($, $p) => pt.literal.nested_list([
+// export const String: signatures.Text = ($, $p) => p_.literal.nested_list([
 //     Trivia($['trailing trivia'], $p),
 //     //FIX right type
 // ])
 
-// export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => pt.list.from.list(
+// export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => p_.list.from.list(
 //     $,
 // ).flatten(
-//     ($) => pt.literal.nested_list([
+//     ($) => p_.literal.nested_list([
 //         String($.id, $p),
 //         $.assignment.__decide(
-//             ($) => pt.literal.nested_list([
+//             ($) => p_.literal.nested_list([
 //                 Structural_Token($[':'], $p),
 //                 Value($.value, $p),
 //             ]),
-//             () => pt.literal.nested_list([])
+//             () => p_.literal.nested_list([])
 //         ),
 //     ])
 // )
 
 
-// export const Items: signatures.Items = ($, $p) => pt.list.from.list(
+// export const Items: signatures.Items = ($, $p) => p_.list.from.list(
 //     $,
 // ).flatten(
 //     ($) => Value($.value, $p)
 // )
 
-// export const Value: signatures.Value = ($, $p) => pt.decide.state($.type, ($) => {
+// export const Value: signatures.Value = ($, $p) => p_.decide.state($.type, ($) => {
 //     switch ($[0]) {
-//         case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($) => {
+//         case 'concrete': return p_.ss($, ($) => p_.decide.state($, ($) => {
 //             switch ($[0]) {
-//                 case 'dictionary': return pt.ss($, ($) => pt.literal.nested_list([
+//                 case 'dictionary': return p_.ss($, ($) => p_.literal.nested_list([
 //                     Structural_Token($['{'], $p),
 //                     ID_Value_Pairs($['entries'], $p),
 //                     Structural_Token($['}'], $p),
 //                 ]))
-//                 case 'group': return pt.ss($, ($) => pt.decide.state($, ($) => {
+//                 case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
 //                     switch ($[0]) {
-//                         case 'concise': return pt.ss($, ($) => pt.literal.nested_list([
+//                         case 'concise': return p_.ss($, ($) => p_.literal.nested_list([
 //                             Structural_Token($['<'], $p),
 //                             Items($['items'], $p),
 //                             Structural_Token($['>'], $p),
 //                         ]))
-//                         case 'verbose': return pt.ss($, ($) => pt.literal.nested_list([
+//                         case 'verbose': return p_.ss($, ($) => p_.literal.nested_list([
 //                             Structural_Token($['('], $p),
 //                             ID_Value_Pairs($['entries'], $p),
 //                             Structural_Token($[')'], $p),
 //                         ]))
-//                         default: return pt.au($[0])
+//                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'list': return pt.ss($, ($) => pt.literal.nested_list([
+//                 case 'list': return p_.ss($, ($) => p_.literal.nested_list([
 //                     Structural_Token($['['], $p),
 //                     Items($.items, $p),
 //                     Structural_Token($[']'], $p),
 //                 ]))
-//                 case 'nothing': return pt.ss($, ($) => Structural_Token($['~'], $p))
-//                 case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
+//                 case 'nothing': return p_.ss($, ($) => Structural_Token($['~'], $p))
+//                 case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
 //                     switch ($[0]) {
-//                         case 'set': return pt.ss($, ($) => pt.literal.nested_list([
+//                         case 'set': return p_.ss($, ($) => p_.literal.nested_list([
 //                             Structural_Token($['*'], $p),
 //                             Value($['value'], $p),
 //                         ]))
-//                         default: return pt.au($[0])
+//                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'state': return pt.ss($, ($) => pt.literal.nested_list<d_out.Text_Edits.L>([
+//                 case 'state': return p_.ss($, ($) => p_.literal.nested_list<d_out.Text_Edits.L>([
 //                     Structural_Token($['|'], $p),
-//                     pt.decide.state($.status, ($) => {
+//                     p_.decide.state($.status, ($) => {
 //                         switch ($[0]) {
-//                             case 'missing': return pt.ss($, ($) => Structural_Token($['#'], $p))
-//                             case 'set': return pt.ss($, ($) => pt.literal.nested_list([
+//                             case 'missing': return p_.ss($, ($) => Structural_Token($['#'], $p))
+//                             case 'set': return p_.ss($, ($) => p_.literal.nested_list([
 //                                 String($['option'], $p),
 //                                 Value($['value'], $p),
 //                             ]))
-//                             default: return pt.au($[0])
+//                             default: return p_.au($[0])
 //                         }
 //                     })
 //                 ]))
-//                 case 'text': return pt.ss($, ($) => pt.literal.list([]))
+//                 case 'text': return p_.ss($, ($) => p_.literal.list([]))
 
-//                 default: return pt.au($[0])
+//                 default: return p_.au($[0])
 //             }
 //         }))
-//         case 'include': return pt.ss($, ($) => pt.literal.nested_list([
+//         case 'include': return p_.ss($, ($) => p_.literal.nested_list([
 //             Structural_Token($['@'], $p),
 //             String($['path'], $p),
 //         ]))
-//         case 'missing': return pt.ss($, ($) => Structural_Token($['#'], $p))
-//         default: return pt.au($[0])
+//         case 'missing': return p_.ss($, ($) => Structural_Token($['#'], $p))
+//         default: return p_.au($[0])
 //     }
 // })
 
-// export const Document: signatures.Document = ($, $p) => pt.literal.nested_list([
+// export const Document: signatures.Document = ($, $p) => p_.literal.nested_list([
 
 //     $.header.__decide(
-//         ($) => pt.literal.nested_list([
+//         ($) => p_.literal.nested_list([
 //             Structural_Token($['!'], $p),
 //             Value($.value, $p)
 //         ]),
-//         () => pt.literal.nested_list([])
+//         () => p_.literal.nested_list([])
 //     ),
 //     Value($.content, $p),
 // ])

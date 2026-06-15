@@ -12,59 +12,59 @@
 // }
 
 // export const Document: p_i.Refiner_With_Parameter<d_in.Document, Error, d_out.Document, Parameters> = ($, abort, $p) => ({
-//     'header': pt.optional.from.optional($.header).map(($) => ({
+//     'header': p_.optional.from.optional($.header).map(($) => ({
 //         '!': $['!'],
 //         'value': Value($.value, abort, $p),
 //     })),
 //     'content': Value($.content, abort, $p),
 // })
 
-// export const Value: p_i.Refiner_With_Parameter<d_in.Value, Error, d_out.Value, Parameters> = ($, abort, $p) => pt.decide.state($.type, ($): d_out.Value => {
+// export const Value: p_i.Refiner_With_Parameter<d_in.Value, Error, d_out.Value, Parameters> = ($, abort, $p) => p_.decide.state($.type, ($): d_out.Value => {
 //     switch ($[0]) {
-//         case 'concrete': return pt.ss($, ($) => pt.decide.state($, ($):d_out.Value => {
+//         case 'concrete': return p_.ss($, ($) => p_.decide.state($, ($):d_out.Value => {
 //             switch ($[0]) {
-//                 case 'dictionary': return pt.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
-//                 case 'group': return pt.ss($, ($) => pt.decide.state($, ($) => {
+//                 case 'dictionary': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
+//                 case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
 //                     switch ($[0]) {
-//                         case 'concise': return pt.ss($, ($) => Items($.items, abort, $p))
-//                         case 'verbose': return pt.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
-//                         default: return pt.au($[0])
+//                         case 'concise': return p_.ss($, ($) => Items($.items, abort, $p))
+//                         case 'verbose': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
+//                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'list': return pt.ss($, ($) => Items($.items, abort, $p))
-//                 case 'nothing': return pt.ss($, ($) => ))
-//                 case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
+//                 case 'list': return p_.ss($, ($) => Items($.items, abort, $p))
+//                 case 'nothing': return p_.ss($, ($) => ))
+//                 case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
 //                     switch ($[0]) {
-//                         case 'set': return pt.ss($, ($) => Value($.value, abort, $p))
-//                         case 'not set': return pt.ss($, ($) => pt.literal.list([]))
-//                         default: return pt.au($[0])
+//                         case 'set': return p_.ss($, ($) => Value($.value, abort, $p))
+//                         case 'not set': return p_.ss($, ($) => p_.literal.list([]))
+//                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'state': return pt.ss($, ($) => pt.decide.state($.status, ($) => {
+//                 case 'state': return p_.ss($, ($) => p_.decide.state($.status, ($) => {
 //                     switch ($[0]) {
-//                         case 'missing': return pt.ss($, ($) => pt.literal.list([]))
-//                         case 'set':return pt.ss($, ($) => Value($.value, abort, $p))
-//                         default: return pt.au($[0])
+//                         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
+//                         case 'set':return p_.ss($, ($) => Value($.value, abort, $p))
+//                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'text': return pt.ss($, ($) => pt.literal.list([]))
-//                 default: return pt.au($[0])
+//                 case 'text': return p_.ss($, ($) => p_.literal.list([]))
+//                 default: return p_.au($[0])
 //             }
 //         }))
-//         case 'include': return pt.ss($, ($) => pt.literal.list([
+//         case 'include': return p_.ss($, ($) => p_.literal.list([
 //             $,
 //         ]))
-//         case 'missing': return pt.ss($, ($) => pt.literal.list([]))
-//         default: return pt.au($[0])
+//         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
+//         default: return p_.au($[0])
 //     }
 // })
 
-// export const Items: p_i.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => pt.list.from.list($).flatten(($) => Value($.value))
+// export const Items: p_i.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => p_.list.from.list($).flatten(($) => Value($.value))
 
-// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => pt.list.from.list($).flatten(($ => $.assignment.__decide(
+// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => p_.list.from.list($).flatten(($ => $.assignment.__decide(
 //     ($) => $.value.__decide(
 //         ($) => Value($),
-//         () => pt.literal.list([])
+//         () => p_.literal.list([])
 //     ),
-//     () => pt.literal.list([])
+//     () => p_.literal.list([])
 // )))

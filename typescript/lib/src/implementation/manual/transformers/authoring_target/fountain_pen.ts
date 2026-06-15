@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
 //data types
@@ -36,26 +36,26 @@ export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
 
 
 export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
-    pt.decide.state($.data, ($) => {
+    p_.decide.state($.data, ($) => {
         switch ($[0]) {
-            case 'include': return pt.ss($, ($) => sh.ph.composed([
+            case 'include': return p_.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("@ "),
                 Token_Trivia($['@']),
                 sh.ph.serialize(t_primitives_to_text.Quoted($.path, {
                     'add delimiters': true,
                 })),
             ]))
-            case 'missing': return pt.ss($, ($) => sh.ph.composed([
+            case 'missing': return p_.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("#"),
                 Token_Trivia($['#']),
             ]))
-            case 'concrete': return pt.ss($, ($) => pt.decide.state($.type, ($) => pt.decide.state($, ($) => {
+            case 'concrete': return p_.ss($, ($) => p_.decide.state($.type, ($) => p_.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return pt.ss($, ($) => sh.ph.composed([
+                    case 'dictionary': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.nothing(), //we always want a newline here
                         Token_Trivia($['{']),
                         sh.ph.indent(
-                            sh.pg.sentences(pt.list.from.list(
+                            sh.pg.sentences(p_.list.from.list(
                                 $.entries,
                             ).map(
                                 ($) => sh.sentence([
@@ -74,9 +74,9 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                         $p['write delimiters'] ? sh.ph.literal("}") : sh.ph.nothing(),
                         Token_Trivia($['}']),
                     ]))
-                    case 'group': return pt.ss($, ($) => pt.decide.state($, ($) => {
+                    case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'concise': return pt.ss($, ($) => sh.ph.composed([
+                            case 'concise': return p_.ss($, ($) => sh.ph.composed([
                                 // $p['in concise group']
                                 //     ? sh.ph.nothing()
                                 //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
@@ -95,12 +95,12 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(), //for now, always write the >, even in concise groups. Need to implement a proper parser first
                                 Token_Trivia($['>']),
                             ]))
-                            case 'verbose': return pt.ss($, ($) => sh.ph.composed([
+                            case 'verbose': return p_.ss($, ($) => sh.ph.composed([
                                 sh.ph.composed([
                                     $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.nothing(), //we always want a newline here
                                     Token_Trivia($['(']),
                                     sh.ph.indent(
-                                        sh.pg.sentences(pt.list.from.list(
+                                        sh.pg.sentences(p_.list.from.list(
                                             $.properties,
                                         ).map(
                                             ($) => sh.sentence([
@@ -121,10 +121,10 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                     Token_Trivia($[')']),
                                 ])
                             ]))
-                            default: return pt.au($[0])
+                            default: return p_.au($[0])
                         }
                     }))
-                    case 'list': return pt.ss($, ($) => sh.ph.composed([
+                    case 'list': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("[") : sh.ph.nothing(),
                         Token_Trivia($['[']),
                         sh.ph.composed($.items.__l_map(($) => sh.ph.composed([
@@ -136,13 +136,13 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                         $p['write delimiters'] ? sh.ph.literal(" ]") : sh.ph.nothing(),
                         Token_Trivia($[']']),
                     ]))
-                    case 'optional': return pt.ss($, ($) => pt.decide.state($, ($) => {
+                    case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'not set': return pt.ss($, ($) => sh.ph.composed([
+                            case 'not set': return p_.ss($, ($) => sh.ph.composed([
                                 sh.ph.literal("_"),
                                 Token_Trivia($['_']),
                             ]))
-                            case 'set': return pt.ss($, ($) => sh.ph.composed([
+                            case 'set': return p_.ss($, ($) => sh.ph.composed([
                                 sh.ph.literal("* "),
                                 Token_Trivia($['*']),
                                 Value($.value, {
@@ -150,23 +150,23 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 }),
                             ]))
 
-                            default: return pt.au($[0])
+                            default: return p_.au($[0])
                         }
                     }))
-                    case 'nothing': return pt.ss($, ($) => sh.ph.composed([
+                    case 'nothing': return p_.ss($, ($) => sh.ph.composed([
                         sh.ph.literal("~"),
                         Token_Trivia($['~']),
                     ]))
-                    case 'state': return pt.ss($, ($) => sh.ph.composed([
+                    case 'state': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
                         Token_Trivia($['|']),
-                        pt.decide.state($.status, ($) => {
+                        p_.decide.state($.status, ($) => {
                             switch ($[0]) {
-                                case 'missing': return pt.ss($, ($) => sh.ph.composed([
+                                case 'missing': return p_.ss($, ($) => sh.ph.composed([
                                     Token_Trivia($['#']),
                                     sh.ph.literal("#"),
                                 ]))
-                                case 'set': return pt.ss($, ($) => sh.ph.composed([
+                                case 'set': return p_.ss($, ($) => sh.ph.composed([
                                     sh.ph.serialize(t_primitives_to_text.Backticked($.option, {
                                         'add delimiters': true,
                                     })),
@@ -175,33 +175,33 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                         'write delimiters': true,
                                     }),
                                 ]))
-                                default: return pt.au($[0])
+                                default: return p_.au($[0])
                             }
                         })
                     ]))
-                    case 'text': return pt.ss($, ($) => {
+                    case 'text': return p_.ss($, ($) => {
                         const value = $.value // fixme: move value to the inside of the delimiter states
                         return sh.ph.composed([
-                            pt.decide.state($.delimiter, ($) => {
+                            p_.decide.state($.delimiter, ($) => {
                                 switch ($[0]) {
-                                    case 'apostrophe': return pt.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
+                                    case 'apostrophe': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
                                         'add delimiters': $p['write delimiters'],
                                     })))
-                                    case 'quote': return pt.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
+                                    case 'quote': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
                                         'add delimiters': $p['write delimiters'],
                                     })))
-                                    case 'none': return pt.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
-                                    default: return pt.au($[0])
+                                    case 'none': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
+                                    default: return p_.au($[0])
                                 }
                             }),
                             Token_Trivia($['trivia']),
                         ])
                     })
 
-                    default: return pt.au($[0])
+                    default: return p_.au($[0])
                 }
             })))
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
 ])

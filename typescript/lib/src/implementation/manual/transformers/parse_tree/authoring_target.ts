@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 
 import * as signatures from "../../../../interface/transformers/parse_tree/authoring_target"
 
@@ -7,7 +7,7 @@ import * as d_out from "../../../../interface/generated/liana/schemas/authoring_
 
 export const Document: signatures.Document = ($) => {
     return {
-        'header': pt.optional.from.optional(
+        'header': p_.optional.from.optional(
             $.header
         ).map(($) => Value($.value)),
         'content': Value($.content)
@@ -18,8 +18,8 @@ export const Document: signatures.Document = ($) => {
 export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($): d_out.ID_Value_Pairs.L => ({
     'id': $.id.token.value,
     'value': $.assignment.__decide(
-        ($) => pt.optional.from.optional($.value).map(($) => Value($)),
-        () => pt.literal.not_set()
+        ($) => p_.optional.from.optional($.value).map(($) => Value($)),
+        () => p_.literal.not_set()
     )
 }))
 
@@ -28,89 +28,89 @@ export const Structural_Token: signatures.Structural_Token = ($) => ({
     'comments': $['trailing trivia'].comments
 })
 
-export const Concrete_Value: signatures.Concrete_Value = ($) => pt.decide.state($, ($): d_out.Value.data.concrete => {
+export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state($, ($): d_out.Value.data.concrete => {
     switch ($[0]) {
-        case 'dictionary': return pt.ss($, ($) => ({
+        case 'dictionary': return p_.ss($, ($) => ({
             'type': ['dictionary', {
                 '{': Structural_Token($['{']),
                 'entries': ID_Value_Pairs($.entries),
                 '}': Structural_Token($['}']),
             }]
         }))
-        case 'group': return pt.ss($, ($) => ({
-            'type': ['group', pt.decide.state($, ($): d_out.Value.data.concrete.type_.group => {
+        case 'group': return p_.ss($, ($) => ({
+            'type': ['group', p_.decide.state($, ($): d_out.Value.data.concrete.type_.group => {
                 switch ($[0]) {
-                    case 'concise': return pt.ss($, ($) => {
+                    case 'concise': return p_.ss($, ($) => {
                         return ['concise', {
                             '<': Structural_Token($['<']),
                             'properties': Items($.properties),
                             '>': Structural_Token($['>']),
                         }]
                     })
-                    case 'verbose': return pt.ss($, ($) => {
+                    case 'verbose': return p_.ss($, ($) => {
                         return ['verbose', {
                             '(': Structural_Token($['(']),
                             'properties': ID_Value_Pairs($.properties),
                             ')': Structural_Token($[')']),
                         }]
                     })
-                    default: return pt.au($[0])
+                    default: return p_.au($[0])
                 }
             })]
         }))
-        case 'list': return pt.ss($, ($): d_out.Value.data.concrete => ({
+        case 'list': return p_.ss($, ($): d_out.Value.data.concrete => ({
             'type': ['list', {
                 '[': Structural_Token($['[']),
                 'items': Items($.items),
                 ']': Structural_Token($[']']),
             }]
         }))
-        case 'state': return pt.ss($, ($): d_out.Value.data.concrete => ({
+        case 'state': return p_.ss($, ($): d_out.Value.data.concrete => ({
             'type': ['state', {
                 '|': Structural_Token($['|']),
-                'status': pt.decide.state($.status, ($): d_out.Value.data.concrete.type_.state.status => {
+                'status': p_.decide.state($.status, ($): d_out.Value.data.concrete.type_.state.status => {
                     switch ($[0]) {
-                        case 'missing': return pt.ss($, ($): d_out.Value.data.concrete.type_.state.status => ['missing', {
+                        case 'missing': return p_.ss($, ($): d_out.Value.data.concrete.type_.state.status => ['missing', {
                             '#': Structural_Token($['#']),
                         }])
-                        case 'set': return pt.ss($, ($): d_out.Value.data.concrete.type_.state.status => ['set', {
+                        case 'set': return p_.ss($, ($): d_out.Value.data.concrete.type_.state.status => ['set', {
                             'option': $.option.token.value,
                             'value': Value($.value)
                         }])
-                        default: return pt.au($[0])
+                        default: return p_.au($[0])
                     }
                 })
             }]
         }))
-        case 'nothing': return pt.ss($, ($): d_out.Value.data.concrete => ({
+        case 'nothing': return p_.ss($, ($): d_out.Value.data.concrete => ({
             'type': ['nothing', {
                 '~': Structural_Token($['~']),
             }]
         }))
-        case 'optional': return pt.ss($, ($): d_out.Value.data.concrete => ({
-            'type': ['optional', pt.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
+        case 'optional': return p_.ss($, ($): d_out.Value.data.concrete => ({
+            'type': ['optional', p_.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
                 switch ($[0]) {
-                    case 'set': return pt.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', {
+                    case 'set': return p_.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', {
                         '*': Structural_Token($['*']),
                         'value': Value($.value)
                     }])
-                    case 'not set': return pt.ss($, ($): d_out.Value.data.concrete.type_.optional => ['not set', {
+                    case 'not set': return p_.ss($, ($): d_out.Value.data.concrete.type_.optional => ['not set', {
                         '_': Structural_Token($['_']),
                     }])
-                    default: return pt.au($[0])
+                    default: return p_.au($[0])
                 }
             })]
         }))
-        case 'text': return pt.ss($, ($) => ({
+        case 'text': return p_.ss($, ($) => ({
             'type': ['text', {
                 'value': $.token.value,
-                'delimiter': pt.decide.state($.token.type, ($) => {
+                'delimiter': p_.decide.state($.token.type, ($) => {
                     switch ($[0]) {
-                        case 'quoted': return pt.ss($, ($) => ['quote', null])
-                        case 'apostrophed': return pt.ss($, ($) => ['apostrophe', null])
-                        case 'undelimited': return pt.ss($, ($) => ['none', null])
-                        case 'backticked': return pt.ss($, ($) => ['quote', null])
-                        default: return pt.au($[0])
+                        case 'quoted': return p_.ss($, ($) => ['quote', null])
+                        case 'apostrophed': return p_.ss($, ($) => ['apostrophe', null])
+                        case 'undelimited': return p_.ss($, ($) => ['none', null])
+                        case 'backticked': return p_.ss($, ($) => ['quote', null])
+                        default: return p_.au($[0])
                     }
                 }),
                 'trivia': {
@@ -118,27 +118,27 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => pt.decide.state(
                 },
             }]
         }))
-        default: return pt.au($[0])
+        default: return p_.au($[0])
     }
 })
 
 export const Value: signatures.Value = ($) => {
     return {
         'metadata': {
-            'comments': pt.literal.list([]),
+            'comments': p_.literal.list([]),
         },
-        'data': pt.decide.state($.type, ($): d_out.Value.data => {
+        'data': p_.decide.state($.type, ($): d_out.Value.data => {
             switch ($[0]) {
-                case 'concrete': return pt.ss($, ($) => ['concrete', Concrete_Value($)])
+                case 'concrete': return p_.ss($, ($) => ['concrete', Concrete_Value($)])
 
-                case 'include': return pt.ss($, ($): d_out.Value.data => ['include', {
+                case 'include': return p_.ss($, ($): d_out.Value.data => ['include', {
                     '@': Structural_Token($['@']),
                     'path': $.path.token.value,
                 }])
-                case 'missing': return pt.ss($, ($): d_out.Value.data => ['missing', {
+                case 'missing': return p_.ss($, ($): d_out.Value.data => ['missing', {
                     '#': Structural_Token($['#']),
                 }])
-                default: return pt.au($[0])
+                default: return p_.au($[0])
             }
         })
     }
