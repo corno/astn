@@ -1,4 +1,4 @@
-import * as p_i from 'pareto-core/dist/transformer/interface'
+import * as p_i from 'pareto-core/dist/interface/transformer'
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"

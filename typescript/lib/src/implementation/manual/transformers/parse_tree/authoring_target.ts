@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/transformer/implementation'
+import * as pt from 'pareto-core/dist/implementation/transformer'
 
 import * as signatures from "../../../../interface/signatures/transformers/parse_tree/authoring_target"
 

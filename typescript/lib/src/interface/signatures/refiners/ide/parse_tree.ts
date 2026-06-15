@@ -1,4 +1,4 @@
-import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_ti from 'pareto-core/dist/interface/transformer'
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"

@@ -1,5 +1,5 @@
-import * as p_pi from 'pareto-core/dist/production/interface'
-import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
+import * as p_pi from 'pareto-core/dist/interface/production'
+import p_list_from_text from 'pareto-core/dist/implementation/specials/list_from_text'
 
 //data types
 import * as d_out from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_path/data"

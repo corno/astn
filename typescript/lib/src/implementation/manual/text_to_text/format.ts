@@ -1,4 +1,4 @@
-import * as p_ri from 'pareto-core/dist/refiner/interface'
+import * as p_ri from 'pareto-core/dist/interface/refiner'
 
 
 //data types

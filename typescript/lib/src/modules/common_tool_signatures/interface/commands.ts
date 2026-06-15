@@ -1,4 +1,4 @@
-import * as p_ci from 'pareto-core/dist/command/interface'
+import * as p_ci from 'pareto-core/dist/interface/command'
 
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
 import * as commands_pareto_stream from "pareto-stream/dist/interface/commands"
