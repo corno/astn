@@ -3,7 +3,7 @@
 
 // import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
-// import * as _p_sl from 'pareto-core/dist/select_static_lookup'
+// import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_static_lookup'
 
 // import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
