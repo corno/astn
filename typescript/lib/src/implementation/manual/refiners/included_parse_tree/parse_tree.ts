@@ -1,4 +1,3 @@
-// import * as pt from 'pareto-core/dist/assign'
 
 
 // import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"

@@ -1,5 +1,5 @@
 
-import * as p_i from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/__internals/Abort'
 
 import * as i_generic from "liana-core/dist/interface/to_be_generated/deserialize"
 

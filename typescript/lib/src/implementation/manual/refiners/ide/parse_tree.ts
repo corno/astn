@@ -1,4 +1,3 @@
-// import * as pt from 'pareto-core/dist/assign'
 
 // import * as d_out from "../../../../interface/generated/liana/schemas/ide/data"
 

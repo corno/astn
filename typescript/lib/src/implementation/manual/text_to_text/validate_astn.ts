@@ -1,4 +1,3 @@
-import * as pt from 'pareto-core/dist/assign'
 import * as p_ri from 'pareto-core/dist/refiner/interface'
 import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
 

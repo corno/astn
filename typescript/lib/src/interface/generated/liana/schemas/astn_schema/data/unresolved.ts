@@ -1,5 +1,5 @@
 
-import * as p_i from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/__internals/Abort'
 import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as i_location from "liana-core/dist/interface/to_be_generated/document_and_location"

@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_i from 'pareto-core/dist/transformer/interface'
 
 //data types
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
@@ -14,7 +14,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 //dependencies
 import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"
 
-export const Document: p_ti.Transformer<d_in.Document, d_out.Paragraph> = ($) => sh.pg.composed([
+export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => sh.pg.composed([
     $.header.__decide(
         ($) => sh.pg.sentences([
             sh.sentence([
@@ -35,7 +35,7 @@ export const Document: p_ti.Transformer<d_in.Document, d_out.Paragraph> = ($) =>
 ])
 
 
-export const Value: p_ti.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
+export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
     pt.decide.state($.data, ($) => {
         switch ($[0]) {
             case 'include': return pt.ss($, ($) => sh.ph.composed([
@@ -206,6 +206,6 @@ export const Value: p_ti.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Pa
     })
 ])
 
-export const Token_Trivia: p_ti.Transformer<d_in.Token_Trivia, d_out.Phrase> = ($) => sh.ph.composed([
+export const Token_Trivia: p_i.Transformer<d_in.Token_Trivia, d_out.Phrase> = ($) => sh.ph.composed([
     //FIXME
 ])
