@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
 
-import * as signatures from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
@@ -9,7 +9,7 @@ import * as d_main from "pareto-resources/dist/interface/data/temp_main"
 import * as c_file_to_file from "pareto-common/dist/implementation/manual/commands/file_to_file"
 import * as q_genereer_jaarverslag from "../queries/convert_to_json"
 
-export const $$: signatures.procedures.process_file_data = p_.command_procedure(
+export const $$: interface_.procedures.process_file_data = p_.command_procedure(
     ($d, $s, $q, $c) => [
         c_file_to_file.$$(
             null,
