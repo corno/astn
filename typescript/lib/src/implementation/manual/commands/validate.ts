@@ -30,4 +30,5 @@ export const $$: interface_.procedures.process_stream_data = p_.command_procedur
             },
             ($): d_main.Error => $
         ),
-    ])
+    ]
+)

@@ -30,4 +30,5 @@ export const $$: interface_.procedures.process_file_data = p_.command_procedure(
             },
             ($): d_main.Error => $
         ),
-    ])
+    ]
+)
