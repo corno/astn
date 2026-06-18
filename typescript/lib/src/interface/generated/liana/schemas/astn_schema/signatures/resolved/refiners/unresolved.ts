@@ -1,6 +1,7 @@
 
 import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
 import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_ri from 'pareto-core/dist/interface/refiner'
 
 import * as i_generic from "liana-core/dist/interface/data/resolve"
 
@@ -96,8 +97,8 @@ export type Value_ = (
     context: Value_.I,
     abort: p_i.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': p_di.static_lookup.Acyclic<Value_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': p_di.static_lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': p_ri.lookup.Acyclic<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': p_ri.lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -129,7 +130,7 @@ export type Schemas_ = (
     context: Schemas_.I,
     abort: p_i.Abort<Schemas_.E>,
     lookups: {
-        readonly 'sibling schemas': p_di.static_lookup.Stack<Schemas_.L.sibling_schemas>
+        readonly 'sibling schemas': p_ri.lookup.Stack<Schemas_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schemas_.O
@@ -158,7 +159,7 @@ export type Schema_Tree_ = (
     context: Schema_Tree_.I,
     abort: p_i.Abort<Schema_Tree_.E>,
     lookups: {
-        readonly 'sibling schemas': p_di.static_lookup.Stack<Schema_Tree_.L.sibling_schemas>
+        readonly 'sibling schemas': p_ri.lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schema_Tree_.O
@@ -187,7 +188,7 @@ export type Schema_ = (
     context: Schema_.I,
     abort: p_i.Abort<Schema_.E>,
     lookups: {
-        readonly 'sibling schemas': p_di.static_lookup.Stack<Schema_.L.sibling_schemas>
+        readonly 'sibling schemas': p_ri.lookup.Stack<Schema_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schema_.O
@@ -216,7 +217,7 @@ export type Imports_ = (
     context: Imports_.I,
     abort: p_i.Abort<Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': p_di.static_lookup.Stack<Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': p_ri.lookup.Stack<Imports_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Imports_.O

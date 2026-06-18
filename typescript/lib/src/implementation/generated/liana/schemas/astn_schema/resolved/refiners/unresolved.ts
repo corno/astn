@@ -3,7 +3,7 @@
 
 // import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
-// import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_static_lookup'
+// import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 
 // import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
@@ -15,7 +15,7 @@
 
 // export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_static(
+// ).resolve_refiner(
 //     ($, id, $a, $c): t_out.Modules.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p.literal.group_resolve(
@@ -53,7 +53,7 @@
 //             $['text types'],
 //             ($) => _p.dictionary.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_static(
+//             ).resolve_refiner(
 //                 ($, id, $a, $c): t_out.Globals.text_types.D => _p_change_context(
 //                     $['l entry'],
 //                     ($) => Text_Type(
@@ -331,7 +331,7 @@
 //                             $,
 //                             ($) => ['group', _p.dictionary.from.dictionary(
 //                                 $['l dictionary'],
-//                             ).resolve_static(
+//                             ).resolve_refiner(
 //                                 ($, id, $a, $c): t_out.Value.group.D => _p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
@@ -396,7 +396,7 @@
 //                             $,
 //                             ($) => ['state', _p.dictionary.from.dictionary(
 //                                 $['l dictionary'],
-//                             ).resolve_static(
+//                             ).resolve_refiner(
 //                                 ($, id, $a, $c): t_out.Value.state.D => _p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
@@ -502,7 +502,7 @@
 
 // export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_static(
+// ).resolve_refiner(
 //     ($, id, $a, $c): t_out.Schemas.D => _p_change_context(
 //         $['l entry'],
 //         ($) => Schema_Tree(
@@ -624,7 +624,7 @@
 
 // export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_static(
+// ).resolve_refiner(
 //     ($, id, $a, $c): t_out.Imports.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p.literal.group_resolve(
