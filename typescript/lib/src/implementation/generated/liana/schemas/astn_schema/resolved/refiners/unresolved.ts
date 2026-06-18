@@ -1,27 +1,27 @@
 
-// import * as _p from 'pareto-core/dist/assign'
+// import * as p_ from 'pareto-core/dist/implementation/refiner'
 
-// import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+// import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 // import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 
 // import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
-// import _p_variables from 'pareto-core/dist/implementation/specials/variables'
+// import p_variables from 'pareto-core/dist/implementation/specials/variables'
 
 // import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
 
-// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Modules.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Modules.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p.literal.group_resolve(
+//         ($) => p_.literal.group_resolve(
 //             () => {
                 
-//                 const prop_root_value = _p_change_context(
+//                 const prop_root_value = p_change_context(
 //                     $['root value'],
 //                     ($) => Value(
 //                         $,
@@ -46,15 +46,15 @@
 //     ),
 // )
 
-// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_text_types = _p_change_context(
+//         const prop_text_types = p_change_context(
 //             $['text types'],
-//             ($) => _p.dictionary.from.dictionary(
+//             ($) => p_.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_refiner(
-//                 ($, id, $a, $c): t_out.Globals.text_types.D => _p_change_context(
+//             ).resolve(
+//                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
 //                     $['l entry'],
 //                     ($) => Text_Type(
 //                         $,
@@ -73,31 +73,31 @@
 //     },
 // )
 
-// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_type = _p_change_context(
+//         const prop_type = p_change_context(
 //             $['type'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['multi line', null],
 //                                     )
 //                                 case 'single line':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['single line', null],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -112,32 +112,32 @@
 //     },
 // )
 
-// export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
+// export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Value => {
 //                 switch ($[0]) {
 //                     case 'component':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['component', _p_variables(
+//                             ($) => ['component', p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Value.component => {
 //                                             switch ($[0]) {
 //                                                 case 'external':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['external', _p_variables(
+//                                                         ($) => ['external', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_import = _p.decide.optional(
+//                                                                 const var_constraint_import = p_decide_optional(
 //                                                                     $p['imports'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -147,10 +147,10 @@
 //                                                                         },
 //                                                                     ),
 //                                                                 )
-//                                                                 return _p.literal.group_resolve(
+//                                                                 return p_.literal.group_resolve(
 //                                                                     () => {
                                                                         
-//                                                                         const prop_import = _p_change_context(
+//                                                                         const prop_import = p_change_context(
 //                                                                             $['import'],
 //                                                                             ($) => ({
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -182,7 +182,7 @@
 //                                                                             }),
 //                                                                         )
                                                                         
-//                                                                         const prop_type = _p_change_context(
+//                                                                         const prop_type = p_change_context(
 //                                                                             $['type'],
 //                                                                             ($) => ({
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -223,7 +223,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'internal acyclic':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['internal acyclic', {
 //                                                             'l entry': $l['noncircular sibling modules'].get_entry(
@@ -253,7 +253,7 @@
 //                                                         }],
 //                                                     )
 //                                                 case 'internal':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['internal', {
 //                                                             'l entry': $l['possibly circular dependent sibling modules'].get_entry(
@@ -282,7 +282,7 @@
 //                                                         }],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -292,12 +292,12 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['dictionary', _p.literal.group_resolve(
+//                             ($) => ['dictionary', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_value = _p_change_context(
+//                                     const prop_value = p_change_context(
 //                                         $['value'],
 //                                         ($) => Value(
 //                                             $,
@@ -315,7 +315,7 @@
 //                                         ),
 //                                     )
                                     
-//                                     const prop_ordered = _p_change_context(
+//                                     const prop_ordered = p_change_context(
 //                                         $['ordered'],
 //                                         ($) => $,
 //                                     )
@@ -327,12 +327,12 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['group', _p.dictionary.from.dictionary(
+//                             ($) => ['group', p_.from.dictionary(
 //                                 $['l dictionary'],
-//                             ).resolve_refiner(
-//                                 ($, id, $a, $c): t_out.Value.group.D => _p_change_context(
+//                             ).resolve(
+//                                 ($, id, $a, $c): t_out.Value.group.D => p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
 //                                         $,
@@ -352,12 +352,12 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['list', _p.literal.group_resolve(
+//                             ($) => ['list', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_value = _p_change_context(
+//                                     const prop_value = p_change_context(
 //                                         $['value'],
 //                                         ($) => Value(
 //                                             $,
@@ -375,12 +375,12 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['nothing', null],
 //                         )
 //                     case 'optional':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['optional', Value(
 //                                 $,
@@ -392,12 +392,12 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['state', _p.dictionary.from.dictionary(
+//                             ($) => ['state', p_.from.dictionary(
 //                                 $['l dictionary'],
-//                             ).resolve_refiner(
-//                                 ($, id, $a, $c): t_out.Value.state.D => _p_change_context(
+//                             ).resolve(
+//                                 ($, id, $a, $c): t_out.Value.state.D => p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
 //                                         $,
@@ -411,23 +411,23 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['text', _p_variables(
+//                             ($) => ['text', p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['global', _p_variables(
+//                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = _p.decide.optional(
+//                                                                 const var_constraint_globals = p_decide_optional(
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -469,7 +469,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['local', Text_Type(
 //                                                             $,
@@ -481,7 +481,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -491,7 +491,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -500,10 +500,10 @@
 //     },
 // )
 
-// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Schemas.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
 //         $['l entry'],
 //         ($) => Schema_Tree(
 //             $,
@@ -521,16 +521,16 @@
 //     ),
 // )
 
-// export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_variables(
+// export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['schema', Schema(
 //                                 $,
@@ -544,7 +544,7 @@
 //                             )],
 //                         )
 //                     case 'set':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['set', Schemas(
 //                                 $,
@@ -558,7 +558,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -567,10 +567,10 @@
 //     },
 // )
 
-// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_imports = _p_change_context(
+//         const prop_imports = p_change_context(
 //             $['imports'],
 //             ($) => Imports(
 //                 $,
@@ -584,7 +584,7 @@
 //             ),
 //         )
         
-//         const prop_globals = _p_change_context(
+//         const prop_globals = p_change_context(
 //             $['globals'],
 //             ($) => Globals(
 //                 $,
@@ -596,7 +596,7 @@
 //             ),
 //         )
         
-//         const prop_types = _p_change_context(
+//         const prop_types = p_change_context(
 //             $['types'],
 //             ($) => Modules(
 //                 $,
@@ -605,10 +605,10 @@
 //                 ),
 //                 null,
 //                 {
-//                     'globals': _p.literal.set(
+//                     'globals': p_.literal.set(
 //                         prop_globals,
 //                     ),
-//                     'imports': _p.literal.set(
+//                     'imports': p_.literal.set(
 //                         prop_imports,
 //                     ),
 //                 },
@@ -622,17 +622,17 @@
 //     },
 // )
 
-// export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Imports.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Imports.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p.literal.group_resolve(
+//         ($) => p_.literal.group_resolve(
 //             () => {
                 
-//                 const prop_schema_set_child = _p_change_context(
+//                 const prop_schema_set_child = p_change_context(
 //                     $['schema set child'],
-//                     ($) => _p.literal.group_resolve(
+//                     ($) => p_.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_l_value = {
@@ -685,19 +685,19 @@
 //                                 ),
 //                             }
                             
-//                             const prop_l_results = _p_variables(
+//                             const prop_l_results = p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
 //                                     return {
-//                                         'schema': _p.decide.state(
+//                                         'schema': p_decide_state(
 //                                             _pdev.implement_me(
 //                                                 "IM: rvs",
 //                                             ),
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )
@@ -725,7 +725,7 @@
 //                     ),
 //                 )
                 
-//                 const prop_schema = _p_change_context(
+//                 const prop_schema = p_change_context(
 //                     $['schema'],
 //                     ($) => prop_schema_set_child['l results']['schema'],
 //                 )

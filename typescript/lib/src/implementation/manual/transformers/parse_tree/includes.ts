@@ -14,12 +14,12 @@ export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($
     Value($.content),
 ])
 
-export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p_.decide.state($.type, ($) => {
+export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p_.from.state($.type).decide(($) => {
     switch ($[0]) {
-        case 'concrete': return p_.ss($, ($) => p_.decide.state($, ($) => {
+        case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(($) => {
             switch ($[0]) {
                 case 'dictionary': return p_.ss($, ($) => ID_Value_Pairs($.entries))
-                case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                case 'group': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                     switch ($[0]) {
                         case 'concise': return p_.ss($, ($) => Items($.properties))
                         case 'verbose': return p_.ss($, ($) => ID_Value_Pairs($.properties))
@@ -28,14 +28,14 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p
                 }))
                 case 'list': return p_.ss($, ($) => Items($.items))
                 case 'nothing': return p_.ss($, ($) => p_.literal.list([]))
-                case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                case 'optional': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                     switch ($[0]) {
                         case 'set': return p_.ss($, ($) => Value($.value))
                         case 'not set': return p_.ss($, ($) => p_.literal.list([]))
                         default: return p_.au($[0])
                     }
                 }))
-                case 'state': return p_.ss($, ($) => p_.decide.state($.status, ($) => {
+                case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(($) => {
                     switch ($[0]) {
                         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
                         case 'set':return p_.ss($, ($) => Value($.value))
@@ -54,9 +54,9 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p
     }
 })
 
-export const Items: p_i.Transformer<d_in.Items, d_out.Included_Files> = ($) => p_.list.from.list($).flatten(($) => Value($.value))
+export const Items: p_i.Transformer<d_in.Items, d_out.Included_Files> = ($) => p_.from.list($).flatten(($) => Value($.value))
 
-export const ID_Value_Pairs: p_i.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => p_.list.from.list($).flatten(($ => $.assignment.__decide(
+export const ID_Value_Pairs: p_i.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => p_.from.list($).flatten(($ => $.assignment.__decide(
     ($) => $.value.__decide(
         ($) => Value($),
         () => p_.literal.list([])

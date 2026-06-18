@@ -1,5 +1,5 @@
 
-import * as _p from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/transformers/fountain_pen"
 

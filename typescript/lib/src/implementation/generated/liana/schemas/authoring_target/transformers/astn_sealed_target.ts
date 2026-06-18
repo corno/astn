@@ -1,7 +1,11 @@
 
-import * as _p from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
+const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
+const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
+const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
 
-import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 import _p_text_from_list from 'pareto-core/dist/implementation/specials/text_from_list'
 
@@ -11,11 +15,11 @@ import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_
 
 import * as v_primitives_to_text from "liana-core/dist/implementation/manual/transformers/primitives/text"
 
-export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.literal.dictionary(
+export const Document: t_signatures.Document = ($) => ['group', ['verbose', p_.literal.dictionary(
     {
-        "header": _p_change_context(
+        "header": p_change_context(
             $['header'],
-            ($) => ['optional', _p.decide.optional(
+            ($) => ['optional', p_decide_optional(
                 $,
                 ($): t_out.Value.optional => ['set', Value(
                     $,
@@ -23,7 +27,7 @@ export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.l
                 () => ['not set', null],
             )],
         ),
-        "content": _p_change_context(
+        "content": p_change_context(
             $['content'],
             ($) => Value(
                 $,
@@ -32,22 +36,22 @@ export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.l
     },
 )]]
 
-export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal.dictionary(
+export const Value: t_signatures.Value = ($) => ['group', ['verbose', p_.literal.dictionary(
     {
-        "data": _p_change_context(
+        "data": p_change_context(
             $['data'],
-            ($) => ['state', _p.decide.state(
+            ($) => ['state', p_decide_state(
                 $,
                 ($): t_out.Value.state => {
                     switch ($[0]) {
                         case 'missing':
-                            return _p.ss(
+                            return p_.ss(
                                 $,
                                 ($) => ({
                                     'option': 'missing',
-                                    'value': ['group', ['verbose', _p.literal.dictionary(
+                                    'value': ['group', ['verbose', p_.literal.dictionary(
                                         {
-                                            "#": _p_change_context(
+                                            "#": p_change_context(
                                                 $['#'],
                                                 ($) => Token_Trivia(
                                                     $,
@@ -58,19 +62,19 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                 }),
                             )
                         case 'include':
-                            return _p.ss(
+                            return p_.ss(
                                 $,
                                 ($) => ({
                                     'option': 'include',
-                                    'value': ['group', ['verbose', _p.literal.dictionary(
+                                    'value': ['group', ['verbose', p_.literal.dictionary(
                                         {
-                                            "@": _p_change_context(
+                                            "@": p_change_context(
                                                 $['@'],
                                                 ($) => Token_Trivia(
                                                     $,
                                                 ),
                                             ),
-                                            "path": _p_change_context(
+                                            "path": p_change_context(
                                                 $['path'],
                                                 ($) => ['text', {
                                                     'delimiter': ['quote', null],
@@ -82,38 +86,38 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                 }),
                             )
                         case 'concrete':
-                            return _p.ss(
+                            return p_.ss(
                                 $,
                                 ($) => ({
                                     'option': 'concrete',
-                                    'value': ['group', ['verbose', _p.literal.dictionary(
+                                    'value': ['group', ['verbose', p_.literal.dictionary(
                                         {
-                                            "type": _p_change_context(
+                                            "type": p_change_context(
                                                 $['type'],
-                                                ($) => ['state', _p.decide.state(
+                                                ($) => ['state', p_decide_state(
                                                     $,
                                                     ($): t_out.Value.state => {
                                                         switch ($[0]) {
                                                             case 'dictionary':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'dictionary',
-                                                                        'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
                                                                             {
-                                                                                "{": _p_change_context(
+                                                                                "{": p_change_context(
                                                                                     $['{'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "entries": _p_change_context(
+                                                                                "entries": p_change_context(
                                                                                     $['entries'],
                                                                                     ($) => ID_Value_Pairs(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "}": _p_change_context(
+                                                                                "}": p_change_context(
                                                                                     $['}'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -124,34 +128,34 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'group':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'group',
-                                                                        'value': ['state', _p.decide.state(
+                                                                        'value': ['state', p_decide_state(
                                                                             $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
                                                                                     case 'concise':
-                                                                                        return _p.ss(
+                                                                                        return p_.ss(
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'concise',
-                                                                                                'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                     {
-                                                                                                        "<": _p_change_context(
+                                                                                                        "<": p_change_context(
                                                                                                             $['<'],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
                                                                                                             ),
                                                                                                         ),
-                                                                                                        "properties": _p_change_context(
+                                                                                                        "properties": p_change_context(
                                                                                                             $['properties'],
                                                                                                             ($) => Items(
                                                                                                                 $,
                                                                                                             ),
                                                                                                         ),
-                                                                                                        ">": _p_change_context(
+                                                                                                        ">": p_change_context(
                                                                                                             $['>'],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
@@ -162,25 +166,25 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                             }),
                                                                                         )
                                                                                     case 'verbose':
-                                                                                        return _p.ss(
+                                                                                        return p_.ss(
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'verbose',
-                                                                                                'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                     {
-                                                                                                        "(": _p_change_context(
+                                                                                                        "(": p_change_context(
                                                                                                             $['('],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
                                                                                                             ),
                                                                                                         ),
-                                                                                                        "properties": _p_change_context(
+                                                                                                        "properties": p_change_context(
                                                                                                             $['properties'],
                                                                                                             ($) => ID_Value_Pairs(
                                                                                                                 $,
                                                                                                             ),
                                                                                                         ),
-                                                                                                        ")": _p_change_context(
+                                                                                                        ")": p_change_context(
                                                                                                             $[')'],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
@@ -191,7 +195,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                             }),
                                                                                         )
                                                                                     default:
-                                                                                        return _p.au(
+                                                                                        return p_.au(
                                                                                             $[0],
                                                                                         )
                                                                                 }
@@ -200,25 +204,25 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'list':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'list',
-                                                                        'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
                                                                             {
-                                                                                "[": _p_change_context(
+                                                                                "[": p_change_context(
                                                                                     $['['],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "items": _p_change_context(
+                                                                                "items": p_change_context(
                                                                                     $['items'],
                                                                                     ($) => Items(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "]": _p_change_context(
+                                                                                "]": p_change_context(
                                                                                     $[']'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -229,13 +233,13 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'nothing':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'nothing',
-                                                                        'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
                                                                             {
-                                                                                "~": _p_change_context(
+                                                                                "~": p_change_context(
                                                                                     $['~'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -246,22 +250,22 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'optional':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'optional',
-                                                                        'value': ['state', _p.decide.state(
+                                                                        'value': ['state', p_decide_state(
                                                                             $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
                                                                                     case 'not set':
-                                                                                        return _p.ss(
+                                                                                        return p_.ss(
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'not set',
-                                                                                                'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                     {
-                                                                                                        "_": _p_change_context(
+                                                                                                        "_": p_change_context(
                                                                                                             $['_'],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
@@ -272,19 +276,19 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                             }),
                                                                                         )
                                                                                     case 'set':
-                                                                                        return _p.ss(
+                                                                                        return p_.ss(
                                                                                             $,
                                                                                             ($) => ({
                                                                                                 'option': 'set',
-                                                                                                'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                     {
-                                                                                                        "*": _p_change_context(
+                                                                                                        "*": p_change_context(
                                                                                                             $['*'],
                                                                                                             ($) => Token_Trivia(
                                                                                                                 $,
                                                                                                             ),
                                                                                                         ),
-                                                                                                        "value": _p_change_context(
+                                                                                                        "value": p_change_context(
                                                                                                             $['value'],
                                                                                                             ($) => Value(
                                                                                                                 $,
@@ -295,7 +299,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                             }),
                                                                                         )
                                                                                     default:
-                                                                                        return _p.au(
+                                                                                        return p_.au(
                                                                                             $[0],
                                                                                         )
                                                                                 }
@@ -304,32 +308,32 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'state':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'state',
-                                                                        'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
                                                                             {
-                                                                                "|": _p_change_context(
+                                                                                "|": p_change_context(
                                                                                     $['|'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "status": _p_change_context(
+                                                                                "status": p_change_context(
                                                                                     $['status'],
-                                                                                    ($) => ['state', _p.decide.state(
+                                                                                    ($) => ['state', p_decide_state(
                                                                                         $,
                                                                                         ($): t_out.Value.state => {
                                                                                             switch ($[0]) {
                                                                                                 case 'missing':
-                                                                                                    return _p.ss(
+                                                                                                    return p_.ss(
                                                                                                         $,
                                                                                                         ($) => ({
                                                                                                             'option': 'missing',
-                                                                                                            'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                            'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                                 {
-                                                                                                                    "#": _p_change_context(
+                                                                                                                    "#": p_change_context(
                                                                                                                         $['#'],
                                                                                                                         ($) => Token_Trivia(
                                                                                                                             $,
@@ -340,20 +344,20 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                                         }),
                                                                                                     )
                                                                                                 case 'set':
-                                                                                                    return _p.ss(
+                                                                                                    return p_.ss(
                                                                                                         $,
                                                                                                         ($) => ({
                                                                                                             'option': 'set',
-                                                                                                            'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                                                            'value': ['group', ['verbose', p_.literal.dictionary(
                                                                                                                 {
-                                                                                                                    "option": _p_change_context(
+                                                                                                                    "option": p_change_context(
                                                                                                                         $['option'],
                                                                                                                         ($) => ['text', {
                                                                                                                             'delimiter': ['quote', null],
                                                                                                                             'value': $,
                                                                                                                         }],
                                                                                                                     ),
-                                                                                                                    "value": _p_change_context(
+                                                                                                                    "value": p_change_context(
                                                                                                                         $['value'],
                                                                                                                         ($) => Value(
                                                                                                                             $,
@@ -364,7 +368,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                                         }),
                                                                                                     )
                                                                                                 default:
-                                                                                                    return _p.au(
+                                                                                                    return p_.au(
                                                                                                         $[0],
                                                                                                     )
                                                                                             }
@@ -376,33 +380,33 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             case 'text':
-                                                                return _p.ss(
+                                                                return p_.ss(
                                                                     $,
                                                                     ($) => ({
                                                                         'option': 'text',
-                                                                        'value': ['group', ['verbose', _p.literal.dictionary(
+                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
                                                                             {
-                                                                                "trivia": _p_change_context(
+                                                                                "trivia": p_change_context(
                                                                                     $['trivia'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                "value": _p_change_context(
+                                                                                "value": p_change_context(
                                                                                     $['value'],
                                                                                     ($) => ['text', {
                                                                                         'delimiter': ['quote', null],
                                                                                         'value': $,
                                                                                     }],
                                                                                 ),
-                                                                                "delimiter": _p_change_context(
+                                                                                "delimiter": p_change_context(
                                                                                     $['delimiter'],
-                                                                                    ($) => ['state', _p.decide.state(
+                                                                                    ($) => ['state', p_decide_state(
                                                                                         $,
                                                                                         ($): t_out.Value.state => {
                                                                                             switch ($[0]) {
                                                                                                 case 'none':
-                                                                                                    return _p.ss(
+                                                                                                    return p_.ss(
                                                                                                         $,
                                                                                                         ($) => ({
                                                                                                             'option': 'none',
@@ -410,7 +414,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                                         }),
                                                                                                     )
                                                                                                 case 'quote':
-                                                                                                    return _p.ss(
+                                                                                                    return p_.ss(
                                                                                                         $,
                                                                                                         ($) => ({
                                                                                                             'option': 'quote',
@@ -418,7 +422,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                                         }),
                                                                                                     )
                                                                                                 case 'apostrophe':
-                                                                                                    return _p.ss(
+                                                                                                    return p_.ss(
                                                                                                         $,
                                                                                                         ($) => ({
                                                                                                             'option': 'apostrophe',
@@ -426,7 +430,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                                                         }),
                                                                                                     )
                                                                                                 default:
-                                                                                                    return _p.au(
+                                                                                                    return p_.au(
                                                                                                         $[0],
                                                                                                     )
                                                                                             }
@@ -438,7 +442,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                                                     }),
                                                                 )
                                                             default:
-                                                                return _p.au(
+                                                                return p_.au(
                                                                     $[0],
                                                                 )
                                                         }
@@ -450,7 +454,7 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
                                 }),
                             )
                         default:
-                            return _p.au(
+                            return p_.au(
                                 $[0],
                             )
                     }
@@ -460,30 +464,30 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.literal
     },
 )]]
 
-export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbose', _p.literal.dictionary(
+export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbose', p_.literal.dictionary(
     {
-        "comments": _p_change_context(
+        "comments": p_change_context(
             $['comments'],
-            ($) => ['list', _p.list.from.list(
+            ($) => ['list', p_.from.list(
                 $,
             ).map(
-                ($) => ['group', ['verbose', _p.literal.dictionary(
+                ($) => ['group', ['verbose', p_.literal.dictionary(
                     {
-                        "content": _p_change_context(
+                        "content": p_change_context(
                             $['content'],
                             ($) => ['text', {
                                 'delimiter': ['quote', null],
                                 'value': $,
                             }],
                         ),
-                        "type": _p_change_context(
+                        "type": p_change_context(
                             $['type'],
-                            ($) => ['state', _p.decide.state(
+                            ($) => ['state', p_decide_state(
                                 $,
                                 ($): t_out.Value.state => {
                                     switch ($[0]) {
                                         case 'line':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ({
                                                     'option': 'line',
@@ -491,7 +495,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbos
                                                 }),
                                             )
                                         case 'block':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ({
                                                     'option': 'block',
@@ -499,7 +503,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbos
                                                 }),
                                             )
                                         default:
-                                            return _p.au(
+                                            return p_.au(
                                                 $[0],
                                             )
                                     }
@@ -513,21 +517,21 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbos
     },
 )]]
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.list.from.list(
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', p_.from.list(
     $,
 ).map(
-    ($) => ['group', ['verbose', _p.literal.dictionary(
+    ($) => ['group', ['verbose', p_.literal.dictionary(
         {
-            "id": _p_change_context(
+            "id": p_change_context(
                 $['id'],
                 ($) => ['text', {
                     'delimiter': ['quote', null],
                     'value': $,
                 }],
             ),
-            "value": _p_change_context(
+            "value": p_change_context(
                 $['value'],
-                ($) => ['optional', _p.decide.optional(
+                ($) => ['optional', p_decide_optional(
                     $,
                     ($): t_out.Value.optional => ['set', Value(
                         $,
@@ -539,7 +543,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.li
     )]],
 )]
 
-export const Items: t_signatures.Items = ($) => ['list', _p.list.from.list(
+export const Items: t_signatures.Items = ($) => ['list', p_.from.list(
     $,
 ).map(
     ($) => Value(

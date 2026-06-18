@@ -1,7 +1,11 @@
 
-import * as _p from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
+const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
+const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
+const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
 
-import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/transformers/boilerplate_for_migrate"
 
@@ -24,26 +28,26 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
             },
         },
     }],
-    'l state': _p.decide.state(
+    'l state': p_decide_state(
         $,
         ($): t_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['set', Schemas(
                             $,
                         )],
                     )
                 case 'schema':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['schema', Schema(
                             $,
                         )],
                     )
                 default:
-                    return _p.au(
+                    return p_.au(
                         $[0],
                     )
             }
@@ -68,7 +72,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
             },
         },
     }],
-    'l dictionary': _p.dictionary.from.dictionary(
+    'l dictionary': p_.from.dictionary(
         $,
     ).map(
         ($, id) => ({
@@ -96,19 +100,19 @@ export const Schemas: t_signatures.Schemas = ($) => ({
 })
 
 export const Schema: t_signatures.Schema = ($) => ({
-    'imports': _p_change_context(
+    'imports': p_change_context(
         $['imports'],
         ($) => Imports(
             $,
         ),
     ),
-    'globals': _p_change_context(
+    'globals': p_change_context(
         $['globals'],
         ($) => Globals(
             $,
         ),
     ),
-    'types': _p_change_context(
+    'types': p_change_context(
         $['types'],
         ($) => Modules(
             $,
@@ -133,12 +137,12 @@ export const Imports: t_signatures.Imports = ($) => ({
             },
         },
     }],
-    'l dictionary': _p.dictionary.from.dictionary(
+    'l dictionary': p_.from.dictionary(
         $,
     ).map(
         ($, id) => ({
             'l entry': {
-                'schema set child': _p_change_context(
+                'schema set child': p_change_context(
                     $['schema set child'],
                     ($) => ({
                         'l location': ['in main document', {
@@ -160,7 +164,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                         'l reference': $['l value']['l id'],
                     }),
                 ),
-                'schema': _p_change_context(
+                'schema': p_change_context(
                     $['schema'],
                     ($) => null,
                 ),
@@ -186,7 +190,7 @@ export const Imports: t_signatures.Imports = ($) => ({
 })
 
 export const Globals: t_signatures.Globals = ($) => ({
-    'text types': _p_change_context(
+    'text types': p_change_context(
         $['text types'],
         ($) => ({
             'l location': ['in main document', {
@@ -205,7 +209,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     },
                 },
             }],
-            'l dictionary': _p.dictionary.from.dictionary(
+            'l dictionary': p_.from.dictionary(
                 $,
             ).map(
                 ($, id) => ({
@@ -251,12 +255,12 @@ export const Modules: t_signatures.Modules = ($) => ({
             },
         },
     }],
-    'l dictionary': _p.dictionary.from.dictionary(
+    'l dictionary': p_.from.dictionary(
         $,
     ).map(
         ($, id) => ({
             'l entry': {
-                'root value': _p_change_context(
+                'root value': p_change_context(
                     $['root value'],
                     ($) => Value(
                         $,
@@ -300,12 +304,12 @@ export const Value: t_signatures.Value = ($) => ({
             },
         },
     }],
-    'l state': _p.decide.state(
+    'l state': p_decide_state(
         $,
         ($): t_out.Value.l_state => {
             switch ($[0]) {
                 case 'component':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['component', {
                             'l location': ['in main document', {
@@ -324,15 +328,15 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l state': _p.decide.state(
+                            'l state': p_decide_state(
                                 $,
                                 ($): t_out.Value.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ['external', {
-                                                    'import': _p_change_context(
+                                                    'import': p_change_context(
                                                         $['import'],
                                                         ($) => ({
                                                             'l location': ['in main document', {
@@ -354,7 +358,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             'l reference': $['l id'],
                                                         }),
                                                     ),
-                                                    'type': _p_change_context(
+                                                    'type': p_change_context(
                                                         $['type'],
                                                         ($) => ({
                                                             'l location': ['in main document', {
@@ -379,7 +383,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'internal acyclic':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ['internal acyclic', {
                                                     'l location': ['in main document', {
@@ -402,7 +406,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'internal':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ['internal', {
                                                     'l location': ['in main document', {
@@ -425,7 +429,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         default:
-                                            return _p.au(
+                                            return p_.au(
                                                 $[0],
                                             )
                                     }
@@ -434,23 +438,23 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'dictionary':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['dictionary', {
-                            'value': _p_change_context(
+                            'value': p_change_context(
                                 $['value'],
                                 ($) => Value(
                                     $,
                                 ),
                             ),
-                            'ordered': _p_change_context(
+                            'ordered': p_change_context(
                                 $['ordered'],
                                 ($) => $,
                             ),
                         }],
                     )
                 case 'group':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['group', {
                             'l location': ['in main document', {
@@ -469,7 +473,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l dictionary': _p.dictionary.from.dictionary(
+                            'l dictionary': p_.from.dictionary(
                                 $,
                             ).map(
                                 ($, id) => ({
@@ -497,10 +501,10 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'list':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['list', {
-                            'value': _p_change_context(
+                            'value': p_change_context(
                                 $['value'],
                                 ($) => Value(
                                     $,
@@ -509,19 +513,19 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'nothing':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['nothing', null],
                     )
                 case 'optional':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['optional', Value(
                             $,
                         )],
                     )
                 case 'state':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['state', {
                             'l location': ['in main document', {
@@ -540,7 +544,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l dictionary': _p.dictionary.from.dictionary(
+                            'l dictionary': p_.from.dictionary(
                                 $,
                             ).map(
                                 ($, id) => ({
@@ -568,7 +572,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'text':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['text', {
                             'l location': ['in main document', {
@@ -587,12 +591,12 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l state': _p.decide.state(
+                            'l state': p_decide_state(
                                 $,
                                 ($): t_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': ['in main document', {
@@ -615,14 +619,14 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'local':
-                                            return _p.ss(
+                                            return p_.ss(
                                                 $,
                                                 ($) => ['local', Text_Type(
                                                     $,
                                                 )],
                                             )
                                         default:
-                                            return _p.au(
+                                            return p_.au(
                                                 $[0],
                                             )
                                     }
@@ -631,7 +635,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 default:
-                    return _p.au(
+                    return p_.au(
                         $[0],
                     )
             }
@@ -640,7 +644,7 @@ export const Value: t_signatures.Value = ($) => ({
 })
 
 export const Text_Type: t_signatures.Text_Type = ($) => ({
-    'type': _p_change_context(
+    'type': p_change_context(
         $['type'],
         ($) => ({
             'l location': ['in main document', {
@@ -659,22 +663,22 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                     },
                 },
             }],
-            'l state': _p.decide.state(
+            'l state': p_decide_state(
                 $,
                 ($): t_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
-                            return _p.ss(
+                            return p_.ss(
                                 $,
                                 ($) => ['multi line', null],
                             )
                         case 'single line':
-                            return _p.ss(
+                            return p_.ss(
                                 $,
                                 ($) => ['single line', null],
                             )
                         default:
-                            return _p.au(
+                            return p_.au(
                                 $[0],
                             )
                     }

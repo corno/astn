@@ -8,7 +8,7 @@ import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json_
 export const Document: signatures.Document = ($) => Value($.content)
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map_deprecated(
     ($) => ({
         'key': $.id.token.value,
         'value': $.assignment.__decide(
@@ -21,16 +21,16 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(
     })
 )
 
-export const Items: signatures.Items = ($) => $.__l_map(
+export const Items: signatures.Items = ($) => $.__l_map_deprecated(
     ($) => Value($.value)
 )
 
-export const Value: signatures.Value = ($) => p_.decide.state($.type, ($): d_out.Value => {
+export const Value: signatures.Value = ($) => p_.from.state($.type).decide(($): d_out.Value => {
     switch ($[0]) {
-        case 'concrete': return p_.ss($, ($) => p_.decide.state($, ($): d_out.Value => {
+        case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(($): d_out.Value => {
             switch ($[0]) {
                 case 'dictionary': return p_.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
-                case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                case 'group': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                     switch ($[0]) {
                         case 'concise': return p_.ss($, ($) => ['array', Items($.properties)])
                         case 'verbose': return p_.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
@@ -38,7 +38,7 @@ export const Value: signatures.Value = ($) => p_.decide.state($.type, ($): d_out
                     }
                 }))
                 case 'list': return p_.ss($, ($) => ['array', Items($.items)])
-                case 'state': return p_.ss($, ($) => p_.decide.state($.status, ($): d_out.Value => {
+                case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(($): d_out.Value => {
                     switch ($[0]) {
                         case 'missing': return p_.ss($, ($) => ['null', null])
                         case 'set': return p_.ss($, ($): d_out.Value => ['array', p_.literal.list<d_out.Value>([
@@ -49,7 +49,7 @@ export const Value: signatures.Value = ($) => p_.decide.state($.type, ($): d_out
                     }
                 }))
                 case 'nothing': return p_.ss($, ($) => ['null', null])
-                case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                case 'optional': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                     switch ($[0]) {
                         case 'set': return p_.ss($, ($) => ['array', p_.literal.list([
                             Value($.value),

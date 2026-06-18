@@ -36,7 +36,7 @@ export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
 
 
 export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
-    p_.decide.state($.data, ($) => {
+    p_.from.state($.data).decide(($) => {
         switch ($[0]) {
             case 'include': return p_.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("@ "),
@@ -49,13 +49,13 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                 sh.ph.literal("#"),
                 Token_Trivia($['#']),
             ]))
-            case 'concrete': return p_.ss($, ($) => p_.decide.state($.type, ($) => p_.decide.state($, ($) => {
+            case 'concrete': return p_.ss($, ($) => p_.from.state($.type).decide(($) => p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'dictionary': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.nothing(), //we always want a newline here
                         Token_Trivia($['{']),
                         sh.ph.indent(
-                            sh.pg.sentences(p_.list.from.list(
+                            sh.pg.sentences(p_.from.list(
                                 $.entries,
                             ).map(
                                 ($) => sh.sentence([
@@ -74,7 +74,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                         $p['write delimiters'] ? sh.ph.literal("}") : sh.ph.nothing(),
                         Token_Trivia($['}']),
                     ]))
-                    case 'group': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                    case 'group': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                         switch ($[0]) {
                             case 'concise': return p_.ss($, ($) => sh.ph.composed([
                                 // $p['in concise group']
@@ -82,7 +82,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
                                 $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                 Token_Trivia($['<']),
-                                sh.ph.composed($.properties.__l_map(($) => sh.ph.composed([
+                                sh.ph.composed($.properties.__l_map_deprecated(($) => sh.ph.composed([
                                     sh.ph.literal(" "),
                                     Value($, {
                                         'write delimiters': true,
@@ -100,7 +100,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                     $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.nothing(), //we always want a newline here
                                     Token_Trivia($['(']),
                                     sh.ph.indent(
-                                        sh.pg.sentences(p_.list.from.list(
+                                        sh.pg.sentences(p_.from.list(
                                             $.properties,
                                         ).map(
                                             ($) => sh.sentence([
@@ -127,7 +127,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                     case 'list': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("[") : sh.ph.nothing(),
                         Token_Trivia($['[']),
-                        sh.ph.composed($.items.__l_map(($) => sh.ph.composed([
+                        sh.ph.composed($.items.__l_map_deprecated(($) => sh.ph.composed([
                             sh.ph.literal(" "),
                             Value($, {
                                 'write delimiters': true,
@@ -136,7 +136,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                         $p['write delimiters'] ? sh.ph.literal(" ]") : sh.ph.nothing(),
                         Token_Trivia($[']']),
                     ]))
-                    case 'optional': return p_.ss($, ($) => p_.decide.state($, ($) => {
+                    case 'optional': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                         switch ($[0]) {
                             case 'not set': return p_.ss($, ($) => sh.ph.composed([
                                 sh.ph.literal("_"),
@@ -160,7 +160,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                     case 'state': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("| ") : sh.ph.nothing(),
                         Token_Trivia($['|']),
-                        p_.decide.state($.status, ($) => {
+                        p_.from.state($.status).decide(($) => {
                             switch ($[0]) {
                                 case 'missing': return p_.ss($, ($) => sh.ph.composed([
                                     Token_Trivia($['#']),
@@ -182,7 +182,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                     case 'text': return p_.ss($, ($) => {
                         const value = $.value // fixme: move value to the inside of the delimiter states
                         return sh.ph.composed([
-                            p_.decide.state($.delimiter, ($) => {
+                            p_.from.state($.delimiter).decide(($) => {
                                 switch ($[0]) {
                                     case 'apostrophe': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
                                         'add delimiters': $p['write delimiters'],

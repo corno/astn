@@ -1,56 +1,60 @@
 
-import * as _p from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
+const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
+const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
+const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
 
-import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 import * as t_signatures from "../../../../../../interface/generated/liana/schemas/ide/signatures/transformers/boilerplate_for_migrate"
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/ide/data"
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.from.list(
+export const Text_Edits: t_signatures.Text_Edits = ($) => p_.from.list(
     $,
 ).map(
-    ($) => _p.decide.state(
+    ($) => p_decide_state(
         $,
         ($): t_out.Text_Edits.L => {
             switch ($[0]) {
                 case 'insert':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['insert', {
-                            'location': _p_change_context(
+                            'location': p_change_context(
                                 $['location'],
                                 ($) => Relative_Location(
                                     $,
                                 ),
                             ),
-                            'text': _p_change_context(
+                            'text': p_change_context(
                                 $['text'],
                                 ($) => $,
                             ),
                         }],
                     )
                 case 'replace':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['replace', {
-                            'range': _p_change_context(
+                            'range': p_change_context(
                                 $['range'],
                                 ($) => Relative_Range(
                                     $,
                                 ),
                             ),
-                            'text': _p_change_context(
+                            'text': p_change_context(
                                 $['text'],
                                 ($) => $,
                             ),
                         }],
                     )
                 case 'delete':
-                    return _p.ss(
+                    return p_.ss(
                         $,
                         ($) => ['delete', {
-                            'range': _p_change_context(
+                            'range': p_change_context(
                                 $['range'],
                                 ($) => Relative_Range(
                                     $,
@@ -59,7 +63,7 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.from.list(
                         }],
                     )
                 default:
-                    return _p.au(
+                    return p_.au(
                         $[0],
                     )
             }
@@ -68,13 +72,13 @@ export const Text_Edits: t_signatures.Text_Edits = ($) => _p.list.from.list(
 )
 
 export const Relative_Range: t_signatures.Relative_Range = ($) => ({
-    'start': _p_change_context(
+    'start': p_change_context(
         $['start'],
         ($) => Relative_Location(
             $,
         ),
     ),
-    'end': _p_change_context(
+    'end': p_change_context(
         $['end'],
         ($) => Relative_Location(
             $,
@@ -82,18 +86,18 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ({
     ),
 })
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => _p.dictionary.from.dictionary(
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => p_.from.dictionary(
     $,
 ).map(
     ($, id) => $,
 )
 
 export const Relative_Location: t_signatures.Relative_Location = ($) => ({
-    'line': _p_change_context(
+    'line': p_change_context(
         $['line'],
         ($) => $,
     ),
-    'column': _p_change_context(
+    'column': p_change_context(
         $['column'],
         ($) => $,
     ),

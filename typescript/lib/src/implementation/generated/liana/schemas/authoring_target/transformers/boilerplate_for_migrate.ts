@@ -1,16 +1,20 @@
 
-import * as _p from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
+const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
+const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
+const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
 
-import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/boilerplate_for_migrate"
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/authoring_target/data"
 
 export const Document: t_signatures.Document = ($) => ({
-    'header': _p_change_context(
+    'header': p_change_context(
         $['header'],
-        ($) => _p.optional.from.optional(
+        ($) => p_.from.optional(
             $,
         ).map(
             ($) => Value(
@@ -18,7 +22,7 @@ export const Document: t_signatures.Document = ($) => ({
             ),
         ),
     ),
-    'content': _p_change_context(
+    'content': p_change_context(
         $['content'],
         ($) => Value(
             $,
@@ -27,17 +31,17 @@ export const Document: t_signatures.Document = ($) => ({
 })
 
 export const Value: t_signatures.Value = ($) => ({
-    'data': _p_change_context(
+    'data': p_change_context(
         $['data'],
-        ($) => _p.decide.state(
+        ($) => p_decide_state(
             $,
             ($): t_out.Value.data => {
                 switch ($[0]) {
                     case 'missing':
-                        return _p.ss(
+                        return p_.ss(
                             $,
                             ($) => ['missing', {
-                                '#': _p_change_context(
+                                '#': p_change_context(
                                     $['#'],
                                     ($) => Token_Trivia(
                                         $,
@@ -46,48 +50,48 @@ export const Value: t_signatures.Value = ($) => ({
                             }],
                         )
                     case 'include':
-                        return _p.ss(
+                        return p_.ss(
                             $,
                             ($) => ['include', {
-                                '@': _p_change_context(
+                                '@': p_change_context(
                                     $['@'],
                                     ($) => Token_Trivia(
                                         $,
                                     ),
                                 ),
-                                'path': _p_change_context(
+                                'path': p_change_context(
                                     $['path'],
                                     ($) => $,
                                 ),
                             }],
                         )
                     case 'concrete':
-                        return _p.ss(
+                        return p_.ss(
                             $,
                             ($) => ['concrete', {
-                                'type': _p_change_context(
+                                'type': p_change_context(
                                     $['type'],
-                                    ($) => _p.decide.state(
+                                    ($) => p_decide_state(
                                         $,
                                         ($): t_out.Value.data.concrete.type_ => {
                                             switch ($[0]) {
                                                 case 'dictionary':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
                                                         ($) => ['dictionary', {
-                                                            '{': _p_change_context(
+                                                            '{': p_change_context(
                                                                 $['{'],
                                                                 ($) => Token_Trivia(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            'entries': _p_change_context(
+                                                            'entries': p_change_context(
                                                                 $['entries'],
                                                                 ($) => ID_Value_Pairs(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            '}': _p_change_context(
+                                                            '}': p_change_context(
                                                                 $['}'],
                                                                 ($) => Token_Trivia(
                                                                     $,
@@ -96,29 +100,29 @@ export const Value: t_signatures.Value = ($) => ({
                                                         }],
                                                     )
                                                 case 'group':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
-                                                        ($) => ['group', _p.decide.state(
+                                                        ($) => ['group', p_decide_state(
                                                             $,
                                                             ($): t_out.Value.data.concrete.type_.group => {
                                                                 switch ($[0]) {
                                                                     case 'concise':
-                                                                        return _p.ss(
+                                                                        return p_.ss(
                                                                             $,
                                                                             ($) => ['concise', {
-                                                                                '<': _p_change_context(
+                                                                                '<': p_change_context(
                                                                                     $['<'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                'properties': _p_change_context(
+                                                                                'properties': p_change_context(
                                                                                     $['properties'],
                                                                                     ($) => Items(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                '>': _p_change_context(
+                                                                                '>': p_change_context(
                                                                                     $['>'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -127,22 +131,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                                             }],
                                                                         )
                                                                     case 'verbose':
-                                                                        return _p.ss(
+                                                                        return p_.ss(
                                                                             $,
                                                                             ($) => ['verbose', {
-                                                                                '(': _p_change_context(
+                                                                                '(': p_change_context(
                                                                                     $['('],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                'properties': _p_change_context(
+                                                                                'properties': p_change_context(
                                                                                     $['properties'],
                                                                                     ($) => ID_Value_Pairs(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                ')': _p_change_context(
+                                                                                ')': p_change_context(
                                                                                     $[')'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -151,7 +155,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                             }],
                                                                         )
                                                                     default:
-                                                                        return _p.au(
+                                                                        return p_.au(
                                                                             $[0],
                                                                         )
                                                                 }
@@ -159,22 +163,22 @@ export const Value: t_signatures.Value = ($) => ({
                                                         )],
                                                     )
                                                 case 'list':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
                                                         ($) => ['list', {
-                                                            '[': _p_change_context(
+                                                            '[': p_change_context(
                                                                 $['['],
                                                                 ($) => Token_Trivia(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            'items': _p_change_context(
+                                                            'items': p_change_context(
                                                                 $['items'],
                                                                 ($) => Items(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            ']': _p_change_context(
+                                                            ']': p_change_context(
                                                                 $[']'],
                                                                 ($) => Token_Trivia(
                                                                     $,
@@ -183,10 +187,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                         }],
                                                     )
                                                 case 'nothing':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
                                                         ($) => ['nothing', {
-                                                            '~': _p_change_context(
+                                                            '~': p_change_context(
                                                                 $['~'],
                                                                 ($) => Token_Trivia(
                                                                     $,
@@ -195,17 +199,17 @@ export const Value: t_signatures.Value = ($) => ({
                                                         }],
                                                     )
                                                 case 'optional':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
-                                                        ($) => ['optional', _p.decide.state(
+                                                        ($) => ['optional', p_decide_state(
                                                             $,
                                                             ($): t_out.Value.data.concrete.type_.optional => {
                                                                 switch ($[0]) {
                                                                     case 'not set':
-                                                                        return _p.ss(
+                                                                        return p_.ss(
                                                                             $,
                                                                             ($) => ['not set', {
-                                                                                '_': _p_change_context(
+                                                                                '_': p_change_context(
                                                                                     $['_'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
@@ -214,16 +218,16 @@ export const Value: t_signatures.Value = ($) => ({
                                                                             }],
                                                                         )
                                                                     case 'set':
-                                                                        return _p.ss(
+                                                                        return p_.ss(
                                                                             $,
                                                                             ($) => ['set', {
-                                                                                '*': _p_change_context(
+                                                                                '*': p_change_context(
                                                                                     $['*'],
                                                                                     ($) => Token_Trivia(
                                                                                         $,
                                                                                     ),
                                                                                 ),
-                                                                                'value': _p_change_context(
+                                                                                'value': p_change_context(
                                                                                     $['value'],
                                                                                     ($) => Value(
                                                                                         $,
@@ -232,7 +236,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                             }],
                                                                         )
                                                                     default:
-                                                                        return _p.au(
+                                                                        return p_.au(
                                                                             $[0],
                                                                         )
                                                                 }
@@ -240,26 +244,26 @@ export const Value: t_signatures.Value = ($) => ({
                                                         )],
                                                     )
                                                 case 'state':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
                                                         ($) => ['state', {
-                                                            '|': _p_change_context(
+                                                            '|': p_change_context(
                                                                 $['|'],
                                                                 ($) => Token_Trivia(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            'status': _p_change_context(
+                                                            'status': p_change_context(
                                                                 $['status'],
-                                                                ($) => _p.decide.state(
+                                                                ($) => p_decide_state(
                                                                     $,
                                                                     ($): t_out.Value.data.concrete.type_.state.status => {
                                                                         switch ($[0]) {
                                                                             case 'missing':
-                                                                                return _p.ss(
+                                                                                return p_.ss(
                                                                                     $,
                                                                                     ($) => ['missing', {
-                                                                                        '#': _p_change_context(
+                                                                                        '#': p_change_context(
                                                                                             $['#'],
                                                                                             ($) => Token_Trivia(
                                                                                                 $,
@@ -268,14 +272,14 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                     }],
                                                                                 )
                                                                             case 'set':
-                                                                                return _p.ss(
+                                                                                return p_.ss(
                                                                                     $,
                                                                                     ($) => ['set', {
-                                                                                        'option': _p_change_context(
+                                                                                        'option': p_change_context(
                                                                                             $['option'],
                                                                                             ($) => $,
                                                                                         ),
-                                                                                        'value': _p_change_context(
+                                                                                        'value': p_change_context(
                                                                                             $['value'],
                                                                                             ($) => Value(
                                                                                                 $,
@@ -284,7 +288,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                     }],
                                                                                 )
                                                                             default:
-                                                                                return _p.au(
+                                                                                return p_.au(
                                                                                     $[0],
                                                                                 )
                                                                         }
@@ -294,42 +298,42 @@ export const Value: t_signatures.Value = ($) => ({
                                                         }],
                                                     )
                                                 case 'text':
-                                                    return _p.ss(
+                                                    return p_.ss(
                                                         $,
                                                         ($) => ['text', {
-                                                            'trivia': _p_change_context(
+                                                            'trivia': p_change_context(
                                                                 $['trivia'],
                                                                 ($) => Token_Trivia(
                                                                     $,
                                                                 ),
                                                             ),
-                                                            'value': _p_change_context(
+                                                            'value': p_change_context(
                                                                 $['value'],
                                                                 ($) => $,
                                                             ),
-                                                            'delimiter': _p_change_context(
+                                                            'delimiter': p_change_context(
                                                                 $['delimiter'],
-                                                                ($) => _p.decide.state(
+                                                                ($) => p_decide_state(
                                                                     $,
                                                                     ($): t_out.Value.data.concrete.type_.text.delimiter => {
                                                                         switch ($[0]) {
                                                                             case 'none':
-                                                                                return _p.ss(
+                                                                                return p_.ss(
                                                                                     $,
                                                                                     ($) => ['none', null],
                                                                                 )
                                                                             case 'quote':
-                                                                                return _p.ss(
+                                                                                return p_.ss(
                                                                                     $,
                                                                                     ($) => ['quote', null],
                                                                                 )
                                                                             case 'apostrophe':
-                                                                                return _p.ss(
+                                                                                return p_.ss(
                                                                                     $,
                                                                                     ($) => ['apostrophe', null],
                                                                                 )
                                                                             default:
-                                                                                return _p.au(
+                                                                                return p_.au(
                                                                                     $[0],
                                                                                 )
                                                                         }
@@ -339,7 +343,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                         }],
                                                     )
                                                 default:
-                                                    return _p.au(
+                                                    return p_.au(
                                                         $[0],
                                                     )
                                             }
@@ -349,7 +353,7 @@ export const Value: t_signatures.Value = ($) => ({
                             }],
                         )
                     default:
-                        return _p.au(
+                        return p_.au(
                             $[0],
                         )
                 }
@@ -359,34 +363,34 @@ export const Value: t_signatures.Value = ($) => ({
 })
 
 export const Token_Trivia: t_signatures.Token_Trivia = ($) => ({
-    'comments': _p_change_context(
+    'comments': p_change_context(
         $['comments'],
-        ($) => _p.list.from.list(
+        ($) => p_.from.list(
             $,
         ).map(
             ($) => ({
-                'content': _p_change_context(
+                'content': p_change_context(
                     $['content'],
                     ($) => $,
                 ),
-                'type': _p_change_context(
+                'type': p_change_context(
                     $['type'],
-                    ($) => _p.decide.state(
+                    ($) => p_decide_state(
                         $,
                         ($): t_out.Token_Trivia.comments.L.type_ => {
                             switch ($[0]) {
                                 case 'line':
-                                    return _p.ss(
+                                    return p_.ss(
                                         $,
                                         ($) => ['line', null],
                                     )
                                 case 'block':
-                                    return _p.ss(
+                                    return p_.ss(
                                         $,
                                         ($) => ['block', null],
                                     )
                                 default:
-                                    return _p.au(
+                                    return p_.au(
                                         $[0],
                                     )
                             }
@@ -398,17 +402,17 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ({
     ),
 })
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => _p.list.from.list(
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => p_.from.list(
     $,
 ).map(
     ($) => ({
-        'id': _p_change_context(
+        'id': p_change_context(
             $['id'],
             ($) => $,
         ),
-        'value': _p_change_context(
+        'value': p_change_context(
             $['value'],
-            ($) => _p.optional.from.optional(
+            ($) => p_.from.optional(
                 $,
             ).map(
                 ($) => Value(
@@ -419,7 +423,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => _p.list.from.l
     }),
 )
 
-export const Items: t_signatures.Items = ($) => _p.list.from.list(
+export const Items: t_signatures.Items = ($) => p_.from.list(
     $,
 ).map(
     ($) => Value(

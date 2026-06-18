@@ -7,7 +7,7 @@ import * as d_out from "../../../../interface/generated/liana/schemas/authoring_
 
 export const Document: signatures.Document = ($) => {
     return {
-        'header': p_.optional.from.optional(
+        'header': p_.from.optional(
             $.header
         ).map(($) => Value($.value)),
         'content': Value($.content)
@@ -15,20 +15,20 @@ export const Document: signatures.Document = ($) => {
 }
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map(($): d_out.ID_Value_Pairs.L => ({
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map_deprecated(($): d_out.ID_Value_Pairs.L => ({
     'id': $.id.token.value,
     'value': $.assignment.__decide(
-        ($) => p_.optional.from.optional($.value).map(($) => Value($)),
+        ($) => p_.from.optional($.value).map(($) => Value($)),
         () => p_.literal.not_set()
     )
 }))
 
-export const Items: signatures.Items = ($) => $.__l_map(($) => Value($.value))
+export const Items: signatures.Items = ($) => $.__l_map_deprecated(($) => Value($.value))
 export const Structural_Token: signatures.Structural_Token = ($) => ({
     'comments': $['trailing trivia'].comments
 })
 
-export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state($, ($): d_out.Value.data.concrete => {
+export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($).decide(($): d_out.Value.data.concrete => {
     switch ($[0]) {
         case 'dictionary': return p_.ss($, ($) => ({
             'type': ['dictionary', {
@@ -38,7 +38,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state(
             }]
         }))
         case 'group': return p_.ss($, ($) => ({
-            'type': ['group', p_.decide.state($, ($): d_out.Value.data.concrete.type_.group => {
+            'type': ['group', p_.from.state($).decide(($): d_out.Value.data.concrete.type_.group => {
                 switch ($[0]) {
                     case 'concise': return p_.ss($, ($) => {
                         return ['concise', {
@@ -68,7 +68,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state(
         case 'state': return p_.ss($, ($): d_out.Value.data.concrete => ({
             'type': ['state', {
                 '|': Structural_Token($['|']),
-                'status': p_.decide.state($.status, ($): d_out.Value.data.concrete.type_.state.status => {
+                'status': p_.from.state($.status).decide(($): d_out.Value.data.concrete.type_.state.status => {
                     switch ($[0]) {
                         case 'missing': return p_.ss($, ($): d_out.Value.data.concrete.type_.state.status => ['missing', {
                             '#': Structural_Token($['#']),
@@ -88,7 +88,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state(
             }]
         }))
         case 'optional': return p_.ss($, ($): d_out.Value.data.concrete => ({
-            'type': ['optional', p_.decide.state($, ($): d_out.Value.data.concrete.type_.optional => {
+            'type': ['optional', p_.from.state($).decide(($): d_out.Value.data.concrete.type_.optional => {
                 switch ($[0]) {
                     case 'set': return p_.ss($, ($): d_out.Value.data.concrete.type_.optional => ['set', {
                         '*': Structural_Token($['*']),
@@ -104,7 +104,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.decide.state(
         case 'text': return p_.ss($, ($) => ({
             'type': ['text', {
                 'value': $.token.value,
-                'delimiter': p_.decide.state($.token.type, ($) => {
+                'delimiter': p_.from.state($.token.type).decide(($) => {
                     switch ($[0]) {
                         case 'quoted': return p_.ss($, ($) => ['quote', null])
                         case 'apostrophed': return p_.ss($, ($) => ['apostrophe', null])
@@ -127,7 +127,7 @@ export const Value: signatures.Value = ($) => {
         'metadata': {
             'comments': p_.literal.list([]),
         },
-        'data': p_.decide.state($.type, ($): d_out.Value.data => {
+        'data': p_.from.state($.type).decide(($): d_out.Value.data => {
             switch ($[0]) {
                 case 'concrete': return p_.ss($, ($) => ['concrete', Concrete_Value($)])
 
