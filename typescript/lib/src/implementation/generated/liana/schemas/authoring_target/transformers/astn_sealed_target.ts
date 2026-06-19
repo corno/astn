@@ -5,9 +5,9 @@ const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign(
 const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
 const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
 
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
 
-import _p_text_from_list from 'pareto-core/dist/implementation/specials/text_from_list'
+import _p_text_from_list from 'pareto-core/dist/implementation/transformer/specials/text_from_list'
 
 import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/astn_sealed_target"
 

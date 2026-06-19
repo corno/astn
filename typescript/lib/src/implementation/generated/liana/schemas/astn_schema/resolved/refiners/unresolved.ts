@@ -1,13 +1,13 @@
 
 // import * as p_ from 'pareto-core/dist/implementation/refiner'
 
-// import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+// import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
 
 // import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 
-// import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
+// import _p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 
-// import p_variables from 'pareto-core/dist/implementation/specials/variables'
+// import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
 
 // import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
