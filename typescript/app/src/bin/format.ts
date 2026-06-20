@@ -1,11 +1,11 @@
 #!/usr/bin/env -S node --enable-source-maps
 
-import * as ph from 'pareto-host-nodejs'
+import * as p_h from 'pareto-host-nodejs'
 
-import { $$ as procedure } from "lib/dist/implementation/manual/commands/format"
+import { $$ as c_command } from "lib/dist/implementation/manual/commands/format"
 
-ph.run_main_command(
-    ($r) => procedure(
+p_h.run_main_command(
+    ($r) => c_command(
             {
                 'serialization parameters': {
                     'indentation': "   ",
