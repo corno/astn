@@ -7,7 +7,7 @@ import * as d_out from "../../../../interface/data/includes"
 
 
 export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($) => p_.literal.nested_list([
-    $.header.__decide(
+    p_.from.optional($.header).decide(
         ($) => Value($.value),
         () => p_.literal.list([])
     ),
@@ -56,8 +56,8 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p
 
 export const Items: p_i.Transformer<d_in.Items, d_out.Included_Files> = ($) => p_.from.list($).flatten(($) => Value($.value))
 
-export const ID_Value_Pairs: p_i.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => p_.from.list($).flatten(($ => $.assignment.__decide(
-    ($) => $.value.__decide(
+export const ID_Value_Pairs: p_i.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => p_.from.list($).flatten(($ => p_.from.optional($.assignment).decide(
+    ($) => p_.from.optional($.value).decide(
         ($) => Value($),
         () => p_.literal.list([])
     ),

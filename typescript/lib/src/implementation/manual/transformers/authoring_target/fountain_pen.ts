@@ -15,7 +15,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"
 
 export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => sh.pg.composed([
-    $.header.__decide(
+    p_.from.optional($.header).decide(
         ($) => sh.pg.sentences([
             sh.sentence([
                 Value($, {
@@ -63,7 +63,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                         'add delimiters': true,
                                     })),
                                     sh.ph.literal(": "),
-                                    $.value.__decide(
+                                    p_.from.optional($.value).decide(
                                         ($) => Value($, {
                                             'write delimiters': true,
                                         }),
@@ -82,7 +82,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                 //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
                                 $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                 Token_Trivia($['<']),
-                                sh.ph.composed($.properties.__l_map_deprecated(($) => sh.ph.composed([
+                                sh.ph.composed(p_.from.list($.properties).map(($) => sh.ph.composed([
                                     sh.ph.literal(" "),
                                     Value($, {
                                         'write delimiters': true,
@@ -108,7 +108,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                                     'add delimiters': true,
                                                 })),
                                                 sh.ph.literal(": "),
-                                                $.value.__decide(
+                                                p_.from.optional($.value).decide(
                                                     ($) => Value($, {
                                                         'write delimiters': true,
                                                     }),
@@ -127,7 +127,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                     case 'list': return p_.ss($, ($) => sh.ph.composed([
                         $p['write delimiters'] ? sh.ph.literal("[") : sh.ph.nothing(),
                         Token_Trivia($['[']),
-                        sh.ph.composed($.items.__l_map_deprecated(($) => sh.ph.composed([
+                        sh.ph.composed(p_.from.list($.items).map(($) => sh.ph.composed([
                             sh.ph.literal(" "),
                             Value($, {
                                 'write delimiters': true,

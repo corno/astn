@@ -15,15 +15,15 @@ export const Document: signatures.Document = ($) => {
 }
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => $.__l_map_deprecated(($): d_out.ID_Value_Pairs.L => ({
+export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => p_.from.list($).map(($): d_out.ID_Value_Pairs.L => ({
     'id': $.id.token.value,
-    'value': $.assignment.__decide(
+    'value': p_.from.optional($.assignment).decide(
         ($) => p_.from.optional($.value).map(($) => Value($)),
         () => p_.literal.not_set()
     )
 }))
 
-export const Items: signatures.Items = ($) => $.__l_map_deprecated(($) => Value($.value))
+export const Items: signatures.Items = ($) => p_.from.list($).map(($) => Value($.value))
 export const Structural_Token: signatures.Structural_Token = ($) => ({
     'comments': $['trailing trivia'].comments
 })
