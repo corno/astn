@@ -6,7 +6,7 @@ import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tr
 import * as d_out from "../../../../interface/data/includes"
 
 
-export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($) => p_.literal.nested_list([
+export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(
         ($) => Value($.value),
         () => p_.literal.list([])
