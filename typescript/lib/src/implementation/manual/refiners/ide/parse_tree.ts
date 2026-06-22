@@ -42,7 +42,7 @@
 // ).flatten(
 //     ($) => p_.literal.nested_ list([
 //         String($.id, $p),
-//         $.assignment.__decide(
+//         $.assignment.__ decide(
 //             ($) => p_.literal.nested_ list([
 //                 Structural_Token($[':'], $p),
 //                 Value($.value, $p),
@@ -127,7 +127,7 @@
 
 // export const Document: signatures.Document = ($, $p) => p_.literal.nested_ list([
 
-//     $.header.__decide(
+//     $.header.__ decide(
 //         ($) => p_.literal.nested_ list([
 //             Structural_Token($['!'], $p),
 //             Value($.value, $p)

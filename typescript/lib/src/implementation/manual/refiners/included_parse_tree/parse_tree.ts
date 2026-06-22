@@ -61,8 +61,8 @@
 
 // export const Items: p_i.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => p_.from.list($).flatten(($) => Value($.value))
 
-// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => p_.from.list($).flatten(($ => $.assignment.__decide(
-//     ($) => $.value.__decide(
+// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => p_.from.list($).flatten(($ => $.assignment.__ decide(
+//     ($) => $.value.__ decide(
 //         ($) => Value($),
 //         () => p_.literal.list([])
 //     ),
