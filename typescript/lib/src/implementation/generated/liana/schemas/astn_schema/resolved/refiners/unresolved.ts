@@ -155,7 +155,7 @@
 //                                                                             ($) => ({
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
 //                                                                                     var_constraint_import,
-//                                                                                 ).get_entry(
+//                                                                                 ).get_ entry(
 //                                                                                     $['l reference'],
 //                                                                                     {
 //                                                                                         no_such_entry: () => abort(
@@ -187,7 +187,7 @@
 //                                                                             ($) => ({
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
 //                                                                                     prop_import['l entry']['schema']['types'],
-//                                                                                 ).get_entry(
+//                                                                                 ).get_ entry(
 //                                                                                     $['l reference'],
 //                                                                                     {
 //                                                                                         no_such_entry: () => abort(
@@ -226,7 +226,7 @@
 //                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['internal acyclic', {
-//                                                             'l entry': $l['noncircular sibling modules'].get_entry(
+//                                                             'l entry': $l['noncircular sibling modules'].get_ entry(
 //                                                                 $['l reference'],
 //                                                                 {
 //                                                                     no_such_entry: () => abort(
@@ -256,7 +256,7 @@
 //                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['internal', {
-//                                                             'l entry': $l['possibly circular dependent sibling modules'].get_entry(
+//                                                             'l entry': $l['possibly circular dependent sibling modules'].get_ entry(
 //                                                                 $['l reference'],
 //                                                                 {
 //                                                                     no_such_entry: () => abort(
@@ -440,7 +440,7 @@
 //                                                                 return {
 //                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
 //                                                                         var_constraint_globals['text types'],
-//                                                                     ).get_entry(
+//                                                                     ).get_ entry(
 //                                                                         $['l reference'],
 //                                                                         {
 //                                                                             no_such_entry: () => abort(
@@ -636,7 +636,7 @@
 //                         () => {
                             
 //                             const prop_l_value = {
-//                                 'l entry': $l['sibling schemas'].get_entry(
+//                                 'l entry': $l['sibling schemas'].get_ entry(
 //                                     $['l reference'],
 //                                     {
 //                                         no_such_entry: () => abort(
