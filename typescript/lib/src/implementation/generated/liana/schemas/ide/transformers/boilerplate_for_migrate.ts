@@ -11,8 +11,7 @@ import * as t_signatures from "../../../../../../interface/generated/liana/schem
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/ide/data"
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => p_.from.list(
-    $,
+export const Text_Edits: t_signatures.Text_Edits = ($) => p_.from.list($,
 ).map(
     ($) => p_decide_state(
         $,
@@ -86,8 +85,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ({
     ),
 })
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => p_.from.dictionary(
-    $,
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => p_.from.dictionary($,
 ).map(
     ($, id) => $,
 )

@@ -13,8 +13,7 @@
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
 
-// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Modules.D => p_change_context(
 //         $['l entry'],
@@ -51,8 +50,7 @@
         
 //         const prop_text_types = p_change_context(
 //             $['text types'],
-//             ($) => p_.from.dictionary(
-//                 $['l dictionary'],
+//             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
 //                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
 //                     $['l entry'],
@@ -329,8 +327,7 @@
 //                     case 'group':
 //                         return p_.ss(
 //                             $,
-//                             ($) => ['group', p_.from.dictionary(
-//                                 $['l dictionary'],
+//                             ($) => ['group', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
 //                                 ($, id, $a, $c): t_out.Value.group.D => p_change_context(
 //                                     $['l entry'],
@@ -394,8 +391,7 @@
 //                     case 'state':
 //                         return p_.ss(
 //                             $,
-//                             ($) => ['state', p_.from.dictionary(
-//                                 $['l dictionary'],
+//                             ($) => ['state', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
 //                                 ($, id, $a, $c): t_out.Value.state.D => p_change_context(
 //                                     $['l entry'],
@@ -500,8 +496,7 @@
 //     },
 // )
 
-// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
 //         $['l entry'],
@@ -622,8 +617,7 @@
 //     },
 // )
 
-// export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Imports.D => p_change_context(
 //         $['l entry'],

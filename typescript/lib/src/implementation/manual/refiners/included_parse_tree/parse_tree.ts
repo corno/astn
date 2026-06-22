@@ -12,7 +12,8 @@
 // }
 
 // export const Document: p_i.Refiner_With_Parameter<d_in.Document, Error, d_out.Document, Parameters> = ($, abort, $p) => ({
-//     'header': p_.from.optional($.header).map(($) => ({
+//     'header': p_.from.optional($.header).map(
+//($) => ({
 //         '!': $['!'],
 //         'value': Value($.value, abort, $p),
 //     })),
@@ -21,10 +22,12 @@
 
 // export const Value: p_i.Refiner_With_Parameter<d_in.Value, Error, d_out.Value, Parameters> = ($, abort, $p) => p_.decide.state($.type, ($): d_out.Value => {
 //     switch ($[0]) {
-//         case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(($):d_out.Value => {
+//         case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(
+//($):d_out.Value => {
 //             switch ($[0]) {
 //                 case 'dictionary': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
-//                 case 'group': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+//                 case 'group': return p_.ss($, ($) => p_.from.state($).decide(
+//($) => {
 //                     switch ($[0]) {
 //                         case 'concise': return p_.ss($, ($) => Items($.items, abort, $p))
 //                         case 'verbose': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
@@ -33,14 +36,16 @@
 //                 }))
 //                 case 'list': return p_.ss($, ($) => Items($.items, abort, $p))
 //                 case 'nothing': return p_.ss($, ($) => ))
-//                 case 'optional': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+//                 case 'optional': return p_.ss($, ($) => p_.from.state($).decide(
+//($) => {
 //                     switch ($[0]) {
 //                         case 'set': return p_.ss($, ($) => Value($.value, abort, $p))
 //                         case 'not set': return p_.ss($, ($) => p_.literal.list([]))
 //                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(($) => {
+//                 case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(
+//($) => {
 //                     switch ($[0]) {
 //                         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
 //                         case 'set':return p_.ss($, ($) => Value($.value, abort, $p))
@@ -59,9 +64,11 @@
 //     }
 // })
 
-// export const Items: p_i.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => p_.from.list($).flatten(($) => Value($.value))
+// export const Items: p_i.Refiner_With_Parameter<d_in.Items, Error, d_out.Items, Parameters> = ($) => p_.from.list($).flatten(
+// ($) => Value($.value))
 
-// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => p_.from.list($).flatten(($ => $.assignment.__ decide(
+// export const ID_Value_Pairs: p_i.Refiner_With_Parameter<d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters> = ($) => p_.from.list($).flatten(
+// ($ => $.assignment.__ decide(
 //     ($) => $.value.__ decide(
 //         ($) => Value($),
 //         () => p_.literal.list([])

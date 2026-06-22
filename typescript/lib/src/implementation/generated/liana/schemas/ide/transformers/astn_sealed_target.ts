@@ -15,8 +15,7 @@ import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_
 
 import * as v_primitives_to_text from "liana-core/dist/implementation/manual/transformers/primitives/text"
 
-export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', p_.from.list(
-    $,
+export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', p_.from.list($,
 ).map(
     ($) => ['state', p_decide_state(
         $,
@@ -113,8 +112,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['ve
     },
 )]]
 
-export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', p_.from.dictionary(
-    $,
+export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
     ($, id) => ['text', {
         'delimiter': ['quote', null],

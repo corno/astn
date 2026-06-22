@@ -14,8 +14,7 @@ import * as t_out from "../../../../../../interface/generated/liana/schemas/auth
 export const Document: t_signatures.Document = ($) => ({
     'header': p_change_context(
         $['header'],
-        ($) => p_.from.optional(
-            $,
+        ($) => p_.from.optional($,
         ).map(
             ($) => Value(
                 $,
@@ -365,8 +364,7 @@ export const Value: t_signatures.Value = ($) => ({
 export const Token_Trivia: t_signatures.Token_Trivia = ($) => ({
     'comments': p_change_context(
         $['comments'],
-        ($) => p_.from.list(
-            $,
+        ($) => p_.from.list($,
         ).map(
             ($) => ({
                 'content': p_change_context(
@@ -402,8 +400,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ({
     ),
 })
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => p_.from.list(
-    $,
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => p_.from.list($,
 ).map(
     ($) => ({
         'id': p_change_context(
@@ -412,8 +409,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => p_.from.list(
         ),
         'value': p_change_context(
             $['value'],
-            ($) => p_.from.optional(
-                $,
+            ($) => p_.from.optional($,
             ).map(
                 ($) => Value(
                     $,
@@ -423,8 +419,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => p_.from.list(
     }),
 )
 
-export const Items: t_signatures.Items = ($) => p_.from.list(
-    $,
+export const Items: t_signatures.Items = ($) => p_.from.list($,
 ).map(
     ($) => Value(
         $,

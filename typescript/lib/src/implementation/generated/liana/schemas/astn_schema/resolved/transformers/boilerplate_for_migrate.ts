@@ -72,8 +72,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Schema_Tree(
@@ -137,8 +136,7 @@ export const Imports: t_signatures.Imports = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -209,8 +207,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     },
                 },
             }],
-            'l dictionary': p_.from.dictionary(
-                $,
+            'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': Text_Type(
@@ -255,8 +252,7 @@ export const Modules: t_signatures.Modules = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -473,8 +469,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l dictionary': p_.from.dictionary(
-                                $,
+                            'l dictionary': p_.from.dictionary($,
                             ).map(
                                 ($, id) => ({
                                     'l entry': Value(
@@ -544,8 +539,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             }],
-                            'l dictionary': p_.from.dictionary(
-                                $,
+                            'l dictionary': p_.from.dictionary($,
                             ).map(
                                 ($, id) => ({
                                     'l entry': Value(

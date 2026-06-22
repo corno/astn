@@ -28,7 +28,8 @@ import * as p_h from 'pareto-host-nodejs/dist'
 //                     },
 //                 },
 //                 null,
-//             ).map_exception_(($) => ({
+//             ).map_exception_(
+// ($) => ({
 //                 'exit code': 1,
 //             })),
 //             $r.commands['write file'](
@@ -40,7 +41,8 @@ import * as p_h from 'pareto-host-nodejs/dist'
 //                     'data': "some data",
 //                 },
 //                 null
-//             ).map_error(($) => ({
+//             ).map_error(
+// ($) => ({
 //                 'exit code': 1,
 //             })),
 //         )

@@ -25,46 +25,51 @@ export const Items: signatures.Items = ($) => p_.from.list($).map(
     ($) => Value($.value)
 )
 
-export const Value: signatures.Value = ($) => p_.from.state($.type).decide(($): d_out.Value => {
-    switch ($[0]) {
-        case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(($): d_out.Value => {
-            switch ($[0]) {
-                case 'dictionary': return p_.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
-                case 'group': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+export const Value: signatures.Value = ($) => p_.from.state($.type).decide(
+    ($): d_out.Value => {
+        switch ($[0]) {
+            case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(
+                ($): d_out.Value => {
                     switch ($[0]) {
-                        case 'concise': return p_.ss($, ($) => ['array', Items($.properties)])
-                        case 'verbose': return p_.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
+                        case 'dictionary': return p_.ss($, ($) => ['object', ID_Value_Pairs($.entries)])
+                        case 'group': return p_.ss($, ($) => p_.from.state($).decide(
+                            ($) => {
+                                switch ($[0]) {
+                                    case 'concise': return p_.ss($, ($) => ['array', Items($.properties)])
+                                    case 'verbose': return p_.ss($, ($) => ['object', ID_Value_Pairs($.properties)])
+                                    default: return p_.au($[0])
+                                }
+                            }))
+                        case 'list': return p_.ss($, ($) => ['array', Items($.items)])
+                        case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(
+                            ($): d_out.Value => {
+                                switch ($[0]) {
+                                    case 'missing': return p_.ss($, ($) => ['null', null])
+                                    case 'set': return p_.ss($, ($): d_out.Value => ['array', p_.literal.list<d_out.Value>([
+                                        ['string', $.option.token.value],
+                                        Value($.value),
+                                    ])])
+                                    default: return p_.au($[0])
+                                }
+                            }))
+                        case 'nothing': return p_.ss($, ($) => ['null', null])
+                        case 'optional': return p_.ss($, ($) => p_.from.state($).decide(
+                            ($) => {
+                                switch ($[0]) {
+                                    case 'set': return p_.ss($, ($) => ['array', p_.literal.list([
+                                        Value($.value),
+                                    ])])
+                                    case 'not set': return p_.ss($, ($) => ['null', null])
+                                    default: return p_.au($[0])
+                                }
+                            }))
+                        case 'text': return p_.ss($, ($) => ['string', $.token.value])
                         default: return p_.au($[0])
                     }
                 }))
-                case 'list': return p_.ss($, ($) => ['array', Items($.items)])
-                case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(($): d_out.Value => {
-                    switch ($[0]) {
-                        case 'missing': return p_.ss($, ($) => ['null', null])
-                        case 'set': return p_.ss($, ($): d_out.Value => ['array', p_.literal.list<d_out.Value>([
-                            ['string', $.option.token.value],
-                            Value($.value),
-                        ])])
-                        default: return p_.au($[0])
-                    }
-                }))
-                case 'nothing': return p_.ss($, ($) => ['null', null])
-                case 'optional': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-                    switch ($[0]) {
-                        case 'set': return p_.ss($, ($) => ['array', p_.literal.list([
-                            Value($.value),
-                        ])])
-                        case 'not set': return p_.ss($, ($) => ['null', null])
-                        default: return p_.au($[0])
-                    }
-                }))
-                case 'text': return p_.ss($, ($) => ['string', $.token.value])
-                default: return p_.au($[0])
-            }
-        }))
 
-        case 'include': return p_.ss($, ($) => ['string', "FIXME include not implemented yet"])
-        case 'missing': return p_.ss($, ($) => ['null', null])
-        default: return p_.au($[0])
-    }
-})
+            case 'include': return p_.ss($, ($) => ['string', "FIXME include not implemented yet"])
+            case 'missing': return p_.ss($, ($) => ['null', null])
+            default: return p_.au($[0])
+        }
+    })

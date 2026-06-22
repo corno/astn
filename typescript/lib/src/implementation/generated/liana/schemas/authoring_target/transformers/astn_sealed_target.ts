@@ -468,8 +468,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbos
     {
         "comments": p_change_context(
             $['comments'],
-            ($) => ['list', p_.from.list(
-                $,
+            ($) => ['list', p_.from.list($,
             ).map(
                 ($) => ['group', ['verbose', p_.literal.dictionary(
                     {
@@ -517,8 +516,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($) => ['group', ['verbos
     },
 )]]
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', p_.from.list(
-    $,
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', p_.from.list($,
 ).map(
     ($) => ['group', ['verbose', p_.literal.dictionary(
         {
@@ -543,8 +541,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', p_.fr
     )]],
 )]
 
-export const Items: t_signatures.Items = ($) => ['list', p_.from.list(
-    $,
+export const Items: t_signatures.Items = ($) => ['list', p_.from.list($,
 ).map(
     ($) => Value(
         $,

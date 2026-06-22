@@ -56,8 +56,7 @@ export const Document: t_signatures.Document = ($, abort) => p_change_context(
                             'subdocument context': p_.literal.not_set(),
                         },
                     ),
-                    ($) => p_.from.optional(
-                        v_unmarshalled_from_parse_tree.Optional(
+                    ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                             $,
                             ($) => abort(
                                 $,
@@ -1335,8 +1334,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($, abort) => p_change_co
                             'subdocument context': p_.literal.not_set(),
                         },
                     ),
-                    ($) => p_.from.list(
-                        v_unmarshalled_from_parse_tree.List(
+                    ($) => p_.from.list(v_unmarshalled_from_parse_tree.List(
                             $,
                             ($) => abort(
                                 $,
@@ -1463,8 +1461,7 @@ export const Token_Trivia: t_signatures.Token_Trivia = ($, abort) => p_change_co
     ),
 )
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => p_.from.list(
-    v_unmarshalled_from_parse_tree.List(
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => p_.from.list(v_unmarshalled_from_parse_tree.List(
         $,
         ($) => abort(
             $,
@@ -1531,8 +1528,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => p_.from
                                     'subdocument context': p_.literal.not_set(),
                                 },
                             ),
-                            ($) => p_.from.optional(
-                                v_unmarshalled_from_parse_tree.Optional(
+                            ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                     $,
                                     ($) => abort(
                                         $,
@@ -1554,8 +1550,7 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => p_.from
     ),
 )
 
-export const Items: t_signatures.Items = ($, abort) => p_.from.list(
-    v_unmarshalled_from_parse_tree.List(
+export const Items: t_signatures.Items = ($, abort) => p_.from.list(v_unmarshalled_from_parse_tree.List(
         $,
         ($) => abort(
             $,

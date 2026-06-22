@@ -47,8 +47,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_s
     },
 )]
 
-export const Schemas: t_signatures.Schemas = ($) => ['dictionary', p_.from.dictionary(
-    $,
+export const Schemas: t_signatures.Schemas = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
     ($, id) => Schema_Tree(
         $,
@@ -78,8 +77,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', p_.liter
     },
 )]]
 
-export const Imports: t_signatures.Imports = ($) => ['dictionary', p_.from.dictionary(
-    $,
+export const Imports: t_signatures.Imports = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
     ($, id) => ['group', ['verbose', p_.literal.dictionary(
         {
@@ -102,8 +100,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', p_.lit
     {
         "text types": p_change_context(
             $['text types'],
-            ($) => ['dictionary', p_.from.dictionary(
-                $,
+            ($) => ['dictionary', p_.from.dictionary($,
             ).map(
                 ($, id) => Text_Type(
                     $,
@@ -113,8 +110,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', p_.lit
     },
 )]]
 
-export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dictionary(
-    $,
+export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
     ($, id) => ['group', ['verbose', p_.literal.dictionary(
         {
@@ -228,8 +224,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                     $,
                     ($) => ({
                         'option': 'group',
-                        'value': ['dictionary', p_.from.dictionary(
-                            $,
+                        'value': ['dictionary', p_.from.dictionary($,
                         ).map(
                             ($, id) => Value(
                                 $,
@@ -277,8 +272,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                     $,
                     ($) => ({
                         'option': 'state',
-                        'value': ['dictionary', p_.from.dictionary(
-                            $,
+                        'value': ['dictionary', p_.from.dictionary($,
                         ).map(
                             ($, id) => Value(
                                 $,

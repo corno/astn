@@ -19,8 +19,7 @@ import * as v_unmarshalled_from_parse_tree from "liana-core/dist/implementation/
 
 import * as v_parse_tree_to_location from "liana-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
 
-export const Text_Edits: t_signatures.Text_Edits = ($, abort) => p_.from.list(
-    v_unmarshalled_from_parse_tree.List(
+export const Text_Edits: t_signatures.Text_Edits = ($, abort) => p_.from.list(v_unmarshalled_from_parse_tree.List(
         $,
         ($) => abort(
             $,
@@ -330,8 +329,7 @@ export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sort
             'subdocument context': p_.literal.not_set(),
         },
     ),
-    ($) => p_.from.dictionary(
-        $['entries'],
+    ($) => p_.from.dictionary($['entries'],
     ).map(
         ($, id) => v_unmarshalled_from_parse_tree.Text(
             $,
