@@ -114,7 +114,7 @@ export const Relative_Range: t_signatures.Relative_Range = ($) => ['group', ['ve
 
 export const ID_Value_Pairs_To_Be_Sorted: t_signatures.ID_Value_Pairs_To_Be_Sorted = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id) => ['text', {
+    ($, id): t_out.Value => ['text', {
         'delimiter': ['quote', null],
         'value': $,
     }],

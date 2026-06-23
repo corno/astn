@@ -79,7 +79,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', p_.liter
 
 export const Imports: t_signatures.Imports = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id) => ['group', ['verbose', p_.literal.dictionary(
+    ($, id): t_out.Value => ['group', ['verbose', p_.literal.dictionary(
         {
             "schema set child": p_change_context(
                 $['schema set child'],
@@ -112,7 +112,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', p_.lit
 
 export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id) => ['group', ['verbose', p_.literal.dictionary(
+    ($, id): t_out.Value => ['group', ['verbose', p_.literal.dictionary(
         {
             "root value": p_change_context(
                 $['root value'],
