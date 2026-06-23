@@ -9,7 +9,7 @@ export type Parameters = {
     'write delimiters': boolean
 }
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 //dependencies
 import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"

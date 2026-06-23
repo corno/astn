@@ -19,7 +19,7 @@ import * as t_parse_tree_2_authoring_target from "../transformers/parse_tree/aut
 import * as t_authoring_target_to_fp from "../transformers/authoring_target/fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.query_functions.process_file_data = p_.query_function(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_fp.Phrase>(

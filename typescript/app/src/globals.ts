@@ -2,7 +2,7 @@ interface Array<T> {
     [n: number]: T
     length: number
     // Minimal marker to distinguish arrays from single values for type checking
-    readonly __isArray: true
+    readonly __state: true
 }
 interface Boolean { }
 interface CallableFunction { }

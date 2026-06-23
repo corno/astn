@@ -15,7 +15,7 @@ import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/re
 import * as t_deserialize_parse_tree_to_fp from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.query_functions.process_stream_data = p_.query_function(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_fp.Phrase>(

@@ -19,7 +19,7 @@ import * as t_ast_2_json from "../transformers/parse_tree/json_target"
 import * as t_json_to_fp from "pareto-json/dist/implementation/manual/transformers/json_without_guaranteed_unique_keys/fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.query_functions.process_file_data = p_.query_function(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_fp.Phrase>(
