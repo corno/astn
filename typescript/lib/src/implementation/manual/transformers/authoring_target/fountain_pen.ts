@@ -14,7 +14,9 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 //dependencies
 import * as t_primitives_to_text from "astn-core/dist/implementation/manual/transformers/primitives/text"
 
-export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => sh.pg.composed([
+export const Document: p_i.Transformer<
+d_in.Document, d_out.Paragraph
+> = ($) => sh.pg.composed([
     p_.from.optional($.header).decide(
         ($) => sh.pg.sentences([
             sh.sentence([
@@ -35,7 +37,11 @@ export const Document: p_i.Transformer<d_in.Document, d_out.Paragraph> = ($) => 
 ])
 
 
-export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Parameters> = ($, $p) => sh.ph.composed([
+export const Value: p_i.Transformer_With_Parameter<
+    d_in.Value,
+    d_out.Phrase,
+    Parameters
+> = ($, $p) => sh.ph.composed([
     p_.from.state($.data).decide(
         ($) => {
             switch ($[0]) {
@@ -212,6 +218,8 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
         })
 ])
 
-export const Token_Trivia: p_i.Transformer<d_in.Token_Trivia, d_out.Phrase> = ($) => sh.ph.composed([
+export const Token_Trivia: p_i.Transformer<
+d_in.Token_Trivia, d_out.Phrase
+> = ($) => sh.ph.composed([
     //FIXME
 ])

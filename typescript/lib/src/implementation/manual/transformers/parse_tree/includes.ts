@@ -6,7 +6,9 @@ import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tr
 import * as d_out from "../../../../interface/data/includes"
 
 
-export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($) => p_.literal.segmented_list([
+export const Document: p_i.Transformer<
+d_in.Document, d_out.Included_Files
+> = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(
         ($) => Value($.value),
         () => p_.literal.list([])
@@ -14,7 +16,9 @@ export const Document: p_i.Transformer<d_in.Document, d_out.Included_Files> = ($
     Value($.content),
 ])
 
-export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p_.from.state($.type).decide(
+export const Value: p_i.Transformer<
+d_in.Value, d_out.Included_Files
+> = ($) => p_.from.state($.type).decide(
     ($) => {
         switch ($[0]) {
             case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(
@@ -59,10 +63,14 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Included_Files> = ($) => p
         }
     })
 
-export const Items: p_i.Transformer<d_in.Items, d_out.Included_Files> = ($) => p_.from.list($).flatten(
+export const Items: p_i.Transformer<
+d_in.Items, d_out.Included_Files
+> = ($) => p_.from.list($).flatten(
     ($) => Value($.value))
 
-export const ID_Value_Pairs: p_i.Transformer<d_in.ID_Value_Pairs, d_out.Included_Files> = ($) => p_.from.list($).flatten(
+export const ID_Value_Pairs: p_i.Transformer<
+d_in.ID_Value_Pairs, d_out.Included_Files
+> = ($) => p_.from.list($).flatten(
     ($ => p_.from.optional($.assignment).decide(
         ($) => p_.from.optional($.value).decide(
             ($) => Value($),
