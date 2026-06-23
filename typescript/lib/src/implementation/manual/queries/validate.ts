@@ -21,7 +21,8 @@ export const $$: interface_.query_functions.process_stream_data = p_.query_funct
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_fp.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
-            ($) => abort(sh.ph.composed([
+            ($) => abort(
+sh.ph.composed([
                 t_location_to_fountain_pen.Possible_Range(
                     t_deserialize_parse_tree_to_location.Error($),
                     {
