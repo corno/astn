@@ -7,8 +7,7 @@ import * as d_out from "../../../../interface/generated/liana/schemas/authoring_
 
 export const Document: signatures.Document = ($) => {
     return {
-        'header': p_.from.optional($.header
-        ).map(
+        'header': p_.from.optional($.header).map(
             ($) => Value($.value)),
         'content': Value($.content)
     }

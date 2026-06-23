@@ -58,8 +58,7 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                     $p['write delimiters'] ? sh.ph.literal("{") : sh.ph.nothing(), //we always want a newline here
                                     Token_Trivia($['{']),
                                     sh.ph.indent(
-                                        sh.pg.sentences(p_.from.list($.entries,
-                                        ).map(
+                                        sh.pg.sentences(p_.from.list($.entries).map(
                                             ($) => sh.sentence([
                                                 sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
                                                     'add delimiters': true,
@@ -104,21 +103,21 @@ export const Value: p_i.Transformer_With_Parameter<d_in.Value, d_out.Phrase, Par
                                                     $p['write delimiters'] ? sh.ph.literal("(") : sh.ph.nothing(), //we always want a newline here
                                                     Token_Trivia($['(']),
                                                     sh.ph.indent(
-                                                        sh.pg.sentences(p_.from.list($.properties,
-                                                        ).map(
-                                                            ($) => sh.sentence([
-                                                                sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
-                                                                    'add delimiters': true,
-                                                                })),
-                                                                sh.ph.literal(": "),
-                                                                p_.from.optional($.value).decide(
-                                                                    ($) => Value($, {
-                                                                        'write delimiters': true,
-                                                                    }),
-                                                                    () => sh.ph.nothing(),
-                                                                ),
-                                                            ])
-                                                        )),
+                                                        sh.pg.sentences(
+                                                            p_.from.list($.properties).map(
+                                                                ($) => sh.sentence([
+                                                                    sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
+                                                                        'add delimiters': true,
+                                                                    })),
+                                                                    sh.ph.literal(": "),
+                                                                    p_.from.optional($.value).decide(
+                                                                        ($) => Value($, {
+                                                                            'write delimiters': true,
+                                                                        }),
+                                                                        () => sh.ph.nothing(),
+                                                                    ),
+                                                                ])
+                                                            )),
                                                     ),
                                                     $p['write delimiters'] ? sh.ph.literal(")") : sh.ph.nothing(),
                                                     Token_Trivia($[')']),
