@@ -7,7 +7,7 @@ import * as d_out from "../../../../interface/data/includes"
 
 
 export const Document: p_i.Transformer<
-d_in.Document, d_out.Included_Files
+    d_in.Document, d_out.Included_Files
 > = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(
         ($) => Value($.value),
@@ -17,7 +17,7 @@ d_in.Document, d_out.Included_Files
 ])
 
 export const Value: p_i.Transformer<
-d_in.Value, d_out.Included_Files
+    d_in.Value, d_out.Included_Files
 > = ($) => p_.from.state($.type).decide(
     ($) => {
         switch ($[0]) {
@@ -64,12 +64,12 @@ d_in.Value, d_out.Included_Files
     })
 
 export const Items: p_i.Transformer<
-d_in.Items, d_out.Included_Files
+    d_in.Items, d_out.Included_Files
 > = ($) => p_.from.list($).flatten(
     ($) => Value($.value))
 
 export const ID_Value_Pairs: p_i.Transformer<
-d_in.ID_Value_Pairs, d_out.Included_Files
+    d_in.ID_Value_Pairs, d_out.Included_Files
 > = ($) => p_.from.list($).flatten(
     ($ => p_.from.optional($.assignment).decide(
         ($) => p_.from.optional($.value).decide(
@@ -77,4 +77,5 @@ d_in.ID_Value_Pairs, d_out.Included_Files
             () => p_.literal.list([])
         ),
         () => p_.literal.list([])
-    )))
+    ))
+)
