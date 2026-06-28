@@ -1,5 +1,4 @@
 
-import * as p_ from 'pareto-core/dist/implementation/refiner'
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/unresolved/refiners/list_of_characters"
 

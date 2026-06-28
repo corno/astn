@@ -4,7 +4,6 @@ import p_super_query_result from 'pareto-core/dist/implementation/query/super_qu
 import * as interface_ from "../../../interface/queries"
 
 //data  types
-import * as d_process_file_data from "pareto-common/dist/interface/data/process_file_data"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
