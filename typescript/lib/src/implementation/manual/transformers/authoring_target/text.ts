@@ -7,6 +7,9 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schem
 import * as t_to_fountain_pen from "./fountain_pen"
 import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
 
+//shorthands
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+
 export type Parameters = {
     'write delimiters': boolean
     'indentation': string,
@@ -41,11 +44,13 @@ export const Document: Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
 )
 
 export const Value: Value = ($, $p) => t_fountain_pen_to_text.Phrase(
-    t_to_fountain_pen.Value(
-        $,
-        {
-            'write delimiters': $p['write delimiters']
-        }
+    sh.ph.composed(
+        t_to_fountain_pen.Value(
+            $,
+            {
+                'write delimiters': $p['write delimiters']
+            }
+        )
     ),
     {
         'indentation': $p.indentation,
