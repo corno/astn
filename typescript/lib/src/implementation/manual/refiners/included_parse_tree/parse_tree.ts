@@ -26,44 +26,44 @@
 // d_in.Value, Error, d_out.Value, Parameters
 // > = ($, abort, $p) => p_.decide.state($.type, ($): d_out.Value => {
 //     switch ($[0]) {
-//         case 'concrete': return p_.ss($, ($) => p_.from.state($).decide(
+//         case 'concrete': return p_.option($, ($) => p_.from.state($).decide(
 //($):d_out.Value => {
 //             switch ($[0]) {
-//                 case 'dictionary': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
-//                 case 'group': return p_.ss($, ($) => p_.from.state($).decide(
+//                 case 'dictionary': return p_.option($, ($) => ID_Value_Pairs($.entries, abort, $p))
+//                 case 'group': return p_.option($, ($) => p_.from.state($).decide(
 //($) => {
 //                     switch ($[0]) {
-//                         case 'concise': return p_.ss($, ($) => Items($.items, abort, $p))
-//                         case 'verbose': return p_.ss($, ($) => ID_Value_Pairs($.entries, abort, $p))
+//                         case 'concise': return p_.option($, ($) => Items($.items, abort, $p))
+//                         case 'verbose': return p_.option($, ($) => ID_Value_Pairs($.entries, abort, $p))
 //                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'list': return p_.ss($, ($) => Items($.items, abort, $p))
-//                 case 'nothing': return p_.ss($, ($) => ))
-//                 case 'optional': return p_.ss($, ($) => p_.from.state($).decide(
+//                 case 'list': return p_.option($, ($) => Items($.items, abort, $p))
+//                 case 'nothing': return p_.option($, ($) => ))
+//                 case 'optional': return p_.option($, ($) => p_.from.state($).decide(
 //($) => {
 //                     switch ($[0]) {
-//                         case 'set': return p_.ss($, ($) => Value($.value, abort, $p))
-//                         case 'not set': return p_.ss($, ($) => p_.literal.list([]))
+//                         case 'set': return p_.option($, ($) => Value($.value, abort, $p))
+//                         case 'not set': return p_.option($, ($) => p_.literal.list([]))
 //                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'state': return p_.ss($, ($) => p_.from.state($.status).decide(
+//                 case 'state': return p_.option($, ($) => p_.from.state($.status).decide(
 //($) => {
 //                     switch ($[0]) {
-//                         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
-//                         case 'set':return p_.ss($, ($) => Value($.value, abort, $p))
+//                         case 'missing': return p_.option($, ($) => p_.literal.list([]))
+//                         case 'set':return p_.option($, ($) => Value($.value, abort, $p))
 //                         default: return p_.au($[0])
 //                     }
 //                 }))
-//                 case 'text': return p_.ss($, ($) => p_.literal.list([]))
+//                 case 'text': return p_.option($, ($) => p_.literal.list([]))
 //                 default: return p_.au($[0])
 //             }
 //         }))
-//         case 'include': return p_.ss($, ($) => p_.literal.list([
+//         case 'include': return p_.option($, ($) => p_.literal.list([
 //             $,
 //         ]))
-//         case 'missing': return p_.ss($, ($) => p_.literal.list([]))
+//         case 'missing': return p_.option($, ($) => p_.literal.list([]))
 //         default: return p_.au($[0])
 //     }
 // })

@@ -27,13 +27,15 @@ export const Document: p_i.Transformer<
         ]),
         () => sh.pg.nothing()
     ),
-    sh.pg.sentences([
-        sh.sentence(
-            Value($.content, {
-                'write delimiters': true,
-            }),
-        )
-    ])
+    sh.pg.sentences(
+        p_.literal.list([
+            sh.sentence(
+                Value($.content, {
+                    'write delimiters': true,
+                }),
+            )
+        ])
+    )
 ])
 
 
@@ -44,7 +46,7 @@ export const Value: p_i.Transformer_With_Parameter<
 > = ($, $p) => p_.from.state($.data).decide(
     ($): d_out.Phrase.composed => {
         switch ($[0]) {
-            case 'include': return p_.ss($, ($) => p_.literal.segmented_list([
+            case 'include': return p_.option($, ($) => p_.literal.segmented_list([
                 p_.literal.list([
                     sh.ph.literal("@ "),
                 ]),
@@ -55,17 +57,17 @@ export const Value: p_i.Transformer_With_Parameter<
                     })),
                 ])
             ]))
-            case 'missing': return p_.ss($, ($) => p_.literal.segmented_list([
+            case 'missing': return p_.option($, ($) => p_.literal.segmented_list([
                 p_.literal.list([
                     sh.ph.literal("#"),
                 ]),
                 Token_Trivia($['#']),
             ]))
-            case 'concrete': return p_.ss($, ($) => p_.from.state($.type).decide(
+            case 'concrete': return p_.option($, ($) => p_.from.state($.type).decide(
                 ($) => p_.from.state($).decide(
                     ($): d_out.Phrase.composed => {
                         switch ($[0]) {
-                            case 'dictionary': return p_.ss($, ($) => p_.literal.segmented_list([
+                            case 'dictionary': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters'] ?
                                     p_.literal.list([
                                         sh.ph.literal("{")
@@ -98,10 +100,10 @@ export const Value: p_i.Transformer_With_Parameter<
                                     : p_.literal.list([]),
                                 Token_Trivia($['}']),
                             ]))
-                            case 'group': return p_.ss($, ($) => p_.from.state($).decide(
+                            case 'group': return p_.option($, ($) => p_.from.state($).decide(
                                 ($): d_out.Phrase.composed => {
                                     switch ($[0]) {
-                                        case 'concise': return p_.ss($, ($) => p_.literal.segmented_list([
+                                        case 'concise': return p_.option($, ($) => p_.literal.segmented_list([
                                             $p['write delimiters']
                                                 ? p_.literal.list([
                                                     sh.ph.literal("<")
@@ -132,7 +134,7 @@ export const Value: p_i.Transformer_With_Parameter<
                                                 : p_.literal.list([]), //for now, always write the >, even in concise groups. Need to implement a proper parser first
                                             Token_Trivia($['>']),
                                         ]))
-                                        case 'verbose': return p_.ss($, ($) => p_.literal.segmented_list([
+                                        case 'verbose': return p_.option($, ($) => p_.literal.segmented_list([
                                             $p['write delimiters']
                                                 ? p_.literal.list([
                                                     sh.ph.literal("(")
@@ -170,7 +172,7 @@ export const Value: p_i.Transformer_With_Parameter<
                                         default: return p_.au($[0])
                                     }
                                 }))
-                            case 'list': return p_.ss($, ($) => p_.literal.segmented_list([
+                            case 'list': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters']
                                     ? p_.literal.list([
                                         sh.ph.literal("[")
@@ -193,16 +195,16 @@ export const Value: p_i.Transformer_With_Parameter<
                                     : p_.literal.list([]),
                                 Token_Trivia($[']']),
                             ]))
-                            case 'optional': return p_.ss($, ($) => p_.from.state($).decide(
+                            case 'optional': return p_.option($, ($) => p_.from.state($).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'not set': return p_.ss($, ($) => p_.literal.segmented_list([
+                                        case 'not set': return p_.option($, ($) => p_.literal.segmented_list([
                                             p_.literal.list([
                                                 sh.ph.literal("_"),
                                             ]),
                                             Token_Trivia($['_']),
                                         ]))
-                                        case 'set': return p_.ss($, ($) => p_.literal.segmented_list([
+                                        case 'set': return p_.option($, ($) => p_.literal.segmented_list([
                                             p_.literal.list([
                                                 sh.ph.literal("* "),
                                             ]),
@@ -215,13 +217,13 @@ export const Value: p_i.Transformer_With_Parameter<
                                         default: return p_.au($[0])
                                     }
                                 }))
-                            case 'nothing': return p_.ss($, ($) => p_.literal.segmented_list([
+                            case 'nothing': return p_.option($, ($) => p_.literal.segmented_list([
                                 p_.literal.list([
                                     sh.ph.literal("~"),
                                 ]),
                                 Token_Trivia($['~']),
                             ]))
-                            case 'state': return p_.ss($, ($) => p_.literal.segmented_list([
+                            case 'state': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters']
                                     ? p_.literal.list([
                                         sh.ph.literal("| ")
@@ -231,13 +233,13 @@ export const Value: p_i.Transformer_With_Parameter<
                                 p_.from.state($.status).decide(
                                     ($) => {
                                         switch ($[0]) {
-                                            case 'missing': return p_.ss($, ($) => p_.literal.segmented_list([
+                                            case 'missing': return p_.option($, ($) => p_.literal.segmented_list([
                                                 Token_Trivia($['#']),
                                                 p_.literal.list([
                                                     sh.ph.literal("#"),
                                                 ]),
                                             ]))
-                                            case 'set': return p_.ss($, ($) => p_.literal.segmented_list([
+                                            case 'set': return p_.option($, ($) => p_.literal.segmented_list([
                                                 p_.literal.list([
                                                     sh.ph.serialize(t_primitives_to_text.Backticked($.option, {
                                                         'add delimiters': true,
@@ -253,20 +255,20 @@ export const Value: p_i.Transformer_With_Parameter<
                                     }
                                 )
                             ]))
-                            case 'text': return p_.ss($, ($) => {
+                            case 'text': return p_.option($, ($) => {
                                 const value = $.value // fixme: move value to the inside of the delimiter states
                                 return p_.literal.segmented_list([
                                     p_.literal.list([
                                         p_.from.state($.delimiter).decide(
                                             ($) => {
                                                 switch ($[0]) {
-                                                    case 'apostrophe': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
+                                                    case 'apostrophe': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
                                                         'add delimiters': $p['write delimiters'],
                                                     })))
-                                                    case 'quote': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
+                                                    case 'quote': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
                                                         'add delimiters': $p['write delimiters'],
                                                     })))
-                                                    case 'none': return p_.ss($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
+                                                    case 'none': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
                                                     default: return p_.au($[0])
                                                 }
                                             }),

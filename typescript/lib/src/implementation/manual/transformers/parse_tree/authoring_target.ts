@@ -36,25 +36,25 @@ export const Structural_Token: signatures.Structural_Token = ($) => ({
 export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
-            case 'dictionary': return p_.ss($, ($) => ({
+            case 'dictionary': return p_.option($, ($) => ({
                 'type': ['dictionary', {
                     '{': Structural_Token($['{']),
                     'entries': ID_Value_Pairs($.entries),
                     '}': Structural_Token($['}']),
                 }]
             }))
-            case 'group': return p_.ss($, ($) => ({
+            case 'group': return p_.option($, ($) => ({
                 'type': ['group', p_.from.state($).decide(
                     ($): d_out.Value.data.concrete.type_.group => {
                         switch ($[0]) {
-                            case 'concise': return p_.ss($, ($) => {
+                            case 'concise': return p_.option($, ($) => {
                                 return ['concise', {
                                     '<': Structural_Token($['<']),
                                     'properties': Items($.properties),
                                     '>': Structural_Token($['>']),
                                 }]
                             })
-                            case 'verbose': return p_.ss($, ($) => {
+                            case 'verbose': return p_.option($, ($) => {
                                 return ['verbose', {
                                     '(': Structural_Token($['(']),
                                     'properties': ID_Value_Pairs($.properties),
@@ -65,23 +65,23 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                         }
                     })]
             }))
-            case 'list': return p_.ss($, ($) => ({
+            case 'list': return p_.option($, ($) => ({
                 'type': ['list', {
                     '[': Structural_Token($['[']),
                     'items': Items($.items),
                     ']': Structural_Token($[']']),
                 }]
             }))
-            case 'state': return p_.ss($, ($) => ({
+            case 'state': return p_.option($, ($) => ({
                 'type': ['state', {
                     '|': Structural_Token($['|']),
                     'status': p_.from.state($.status).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'missing': return p_.ss($, ($) => ['missing', {
+                                case 'missing': return p_.option($, ($) => ['missing', {
                                     '#': Structural_Token($['#']),
                                 }])
-                                case 'set': return p_.ss($, ($) => ['set', {
+                                case 'set': return p_.option($, ($) => ['set', {
                                     'option': $.option.token.value,
                                     'value': Value($.value)
                                 }])
@@ -90,36 +90,36 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                         })
                 }]
             }))
-            case 'nothing': return p_.ss($, ($) => ({
+            case 'nothing': return p_.option($, ($) => ({
                 'type': ['nothing', {
                     '~': Structural_Token($['~']),
                 }]
             }))
-            case 'optional': return p_.ss($, ($) => ({
+            case 'optional': return p_.option($, ($) => ({
                 'type': ['optional', p_.from.state($).decide(
                     ($): d_out.Value.data.concrete.type_.optional => {
                         switch ($[0]) {
-                            case 'set': return p_.ss($, ($) => ['set', {
+                            case 'set': return p_.option($, ($) => ['set', {
                                 '*': Structural_Token($['*']),
                                 'value': Value($.value)
                             }])
-                            case 'not set': return p_.ss($, ($) => ['not set', {
+                            case 'not set': return p_.option($, ($) => ['not set', {
                                 '_': Structural_Token($['_']),
                             }])
                             default: return p_.au($[0])
                         }
                     })]
             }))
-            case 'text': return p_.ss($, ($) => ({
+            case 'text': return p_.option($, ($) => ({
                 'type': ['text', {
                     'value': $.token.value,
                     'delimiter': p_.from.state($.token.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'quoted': return p_.ss($, ($) => ['quote', null])
-                                case 'apostrophed': return p_.ss($, ($) => ['apostrophe', null])
-                                case 'undelimited': return p_.ss($, ($) => ['none', null])
-                                case 'backticked': return p_.ss($, ($) => ['quote', null])
+                                case 'quoted': return p_.option($, ($) => ['quote', null])
+                                case 'apostrophed': return p_.option($, ($) => ['apostrophe', null])
+                                case 'undelimited': return p_.option($, ($) => ['none', null])
+                                case 'backticked': return p_.option($, ($) => ['quote', null])
                                 default: return p_.au($[0])
                             }
                         }),
@@ -140,13 +140,13 @@ export const Value: signatures.Value = ($) => {
         'data': p_.from.state($.type).decide(
             ($) => {
                 switch ($[0]) {
-                    case 'concrete': return p_.ss($, ($) => ['concrete', Concrete_Value($)])
+                    case 'concrete': return p_.option($, ($) => ['concrete', Concrete_Value($)])
 
-                    case 'include': return p_.ss($, ($) => ['include', {
+                    case 'include': return p_.option($, ($) => ['include', {
                         '@': Structural_Token($['@']),
                         'path': $.path.token.value,
                     }])
-                    case 'missing': return p_.ss($, ($) => ['missing', {
+                    case 'missing': return p_.option($, ($) => ['missing', {
                         '#': Structural_Token($['#']),
                     }])
                     default: return p_.au($[0])

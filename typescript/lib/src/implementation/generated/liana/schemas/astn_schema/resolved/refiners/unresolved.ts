@@ -85,12 +85,12 @@
 //                         ($): t_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['multi line', null],
 //                                     )
 //                                 case 'single line':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['single line', null],
 //                                     )
@@ -119,7 +119,7 @@
 //             ($): t_out.Value => {
 //                 switch ($[0]) {
 //                     case 'component':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['component', p_variables(
 //                                 () => {
@@ -130,7 +130,7 @@
 //                                         ($): t_out.Value.component => {
 //                                             switch ($[0]) {
 //                                                 case 'external':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['external', p_variables(
 //                                                             () => {
@@ -221,7 +221,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'internal acyclic':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['internal acyclic', {
 //                                                             'l entry': $l['noncircular sibling modules'].get_ entry(
@@ -251,7 +251,7 @@
 //                                                         }],
 //                                                     )
 //                                                 case 'internal':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['internal', {
 //                                                             'l entry': $l['possibly circular dependent sibling modules'].get_ entry(
@@ -290,7 +290,7 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['dictionary', p_.literal.group_resolve(
 //                                 () => {
@@ -325,7 +325,7 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['group', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
@@ -349,7 +349,7 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['list', p_.literal.group_resolve(
 //                                 () => {
@@ -372,12 +372,12 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['nothing', null],
 //                         )
 //                     case 'optional':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['optional', Value(
 //                                 $,
@@ -389,7 +389,7 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['state', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
@@ -407,7 +407,7 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['text', p_variables(
 //                                 () => {
@@ -418,7 +418,7 @@
 //                                         ($): t_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
@@ -465,7 +465,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['local', Text_Type(
 //                                                             $,
@@ -525,7 +525,7 @@
 //             ($): t_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['schema', Schema(
 //                                 $,
@@ -539,7 +539,7 @@
 //                             )],
 //                         )
 //                     case 'set':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['set', Schemas(
 //                                 $,
@@ -691,7 +691,7 @@
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )
