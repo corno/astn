@@ -15,7 +15,7 @@ import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/re
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/text"
 import * as t_deserialize_parse_tree_to_fp from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
 import * as t_parse_tree_2_authoring_target from "../transformers/parse_tree/authoring_target"
-import * as t_authoring_target_to_fp from "../transformers/authoring_target/fountain_pen"
+import * as t_authoring_target_to_fp from "../transformers/authoring_target/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"

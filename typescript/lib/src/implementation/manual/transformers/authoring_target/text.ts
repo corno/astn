@@ -4,7 +4,7 @@ import * as d_in from "../../../../interface/generated/liana/schemas/authoring_t
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
 
 //dependencies
-import * as t_to_fountain_pen from "./fountain_pen"
+import * as t_to_fountain_pen from "./prose"
 import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
 
 //shorthands
