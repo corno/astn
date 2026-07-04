@@ -10,7 +10,7 @@ import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/
 
 //dependencies
 import * as t_deserialize_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/location"
-import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_location_to_prose from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
 import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/text"
 import * as t_deserialize_parse_tree_to_fp from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
 
@@ -23,7 +23,7 @@ export const $$: interface_.functions.process_stream_data = p_.query_function(
             $d.data,
             ($) => abort(
 sh.ph.composed([
-                t_location_to_fountain_pen.Possible_Range(
+                t_location_to_prose.Possible_Range(
                     t_deserialize_parse_tree_to_location.Error($),
                     {
                         'character location reporting': ['one based', null],

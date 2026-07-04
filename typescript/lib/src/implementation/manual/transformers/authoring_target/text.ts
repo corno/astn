@@ -4,7 +4,7 @@ import * as d_in from "../../../../interface/generated/liana/schemas/authoring_t
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
 
 //dependencies
-import * as t_to_fountain_pen from "./prose"
+import * as t_to_prose from "./prose"
 import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
 
 //shorthands
@@ -34,7 +34,7 @@ export type Document = p_i.Transformer_With_Parameter<
 >
 
 export const Document: Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
-    t_to_fountain_pen.Document(
+    t_to_prose.Document(
         $
     ),
     {
@@ -45,7 +45,7 @@ export const Document: Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
 
 export const Value: Value = ($, $p) => t_fountain_pen_to_text.Phrase(
     sh.ph.composed(
-        t_to_fountain_pen.Value(
+        t_to_prose.Value(
             $,
             {
                 'write delimiters': $p['write delimiters']
