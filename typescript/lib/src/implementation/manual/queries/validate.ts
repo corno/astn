@@ -10,9 +10,9 @@ import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/
 
 //dependencies
 import * as t_deserialize_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/location"
-import * as t_location_to_prose from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_location_to_prose from "astn-core/dist/implementation/manual/transformers/location/prose"
 import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/text"
-import * as t_deserialize_parse_tree_to_prose from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/fountain_pen"
+import * as t_deserialize_parse_tree_to_prose from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
