@@ -1,5 +1,5 @@
 
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_di from 'pareto-core/interface/data'
 
 export namespace Schema_Tree_ {
     
@@ -291,7 +291,7 @@ export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
 }
 
-export { 
+export type { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

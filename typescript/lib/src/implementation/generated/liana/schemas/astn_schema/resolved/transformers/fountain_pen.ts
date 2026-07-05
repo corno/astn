@@ -1,10 +1,10 @@
 
 
-import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/transformers/fountain_pen"
+import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/transformers/fountain_pen.js"
 
-import * as v_serialize from "astn-core/dist/implementation/manual/transformers/sealed_target/prose"
+import * as v_serialize from "astn-core/implementation/manual/transformers/sealed_target/prose"
 
-import * as v_marshall from "./astn_sealed_target"
+import * as v_marshall from "./astn_sealed_target.js"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => v_serialize.Document(
     v_marshall.Schema_Tree(

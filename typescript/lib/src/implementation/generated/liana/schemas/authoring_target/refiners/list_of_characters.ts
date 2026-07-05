@@ -1,10 +1,10 @@
 
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/refiners/list_of_characters"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/refiners/list_of_characters.js"
 
-import * as v_deserialize from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
+import * as v_deserialize from "astn-core/implementation/manual/refiners/parse_tree/list_of_characters"
 
-import * as v_unmarshall from "./astn_parse_tree"
+import * as v_unmarshall from "./astn_parse_tree.js"
 
 export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Document(
     v_deserialize.Document(

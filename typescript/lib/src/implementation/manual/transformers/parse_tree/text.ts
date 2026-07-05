@@ -1,7 +1,7 @@
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
-import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
+import * as d_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+import * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/text/data"
 
 // export type Value = p_i.Transformer<
 // d_in.Value, d_out.Text
@@ -16,8 +16,8 @@ export type Document = p_i.Transformer_With_Parameter<
 >
 
 //dependencies
-import * as t_authoring_target_to_text from "../authoring_target/text"
-import * as t_to_authoring_target from "./authoring_target"
+import * as t_authoring_target_to_text from "../authoring_target/text.js"
+import * as t_to_authoring_target from "./authoring_target.js"
 
 
 

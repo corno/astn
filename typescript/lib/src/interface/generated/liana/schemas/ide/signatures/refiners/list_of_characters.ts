@@ -1,11 +1,11 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "liana-core/dist/interface/data/deserialize"
+import * as i_generic from "liana-core/interface/data/deserialize"
 
-import * as i_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
+import * as i_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
-import * as i_out from "../../data"
+import * as i_out from "../../data.js"
 
 export namespace Text_Edits_ {
     
@@ -103,7 +103,7 @@ export type Relative_Location_ = (
     },
 ) => Relative_Location_.O
 
-export { 
+export type { 
     Text_Edits_ as Text_Edits, 
     Relative_Range_ as Relative_Range, 
     ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 

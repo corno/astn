@@ -1,7 +1,7 @@
 
-import * as i_in from "../../data"
+import * as i_in from "../../data.js"
 
-import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as i_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace Text_Edits_ {
     
@@ -67,7 +67,7 @@ export type Relative_Location_ = (
     context: Relative_Location_.I,
 ) => Relative_Location_.O
 
-export { 
+export type { 
     Text_Edits_ as Text_Edits, 
     Relative_Range_ as Relative_Range, 
     ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 

@@ -1,8 +1,8 @@
 
 
-import * as i_out from "../../data"
+import * as i_out from "../../data.js"
 
-import * as i_in from "../../data"
+import * as i_in from "../../data.js"
 
 export namespace Document_ {
     
@@ -84,7 +84,7 @@ export type Items_ = (
     context: Items_.I,
 ) => Items_.O
 
-export { 
+export type { 
     Document_ as Document, 
     Value_ as Value, 
     Token_Trivia_ as Token_Trivia, 

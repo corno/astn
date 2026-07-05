@@ -1,5 +1,5 @@
 
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_di from 'pareto-core/interface/data'
 
 export namespace Document_ {
     
@@ -335,7 +335,7 @@ export namespace Items_ {
 
 export type Items_ = p_di.List<Items_.L>
 
-export { 
+export type { 
     Document_ as Document, 
     Value_ as Value, 
     Token_Trivia_ as Token_Trivia, 

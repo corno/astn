@@ -1,12 +1,12 @@
 
-import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/implementation/transformer'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 
-import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/boilerplate_for_migrate"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/boilerplate_for_migrate.js"
 
-import * as t_out from "../../../../../../interface/generated/liana/schemas/authoring_target/data"
+import * as t_out from "../../../../../../interface/generated/liana/schemas/authoring_target/data.js"
 
 export const Document: t_signatures.Document = ($) => ({
     'header': p_change_context(

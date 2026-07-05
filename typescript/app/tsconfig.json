@@ -1,15 +1,21 @@
 {
     "compilerOptions": {
-        "target": "es2015",
-        "noLib": true,
-        "module": "commonjs",
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
         "declaration": true,
+        "forceConsistentCasingInFileNames": true,
+        "inlineSourceMap": true,
+        "module": "nodenext",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noLib": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
         "outDir": "./dist",
         "rootDir": "./src",
         "strict": true,
-        "esModuleInterop": true,
-        "inlineSourceMap": true,
-        "forceConsistentCasingInFileNames": true
+        "target": "es2015",
+        "verbatimModuleSyntax": true
     },
     "include": [
       "./src"

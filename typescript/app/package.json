@@ -24,7 +24,15 @@
     "type": "git",
     "url": "git+https://github.com/corno/astn.git"
   },
+  "type": "module",
+  "exports": {
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
   "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
   "module": "./dist/index.js",
   "bin": {
     "astn-validate": "./dist/bin/validate_astn.js"

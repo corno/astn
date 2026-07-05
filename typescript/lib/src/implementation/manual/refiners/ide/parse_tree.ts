@@ -1,7 +1,7 @@
 
-// import * as d_out from "../../../../interface/generated/liana/schemas/ide/data"
+// import * as d_out from "../../../../interface/generated/liana/schemas/ide/data.js"
 
-// import * as signatures from "../../../../interface/signatures/refiners/ide/parse_tree"
+// import * as signatures from "../../../../interface/signatures/refiners/ide/parse_tree.js"
 
 // export const Whitespace: signatures.Whitespace = ($, $p) => p_.literal.list([
 //     //FIXME

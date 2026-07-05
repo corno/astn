@@ -1,11 +1,11 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "liana-core/dist/interface/data/unmarshall"
+import * as i_generic from "liana-core/interface/data/unmarshall"
 
-import * as i_out from "../../data"
+import * as i_out from "../../data.js"
 
-import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
+import * as i_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
 
 export namespace Text_Edits_ {
     
@@ -83,7 +83,7 @@ export type Relative_Location_ = (
     abort: p_i.Abort<Relative_Location_.E>,
 ) => Relative_Location_.O
 
-export { 
+export type { 
     Text_Edits_ as Text_Edits, 
     Relative_Range_ as Relative_Range, 
     ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 

@@ -1,5 +1,5 @@
 
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_di from 'pareto-core/interface/data'
 
 export namespace Text_Edits_ {
     
@@ -86,7 +86,7 @@ export type Relative_Location_ = {
     readonly 'column': Relative_Location_.column
 }
 
-export { 
+export type { 
     Text_Edits_ as Text_Edits, 
     Relative_Range_ as Relative_Range, 
     ID_Value_Pairs_To_Be_Sorted_ as ID_Value_Pairs_To_Be_Sorted, 

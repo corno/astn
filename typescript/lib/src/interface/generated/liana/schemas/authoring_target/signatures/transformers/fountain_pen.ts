@@ -1,8 +1,8 @@
 
 
-import * as i_in from "../../data"
+import * as i_in from "../../data.js"
 
-import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as i_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace Document_ {
     
@@ -84,7 +84,7 @@ export type Items_ = (
     context: Items_.I,
 ) => Items_.O
 
-export { 
+export type { 
     Document_ as Document, 
     Value_ as Value, 
     Token_Trivia_ as Token_Trivia, 

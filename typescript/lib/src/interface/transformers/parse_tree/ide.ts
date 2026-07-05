@@ -1,8 +1,8 @@
-import * as p_ti from 'pareto-core/dist/interface/transformer'
+import * as p_ti from 'pareto-core/interface/transformer'
 
-import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
-import * as d_out from "../../generated/liana/schemas/ide/data"
+import * as d_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+import * as d_in_token from "astn-core/interface/generated/liana/schemas/token/data"
+import * as d_out from "../../generated/liana/schemas/ide/data.js"
 
 export namespace d_function {
 

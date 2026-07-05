@@ -1,16 +1,16 @@
 
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_di from 'pareto-core/interface/data'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => p_.from.optional($).decide(assign, otherwise)
 
-import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-import _p_text_from_list from 'pareto-core/dist/implementation/transformer/specials/text_from_list'
+import _p_text_from_list from 'pareto-core/implementation/transformer/specials/text_from_list'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/astn_sealed_target"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/authoring_target/signatures/transformers/astn_sealed_target.js"
 
-import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
+import * as t_out from "astn-core/interface/generated/liana/schemas/sealed_target/data"
 
 
 export const Document: t_signatures.Document = ($) => ['group', ['verbose', p_.literal.dictionary(

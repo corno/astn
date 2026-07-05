@@ -1,13 +1,13 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
-import * as p_di from 'pareto-core/dist/interface/data'
-import * as p_ri from 'pareto-core/dist/interface/refiner'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
+import * as p_di from 'pareto-core/interface/data'
+import * as p_ri from 'pareto-core/interface/refiner'
 
-import * as i_generic from "liana-core/dist/interface/data/resolve"
+import * as i_generic from "liana-core/interface/data/resolve"
 
-import * as i_resolved from "../../../data/resolved"
+import * as i_resolved from "../../../data/resolved.js"
 
-import * as i_unresolved from "../../../data/unresolved"
+import * as i_unresolved from "../../../data/unresolved.js"
 
 export namespace Text_Type_ {
     
@@ -262,7 +262,7 @@ export type Modules_ = (
     },
 ) => Modules_.O
 
-export { 
+export type { 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
     Value_ as Value, 

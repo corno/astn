@@ -1,8 +1,8 @@
-import * as p_ from 'pareto-core/dist/interface/query'
+import * as p_ from 'pareto-core/interface/query'
 
-import * as queries_common from "pareto-common/dist/interface/queries"
+import * as queries_common from "pareto-common/interface/queries"
 
-import * as d_serialize_prose from "pareto-fountain-pen/dist/interface/data/prose_serialize"
+import * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 export namespace functions {
 

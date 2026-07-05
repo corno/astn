@@ -1,14 +1,14 @@
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
-import * as d_in from "../../../../interface/generated/liana/schemas/authoring_target/data"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
+import * as d_in from "../../../../interface/generated/liana/schemas/authoring_target/data.js"
+import * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/text/data"
 
 //dependencies
-import * as t_to_prose from "./prose"
-import * as t_fountain_pen_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
+import * as t_to_prose from "./prose.js"
+import * as t_fountain_pen_to_text from "pareto-fountain-pen/implementation/manual/transformers/prose/text"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export type Parameters = {
     'write delimiters': boolean

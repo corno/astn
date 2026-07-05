@@ -1,11 +1,11 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "liana-core/dist/interface/data/unmarshall"
+import * as i_generic from "liana-core/interface/data/unmarshall"
 
-import * as i_out from "../../../data/unresolved"
+import * as i_out from "../../../data/unresolved.js"
 
-import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
+import * as i_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
 
 export namespace Schema_Tree_ {
     
@@ -159,7 +159,7 @@ export type Text_Type_ = (
     abort: p_i.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
-export { 
+export type { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

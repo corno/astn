@@ -1,17 +1,17 @@
 
-// import * as p_ from 'pareto-core/dist/implementation/refiner'
+// import * as p_ from 'pareto-core/implementation/refiner'
 
-// import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+// import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-// import * as _p_sl from 'pareto-core/dist/implementation/refiner/specials/lookup'
+// import * as _p_sl from 'pareto-core/implementation/refiner/specials/lookup'
 
-// import _p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
+// import _p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
-// import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
+// import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
-// import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
+// import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved.js"
 
-// import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
+// import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved.js"
 
 // export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(

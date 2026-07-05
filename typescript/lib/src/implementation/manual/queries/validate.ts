@@ -1,21 +1,21 @@
-import * as p_ from 'pareto-core/dist/implementation/query'
-import p_list_from_text from 'pareto-core/dist/implementation/refiner/specials/list_from_text'
-import p_super_query_result from 'pareto-core/dist/implementation/query/super_query_result'
+import * as p_ from 'pareto-core/implementation/query'
+import p_list_from_text from 'pareto-core/implementation/refiner/specials/list_from_text'
+import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
-import * as interface_ from "../../../interface/queries"
+import * as interface_ from "../../../interface/queries.js"
 
 //data  types
-import * as d_prose from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
-import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
+import * as d_prose from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
+import * as d_parse_tree from "astn-core/interface/generated/liana/schemas/parse_tree/data"
 
 //dependencies
-import * as t_deserialize_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/location"
-import * as t_location_to_prose from "astn-core/dist/implementation/manual/transformers/location/prose"
-import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/text"
-import * as t_deserialize_parse_tree_to_prose from "astn-core/dist/implementation/manual/transformers/deserialize_parse_tree/prose"
+import * as t_deserialize_parse_tree_to_location from "astn-core/implementation/manual/transformers/deserialize_parse_tree/location"
+import * as t_location_to_prose from "astn-core/implementation/manual/transformers/location/prose"
+import * as r_parse_tree_from_text from "astn-core/implementation/manual/refiners/parse_tree/text"
+import * as t_deserialize_parse_tree_to_prose from "astn-core/implementation/manual/transformers/deserialize_parse_tree/prose"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: interface_.functions.process_stream_data = p_.query_function(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_prose.Phrase>(

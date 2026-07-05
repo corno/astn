@@ -1,8 +1,8 @@
 
 
-import * as i_in from "../../../data/resolved"
+import * as i_in from "../../../data/resolved.js"
 
-import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as i_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace Schema_Tree_ {
     
@@ -132,7 +132,7 @@ export type Text_Type_ = (
     context: Text_Type_.I,
 ) => Text_Type_.O
 
-export { 
+export type { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

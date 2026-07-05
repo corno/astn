@@ -1,13 +1,13 @@
-import * as p_ from 'pareto-core/dist/implementation/command'
+import * as p_ from 'pareto-core/implementation/command'
 
-import * as interface_ from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands.js"
 
 //data types
-import * as d_main from "pareto-resources/dist/interface/data/temp_main"
+import * as d_main from "pareto-resources/interface/data/temp_main"
 
 //dependencies
-import * as c_file_to_file from "pareto-common/dist/implementation/manual/commands/file_to_file"
-import * as q_genereer_jaarverslag from "../queries/convert_to_json"
+import * as c_file_to_file from "pareto-common/implementation/manual/commands/file_to_file"
+import * as q_genereer_jaarverslag from "../queries/convert_to_json.js"
 
 export const $$: interface_.procedures.process_file_data = p_.command_procedure(
     ($d, $s, $q, $c) => [

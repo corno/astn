@@ -1,7 +1,7 @@
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
-import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_out from "pareto-json/dist/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
+import * as d_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+import * as d_out from "pareto-json/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
 
 export type Value = p_i.Transformer<
     d_in.Value,
