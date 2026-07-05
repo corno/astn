@@ -5,7 +5,7 @@ import p_super_query_result from 'pareto-core/dist/implementation/query/super_qu
 import * as interface_ from "../../../interface/queries"
 
 //data  types
-import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as d_prose from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
 //dependencies
@@ -18,7 +18,7 @@ import * as t_deserialize_parse_tree_to_prose from "astn-core/dist/implementatio
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.functions.process_stream_data = p_.query_function(
-    ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_fp.Phrase>(
+    ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_prose.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
             ($) => abort(
