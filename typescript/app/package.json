@@ -31,9 +31,6 @@
       "default": "./dist/*.js"
     }
   },
-  "main": "./dist/index.js",
-  "types": "dist/index.d.ts",
-  "module": "./dist/index.js",
   "bin": {
     "astn-validate": "./dist/bin/validate_astn.js"
   },
