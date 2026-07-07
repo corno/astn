@@ -126,7 +126,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                                 : p_.literal.list([]), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                             // $p['in concise group']
                                             //     ? sh.ph.nothing()
-                                            //     : $p['write delimiters'] ? sh.ph.literal("<") : sh.ph.nothing(),
+                                            //     : $p['write delimiters'] 
+                                            // ? sh.ph.literal("<")
+                                            //  : sh.ph.nothing(),
 
                                             Token_Trivia($['<']),
                                             p_.from.list($.properties).flatten(
@@ -141,7 +143,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                             ),
                                             // $p['in concise group']
                                             //     ? sh.ph.nothing()
-                                            //     : $p['write delimiters'] ? sh.ph.literal(" >") : sh.ph.nothing(),
+                                            //     : $p['write delimiters'] 
+                                            // ? sh.ph.literal(" >") 
+                                            // : sh.ph.nothing(),
                                             $p['write delimiters']
                                                 ? p_.literal.list([
                                                     sh.ph.literal(" >")
