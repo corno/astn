@@ -2,10 +2,14 @@
 
 import * as p_h from 'pareto-host-nodejs/index'
 
+
+import * as rs_filesystem_unrestricted from "pareto-host-nodejs/file_system_unrestricted/index"
+import * as rs_stream from "pareto-host-nodejs/stream/index"
+
 import { $$ as c_command } from "lib/implementation/manual/commands/convert_to_json"
 
 p_h.run_main_command(
-    ($r) => c_command(
+    () => c_command(
             {
                 'serialization parameters': {
                     'indentation': "   ",
@@ -14,11 +18,11 @@ p_h.run_main_command(
                 'tab size': 4,
             },
         {
-            'read file': $r['filesystem unrestricted'].queries['read file'],
+            'read file': rs_filesystem_unrestricted.$.queries['read file'],
         },
         {
-            'write file': $r['filesystem unrestricted'].commands['write file'],
-            'log error': $r.stream.commands['log error'],
+            'write file': rs_filesystem_unrestricted.$.commands['write file'],
+            'log error': rs_stream.$.commands['log error'],
         },
     ),
 )

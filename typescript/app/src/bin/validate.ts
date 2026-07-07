@@ -2,10 +2,13 @@
 
 import * as p_h from 'pareto-host-nodejs/index'
 
+import * as rs_filesystem_unrestricted from "pareto-host-nodejs/file_system_unrestricted/index"
+import * as rs_stream from "pareto-host-nodejs/stream/index"
+
 import { $$ as c_command } from "lib/implementation/manual/commands/validate"
 
 p_h.run_main_command(
-    ($r) => c_command(
+    () => c_command(
         {
             'serialization parameters': {
                 'indentation': "   ",
@@ -14,11 +17,11 @@ p_h.run_main_command(
             'tab size': 4,
         },
         {
-            'get instream data': $r.stream.queries['get instream data']
+            'get instream data': rs_stream.$.queries['get instream data']
         },
         {
-            'write to stdout': $r.stream.commands['write to stdout'],
-            'log error': $r.stream.commands['log error']
+            'write to stdout': rs_stream.$.commands['write to stdout'],
+            'log error': rs_stream.$.commands['log error']
         },
     ),
 )
