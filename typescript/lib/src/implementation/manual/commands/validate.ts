@@ -9,7 +9,7 @@ import * as d_main from "pareto-application-api/interface/data/main"
 import * as c_file_to_file from "pareto-common/implementation/manual/commands/stream_to_stream"
 import * as q_validate from "../queries/validate.js"
 
-export const $$: interface_.procedures.process_stream_data = p_.command_procedure(
+export const $$: interface_.process_stream_data = p_.command(
     ($d, $s, $q, $c) => [
         c_file_to_file.$$(
             null,

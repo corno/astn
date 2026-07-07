@@ -20,7 +20,7 @@ import * as t_json_to_prose from "pareto-json/implementation/manual/transformers
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.functions.process_file_data = p_.query_function(
+export const $$: interface_.functions.process_file_data = p_.query(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_prose.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
