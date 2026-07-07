@@ -9,7 +9,7 @@ import * as command_actions_pareto_application_api from "pareto-application-api/
 import * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 
-export type process_file_data = p_.Command_Procedure<
+export type process_file_data = p_.Command<
     command_actions_pareto_application_api.main,
     {
         'tab size': number,
@@ -24,7 +24,7 @@ export type process_file_data = p_.Command_Procedure<
     }
 >
 
-export type process_stream_data = p_.Command_Procedure<
+export type process_stream_data = p_.Command<
     command_actions_pareto_application_api.main,
     {
         'tab size': number,

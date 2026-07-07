@@ -6,7 +6,7 @@ import * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_ser
 
 export namespace functions {
 
-    export type process_file_data = p_.Query_Function<
+    export type process_file_data = p_.Query<
         query_actions_pareto_common.process_file_data,
         {
             'tab size': number,
@@ -14,7 +14,7 @@ export namespace functions {
         },
         null
     >
-    export type process_stream_data = p_.Query_Function<
+    export type process_stream_data = p_.Query<
         query_actions_pareto_common.process_stream_data,
         {
             'tab size': number,
