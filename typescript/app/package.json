@@ -46,7 +46,8 @@
   "dependencies": {
     "lib": "file:../lib",
     "pareto-host-nodejs": "^0.2.0",
-    "pareto-resource-stream": "^0.1.1"
+    "pareto-resource-filesystem-unrestricted": "^0.1.0",
+    "pareto-resource-stream": "^0.1.0"
   },
   "bundleDependencies": [
     "lib",
