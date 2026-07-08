@@ -11,8 +11,8 @@ export namespace d_function {
         'indentation string': string
         'current indentation': string
     }
-
 }
+
 
 export type Whitespace = p_ti.Transformer_With_Parameter<
     d_in_token.Whitespace,

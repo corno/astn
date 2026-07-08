@@ -10,7 +10,7 @@ import * as t_fountain_pen_to_text from "pareto-fountain-pen/implementation/manu
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export namespace interface_ {
+
     export type Parameters = {
         'write delimiters': boolean
         'indentation': string,
@@ -33,4 +33,4 @@ export namespace interface_ {
         d_out.Text,
         Doc_Parameters
     >
-}
+

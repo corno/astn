@@ -1,4 +1,4 @@
-import * as p_ from 'pareto-core/implementation/transformer'
+
 import type * as p_i from 'pareto-core/interface/transformer'
 
 //data types
@@ -13,18 +13,18 @@ namespace d_function {
 
 }
 
-export namespace interface_ {
-    export type Document = p_i.Transformer<
-        d_in.Document, d_out.Paragraph
-    >
 
-    export type Value = p_i.Transformer_With_Parameter<
-        d_in.Value,
-        d_out.Phrase.composed,
-        d_function.Parameters
-    >
+export type Document = p_i.Transformer<
+    d_in.Document, d_out.Paragraph
+>
 
-    export type Token_Trivia = p_i.Transformer<
-        d_in.Token_Trivia, d_out.Phrase.composed
-    >
-}
+export type Value = p_i.Transformer_With_Parameter<
+    d_in.Value,
+    d_out.Phrase.composed,
+    d_function.Parameters
+>
+
+export type Token_Trivia = p_i.Transformer<
+    d_in.Token_Trivia, d_out.Phrase.composed
+>
+
