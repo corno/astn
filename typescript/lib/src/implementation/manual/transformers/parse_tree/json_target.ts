@@ -1,14 +1,14 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import * as signatures from "../../../../interface/declarations/transformers/parse_tree/json_target.js"
+import type * as interface_ from "../../../../interface/declarations/transformers/parse_tree/json_target.js"
 
 import type * as d_out from "pareto-json/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
 
 
-export const Document: signatures.Document = ($) => Value($.content)
+export const Document: interface_.Document = ($) => Value($.content)
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => p_.from.list($).map(
+export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).map(
     ($) => ({
         'key': $.id.token.value,
         'value': p_.from.optional($.assignment).decide(
@@ -21,11 +21,11 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => p_.from.list($).
     })
 )
 
-export const Items: signatures.Items = ($) => p_.from.list($).map(
+export const Items: interface_.Items = ($) => p_.from.list($).map(
     ($) => Value($.value)
 )
 
-export const Value: signatures.Value = ($) => p_.from.state($.type).decide(
+export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
     ($): d_out.Value => {
         switch ($[0]) {
             case 'concrete': return p_.option($, ($) => p_.from.state($).decide(

@@ -1,11 +1,11 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import * as signatures from "../../../../interface/declarations/transformers/parse_tree/authoring_target.js"
+import type * as interface_ from "../../../../interface/declarations/transformers/parse_tree/authoring_target.js"
 
 import type * as d_out from "../../../../interface/generated/liana/schemas/authoring_target/data.js"
 
 
-export const Document: signatures.Document = ($) => {
+export const Document: interface_.Document = ($) => {
     return {
         'header': p_.from.optional($.header).map(
             ($) => Value($.value)),
@@ -14,7 +14,7 @@ export const Document: signatures.Document = ($) => {
 }
 
 
-export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => p_.from.list($).map(
+export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).map(
     ($) => ({
         'id': $.id.token.value,
         'value': p_.from.optional($.assignment).decide(
@@ -25,15 +25,15 @@ export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($) => p_.from.list($).
     })
 )
 
-export const Items: signatures.Items = ($) => p_.from.list($).map(
+export const Items: interface_.Items = ($) => p_.from.list($).map(
     ($) => Value($.value)
 )
 
-export const Structural_Token: signatures.Structural_Token = ($) => ({
+export const Structural_Token: interface_.Structural_Token = ($) => ({
     'comments': $['trailing trivia'].comments
 })
 
-export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($).decide(
+export const Concrete_Value: interface_.Concrete_Value = ($) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
             case 'dictionary': return p_.option($, ($) => ({
@@ -132,7 +132,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
         }
     })
 
-export const Value: signatures.Value = ($) => {
+export const Value: interface_.Value = ($) => {
     return {
         'metadata': {
             'comments': p_.literal.list([]),

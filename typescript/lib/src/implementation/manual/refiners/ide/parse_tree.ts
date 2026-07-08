@@ -1,13 +1,13 @@
 
 // import type * as d_out from "../../../../interface/generated/liana/schemas/ide/data.js"
 
-// import * as signatures from "../../../../interface/signatures/refiners/ide/parse_tree.js"
+// import type * as interface_ from "../../../../interface/signatures/refiners/ide/parse_tree.js"
 
-// export const Whitespace: signatures.Whitespace = ($, $p) => p_.literal.list([
+// export const Whitespace: interface_.Whitespace = ($, $p) => p_.literal.list([
 //     //FIXME
 // ])
 
-// export const Trivia: signatures.Trivia = ($, $p) => p_.literal.nested_ list([
+// export const Trivia: interface_.Trivia = ($, $p) => p_.literal.nested_ list([
 //     Whitespace($['leading whitespace'], $p),
 //     p_.from.list(//         $['comments'],
 //     ).flatten(
@@ -30,14 +30,14 @@
 
 // ])
 
-// export const Structural_Token: signatures.Structural_Token = ($, $p) => Trivia($['trailing trivia'], $p)
+// export const Structural_Token: interface_.Structural_Token = ($, $p) => Trivia($['trailing trivia'], $p)
 
-// export const String: signatures.Text = ($, $p) => p_.literal.nested_  list([
+// export const String: interface_.Text = ($, $p) => p_.literal.nested_  list([
 //     Trivia($['trailing trivia'], $p),
 //     //FIX right type
 // ])
 
-// export const ID_Value_Pairs: signatures.ID_Value_Pairs = ($, $p) => p_.from.list(//     $,
+// export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($, $p) => p_.from.list(//     $,
 // ).flatten(
 //     ($) => p_.literal.nested_ list([
 //         String($.id, $p),
@@ -52,12 +52,12 @@
 // )
 
 
-// export const Items: signatures.Items = ($, $p) => p_.from.list(//     $,
+// export const Items: interface_.Items = ($, $p) => p_.from.list(//     $,
 // ).flatten(
 //     ($) => Value($.value, $p)
 // )
 
-// export const Value: signatures.Value = ($, $p) => p_.from.state($.type).decide(
+// export const Value: interface_.Value = ($, $p) => p_.from.state($.type).decide(
 //($) => {
 //     switch ($[0]) {
 //         case 'concrete': return p_.option($, ($) => p_.from.state($).decide(
@@ -128,7 +128,7 @@
 //     }
 // })
 
-// export const Document: signatures.Document = ($, $p) => p_.literal.nested_ list([
+// export const Document: interface_.Document = ($, $p) => p_.literal.nested_ list([
 
 //     $.header.__ decide(
 //         ($) => p_.literal.nested_ list([
