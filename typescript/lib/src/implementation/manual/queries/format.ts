@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/query'
 import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
-import * as interface_ from "../../../interface/queries.js"
+import * as interface_ from "../../../interface/declarations/queries.js"
 
 //data  types
 import * as d_prose from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"

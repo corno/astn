@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/command'
 
-import * as interface_ from "../../../interface/commands.js"
+import * as interface_ from "../../../interface/declarations/commands.js"
 
 //data types
 import * as d_main from "pareto-application-api/interface/data/main"
