@@ -14,6 +14,7 @@ export namespace interface_ {
         }
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/parse_tree/text.js"
 
 //dependencies
 import * as t_authoring_target_to_text from "../authoring_target/text.js"

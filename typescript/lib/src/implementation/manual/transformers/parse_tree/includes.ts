@@ -19,6 +19,7 @@ export namespace interface_ {
         d_in.ID_Value_Pairs, d_out.Included_Files
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/parse_tree/includes.js"
 
 export const Document: interface_.Document = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(

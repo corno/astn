@@ -28,6 +28,7 @@ export namespace interface_ {
         d_in.Token_Trivia, d_out.Phrase.composed
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/authoring_target/prose.js"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"

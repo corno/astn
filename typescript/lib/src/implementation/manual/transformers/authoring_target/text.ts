@@ -34,6 +34,7 @@ export namespace interface_ {
         Doc_Parameters
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/authoring_target/text.js"
 
 export const Document: interface_.Document = ($, $p) => t_fountain_pen_to_text.Paragraph(
     t_to_prose.Document(
