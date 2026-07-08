@@ -11,26 +11,26 @@ import * as t_fountain_pen_to_text from "pareto-fountain-pen/implementation/manu
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 
-    export type Parameters = {
-        'write delimiters': boolean
-        'indentation': string,
-        'newline': string
+export type Parameters = {
+    'write delimiters': boolean
+    'indentation': string,
+    'newline': string
 
-    }
+}
 
-    export type Doc_Parameters = {
-        'indentation': string,
-        'newline': string
-    }
+export type Doc_Parameters = {
+    'indentation': string,
+    'newline': string
+}
 
-    export type Value = p_.Transformer_With_Parameter<
-        d_in.Value,
-        d_out.Text,
-        Parameters
-    >
-    export type Document = p_.Transformer_With_Parameter<
-        d_in.Document,
-        d_out.Text,
-        Doc_Parameters
-    >
+export type Value = p_.Transformer_With_Parameter<
+    d_in.Value,
+    d_out.Text,
+    Parameters
+>
+export type Document = p_.Transformer_With_Parameter<
+    d_in.Document,
+    d_out.Text,
+    Doc_Parameters
+>
 

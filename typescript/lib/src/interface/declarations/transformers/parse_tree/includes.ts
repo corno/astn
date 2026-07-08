@@ -6,16 +6,16 @@ import type * as d_in from "astn-core/interface/generated/liana/schemas/parse_tr
 import type * as d_out from "../../../data/includes.js"
 
 
-    export type Document = p_.Transformer<
-        d_in.Document, d_out.Included_Files
-    >
-    export type Value = p_.Transformer<
-        d_in.Value, d_out.Included_Files
-    >
-    export type Items = p_.Transformer<
-        d_in.Items, d_out.Included_Files
-    >
-    export type ID_Value_Pairs = p_.Transformer<
-        d_in.ID_Value_Pairs, d_out.Included_Files
-    >
+export type Document = p_.Transformer<
+    d_in.Document, d_out.Included_Files
+>
+export type Value = p_.Transformer<
+    d_in.Value, d_out.Included_Files
+>
+export type Items = p_.Transformer<
+    d_in.Items, d_out.Included_Files
+>
+export type ID_Value_Pairs = p_.Transformer<
+    d_in.ID_Value_Pairs, d_out.Included_Files
+>
 

@@ -5,12 +5,12 @@ import type * as d_in from "astn-core/interface/generated/liana/schemas/parse_tr
 import type * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/text/data"
 
 
-    export type Document = p_.Transformer_With_Parameter<
-        d_in.Document,
-        d_out.Text,
-        {
-            'indentation': string,
-            'newline': string
-        }
-    >
+export type Document = p_.Transformer_With_Parameter<
+    d_in.Document,
+    d_out.Text,
+    {
+        'indentation': string,
+        'newline': string
+    }
+>
 
