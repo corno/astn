@@ -61,7 +61,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                                     ')': Structural_Token($[')']),
                                 }]
                             })
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })]
             }))
@@ -85,7 +85,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                                     'option': $.option.token.value,
                                     'value': Value($.value)
                                 }])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 }]
@@ -106,7 +106,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                             case 'not set': return p_.option($, ($) => ['not set', {
                                 '_': Structural_Token($['_']),
                             }])
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })]
             }))
@@ -120,7 +120,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                                 case 'apostrophed': return p_.option($, ($) => ['apostrophe', null])
                                 case 'undelimited': return p_.option($, ($) => ['none', null])
                                 case 'backticked': return p_.option($, ($) => ['quote', null])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         }),
                     'trivia': {
@@ -128,7 +128,7 @@ export const Concrete_Value: signatures.Concrete_Value = ($) => p_.from.state($)
                     },
                 }]
             }))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -149,7 +149,7 @@ export const Value: signatures.Value = ($) => {
                     case 'missing': return p_.option($, ($) => ['missing', {
                         '#': Structural_Token($['#']),
                     }])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
     }

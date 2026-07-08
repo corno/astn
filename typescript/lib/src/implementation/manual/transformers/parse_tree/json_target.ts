@@ -37,7 +37,7 @@ export const Value: signatures.Value = ($) => p_.from.state($.type).decide(
                                 switch ($[0]) {
                                     case 'concise': return p_.option($, ($) => ['array', Items($.properties)])
                                     case 'verbose': return p_.option($, ($) => ['object', ID_Value_Pairs($.properties)])
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'list': return p_.option($, ($) => ['array', Items($.items)])
@@ -49,7 +49,7 @@ export const Value: signatures.Value = ($) => p_.from.state($.type).decide(
                                         ['string', $.option.token.value],
                                         Value($.value),
                                     ])])
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'nothing': return p_.option($, ($) => ['null', null])
@@ -60,16 +60,16 @@ export const Value: signatures.Value = ($) => p_.from.state($.type).decide(
                                         Value($.value),
                                     ])])
                                     case 'not set': return p_.option($, ($) => ['null', null])
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'text': return p_.option($, ($) => ['string', $.token.value])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
 
             case 'include': return p_.option($, ($) => ['string', "FIXME include not implemented yet"])
             case 'missing': return p_.option($, ($) => ['null', null])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })

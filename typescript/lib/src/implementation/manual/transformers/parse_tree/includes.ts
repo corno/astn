@@ -40,7 +40,7 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                 switch ($[0]) {
                                     case 'concise': return p_.option($, ($) => Items($.properties))
                                     case 'verbose': return p_.option($, ($) => ID_Value_Pairs($.properties))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'list': return p_.option($, ($) => Items($.items))
@@ -50,7 +50,7 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                 switch ($[0]) {
                                     case 'set': return p_.option($, ($) => Value($.value))
                                     case 'not set': return p_.option($, ($) => p_.literal.list([]))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'state': return p_.option($, ($) => p_.from.state($.status).decide(
@@ -58,18 +58,18 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                 switch ($[0]) {
                                     case 'missing': return p_.option($, ($) => p_.literal.list([]))
                                     case 'set': return p_.option($, ($) => Value($.value))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
                         case 'text': return p_.option($, ($) => p_.literal.list([]))
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'include': return p_.option($, ($) => p_.literal.list([
                 $,
             ]))
             case 'missing': return p_.option($, ($) => p_.literal.list([]))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 

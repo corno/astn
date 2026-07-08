@@ -188,7 +188,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                                 : p_.literal.list([]),
                                             Token_Trivia($[')']),
                                         ]))
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }))
                             case 'list': return p_.option($, ($) => p_.literal.segmented_list([
@@ -233,7 +233,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                             }),
                                         ]))
 
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }))
                             case 'nothing': return p_.option($, ($) => p_.literal.segmented_list([
@@ -269,7 +269,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                                     'write delimiters': true,
                                                 }),
                                             ]))
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }
                                 )
@@ -288,7 +288,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                                         'add delimiters': $p['write delimiters'],
                                                     })))
                                                     case 'none': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
-                                                    default: return p_.au($[0])
+                                                    default: return p_.exhaustive($[0])
                                                 }
                                             }),
                                     ]),
@@ -296,10 +296,10 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                 ])
                             })
 
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     }
 )

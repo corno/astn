@@ -18,7 +18,7 @@
 //             //     switch ($[0]) {
 //             //         case 'line': return p_.option($, ($) => p_.literal.list([]))
 //             //         case 'block': return p_.option($, ($) => p_.literal.list([]))
-//             //         default: return p_.au($[0])        
+//             //         default: return p_.exhaustive($[0])        
 //             //     }
 //             // }),
 //             // p_.literal.list([$['content']]),
@@ -81,7 +81,7 @@
 //                             ID_Value_Pairs($['entries'], $p),
 //                             Structural_Token($[')'], $p),
 //                         ]))
-//                         default: return p_.au($[0])
+//                         default: return p_.exhaustive($[0])
 //                     }
 //                 }))
 //                 case 'list': return p_.option($, ($) => p_.literal.nested_ list([
@@ -97,7 +97,7 @@
 //                             Structural_Token($['*'], $p),
 //                             Value($['value'], $p),
 //                         ]))
-//                         default: return p_.au($[0])
+//                         default: return p_.exhaustive($[0])
 //                     }
 //                 }))
 //                 case 'state': return p_.option($, ($) => p_.literal.nested_ list<d_out.Text_Edits.L>([
@@ -110,13 +110,13 @@
 //                                 String($['option'], $p),
 //                                 Value($['value'], $p),
 //                             ]))
-//                             default: return p_.au($[0])
+//                             default: return p_.exhaustive($[0])
 //                         }
 //                     })
 //                 ]))
 //                 case 'text': return p_.option($, ($) => p_.literal.list([]))
 
-//                 default: return p_.au($[0])
+//                 default: return p_.exhaustive($[0])
 //             }
 //         }))
 //         case 'include': return p_.option($, ($) => p_.literal.nested_ list([
@@ -124,7 +124,7 @@
 //             String($['path'], $p),
 //         ]))
 //         case 'missing': return p_.option($, ($) => Structural_Token($['#'], $p))
-//         default: return p_.au($[0])
+//         default: return p_.exhaustive($[0])
 //     }
 // })
 
