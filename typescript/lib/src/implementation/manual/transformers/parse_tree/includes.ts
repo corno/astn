@@ -1,5 +1,5 @@
 import * as p_ from 'pareto-core/implementation/transformer'
-import * as p_i from 'pareto-core/interface/transformer'
+import type * as p_i from 'pareto-core/interface/transformer'
 
 //data types
 import type * as d_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"

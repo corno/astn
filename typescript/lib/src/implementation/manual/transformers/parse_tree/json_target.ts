@@ -39,7 +39,8 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                     case 'verbose': return p_.option($, ($) => ['object', ID_Value_Pairs($.properties)])
                                     default: return p_.exhaustive($[0])
                                 }
-                            }))
+                            }
+                        ))
                         case 'list': return p_.option($, ($) => ['array', Items($.items)])
                         case 'state': return p_.option($, ($) => p_.from.state($.status).decide(
                             ($): d_out.Value => {
@@ -51,7 +52,8 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                     ])])
                                     default: return p_.exhaustive($[0])
                                 }
-                            }))
+                            }
+                        ))
                         case 'nothing': return p_.option($, ($) => ['null', null])
                         case 'optional': return p_.option($, ($) => p_.from.state($).decide(
                             ($) => {
@@ -62,7 +64,8 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
                                     case 'not set': return p_.option($, ($) => ['null', null])
                                     default: return p_.exhaustive($[0])
                                 }
-                            }))
+                            }
+                        ))
                         case 'text': return p_.option($, ($) => ['string', $.token.value])
                         default: return p_.exhaustive($[0])
                     }
