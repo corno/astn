@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/interface/query'
 
 import * as actions_queries_pareto_common from "pareto-common/interface/query_actions"
 
-import * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
+import type * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 export namespace functions {
 

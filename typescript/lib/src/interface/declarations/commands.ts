@@ -6,7 +6,7 @@ import * as actions_commands_pareto_stream_api from "pareto-stream-api/interface
 import * as actions_queries_pareto_stream_api from "pareto-stream-api/interface/query_actions"
 import * as actions_commands_pareto_application_api from "pareto-application-api/interface/command_actions"
 
-import * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
+import type * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 
 export type process_file_data = p_.Command<

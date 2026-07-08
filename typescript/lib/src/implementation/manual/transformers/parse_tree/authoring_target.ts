@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import * as signatures from "../../../../interface/declarations/transformers/parse_tree/authoring_target.js"
 
-import * as d_out from "../../../../interface/generated/liana/schemas/authoring_target/data.js"
+import type * as d_out from "../../../../interface/generated/liana/schemas/authoring_target/data.js"
 
 
 export const Document: signatures.Document = ($) => {
