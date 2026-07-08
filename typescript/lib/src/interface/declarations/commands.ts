@@ -1,10 +1,10 @@
 import * as p_ from 'pareto-core/interface/command'
 
-import * as actions_queries_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/query_actions"
-import * as actions_commands_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/command_actions"
-import * as actions_commands_pareto_stream_api from "pareto-stream-api/interface/command_actions"
-import * as actions_queries_pareto_stream_api from "pareto-stream-api/interface/query_actions"
-import * as actions_commands_pareto_application_api from "pareto-application-api/interface/command_actions"
+import type * as actions_queries_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/query_actions"
+import type * as actions_commands_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/command_actions"
+import type * as actions_commands_pareto_stream_api from "pareto-stream-api/interface/command_actions"
+import type * as actions_queries_pareto_stream_api from "pareto-stream-api/interface/query_actions"
+import type * as actions_commands_pareto_application_api from "pareto-application-api/interface/command_actions"
 
 import type * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
