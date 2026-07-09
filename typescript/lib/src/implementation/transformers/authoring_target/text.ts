@@ -3,7 +3,7 @@ import type * as interface_ from "../../../declarations/transformers/authoring_t
 
 //dependencies
 import * as t_to_prose from "./prose.js"
-import * as t_fountain_pen_to_text from "pareto-fountain-pen/implementation/manual/transformers/prose/text"
+import * as t_fountain_pen_to_text from "pareto-fountain-pen/implementation/transformers/prose/text"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"

@@ -10,7 +10,7 @@ import * as t_signatures from "../../../../../../interface/generated/liana/schem
 
 import * as t_out from "astn-core/interface/generated/liana/schemas/sealed_target/data"
 
-import * as v_primitives_to_text from "liana-core/implementation/manual/transformers/primitives/text"
+import * as v_primitives_to_text from "liana-core/implementation/transformers/primitives/text"
 
 export const Text_Edits: t_signatures.Text_Edits = ($) => ['list', p_.from.list($,
 ).map(

@@ -9,7 +9,7 @@ import type * as interface_ from "../../../declarations/transformers/authoring_t
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 //dependencies
-import * as t_primitives_to_text from "astn-core/implementation/manual/transformers/primitives/text"
+import * as t_primitives_to_text from "astn-core/implementation/transformers/primitives/text"
 
 export const Document: interface_.Document = ($) => sh.pg.composed([
     p_.from.optional($.header).decide(
