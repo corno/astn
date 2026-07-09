@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../../declarations/transformers/parse_tree/includes.js"
+import type * as interface_ from "../../../declarations/transformers/parse_tree/includes.js"
 
 export const Document: interface_.Document = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(

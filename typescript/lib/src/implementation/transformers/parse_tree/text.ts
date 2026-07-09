@@ -1,5 +1,5 @@
 
-import type * as interface_ from "../../../../declarations/transformers/parse_tree/text.js"
+import type * as interface_ from "../../../declarations/transformers/parse_tree/text.js"
 
 //dependencies
 import * as t_authoring_target_to_text from "../authoring_target/text.js"
