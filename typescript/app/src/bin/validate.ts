@@ -2,25 +2,32 @@
 
 import * as p_h from 'pareto-host-nodejs/index'
 
+
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as c_command } from "lib/implementation/manual/commands/validate"
+import { $$ as c_command } from "pareto-common/implementation/manual/commands/stream_to_stream"
+
+import { $$ as q_query } from "lib/implementation/manual/queries/validate"
 
 p_h.run_main_command(
     () => c_command(
+        null,
         {
-            'serialization parameters': {
-                'indentation': "   ",
-                'newline': "\n",
-            },
-            'tab size': 4,
-        },
-        {
-            'get instream data': rs_stream.$.queries['get instream data']
+            'get instream data': rs_stream.$.queries['get instream data'],
+            'process data': q_query(
+                {
+                    'tab size': 4,
+                    'serialization parameters': {
+                        'indentation': "   ",
+                        'newline': "\n",
+                    },
+                },
+                null
+            ),
         },
         {
             'write to stdout': rs_stream.$.commands['write to stdout'],
-            'log error': rs_stream.$.commands['log error']
+            'log error': rs_stream.$.commands['log error'],
         },
     ),
 )
