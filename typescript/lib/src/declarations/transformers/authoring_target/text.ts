@@ -1,6 +1,6 @@
 import type * as p_ from 'pareto-core/interface/transformer'
 
-import type * as d_in from "../../../interface/generated/liana/schemas/authoring_target/data.js"
+import type * as d_in from "../../../interface/data/authoring_target.js"
 import type * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/text/data"
 
 export type Parameters = {

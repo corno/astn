@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import type * as interface_ from "../../../declarations/transformers/parse_tree/authoring_target.js"
 
-import type * as d_out from "../../../interface/generated/liana/schemas/authoring_target/data.js"
+import type * as d_out from "../../../interface/data/authoring_target.js"
 
 
 export const Document: interface_.Document = ($) => {
