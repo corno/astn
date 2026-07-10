@@ -1,5 +1,5 @@
 
-// import type * as d_out from "../../../../interface/generated/liana/schemas/ide/data.js"
+// import type * as d_out from "../../../../interface/data/ide.js"
 
 // import type * as interface_ from "../../../../interface/signatures/refiners/ide/parse_tree.js"
 
