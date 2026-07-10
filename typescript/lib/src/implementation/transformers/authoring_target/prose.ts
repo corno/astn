@@ -11,18 +11,18 @@ import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 //dependencies
 import * as t_primitives_to_text from "astn-core/implementation/transformers/primitives/text"
 
-export const Document: interface_.Document = ($) => sh.pg.deprecated_composed([
-    p_.from.optional($.header).decide(
-        ($) => sh.pg.sentences([
-            sh.sentence(
-                Value($, {
-                    'write delimiters': true,
-                })
-            ),
-        ]),
-        () => sh.pg.sentences([])
-    ),
-    sh.pg.sentences(
+export const Document: interface_.Document = ($) => sh.pg.sentences(
+    p_.literal.segmented_list([
+        p_.from.optional($.header).decide(
+            ($) => p_.literal.list([
+                sh.sentence(
+                    Value($, {
+                        'write delimiters': true,
+                    })
+                ),
+            ]),
+            () => p_.literal.list([])
+        ),
         p_.literal.list([
             sh.sentence(
                 Value($.content, {
@@ -30,8 +30,8 @@ export const Document: interface_.Document = ($) => sh.pg.deprecated_composed([
                 }),
             )
         ])
-    )
-])
+    ])
+)
 
 
 export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
