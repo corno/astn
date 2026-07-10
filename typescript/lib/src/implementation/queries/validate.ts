@@ -5,8 +5,8 @@ import p_super_query_result from 'pareto-core/implementation/query/super_query_r
 import type * as interface_ from "../../declarations/queries.js"
 
 //data  types
-import type * as d_prose from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
-import type * as d_parse_tree from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+import type * as d_prose from "pareto-fountain-pen/interface/data/prose"
+import type * as d_parse_tree from "astn-core/interface/data/parse_tree"
 
 //dependencies
 import * as t_deserialize_parse_tree_to_location from "astn-core/implementation/transformers/deserialize_parse_tree/location"

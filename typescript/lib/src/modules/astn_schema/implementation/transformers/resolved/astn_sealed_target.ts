@@ -9,7 +9,7 @@ import _p_text_from_list from 'pareto-core/implementation/transformer/specials/t
 
 import * as t_signatures from "../../../declarations/transformers/resolved/astn_sealed_target.js"
 
-import * as t_out from "astn-core/interface/generated/liana/schemas/sealed_target/data"
+import * as t_out from "astn-core/interface/data/sealed_target"
 
 import * as v_primitives_to_text from "liana-core/implementation/transformers/primitives/text"
 

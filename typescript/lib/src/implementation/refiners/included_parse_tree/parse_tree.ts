@@ -1,7 +1,7 @@
 
 
-// import type * as d_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
-// import type * as d_out from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+// import type * as d_in from "astn-core/interface/data/parse_tree"
+// import type * as d_out from "astn-core/interface/data/parse_tree"
 
 
 // export type Error = 

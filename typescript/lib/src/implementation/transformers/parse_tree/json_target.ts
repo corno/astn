@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import type * as interface_ from "../../../declarations/transformers/parse_tree/json_target.js"
 
-import type * as d_out from "pareto-json/interface/generated/liana/schemas/json_without_guaranteed_unique_keys/data"
+import type * as d_out from "pareto-json/interface/data/json_without_guaranteed_unique_keys"
 
 
 export const Document: interface_.Document = ($) => Value($.content)

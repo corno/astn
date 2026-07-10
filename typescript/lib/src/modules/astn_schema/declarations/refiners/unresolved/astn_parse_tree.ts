@@ -5,7 +5,7 @@ import * as i_generic from "liana-core/interface/data/unmarshall"
 
 import * as i_out from "../../../interface/data/unresolved.js"
 
-import * as i_in from "astn-core/interface/generated/liana/schemas/parse_tree/data"
+import * as i_in from "astn-core/interface/data/parse_tree"
 
 export namespace Schema_Tree_ {
     

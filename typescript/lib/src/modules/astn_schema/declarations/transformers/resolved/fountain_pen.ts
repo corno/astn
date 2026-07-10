@@ -2,7 +2,7 @@
 
 import * as i_in from "../../../interface/data/resolved.js"
 
-import * as i_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
+import * as i_out from "pareto-fountain-pen/interface/data/prose"
 
 export namespace Schema_Tree_ {
     
