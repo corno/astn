@@ -11,7 +11,7 @@ import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 //dependencies
 import * as t_primitives_to_text from "astn-core/implementation/transformers/primitives/text"
 
-export const Document: interface_.Document = ($) => sh.pg.composed([
+export const Document: interface_.Document = ($) => sh.pg.deprecated_composed([
     p_.from.optional($.header).decide(
         ($) => sh.pg.sentences([
             sh.sentence(
@@ -20,7 +20,7 @@ export const Document: interface_.Document = ($) => sh.pg.composed([
                 })
             ),
         ]),
-        () => sh.pg.nothing()
+        () => sh.pg.sentences([])
     ),
     sh.pg.sentences(
         p_.literal.list([
