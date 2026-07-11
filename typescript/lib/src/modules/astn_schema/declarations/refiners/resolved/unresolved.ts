@@ -5,9 +5,9 @@ import * as p_ri from 'pareto-core/interface/refiner'
 
 import * as i_generic from "liana-core/interface/data/resolve"
 
-import * as i_resolved from "../../../interface/data/resolved.js"
+import * as i_resolved from "../../../interface/schemas/resolved.js"
 
-import * as i_unresolved from "../../../interface/data/unresolved.js"
+import * as i_unresolved from "../../../interface/schemas/unresolved.js"
 
 export namespace Text_Type_ {
     

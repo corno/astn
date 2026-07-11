@@ -1,8 +1,8 @@
 
 
-import * as i_out from "../../../interface/data/unresolved.js"
+import * as i_out from "../../../interface/schemas/unresolved.js"
 
-import * as i_in from "../../../interface/data/resolved.js"
+import * as i_in from "../../../interface/schemas/resolved.js"
 
 export namespace Schema_Tree_ {
     

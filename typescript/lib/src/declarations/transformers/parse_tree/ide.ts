@@ -2,7 +2,7 @@ import * as p_ti from 'pareto-core/interface/transformer'
 
 import type * as d_in from "astn-core/interface/data/parse_tree"
 import type * as d_in_token from "astn-core/interface/data/token"
-import type * as d_out from "../../../interface/data/ide.js"
+import type * as d_out from "../../../interface/schemas/ide.js"
 
 export namespace d_function {
 
