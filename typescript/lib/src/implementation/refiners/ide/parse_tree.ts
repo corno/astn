@@ -1,5 +1,5 @@
 
-// import type * as d_out from "../../../../interface/schemas/ide.js"
+// import type * as s_out from "../../../../interface/schemas/ide.js"
 
 // import type * as interface_ from "../../../../interface/signatures/refiners/ide/parse_tree.js"
 
@@ -100,7 +100,7 @@
 //                         default: return p_.exhaustive($[0])
 //                     }
 //                 }))
-//                 case 'state': return p_.option($, ($) => p_.literal.nested_ list<d_out.Text_Edits.L>([
+//                 case 'state': return p_.option($, ($) => p_.literal.nested_ list<s_out.Text_Edits.L>([
 //                     Structural_Token($['|'], $p),
 //                     p_.from.state($.status).decide(
 //($) => {

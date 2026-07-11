@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import type * as interface_ from "../../../declarations/transformers/parse_tree/authoring_target.js"
 
-import type * as d_out from "../../../interface/schemas/authoring_target.js"
+import type * as s_out from "../../../interface/schemas/authoring_target.js"
 
 
 export const Document: interface_.Document = ($) => {
@@ -45,7 +45,7 @@ export const Concrete_Value: interface_.Concrete_Value = ($) => p_.from.state($)
             }))
             case 'group': return p_.option($, ($) => ({
                 'type': ['group', p_.from.state($).decide(
-                    ($): d_out.Value.data.concrete.type_.group => {
+                    ($): s_out.Value.data.concrete.type_.group => {
                         switch ($[0]) {
                             case 'concise': return p_.option($, ($) => {
                                 return ['concise', {
@@ -97,7 +97,7 @@ export const Concrete_Value: interface_.Concrete_Value = ($) => p_.from.state($)
             }))
             case 'optional': return p_.option($, ($) => ({
                 'type': ['optional', p_.from.state($).decide(
-                    ($): d_out.Value.data.concrete.type_.optional => {
+                    ($): s_out.Value.data.concrete.type_.optional => {
                         switch ($[0]) {
                             case 'set': return p_.option($, ($) => ['set', {
                                 '*': Structural_Token($['*']),

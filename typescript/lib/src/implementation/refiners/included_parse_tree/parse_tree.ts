@@ -1,18 +1,18 @@
 
 
-// import type * as d_in from "astn-core/interface/data/parse_tree"
-// import type * as d_out from "astn-core/interface/data/parse_tree"
+// import type * as s_in from "astn-core/interface/data/parse_tree"
+// import type * as s_out from "astn-core/interface/data/parse_tree"
 
 
 // export type Error = 
 // | ['no such include', null]
 
 // export type Parameters = {
-//     'included files': p_di.Dictionary<d_out.Value>
+//     'included files': p_di.Dictionary<s_out.Value>
 // }
 
 // export const Document: p_i.Refiner_With_Parameter<
-// d_in.Document, Error, d_out.Document, Parameters
+// s_in.Document, Error, s_out.Document, Parameters
 // > = ($, abort, $p) => ({
 //     'header': p_.from.optional($.header).map(
 //($) => ({
@@ -23,8 +23,8 @@
 // })
 
 // export const Value: p_i.Refiner_With_Parameter<
-// d_in.Value, Error, d_out.Value, Parameters
-// > = ($, abort, $p) => p_.decide.state($.type, ($): d_out.Value => {
+// s_in.Value, Error, s_out.Value, Parameters
+// > = ($, abort, $p) => p_.decide.state($.type, ($): s_out.Value => {
 //     switch ($[0]) {
 //         case 'concrete': return p_.option($, ($) => p_.from.state($).decide(
 //($):d_out.Value => {
@@ -69,12 +69,12 @@
 // })
 
 // export const Items: p_i.Refiner_With_Parameter<
-// d_in.Items, Error, d_out.Items, Parameters
+// s_in.Items, Error, s_out.Items, Parameters
 // > = ($) => p_.from.list($).flatten(
 // ($) => Value($.value))
 
 // export const ID_Value_Pairs: p_i.Refiner_With_Parameter<
-// d_in.ID_Value_Pairs, Error, d_out.ID_Value_Pairs, Parameters
+// s_in.ID_Value_Pairs, Error, s_out.ID_Value_Pairs, Parameters
 // > = ($) => p_.from.list($).flatten(
 // ($ => $.assignment.__ decide(
 //     ($) => $.value.__ decide(

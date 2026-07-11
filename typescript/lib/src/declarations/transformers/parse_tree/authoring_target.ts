@@ -1,30 +1,30 @@
 import * as p_ from 'pareto-core/interface/transformer'
 
-import type * as d_in from "astn-core/interface/data/parse_tree"
-import type * as d_out from "../../../interface/schemas/authoring_target.js"
+import type * as s_in from "astn-core/interface/data/parse_tree"
+import type * as s_out from "../../../interface/schemas/authoring_target.js"
 
 export type Value = p_.Transformer<
-    d_in.Value,
-    d_out.Value
+    s_in.Value,
+    s_out.Value
 >
 export type Concrete_Value = p_.Transformer<
-    d_in.Value.type_.concrete,
-    d_out.Value.data.concrete
+    s_in.Value.type_.concrete,
+    s_out.Value.data.concrete
 >
 export type ID_Value_Pairs = p_.Transformer<
-    d_in.ID_Value_Pairs,
-    d_out.ID_Value_Pairs
+    s_in.ID_Value_Pairs,
+    s_out.ID_Value_Pairs
 >
 export type Items = p_.Transformer<
-    d_in.Items,
-    d_out.Items
+    s_in.Items,
+    s_out.Items
 >
 export type Structural_Token = p_.Transformer<
-    d_in.Structural_Token,
-    d_out.Token_Trivia
+    s_in.Structural_Token,
+    s_out.Token_Trivia
 >
 export type Document = p_.Transformer<
-    d_in.Document,
-    d_out.Document
+    s_in.Document,
+    s_out.Document
 >
 

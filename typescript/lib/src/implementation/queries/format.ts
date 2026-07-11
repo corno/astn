@@ -4,8 +4,8 @@ import p_super_query_result from 'pareto-core/implementation/query/super_query_r
 import type * as interface_ from "../../declarations/queries.js"
 
 //data  types
-import type * as d_prose from "pareto-fountain-pen/interface/data/prose"
-import type * as d_parse_tree from "astn-core/interface/data/parse_tree"
+import type * as s_prose from "pareto-fountain-pen/interface/data/prose"
+import type * as s_parse_tree from "astn-core/interface/data/parse_tree"
 
 //dependencies
 import * as t_fp_to_loc from "pareto-fountain-pen/implementation/transformers/prose/list_of_characters"
@@ -21,7 +21,7 @@ import * as t_authoring_target_to_prose from "../transformers/authoring_target/p
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: interface_.functions.process_file_data = p_.query(
-    ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_prose.Phrase>(
+    ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_prose.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
             ($) => abort(

@@ -5,8 +5,8 @@ import p_super_query_result from 'pareto-core/implementation/query/super_query_r
 import type * as interface_ from "../../declarations/queries.js"
 
 //data  types
-import type * as d_prose from "pareto-fountain-pen/interface/data/prose"
-import type * as d_parse_tree from "astn-core/interface/data/parse_tree"
+import type * as s_prose from "pareto-fountain-pen/interface/data/prose"
+import type * as s_parse_tree from "astn-core/interface/data/parse_tree"
 
 //dependencies
 import * as t_deserialize_parse_tree_to_location from "astn-core/implementation/transformers/deserialize_parse_tree/location"
@@ -18,7 +18,7 @@ import * as t_deserialize_parse_tree_to_prose from "astn-core/implementation/tra
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: interface_.functions.process_stream_data = p_.query(
-    ($d, $s, $q) => p_super_query_result(p_.e.refine<d_parse_tree.Document, d_prose.Phrase>(
+    ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_prose.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
             ($) => abort(

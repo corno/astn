@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/interface/query_implementation'
 
 import type * as query_interfaces_pareto_common from "pareto-common/interface/queries"
 
-import type * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
+import type * as s_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 export namespace functions {
 
@@ -10,7 +10,7 @@ export namespace functions {
         query_interfaces_pareto_common.process_file_data,
         {
             'tab size': number,
-            'serialization parameters': d_serialize_prose.Parameters,
+            'serialization parameters': s_serialize_prose.Parameters,
         },
         null
     >
@@ -18,7 +18,7 @@ export namespace functions {
         query_interfaces_pareto_common.process_stream_data,
         {
             'tab size': number,
-            'serialization parameters': d_serialize_prose.Parameters,
+            'serialization parameters': s_serialize_prose.Parameters,
         },
         null
     >

@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import type * as d_out from "pareto-fountain-pen/interface/data/prose"
+import type * as s_out from "pareto-fountain-pen/interface/data/prose"
 
 import type * as interface_ from "../../../declarations/transformers/authoring_target/prose.js"
 
@@ -56,7 +56,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
             ]))
             case 'concrete': return p_.option($, ($) => p_.from.state($.type).decide(
                 ($) => p_.from.state($).decide(
-                    ($): d_out.Phrase.composed => {
+                    ($): s_out.Phrase.composed => {
                         switch ($[0]) {
                             case 'dictionary': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters'] ?
@@ -92,7 +92,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
                                 Token_Trivia($['}']),
                             ]))
                             case 'group': return p_.option($, ($) => p_.from.state($).decide(
-                                ($): d_out.Phrase.composed => {
+                                ($): s_out.Phrase.composed => {
                                     switch ($[0]) {
                                         case 'concise': return p_.option($, ($) => p_.literal.segmented_list([
                                             $p['write delimiters']

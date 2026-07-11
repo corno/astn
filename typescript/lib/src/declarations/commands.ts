@@ -6,14 +6,14 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 import type * as query_interfaces_pareto_stream_api from "pareto-stream-api/interface/queries"
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
 
-import type * as d_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
+import type * as s_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 
 export type process_file_data = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
         'tab size': number,
-        'serialization parameters': d_serialize_prose.Parameters,
+        'serialization parameters': s_serialize_prose.Parameters,
     },
     {
         'read file': query_interfaces_pareto_filesystem_unrestricted_api.read_file
@@ -28,7 +28,7 @@ export type process_stream_data = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
         'tab size': number,
-        'serialization parameters': d_serialize_prose.Parameters,
+        'serialization parameters': s_serialize_prose.Parameters,
     },
     {
         'get instream data': query_interfaces_pareto_stream_api.get_instream_data
