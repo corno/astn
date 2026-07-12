@@ -1,8 +1,14 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../declarations/transformers/parse_tree/json_target.js"
-
+import type * as s_in from "astn-core/interface/data/parse_tree"
 import type * as s_out from "pareto-json/interface/data/json_without_guaranteed_unique_keys"
+
+namespace interface_ {
+    export type Value = p_.Transformer<s_in.Value, s_out.Value>
+    export type ID_Value_Pairs = p_.Transformer<s_in.ID_Value_Pairs, s_out.Value.object_>
+    export type Items = p_.Transformer<s_in.Items, s_out.Value.array>
+    export type Document = p_.Transformer<s_in.Document, s_out.Document>
+}
 
 
 export const Document: interface_.Document = ($) => Value($.content)
