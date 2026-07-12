@@ -7,7 +7,41 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import _p_text_from_list from 'pareto-core/implementation/transformer/specials/text_from_list'
 
-import * as t_signatures from "../../../declarations/transformers/resolved/astn_sealed_target.js"
+import type * as s_in from "../../../interface/schemas/resolved.js"
+namespace t_signatures {
+    export type Schema_Tree = p_.Transformer<
+        s_in.Schema_Tree,
+        t_out.Value
+    >
+    export type Schemas = p_.Transformer<
+        s_in.Schemas,
+        t_out.Value
+    >
+    export type Schema = p_.Transformer<
+        s_in.Schema,
+        t_out.Value
+    >
+    export type Imports = p_.Transformer<
+        s_in.Imports,
+        t_out.Value
+    >
+    export type Globals = p_.Transformer<
+        s_in.Globals,
+        t_out.Value
+    >
+    export type Modules = p_.Transformer<
+        s_in.Modules,
+        t_out.Value
+    >
+    export type Value = p_.Transformer<
+        s_in.Value,
+        t_out.Value
+    >
+    export type Text_Type = p_.Transformer<
+        s_in.Text_Type,
+        t_out.Value
+    >
+}
 
 import * as t_out from "astn-core/interface/data/sealed_target"
 

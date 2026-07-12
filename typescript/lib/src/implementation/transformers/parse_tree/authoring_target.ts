@@ -3,17 +3,34 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as s_in from "astn-core/interface/data/parse_tree"
 import type * as s_out from "../../../interface/schemas/authoring_target.js"
 
-namespace interface_ {
-    export type Value = p_.Transformer<s_in.Value, s_out.Value>
-    export type Concrete_Value = p_.Transformer<s_in.Value.type_.concrete, s_out.Value.data.concrete>
-    export type ID_Value_Pairs = p_.Transformer<s_in.ID_Value_Pairs, s_out.ID_Value_Pairs>
-    export type Items = p_.Transformer<s_in.Items, s_out.Items>
-    export type Structural_Token = p_.Transformer<s_in.Structural_Token, s_out.Token_Trivia>
-    export type Document = p_.Transformer<s_in.Document, s_out.Document>
+namespace declarations {
+    export type Value = p_.Transformer<
+        s_in.Value,
+        s_out.Value
+    >
+    export type Concrete_Value = p_.Transformer<
+        s_in.Value.type_.concrete,
+        s_out.Value.data.concrete
+    >
+    export type ID_Value_Pairs = p_.Transformer<
+        s_in.ID_Value_Pairs,
+        s_out.ID_Value_Pairs
+    >
+    export type Items = p_.Transformer<
+        s_in.Items,
+        s_out.Items
+    >
+    export type Structural_Token = p_.Transformer<
+        s_in.Structural_Token,
+        s_out.Token_Trivia
+    >
+    export type Document = p_.Transformer<
+        s_in.Document,
+        s_out.Document
+    >
 }
 
-
-export const Document: interface_.Document = ($) => {
+export const Document: declarations.Document = ($) => {
     return {
         'header': p_.from.optional($.header).map(
             ($) => Value($.value)),
@@ -22,7 +39,7 @@ export const Document: interface_.Document = ($) => {
 }
 
 
-export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).map(
+export const ID_Value_Pairs: declarations.ID_Value_Pairs = ($) => p_.from.list($).map(
     ($) => ({
         'id': $.id.token.value,
         'value': p_.from.optional($.assignment).decide(
@@ -33,15 +50,15 @@ export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).
     })
 )
 
-export const Items: interface_.Items = ($) => p_.from.list($).map(
+export const Items: declarations.Items = ($) => p_.from.list($).map(
     ($) => Value($.value)
 )
 
-export const Structural_Token: interface_.Structural_Token = ($) => ({
+export const Structural_Token: declarations.Structural_Token = ($) => ({
     'comments': $['trailing trivia'].comments
 })
 
-export const Concrete_Value: interface_.Concrete_Value = ($) => p_.from.state($).decide(
+export const Concrete_Value: declarations.Concrete_Value = ($) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
             case 'dictionary': return p_.option($, ($) => ({
@@ -140,7 +157,7 @@ export const Concrete_Value: interface_.Concrete_Value = ($) => p_.from.state($)
         }
     })
 
-export const Value: interface_.Value = ($) => {
+export const Value: declarations.Value = ($) => {
     return {
         'metadata': {
             'comments': p_.literal.list([]),

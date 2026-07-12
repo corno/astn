@@ -1,20 +1,32 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
 import type * as s_in from "astn-core/interface/data/parse_tree"
-import type * as s_out from "pareto-json/interface/data/json_without_guaranteed_unique_keys"
 
-namespace interface_ {
-    export type Value = p_.Transformer<s_in.Value, s_out.Value>
-    export type ID_Value_Pairs = p_.Transformer<s_in.ID_Value_Pairs, s_out.Value.object_>
-    export type Items = p_.Transformer<s_in.Items, s_out.Value.array>
-    export type Document = p_.Transformer<s_in.Document, s_out.Document>
+import type * as s_out from "pareto-json/interface/data/json_without_guaranteed_unique_keys"
+namespace declarations {
+    export type Value = p_.Transformer<
+        s_in.Value,
+        s_out.Value
+    >
+    export type ID_Value_Pairs = p_.Transformer<
+        s_in.ID_Value_Pairs,
+        s_out.Value.object_
+    >
+    export type Items = p_.Transformer<
+        s_in.Items,
+        s_out.Value.array
+    >
+    export type Document = p_.Transformer<
+        s_in.Document,
+        s_out.Document
+    >
 }
 
 
-export const Document: interface_.Document = ($) => Value($.content)
+export const Document: declarations.Document = ($) => Value($.content)
 
 
-export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).map(
+export const ID_Value_Pairs: declarations.ID_Value_Pairs = ($) => p_.from.list($).map(
     ($) => ({
         'key': $.id.token.value,
         'value': p_.from.optional($.assignment).decide(
@@ -27,11 +39,11 @@ export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).
     })
 )
 
-export const Items: interface_.Items = ($) => p_.from.list($).map(
+export const Items: declarations.Items = ($) => p_.from.list($).map(
     ($) => Value($.value)
 )
 
-export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
+export const Value: declarations.Value = ($) => p_.from.state($.type).decide(
     ($): s_out.Value => {
         switch ($[0]) {
             case 'concrete': return p_.option($, ($) => p_.from.state($).decide(

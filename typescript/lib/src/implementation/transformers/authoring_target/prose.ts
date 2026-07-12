@@ -1,9 +1,31 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //schemas
+import type * as s_in from "../../../interface/schemas/authoring_target.js"
 import type * as s_out from "pareto-fountain-pen/interface/data/prose"
+namespace s_function {
 
-import type * as interface_ from "../../../declarations/transformers/authoring_target/prose.js"
+    export type Parameters = {
+        'write delimiters': boolean
+    }
+
+}
+
+namespace declarations {
+    export type Document = p_.Transformer<
+        s_in.Document,
+        s_out.Paragraph
+    >
+    export type Value = p_.Transformer_With_Parameter<
+        s_in.Value,
+        s_out.Phrase.composed,
+        s_function.Parameters
+    >
+    export type Token_Trivia = p_.Transformer<
+        s_in.Token_Trivia,
+        s_out.Phrase.composed
+    >
+}
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
@@ -11,7 +33,7 @@ import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 //dependencies
 import * as t_primitives_to_text from "astn-core/implementation/transformers/primitives/text"
 
-export const Document: interface_.Document = ($) => sh.pg.sentences(
+export const Document: declarations.Document = ($) => sh.pg.sentences(
     p_.literal.segmented_list([
         p_.from.optional($.header).decide(
             ($) => p_.literal.list([
@@ -34,7 +56,7 @@ export const Document: interface_.Document = ($) => sh.pg.sentences(
 )
 
 
-export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
+export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide(
     ($) => {
         switch ($[0]) {
             case 'include': return p_.option($, ($) => p_.literal.segmented_list([
@@ -280,6 +302,6 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($.data).decide(
     }
 )
 
-export const Token_Trivia: interface_.Token_Trivia = ($) => p_.literal.list([
+export const Token_Trivia: declarations.Token_Trivia = ($) => p_.literal.list([
     //FIXME
 ])

@@ -1,8 +1,27 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../declarations/transformers/parse_tree/includes.js"
+import type * as s_in from "astn-core/interface/data/parse_tree"
+import type * as s_out from "../../../interface/schemas/includes.js"
+namespace declarations {
+    export type Document = p_.Transformer<
+        s_in.Document,
+        s_out.Included_Files
+    >
+    export type Value = p_.Transformer<
+        s_in.Value,
+        s_out.Included_Files
+    >
+    export type Items = p_.Transformer<
+        s_in.Items,
+        s_out.Included_Files
+    >
+    export type ID_Value_Pairs = p_.Transformer<
+        s_in.ID_Value_Pairs,
+        s_out.Included_Files
+    >
+}
 
-export const Document: interface_.Document = ($) => p_.literal.segmented_list([
+export const Document: declarations.Document = ($) => p_.literal.segmented_list([
     p_.from.optional($.header).decide(
         ($) => Value($.value),
         () => p_.literal.list([])
@@ -10,7 +29,7 @@ export const Document: interface_.Document = ($) => p_.literal.segmented_list([
     Value($.content),
 ])
 
-export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
+export const Value: declarations.Value = ($) => p_.from.state($.type).decide(
     ($) => {
         switch ($[0]) {
             case 'concrete': return p_.option($, ($) => p_.from.state($).decide(
@@ -55,10 +74,10 @@ export const Value: interface_.Value = ($) => p_.from.state($.type).decide(
         }
     })
 
-export const Items: interface_.Items = ($) => p_.from.list($).flatten(
+export const Items: declarations.Items = ($) => p_.from.list($).flatten(
     ($) => Value($.value))
 
-export const ID_Value_Pairs: interface_.ID_Value_Pairs = ($) => p_.from.list($).flatten(
+export const ID_Value_Pairs: declarations.ID_Value_Pairs = ($) => p_.from.list($).flatten(
     ($ => p_.from.optional($.assignment).decide(
         ($) => p_.from.optional($.value).decide(
             ($) => Value($),
