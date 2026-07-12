@@ -1,7 +1,8 @@
 import * as p_ from 'pareto-core/implementation/query'
 import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
-import type * as interface_ from "../../declarations/queries.js"
+import type * as query_interfaces_pareto_common from "pareto-common/interface/queries"
+import type * as s_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
 
 //data  types
 import type * as s_prose from "pareto-fountain-pen/interface/data/prose"
@@ -20,25 +21,32 @@ import * as t_json_to_prose from "pareto-json/implementation/transformers/json_w
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.functions.process_file_data = p_.query(
+export const $$: p_.Query_Implementation<
+    query_interfaces_pareto_common.process_file_data,
+    {
+        'tab size': number,
+        'serialization parameters': s_serialize_prose.Parameters,
+    },
+    null
+> = p_.query(
     ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_prose.Phrase>(
         (abort) => r_parse_tree_from_text.Document(
             $d.data,
             ($) => abort(
-sh.ph.composed([
-                sh.ph.literal(t_path_to_text.Node_Path($d.path)),
-                sh.ph.literal(":"),
-                t_location_to_prose.Possible_Range(
-                    t_deserialize_parse_tree_to_location.Error($),
-                    {
-                        'character location reporting': ['one based', null],
-                    }
-                ),
-                sh.ph.literal(": "),
-                t_deserialize_parse_tree_to_prose.Error(
-                    $,
-                )
-            ])),
+                sh.ph.composed([
+                    sh.ph.literal(t_path_to_text.Node_Path($d.path)),
+                    sh.ph.literal(":"),
+                    t_location_to_prose.Possible_Range(
+                        t_deserialize_parse_tree_to_location.Error($),
+                        {
+                            'character location reporting': ['one based', null],
+                        }
+                    ),
+                    sh.ph.literal(": "),
+                    t_deserialize_parse_tree_to_prose.Error(
+                        $,
+                    )
+                ])),
             {
                 'tab size': 4,
             },
