@@ -3,7 +3,7 @@ import * as p_i from 'pareto-core/interface/__internal/Abort'
 import * as p_di from 'pareto-core/interface/data'
 import * as p_ri from 'pareto-core/interface/refiner'
 
-import * as i_generic from "liana-core/interface/data/resolve"
+import * as i_generic from "../../../interface/schemas/resolve.js"
 
 import * as i_resolved from "../../../interface/schemas/resolved.js"
 

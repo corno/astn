@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as s_out from "pareto-fountain-pen/interface/data/text"
-import type * as s_in from "astn-core/interface/data/parse_tree"
+import type * as s_out from "../../../interface/schemas/text.js"
+import type * as s_in from "../../../interface/schemas/parse_tree.js"
 namespace declarations {
     export type Document = p_.Transformer_With_Parameter<
         s_in.Document,

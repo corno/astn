@@ -1,0 +1,1 @@
+export * from "pareto-fountain-pen/interface/schemas/text"

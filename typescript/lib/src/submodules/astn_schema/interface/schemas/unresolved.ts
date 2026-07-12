@@ -1,7 +1,7 @@
 
 import * as p_di from 'pareto-core/interface/data'
 
-import * as i_location from "liana-core/interface/data/document_and_location"
+import * as i_location from "./document_and_location.js"
 
 export namespace Schema_Tree_ {
     

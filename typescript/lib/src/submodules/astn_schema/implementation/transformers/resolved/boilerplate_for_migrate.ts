@@ -10,39 +10,39 @@ import type * as s_in from "../../../interface/schemas/resolved.js"
 namespace t_signatures {
     export type Schema_Tree = p_.Transformer<
         s_in.Schema_Tree,
-        t_out.Schema_Tree
+        s_out.Schema_Tree
     >
     export type Schemas = p_.Transformer<
         s_in.Schemas,
-        t_out.Schemas
+        s_out.Schemas
     >
     export type Schema = p_.Transformer<
         s_in.Schema,
-        t_out.Schema
+        s_out.Schema
     >
     export type Imports = p_.Transformer<
         s_in.Imports,
-        t_out.Imports
+        s_out.Imports
     >
     export type Globals = p_.Transformer<
         s_in.Globals,
-        t_out.Globals
+        s_out.Globals
     >
     export type Modules = p_.Transformer<
         s_in.Modules,
-        t_out.Modules
+        s_out.Modules
     >
     export type Value = p_.Transformer<
         s_in.Value,
-        t_out.Value
+        s_out.Value
     >
     export type Text_Type = p_.Transformer<
         s_in.Text_Type,
-        t_out.Text_Type
+        s_out.Text_Type
     >
 }
 
-import * as t_out from "../../../interface/schemas/unresolved.js"
+import * as s_out from "../../../interface/schemas/unresolved.js"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     'l location': ['in main document', {
@@ -63,7 +63,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     }],
     'l state': p_decide_state(
         $,
-        ($): t_out.Schema_Tree.l_state => {
+        ($): s_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set':
                     return p_.option(
@@ -335,7 +335,7 @@ export const Value: t_signatures.Value = ($) => ({
     }],
     'l state': p_decide_state(
         $,
-        ($): t_out.Value.l_state => {
+        ($): s_out.Value.l_state => {
             switch ($[0]) {
                 case 'component':
                     return p_.option(
@@ -359,7 +359,7 @@ export const Value: t_signatures.Value = ($) => ({
                             }],
                             'l state': p_decide_state(
                                 $,
-                                ($): t_out.Value.l_state.component.l_state => {
+                                ($): s_out.Value.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
                                             return p_.option(
@@ -620,7 +620,7 @@ export const Value: t_signatures.Value = ($) => ({
                             }],
                             'l state': p_decide_state(
                                 $,
-                                ($): t_out.Value.l_state.text.l_state => {
+                                ($): s_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return p_.option(
@@ -692,7 +692,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
             }],
             'l state': p_decide_state(
                 $,
-                ($): t_out.Text_Type.type_.l_state => {
+                ($): s_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
                             return p_.option(

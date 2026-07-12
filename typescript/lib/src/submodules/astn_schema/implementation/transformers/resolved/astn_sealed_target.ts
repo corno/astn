@@ -11,45 +11,45 @@ import type * as s_in from "../../../interface/schemas/resolved.js"
 namespace t_signatures {
     export type Schema_Tree = p_.Transformer<
         s_in.Schema_Tree,
-        t_out.Value
+        s_out.Value
     >
     export type Schemas = p_.Transformer<
         s_in.Schemas,
-        t_out.Value
+        s_out.Value
     >
     export type Schema = p_.Transformer<
         s_in.Schema,
-        t_out.Value
+        s_out.Value
     >
     export type Imports = p_.Transformer<
         s_in.Imports,
-        t_out.Value
+        s_out.Value
     >
     export type Globals = p_.Transformer<
         s_in.Globals,
-        t_out.Value
+        s_out.Value
     >
     export type Modules = p_.Transformer<
         s_in.Modules,
-        t_out.Value
+        s_out.Value
     >
     export type Value = p_.Transformer<
         s_in.Value,
-        t_out.Value
+        s_out.Value
     >
     export type Text_Type = p_.Transformer<
         s_in.Text_Type,
-        t_out.Value
+        s_out.Value
     >
 }
 
-import * as t_out from "astn-core/interface/data/sealed_target"
+import * as s_out from "../../../interface/schemas/sealed_target.js"
 
-import * as v_primitives_to_text from "liana-core/implementation/transformers/primitives/text"
+import * as v_primitives_to_text from "liana-core/implementation/serializers/primitives"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_state(
     $,
-    ($): t_out.Value.state => {
+    ($): s_out.Value.state => {
         switch ($[0]) {
             case 'set':
                 return p_.option(
@@ -111,7 +111,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', p_.liter
 
 export const Imports: t_signatures.Imports = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id): t_out.Value => ['group', ['verbose', p_.literal.dictionary(
+    ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
         {
             "schema set child": p_change_context(
                 $['schema set child'],
@@ -144,7 +144,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', p_.lit
 
 export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id): t_out.Value => ['group', ['verbose', p_.literal.dictionary(
+    ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
         {
             "root value": p_change_context(
                 $['root value'],
@@ -158,7 +158,7 @@ export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dicti
 
 export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
     $,
-    ($): t_out.Value.state => {
+    ($): s_out.Value.state => {
         switch ($[0]) {
             case 'component':
                 return p_.option(
@@ -167,7 +167,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                         'option': 'component',
                         'value': ['state', p_decide_state(
                             $,
-                            ($): t_out.Value.state => {
+                            ($): s_out.Value.state => {
                                 switch ($[0]) {
                                     case 'external':
                                         return p_.option(
@@ -319,7 +319,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                         'option': 'text',
                         'value': ['state', p_decide_state(
                             $,
-                            ($): t_out.Value.state => {
+                            ($): s_out.Value.state => {
                                 switch ($[0]) {
                                     case 'global':
                                         return p_.option(
@@ -365,7 +365,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', p_
             $['type'],
             ($) => ['state', p_decide_state(
                 $,
-                ($): t_out.Value.state => {
+                ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'multi line':
                             return p_.option(

@@ -1,8 +1,8 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as s_in from "astn-core/interface/data/parse_tree"
+import type * as s_in from "../../../interface/schemas/parse_tree.js"
 
-import type * as s_out from "pareto-json/interface/data/json_without_guaranteed_unique_keys"
+import type * as s_out from "../../../interface/schemas/json_without_guaranteed_unique_keys.js"
 namespace declarations {
     export type Value = p_.Transformer<
         s_in.Value,

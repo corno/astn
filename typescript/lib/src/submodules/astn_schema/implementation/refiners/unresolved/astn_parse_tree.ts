@@ -8,7 +8,7 @@ import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 import * as t_signatures from "../../../declarations/refiners/unresolved/astn_parse_tree.js"
 
-import * as t_out from "../../../interface/schemas/unresolved.js"
+import * as s_out from "../../../interface/schemas/unresolved.js"
 
 import * as v_unmarshalled_from_parse_tree from "liana-core/implementation/refiners/unmarshalled/astn_parse_tree"
 
@@ -23,7 +23,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => p_change_cont
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Schema_Tree => {
+        ($t): s_out.Schema_Tree => {
             switch ($t) {
                 case 'set':
                     return p_change_context(
@@ -471,7 +471,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Value => {
+        ($t): s_out.Value => {
             switch ($t) {
                 case 'component':
                     return p_change_context(
@@ -492,7 +492,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                 ),
                                 ($) => p_decide_text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Value.l_state.component => {
+                                    ($t): s_out.Value.l_state.component => {
                                         switch ($t) {
                                             case 'external':
                                                 return p_change_context(
@@ -950,7 +950,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                 ),
                                 ($) => p_decide_text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Value.l_state.text => {
+                                    ($t): s_out.Value.l_state.text => {
                                         switch ($t) {
                                             case 'global':
                                                 return p_change_context(
@@ -1076,7 +1076,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => p_change_context(
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Text_Type.type_ => {
+                            ($t): s_out.Text_Type.type_ => {
                                 switch ($t) {
                                     case 'multi line':
                                         return p_change_context(

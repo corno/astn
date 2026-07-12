@@ -9,13 +9,13 @@
 
 // import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
-// import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved.js"
+// import * as s_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved.js"
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved.js"
 
 // export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Modules.D => p_change_context(
+//     ($, id, $a, $c): s_out.Modules.D => p_change_context(
 //         $['l entry'],
 //         ($) => p_.literal.group_resolve(
 //             () => {
@@ -52,7 +52,7 @@
 //             $['text types'],
 //             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
-//                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
+//                 ($, id, $a, $c): s_out.Globals.text_types.D => p_change_context(
 //                     $['l entry'],
 //                     ($) => Text_Type(
 //                         $,
@@ -82,7 +82,7 @@
 //                     const var_location = $['l location']
 //                     return p_decide_state(
 //                         $['l state'],
-//                         ($): t_out.Text_Type.type_ => {
+//                         ($): s_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
 //                                     return p_.option(
@@ -116,7 +116,7 @@
 //         const var_location = $['l location']
 //         return p_decide_state(
 //             $['l state'],
-//             ($): t_out.Value => {
+//             ($): s_out.Value => {
 //                 switch ($[0]) {
 //                     case 'component':
 //                         return p_.option(
@@ -127,7 +127,7 @@
 //                                     const var_location = $['l location']
 //                                     return p_decide_state(
 //                                         $['l state'],
-//                                         ($): t_out.Value.component => {
+//                                         ($): s_out.Value.component => {
 //                                             switch ($[0]) {
 //                                                 case 'external':
 //                                                     return p_.option(
@@ -329,7 +329,7 @@
 //                             $,
 //                             ($) => ['group', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
-//                                 ($, id, $a, $c): t_out.Value.group.D => p_change_context(
+//                                 ($, id, $a, $c): s_out.Value.group.D => p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
 //                                         $,
@@ -393,7 +393,7 @@
 //                             $,
 //                             ($) => ['state', p_.from.dictionary(//                                 $['l dictionary'],
 //                             ).resolve(
-//                                 ($, id, $a, $c): t_out.Value.state.D => p_change_context(
+//                                 ($, id, $a, $c): s_out.Value.state.D => p_change_context(
 //                                     $['l entry'],
 //                                     ($) => Value(
 //                                         $,
@@ -415,7 +415,7 @@
 //                                     const var_location = $['l location']
 //                                     return p_decide_state(
 //                                         $['l state'],
-//                                         ($): t_out.Value.text => {
+//                                         ($): s_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
 //                                                     return p_.option(
@@ -498,7 +498,7 @@
 
 // export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
+//     ($, id, $a, $c): s_out.Schemas.D => p_change_context(
 //         $['l entry'],
 //         ($) => Schema_Tree(
 //             $,
@@ -522,7 +522,7 @@
 //         const var_location = $['l location']
 //         return p_decide_state(
 //             $['l state'],
-//             ($): t_out.Schema_Tree => {
+//             ($): s_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
 //                         return p_.option(
@@ -619,7 +619,7 @@
 
 // export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Imports.D => p_change_context(
+//     ($, id, $a, $c): s_out.Imports.D => p_change_context(
 //         $['l entry'],
 //         ($) => p_.literal.group_resolve(
 //             () => {

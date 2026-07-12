@@ -2,8 +2,8 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 //schemas
 import type * as s_in from "../../../interface/schemas/authoring_target.js"
-import type * as s_out from "pareto-fountain-pen/interface/data/prose"
-namespace s_function {
+import type * as s_out from "../../../interface/schemas/prose.js"
+namespace s_parameters {
 
     export type Parameters = {
         'write delimiters': boolean
@@ -19,7 +19,7 @@ namespace declarations {
     export type Value = p_.Transformer_With_Parameter<
         s_in.Value,
         s_out.Phrase.composed,
-        s_function.Parameters
+        s_parameters.Parameters
     >
     export type Token_Trivia = p_.Transformer<
         s_in.Token_Trivia,

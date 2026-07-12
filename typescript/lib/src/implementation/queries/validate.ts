@@ -3,11 +3,11 @@ import p_list_from_text from 'pareto-core/implementation/refiner/specials/list_f
 import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
 import type * as query_interfaces_pareto_common from "pareto-common/interface/queries"
-import type * as s_serialize_prose from "pareto-fountain-pen/interface/data/prose_serialize"
+import type * as s_serialize_prose from "../../interface/schemas/prose_serialize.js"
 
 //data  types
-import type * as s_prose from "pareto-fountain-pen/interface/data/prose"
-import type * as s_parse_tree from "astn-core/interface/data/parse_tree"
+import type * as s_prose from "../../interface/schemas/prose.js"
+import type * as s_parse_tree from "../../interface/schemas/parse_tree.js"
 
 //dependencies
 import * as t_deserialize_parse_tree_to_location from "astn-core/implementation/transformers/deserialize_parse_tree/location"
