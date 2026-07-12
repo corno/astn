@@ -1,7 +1,7 @@
 
 import type * as p_ from 'pareto-core/interface/transformer'
 
-//data types
+//schemas
 import type * as s_in from "astn-core/interface/data/parse_tree"
 import type * as s_out from "../../../interface/schemas/includes.js"
 

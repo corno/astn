@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-//data types
+//schemas
 import type * as s_out from "pareto-fountain-pen/interface/data/prose"
 
 import type * as interface_ from "../../../declarations/transformers/authoring_target/prose.js"
