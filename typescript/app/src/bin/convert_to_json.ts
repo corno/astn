@@ -6,7 +6,7 @@ import * as p_h from 'pareto-host-nodejs/index'
 import * as rs_filesystem_unrestricted from "pareto-resource-filesystem-unrestricted/index"
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as c_command } from "pareto-common/implementation/commands/file_to_file"
+import { $$ as c_command } from "pareto-common/implementation/commands/file_in_file_out"
 
 import { $$ as q_query } from "lib/implementation/queries/convert_to_json"
 

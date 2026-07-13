@@ -1,5 +1,5 @@
 
-import * as p_di from 'pareto-core/interface/data'
+import * as p_di from 'pareto-core/interface/schema'
 
 export namespace Schema_Tree_ {
     

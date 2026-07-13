@@ -1,6 +1,6 @@
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
-import * as p_di from 'pareto-core/interface/data'
+import * as p_di from 'pareto-core/interface/schema'
 import * as p_ri from 'pareto-core/interface/refiner'
 
 import * as i_generic from "../../../interface/schemas/resolve.js"

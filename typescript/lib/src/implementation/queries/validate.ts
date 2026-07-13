@@ -19,7 +19,7 @@ import * as t_deserialize_parse_tree_to_prose from "astn-core/implementation/tra
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: p_.Query_Implementation<
-    query_interfaces_pareto_common.process_stream_data,
+    query_interfaces_pareto_common.stream_in_stream_out,
     {
         'tab size': number,
         'serialization parameters': s_serialize_prose.Parameters,

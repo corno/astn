@@ -1,6 +1,6 @@
 
 import * as p_ from 'pareto-core/implementation/transformer'
-import * as p_di from 'pareto-core/interface/data'
+import * as p_di from 'pareto-core/interface/schema'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 
 

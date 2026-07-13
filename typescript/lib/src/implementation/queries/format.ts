@@ -22,7 +22,7 @@ import * as t_authoring_target_to_prose from "../transformers/authoring_target/p
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: p_.Query_Implementation<
-    query_interfaces_pareto_common.process_file_data,
+    query_interfaces_pareto_common.file_in_file_out,
     {
         'tab size': number,
         'serialization parameters': s_serialize_prose.Parameters,

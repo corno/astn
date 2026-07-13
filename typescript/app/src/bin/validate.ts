@@ -5,7 +5,7 @@ import * as p_h from 'pareto-host-nodejs/index'
 
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as c_command } from "pareto-common/implementation/commands/stream_to_stream"
+import { $$ as c_command } from "pareto-common/implementation/commands/stream_in_stream_out"
 
 import { $$ as q_query } from "lib/implementation/queries/validate"
 
