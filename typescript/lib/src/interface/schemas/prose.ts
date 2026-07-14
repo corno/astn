@@ -1,1 +1,0 @@
-export * from "pareto-fountain-pen/interface/schemas/prose"
