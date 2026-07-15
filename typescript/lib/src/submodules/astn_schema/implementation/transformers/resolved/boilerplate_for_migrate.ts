@@ -45,7 +45,7 @@ namespace t_signatures {
 import * as s_out from "../../../interface/schemas/unresolved.js"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
-    'l location': ['in main document', {
+    'l location': {
         'start': {
             'absolute': 42,
             'relative': {
@@ -60,7 +60,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
                 'column': 42,
             },
         },
-    }],
+    },
     'l state': p_decide_state(
         $,
         ($): s_out.Schema_Tree.l_state => {
@@ -89,7 +89,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
 })
 
 export const Schemas: t_signatures.Schemas = ($) => ({
-    'l location': ['in main document', {
+    'l location': {
         'start': {
             'absolute': 42,
             'relative': {
@@ -104,14 +104,14 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                 'column': 42,
             },
         },
-    }],
+    },
     'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Schema_Tree(
                 $,
             ),
-            'l location': ['in main document', {
+            'l location': {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -126,7 +126,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                         'column': 42,
                     },
                 },
-            }],
+            },
         }),
     ),
 })
@@ -153,7 +153,7 @@ export const Schema: t_signatures.Schema = ($) => ({
 })
 
 export const Imports: t_signatures.Imports = ($) => ({
-    'l location': ['in main document', {
+    'l location': {
         'start': {
             'absolute': 42,
             'relative': {
@@ -168,7 +168,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                 'column': 42,
             },
         },
-    }],
+    },
     'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
@@ -176,7 +176,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                 'schema set child': p_change_context(
                     $['schema set child'],
                     ($) => ({
-                        'l location': ['in main document', {
+                        'l location': {
                             'start': {
                                 'absolute': 42,
                                 'relative': {
@@ -191,7 +191,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                                     'column': 42,
                                 },
                             },
-                        }],
+                        },
                         'l reference': $['l value']['l id'],
                     }),
                 ),
@@ -200,7 +200,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                     ($) => null,
                 ),
             },
-            'l location': ['in main document', {
+            'l location': {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -215,7 +215,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                         'column': 42,
                     },
                 },
-            }],
+            },
         }),
     ),
 })
@@ -224,7 +224,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     'text types': p_change_context(
         $['text types'],
         ($) => ({
-            'l location': ['in main document', {
+            'l location': {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -239,14 +239,14 @@ export const Globals: t_signatures.Globals = ($) => ({
                         'column': 42,
                     },
                 },
-            }],
+            },
             'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': Text_Type(
                         $,
                     ),
-                    'l location': ['in main document', {
+                    'l location': {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -261,7 +261,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                                 'column': 42,
                             },
                         },
-                    }],
+                    },
                 }),
             ),
         }),
@@ -269,7 +269,7 @@ export const Globals: t_signatures.Globals = ($) => ({
 })
 
 export const Modules: t_signatures.Modules = ($) => ({
-    'l location': ['in main document', {
+    'l location': {
         'start': {
             'absolute': 42,
             'relative': {
@@ -284,7 +284,7 @@ export const Modules: t_signatures.Modules = ($) => ({
                 'column': 42,
             },
         },
-    }],
+    },
     'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
@@ -296,7 +296,7 @@ export const Modules: t_signatures.Modules = ($) => ({
                     ),
                 ),
             },
-            'l location': ['in main document', {
+            'l location': {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -311,13 +311,13 @@ export const Modules: t_signatures.Modules = ($) => ({
                         'column': 42,
                     },
                 },
-            }],
+            },
         }),
     ),
 })
 
 export const Value: t_signatures.Value = ($) => ({
-    'l location': ['in main document', {
+    'l location': {
         'start': {
             'absolute': 42,
             'relative': {
@@ -332,7 +332,7 @@ export const Value: t_signatures.Value = ($) => ({
                 'column': 42,
             },
         },
-    }],
+    },
     'l state': p_decide_state(
         $,
         ($): s_out.Value.l_state => {
@@ -341,7 +341,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return p_.option(
                         $,
                         ($) => ['component', {
-                            'l location': ['in main document', {
+                            'l location': {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -356,7 +356,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            }],
+                            },
                             'l state': p_decide_state(
                                 $,
                                 ($): s_out.Value.l_state.component.l_state => {
@@ -368,7 +368,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     'import': p_change_context(
                                                         $['import'],
                                                         ($) => ({
-                                                            'l location': ['in main document', {
+                                                            'l location': {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -383,14 +383,14 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            }],
+                                                            },
                                                             'l reference': $['l id'],
                                                         }),
                                                     ),
                                                     'type': p_change_context(
                                                         $['type'],
                                                         ($) => ({
-                                                            'l location': ['in main document', {
+                                                            'l location': {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -405,7 +405,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            }],
+                                                            },
                                                             'l reference': $['l id'],
                                                         }),
                                                     ),
@@ -415,7 +415,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             return p_.option(
                                                 $,
                                                 ($) => ['internal acyclic', {
-                                                    'l location': ['in main document', {
+                                                    'l location': {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -430,7 +430,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    }],
+                                                    },
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -438,7 +438,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             return p_.option(
                                                 $,
                                                 ($) => ['internal', {
-                                                    'l location': ['in main document', {
+                                                    'l location': {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -453,7 +453,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    }],
+                                                    },
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -486,7 +486,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return p_.option(
                         $,
                         ($) => ['group', {
-                            'l location': ['in main document', {
+                            'l location': {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -501,14 +501,14 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            }],
+                            },
                             'l dictionary': p_.from.dictionary($,
                             ).map(
                                 ($, id) => ({
                                     'l entry': Value(
                                         $,
                                     ),
-                                    'l location': ['in main document', {
+                                    'l location': {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -523,7 +523,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    }],
+                                    },
                                 }),
                             ),
                         }],
@@ -556,7 +556,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return p_.option(
                         $,
                         ($) => ['state', {
-                            'l location': ['in main document', {
+                            'l location': {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -571,14 +571,14 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            }],
+                            },
                             'l dictionary': p_.from.dictionary($,
                             ).map(
                                 ($, id) => ({
                                     'l entry': Value(
                                         $,
                                     ),
-                                    'l location': ['in main document', {
+                                    'l location': {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -593,7 +593,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    }],
+                                    },
                                 }),
                             ),
                         }],
@@ -602,7 +602,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return p_.option(
                         $,
                         ($) => ['text', {
-                            'l location': ['in main document', {
+                            'l location': {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -617,7 +617,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            }],
+                            },
                             'l state': p_decide_state(
                                 $,
                                 ($): s_out.Value.l_state.text.l_state => {
@@ -626,7 +626,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             return p_.option(
                                                 $,
                                                 ($) => ['global', {
-                                                    'l location': ['in main document', {
+                                                    'l location': {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -641,7 +641,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    }],
+                                                    },
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -674,7 +674,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
     'type': p_change_context(
         $['type'],
         ($) => ({
-            'l location': ['in main document', {
+            'l location': {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -689,7 +689,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                         'column': 42,
                     },
                 },
-            }],
+            },
             'l state': p_decide_state(
                 $,
                 ($): s_out.Text_Type.type_.l_state => {

@@ -1,1 +1,0 @@
-export * from "liana-core/interface/schemas/document_and_location" 

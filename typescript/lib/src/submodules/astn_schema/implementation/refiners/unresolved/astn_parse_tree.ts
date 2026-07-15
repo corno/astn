@@ -8,7 +8,7 @@ import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "../../../interface/schemas/unmarshall.js"
+import * as i_generic from "../../../interface/schemas/unmarshalling.js"
 
 import * as i_out from "../../../interface/schemas/unresolved.js"
 
@@ -173,9 +173,9 @@ export namespace declarations {
 
 import * as s_out from "../../../interface/schemas/unresolved.js"
 
-import * as v_unmarshalled_from_parse_tree from "liana-core/implementation/refiners/unmarshalled/astn_parse_tree"
+import * as v_unmarshalled_from_parse_tree from "liana-core/_implementation/refiners/unmarshalled_value/astn_parse_tree"
 
-import * as v_parse_tree_to_location from "liana-core/implementation/transformers/parse_tree/start_token_range"
+import * as v_parse_tree_to_location from "astn-core/_implementation/transformers/parse_tree/start_token_range"
 
 export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
@@ -194,9 +194,6 @@ export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_con
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['set', Schemas(
                                 $,
@@ -212,9 +209,6 @@ export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_con
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['schema', Schema(
                                 $,
@@ -230,9 +224,6 @@ export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_con
                             'type': ['state', ['unknown option', $['option']['token']['value']]],
                             'range': v_parse_tree_to_location.Value(
                                 $['value'],
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                         }],
                     )
@@ -247,25 +238,16 @@ export const Schemas: declarations.Schemas_ = ($, abort) => p_change_context(
         ($) => abort(
             $,
         ),
-        {
-            'subdocument context': p_.literal.not_set(),
-        },
     ),
     ($) => ({
         'l location': v_parse_tree_to_location.Value(
             $['value'],
-            {
-                'subdocument context': p_.literal.not_set(),
-            },
         ),
         'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
                     $,
-                    {
-                        'subdocument context': p_.literal.not_set(),
-                    },
                 ),
                 'l entry': Schema_Tree(
                     $,
@@ -292,7 +274,7 @@ export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
                     "types": null,
                 },
             ),
-            'subdocument context': p_.literal.not_set(),
+            
         },
     ),
     ($) => p_variables(
@@ -301,7 +283,7 @@ export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
             // const var_verbose_group_range = v_parse_tree_to_location.Value(
             //     $['value'],
             //     {
-            //         'subdocument context': p_.literal.not_set(),
+            //         
             //     },
             // )
             return {
@@ -313,7 +295,7 @@ export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
                         ),
                         {
                             'id': 'imports',
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => Imports(
@@ -331,7 +313,7 @@ export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
                         ),
                         {
                             'id': 'globals',
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => Globals(
@@ -349,7 +331,7 @@ export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
                         ),
                         {
                             'id': 'types',
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => Modules(
@@ -370,25 +352,16 @@ export const Imports: declarations.Imports_ = ($, abort) => p_change_context(
         ($) => abort(
             $,
         ),
-        {
-            'subdocument context': p_.literal.not_set(),
-        },
     ),
     ($) => ({
         'l location': v_parse_tree_to_location.Value(
             $['value'],
-            {
-                'subdocument context': p_.literal.not_set(),
-            },
         ),
         'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
                     $,
-                    {
-                        'subdocument context': p_.literal.not_set(),
-                    },
                 ),
                 'l entry': p_change_context(
                     v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -403,7 +376,7 @@ export const Imports: declarations.Imports_ = ($, abort) => p_change_context(
                                     "schema": null,
                                 },
                             ),
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => p_variables(
@@ -412,7 +385,7 @@ export const Imports: declarations.Imports_ = ($, abort) => p_change_context(
                             // const var_verbose_group_range = v_parse_tree_to_location.Value(
                             //     $['value'],
                             //     {
-                            //         'subdocument context': p_.literal.not_set(),
+                            //         
                             //     },
                             // )
                             return {
@@ -424,15 +397,12 @@ export const Imports: declarations.Imports_ = ($, abort) => p_change_context(
                                         ),
                                         {
                                             'id': 'schema set child',
-                                            'subdocument context': p_.literal.not_set(),
+                                            
                                         },
                                     ),
                                     ($) => ({
                                         'l location': v_parse_tree_to_location.Value(
                                             $,
-                                            {
-                                                'subdocument context': p_.literal.not_set(),
-                                            },
                                         ),
                                         'l reference': v_unmarshalled_from_parse_tree.Text(
                                             $,
@@ -450,7 +420,7 @@ export const Imports: declarations.Imports_ = ($, abort) => p_change_context(
                                         ),
                                         {
                                             'id': 'schema',
-                                            'subdocument context': p_.literal.not_set(),
+                                            
                                         },
                                     ),
                                     ($) => v_unmarshalled_from_parse_tree.Nothing(
@@ -481,7 +451,7 @@ export const Globals: declarations.Globals_ = ($, abort) => p_change_context(
                     "text types": null,
                 },
             ),
-            'subdocument context': p_.literal.not_set(),
+            
         },
     ),
     ($) => p_variables(
@@ -490,7 +460,7 @@ export const Globals: declarations.Globals_ = ($, abort) => p_change_context(
             // const var_verbose_group_range = v_parse_tree_to_location.Value(
             //     $['value'],
             //     {
-            //         'subdocument context': p_.literal.not_set(),
+            //         
             //     },
             // )
             return {
@@ -502,7 +472,7 @@ export const Globals: declarations.Globals_ = ($, abort) => p_change_context(
                         ),
                         {
                             'id': 'text types',
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => p_change_context(
@@ -511,25 +481,16 @@ export const Globals: declarations.Globals_ = ($, abort) => p_change_context(
                             ($) => abort(
                                 $,
                             ),
-                            {
-                                'subdocument context': p_.literal.not_set(),
-                            },
                         ),
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $['value'],
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l dictionary': p_.from.dictionary($['entries'],
                             ).map(
                                 ($, id) => ({
                                     'l location': v_parse_tree_to_location.Value(
                                         $,
-                                        {
-                                            'subdocument context': p_.literal.not_set(),
-                                        },
                                     ),
                                     'l entry': Text_Type(
                                         $,
@@ -553,25 +514,16 @@ export const Modules: declarations.Modules_ = ($, abort) => p_change_context(
         ($) => abort(
             $,
         ),
-        {
-            'subdocument context': p_.literal.not_set(),
-        },
     ),
     ($) => ({
         'l location': v_parse_tree_to_location.Value(
             $['value'],
-            {
-                'subdocument context': p_.literal.not_set(),
-            },
         ),
         'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
                     $,
-                    {
-                        'subdocument context': p_.literal.not_set(),
-                    },
                 ),
                 'l entry': p_change_context(
                     v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -585,7 +537,7 @@ export const Modules: declarations.Modules_ = ($, abort) => p_change_context(
                                     "root value": null,
                                 },
                             ),
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => p_variables(
@@ -594,7 +546,7 @@ export const Modules: declarations.Modules_ = ($, abort) => p_change_context(
                             // const var_verbose_group_range = v_parse_tree_to_location.Value(
                             //     $['value'],
                             //     {
-                            //         'subdocument context': p_.literal.not_set(),
+                            //         
                             //     },
                             // )
                             return {
@@ -606,7 +558,7 @@ export const Modules: declarations.Modules_ = ($, abort) => p_change_context(
                                         ),
                                         {
                                             'id': 'root value',
-                                            'subdocument context': p_.literal.not_set(),
+                                            
                                         },
                                     ),
                                     ($) => Value(
@@ -642,9 +594,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['component', p_change_context(
                                 v_unmarshalled_from_parse_tree.State(
@@ -663,9 +612,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $,
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                         'l state': ['external', p_change_context(
                                                             v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -680,7 +626,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                                             "type": null,
                                                                         },
                                                                     ),
-                                                                    'subdocument context': p_.literal.not_set(),
+                                                                    
                                                                 },
                                                             ),
                                                             ($) => p_variables(
@@ -689,7 +635,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                                     // const var_verbose_group_range = v_parse_tree_to_location.Value(
                                                                     //     $['value'],
                                                                     //     {
-                                                                    //         'subdocument context': p_.literal.not_set(),
+                                                                    //         
                                                                     //     },
                                                                     // )
                                                                     return {
@@ -701,15 +647,12 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                                                 ),
                                                                                 {
                                                                                     'id': 'import',
-                                                                                    'subdocument context': p_.literal.not_set(),
+                                                                                    
                                                                                 },
                                                                             ),
                                                                             ($) => ({
                                                                                 'l location': v_parse_tree_to_location.Value(
                                                                                     $,
-                                                                                    {
-                                                                                        'subdocument context': p_.literal.not_set(),
-                                                                                    },
                                                                                 ),
                                                                                 'l reference': v_unmarshalled_from_parse_tree.Text(
                                                                                     $,
@@ -727,15 +670,12 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                                                 ),
                                                                                 {
                                                                                     'id': 'type',
-                                                                                    'subdocument context': p_.literal.not_set(),
+                                                                                    
                                                                                 },
                                                                             ),
                                                                             ($) => ({
                                                                                 'l location': v_parse_tree_to_location.Value(
                                                                                     $,
-                                                                                    {
-                                                                                        'subdocument context': p_.literal.not_set(),
-                                                                                    },
                                                                                 ),
                                                                                 'l reference': v_unmarshalled_from_parse_tree.Text(
                                                                                     $,
@@ -757,16 +697,10 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $,
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                         'l state': ['internal acyclic', {
                                                             'l location': v_parse_tree_to_location.Value(
                                                                 $,
-                                                                {
-                                                                    'subdocument context': p_.literal.not_set(),
-                                                                },
                                                             ),
                                                             'l reference': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
@@ -783,16 +717,10 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $,
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                         'l state': ['internal', {
                                                             'l location': v_parse_tree_to_location.Value(
                                                                 $,
-                                                                {
-                                                                    'subdocument context': p_.literal.not_set(),
-                                                                },
                                                             ),
                                                             'l reference': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
@@ -809,9 +737,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                         'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                         'range': v_parse_tree_to_location.Value(
                                                             $['value'],
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                     }],
                                                 )
@@ -827,9 +752,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['dictionary', p_change_context(
                                 v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -844,7 +766,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                 "ordered": null,
                                             },
                                         ),
-                                        'subdocument context': p_.literal.not_set(),
+                                        
                                     },
                                 ),
                                 ($) => p_variables(
@@ -852,9 +774,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
 
                                         const var_verbose_group_range = v_parse_tree_to_location.Value(
                                             $['value'],
-                                            {
-                                                'subdocument context': p_.literal.not_set(),
-                                            },
                                         )
                                         return {
                                             'value': p_change_context(
@@ -865,7 +784,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ),
                                                     {
                                                         'id': 'value',
-                                                        'subdocument context': p_.literal.not_set(),
+                                                        
                                                     },
                                                 ),
                                                 ($) => Value(
@@ -883,7 +802,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ),
                                                     {
                                                         'id': 'ordered',
-                                                        'subdocument context': p_.literal.not_set(),
+                                                        
                                                     },
                                                 ),
                                                 ($) => v_unmarshalled_from_parse_tree.Boolean(
@@ -893,7 +812,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ),
                                                     {
                                                         'type': ['true/false', null],
-                                                        'subdocument context': p_.literal.not_set(),
+                                                        
                                                     },
                                                 ),
                                             ),
@@ -909,9 +828,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['group', p_change_context(
                                 v_unmarshalled_from_parse_tree.Dictionary(
@@ -919,25 +835,16 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                     ($) => abort(
                                         $,
                                     ),
-                                    {
-                                        'subdocument context': p_.literal.not_set(),
-                                    },
                                 ),
                                 ($) => ({
                                     'l location': v_parse_tree_to_location.Value(
                                         $['value'],
-                                        {
-                                            'subdocument context': p_.literal.not_set(),
-                                        },
                                     ),
                                     'l dictionary': p_.from.dictionary($['entries'],
                                     ).map(
                                         ($, id) => ({
                                             'l location': v_parse_tree_to_location.Value(
                                                 $,
-                                                {
-                                                    'subdocument context': p_.literal.not_set(),
-                                                },
                                             ),
                                             'l entry': Value(
                                                 $,
@@ -957,9 +864,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['list', p_change_context(
                                 v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -973,7 +877,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                 "value": null,
                                             },
                                         ),
-                                        'subdocument context': p_.literal.not_set(),
+                                        
                                     },
                                 ),
                                 ($) => p_variables(
@@ -981,9 +885,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
 
                                         const var_verbose_group_range = v_parse_tree_to_location.Value(
                                             $['value'],
-                                            {
-                                                'subdocument context': p_.literal.not_set(),
-                                            },
                                         )
                                         return {
                                             'value': p_change_context(
@@ -994,7 +895,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ),
                                                     {
                                                         'id': 'value',
-                                                        'subdocument context': p_.literal.not_set(),
+                                                        
                                                     },
                                                 ),
                                                 ($) => Value(
@@ -1016,9 +917,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['nothing', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
@@ -1034,9 +932,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['optional', Value(
                                 $,
@@ -1052,9 +947,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['state', p_change_context(
                                 v_unmarshalled_from_parse_tree.Dictionary(
@@ -1062,25 +954,16 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                     ($) => abort(
                                         $,
                                     ),
-                                    {
-                                        'subdocument context': p_.literal.not_set(),
-                                    },
                                 ),
                                 ($) => ({
                                     'l location': v_parse_tree_to_location.Value(
                                         $['value'],
-                                        {
-                                            'subdocument context': p_.literal.not_set(),
-                                        },
                                     ),
                                     'l dictionary': p_.from.dictionary($['entries'],
                                     ).map(
                                         ($, id) => ({
                                             'l location': v_parse_tree_to_location.Value(
                                                 $,
-                                                {
-                                                    'subdocument context': p_.literal.not_set(),
-                                                },
                                             ),
                                             'l entry': Value(
                                                 $,
@@ -1100,9 +983,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                         ($) => ({
                             'l location': v_parse_tree_to_location.Value(
                                 $,
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                             'l state': ['text', p_change_context(
                                 v_unmarshalled_from_parse_tree.State(
@@ -1121,16 +1001,10 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $,
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                         'l state': ['global', {
                                                             'l location': v_parse_tree_to_location.Value(
                                                                 $,
-                                                                {
-                                                                    'subdocument context': p_.literal.not_set(),
-                                                                },
                                                             ),
                                                             'l reference': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
@@ -1147,9 +1021,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                     ($) => ({
                                                         'l location': v_parse_tree_to_location.Value(
                                                             $,
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                         'l state': ['local', Text_Type(
                                                             $,
@@ -1165,9 +1036,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                                         'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                         'range': v_parse_tree_to_location.Value(
                                                             $['value'],
-                                                            {
-                                                                'subdocument context': p_.literal.not_set(),
-                                                            },
                                                         ),
                                                     }],
                                                 )
@@ -1183,9 +1051,6 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                             'type': ['state', ['unknown option', $['option']['token']['value']]],
                             'range': v_parse_tree_to_location.Value(
                                 $['value'],
-                                {
-                                    'subdocument context': p_.literal.not_set(),
-                                },
                             ),
                         }],
                     )
@@ -1206,7 +1071,7 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                     "type": null,
                 },
             ),
-            'subdocument context': p_.literal.not_set(),
+            
         },
     ),
     ($) => p_variables(
@@ -1214,9 +1079,6 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
 
             const var_verbose_group_range = v_parse_tree_to_location.Value(
                 $['value'],
-                {
-                    'subdocument context': p_.literal.not_set(),
-                },
             )
             return {
                 'type': p_change_context(
@@ -1227,7 +1089,7 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                         ),
                         {
                             'id': 'type',
-                            'subdocument context': p_.literal.not_set(),
+                            
                         },
                     ),
                     ($) => p_change_context(
@@ -1247,9 +1109,6 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                                             ($) => ({
                                                 'l location': v_parse_tree_to_location.Value(
                                                     $,
-                                                    {
-                                                        'subdocument context': p_.literal.not_set(),
-                                                    },
                                                 ),
                                                 'l state': ['multi line', v_unmarshalled_from_parse_tree.Nothing(
                                                     $,
@@ -1265,9 +1124,6 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                                             ($) => ({
                                                 'l location': v_parse_tree_to_location.Value(
                                                     $,
-                                                    {
-                                                        'subdocument context': p_.literal.not_set(),
-                                                    },
                                                 ),
                                                 'l state': ['single line', v_unmarshalled_from_parse_tree.Nothing(
                                                     $,
@@ -1283,9 +1139,6 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                                                 'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                 'range': v_parse_tree_to_location.Value(
                                                     $['value'],
-                                                    {
-                                                        'subdocument context': p_.literal.not_set(),
-                                                    },
                                                 ),
                                             }],
                                         )

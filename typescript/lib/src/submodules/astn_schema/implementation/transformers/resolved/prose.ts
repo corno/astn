@@ -39,7 +39,7 @@ namespace declarations {
     >
 }
 
-import * as v_serialize from "astn-core/implementation/transformers/sealed_target/prose"
+import * as v_serialize from "astn-core/_implementation/serializers/sealed_target"
 
 import * as v_marshall from "./astn_sealed_target.js"
 

@@ -3,55 +3,57 @@ import p_list_from_text from 'pareto-core/implementation/refiner/specials/list_f
 import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
 import type * as query_interfaces_pareto_common from "pareto-common/interface/queries"
-import type * as s_serialize_prose from "../../interface/schemas/prose_serialize.js"
+import type * as s_file_in_file_out from "pareto-common/interface/schemas/file_in_file_out_query"
 
 //data  types
-import type * as s_prose from "../../interface/schemas/prose.js"
 import type * as s_parse_tree from "../../interface/schemas/parse_tree.js"
 
 //dependencies
-import * as t_deserialize_parse_tree_to_location from "astn-core/implementation/transformers/deserialize_parse_tree/location"
-import * as t_location_to_prose from "astn-core/implementation/transformers/location/prose"
-import * as r_parse_tree_from_text from "astn-core/implementation/refiners/parse_tree/text"
-import * as t_deserialize_parse_tree_to_prose from "astn-core/implementation/transformers/deserialize_parse_tree/prose"
+import * as t_parse_tree_deserialization_to_location from "astn-core/_implementation/transformers/parse_tree_deserialization/location"
+import * as t_location_to_prose from "astn-core/_implementation/serializers/location"
+import * as r_parse_tree_from_list_of_characters from "astn-core/_implementation/refiners/parse_tree/list_of_characters"
+import * as ser_parse_tree_deserialization from "astn-core/_implementation/serializers/parse_tree_deserialization"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 export const $$: p_.Query_Implementation<
     query_interfaces_pareto_common.stream_in_stream_out,
     {
         'tab size': number,
-        'serialization parameters': s_serialize_prose.Parameters,
     },
     null
 > = p_.query(
-    ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_prose.Phrase>(
-        (abort) => r_parse_tree_from_text.Document(
+    ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_file_in_file_out.Error>(
+        (abort) => r_parse_tree_from_list_of_characters.Document(
             $d.data,
             ($) => abort(
-sh.ph.composed([
-                t_location_to_prose.Possible_Range(
-                    t_deserialize_parse_tree_to_location.Error($),
-                    {
-                        'character location reporting': ['one based', null],
-                    }
-                ),
-                sh.ph.literal(": "),
-                t_deserialize_parse_tree_to_prose.Error(
-                    $,
-                )
-            ])),
+                {
+                    'phrase': sh.ph.composed([
+                        t_location_to_prose.Possible_Range(
+                            t_parse_tree_deserialization_to_location.Error($),
+                            {
+                                'character location reporting': ['one based', null],
+                            }
+                        ),
+                        sh.ph.text(": "),
+                        ser_parse_tree_deserialization.Error(
+                            $,
+                        )
+                    ])
+                }
+            ),
             {
                 'tab size': 4,
             },
         )
     )).transform(
         ($) => ({
-            'data': p_list_from_text(
-                "Document is valid ASTN",
-                ($) => $
-            )
+            'data': sh.pg.sentences([
+                sh.sentence([
+                    sh.ph.text("Document is valid ASTN")
+                ])
+            ])
         })
     )
 )

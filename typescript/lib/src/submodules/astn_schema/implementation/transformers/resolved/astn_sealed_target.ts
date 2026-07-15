@@ -45,7 +45,7 @@ namespace t_signatures {
 
 import * as s_out from "../../../interface/schemas/sealed_target.js"
 
-import * as v_primitives_to_text from "liana-core/implementation/serializers/primitives"
+import * as v_primitives_to_text from "liana-core/_implementation/serializers/primitives"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_state(
     $,
@@ -115,8 +115,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', p_.from.dicti
         {
             "schema set child": p_change_context(
                 $['schema set child'],
-                ($) => ['text', {
-                    'delimiter': ['apostrophe', null],
+                ($) => ['reference', {
                     'value': $['l value']['l id'],
                 }],
             ),
@@ -178,15 +177,13 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                                                     {
                                                         "import": p_change_context(
                                                             $['import'],
-                                                            ($) => ['text', {
-                                                                'delimiter': ['apostrophe', null],
+                                                            ($) => ['reference', {
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
                                                         "type": p_change_context(
                                                             $['type'],
-                                                            ($) => ['text', {
-                                                                'delimiter': ['apostrophe', null],
+                                                            ($) => ['reference', {
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
@@ -199,8 +196,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                                             $,
                                             ($) => ({
                                                 'option': 'internal acyclic',
-                                                'value': ['text', {
-                                                    'delimiter': ['apostrophe', null],
+                                                'value': ['reference', {
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -210,8 +206,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                                             $,
                                             ($) => ({
                                                 'option': 'internal',
-                                                'value': ['text', {
-                                                    'delimiter': ['apostrophe', null],
+                                                'value': ['reference', {
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -326,8 +321,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                                             $,
                                             ($) => ({
                                                 'option': 'global',
-                                                'value': ['text', {
-                                                    'delimiter': ['apostrophe', null],
+                                                'value': ['reference', {
                                                     'value': $['l id'],
                                                 }],
                                             }),

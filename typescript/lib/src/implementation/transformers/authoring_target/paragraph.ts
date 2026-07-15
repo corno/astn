@@ -2,7 +2,9 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 //schemas
 import type * as s_in from "../../../interface/schemas/authoring_target.js"
-import type * as s_out from "../../../interface/schemas/prose.js"
+
+import type * as s_out from "../../../interface/schemas/paragraph.js"
+
 namespace s_parameters {
 
     export type Parameters = {
@@ -28,10 +30,10 @@ namespace declarations {
 }
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 //dependencies
-import * as t_primitives_to_text from "astn-core/implementation/transformers/primitives/text"
+import * as t_primitives_to_text from "astn-core/_implementation/serializers/primitives"
 
 export const Document: declarations.Document = ($) => sh.pg.sentences(
     p_.literal.segmented_list([
@@ -61,18 +63,18 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
         switch ($[0]) {
             case 'include': return p_.option($, ($) => p_.literal.segmented_list([
                 p_.literal.list([
-                    sh.ph.literal("@ "),
+                    sh.ph.text("@ "),
                 ]),
                 Token_Trivia($['@']),
                 p_.literal.list([
-                    sh.ph.serialize(t_primitives_to_text.Quoted($.path, {
+                    t_primitives_to_text.Quoted($.path, {
                         'add delimiters': true,
-                    })),
+                    }),
                 ])
             ]))
             case 'missing': return p_.option($, ($) => p_.literal.segmented_list([
                 p_.literal.list([
-                    sh.ph.literal("#"),
+                    sh.ph.text("#"),
                 ]),
                 Token_Trivia($['#']),
             ]))
@@ -83,7 +85,7 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                             case 'dictionary': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters'] ?
                                     p_.literal.list([
-                                        sh.ph.literal("{")
+                                        sh.ph.text("{")
                                     ])
                                     : p_.literal.list([]), //we always want a newline here
                                 Token_Trivia($['{']),
@@ -92,10 +94,10 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                         sh.pg.sentences(p_.from.list($.entries).map(
                                             ($) => sh.sentence(p_.literal.segmented_list([
                                                 p_.literal.list([
-                                                    sh.ph.serialize(t_primitives_to_text.Apostrophed($.id, {
+                                                    t_primitives_to_text.Apostrophed($.id, {
                                                         'add delimiters': true,
-                                                    })),
-                                                    sh.ph.literal(": "),
+                                                    }),
+                                                    sh.ph.text(": "),
                                                 ]),
                                                 p_.from.optional($.value).decide(
                                                     ($) => Value($, {
@@ -108,7 +110,7 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                 ]),
                                 $p['write delimiters']
                                     ? p_.literal.list([
-                                        sh.ph.literal("}")
+                                        sh.ph.text("}")
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($['}']),
@@ -119,20 +121,20 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                         case 'concise': return p_.option($, ($) => p_.literal.segmented_list([
                                             $p['write delimiters']
                                                 ? p_.literal.list([
-                                                    sh.ph.literal("<")
+                                                    sh.ph.text("<")
                                                 ])
                                                 : p_.literal.list([]), //for now, always write the <, even in concise groups. Need to implement a proper parser first
                                             // $p['in concise group']
                                             //     ? sh.ph.nothing()
                                             //     : $p['write delimiters'] 
-                                            // ? sh.ph.literal("<")
+                                            // ? sh.ph.text("<")
                                             //  : sh.ph.nothing(),
 
                                             Token_Trivia($['<']),
                                             p_.from.list($.properties).flatten(
                                                 ($) => p_.literal.segmented_list([
                                                     p_.literal.list([
-                                                        sh.ph.literal(" "),
+                                                        sh.ph.text(" "),
                                                     ]),
                                                     Value($, {
                                                         'write delimiters': true,
@@ -142,11 +144,11 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                             // $p['in concise group']
                                             //     ? sh.ph.nothing()
                                             //     : $p['write delimiters'] 
-                                            // ? sh.ph.literal(" >") 
+                                            // ? sh.ph.text(" >") 
                                             // : sh.ph.nothing(),
                                             $p['write delimiters']
                                                 ? p_.literal.list([
-                                                    sh.ph.literal(" >")
+                                                    sh.ph.text(" >")
                                                 ])
                                                 : p_.literal.list([]), //for now, always write the >, even in concise groups. Need to implement a proper parser first
                                             Token_Trivia($['>']),
@@ -154,7 +156,7 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                         case 'verbose': return p_.option($, ($) => p_.literal.segmented_list([
                                             $p['write delimiters']
                                                 ? p_.literal.list([
-                                                    sh.ph.literal("(")
+                                                    sh.ph.text("(")
                                                 ])
                                                 : p_.literal.list([]),
                                             Token_Trivia($['(']),
@@ -164,10 +166,10 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                                         p_.from.list($.properties).map(
                                                             ($) => sh.sentence(p_.literal.segmented_list([
                                                                 p_.literal.list([
-                                                                    sh.ph.serialize(t_primitives_to_text.Backticked($.id, {
+                                                                    t_primitives_to_text.Backticked($.id, {
                                                                         'add delimiters': true,
-                                                                    })),
-                                                                    sh.ph.literal(": "),
+                                                                    }),
+                                                                    sh.ph.text(": "),
                                                                 ]),
                                                                 p_.from.optional($.value).decide(
                                                                     ($) => Value($, {
@@ -181,7 +183,7 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                             ]),
                                             $p['write delimiters']
                                                 ? p_.literal.list([
-                                                    sh.ph.literal(")")
+                                                    sh.ph.text(")")
                                                 ])
                                                 : p_.literal.list([]),
                                             Token_Trivia($[')']),
@@ -192,14 +194,14 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                             case 'list': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters']
                                     ? p_.literal.list([
-                                        sh.ph.literal("[")
+                                        sh.ph.text("[")
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($['[']),
                                 p_.from.list($.items).flatten(
                                     ($) => p_.literal.segmented_list([
                                         p_.literal.list([
-                                            sh.ph.literal(" "),
+                                            sh.ph.text(" "),
                                         ]),
                                         Value($, {
                                             'write delimiters': true,
@@ -207,7 +209,7 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                     ])),
                                 $p['write delimiters']
                                     ? p_.literal.list([
-                                        sh.ph.literal(" ]")
+                                        sh.ph.text(" ]")
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($[']']),
@@ -217,13 +219,13 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                     switch ($[0]) {
                                         case 'not set': return p_.option($, ($) => p_.literal.segmented_list([
                                             p_.literal.list([
-                                                sh.ph.literal("_"),
+                                                sh.ph.text("_"),
                                             ]),
                                             Token_Trivia($['_']),
                                         ]))
                                         case 'set': return p_.option($, ($) => p_.literal.segmented_list([
                                             p_.literal.list([
-                                                sh.ph.literal("* "),
+                                                sh.ph.text("* "),
                                             ]),
                                             Token_Trivia($['*']),
                                             Value($.value, {
@@ -236,14 +238,14 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                 }))
                             case 'nothing': return p_.option($, ($) => p_.literal.segmented_list([
                                 p_.literal.list([
-                                    sh.ph.literal("~"),
+                                    sh.ph.text("~"),
                                 ]),
                                 Token_Trivia($['~']),
                             ]))
                             case 'state': return p_.option($, ($) => p_.literal.segmented_list([
                                 $p['write delimiters']
                                     ? p_.literal.list([
-                                        sh.ph.literal("| ")
+                                        sh.ph.text("| ")
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($['|']),
@@ -253,15 +255,15 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                             case 'missing': return p_.option($, ($) => p_.literal.segmented_list([
                                                 Token_Trivia($['#']),
                                                 p_.literal.list([
-                                                    sh.ph.literal("#"),
+                                                    sh.ph.text("#"),
                                                 ]),
                                             ]))
                                             case 'set': return p_.option($, ($) => p_.literal.segmented_list([
                                                 p_.literal.list([
-                                                    sh.ph.serialize(t_primitives_to_text.Backticked($.option, {
+                                                    t_primitives_to_text.Backticked($.option, {
                                                         'add delimiters': true,
-                                                    })),
-                                                    sh.ph.literal(" "),
+                                                    }),
+                                                    sh.ph.text(" "),
                                                 ]),
                                                 Value($.value, {
                                                     'write delimiters': true,
@@ -279,13 +281,13 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                         p_.from.state($.delimiter).decide(
                                             ($) => {
                                                 switch ($[0]) {
-                                                    case 'apostrophe': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Apostrophed(value, {
+                                                    case 'apostrophe': return p_.option($, ($) => t_primitives_to_text.Apostrophed(value, {
                                                         'add delimiters': $p['write delimiters'],
-                                                    })))
-                                                    case 'quote': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Quoted(value, {
+                                                    }))
+                                                    case 'quote': return p_.option($, ($) => t_primitives_to_text.Quoted(value, {
                                                         'add delimiters': $p['write delimiters'],
-                                                    })))
-                                                    case 'none': return p_.option($, ($) => sh.ph.serialize(t_primitives_to_text.Undelimited(value)))
+                                                    }))
+                                                    case 'none': return p_.option($, ($) => t_primitives_to_text.Undelimited(value))
                                                     default: return p_.exhaustive($[0])
                                                 }
                                             }),

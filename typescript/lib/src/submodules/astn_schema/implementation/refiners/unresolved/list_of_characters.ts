@@ -3,7 +3,7 @@
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "../../../interface/schemas/deserialize.js"
+import * as i_generic from "../../../interface/schemas/unresolved_document_deserialization.js"
 
 import * as i_in from "../../../interface/schemas/list_of_characters.js"
 
@@ -205,7 +205,7 @@ namespace declarations {
 
 }
 
-import * as v_deserialize from "astn-core/implementation/refiners/parse_tree/list_of_characters"
+import * as v_deserialize from "astn-core/_implementation/refiners/parse_tree/list_of_characters"
 
 import * as v_unmarshall from "./astn_parse_tree.js"
 
@@ -213,14 +213,14 @@ export const Schema_Tree: declarations.Schema_Tree_ = ($, abort, $p) => v_unmars
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -228,14 +228,14 @@ export const Schemas: declarations.Schemas_ = ($, abort, $p) => v_unmarshall.Sch
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -243,14 +243,14 @@ export const Schema: declarations.Schema_ = ($, abort, $p) => v_unmarshall.Schem
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -258,14 +258,14 @@ export const Imports: declarations.Imports_ = ($, abort, $p) => v_unmarshall.Imp
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -273,14 +273,14 @@ export const Globals: declarations.Globals_ = ($, abort, $p) => v_unmarshall.Glo
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -288,14 +288,14 @@ export const Modules: declarations.Modules_ = ($, abort, $p) => v_unmarshall.Mod
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -303,14 +303,14 @@ export const Value: declarations.Value_ = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )
 
@@ -318,13 +318,13 @@ export const Text_Type: declarations.Text_Type_ = ($, abort, $p) => v_unmarshall
     v_deserialize.Document(
         $,
         ($) => abort(
-            ['parse error', $],
+            ['parse tree deserialization', $],
         ),
         {
             'tab size': $p['tab size'],
         },
     )['content'],
     ($) => abort(
-        ['unmarshall error', $],
+        ['unmarshalling', $],
     ),
 )

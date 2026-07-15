@@ -11,16 +11,15 @@ import { $$ as q_query } from "lib/implementation/queries/validate"
 
 p_h.run_main_command(
     () => c_command(
-        null,
+        {
+            'indentation': "   ",
+            'newline': "\n",
+        },
         {
             'get instream data': rs_stream.$.queries['get instream data'],
             'process data': q_query(
                 {
                     'tab size': 4,
-                    'serialization parameters': {
-                        'indentation': "   ",
-                        'newline': "\n",
-                    },
                 },
                 null
             ),

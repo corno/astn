@@ -1,7 +1,7 @@
 
 import * as p_di from 'pareto-core/interface/schema'
 
-import * as i_location from "./document_and_location.js"
+import * as i_location from "./location.js"
 
 export namespace Schema_Tree_ {
     

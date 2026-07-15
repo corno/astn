@@ -12,16 +12,15 @@ import { $$ as q_query } from "lib/implementation/queries/format"
 
 p_h.run_main_command(
     () => c_command(
-        null,
+        {
+            'indentation': "   ",
+            'newline': "\n",
+        },
         {
             'read file': rs_filesystem_unrestricted.$.queries['read file'],
             'process data': q_query(
                 {
                     'tab size': 4,
-                    'serialization parameters': {
-                        'indentation': "   ",
-                        'newline': "\n",
-                    },
                 },
                 null
             ),

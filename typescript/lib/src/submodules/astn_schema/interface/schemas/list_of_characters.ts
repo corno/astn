@@ -1,1 +1,1 @@
-export * from "pareto-fountain-pen/interface/schemas/list_of_characters"
+export * from "astn-core/interface/schemas/list_of_characters"
