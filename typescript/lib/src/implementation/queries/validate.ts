@@ -10,12 +10,12 @@ import type * as s_parse_tree from "../../interface/schemas/parse_tree.js"
 
 //dependencies
 import * as t_parse_tree_deserialization_to_location from "astn-core/_implementation/transformers/parse_tree_deserialization/location"
-import * as t_location_to_prose from "astn-core/_implementation/serializers/location"
+import * as ser_location from "astn-core/_implementation/serializers/location"
 import * as r_parse_tree_from_list_of_characters from "astn-core/_implementation/refiners/parse_tree/list_of_characters"
 import * as ser_parse_tree_deserialization from "astn-core/_implementation/serializers/parse_tree_deserialization"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
 
 export const $$: p_.Query_Implementation<
     query_interfaces_pareto_common.stream_in_stream_out,
@@ -29,16 +29,20 @@ export const $$: p_.Query_Implementation<
             $d.data,
             ($) => abort(
                 {
-                    'phrase': sh.ph.composed([
-                        t_location_to_prose.Possible_Range(
-                            t_parse_tree_deserialization_to_location.Error($),
-                            {
-                                'character location reporting': ['one based', null],
-                            }
+                    'message': sh.ph.composed([
+                        sh.ph.text(
+                            ser_location.Possible_Range(
+                                t_parse_tree_deserialization_to_location.Error($),
+                                {
+                                    'character location reporting': ['one based', null],
+                                }
+                            )
                         ),
                         sh.ph.text(": "),
-                        ser_parse_tree_deserialization.Error(
-                            $,
+                        sh.ph.text(
+                            ser_parse_tree_deserialization.Error(
+                                $,
+                            )
                         )
                     ])
                 }
@@ -49,7 +53,7 @@ export const $$: p_.Query_Implementation<
         )
     )).transform(
         ($) => ({
-            'data': sh.pg.sentences([
+            'paragraph': sh.pg.sentences([
                 sh.sentence([
                     sh.ph.text("Document is valid ASTN")
                 ])

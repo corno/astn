@@ -12,8 +12,7 @@ import { $$ as q_query } from "lib/implementation/queries/validate"
 p_h.run_main_command(
     () => c_command(
         {
-            'indentation': "   ",
-            'newline': "\n",
+            'indentation': "    ",
         },
         {
             'get instream data': rs_stream.$.queries['get instream data'],
@@ -25,8 +24,8 @@ p_h.run_main_command(
             ),
         },
         {
-            'write to stdout': rs_stream.$.commands['write to stdout'],
-            'log error': rs_stream.$.commands['log error'],
+            'log error lines': rs_stream.$.commands['log error lines'],
+            'log lines': rs_stream.$.commands['log lines'],
         },
     ),
 )

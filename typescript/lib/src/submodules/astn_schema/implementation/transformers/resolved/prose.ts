@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 //schemas
 import type * as s_in from "../../../interface/schemas/resolved.js"
-import type * as s_out from "../../../interface/schemas/prose.js"
+import type * as s_out from "../../../interface/schemas/paragraph.js"
 
 namespace declarations {
     export type Schema_Tree = p_.Transformer<
@@ -39,7 +39,7 @@ namespace declarations {
     >
 }
 
-import * as v_serialize from "astn-core/_implementation/serializers/sealed_target"
+import * as v_serialize from "astn-core/_implementation/transformers/sealed_target/paragraph"
 
 import * as v_marshall from "./astn_sealed_target.js"
 

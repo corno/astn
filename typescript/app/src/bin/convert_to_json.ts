@@ -13,7 +13,7 @@ import { $$ as q_query } from "lib/implementation/queries/convert_to_json"
 p_h.run_main_command(
     () => c_command(
         {
-            'indentation': "   ",
+            'indentation': "    ",
             'newline': "\n",
         },
         {
@@ -26,8 +26,8 @@ p_h.run_main_command(
             ),
         },
         {
+            'log error lines': rs_stream.$.commands['log error lines'],
             'write file': rs_filesystem_unrestricted.$.commands['write file'],
-            'log error': rs_stream.$.commands['log error'],
         },
     ),
 )
