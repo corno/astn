@@ -45,7 +45,7 @@ namespace t_signatures {
 
 import * as s_out from "../../../interface/schemas/sealed_target.js"
 
-import * as v_primitives_to_text from "liana-core/_implementation/serializers/primitives"
+import * as v_primitives_to_text from "liana-core/modules/serialization/implementation/serializers/primitives"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_state(
     $,

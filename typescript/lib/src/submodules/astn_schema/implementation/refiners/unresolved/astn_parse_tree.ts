@@ -173,9 +173,9 @@ export namespace declarations {
 
 import * as s_out from "../../../interface/schemas/unresolved.js"
 
-import * as v_unmarshalled_from_parse_tree from "liana-core/_implementation/refiners/unmarshalled_value/astn_parse_tree"
+import * as v_unmarshalled_from_parse_tree from "liana-core/modules/value_unmarshalling/implementation/refiners/unmarshalled_value/astn_parse_tree"
 
-import * as v_parse_tree_to_location from "astn-core/_implementation/transformers/parse_tree/start_token_range"
+import * as v_parse_tree_to_location from "astn-core/modules/deserialization/implementation/transformers/parse_tree/start_token_range"
 
 export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(

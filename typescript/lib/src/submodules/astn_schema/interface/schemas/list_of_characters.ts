@@ -1,1 +1,1 @@
-export * from "astn-core/interface/schemas/list_of_characters"
+export * from "astn-core/modules/deserialization/schemas/list_of_characters"

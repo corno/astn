@@ -1,1 +1,1 @@
-export * from "liana-core/interface/schemas/unmarshalling"
+export * from "liana-core/modules/value_unmarshalling/schemas/unmarshalling"

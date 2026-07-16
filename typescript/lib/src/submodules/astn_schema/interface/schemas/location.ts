@@ -1,1 +1,1 @@
-export * from "astn-core/interface/schemas/location"
+export * from "astn-core/modules/deserialization/schemas/location"

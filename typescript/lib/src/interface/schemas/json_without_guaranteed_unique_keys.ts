@@ -1,1 +1,1 @@
-export * from "pareto-json/interface/schemas/json_without_guaranteed_unique_keys"
+export * from "pareto-json/modules/serialization/schemas/without_guaranteed_unique_keys"

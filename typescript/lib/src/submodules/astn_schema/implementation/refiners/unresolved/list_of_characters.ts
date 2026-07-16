@@ -205,7 +205,7 @@ namespace declarations {
 
 }
 
-import * as v_deserialize from "astn-core/_implementation/refiners/parse_tree/list_of_characters"
+import * as v_deserialize from "astn-core/modules/deserialization/implementation/refiners/parse_tree/list_of_characters"
 
 import * as v_unmarshall from "./astn_parse_tree.js"
 

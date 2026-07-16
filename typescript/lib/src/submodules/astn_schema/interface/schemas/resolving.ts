@@ -1,1 +1,1 @@
-export * from "liana-core/interface/schemas/resolving"
+export * from "liana-core/modules/resolving/schemas/resolving"
