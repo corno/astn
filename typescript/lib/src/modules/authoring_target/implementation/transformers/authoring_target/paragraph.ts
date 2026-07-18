@@ -4,14 +4,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as s_in from "../../../schemas/authoring_target.js"
 
 import type * as s_out from "../../../schemas/paragraph.js"
-
-namespace s_parameters {
-
-    export type Parameters = {
-        'write delimiters': boolean
-    }
-
-}
+import type * as s_parameters from "../../../schemas/serialization.js"
 
 namespace declarations {
     export type Document = p_.Transformer<

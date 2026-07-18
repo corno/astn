@@ -3,6 +3,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as s_in from "../../../schemas/authoring_target.js"
 import type * as s_out from "../../../schemas/serialized.js"
 import type * as s_parameters from "pareto-fountain-pen/interface/schemas/paragraph_serialization"
+import type * as s_parameters2 from "../../../schemas/serialization.js"
 
 namespace declarations {
     export type Document = p_.Transformer_With_Parameter<
@@ -13,7 +14,10 @@ namespace declarations {
     export type Value = p_.Transformer_With_Parameter<
         s_in.Value,
         s_out.Lines,
-        s_parameters.Parameters
+        {
+            'paragraph': s_parameters.Parameters,
+            'value': s_parameters2.Parameters
+        }
     >
 }
 
@@ -34,10 +38,8 @@ export const Value: declarations.Value = ($, $p) => {
     return t_paragraph_to_serialized.Phrases(
         t_to_paragraph.Value(
             $,
-            {
-                'write delimiters': true,
-            }
+            $p.value
         ),
-        $p
+        $p.paragraph
     )
 }
