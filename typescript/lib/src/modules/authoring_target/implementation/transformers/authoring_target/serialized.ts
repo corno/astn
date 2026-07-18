@@ -10,6 +10,11 @@ namespace declarations {
         s_out.Lines,
         s_parameters.Parameters
     >
+    export type Value = p_.Transformer_With_Parameter<
+        s_in.Value,
+        s_out.Lines,
+        s_parameters.Parameters
+    >
 }
 
 //dependencies
@@ -21,6 +26,17 @@ export const Document: declarations.Document = ($, $p) => {
     return t_paragraph_to_serialized.Paragraph(
         t_to_paragraph.Document(
             $,
+        ),
+        $p
+    )
+}
+export const Value: declarations.Value = ($, $p) => {
+    return t_paragraph_to_serialized.Phrases(
+        t_to_paragraph.Value(
+            $,
+            {
+                'write delimiters': true,
+            }
         ),
         $p
     )

@@ -20,7 +20,7 @@ namespace declarations {
     >
     export type Value = p_.Transformer_With_Parameter<
         s_in.Value,
-        s_out.Phrase.composed,
+        s_out.Phrases,
         s_parameters.Parameters
     >
     export type Token_Trivia = p_.Transformer<
