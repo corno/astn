@@ -14,7 +14,7 @@ import * as t_parse_tree_deserialization_to_location from "astn-core/modules/des
 import * as ser_parse_tree_deserialization from "astn-core/modules/deserialization/implementation/serializers/parse_tree_deserialization"
 import * as t_json_to_paragraph from "pareto-json/modules/serialization/implementation/transformers/without_guaranteed_unique_keys/paragraph"
 import * as ser_location from "astn-core/modules/deserialization/implementation/serializers/location"
-import * as ser_path from "pareto-resources/implementation/serializers/unrestricted_path"
+import * as ser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/path"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
