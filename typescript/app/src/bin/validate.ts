@@ -7,7 +7,7 @@ import * as rs_stream from "pareto-resource-stream/index"
 
 import { $$ as c_command } from "pareto-common/modules/stream_in_stream_out/implementation/commands/operation"
 
-import { $$ as q_query } from "lib/implementation/queries/validate"
+import { $$ as q_query } from "lib/modules/parse_tree/implementation/queries/validate"
 
 p_h.run_main_command(
     () => c_command(

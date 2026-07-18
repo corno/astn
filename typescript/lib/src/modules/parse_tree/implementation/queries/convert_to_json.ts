@@ -4,7 +4,7 @@ import p_super_query_result from 'pareto-core/implementation/query/super_query_r
 import type * as query_interfaces_file_in_file_out from "pareto-common/modules/file_in_file_out/interface/queries"
 
 //data  types
-import type * as s_parse_tree from "../../interface/schemas/parse_tree.js"
+import type * as s_parse_tree from "../../schemas/parse_tree.js"
 import type * as s_file_in_file_out_query from "pareto-common/modules/file_in_file_out/schemas/query"
 
 //dependencies

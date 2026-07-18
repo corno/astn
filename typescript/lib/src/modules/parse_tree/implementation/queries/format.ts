@@ -5,14 +5,14 @@ import type * as query_interfaces_file_in_file_out from "pareto-common/modules/f
 import type * as s_file_in_file_out_query from "pareto-common/modules/file_in_file_out/schemas/query"
 
 //data  types
-import type * as s_parse_tree from "../../interface/schemas/parse_tree.js"
+import type * as s_parse_tree from "../../schemas/parse_tree.js"
 
 //dependencies
 import * as r_parse_tree_from_list_of_characters from "astn-core/modules/deserialization/implementation/refiners/parse_tree/list_of_characters"
 import * as ser_location from "astn-core/modules/deserialization/implementation/serializers/location"
 import * as ser_parse_tree_deserialization from "astn-core/modules/deserialization/implementation/serializers/parse_tree_deserialization"
 import * as ser_path from "pareto-resources/implementation/serializers/unrestricted_path"
-import * as t_authoring_target_to_prose from "../transformers/authoring_target/paragraph.js"
+import * as t_authoring_target_to_prose from "../../../authoring_target/implementation/transformers/authoring_target/paragraph.js"
 import * as t_parse_tree_2_authoring_target from "../transformers/parse_tree/authoring_target.js"
 import * as t_parse_tree_deserialization_to_location from "astn-core/modules/deserialization/implementation/transformers/parse_tree_deserialization/location"
 

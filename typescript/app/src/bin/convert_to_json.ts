@@ -8,7 +8,7 @@ import * as rs_stream from "pareto-resource-stream/index"
 
 import { $$ as c_command } from "pareto-common/modules/file_in_file_out/implementation/commands/operation"
 
-import { $$ as q_query } from "lib/implementation/queries/convert_to_json"
+import { $$ as q_query } from "lib/modules/parse_tree/implementation/queries/convert_to_json"
 
 p_h.run_main_command(
     () => c_command(

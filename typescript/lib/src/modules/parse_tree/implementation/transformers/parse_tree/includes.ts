@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as s_in from "../../../interface/schemas/parse_tree.js"
-import type * as s_out from "../../../interface/schemas/includes.js"
+import type * as s_in from "../../../schemas/parse_tree.js"
+import type * as s_out from "../../../schemas/includes.js"
 namespace declarations {
     export type Document = p_.Transformer<
         s_in.Document,
