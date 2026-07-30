@@ -6,9 +6,9 @@ import * as p_h from 'pareto-host-nodejs/index'
 import * as rs_filesystem_unrestricted from "pareto-resource-filesystem-unrestricted/index"
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as c_command } from "pareto-common/modules/file_in_file_out/implementation/commands/operation"
+import { $$ as c_command } from "pareto-common/modules/file_in_file_out/commands/implementations/operation"
 
-import { $$ as q_query } from "lib/modules/parse_tree/implementation/queries/format"
+import { $$ as q_query } from "lib/modules/parse_tree/queries/implementations/format"
 
 p_h.run_main_command(
     () => c_command(
