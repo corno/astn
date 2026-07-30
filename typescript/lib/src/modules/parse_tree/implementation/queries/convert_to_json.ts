@@ -17,7 +17,7 @@ import * as ser_location from "astn-core/modules/deserialization/implementation/
 import * as ser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/path"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
+import * as sh from "pareto-fountain-pen/modules/paragraph/shorthands/deprecated"
 
 export const $$: p_.Query_Implementation<
     query_interfaces_file_in_file_out.operation,

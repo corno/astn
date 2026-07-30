@@ -23,7 +23,7 @@ namespace declarations {
 }
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
+import * as sh from "pareto-fountain-pen/modules/paragraph/shorthands/deprecated"
 
 //dependencies
 import * as ser_primitives from "astn-core/modules/serialization/implementation/serializers/primitives"

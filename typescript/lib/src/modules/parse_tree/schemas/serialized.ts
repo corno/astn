@@ -1,1 +1,1 @@
-export * from "pareto-fountain-pen/interface/schemas/serialized"
+export * from "pareto-fountain-pen/modules/paragraph/schemas/serialized"

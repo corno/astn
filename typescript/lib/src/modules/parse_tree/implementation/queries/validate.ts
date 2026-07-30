@@ -14,7 +14,7 @@ import * as r_parse_tree_from_list_of_characters from "astn-core/modules/deseria
 import * as ser_parse_tree_deserialization from "astn-core/modules/deserialization/implementation/serializers/parse_tree_deserialization"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
+import * as sh from "pareto-fountain-pen/modules/paragraph/shorthands/deprecated"
 
 export const $$: p_.Query_Implementation<
     query_interfaces_stream_in_stream_out.operation,

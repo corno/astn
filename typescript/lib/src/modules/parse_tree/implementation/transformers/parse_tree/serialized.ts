@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import type * as s_in from "../../../schemas/parse_tree.js"
 import type * as s_out from "../../../schemas/serialized.js"
-import type * as s_parameters from "pareto-fountain-pen/interface/schemas/paragraph_serialization"
+import type * as s_parameters from "pareto-fountain-pen/modules/paragraph/schemas/paragraph_serialization"
 
 namespace declarations {
     export type Document = p_.Transformer_With_Parameter<
@@ -13,7 +13,7 @@ namespace declarations {
 }
 
 //dependencies
-import * as t_paragraph_to_serialized from "pareto-fountain-pen/_implementation/transformers/paragraph/serialized"
+import * as t_paragraph_to_serialized from "pareto-fountain-pen/modules/paragraph/implementation/transformers/paragraph/serialized"
 import * as t_to_paragraph from "./paragraph.js"
 
 
