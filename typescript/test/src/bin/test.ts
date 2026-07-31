@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as p_h from 'pareto-host-nodejs/index'
+import * as p_h from 'pareto-core-application/index'
 
 
 
