@@ -72,20 +72,16 @@ export const Concrete_Value: declarations.Concrete_Value = ($) => p_.from.state(
                 'type': ['group', p_.from.state($).decide(
                     ($): s_out.Value.data.concrete.type_.group => {
                         switch ($[0]) {
-                            case 'concise': return p_.option($, ($) => {
-                                return ['concise', {
-                                    '<': Structural_Token($['<']),
-                                    'properties': Items($.properties),
-                                    '>': Structural_Token($['>']),
-                                }]
-                            })
-                            case 'verbose': return p_.option($, ($) => {
-                                return ['verbose', {
-                                    '(': Structural_Token($['(']),
-                                    'properties': ID_Value_Pairs($.properties),
-                                    ')': Structural_Token($[')']),
-                                }]
-                            })
+                            case 'concise': return p_.option($, ($) => ['concise', {
+                                '<': Structural_Token($['<']),
+                                'properties': Items($.properties),
+                                '>': Structural_Token($['>']),
+                            }])
+                            case 'verbose': return p_.option($, ($) => ['verbose', {
+                                '(': Structural_Token($['(']),
+                                'properties': ID_Value_Pairs($.properties),
+                                ')': Structural_Token($[')']),
+                            }])
                             default: return p_.exhaustive($[0])
                         }
                     })]
