@@ -95,7 +95,7 @@
 //                                         ($) => ['single line', null],
 //                                     )
 //                                 default:
-//                                     return p_.au(
+//                                     return p_.exhaustive(
 //                                         $[0],
 //                                     )
 //                             }
@@ -280,7 +280,7 @@
 //                                                         }],
 //                                                     )
 //                                                 default:
-//                                                     return p_.au(
+//                                                     return p_.exhaustive(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -477,7 +477,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return p_.au(
+//                                                     return p_.exhaustive(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -487,7 +487,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return p_.au(
+//                         return p_.exhaustive(
 //                             $[0],
 //                         )
 //                 }
@@ -553,7 +553,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return p_.au(
+//                         return p_.exhaustive(
 //                             $[0],
 //                         )
 //                 }

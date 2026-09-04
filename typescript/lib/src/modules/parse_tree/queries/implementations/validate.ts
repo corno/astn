@@ -1,5 +1,4 @@
 import * as p_ from 'pareto-core/implementation/query'
-import p_super_query_result from 'pareto-core/implementation/query/super_query_result'
 
 import type * as query_interfaces_stream_in_stream_out from "pareto-common/modules/stream_in_stream_out/queries/interfaces"
 
@@ -23,8 +22,8 @@ export const $$: p_.Query_Implementation<
     },
     null
 > = p_.query(
-    ($d, $s, $q) => p_super_query_result(p_.e.refine<s_parse_tree.Document, s_file_in_file_out_query.Error>(
-        (abort) => r_parse_tree_from_list_of_characters.Document(
+    (e, $s, $q) => e.refine(
+        ($d, abort) => r_parse_tree_from_list_of_characters.Document(
             $d.data,
             ($) => abort(
                 {
@@ -50,7 +49,7 @@ export const $$: p_.Query_Implementation<
                 'tab size': 4,
             },
         )
-    )).transform(
+    ).transform(
         ($) => ({
             'paragraph': sh.pg.sentences([
                 sh.sentence([
