@@ -1,10 +1,10 @@
 
-import * as p_ from 'pareto-core/implementation/transformer'
-import * as p_di from 'pareto-core/interface/schema'
+import * as p_ from 'pareto-core/transformer'
+import * as p_di from 'pareto-core/schema'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 
 
-import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
+import p_change_context from 'pareto-core/refiner/specials/change_context'
 
 import type * as s_in from "../schema.js"
 namespace t_signatures {

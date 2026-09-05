@@ -1,4 +1,4 @@
-import * as p_ from 'pareto-core/implementation/query'
+import * as p_ from 'pareto-core/query'
 
 import type * as query_interfaces_stream_in_stream_out from "pareto-common/modules/stream_in_stream_out/queries/interfaces"
 
