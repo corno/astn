@@ -1,7 +1,5 @@
 
 import * as p_ from 'pareto-core/transformer'
-import * as p_di from 'pareto-core/schema'
-const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 
 
 import p_change_context from 'pareto-core/refiner/specials/change_context'
@@ -61,8 +59,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set': return p_.option(
@@ -330,8 +327,7 @@ export const Value: t_signatures.Value = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Value.l_state => {
             switch ($[0]) {
                 case 'component': return p_.option(
@@ -353,8 +349,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Value.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external': return p_.option(
@@ -603,8 +598,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global': return p_.option(
@@ -671,8 +665,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line': return p_.option(

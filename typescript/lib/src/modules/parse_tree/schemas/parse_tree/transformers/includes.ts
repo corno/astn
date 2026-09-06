@@ -78,11 +78,11 @@ export const Items: declarations.Items = ($) => p_.from.list($).flatten(
     ($) => Value($.value))
 
 export const ID_Value_Pairs: declarations.ID_Value_Pairs = ($) => p_.from.list($).flatten(
-    ($ => p_.from.optional($.assignment).decide(
+    ($) => p_.from.optional($.assignment).decide(
         ($) => p_.from.optional($.value).decide(
             ($) => Value($),
             () => p_.literal.list([])
         ),
         () => p_.literal.list([])
-    ))
+    )
 )

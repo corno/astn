@@ -80,8 +80,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
@@ -114,8 +113,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Value => {
 //                 switch ($[0]) {
 //                     case 'component':
@@ -125,8 +123,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Value.component => {
 //                                             switch ($[0]) {
 //                                                 case 'external':
@@ -135,7 +132,7 @@
 //                                                         ($) => ['external', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_import = p_decide_optional(
+//                                                                 const var_constraint_import = p_.from.optional($1).decide((
 //                                                                     $p['imports'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -413,8 +410,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
@@ -423,7 +419,7 @@
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = p_decide_optional(
+//                                                                 const var_constraint_globals = p_.from.optional($1).decide((
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -520,8 +516,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':

@@ -1,6 +1,5 @@
 
 import * as p_ from 'pareto-core/transformer'
-const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 
 
 import p_change_context from 'pareto-core/refiner/specials/change_context'
@@ -47,8 +46,7 @@ import * as s_out from "astn-core/modules/serialization/schemas/sealed_target/sc
 
 import * as v_primitives_to_text from "liana-core/modules/serialization/schemas/primitives/serializers"
 
-export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_state(
-    $,
+export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'set': return p_.option(
@@ -152,16 +150,14 @@ export const Modules: t_signatures.Modules = ($) => ['dictionary', p_.from.dicti
     )]],
 )]
 
-export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
-    $,
+export const Value: t_signatures.Value = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'component': return p_.option(
                     $,
                     ($) => ({
                         'option': 'component',
-                        'value': ['state', p_decide_state(
-                            $,
+                        'value': ['state', p_.from.state($).decide(
                             ($): s_out.Value.state => {
                                 switch ($[0]) {
                                     case 'external': return p_.option(
@@ -297,8 +293,7 @@ export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
                     $,
                     ($) => ({
                         'option': 'text',
-                        'value': ['state', p_decide_state(
-                            $,
+                        'value': ['state', p_.from.state($).decide(
                             ($): s_out.Value.state => {
                                 switch ($[0]) {
                                     case 'global': return p_.option(
@@ -338,8 +333,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', p_
     {
         "type": p_change_context(
             $['type'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'multi line': return p_.option(
