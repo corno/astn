@@ -1,6 +1,5 @@
 
 import * as p_ from 'pareto-core/refiner'
-const p_decide_text = <B>($: string, assign: ($: string) => B) => assign($)
 
 import p_change_context from 'pareto-core/refiner/specials/change_context'
 
@@ -184,8 +183,7 @@ export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_con
             $,
         ),
     ),
-    ($) => p_decide_text(
-        $['option']['token']['value'],
+    ($) => p_.from.text($['option']['token']['value']).deprecated_to_any_value(
         ($t): s_out.Schema_Tree => {
             switch ($t) {
                 case 'set':
@@ -584,8 +582,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
             $,
         ),
     ),
-    ($) => p_decide_text(
-        $['option']['token']['value'],
+    ($) => p_.from.text($['option']['token']['value']).deprecated_to_any_value(
         ($t): s_out.Value => {
             switch ($t) {
                 case 'component':
@@ -602,8 +599,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                         $,
                                     ),
                                 ),
-                                ($) => p_decide_text(
-                                    $['option']['token']['value'],
+                                ($) => p_.from.text($['option']['token']['value']).deprecated_to_any_value(
                                     ($t): s_out.Value.l_state.component => {
                                         switch ($t) {
                                             case 'external':
@@ -991,8 +987,7 @@ export const Value: declarations.Value_ = ($, abort) => p_change_context(
                                         $,
                                     ),
                                 ),
-                                ($) => p_decide_text(
-                                    $['option']['token']['value'],
+                                ($) => p_.from.text($['option']['token']['value']).deprecated_to_any_value(
                                     ($t): s_out.Value.l_state.text => {
                                         switch ($t) {
                                             case 'global':
@@ -1099,8 +1094,7 @@ export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context
                                 $,
                             ),
                         ),
-                        ($) => p_decide_text(
-                            $['option']['token']['value'],
+                        ($) => p_.from.text($['option']['token']['value']).deprecated_to_any_value(
                             ($t): s_out.Text_Type.type_ => {
                                 switch ($t) {
                                     case 'multi line':
