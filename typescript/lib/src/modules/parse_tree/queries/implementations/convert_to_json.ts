@@ -24,43 +24,42 @@ export const $$: p_.Query_Implementation<
         'tab size': number,
     },
     null
-> = p_.query(
-    (e, $s, $q) => e.refine(
-        ($d, abort) => r_parse_tree_from_list_of_characters.Document(
-            $d.data,
-            ($) => abort(
-                {
-                    'message': sh.ph.composed([
-                        sh.ph.text(ser_path.Node_Path($d.path)),
-                        sh.ph.text(":"),
-                        sh.ph.text(
-                            ser_location.Possible_Range(
-                                t_parse_tree_deserialization_to_location.Error($),
-                                {
-                                    'character location reporting': ['one based', null],
-                                }
-                            )
-                        ),
-                        sh.ph.text(": "),
-                        sh.ph.text(
-                            ser_parse_tree_deserialization.Error(
-                                $,
-                            )
-                        )
-                    ])
-                }
-            ),
+> = p_.query((e, $s, $q) => e.refine(
+    ($d, abort) => r_parse_tree_from_list_of_characters.Document(
+        $d.data,
+        ($) => abort(
             {
-                'tab size': 4,
-            },
-        )
-    ).transform(
-        ($) => ({
-            'paragraph': t_json_to_paragraph.Document(
-                t_ast_2_json.Document(
-                    $
-                ),
-            )
-        })
+                'message': sh.ph.composed([
+                    sh.ph.text(ser_path.Node_Path($d.path)),
+                    sh.ph.text(":"),
+                    sh.ph.text(
+                        ser_location.Possible_Range(
+                            t_parse_tree_deserialization_to_location.Error($),
+                            {
+                                'character location reporting': ['one based', null],
+                            }
+                        )
+                    ),
+                    sh.ph.text(": "),
+                    sh.ph.text(
+                        ser_parse_tree_deserialization.Error(
+                            $,
+                        )
+                    )
+                ])
+            }
+        ),
+        {
+            'tab size': 4,
+        },
     )
+).transform(
+    ($) => ({
+        'paragraph': t_json_to_paragraph.Document(
+            t_ast_2_json.Document(
+                $
+            ),
+        )
+    })
+)
 )
