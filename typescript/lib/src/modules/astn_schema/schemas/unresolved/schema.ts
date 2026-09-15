@@ -340,6 +340,16 @@ export namespace Value_ {
             readonly 'value': list.value
         }
         
+        export namespace location {
+            
+            export type value = Value_
+            
+        }
+        
+        export type location = {
+            readonly 'value': location.value
+        }
+        
         export type nothing = null
         
         export type optional = Value_
@@ -415,6 +425,7 @@ export namespace Value_ {
         | readonly ['dictionary', l_state.dictionary]
         | readonly ['group', l_state.group]
         | readonly ['list', l_state.list]
+        | readonly ['location', l_state.location]
         | readonly ['nothing', l_state.nothing]
         | readonly ['optional', l_state.optional]
         | readonly ['state', l_state.state]

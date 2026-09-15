@@ -524,6 +524,17 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
+                case 'location': return p_.option(
+                        $,
+                        ($) => ['location', {
+                            'value': p_change_context(
+                                $['value'],
+                                ($) => Value(
+                                    $,
+                                ),
+                            ),
+                        }],
+                    )
                 case 'nothing': return p_.option(
                         $,
                         ($) => ['nothing', null],

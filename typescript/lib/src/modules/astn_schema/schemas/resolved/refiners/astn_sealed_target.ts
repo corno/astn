@@ -261,6 +261,22 @@ export const Value: t_signatures.Value = ($) => ['state', p_.from.state($).decid
                         )]],
                     }),
                 )
+            case 'location': return p_.option(
+                    $,
+                    ($) => ({
+                        'option': 'location',
+                        'value': ['group', ['verbose', p_.literal.dictionary(
+                            {
+                                "value": p_change_context(
+                                    $['value'],
+                                    ($) => Value(
+                                        $,
+                                    ),
+                                ),
+                            },
+                        )]],
+                    }),
+                )
             case 'nothing': return p_.option(
                     $,
                     ($) => ({
