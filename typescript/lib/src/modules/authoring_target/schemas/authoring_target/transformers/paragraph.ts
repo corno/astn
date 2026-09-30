@@ -26,7 +26,7 @@ namespace declarations {
 import * as sh from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/shorthands/deprecated"
 
 //dependencies
-import * as ser_primitives from "astn-core/modules/serialization/schemas/primitives/serializers"
+import * as ser_primitives from "astn-runtime/modules/serialization/schemas/primitives/serializers"
 
 export const Document: declarations.Document = ($) => sh.pg.sentences(
     p_.literal.segmented_list([

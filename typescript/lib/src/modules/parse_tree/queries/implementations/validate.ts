@@ -3,14 +3,14 @@ import * as p_ from 'pareto-core/query'
 import type * as query_interfaces_stream_in_stream_out from "pareto-common/modules/stream_in_stream_out/queries/interfaces"
 
 //data  types
-import type * as s_parse_tree from "astn-core/modules/deserialization/schemas/parse_tree/schema"
+import type * as s_parse_tree from "astn-runtime/modules/deserialization/schemas/parse_tree/schema"
 import type * as s_file_in_file_out_query from "pareto-common/modules/file_in_file_out/schemas/query/schema"
 
 //dependencies
-import * as t_parse_tree_deserialization_to_location from "astn-core/modules/deserialization/schemas/parse_tree_deserialization/transformers/location"
-import * as ser_location from "astn-core/modules/deserialization/schemas/location/serializers"
-import * as r_parse_tree_from_list_of_characters from "astn-core/modules/deserialization/schemas/parse_tree/refiners/list_of_characters"
-import * as ser_parse_tree_deserialization from "astn-core/modules/deserialization/schemas/parse_tree_deserialization/serializers"
+import * as t_parse_tree_deserialization_to_location from "astn-runtime/modules/deserialization/schemas/parse_tree_deserialization/transformers/location"
+import * as ser_location from "astn-runtime/modules/deserialization/schemas/location/serializers"
+import * as r_parse_tree_from_list_of_characters from "astn-runtime/modules/deserialization/schemas/parse_tree/refiners/list_of_characters"
+import * as ser_parse_tree_deserialization from "astn-runtime/modules/deserialization/schemas/parse_tree_deserialization/serializers"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/shorthands/deprecated"

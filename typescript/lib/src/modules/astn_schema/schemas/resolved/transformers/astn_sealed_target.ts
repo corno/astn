@@ -42,9 +42,9 @@ namespace t_signatures {
     >
 }
 
-import * as s_out from "astn-core/modules/serialization/schemas/sealed_target/schema"
+import * as s_out from "astn-runtime/modules/serialization/schemas/sealed_target/schema"
 
-import * as v_primitives_to_text from "liana-core/modules/serialization/schemas/primitives/serializers"
+import * as v_primitives_to_text from "liana-runtime/modules/serialization/schemas/primitives/serializers"
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
