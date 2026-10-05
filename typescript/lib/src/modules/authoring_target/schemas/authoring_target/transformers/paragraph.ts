@@ -193,18 +193,17 @@ export const Value: declarations.Value = ($, $p) => p_.from.state($.data).decide
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($['[']),
-                                p_.from.list($.items).flatten(
-                                    ($) => p_.literal.segmented_list([
-                                        p_.literal.list([
-                                            sh.ph.text(" "),
-                                        ]),
-                                        Value($, {
-                                            'write delimiters': true,
-                                        }),
-                                    ])),
+                                p_.literal.list([
+                                    sh.ph.indent(
+                                        sh.pg.sentences(p_.from.list($.items).map(
+                                            ($) => sh.sentence(Value($, {
+                                                'write delimiters': true,
+                                            })))),
+                                    ),
+                                ]),
                                 $p['write delimiters']
                                     ? p_.literal.list([
-                                        sh.ph.text(" ]")
+                                        sh.ph.text("]")
                                     ])
                                     : p_.literal.list([]),
                                 Token_Trivia($[']']),

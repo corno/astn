@@ -1,33 +1,35 @@
+import * as p_ from 'pareto-core/schema'
 
-import * as p_di from 'pareto-core/schema'
+// types
 
-export namespace Document_ {
+namespace Document_ {
     
     export namespace header {
         
         export type O = Value_
-        
     }
     
-    export type header = p_di.Optional_Value<header.O>
+    export type header = p_.Optional_Value<
+        header.O
+    >
     
     export type content = Value_
-    
 }
 
-export type Document_ = {
+type Document_ = {
     readonly 'header': Document_.header
     readonly 'content': Document_.content
 }
 
-export namespace Value_ {
+type Root_ = Document_
+
+namespace Value_ {
     
     export namespace data {
         
         export namespace missing {
             
             export type $ha_ = Token_Trivia_
-            
         }
         
         export type missing = {
@@ -39,7 +41,6 @@ export namespace Value_ {
             export type $at_ = Token_Trivia_
             
             export type path = string
-            
         }
         
         export type include = {
@@ -58,7 +59,6 @@ export namespace Value_ {
                     export type entries = ID_Value_Pairs_
                     
                     export type $cc_ = Token_Trivia_
-                    
                 }
                 
                 export type dictionary = {
@@ -76,7 +76,6 @@ export namespace Value_ {
                         export type properties = Items_
                         
                         export type $gt_ = Token_Trivia_
-                        
                     }
                     
                     export type concise = {
@@ -92,7 +91,6 @@ export namespace Value_ {
                         export type properties = ID_Value_Pairs_
                         
                         export type $pc_ = Token_Trivia_
-                        
                     }
                     
                     export type verbose = {
@@ -100,7 +98,6 @@ export namespace Value_ {
                         readonly 'properties': verbose.properties
                         readonly ')': verbose.$pc_
                     }
-                    
                 }
                 
                 export type group = 
@@ -114,7 +111,6 @@ export namespace Value_ {
                     export type items = Items_
                     
                     export type $bc_ = Token_Trivia_
-                    
                 }
                 
                 export type list = {
@@ -126,7 +122,6 @@ export namespace Value_ {
                 export namespace nothing {
                     
                     export type $ti_ = Token_Trivia_
-                    
                 }
                 
                 export type nothing = {
@@ -138,7 +133,6 @@ export namespace Value_ {
                     export namespace not_set {
                         
                         export type $_ = Token_Trivia_
-                        
                     }
                     
                     export type not_set = {
@@ -150,14 +144,12 @@ export namespace Value_ {
                         export type $sr_ = Token_Trivia_
                         
                         export type value = Value_
-                        
                     }
                     
                     export type set_ = {
                         readonly '*': set_.$sr_
                         readonly 'value': set_.value
                     }
-                    
                 }
                 
                 export type optional = 
@@ -173,7 +165,6 @@ export namespace Value_ {
                         export namespace missing {
                             
                             export type $ha_ = Token_Trivia_
-                            
                         }
                         
                         export type missing = {
@@ -185,20 +176,17 @@ export namespace Value_ {
                             export type option = string
                             
                             export type value = Value_
-                            
                         }
                         
                         export type set_ = {
                             readonly 'option': set_.option
                             readonly 'value': set_.value
                         }
-                        
                     }
                     
                     export type status = 
                         | readonly ['missing', status.missing]
                         | readonly ['set', status.set_]
-                    
                 }
                 
                 export type state = {
@@ -219,14 +207,12 @@ export namespace Value_ {
                         export type quote = null
                         
                         export type apostrophe = null
-                        
                     }
                     
                     export type delimiter = 
                         | readonly ['none', delimiter.none]
                         | readonly ['quote', delimiter.quote]
                         | readonly ['apostrophe', delimiter.apostrophe]
-                    
                 }
                 
                 export type text = {
@@ -234,7 +220,6 @@ export namespace Value_ {
                     readonly 'value': text.value
                     readonly 'delimiter': text.delimiter
                 }
-                
             }
             
             export type type_ = 
@@ -245,27 +230,24 @@ export namespace Value_ {
                 | readonly ['optional', type_.optional]
                 | readonly ['state', type_.state]
                 | readonly ['text', type_.text]
-            
         }
         
         export type concrete = {
             readonly 'type': concrete.type_
         }
-        
     }
     
     export type data = 
         | readonly ['missing', data.missing]
         | readonly ['include', data.include]
         | readonly ['concrete', data.concrete]
-    
 }
 
-export type Value_ = {
+type Value_ = {
     readonly 'data': Value_.data
 }
 
-export namespace Token_Trivia_ {
+namespace Token_Trivia_ {
     
     export namespace comments {
         
@@ -278,31 +260,29 @@ export namespace Token_Trivia_ {
                 export type line = null
                 
                 export type block = null
-                
             }
             
             export type type_ = 
                 | readonly ['line', type_.line]
                 | readonly ['block', type_.block]
-            
         }
         
         export type L = {
             readonly 'content': L.content
             readonly 'type': L.type_
         }
-        
     }
     
-    export type comments = p_di.List<comments.L>
-    
+    export type comments = p_.List<
+        comments.L
+    >
 }
 
-export type Token_Trivia_ = {
+type Token_Trivia_ = {
     readonly 'comments': Token_Trivia_.comments
 }
 
-export namespace ID_Value_Pairs_ {
+namespace ID_Value_Pairs_ {
     
     export namespace L {
         
@@ -311,34 +291,38 @@ export namespace ID_Value_Pairs_ {
         export namespace value {
             
             export type O = Value_
-            
         }
         
-        export type value = p_di.Optional_Value<value.O>
-        
+        export type value = p_.Optional_Value<
+            value.O
+        >
     }
     
     export type L = {
         readonly 'id': L.id
         readonly 'value': L.value
     }
-    
 }
 
-export type ID_Value_Pairs_ = p_di.List<ID_Value_Pairs_.L>
+type ID_Value_Pairs_ = p_.List<
+    ID_Value_Pairs_.L
+>
 
-export namespace Items_ {
+namespace Items_ {
     
     export type L = Value_
-    
 }
 
-export type Items_ = p_di.List<Items_.L>
+type Items_ = p_.List<
+    Items_.L
+>
 
-export type { 
-    Document_ as Document, 
-    Value_ as Value, 
-    Token_Trivia_ as Token_Trivia, 
-    ID_Value_Pairs_ as ID_Value_Pairs, 
-    Items_ as Items, 
+// exported root types
+export { 
+    type Document_ as Document, 
+    type Root_ as Root, 
+    type Value_ as Value, 
+    type Token_Trivia_ as Token_Trivia, 
+    type ID_Value_Pairs_ as ID_Value_Pairs, 
+    type Items_ as Items, 
 }
