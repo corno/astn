@@ -87,6 +87,10 @@
 
 ## 🚀 Quick Start
 
+The formatting, JSON conversion, and validation CLIs use paragraph output
+resources. Output formatting is explicit (`indentation` and `newline`), and
+diagnostics are sent through `log error paragraph`.
+
 ### 📝 For Authoring ASTN Files
 
 Want to start writing ASTN files or create ASTN schemas? Get the best editing experience with VS Code:

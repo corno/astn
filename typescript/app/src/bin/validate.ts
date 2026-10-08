@@ -13,6 +13,7 @@ p_h.run_main_command(
     () => c_command(
         {
             'indentation': "    ",
+            'newline': "\n",
         },
         {
             'get instream data': rs_stream.$.queries['get instream data'],
@@ -24,8 +25,8 @@ p_h.run_main_command(
             ),
         },
         {
-            'log error lines': rs_stream.$.commands['log error lines'],
-            'log lines': rs_stream.$.commands['log lines'],
+            'log error paragraph': rs_stream.$.commands['log error paragraph'],
+            'log paragraph': rs_stream.$.commands['log paragraph'],
         },
     ),
 )

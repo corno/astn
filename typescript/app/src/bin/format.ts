@@ -27,7 +27,7 @@ p_h.run_main_command(
         },
         {
             'write file': rs_filesystem_unrestricted.$.commands['write file'],
-            'log error lines': rs_stream.$.commands['log error lines'],
+            'log error paragraph': rs_stream.$.commands['log error paragraph'],
         },
     ),
 )
